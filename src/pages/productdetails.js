@@ -148,32 +148,32 @@ export default function ProductDetails(props) {
             <div className="flex items-center">
                 <div className="relative">
                 <button className="w-10 justify center text-justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-white hover:text-gray">XS</button>
-                <button className="w-10 justify center text-justify-center mr-5  text-[#a51535] transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-[#a51535] hover:text-white">S</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-[#a51535] transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-[#a51535] hover:text-white">M</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-[#a51535] transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-[#a51535] hover:text-white">L</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-[#a51535] transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-[#a51535] hover:text-white">XL</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-[#a51535] transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-[#a51535] hover:text-white">XXL</button>
+                <button className="w-10 justify center text-justify-center mr-5  text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">S</button>
+                <button className="w-10 justify center text-justify-center mr-5 text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">M</button>
+                <button className="w-10 justify center text-justify-center mr-5 text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">L</button>
+                <button className="w-10 justify center text-justify-center mr-5 text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XL</button>
+                <button className="w-10 justify center text-justify-center mr-5 text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XXL</button>
                 </div>
               </div>
               <br></br>
               <div className="flex items-center h-10 w-32">
                 <h2 className="w-full text-black mr-5 text-sm font-semibold">Qty</h2>
                 <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                    <button data-action="decrement" className=" bg-white text-center border border-gray text-[#a51535] hover:text-[#a51535] hover:bg-gray h-full w-20 rounded-l cursor-pointer outline-none">
+                    <button data-action="decrement" className=" bg-white text-center border border-gray text-primary hover:text-primary hover:bg-gray h-full w-20 rounded-l cursor-pointer outline-none">
                     <span className="m-auto text-2xl font-thin">-</span>
                     </button>
-                    <input className="border border-gray focus:outline-none text-center w-full bg-white font-semibold text-md hover:text-[#a51535] focus:text-[#a51535] md:text-basecursor-default flex items-center text-[#a51535] outline-none" value="0" onChange></input>
-                        <button data-action="increment" className="bg-white text-center border border-gray text-[#a51535] hover:text-[#a51535] hover:bg-gray h-full w-20 rounded-r cursor-pointer">
+                    <input className="border border-gray focus:outline-none text-center w-full bg-white font-semibold text-md hover:text-primary focus:text-primary md:text-basecursor-default flex items-center text-primary outline-none" value="0" onChange></input>
+                        <button data-action="increment" className="bg-white text-center border border-gray text-primary hover:text-primary hover:bg-gray h-full w-20 rounded-r cursor-pointer">
                     <span className="m-auto text-2xl font-thin">+</span>
                     </button>
                 </div>
             </div>
             <br></br>
             <div className="flex">
-            <button className= "flex ml-6 text-justify-center mr-10 text-white bg-[#a5153F] border-0 py-2 px-6 focus:outline-none hover:bg-[#a51535] rounded">
+            <button className= "flex ml-6 text-justify-center mr-10 text-white bg-[#a5153F] border-0 py-2 px-6 focus:outline-none hover:bg-primary rounded">
                 Buy Now
               </button>
-              <button className= "flex ml-10 mr-10 text-justify-center text-white bg-[#a5153F] border-0 py-2 px-6 focus:outline-none hover:bg-[#a51535] rounded">
+              <button className= "flex ml-10 mr-10 text-justify-center text-white bg-[#a5153F] border-0 py-2 px-6 focus:outline-none hover:bg-primary rounded">
                 Wishlist
               </button>
             </div>
