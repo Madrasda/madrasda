@@ -20,19 +20,24 @@ export default function Home() {
 {/* -------- OFFICIAL MERCHANDISE START -------- */}
           <h1 className='font-algeria font-bold text-3xl my-10 px-10'>OFFICIAL MERCHANDISE</h1>
           
-          <div className='flex flex-row items-center my-10 pl-10'>
-            <Image src="/disc-vikram.svg" width={400} height={400} className='absolute bg-bg rounded-full px-4 py-4 z-10' />
+          <div className='my-10 pl-10'>
+            <span className='bg-bg flex flex-row items-center rounded-l-full w-full'>
+            <Image src="/disc-vikram.svg" width={400} height={400}/>
             
-            <div className='bg-bg w-full h-full py-[40px] ml-48 flex items-center justify-start'>
-              <div className="lg:w-[20%] md:w-1/2 p-4 ml-56 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <div className='w-full h-full flex items-center justify-start'>
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-row flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25} className='flex flex-row-reverse'/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -50,9 +55,13 @@ export default function Home() {
                   <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -70,9 +79,13 @@ export default function Home() {
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -90,9 +103,13 @@ export default function Home() {
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -105,22 +122,27 @@ export default function Home() {
               </div>
             
             </div>
+            </span>
           </div>
 
 
 
-          <div className='flex flex-row-reverse items-center my-10 pr-10'>
-
-            <div className='bg-bg w-full h-full py-[39px] mr-48 flex items-center justify-start'>
+          <div className='my-10 pr-10'>
+            <span className='flex flex-row items-center rounded-r-full bg-bg w-full'>
+            <div className='w-full h-full flex items-center justify-end'>
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails">
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -138,9 +160,13 @@ export default function Home() {
                   <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -158,9 +184,13 @@ export default function Home() {
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -172,15 +202,19 @@ export default function Home() {
               </Link>
               </div>
             
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full mr-56 cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails">
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -193,25 +227,29 @@ export default function Home() {
               </div>
             
             </div>
-            <Image src="/disc-loki.svg" width={400} height={400} className='absolute bg-bg rounded-full px-4 py-4 z-10' />
-
+            <Image src="/disc-loki.svg" width={400} height={400}/>
+            </span>
           </div>
 
 
-
-          <div className='flex flex-row items-center my-10 pl-10 pb-20'>
-            <Image src="/disc-redgiant.svg" width={400} height={400} className='absolute bg-bg rounded-full px-4 py-4 z-10' />
+          <div className='my-10 pl-10'>
+          <span className='bg-bg flex flex-row items-center rounded-l-full w-full'>
+            <Image src="/disc-redgiant.svg" width={400} height={400}/>
             
-            <div className='bg-bg w-full h-full py-[40px] ml-48 flex items-center justify-start'>
-              <div className="lg:w-[20%] md:w-1/2 p-4 ml-56 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <div className='w-full h-full flex items-center justify-start'>
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-row flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25} className='flex flex-row-reverse'/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -229,9 +267,13 @@ export default function Home() {
                   <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -249,9 +291,13 @@ export default function Home() {
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -269,9 +315,13 @@ export default function Home() {
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
                 <div className="mt-4">
-                  <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                      <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                      <Image src="/wishlist.png" width={25} height={25}/>
+                  <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
                   </div>
                   <h2 className="title-font text-lg font-medium">Product Name</h2>
                   <span className="mt-1 text-black text-lg">₹699</span>
@@ -284,6 +334,7 @@ export default function Home() {
               </div>
             
             </div>
+            </span>
           </div>
 {/* -------- OFFICIAL MERCHANDISE END -------- */}
 
@@ -308,10 +359,14 @@ export default function Home() {
                     <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                   </a>
                   <div className="mt-4">
-                    <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                        <h3 className="text-xs tracking-widest title-font mb-1 mr-40">CATEGORY</h3>
-                        <Image src="/wishlist.png" width={25} height={25} />
-                    </div>
+                    <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
+                  </div>
                     <h2 className="title-font text-lg font-medium">Product Name</h2>
                     <span className="mt-1 text-black text-lg">₹699</span>
                     <span>     </span>
@@ -326,10 +381,14 @@ export default function Home() {
                     <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                   </a>
                   <div className="mt-4">
-                    <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                        <h3 className="text-xs tracking-widest title-font mb-1 mr-40">CATEGORY</h3>
-                        <Image src="/wishlist.png" width={25} height={25} />
-                    </div>
+                    <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
+                  </div>
                     <h2 className="title-font text-lg font-medium">Product Name</h2>
                     <span className="mt-1 text-black">₹699</span>
                     <span>     </span>
@@ -344,10 +403,14 @@ export default function Home() {
                     <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                   </a>
                   <div className="mt-4">
-                    <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                        <h3 className="text-xs tracking-widest title-font mb-1 mr-40">CATEGORY</h3>
-                        <Image src="/wishlist.png" width={25} height={25} />
-                    </div>
+                    <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
+                  </div>
                     <h2 className="title-font text-lg font-medium">Product Name</h2>
                     <span className="mt-1 text-black">₹699</span>
                     <span>     </span>
@@ -362,10 +425,14 @@ export default function Home() {
                     <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                   </a>
                   <div className="mt-4">
-                    <div className='container flex flex-wrap items-center mx-auto justify-around'>
-                        <h3 className="text-xs tracking-widest title-font mb-1 mr-32">CATEGORY</h3>
-                        <Image src="/wishlist.png" width={25} height={25} />
-                    </div>
+                    <div className='flex flex-row items-center w-full'>
+                      <div className='flex justify-start'>
+                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                      </div>
+                      <div className='flex justify-end w-full'>
+                        <Image src="/wishlist.png" width={25} height={25} className=''/>
+                      </div>
+                  </div>
                     <h2 className="title-font text-lg font-medium">Product name</h2>
                     <span className="mt-1 text-black">₹699</span>
                     <span>     </span>
