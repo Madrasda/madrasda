@@ -7,7 +7,9 @@ export default function NavClient() {
     <>
     <header className="bg-bg text-white font-algeria px-8 fixed z-20 w-full">
         <div className="flex justify-center items-center w-full">
-        <Image src="/logo.png" width={60} height={60}/>
+        <Link href="/">
+          <Image src="/logo.png" width={90} height={90}/>
+        </Link>
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <nav className="md:mr-auto md:ml-24 md:py-1 text-sm flex flex-wrap items-center justify-center font-bold">
               <Link href="/" className="mr-8">MEN</Link>
