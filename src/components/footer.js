@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="text-gray body-font font-algeria text-sm font-bold mt-4">
+    <footer className="text-gray body-font font-algeria text-sm font-bold mt-4 z-30">
       <div className='flex justify-center items-center bg-bg mx-auto py-10'>  
       <Image src="/logo.png" width={120} height={120} alt="footer logo"/>
       </div>

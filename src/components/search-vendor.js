@@ -1,17 +1,17 @@
-export default function Search() {
+export default function SearchVendor() {
     return (
       <>
         <div>
-            <div className="w-96">
+            <div className="w-96 scale-125">
                 <div className="relative flex flex-wrap w-[80%]">
                     <input
                     type="search"
-                    className="relative m-0 block w-[1%] min-w-0 flex-auto border border-t-0 border-r-0 border-l-0 border-b-2 border-white bg-none bg-clip-padding text-sm font-normal outline-none transition duration-300 ease-in-out focus:outline-none"
+                    className="relative m-0 block w-[1%] min-w-0 flex-auto border border-t-0 border-r-0 border-l-0 border-b-2 border-bg bg-none bg-clip-padding text-sm font-normal outline-none transition duration-300 ease-in-out focus:outline-none"
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="button-addon2" />
                     <span
-                    className="input-group-text flex items-center whitespace-nowrap rounded text-center text-base font-normal"
+                    className="input-group-text text-primary flex items-center whitespace-nowrap rounded text-center text-base"
                     id="basic-addon2">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
