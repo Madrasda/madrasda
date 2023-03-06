@@ -6,7 +6,7 @@ export default function Search() {
                 <div className="relative flex flex-wrap w-[80%]">
                     <input
                     type="search"
-                    className="relative m-0 block w-[1%] min-w-0 flex-auto border border-t-0 border-r-0 border-l-0 border-b-2 border-white bg-none bg-clip-padding text-sm font-normal outline-none transition duration-300 ease-in-out focus:outline-none"
+                    className="relative m-0 block w-[1%] min-w-0 flex-auto border border-t-0 border-r-0 border-l-0 border-b-2 border-white bg-bg bg-clip-padding text-sm font-normal outline-none transition duration-300 ease-in-out focus:outline-none"
                     placeholder="Search"
                     aria-label="Search"
                     aria-describedby="button-addon2" />

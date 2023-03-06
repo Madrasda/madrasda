@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Layout from '@/components/layout';
+import ClientLayout from '@/components/layout-client';
 
 export default function ProductDetails(props) {
   return (
@@ -12,7 +12,7 @@ export default function ProductDetails(props) {
       <title>Madrasda | View Product</title>
     </Head>
 
-    <Layout>
+    <ClientLayout>
     <section className="text-black body-font overflow-hidden">
       <div className="px-5 py-24 mx-auto flex justify-center">
       <div className='flex flex-col justify-center items-center'>
@@ -285,7 +285,7 @@ export default function ProductDetails(props) {
     </div>
     </div>
 
-    </Layout>
+    </ClientLayout>
     </>
   );
 }

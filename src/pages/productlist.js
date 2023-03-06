@@ -1,6 +1,6 @@
-import Layout from "@/components/layout";
 import Image from "next/image";
 import Head from "next/head";
+import ClientLayout from "@/components/layout-client";
 
 export default function prodl() {
   return (
@@ -12,7 +12,7 @@ export default function prodl() {
       <title>Madrasda | Product List</title>
     </Head>
     
-    <Layout>
+    <ClientLayout>
     <section className="body-font">
       <div className="px-5 py-24 mx-auto">
         <div className="flex flex-wrap justify-center">
@@ -310,7 +310,7 @@ export default function prodl() {
         </div>
       </div>
     </section>
-    </Layout>
+    </ClientLayout>
     </>
   );
 }

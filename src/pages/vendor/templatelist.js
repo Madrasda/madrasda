@@ -1,8 +1,8 @@
-import Layout from "@/components/layout";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import SearchVendor from "@/components/search-vendor";
+import VendorLayout from "@/components/layout-vendor";
 
 export default function TemplateList() {
   return (
@@ -14,11 +14,11 @@ export default function TemplateList() {
       <title>Madrasda | Create Template</title>
     </Head>
     
-    <Layout>
-    <section className="body-font ml-56">
-      <div className="px-5 py-24 mx-auto">
-        <h1 className="text-4xl text-primary ml-20">CREATE TEMPLATES</h1>
-        <div className="flex items-center justify-center m-10">
+    <VendorLayout>
+    <section className="body-font ml-36 overflow-hidden">
+      <div className="px-5 my-10 mx-auto">
+        <h1 className="text-4xl text-primary ml-20">CREATE TEMPLATE</h1>
+        <div className="flex items-center justify-center m-5">
           <SearchVendor />
         </div>
         <div className="flex flex-wrap justify-center">
@@ -42,13 +42,13 @@ export default function TemplateList() {
                 className="object-contain object-center w-full h-full" />
             </a>
             <div className="mt-4">
-                <h3 className="text-lg title-font">Vikram Hoodies</h3>
+                <h3 className="text-base title-font">Vikram Hoodies</h3>
                 <div className="flex">
-                    <h2 className="title-font text-base text-gray">Technique:</h2>
-                    <p className="pl-1 text-gray">PRINT</p>
+                    <h2 className="title-font text-sm text-gray">Technique:</h2>
+                    <p className="pl-1 text-gray text-sm">PRINT</p>
                 </div>
-                <span className="mt-1 text-gray pr-1">Sizes:</span>
-                <span className="mt-1 text-gray pr-1">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
+                <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
             </div>
         </div>
 
@@ -61,13 +61,13 @@ export default function TemplateList() {
                 className="object-contain object-center w-full h-full" />
             </a>
             <div className="mt-4">
-                <h3 className="text-lg title-font">Vikram Hoodies</h3>
+                <h3 className="text-base title-font">Vikram Hoodies</h3>
                 <div className="flex">
-                    <h2 className="title-font text-base text-gray">Technique:</h2>
-                    <p className="pl-1 text-gray">PRINT</p>
+                    <h2 className="title-font text-sm text-gray">Technique:</h2>
+                    <p className="pl-1 text-gray text-sm">PRINT</p>
                 </div>
-                <span className="mt-1 text-gray pr-1">Sizes:</span>
-                <span className="mt-1 text-gray pr-1">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
+                <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
             </div>
         </div>
 
@@ -80,13 +80,13 @@ export default function TemplateList() {
                 className="object-contain object-center w-full h-full" />
             </a>
             <div className="mt-4">
-                <h3 className="text-lg title-font">Vikram Hoodies</h3>
+                <h3 className="text-base title-font">Vikram Hoodies</h3>
                 <div className="flex">
-                    <h2 className="title-font text-base text-gray">Technique:</h2>
-                    <p className="pl-1 text-gray">PRINT</p>
+                    <h2 className="title-font text-sm text-gray">Technique:</h2>
+                    <p className="pl-1 text-gray text-sm">PRINT</p>
                 </div>
-                <span className="mt-1 text-gray pr-1">Sizes:</span>
-                <span className="mt-1 text-gray pr-1">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
+                <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
             </div>
         </div>
 
@@ -99,13 +99,13 @@ export default function TemplateList() {
                 className="object-contain object-center w-full h-full" />
             </a>
             <div className="mt-4">
-                <h3 className="text-lg title-font">Vikram Hoodies</h3>
+                <h3 className="text-base title-font">Vikram Hoodies</h3>
                 <div className="flex">
-                    <h2 className="title-font text-base text-gray">Technique:</h2>
-                    <p className="pl-1 text-gray">PRINT</p>
+                    <h2 className="title-font text-sm text-gray">Technique:</h2>
+                    <p className="pl-1 text-gray text-sm">PRINT</p>
                 </div>
-                <span className="mt-1 text-gray pr-1">Sizes:</span>
-                <span className="mt-1 text-gray pr-1">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
+                <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
             </div>
         </div>
 
@@ -118,20 +118,20 @@ export default function TemplateList() {
                 className="object-contain object-center w-full h-full" />
             </a>
             <div className="mt-4">
-                <h3 className="text-lg title-font">Vikram Hoodies</h3>
+                <h3 className="text-base title-font">Vikram Hoodies</h3>
                 <div className="flex">
-                    <h2 className="title-font text-base text-gray">Technique:</h2>
-                    <p className="pl-1 text-gray">PRINT</p>
+                    <h2 className="title-font text-sm text-gray">Technique:</h2>
+                    <p className="pl-1 text-gray text-sm">PRINT</p>
                 </div>
-                <span className="mt-1 text-gray pr-1">Sizes:</span>
-                <span className="mt-1 text-gray pr-1">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
+                <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
             </div>
         </div>
 
         </div>
       </div>
     </section>
-    </Layout>
+    </VendorLayout>
     </>
   );
 }

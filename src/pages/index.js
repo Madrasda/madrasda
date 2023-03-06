@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Carousel from '@/components/carousel'
 import Image from 'next/image'
 import Link from 'next/link'
-import Layout from '@/components/layout'
+import ClientLayout from '@/components/layout-client'
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
         <title>Madrasda</title>
       </Head>
       
-      <Layout>
+      <ClientLayout>
 
         <Carousel />
 
@@ -439,7 +439,7 @@ export default function Home() {
             </div>
           </section>
 {/* -------- BIGGEST DEALS END -------- */}
-      </Layout>
+      </ClientLayout>
     </>
   )
 }

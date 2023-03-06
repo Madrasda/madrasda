@@ -2,7 +2,7 @@ import NavClient from "./nav-client"
 import NavVendor from "./nav-vendor"
 import Footer from "./footer"
 
-export default function Layout({ children }) {
+export default function VendorLayout({ children }) {
   return (
     <>
       <NavVendor />

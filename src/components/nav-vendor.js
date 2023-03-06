@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from 'next/router'
 
 export default function NavVendor() {
   return (
@@ -15,28 +14,28 @@ export default function NavVendor() {
                 <p className="text-sm">Go to profile</p>
             </Link>
             <div className="container flex flex-wrap flex-col h-full">
-                <nav className="text-lg flex flex-col flex-wrap items-start h-full font-bold">
-                    <div className="flex flex-wrap justify-center items-center py-6">
+                <nav className="text-sm flex flex-col flex-wrap items-start h-full font-bold">
+                    <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/dashboard-icon.png" width={30} height={30}/>
                         <Link href="/" className="ml-2">Dashboard</Link>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center py-6">
+                    <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/create-template-icon.png" width={30} height={30}/>
                         <Link href="/" className="ml-2">Create Template</Link>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center py-6">
+                    <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/upload-products-icon.png" width={30} height={30}/>
                         <Link href="/" className="ml-2">Upload Products</Link>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center py-6">
+                    <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/view-products-icon.png" width={30} height={30}/>
                         <Link href="/" className="ml-2">View Products</Link>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center py-6">
+                    <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/analytics-icon.png" width={30} height={30}/>
                         <Link href="/" className="ml-2">Analytics</Link>
                     </div>
-                    <div className="flex flex-wrap justify-center items-center py-6">
+                    <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/feedback-icon.png" width={30} height={30}/>
                         <Link href="/" className="ml-2">Feedback</Link>
                     </div>

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import Layout from '@/components/layout';
+import VendorLayout from '@/components/layout-vendor';
 
 export default function CreateTemplate(props) {
   return (
@@ -12,19 +12,20 @@ export default function CreateTemplate(props) {
       <title>Madrasda | Create Template</title>
     </Head>
 
-    <Layout>
-    <section className="text-black body-font overflow-hidden ml-56">
-    <h1 className="text-4xl text-primary ml-20 mt-20">CREATE TEMPLATES</h1>
+    <VendorLayout>
+    <section className="body-font overflow-hidden ml-36">
+    <div className="px-5 my-10 mx-auto">
+    <h1 className="text-4xl text-primary ml-20 mt-10">CREATE TEMPLATE</h1>
       <div className="px-5 py-10 mx-auto flex justify-center">
         <div className="lg:w-5/6 flex justify-start flex-row">
           <div className='flex flex-col items-center bg-[#F0F0F0] p-4'>
             <div className='flex'>
-              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray'>Center</button>
-              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray'>Top Left Corner</button>
-              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray'>Bottom Left Corner</button>
-              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray'>Top Right Corner</button>
-              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray'>Bottom Right Corner</button>
-              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray'>Custom</button>
+              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Center</button>
+              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Top Left Corner</button>
+              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Bottom Left Corner</button>
+              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Top Right Corner</button>
+              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Bottom Right Corner</button>
+              <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Custom</button>
             </div>
             <img
               alt="ecommerce"
@@ -37,13 +38,13 @@ export default function CreateTemplate(props) {
               Round Neck Solid Men's T-Shirt
             </h1>
 
-            <button className='rounded-full border-2 px-6 py-2 mt-1'>Upload Design</button>
+            <button className='rounded-full border-2 border-bg px-6 py-2 mt-1'>Upload Design</button>
 
             <div className='mt-6'>
             <p className='mb-2'>Select Side for Design</p>
             <div className='flex flex-row'>
-              <button className='text-sm rounded-full border-2 px-10 py-1 mr-2'>Front</button>
-              <button className='text-sm rounded-full border-2 px-10 py-1'>Back</button>
+              <button className='text-sm rounded-full border-2 border-bg px-10 py-1 mr-2'>Front</button>
+              <button className='text-sm rounded-full border-2 border-bg px-10 py-1'>Back</button>
             </div>
             </div>
              
@@ -74,14 +75,14 @@ export default function CreateTemplate(props) {
             </div>
 
             <div className="mt-6">Size Guide</div>
-            <div className="flex items-center mt-3 mb-3">
+            <div className="flex justify-start items-center mt-3 mb-3">
                 <div className="relative">
-                <button className="w-10 justify center text-justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XS</button>
-                <button className="w-10 justify center text-justify-center mr-5  text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">S</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">M</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">L</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XL</button>
-                <button className="w-10 justify center text-justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XXL</button>
+                <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XS</button>
+                <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">S</button>
+                <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">M</button>
+                <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">L</button>
+                <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XL</button>
+                <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XXL</button>
                 </div>
               </div>
               <br></br>
@@ -94,8 +95,9 @@ export default function CreateTemplate(props) {
           </div>
         </div>
       </div>
+      </div>
     </section>
-    </Layout>
+    </VendorLayout>
     </>
   );
 }
