@@ -19,7 +19,7 @@ export default function Home() {
       <main className='body-font overflow-hidden ml-36'>
       <div className="px-5 my-10 mx-auto">
         <div className="ml-20 mt-10">
-          <h1 className="title-font font-medium text-primary text-4xl">HERE IS YOUR ANALYSIS</h1>
+          <h1 className="title-font font-medium text-primary text-3xl">HERE IS YOUR ANALYSIS</h1>
           <h2 className="title-font font-bold text-2xl">KHHK!</h2>
         </div>
 {/* -------- STATISTICS -------- */}

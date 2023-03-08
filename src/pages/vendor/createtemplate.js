@@ -15,7 +15,7 @@ export default function CreateTemplate(props) {
     <VendorLayout>
     <section className="body-font overflow-hidden ml-36">
     <div className="px-5 my-10 mx-auto">
-    <h1 className="text-4xl text-primary ml-20 mt-10">CREATE TEMPLATE</h1>
+    <h1 className="text-3xl text-primary ml-20 mt-10">CREATE TEMPLATE</h1>
       <div className="px-5 py-10 mx-auto flex justify-center">
         <div className="lg:w-5/6 flex justify-start flex-row">
           <div className='flex flex-col items-center bg-[#F0F0F0] p-4'>
