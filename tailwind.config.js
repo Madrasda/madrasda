@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'spin': 'spin 5s linear infinite',
+      }
+    },
     colors: {
       'primary': '#A5153F',
       'bg': '#1A1A1C',
