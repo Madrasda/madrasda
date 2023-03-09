@@ -2,7 +2,7 @@ import Image from "next/image";
 import Head from "next/head";
 import ClientLayout from "@/components/layout-client";
 
-export default function prodl() {
+export default function ProductList () {
   return (
     <>
     <Head>

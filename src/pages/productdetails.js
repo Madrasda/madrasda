@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import ClientLayout from '@/components/layout-client';
 
-export default function ProductDetails(props) {
+export default function ProductDetails (props) {
   return (
     <>
     <Head>

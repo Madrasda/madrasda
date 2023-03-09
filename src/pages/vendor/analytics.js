@@ -4,7 +4,7 @@ import Head from 'next/head'
 import PieChart from '@/components/piechart'
 import LineGraph from '@/components/linegraph'
 
-export default function Home() {
+export default function Analytics () {
   return (
     <>
       <Head>

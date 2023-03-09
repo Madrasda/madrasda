@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
 
-export default function produp() {
+export default function ProductUpload () {
   return (
     <>
     <Head>
