@@ -12,31 +12,31 @@ export default function NavAdmin() {
             <div className="container flex flex-wrap flex-col h-full">
                 <nav className="text-sm flex flex-col flex-wrap items-start h-full font-bold">
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/dashboard-icon.png" width={30} height={30}/>
+                        <Image src="/vendors-icon.png" width={30} height={30}/>
                         <Link href="/admin/vendorlist" className="ml-2">My Vendors</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/create-template-icon.png" width={30} height={30}/>
+                        <Image src="/service-details.png" width={30} height={30}/>
                         <Link href="#" className="ml-2">Service Details</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/upload-products-icon.png" width={30} height={30}/>
+                        <Image src="/comment-dots.png" width={30} height={30}/>
                         <Link href="#" className="ml-2">Queries and Feedback</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/view-products-icon.png" width={30} height={30}/>
+                        <Image src="/product-icon.png" width={30} height={30}/>
                         <Link href="/admin/myproducts" className="ml-2">My Products</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/analytics-icon.png" width={30} height={30}/>
+                        <Image src="/payments-icon.png" width={30} height={30}/>
                         <Link href="#" className="ml-2">Payments</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/feedback-icon.png" width={30} height={30}/>
+                        <Image src="/customerdetails-icon.png" width={30} height={30}/>
                         <Link href="/admin/customerdetails" className="ml-2">Customer Details</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
-                        <Image src="/feedback-icon.png" width={30} height={30}/>
+                        <Image src="/hot-seller.png" width={30} height={30}/>
                         <Link href="/admin/hotsellers" className="ml-2">Hot Sellers</Link>
                     </div>
                 </nav>

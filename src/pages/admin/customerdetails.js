@@ -1,6 +1,6 @@
 import Head from "next/head";
 import SearchVendor from "@/components/search-vendor";
-import Table from "@/components/table";
+import Payments from "@/components/payments";
 import AdminLayout from "@/components/layout-admin";
 
 export default function CustomerDetails () {
@@ -22,7 +22,7 @@ export default function CustomerDetails () {
                     <SearchVendor />
                 </div>
                 <div className='mt-4 ml-20'>
-                    <Table />
+                    <Payments />
                 </div>
                 </div>
                 </main>
