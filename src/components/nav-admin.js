@@ -17,11 +17,11 @@ export default function NavAdmin() {
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/service-details.png" width={30} height={30}/>
-                        <Link href="#" className="ml-2">Service Details</Link>
+                        <Link href="/admin/servicedetails" className="ml-2">Service Details</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/comment-dots.png" width={30} height={30}/>
-                        <Link href="#" className="ml-2">Queries and Feedback</Link>
+                        <Link href="/admin/queries" className="ml-2">Queries and Feedback</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/product-icon.png" width={30} height={30}/>
@@ -29,7 +29,7 @@ export default function NavAdmin() {
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/payments-icon.png" width={30} height={30}/>
-                        <Link href="#" className="ml-2">Payments</Link>
+                        <Link href="/admin/payments" className="ml-2">Payments</Link>
                     </div>
                     <div className="flex flex-wrap justify-center items-center py-4">
                         <Image src="/customerdetails-icon.png" width={30} height={30}/>
