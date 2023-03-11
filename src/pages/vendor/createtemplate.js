@@ -35,7 +35,7 @@ export default function CreateTemplate(props) {
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              Round Neck Solid Men's T-Shirt
+              Round Neck Solid Mens T-Shirt
             </h1>
 
             <button className='rounded-full border-2 border-bg px-6 py-2 mt-1'>Upload Design</button>

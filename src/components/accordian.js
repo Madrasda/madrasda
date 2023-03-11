@@ -40,7 +40,7 @@ export default function Accordian () {
                     <div className="py-4 px-5">
                         Placeholder content for this accordion, which is intended to
                         demonstrate the
-                        <code>.accordion-flush</code> className. This is the first item's
+                        <code>.accordion-flush</code> className. This is the first items
                         accordion body.
                     </div>
                     </div>
@@ -83,8 +83,8 @@ export default function Accordian () {
                     <div className="py-4 px-5">
                         Placeholder content for this accordion, which is intended to
                         demonstrate the
-                        <code>.accordion-flush</code> className. This is the second item's
-                        accordion body. Let's imagine this being filled with some actual
+                        <code>.accordion-flush</code> className. This is the second items
+                        accordion body. Lets imagine this being filled with some actual
                         content.
                     </div>
                     </div>
@@ -127,7 +127,7 @@ export default function Accordian () {
                     <div className="py-4 px-5">
                         Placeholder content for this accordion, which is intended to
                         demonstrate the
-                        <code>.accordion-flush</code> className. This is the third item's
+                        <code>.accordion-flush</code> className. This is the third items
                         accordion body. Nothing more exciting happening here in terms of
                         content, but just filling up the space to make it look, at least
                         at first glance, a bit more representative of how this would look

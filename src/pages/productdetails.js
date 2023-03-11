@@ -43,7 +43,7 @@ export default function ProductDetails (props) {
               Vikram Collection
             </h2>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              Round Neck Solid Men's T-Shirt
+              Round Neck Solid Mens T-Shirt
             </h1>
             <div className="flex mb-4 items-center">
               <p className='text-sm mr-1'>4.0</p>
