@@ -13,7 +13,7 @@ export default function ProductDetails (props) {
     </Head>
 
     <ClientLayout>
-    <section className="text-black body-font overflow-hidden">
+    <section className="text-black body-font font-algeria overflow-hidden">
       <div className="px-5 py-24 mx-auto flex justify-center">
       <div className='flex flex-col justify-center items-center'>
         <img
@@ -182,7 +182,7 @@ export default function ProductDetails (props) {
         </div>
       </div>
     </section>
-    <div className='p-10'>
+    <div className='p-10 font-algeria'>
     <div className='border-black border-2 rounded-xl scale-[90%]'>
     <div className='mb-4'>
       <div className='relative'>

@@ -15,16 +15,16 @@ export default function MyProducts () {
         </Head>
         
         <AdminLayout>
-        <section className="body-font ml-36 overflow-hidden">
+        <section className="body-font ml-32 overflow-hidden font-algeria">
         <div className="px-5 my-10 mx-auto">
-            <h1 className="text-3xl text-primary ml-32">MY PRODUCTS</h1>
+            <h1 className="text-3xl text-primary ml-20">MY PRODUCTS</h1>
             <div className="flex items-center justify-center m-5">
             <SearchVendor />
             </div>
             <div className="flex flex-wrap justify-center">
             
             <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
-            <Link href="/vendor/createtemplate" >
+            <Link href="#" >
             <div className="flex flex-col items-center justify-center cursor-pointer">
                 <Image src="/plus-icon.png" width={50} height={50}/>
                 <p className="font-semibold font-base">Create more templates</p>

@@ -6,7 +6,6 @@ export default function AdminLayout({ children }) {
     <>
       <NavAdmin />
       <main>{children}</main>
-      <Footer />
     </>
   )
 }

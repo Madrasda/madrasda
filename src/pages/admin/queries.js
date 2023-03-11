@@ -14,9 +14,9 @@ export default function Queries () {
     </Head>
     
     <AdminLayout>
-    <main className='ml-44 overflow-hidden'>
+    <main className='ml-32 overflow-hidden font-algeria'>
     <div className="px-5 my-10 mx-auto">
-        <div className="ml-24 mt-10">
+        <div className="ml-20 mt-10">
           <h1 className="body-font text-primary text-3xl">QUERIES AND FEEDBACK</h1>
         </div>
 

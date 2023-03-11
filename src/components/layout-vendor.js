@@ -6,7 +6,6 @@ export default function VendorLayout({ children }) {
     <>
       <NavVendor />
       <main>{children}</main>
-      <Footer />
     </>
   )
 }

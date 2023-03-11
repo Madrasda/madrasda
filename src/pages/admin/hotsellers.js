@@ -15,9 +15,9 @@ export default function Hotsellers () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font ml-44 overflow-hidden">
+                <main className="body-font ml-32 overflow-hidden font-algeria">
                 <div className="px-5 my-10 mx-auto">
-                <h1 className="text-3xl text-primary ml-24 mt-10">HOTSELLERS</h1>
+                <h1 className="text-3xl text-primary ml-20 mt-10">HOTSELLERS</h1>
                
                 <div className="flex flex-row justify-start items-center mt-10 ml-20 mr-20 text-sm p-2">
                     <SearchVendor />
@@ -29,7 +29,7 @@ export default function Hotsellers () {
                     <div className="flex">
 
                         <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="/productdetails">
+                        <Link href="#">
                             <div className="block relative h-48 rounded overflow-hidden">
                                 <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                             </div>
@@ -51,7 +51,7 @@ export default function Hotsellers () {
                         </div>
 
                         <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="/productdetails">
+                        <Link href="#">
                             <div className="block relative h-48 rounded overflow-hidden">
                                 <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                             </div>
@@ -73,7 +73,7 @@ export default function Hotsellers () {
                         </div>
 
                         <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="/productdetails">
+                        <Link href="#">
                             <div className="block relative h-48 rounded overflow-hidden">
                                 <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                             </div>
@@ -95,7 +95,7 @@ export default function Hotsellers () {
                         </div>
 
                         <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="/productdetails">
+                        <Link href="#">
                             <div className="block relative h-48 rounded overflow-hidden">
                                 <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                             </div>

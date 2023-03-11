@@ -16,7 +16,7 @@ export default function Analytics () {
       </Head>
       
       <VendorLayout>
-      <main className='body-font overflow-hidden ml-36'>
+      <main className='body-font font-algeria overflow-hidden ml-36'>
       <div className="px-5 my-10 mx-auto">
         <div className="ml-20 mt-10">
           <h1 className="title-font font-medium text-primary text-3xl">HERE IS YOUR ANALYSIS</h1>

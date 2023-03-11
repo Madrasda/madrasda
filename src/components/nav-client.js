@@ -12,11 +12,11 @@ export default function NavClient() {
         </Link>
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <nav className="md:mr-auto md:ml-24 md:py-1 text-sm flex flex-wrap items-center justify-center font-bold">
-              <Link href="/" className="mr-8">MEN</Link>
-              <Link href="/" className="mr-8">WOMEN</Link>
-              <Link href="/" className="mr-8">KIDS</Link>
-              <Link href="/" className="mr-8">ACCESSORIES</Link>
-              <Link href="/" className="mr-8">CATEGORIES</Link>
+              <Link href="/productlist" className="mr-8">MEN</Link>
+              <Link href="/productlist" className="mr-8">WOMEN</Link>
+              <Link href="/productlist" className="mr-8">KIDS</Link>
+              <Link href="/productlist" className="mr-8">ACCESSORIES</Link>
+              <Link href="/productlist" className="mr-8">CATEGORIES</Link>
             </nav>
         </div>
         <div className="flex flex-row-reverse">

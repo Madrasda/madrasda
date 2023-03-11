@@ -14,9 +14,9 @@ export default function VendorDetails () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font ml-44 overflow-hidden">
+                <main className="body-font ml-32 overflow-hidden font-algeria">
                 <div className="px-5 my-10 mx-auto">
-                <h1 className="text-3xl text-primary ml-24 mt-30">MY VENDORS</h1>
+                <h1 className="text-3xl text-primary ml-20 mt-30">MY VENDORS</h1>
                 
                 <div className="ml-24 mt-10 flex items-center">
                     <Image className="rounded-3xl" src="/myvendor-vikram.png" width={100} height={100} />

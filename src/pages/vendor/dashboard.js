@@ -14,7 +14,7 @@ export default function Dashboard () {
             </Head>
 
             <VendorLayout>
-                <main className="body-font ml-36 overflow-hidden">
+                <main className="body-font font-algeria ml-36 overflow-hidden">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary ml-20 mt-10">DASHBOARD</h1>
 

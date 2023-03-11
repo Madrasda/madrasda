@@ -14,34 +14,34 @@ export default function CustomerDetails () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font ml-44 overflow-hidden">
+                <main className="body-font ml-32 overflow-hidden font-algeria">
                 <div className="px-5 my-10 mx-auto">
-                <h1 className="text-3xl text-primary ml-24 mt-10">PAYMENTS</h1>
+                <h1 className="text-3xl text-primary ml-20 mt-10">PAYMENTS</h1>
                
                 <div className="flex flex-row justify-start items-center mt-10 ml-20 mr-20 text-sm p-2">
                     <SearchVendor />
                 </div>
-                <div className='flex mt-4 ml-20 mr-44'>
-                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
-                        <div className=" ml-8 mb-2 mr-20 mb-2 mt-4 ">
+                <div className='flex mt-4 ml-20 mr-20'>
+                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
                             <h1 className="text-2xl font-medium text-black mb-6">1.Nithish Raja K L - Vikram Tshirt</h1>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 className="text-lg mb-2 font-medium w-96 text-black">Base Price</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b border-black text-black text-sm w-96 p-2.5" placeholder="₹" required/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="last_name" className="mb-2 w-96 text-lg font-medium text-black">Shipping Charges</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b  border-black  text-black text-sm w-96 p-2.5" placeholder="₹" required/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="company" className="  mb-2 text-lg w-96 font-medium text-black">GST</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b  border-black w-96 text-black text-sm w-96 p-2.5 " placeholder="%" required/>
+                                <input type="text" className="bg-[#D9D9D9] border-b  border-black text-black text-sm w-96 p-2.5 " placeholder="%" required/>
                             </div>
-                            <div className="flex flex col mb-2 mt-4">
+                            <div className="flex mb-2 mt-4">
                                 <h2 for="company" className="  mb-2 text-lg w-96 font-medium text-black">Maximum Retail Price</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b  border-black text-black text-sm w-96 p-2.5 " placeholder="₹" required/>
                             </div>
-                            <div className="flex flex col mb-6 mt-4">
+                            <div className="flex mb-6 mt-4">
                                 <h2 for="company" className="mb-2 text-lg w-96 font-medium text-black">Discount/Offer</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b  border-black  text-black text-sm w-96 p-2.5 " placeholder="%" required/>
                             </div>
@@ -49,27 +49,27 @@ export default function CustomerDetails () {
                     </div>
                 </div>
 
-                <div className='flex mt-4 ml-20 mr-44'>
-                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
-                        <div className=" ml-8 mb-2 mr-20 mb-2 mt-4 ">
+                <div className='flex mt-4 ml-20 mr-20'>
+                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
                             <h1 className="text-2xl font-medium text-black mb-6">2.Pughalesh - LEO Tshirt</h1>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 className="text-lg mb-2 font-medium w-96 text-black">Base Price</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b border-black text-black text-sm w-96 p-2.5" placeholder="₹" required/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="last_name" className="mb-2 w-96 text-lg font-medium text-black">Shipping Charges</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b  border-black  text-black text-sm w-96 p-2.5" placeholder="₹" required/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="company" className="  mb-2 text-lg w-96 font-medium text-black">GST</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b  border-black w-96 text-black text-sm w-96 p-2.5 " placeholder="%" required/>
+                                <input type="text" className="bg-[#D9D9D9] border-b  border-black text-black text-sm w-96 p-2.5 " placeholder="%" required/>
                             </div>
-                            <div className="flex flex col mb-2 mt-4">
+                            <div className="flex mb-2 mt-4">
                                 <h2 for="company" className="  mb-2 text-lg w-96 font-medium text-black">Maximum Retail Price</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b  border-black text-black text-sm w-96 p-2.5 " placeholder="₹" required/>
                             </div>
-                            <div className="flex flex col mb-6 mt-4">
+                            <div className="flex mb-6 mt-4">
                                 <h2 for="company" className="mb-2 text-lg w-96 font-medium text-black">Discount/Offer</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b  border-black  text-black text-sm w-96 p-2.5 " placeholder="%" required/>
                             </div>

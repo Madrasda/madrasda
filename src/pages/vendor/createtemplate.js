@@ -13,7 +13,7 @@ export default function CreateTemplate(props) {
     </Head>
 
     <VendorLayout>
-    <section className="body-font overflow-hidden ml-36">
+    <section className="body-font font-algeria overflow-hidden ml-36">
     <div className="px-5 my-10 mx-auto">
     <h1 className="text-3xl text-primary ml-20 mt-10">CREATE TEMPLATE</h1>
       <div className="px-5 py-10 mx-auto flex justify-center">

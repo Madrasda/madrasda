@@ -15,7 +15,7 @@ export default function TemplateList () {
     </Head>
     
     <VendorLayout>
-    <section className="body-font ml-36 overflow-hidden">
+    <section className="body-font ml-36 overflow-hidden font-algeria">
       <div className="px-5 my-10 mx-auto">
         <h1 className="text-3xl text-primary ml-20">CREATE TEMPLATE</h1>
         <div className="flex items-center justify-center m-5">

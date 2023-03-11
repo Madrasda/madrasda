@@ -14,30 +14,30 @@ export default function CustomerDetails () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font ml-44 overflow-hidden">
+                <main className="body-font ml-32 overflow-hidden font-algeria">
                 <div className="px-5 my-10 mx-auto">
-                <h1 className="text-3xl text-primary ml-24 mt-10">SERVICE DETAILS</h1>
+                <h1 className="text-3xl text-primary ml-20 mt-10">SERVICE DETAILS</h1>
                
                 <div className="flex flex-row justify-start items-center mt-10 ml-20 mr-20 text-lg p-2">
                     <SearchVendor />
                 </div>
                 <div className='flex mt-4 ml-20 mr-44'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
-                        <div className=" ml-8 mb-2 mr-20 mb-2 mt-4 ">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
                             <h1 className="text-2xl font-medium text-black mb-6">1.Delivery partner - Dhelivery</h1>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 className="text-lg font-medium w-96 text-black">Product Price</h2>
                                 <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-96 p-2.5" value="₹899" disabled readonly/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="last_name" className="w-96 text-lg font-medium text-black">Shipping Mode</h2>
                                 <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-96 p-2.5" value="Dhelivery Air" disabled readonly/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="company" className=" text-lg w-96 font-medium text-black">Tracking ID</h2>
                                 <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-96 p-2.5 " value="AWB0987136776" disabled readonly/>
                             </div>
-                            <div className="flex flex col mb-6 mt-4">
+                            <div className="flex mb-6 mt-4">
                                 <h2 for="company" className="text-lg w-96 font-medium text-black">Status</h2>
                                 <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-96 p-2.5 " value="Dispatched" disabled readonly/>
                             </div>
@@ -48,21 +48,21 @@ export default function CustomerDetails () {
 
                 <div className='flex mt-4 ml-20 mr-44'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
-                        <div className=" ml-8 mb-2 mr-20 mb-2 mt-4 ">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
                             <h1 className="text-2xl font-medium text-black mb-6">2.Delivery partner - Dhelivery</h1>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 className="text-lg font-medium w-96 text-black">Product Price</h2>
                                 <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-96 p-2.5" value="₹699" disabled readonly/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="last_name" className="w-96 text-lg font-medium text-black">Shipping Mode</h2>
                                 <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-96 p-2.5" value="Dhelivery Surface" disabled readonly/>
                             </div>
-                            <div className="flex flex col mb-2">
+                            <div className="flex mb-2">
                                 <h2 for="company" className=" text-lg w-96 font-medium text-black">Tracking ID</h2>
                                 <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-96 p-2.5 " value="AWB0987654321" disabled readonly/>
                             </div>
-                            <div className="flex flex col mb-6 mt-4">
+                            <div className="flex mb-6 mt-4">
                                 <h2 for="company" className="text-lg w-96 font-medium text-black">Status</h2>
                                 <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-96 p-2.5 " value="Pickup Pending" disabled readonly/>
                             </div>

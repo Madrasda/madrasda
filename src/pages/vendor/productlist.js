@@ -14,7 +14,7 @@ export default function ProductList () {
             </Head>
 
             <VendorLayout>
-                <main className="body-font ml-36 overflow-hidden">
+                <main className="body-font font-algeria ml-36 overflow-hidden">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary ml-20 mt-10">VIEW PRODUCTS</h1>
                 <div className="flex flex-row justify-start items-center mt-10 ml-20 mr-20 text-sm p-2 border-b-2 border-bg">

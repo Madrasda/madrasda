@@ -14,9 +14,9 @@ export default function CustomerDetails () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font ml-44 overflow-hidden">
+                <main className="body-font ml-32 overflow-hidden font-algeria">
                 <div className="px-5 my-10 mx-auto">
-                <h1 className="text-3xl text-primary ml-24 mt-10">CUSTOMER DETAILS</h1>
+                <h1 className="text-3xl text-primary ml-20 mt-10">CUSTOMER DETAILS</h1>
                
                 <div className="flex flex-row justify-start items-center mt-10 ml-20 mr-20 text-sm p-2">
                     <SearchVendor />

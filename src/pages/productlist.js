@@ -13,7 +13,7 @@ export default function ProductList () {
     </Head>
     
     <ClientLayout>
-    <section className="body-font">
+    <section className="body-font font-algeria">
       <div className="px-5 py-24 mx-auto">
         <div className="flex flex-wrap justify-center">
           

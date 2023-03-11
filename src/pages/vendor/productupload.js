@@ -14,7 +14,7 @@ export default function ProductUpload () {
     </Head>
     
     <VendorLayout>
-    <main className='ml-36 overflow-hidden'>
+    <main className='ml-36 overflow-hidden font-algeria'>
     <div className="px-5 my-10 mx-auto">
         <div className="ml-20 mt-10">
           <h1 className="body-font text-primary text-3xl">UPLOAD PRODUCT</h1>
