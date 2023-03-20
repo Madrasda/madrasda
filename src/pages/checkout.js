@@ -37,7 +37,7 @@ export default function checkout() {
                                     <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                                     </div>
                                     <div className="flex-grow pl-3 ml-4">
-                                        <h6 className="font-medium text-2xl text-black">Round Neck Solid Men's T-Shirt</h6>
+                                        <h6 className="font-medium text-2xl text-black">Round Neck Solid Mens T-Shirt</h6>
                                         <p className="text-gray">Vikram Collection</p>
                                         <p className="text-gray">Size-L</p>
                                         <p className="text-gray">Qty-1</p>
