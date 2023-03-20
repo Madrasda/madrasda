@@ -45,7 +45,8 @@ export default function Footer() {
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3">CONNECT WITH US</h2>
-            <nav className="list-none mb-10">
+            <nav className="list-none mb-10 flex flex-col items-center justify-center
+                            md:items-start">
               <li>
                 <div className='flex items-center justify-start'>
                   <Image src="/facebook-logo.png" width={24} height={24} alt="facebook logo" />
@@ -53,13 +54,13 @@ export default function Footer() {
                 </div>
               </li>
               <li>
-                <div className='flex items-center justify-start'>
+                <div className='flex items-center'>
                   <Image src="/instagram-logo.png" width={25} height={25} alt="facebook logo" />
                   <Link href="#" className="text-white hover:text-gray">Instagram</Link>
                 </div>
               </li>
               <li>
-                <div className='flex items-center justify-start'>
+                <div className='flex items-center'>
                   <Image src="/mail-logo.png" width={25} height={25} alt="mail logo" className='p-1' />
                   <Link href="#" className="text-white hover:text-gray">Mail to support</Link>
                 </div>
@@ -71,19 +72,19 @@ export default function Footer() {
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
             <h2 className="title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3">KEEP UP TO DATE</h2>
-            <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
-              <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
+            <div className="flex justify-center">
+              <div className="w-fit px-2">
                 {/* <label for="footer-field" className="leading-7 text-sm text-gray">Email</label> */}
                 <input type="text" id="footer-field" name="footer-field" placeholder="Email" className="w-300 bg-black bg-opacity-50 rounded border border-gray-300 focus:bg-transparent focus:ring-2 focus:ring-primary focus:border-primary outline-none text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
               </div>
-              <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none hover:bg-[#560b21] rounded">Subscribe</button>
+              <button className="flex-shrink-0 flex items-center text text-white bg-primary border-0 py-2 px-2 focus:outline-none hover:bg-[#560b21] rounded">Subscribe</button>
             </div>
           </div>
         </div>
       </div>
       <div className="bg-black">
-        <div className="container justify-center px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-          <p className="text-xs text-white sm:ml-6 sm:mt-0 mt-4 tracking-[0.15rem]">Copyright © 2023 Madrasda Pvt Ltd, All Rights Reserved.
+        <div className="container flex items-center justify-center px-5 py-6 mx-auto">
+          <p className="text-xs text-center text-white mt-4 tracking-[0.15rem]">Copyright © 2023 Madrasda Pvt Ltd, All Rights Reserved.
           </p>
         </div>
       </div>

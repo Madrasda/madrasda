@@ -14,17 +14,20 @@ export default function ProductUpload () {
     </Head>
     
     <VendorLayout>
-    <main className='ml-36 overflow-hidden font-algeria'>
+    <main className='overflow-hidden font-algeria
+                    md:ml-36'>
     <div className="px-5 my-10 mx-auto">
-        <div className="ml-20 mt-10">
+        <div className="md:ml-20 md:mt-10">
           <h1 className="body-font text-primary text-3xl">UPLOAD PRODUCT</h1>
         </div>
-        <hr className="h-px ml-20 mr-12 my-6 bg-black border-1 dark:bg-primary"></hr>
-        <div className="ml-32"> 
+        <hr className="h-px md:ml-20 my-6 bg-black border-1 dark:bg-primary
+                       lg:mr-12"></hr>
+        <div className="md:ml-20 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">1.Information</h1>
             <h2 className="ml-2 title-font font-medium text-xl">Title*</h2>
-            <p className="ml-2 text-lg text-black">250 characters max</p>
-            <div className="mb-6 ml-2 mt-1 mr-96">
+            <p className="ml-2 text-lg text-gray">250 characters max</p>
+            <div className="mb-6 ml-2 mt-1
+                            lg:mr-96">
                 <input type="text" className="bg-white border border-[#D9D9D9] text-white text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter the title of your product"/>
             </div>
             <div className="ml-2">
@@ -37,7 +40,8 @@ export default function ProductUpload () {
                 <img className="ml-2 w-36 rounded-lg" src="https://cdn.discordapp.com/attachments/981618787491127306/1078972451930771486/Group_85.png" alt="picture"></img>
                 </div>
             </div>
-            <div className="flex items-center justify-center mr-96 ml-2">
+            <div className="flex items-center justify-center ml-2
+                            lg:mr-96 ">
                 <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 border-2 border-[#D9D9D9] border-dashed rounded-lg cursor-pointer bg-white">
                     <div className="flex flex-col items-center justify-center pt-5 pb-6">
                         <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
@@ -48,19 +52,23 @@ export default function ProductUpload () {
                 </label>
             </div> 
         </div>
-        <hr className="h-px ml-20 mr-12 my-6 bg-black border-1 dark:bg-primary"></hr>
-        <div className="ml-32"> 
+        <hr className="h-px my-6 bg-black border-1 dark:bg-primary
+                       md:ml-20 
+                       lg:mr-12"></hr>
+        <div className="md:ml-20 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">2.Product Details</h1>
             <h2 className="ml-2 title-font font-medium text-xl">Size & Fit</h2>
             <div className="ml-2">
                 <h2 className="title-font font-medium text-xl">Material*</h2>
-                    <p className="text-lg text-black">250 characters max</p>
-                    <div className="mb-6 mt-1 mr-96 ">
+                    <p className="text-lg text-gray">250 characters max</p>
+                    <div className="mb-6 mt-1 lg:mr-96 ">
                     <input type="text" className="bg-white border border-[#D9D9D9] text-white text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter name of your Material"/>
                     </div>
             </div>
             <h2 className="ml-2 mb-6 title-font font-medium text-xl">Specifications*</h2>
-            <div className="grid gap-6 ml-2 mb-2 mr-96 md:grid-cols-2">
+            <div className="grid gap-6 ml-2 mb-2 
+                            md:grid-cols-2
+                            lg:mr-96">
                 <div>
                     <label for="first_name" className="block mb-2 text-lg font-medium text-black">Sleeve Length</label>
                     <input type="text" className="bg-black-50 border-b border-gray text-black text-sm block w-full p-2.5" placeholder="Text" required>
@@ -105,10 +113,15 @@ export default function ProductUpload () {
                 </div>
             </div>
         </div>
-        <hr className="h-px ml-20 mr-12 my-6 bg-black border-1 dark:bg-primary"></hr>
-        <div className="ml-32"> 
+        <hr className="h-px my-6 bg-black border-1 dark:bg-primary
+                       md:ml-20 
+                       lg:mr-12"></hr>
+        <div className="md:ml-20 
+                        lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">3.Payment Details</h1>
-            <div className="grid gap-6 ml-2 mb-2 mr-96 md:grid-cols-2">
+            <div className="grid gap-6 ml-2 mb-2 
+                            md:grid-cols-2
+                            lg:mr-96">
                 <div>
                     <label for="first_name" className="block mb-2 text-lg font-medium text-black">Base Price</label>
                     <input type="text" className="bg-black-50 border-b border-gray text-black text-sm block w-full p-2.5" placeholder="₹" required>

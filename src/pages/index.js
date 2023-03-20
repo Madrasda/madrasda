@@ -21,12 +21,16 @@ export default function Home() {
 {/* -------- OFFICIAL MERCHANDISE START -------- */}
           <h1 className='font-algeria font-bold text-3xl my-10 px-10'>OFFICIAL MERCHANDISE</h1>
           
-          <div className='my-4 pl-10  overflow-hidden'>
-            <span className='bg-bg flex flex-row items-center rounded-l-full w-full'>
+          <div className='overflow-hidden mx-auto px-10
+                          md:my-4 md:pl-10 md:px-0'>
+            <span className='bg-bg flex flex-col justify-center items-center rounded-t-full w-full
+                              md:flex-row md:rounded-l-full md:rounded-r-none md:w-full'>
             <Image className="animate-spin" src="/disc-vikram.svg" width={400} height={400}/>
             
-            <div className='w-full h-full flex items-center justify-start'>
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <div className='w-full h-full flex flex-col items-center justify-start px-4 py-2
+                            md:flex-row'>
+                              
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -50,7 +54,7 @@ export default function Home() {
               </Link>
               </div>
               
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -74,7 +78,7 @@ export default function Home() {
               </Link>
               </div>
 
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -98,7 +102,7 @@ export default function Home() {
               </Link>
               </div>
             
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -446,7 +450,7 @@ export default function Home() {
 {/* -------- OFFICIAL MERCHANDISE END -------- */}
 
 {/* -------- BIGGEST DEALS START -------- */}
-          <div className='mb-20 mt-14'>
+          {/* <div className='mb-20 mt-14'>
             <div className='relative'>
               <h2 className='font-algeria font-semibold text-xl flex justify-center items-center w-full
                             m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1 border-t-[2px] border-black'>
@@ -551,7 +555,7 @@ export default function Home() {
 
               </div>
             </div>
-          </section>
+          </section> */}
 {/* -------- BIGGEST DEALS END -------- */}
       </ClientLayout>
     </>

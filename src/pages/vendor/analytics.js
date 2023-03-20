@@ -16,32 +16,33 @@ export default function Analytics () {
       </Head>
       
       <VendorLayout>
-      <main className='body-font font-algeria overflow-hidden ml-36'>
+      <main className='body-font font-algeria overflow-hidden 
+                       md:ml-36'>
       <div className="px-5 my-10 mx-auto">
-        <div className="ml-20 mt-10">
+        <div className="md:ml-20 md:mt-10">
           <h1 className="title-font font-medium text-primary text-3xl">HERE IS YOUR ANALYSIS</h1>
           <h2 className="title-font font-bold text-2xl">KHHK!</h2>
         </div>
 {/* -------- STATISTICS -------- */}
         <section className="text-gray-600 body-font">
               <div className="container px-5 py-14 mx-auto">
-                  <div className="flex flex-wrap -m-4 text-center">
-                  <div className="p-4 sm:w-1/4 w-1/2">
+                  <div className="flex flex-wrap -m-4 text-center md:ml-2">
+                  <div className="p-4 w-1/2">
                       <h1 className="title-font font-bold text-xl">Total Products</h1>
                       <h2 className="title-font font-bold text-3xl text-primary">52</h2>
                       <p className="leading-relaxed text-xs">40% more than previous 28 days</p>
                   </div>
-                  <div className="p-4 sm:w-1/4 w-1/2">
+                  <div className="p-4 w-1/2">
                       <h1 className="title-font font-bold text-xl">Total Orders</h1>
                       <h2 className="title-font font-bold text-3xl text-primary">1002</h2>
                       <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                   </div> 
-                  <div className="p-4 sm:w-1/4 w-1/2">
+                  <div className="p-4 w-1/2">
                       <h1 className="title-font font-bold text-xl">Total Printwear Profit</h1>
                       <h2 className="title-font font-bold  text-3xl text-primary">₹11067</h2>
                       <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                   </div>
-                  <div className="p-4 sm:w-1/4 w-1/2">
+                  <div className="p-4 w-1/2">
                       <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
                       <h2 className="title-font font-bold  text-3xl text-primary">₹150254</h2>
                       <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
@@ -53,22 +54,29 @@ export default function Analytics () {
 {/* --------- STATISTICS END -------- */}
 
 {/* --------- LINE GRAPH -------- */}
-          <h2 className='ml-20 text-primary font-semibold text-2xl'>Sales Profit</h2>
-          <div className='ml-20 flex justify-center items-center'>
+          <h2 className='text-primary font-semibold text-
+                        md:ml-20'>Sales Profit</h2>
+          <div className='flex justify-center items-center
+                          md:ml-20 '>
             <LineGraph />
           </div>
 {/* --------- LINE GRAPH END -------- */}
 
 {/* --------- PIE CHART -------- */}
-          <h2 className='-mt-72 ml-20 text-primary font-semibold text-2xl'>Product Contribution</h2>
-          <div className='ml-20 flex justify-center items-center'>
+          <h2 className='-mt-[140%] text-primary font-semibold text-2xl
+                          md:ml-20 md:-mt-[80%]
+                          lg:-mt-72'>Product Contribution</h2>
+          <div className='flex justify-center items-center
+                          md:ml-20'>
             <PieChart />
           </div>
 {/* --------- PIE CHART END -------- */}
 
 {/* -------- TABLE ------- */}
-          <h2 className=' mt-20 ml-20 text-primary font-semibold text-2xl'>Product Ladder</h2>
-          <div className='mt-4 ml-20'>
+          <h2 className='text-primary font-semibold text-2xl
+                        md:mt-20 md:ml-20'>Product Ladder</h2>
+          <div className='mt-4
+                          md:ml-20'>
             <Table />
           </div>  
 {/* -------- TABLE END ------- */}

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
+import Link from 'next/link'
 // import './ToggleSwitch.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -14,7 +15,7 @@ export default function Login() {
         <link rel="icon" href="/logo.png" />
         <title>Madrasda | Login</title>
       </Head>
-      <div className="h-screen bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] w-screen h-screen">
+      <div className="bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] w-screen h-screen">
             
             {/* <div className="justify-center w-full px-10">
                 <img src="https://cdn.discordapp.com/attachments/845617551412297748/974999383961641000/7.jpg" alt="LOGO"></img>
@@ -57,9 +58,11 @@ export default function Login() {
                     </div>
 
                     <div className='flex justify-center items-center mt-6'>
+                        <Link href="/">
                         <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}>
                             Login
                         </button>
+                        </Link>
                     </div>
                 </form>
                 <div className="w-100 text-white text-sm text-center mt-3">

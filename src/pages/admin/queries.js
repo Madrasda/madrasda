@@ -14,15 +14,15 @@ export default function Queries () {
     </Head>
     
     <AdminLayout>
-    <main className='ml-32 overflow-hidden font-algeria'>
+    <main className='md:ml-32 overflow-hidden font-algeria'>
     <div className="px-5 my-10 mx-auto">
-        <div className="ml-20 mt-10">
+        <div className="md:ml-20 md:mt-10">
           <h1 className="body-font text-primary text-3xl">QUERIES AND FEEDBACK</h1>
         </div>
 
-        <hr className="h-px ml-20 mr-12 my-6 bg-black border-1"></hr>
+        <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
         
-        <div className="ml-32"> 
+        <div className="md:ml-24 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">1.Post your Queries:</h1>
             <div className=" mt-14 flex justify-center ">
                 <button type="button" className="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save as Draft</button>
@@ -30,9 +30,9 @@ export default function Queries () {
             </div>
         </div>
 
-        <hr className="h-px ml-20 mr-12 my-6 bg-black border-1"></hr>
+        <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
         
-        <div className="ml-32"> 
+        <div className="md:ml-24 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">2.FAQ:</h1>
             <Accordian />
         </div>

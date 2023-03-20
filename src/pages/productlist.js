@@ -17,7 +17,7 @@ export default function ProductList () {
       <div className="px-5 py-24 mx-auto">
         <div className="flex flex-wrap justify-center">
           
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -41,7 +41,7 @@ export default function ProductList () {
             </div>
           </div>
           
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -65,7 +65,7 @@ export default function ProductList () {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -89,7 +89,7 @@ export default function ProductList () {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -113,7 +113,7 @@ export default function ProductList () {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -137,7 +137,7 @@ export default function ProductList () {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -160,7 +160,7 @@ export default function ProductList () {
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
           </div>
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -183,7 +183,7 @@ export default function ProductList () {
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
           </div>
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -206,7 +206,7 @@ export default function ProductList () {
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
           </div>
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -229,7 +229,7 @@ export default function ProductList () {
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
           </div>
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -252,7 +252,7 @@ export default function ProductList () {
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
           </div>
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -275,7 +275,7 @@ export default function ProductList () {
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
           </div>
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -300,7 +300,7 @@ export default function ProductList () {
           </div>
         </div>
         <br/>
-        <div className="flex justify-center mt-32 mr-10">
+        <div className="flex justify-center mt-32">
         <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l">
             Prev
         </button>

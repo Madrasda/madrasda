@@ -1,11 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import Search from "./search"
+import { useEffect } from "react"
 
 export default function NavClient() {
   return (
     <>
-    <header className="bg-bg text-white font-algeria px-8 fixed z-20 w-full">
+    <header className="bg-bg text-white font-algeria px-8 fixed z-20 w-full hidden lg:block">
         <div className="flex justify-center items-center w-full">
         <Link href="/">
           <Image src="/logo.png" width={90} height={90}/>
@@ -20,8 +21,12 @@ export default function NavClient() {
             </nav>
         </div>
         <div className="flex flex-row-reverse">
-            <Image src="/user-icon.png" width={20} height={20} className="ml-10 cursor-pointer"/>
-            <Image src="/cart.png" width={28} height={28} className="cursor-pointer"/>
+            <Link href="/login">
+              <Image src="/user-icon.png" width={20} height={20} className="ml-10 cursor-pointer"/>
+            </Link>
+            <Link href="/checkout">
+            <Image src="/cart.png" width={250} height={250} className="cursor-pointer"/>
+            </Link> 
             <Search />
         </div>
         </div>

@@ -7,7 +7,7 @@ export default function NavVendor() {
     const currentRoute = router.pathname;
   return (
     <>
-    <header className="bg-bg text-white font-algeria py-8 fixed z-20 h-screen">
+    <header className="bg-bg text-white font-algeria py-8 fixed z-20 h-screen hidden md:block">
         <div className="flex flex-col items-center w-full h-full">
             <Link href="/">
                 <Image src="/logo.png" width={90} height={90}/>

@@ -7,7 +7,7 @@ export default function NavAdmin() {
     const currentRoute = router.pathname;
   return (
     <>
-    <header className="bg-bg text-white font-algeria py-8 fixed z-20 h-screen">
+    <header className="bg-bg text-white font-algeria py-8 fixed z-20 h-screen hidden md:block">
         <div className="flex flex-col items-center w-full h-full">
         <Link href="/">
             <Image src="/logo.png" width={90} height={90}/>
@@ -73,7 +73,7 @@ export default function NavAdmin() {
                         <div className={currentRoute === '/admin/hotsellers' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">
                                 <Image src="/hot-seller.png" width={30} height={30}/>
-                                <h3 className="ml-2">Hotellers</h3>
+                                <h3 className="ml-2">Hotsellers</h3>
                             </div>
                         </div>
                     </Link>

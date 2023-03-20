@@ -7,53 +7,80 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 
 label {
-    font-size: 13px;
-    font-weight: 500;
-  }
-  
-  .btn-color-mode-switch{
-    display: inline-block;
-    margin: 0px;
-    position: relative;
-  }
-  
-  .btn-color-mode-switch > label.btn-color-mode-switch-inner{
-    margin: 0px;
-    width: 140px;
-    height: 30px;
-    background: #E0E0E0;
-    border-radius: 26px;
-    overflow: hidden;
-    position: relative;
-    transition: all 0.3s ease;
-    /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
-    display: block;
-  }
+  font-size: 13px;
+  font-weight: 500;
+}
 
-  .btn-color-mode-switch input[type="checkbox"]{
-    cursor: pointer;
-    width: 100px;
-    height: 50px;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    margin: 0px;
-  }
-  
-  .btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
-    background: #E0E0E0;
-    right:68px
-  }
-  
-  .btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
-    content: attr(data-on);
-    left: 0px;
-    background: #a5153f;
-  }
-  
-  .btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
-    content: attr(data-off);
-    right: 10px;
-    left: 0px;
-  }
+.btn-color-mode-switch{
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner{
+  margin: 0px;
+  width: 140px;
+  height: 30px;
+  background: #E0E0E0;
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+  /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+  display: block;
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:before{
+  content: attr(data-on);
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  top: 7px;
+  right: 20px;
+
+}
+
+.btn-color-mode-switch > label.btn-color-mode-switch-inner:after{
+  content: attr(data-off);
+  width: 70px;
+  height: 26px;
+  background: #a5153f;
+  color: #fff;
+  border-radius: 26px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 6px -2px #111;
+  padding: 2px 0px;
+}
+
+
+
+.btn-color-mode-switch input[type="checkbox"]{
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  margin: 0px;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
+  background: #E0E0E0;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:after{
+  content: attr(data-on);
+  left: 68px;
+  background: #a5153f;
+}
+
+.btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner:before{
+  content: attr(data-off);
+  right: auto;
+  left: 20px;
+}

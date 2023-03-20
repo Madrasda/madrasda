@@ -14,14 +14,14 @@ export default function CustomerDetails () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font ml-32 overflow-hidden font-algeria">
+                <main className="body-font md:ml-32 overflow-hidden font-algeria">
                 <div className="px-5 my-10 mx-auto">
-                <h1 className="text-3xl text-primary ml-20 mt-10">CUSTOMER DETAILS</h1>
+                <h1 className="text-3xl text-primary md:ml-20 md:mt-10">CUSTOMER DETAILS</h1>
                
-                <div className="flex flex-row justify-start items-center mt-10 ml-20 mr-20 text-sm p-2">
+                <div className="flex flex-row justify-start items-center mt-10 md:ml-20 md:mr-20 text-sm p-2">
                     <SearchVendor />
                 </div>
-                <div className='mt-4 ml-20'>
+                <div className='mt-4 md:ml-20'>
                     <Payments />
                 </div>
                 </div>

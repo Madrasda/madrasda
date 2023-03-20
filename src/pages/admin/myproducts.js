@@ -15,9 +15,11 @@ export default function MyProducts () {
         </Head>
         
         <AdminLayout>
-        <section className="body-font ml-32 overflow-hidden font-algeria">
+        <section className="body-font overflow-hidden font-algeria
+                            md:ml-32">
         <div className="px-5 my-10 mx-auto">
-            <h1 className="text-3xl text-primary ml-20">MY PRODUCTS</h1>
+            <h1 className="text-3xl text-primary 
+                           md:ml-20">MY PRODUCTS</h1>
             <div className="flex items-center justify-center m-5">
             <SearchVendor />
             </div>

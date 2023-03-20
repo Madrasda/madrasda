@@ -14,30 +14,34 @@ export default function ProductDetails (props) {
 
     <ClientLayout>
     <section className="text-black body-font font-algeria overflow-hidden">
-      <div className="px-5 py-24 mx-auto flex justify-center">
-      <div className='flex flex-col justify-center items-center'>
-        <img
-            alt="ecommerce"
-            className="w-24 aspect-16/9 m-2"
-            src="/v-tee.png"
-        />
-        <img
-            alt="ecommerce"
-            className="w-24 aspect-16/9 m-2"
-            src="/v-tee.png"
-        />
-        <img
-            alt="ecommerce"
-            className="w-24 aspect-16/9 m-2"
-            src="/v-tee.png"
-        />
-      </div>
-        <div className="lg:w-4/5 flex justify-start flex-row flex-wrap">
+      <div className="px-5 pt-24 mx-auto flex justify-center">
+        <div className="flex justify-start flex-row flex-wrap md:flex-nowrap">
+          <div className="flex flex-col items-center justify-center
+                          lg:flex-row-reverse w-full">
           <img
-            alt="ecommerce"
-            className="lg:w-1/2 w-full lg:h-[620px] h-64 object-contain object-center rounded"
-            src="/v-tee.png"
-          />
+              alt="ecommerce"
+              className="w-full lg:h-[620px] h-96 object-contain object-center rounded px-2"
+              src="/v-tee.png"
+            />
+            <div className='flex flex-row justify-center items-center
+                            lg:flex-col'>
+              <img
+                  alt="ecommerce"
+                  className="w-24 lg:w-44 aspect-16/9 m-2"
+                  src="/v-tee.png"
+              />
+              <img
+                  alt="ecommerce"
+                  className="w-24 lg:w-44 aspect-16/9 m-2"
+                  src="/v-tee.png"
+              />
+              <img
+                  alt="ecommerce"
+                  className="w-24 lg:w-44 aspect-16/9 m-2"
+                  src="/v-tee.png"
+              />
+            </div>
+          </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               Vikram Collection
@@ -154,7 +158,7 @@ export default function ProductDetails (props) {
                 <button className="w-10 justify center text-justify-center mr-5 text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XL</button>
                 <button className="w-10 justify center text-justify-center mr-5 text-primary transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white">XXL</button>
                 </div>
-              </div>
+            </div>
               <br></br>
               <div className="flex items-center h-10 w-32">
                 <h2 className="w-full text-black mr-5 text-sm font-semibold">Qty</h2>
@@ -184,7 +188,6 @@ export default function ProductDetails (props) {
     </section>
     <div className='p-10 font-algeria'>
     <div className='border-black border-2 rounded-xl scale-[90%]'>
-    <div className='mb-4'>
       <div className='relative'>
         <h2 className='font-algeria font-semibold text-xl flex justify-center items-center w-full
                       m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1'>
@@ -193,13 +196,12 @@ export default function ProductDetails (props) {
           </span>
         </h2>
       </div>
-    </div>
 
-    <section className="text-gray-600 body-font">
+    <section className="text-black body-font">
       <div className="px-5 py-10 mx-26">
-        <div className="flex">
+        <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap lg:flex-nowrap">
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-10 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
             <a className="block relative h-48 rounded overflow-hidden">
               <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
             </a>
@@ -219,7 +221,7 @@ export default function ProductDetails (props) {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-10 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
             <a className="block relative h-48 rounded overflow-hidden">
               <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
             </a>
@@ -239,7 +241,7 @@ export default function ProductDetails (props) {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-10 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
             <a className="block relative h-48 rounded overflow-hidden">
               <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
             </a>
@@ -259,7 +261,7 @@ export default function ProductDetails (props) {
             </div>
           </div>
 
-          <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-10 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
             <a className="block relative h-48 rounded overflow-hidden">
               <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
             </a>

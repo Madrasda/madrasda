@@ -13,11 +13,15 @@ export default function CreateTemplate(props) {
     </Head>
 
     <VendorLayout>
-    <section className="body-font font-algeria overflow-hidden ml-36">
+    <section className="body-font font-algeria overflow-hidden
+                        md:ml-56
+                        lg:ml-36">
     <div className="px-5 my-10 mx-auto">
-    <h1 className="text-3xl text-primary ml-20 mt-10">CREATE TEMPLATE</h1>
+    <h1 className="text-3xl text-primary 
+                   lg:ml-20 md:mt-10">CREATE TEMPLATE</h1>
       <div className="px-5 py-10 mx-auto flex justify-center">
-        <div className="lg:w-5/6 flex justify-start flex-row">
+        <div className="lg:w-5/6 flex justify-start flex-col
+                        lg:flex-row">
           <div className='flex flex-col items-center bg-[#F0F0F0] p-4'>
             <div className='flex'>
               <button className='text-xs rounded-full border-2 px-3 py-2 mx-1 border-gray bg-off-white'>Center</button>
@@ -33,7 +37,8 @@ export default function CreateTemplate(props) {
               src="/v-tee.png"
             />
           </div>
-          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <div className="w-full mt-6
+                          lg:pl-10 lg:py-6 lg:mt-0 lg:w-1/2">
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
               Round Neck Solid Mens T-Shirt
             </h1>
