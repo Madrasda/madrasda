@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import VendorLayout from '@/components/layout-vendor';
+import UploadModal from '@/components/upload-modal';
 
 export default function CreateTemplate(props) {
   return (
@@ -43,13 +44,13 @@ export default function CreateTemplate(props) {
               Round Neck Solid Mens T-Shirt
             </h1>
 
-            <button className='rounded-full border-2 border-bg px-6 py-2 mt-1'>Upload Design</button>
+            <UploadModal />
 
             <div className='mt-6'>
             <p className='mb-2'>Select Side for Design</p>
             <div className='flex flex-row'>
-              <button className='text-sm rounded-full border-2 border-bg px-10 py-1 mr-2'>Front</button>
-              <button className='text-sm rounded-full border-2 border-bg px-10 py-1'>Back</button>
+              <button className='text-sm rounded-full border-2 border-bg px-7 py-2 mr-2'>Front</button>
+              <button className='text-sm rounded-full border-2 border-bg px-7 py-2'>Back</button>
             </div>
             </div>
              
@@ -92,7 +93,7 @@ export default function CreateTemplate(props) {
               </div>
               <br></br>
             <div className="flex">
-              <button className= "flex text-justify-center text-white bg-[#a5153F] border-0 py-2 px-10 focus:outline-none hover:bg-primary rounded-full">
+              <button className= "flex text-white bg-[#a5153F] border-0 py-3 px-10 focus:outline-none hover:bg-primary rounded-full">
                 Save Template
               </button>
             </div>

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import AdminLayout from '@/components/layout-admin'
-import Accordian from '@/components/accordian'
+import Accordion from '@/components/accordian'
 
 export default function Queries () {
   return (
@@ -34,7 +34,12 @@ export default function Queries () {
         
         <div className="md:ml-24 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">2.FAQ:</h1>
-            <Accordian />
+            <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
+            <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
+            <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
+            <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
+            <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
+
         </div>
     </div>
     </main>
