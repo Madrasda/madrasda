@@ -45,8 +45,6 @@ export default function CustomerDetails () {
                         </div>
                     </div>
                 </div>
-
-
                 <div className='flex mt-4 md:ml-20 lg:mr-44'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">
