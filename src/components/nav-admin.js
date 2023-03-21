@@ -77,6 +77,15 @@ export default function NavAdmin() {
                             </div>
                         </div>
                     </Link>
+
+                    <Link href="/admin">
+                        <div className={currentRoute === '/admin/payments' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
+                            <div className="flex justify-start items-center py-4">
+                                <Image src="/user-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">Logout</h3>
+                            </div>
+                        </div>
+                    </Link>
                 </nav>
             </div>
         </div>

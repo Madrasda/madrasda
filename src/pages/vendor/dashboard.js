@@ -18,11 +18,12 @@ export default function Dashboard () {
                                 md:ml-36">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary
-                               md:ml-20 md:mt-10">DASHBOARD</h1>
+                               md:ml-20 md:mt-10">HERE IS YOUR ANALYSIS,</h1>
+               <h2 className="title-font font-bold text-2xl md:ml-20">KHHK!</h2>
 
                 <section className="text-gray-600 body-font">
                     <div className="container px-5 py-14 mx-auto">
-                        <div className="flex flex-wrap -m-4 text-center">
+                        <div className="flex flex-nowrap -m-4 text-center">
                             <div className="p-4 w-1/2
                                             lg:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Products</h1>
@@ -33,6 +34,12 @@ export default function Dashboard () {
                                             lg:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Orders</h1>
                                 <h2 className="title-font font-bold text-3xl text-primary">1002</h2>
+                                <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
+                            </div>
+                            <div className="p-4 w-full
+                                            lg:w-1/3">
+                                <h1 className="title-font font-bold text-xl">Total Printwear Profit</h1>
+                                <h2 className="title-font font-bold  text-3xl text-primary">₹11067</h2>
                                 <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                             </div>
                             <div className="p-4 w-full
