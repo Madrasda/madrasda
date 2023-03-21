@@ -1,11 +1,11 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Link from 'next/link'
-// import './ToggleSwitch.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Login() {
+export default function Vendorlogin() {
   return (
     <>
     <Head>
@@ -28,26 +28,26 @@ export default function Login() {
             </h1>
                 <form>
                     <div>
-                        <label htmlFor='number' className='text-white'>Phone Number</label>
+                        <label htmlFor='email' className='text-white'>Username</label>
                         <input
-                            type='phone number'
+                            type='email'
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
-                            id='number'
-                            placeholder='+91XXXXXXXXXX'
+                            id='username'
+                            placeholder='example@example.com'
                         />
                     </div>
-                    {/* <div>
-                        <label htmlFor='OTP' className='text-white'>OTP</label>
+                    <div>
+                        <label htmlFor='password' className='text-white'>Password</label>
                         <input
-                            type='otp'
+                            type='password'
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
-                            id='otp'
-                            placeholder='otp'
+                            id='password'
+                            placeholder='**********'
                         />
-                    </div> */}
+                    </div>
 
-                    <div className='flex justify-center items-center mt-4'>
-                        <Link href="/">
+                    <div className='flex justify-center items-center mt-6'>
+                        <Link href="/vendor/dashboard">
                         <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}>
                             Login
                         </button>
@@ -55,8 +55,8 @@ export default function Login() {
                     </div>
                 </form>
                 <div className="w-100 mt-12 underline    text-white text-sm text-center mt-3">
-                    <Link href="/vendor">
-                    Click to Vendor Login
+                    <Link href="/login">
+                    Go Back
                     </Link>
                 </div>
             <br/>

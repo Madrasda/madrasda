@@ -12,9 +12,9 @@ export default function NavVendor() {
             <Link href="/">
                 <Image src="/logo.png" width={90} height={90}/>
             </Link>
-            <Link href="#" className="flex flex-col items-center py-5">
+            <Link href="/login" className="flex flex-col items-center py-5">
                 <Image src="/user-icon.png" width={30} height={30} className="py-2"/>
-                <p className="text-sm">Go to profile</p>
+                <p className="text-sm">Logout</p>
             </Link>
             <div className="container flex flex-wrap flex-col h-full">
                 <nav className="text-sm flex flex-col items-start h-full font-bold">
