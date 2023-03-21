@@ -32,7 +32,7 @@ export default function UploadModal() {
           <div className="flex justify-around items-center">
             <label for="dropzone-file" className="flex flex-col mx-2 items-center justify-center w-full h-fit border-2 border-[#D9D9D9] rounded-lg cursor-pointer bg-white">
                 <div className="flex flex-col items-center justify-center py-6 px-4">
-                    <p className="text-sm text-black flex flex-col justify-center"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                    <p className="text-sm text-black flex flex-col justify-center">Click to<span className="font-semibold flex justify-center">Upload Design</span></p>
                 </div>
                 <input id="dropzone-file" type="file" className="hidden" />
             </label>
