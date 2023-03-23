@@ -24,7 +24,7 @@ export default function Home() {
           <div className='overflow-hidden mx-auto px-10
                           lg:my-4 lg:pl-10 lg:px-0'>
             <span className='bg-none flex flex-col justify-center items-center w-full
-                            lg:bg-bg lg:flex-row'>
+                            lg:bg-bg lg:flex-row md:rounded-l-full md:rounded-r-none'>
             <Image className="animate-spin" src="/disc-vikram.svg" width={400} height={400}/>
             
             <div className='flex flex-col w-full'>
@@ -147,7 +147,7 @@ export default function Home() {
           <div className='overflow-hidden mx-auto px-10
                           lg:my-4 lg:pr-10 lg:px-0'>
             <span className='bg-none flex flex-col justify-center items-center w-full
-                             lg:flex-row lg:bg-bg'>
+                             lg:flex-row lg:bg-bg md:rounded-l-non md:rounded-r-full'>
 
             <div className='flex flex-col w-full'>
             <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
@@ -270,7 +270,7 @@ export default function Home() {
           <div className='overflow-hidden mx-auto px-10
                           lg:my-4 lg:pl-10 lg:px-0'>
           <span className='bg-none flex flex-col justify-center items-center w-full
-                           lg:flex-row lg:bg-bg'>
+                           lg:flex-row lg:bg-bg md:rounded-l-full md:rounded-r-none'>
             <Image className="animate-spin" src="/disc-redgiant.svg" width={400} height={400}/>
             
             <div className='flex flex-col w-full'>
@@ -393,7 +393,7 @@ export default function Home() {
           <div className='overflow-hidden mx-auto px-10
                           lg:my-4 lg:pr-10 lg:px-0'>
             <span className='bg-none flex flex-col justify-center items-center w-full
-                             lg:flex-row lg:bg-bg'>
+                             lg:flex-row lg:bg-bg md:rounded-l-non md:rounded-r-full'>
 
             <div className='flex flex-col w-full'>
             <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
