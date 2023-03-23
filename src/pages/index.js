@@ -22,14 +22,18 @@ export default function Home() {
           <h1 className='font-algeria font-bold text-3xl my-10 px-10'>OFFICIAL MERCHANDISE</h1>
           
           <div className='overflow-hidden mx-auto px-10
-                          md:my-4 md:pl-10 md:px-0'>
-            <span className='bg-bg flex flex-col justify-center items-center rounded-t-full w-full
-                              md:flex-row md:rounded-l-full md:rounded-r-none md:w-full'>
+                          lg:my-4 lg:pl-10 lg:px-0'>
+            <span className='bg-none flex flex-col justify-center items-center w-full
+                            lg:bg-bg lg:flex-row'>
             <Image className="animate-spin" src="/disc-vikram.svg" width={400} height={400}/>
             
-            <div className='w-full h-full flex flex-col items-center justify-start px-4 py-2
-                            md:flex-row'>
-                              
+            <div className='flex flex-col w-full'>
+            <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
+                          lg:text-white lg:justify-end lg:pt-6'>KAMAL HAASAN HOUSE OF KADHAR</h1>
+
+            {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
+            <div className='w-full h-full items-center justify-start px-4 py-2 hidden
+                            lg:flex'>
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
@@ -127,13 +131,30 @@ export default function Home() {
               </div>
             
             </div>
+            </div>
+            {/* -------- LARGE SCREEN CONTENT END -------- */}
+            {/* -------- VISIBLE ON SMALL SCREENS ONLY -------- */}
+            <Link href="/productlist">
+            <button className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
+                              lg:hidden'>View More</button>
+            </Link>
+            {/* -------- SMALL SCREEN CONTENT END -------- */}
             </span>
           </div>
 
 
 
-          <div className='my-4 pr-10  overflow-hidden'>
-            <span className='flex flex-row items-center rounded-r-full bg-bg w-full'>
+          <div className='overflow-hidden mx-auto px-10
+                          lg:my-4 lg:pr-10 lg:px-0'>
+            <span className='bg-none flex flex-col justify-center items-center w-full
+                             lg:flex-row lg:bg-bg'>
+
+            <div className='flex flex-col w-full'>
+            <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
+                          lg:text-white lg:flex lg:justify-start lg:pt-6'>LOKI CINEMATIC UNIVERSE</h1>
+            {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
+            <div className='w-full h-full items-center justify-start px-4 py-2 hidden
+                            lg:flex'>
             <div className='w-full h-full flex items-center justify-end'>
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails">
@@ -232,17 +253,34 @@ export default function Home() {
               </div>
             
             </div>
+            </div>
+            </div>
+
             <Image className="animate-spin" src="/disc-loki.svg" width={400} height={400}/>
+            <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
+                          lg:text-white lg:hidden lg:justify-start lg:pt-6'>LOKI CINEMATIC UNIVERSE</h1>
+            <Link href="/productlist">
+            <button className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
+                              lg:hidden'>View More</button>
+            </Link>
             </span>
           </div>
 
 
-          <div className='my-4 pl-10 overflow-hidden'>
-          <span className='bg-bg flex flex-row items-center rounded-l-full w-full'>
+          <div className='overflow-hidden mx-auto px-10
+                          lg:my-4 lg:pl-10 lg:px-0'>
+          <span className='bg-none flex flex-col justify-center items-center w-full
+                           lg:flex-row lg:bg-bg'>
             <Image className="animate-spin" src="/disc-redgiant.svg" width={400} height={400}/>
             
-            <div className='w-full h-full flex items-center justify-start'>
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <div className='flex flex-col w-full'>
+            <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
+                          lg:text-white lg:justify-end lg:pt-6'>RED GIANT PRODUCTIONS</h1>
+
+            {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
+            <div className='w-full h-full items-center justify-start px-4 py-2 hidden
+                            lg:flex'>
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -266,7 +304,7 @@ export default function Home() {
               </Link>
               </div>
               
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -290,7 +328,7 @@ export default function Home() {
               </Link>
               </div>
 
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -314,7 +352,7 @@ export default function Home() {
               </Link>
               </div>
             
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails" >
                 <div className="block relative h-48 rounded overflow-hidden">
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
@@ -339,13 +377,30 @@ export default function Home() {
               </div>
             
             </div>
+            </div>
+            {/* -------- LARGE SCREEN CONTENT END -------- */}
+            {/* -------- VISIBLE ON SMALL SCREENS ONLY -------- */}
+            <Link href="/productlist">
+            <button className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
+                              lg:hidden'>View More</button>
+            </Link>
+            {/* -------- SMALL SCREEN CONTENT END -------- */}
             </span>
           </div>
           
 
 
-          <div className='my-4 pr-10 overflow-hidden'>
-            <span className='flex flex-row items-center rounded-r-full bg-bg w-full'>
+          <div className='overflow-hidden mx-auto px-10
+                          lg:my-4 lg:pr-10 lg:px-0'>
+            <span className='bg-none flex flex-col justify-center items-center w-full
+                             lg:flex-row lg:bg-bg'>
+
+            <div className='flex flex-col w-full'>
+            <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
+                          lg:text-white lg:flex lg:justify-start lg:pt-6'>VIJAY SETHUPATHI</h1>
+            {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
+            <div className='w-full h-full items-center justify-start px-4 py-2 hidden
+                            lg:flex'>
             <div className='w-full h-full flex items-center justify-end'>
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails">
@@ -444,13 +499,25 @@ export default function Home() {
               </div>
             
             </div>
+            </div>
+            </div>
+
             <Image className="animate-spin" src="/disc-vjs.svg" width={400} height={400}/>
+            {/* -------- LARGE SCREEN CONTENT END -------- */}
+            {/* -------- VISIBLE ON SMALL SCREENS ONLY -------- */}
+            <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
+                          lg:text-white lg:hidden lg:justify-start lg:pt-6'>VIJAY SETHUPATHI</h1>
+            <Link href="/productlist">
+            <button className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
+                              lg:hidden'>View More</button>
+            </Link>
+            {/* -------- SMALL SCREENS CONTENT END -------- */}
             </span>
           </div>
 {/* -------- OFFICIAL MERCHANDISE END -------- */}
 
 {/* -------- BIGGEST DEALS START -------- */}
-          {/* <div className='mb-20 mt-14'>
+          <div className='mb-20 mt-14'>
             <div className='relative'>
               <h2 className='font-algeria font-semibold text-xl flex justify-center items-center w-full
                             m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1 border-t-[2px] border-black'>
@@ -461,101 +528,93 @@ export default function Home() {
             </div>
           </div>
 
-          <section className="text-gray-600 body-font">
-            <div className="px-5 py-10 mx-32">
-              <div className="flex">
+      <section className="text-black body-font m-10">
+      <div className="px-5 py-10 mx-26">
+        <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap lg:flex-nowrap">
 
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                  <Link href="/productdetails">
-                  <div className="block relative h-48 rounded overflow-hidden">
-                    <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <a className="block relative h-48 rounded overflow-hidden">
+              <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
+            </a>
+            <div className="mt-4">
+              <div className='flex flex-row items-center w-full'>
+                  <div className='flex justify-start'>
+                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                   </div>
-                  <div className="mt-4">
-                    <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
+                  <div className='flex justify-end w-full'>
+                    <Image src="/wishlist.png" width={25} height={25} className=''/>
                   </div>
-                    <h2 className="title-font text-lg font-medium">Product Name</h2>
-                    <span className="mt-1 text-black text-lg pr-1">₹699</span>
-                    <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                    <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                  </div>
-                  </Link>
-                </div>
-
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                  <Link href="/productdetails">
-                  <div className="block relative h-48 rounded overflow-hidden">
-                    <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                  </div>
-                  <div className="mt-4">
-                    <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                    <h2 className="title-font text-lg font-medium">Product Name</h2>
-                    <span className="mt-1 text-black pr-1">₹699</span>
-                    <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                    <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                  </div>
-                  </Link>
-                </div>
-
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                  <Link href="/productdetails">
-                  <div className="block relative h-48 rounded overflow-hidden">
-                    <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                  </div>
-                  <div className="mt-4">
-                    <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                    <h2 className="title-font text-lg font-medium">Product Name</h2>
-                    <span className="mt-1 text-black pr-1">₹699</span>
-                    <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                    <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                  </div>
-                  </Link>
-                </div>
-
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                  <Link href="/productdetails">
-                  <div className="block relative h-48 rounded overflow-hidden">
-                    <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                  </div>
-                  <div className="mt-4">
-                    <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                    <h2 className="title-font text-lg font-medium">Product name</h2>
-                    <span className="mt-1 text-black pr-1">₹699</span>
-                    <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                    <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                  </div>
-                  </Link>
-                </div>
-
               </div>
+              <h2 className="title-font text-lg font-medium">Product Name</h2>
+              <span className="mt-1 text-black text-lg pr-1">₹699</span>
+              <span className="mt-1 line-through text-gray pr-1">₹899</span>
+              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
-          </section> */}
+          </div>
+
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <a className="block relative h-48 rounded overflow-hidden">
+              <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
+            </a>
+            <div className="mt-4">
+              <div className='flex flex-row items-center w-full'>
+                  <div className='flex justify-start'>
+                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  </div>
+                  <div className='flex justify-end w-full'>
+                    <Image src="/wishlist.png" width={25} height={25} className=''/>
+                  </div>
+              </div>
+              <h2 className="title-font text-lg font-medium">Product Name</h2>
+              <span className="mt-1 text-black pr-1">₹699</span>
+              <span className="mt-1 line-through text-gray pr-1">₹899</span>
+              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
+            </div>
+          </div>
+
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <a className="block relative h-48 rounded overflow-hidden">
+              <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
+            </a>
+            <div className="mt-4">
+              <div className='flex flex-row items-center w-full'>
+                  <div className='flex justify-start'>
+                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  </div>
+                  <div className='flex justify-end w-full'>
+                    <Image src="/wishlist.png" width={25} height={25} className=''/>
+                  </div>
+              </div>
+              <h2 className="title-font text-lg font-medium">Product Name</h2>
+              <span className="mt-1 text-black pr-1">₹699</span>
+              <span className="mt-1 line-through text-gray pr-1">₹899</span>
+              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
+            </div>
+          </div>
+
+          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+            <a className="block relative h-48 rounded overflow-hidden">
+              <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
+            </a>
+            <div className="mt-4">
+              <div className='flex flex-row items-center w-full'>
+                  <div className='flex justify-start'>
+                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                  </div>
+                  <div className='flex justify-end w-full'>
+                    <Image src="/wishlist.png" width={25} height={25} className=''/>
+                  </div>
+              </div>
+              <h2 className="title-font text-lg font-medium">Product name</h2>
+              <span className="mt-1 text-black pr-1">₹699</span>
+              <span className="mt-1 line-through text-gray pr-1">₹899</span>
+              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 {/* -------- BIGGEST DEALS END -------- */}
       </ClientLayout>
     </>

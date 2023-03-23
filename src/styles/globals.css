@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
