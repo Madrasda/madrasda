@@ -32,7 +32,7 @@ export default function checkout() {
                         <div className="-mx-3 md:ml-20 md:flex items-start">
                             {/* CART DETAILS */}
                             <div className="px-3 md:w-5/12">         
-                                <div className="w-full flex items-center">
+                                <div className="w-full flex items-center hover:bg-off-white rounded-lg">
                                     <div className="overflow-hidden rounded-lg w-2/12 h-2/12 bg-[#D9D9D9] border border-gray">
                                     <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                                     </div>
@@ -40,10 +40,12 @@ export default function checkout() {
                                         <h6 className="font-medium text-2xl text-black">Round Neck Solid Mens T-Shirt</h6>
                                         <p className="text-gray">Vikram Collection</p>
                                         <p className="text-gray">Size-L</p>
-                                        <p className="text-gray">Qty-1</p>
                                     </div>
                                     <div>
                                         <span class="font-medium text-black text-xl">₹699</span>
+                                    </div>
+                                    <div>
+                                        <button class="font-medium text-gray text-xl ml-4 mr-4">x</button>
                                     </div>
                                 </div>
                                 <hr className="h-px my-6 border-[#D9D9D9] border-1 "></hr>
