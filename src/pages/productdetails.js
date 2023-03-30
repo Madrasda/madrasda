@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import ClientLayout from '@/components/layout-client';
+import Link from 'next/link';
 
 export default function ProductDetails (props) {
   return (
