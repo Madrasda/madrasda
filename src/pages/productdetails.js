@@ -174,12 +174,16 @@ export default function ProductDetails (props) {
             </div>
             <br></br>
             <div className="flex">
+            <Link href="/checkout">
             <button className= "flex ml-6 text-justify-center mr-10 text-white bg-[#a5153F] border-0 py-2 px-6 focus:outline-none hover:bg-primary rounded">
                 Buy Now
               </button>
+              </Link>
+              <Link href="/cart">
               <button className= "flex ml-10 mr-10 text-justify-center text-white bg-[#a5153F] border-0 py-2 px-6 focus:outline-none hover:bg-primary rounded">
-                Wishlist
+                Add to Cart
               </button>
+              </Link>
             </div>
             <br></br>
           </div>

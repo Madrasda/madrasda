@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
+import AdminUploadModal from "@/components/adminuploadmodal";
 
 export default function MyProducts () {
   return (
@@ -28,9 +29,9 @@ export default function MyProducts () {
             <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
             <Link href="#" >
             <div className="flex flex-col items-center justify-center cursor-pointer">
-                <Image src="/plus-icon.png" width={50} height={50}/>
-                <p className="font-semibold font-base">Create more templates</p>
-                <p className="font-light text-gray font-sm">Add them to your merch and start selling</p>
+                <AdminUploadModal/>
+                <p className="font-semibold font-base">Upload Mockup</p>
+                <p className="font-light text-gray font-sm">Add them to your product list for vendors</p>
             </div>
             </Link>
             </div>

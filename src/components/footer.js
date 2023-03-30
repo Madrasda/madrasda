@@ -13,7 +13,7 @@ export default function Footer() {
             <h2 className="title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3">CUSTOMER SERVICE</h2>
             <nav className="list-none mb-10">
               <li>
-                <Link href="#" className="text-white hover:text-gray">Contact Us</Link>
+                <Link href="/contact" className="text-white hover:text-gray">Contact Us</Link>
               </li>
               <li>
                 <Link href="#" className="text-white hover:text-gray">Track Order</Link>
@@ -62,7 +62,7 @@ export default function Footer() {
               <li>
                 <div className='flex items-center'>
                   <Image src="/mail-logo.png" width={25} height={25} alt="mail logo" className='p-1' />
-                  <Link href="#" className="text-white hover:text-gray">Mail to support</Link>
+                  <Link href="mailto:support@madrasda.com" className="text-white hover:text-gray">Mail to support</Link>
                 </div>
               </li>
               {/* <li>

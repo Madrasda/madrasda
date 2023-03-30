@@ -11,8 +11,8 @@ export default function UploadModal() {
   };
   return (
     <div>
-      <Button auto ghost color="error" onPress={handler}>
-        Open modal
+      <Button auto ghost color="black" onPress={handler}>
+        <Image src="/upload.svg" width={25} height={25} className="mr-4"/> Upload 
       </Button>
       <Modal
         closeButton

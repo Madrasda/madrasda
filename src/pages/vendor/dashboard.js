@@ -2,6 +2,7 @@ import Head from "next/head";
 import VendorLayout from "@/components/layout-vendor";
 import LineGraph from "@/components/linegraph";
 import Image from "next/image";
+import WithdrawModal from "@/components/withdraw-modal";
 
 export default function Dashboard () {
     return (
@@ -40,7 +41,10 @@ export default function Dashboard () {
                                 <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
                                 <h2 className="title-font font-bold  text-3xl text-primary">₹150254</h2>
                                 <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
-                                <p className="leading-relaxed text-xs text-primary font-bold underline">Withdraw</p>
+                                <div className="justify-center ml-40 mt-4">
+                                <WithdrawModal/>
+                                </div>
+                                {/* <button type="submit" className="text-white bg-primary font-medium rounded-full text-sm px-4 py-2 text-center mt-4" >Withdraw</button> */}
                             </div>
                         </div>
                     </div>  

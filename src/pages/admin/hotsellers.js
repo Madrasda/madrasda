@@ -118,7 +118,9 @@ export default function Hotsellers () {
                         </div>
                     </div>
                     <div className="flex justify-center items-center mt-10">
+                        <Link href="/admin/bestsellers">
                         <button className="text-white bg-primary p-2 rounded-lg text-sm">See More</button>
+                        </Link>
                     </div>
                     </div>
                 </section>

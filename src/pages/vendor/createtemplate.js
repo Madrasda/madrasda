@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import VendorLayout from '@/components/layout-vendor';
 import UploadModal from '@/components/upload-modal';
+import Link from 'next/link';
 
 export default function CreateTemplate(props) {
   return (
@@ -41,7 +42,7 @@ export default function CreateTemplate(props) {
           <div className="w-full mt-6
                           lg:pl-10 lg:py-6 lg:mt-0 lg:w-1/2">
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              Round Neck Solid Mens T-Shirt
+              Product Name
             </h1>
 
             <UploadModal />
@@ -93,9 +94,11 @@ export default function CreateTemplate(props) {
               </div>
               <br></br>
             <div className="flex">
+              <Link href="/vendor/productupload">
               <button className= "flex text-white bg-[#a5153F] border-0 py-3 px-10 focus:outline-none hover:bg-primary rounded-full">
                 Save Template
               </button>
+              </Link>
             </div>
             <br></br>
           </div>

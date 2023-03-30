@@ -40,6 +40,17 @@ export default function Feedback () {
             <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
             <Accordion title="What's included in the quoted daily rate?" content="this is content 1" />
         </div>
+
+
+      <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
+
+      <div className="md:ml-24 lg:ml-32"> 
+        <h1 className="title-font font-medium text-2xl pb-8">Admin Contact Details</h1>
+        <h2>Whatsapp</h2>
+        <h2>Email</h2>
+        <h2>Phone Number</h2>
+      </div>
+
     </div>
     </main>
     </VendorLayout>

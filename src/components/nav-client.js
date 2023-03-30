@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Search from "./search"
 import { useEffect } from "react"
+import CartModal from "./cart-modal"
 
 export default function NavClient() {
   return (
@@ -17,16 +18,13 @@ export default function NavClient() {
               <Link href="/productlist" className="mr-8">WOMEN</Link>
               <Link href="/productlist" className="mr-8">KIDS</Link>
               <Link href="/productlist" className="mr-8">ACCESSORIES</Link>
-              <Link href="/productlist" className="mr-8">CATEGORIES</Link>
             </nav>
         </div>
-        <div className="flex flex-row-reverse">
+        <div className="flex flex-row-reverse items-center mr-6">
             <Link href="/login">
               <Image src="/user-icon.png" width={20} height={20} className="ml-10 cursor-pointer"/>
             </Link>
-            <Link href="/checkout">
-            <Image src="/cart.png" width={250} height={250} className="cursor-pointer"/>
-            </Link> 
+            <CartModal/>
             <Search />
         </div>
         </div>

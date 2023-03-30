@@ -28,8 +28,10 @@ export default function Home() {
             <Image className="animate-spin" src="/disc-vikram.svg" width={400} height={400}/>
             
             <div className='flex flex-col w-full'>
+            <Link href="/productlist">
             <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
                           lg:text-white lg:justify-end lg:pt-6'>KAMAL HAASAN HOUSE OF KADHAR</h1>
+            </Link>
 
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
@@ -150,8 +152,10 @@ export default function Home() {
                              lg:flex-row lg:bg-bg md:rounded-l-non md:rounded-r-full'>
 
             <div className='flex flex-col w-full'>
+            <Link href="/productlist">
             <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
                           lg:text-white lg:flex lg:justify-start lg:pt-6'>LOKI CINEMATIC UNIVERSE</h1>
+            </Link>
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
                             lg:flex'>
@@ -274,8 +278,10 @@ export default function Home() {
             <Image className="animate-spin" src="/disc-redgiant.svg" width={400} height={400}/>
             
             <div className='flex flex-col w-full'>
+            <Link href="/productlist">
             <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
                           lg:text-white lg:justify-end lg:pt-6'>RED GIANT PRODUCTIONS</h1>
+            </Link>
 
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
@@ -396,8 +402,10 @@ export default function Home() {
                              lg:flex-row lg:bg-bg md:rounded-l-non md:rounded-r-full'>
 
             <div className='flex flex-col w-full'>
+            <Link href="/productlist">
             <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
                           lg:text-white lg:flex lg:justify-start lg:pt-6'>VIJAY SETHUPATHI</h1>
+            </Link>              
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
                             lg:flex'>

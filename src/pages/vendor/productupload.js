@@ -1,8 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
+import Link from 'next/link'
 
 export default function ProductUpload () {
+    function lol() {
+        alert("Your Product has been uploaded Successfully!!")
+    }
   return (
     <>
     <Head>
@@ -18,7 +22,7 @@ export default function ProductUpload () {
                     md:ml-36'>
     <div className="px-5 my-10 mx-auto">
         <div className="md:ml-20 md:mt-10">
-          <h1 className="body-font text-primary text-3xl">UPLOAD PRODUCT</h1>
+          <h1 className="body-font text-primary text-3xl">Add Product Info</h1>
         </div>
         <hr className="h-px md:ml-20 my-6 bg-black border-1 dark:bg-primary
                        lg:mr-12"></hr>
@@ -154,8 +158,12 @@ export default function ProductUpload () {
                 </div>
         </div>
         <div className=" mt-14 flex justify-center ">
+        <Link href="/vendor/templatelist">
         <button type="button" class="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save as Draft</button>
-        <button type="button" class="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
+        </Link>
+        <Link href="/vendor/templatelist">
+        <button onClick={lol} type="button" class="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
+        </Link>
         </div>
     </div>
     </main>
