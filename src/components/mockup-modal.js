@@ -36,6 +36,7 @@ export default function MockupModal() {
         <Image src="/plus-icon.png" width={40} height={40}/>
         </Button>
       <Modal
+        width="500px"
         closeButton
         preventClose
         aria-labelledby="modal-title"
@@ -49,7 +50,7 @@ export default function MockupModal() {
         </Modal.Header>
 
         <Modal.Body>
-        <div className="bg-[#D9D9D9] w-full overflow-hidden m-3 p-5 rounded-lg">
+        <div className="bg-[#D9D9D9] w-11/12 overflow-hidden m-3 p-5 rounded-lg">
         <div className="my-2 font-bold">Category
               <ul class="w-48 flex flex-row text-sm  font-medium text-black">
                   <li class="w-full">
