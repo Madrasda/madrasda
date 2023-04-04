@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
+import AddVendorModal from "@/components/addvendor-modal";
 
 export default function VendorList () {
   return (
@@ -67,7 +68,7 @@ export default function VendorList () {
         <div className="lg:w-1/6 md:w-1/2 p-4 w-4/6 lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
           <Link href="#" >
           <div className="flex flex-col items-center justify-center cursor-pointer">
-            <Image src="/plus-icon.png" width={50} height={50}/>
+            <AddVendorModal/>
             <p className="font-semibold text-base text-center">Add new vendor</p>
             <p className="font-light text-gray text-sm text-center">Add new vendors to your list</p>
           </div>

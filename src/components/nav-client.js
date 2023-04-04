@@ -7,7 +7,7 @@ import { css, Dropdown } from "@nextui-org/react";
 export default function NavClient() {
   return (
     <>
-    <header className="bg-bg text-white font-algeria px-8 fixed z-20 w-full hidden lg:block">
+    <header className="font-algeria bg-bg text-white font-algeria px-8 fixed z-20 w-full hidden lg:block">
         <div className="flex justify-center items-center w-full">
         <Link href="/">
           <Image src="/logo.png" width={90} height={90}/>
