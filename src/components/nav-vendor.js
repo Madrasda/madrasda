@@ -20,7 +20,7 @@ export default function NavVendor() {
                 <nav className="text-sm flex flex-col items-start h-full font-bold">
 
                     <Link href="/vendor/dashboard">
-                        <div className={currentRoute === '/vendor/dashboard' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
+                        <div className={currentRoute === '/vendor/dashboard' || currentRoute === '/vendor/designgallery' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">
                                 <Image src="/dashboard-icon.png" width={30} height={30}/>
                                 <h3 className="ml-2">Dashboard</h3>

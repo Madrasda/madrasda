@@ -3,6 +3,7 @@ import VendorLayout from "@/components/layout-vendor";
 import LineGraph from "@/components/linegraph";
 import Image from "next/image";
 import WithdrawModal from "@/components/withdraw-modal";
+import Link from "next/link";
 
 export default function Dashboard () {
     return (
@@ -68,8 +69,13 @@ export default function Dashboard () {
 
                 <div className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-4
                                 md:ml-20 md:mt-20">
-                    <h1 className=" pl-5 pt-10 text-xl text-white font-semibold
-                                    md:pl-10 md:text-3xl">YOUR TEMPLATES</h1>
+                    <div className="flex justify-between items-center px-5 pt-10 md:pl-10">
+                        <h1 className="text-xl text-white font-semibold
+                                    md:text-3xl">YOUR TEMPLATES</h1>
+                        <Link href="/vendor/designgallery">
+                        <Image src="/add-template-icon.png" width={90} height={90} className="cursor-pointer" />
+                        </Link>
+                    </div>
                     <div className="flex justify-around items-center py-10 flex-wrap">
                         <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
                         <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />

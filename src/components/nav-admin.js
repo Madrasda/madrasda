@@ -88,8 +88,8 @@ export default function NavAdmin() {
                     </Link>
 
                     <Link href="/admin">
-                        <div className="bg-none w-52 px-8">
-                            <div className="flex justify-start items-center py-24">
+                        <div className="bg-none w-52 pt-8 px-8">
+                            <div className="flex justify-start items-center py-4">
                                 <Image src="/user-icon.png" width={20} height={20}/>
                                 <h3 className="ml-2">Logout</h3>
                             </div>

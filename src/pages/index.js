@@ -131,6 +131,12 @@ export default function Home() {
                 </div>
               </Link>
               </div>
+
+              <div className='-ml-5 z-10'>
+              <Link href="/productlist">
+                <Image src="/prod-comp-showmore-right.png" width={50} height={50} />
+              </Link>
+              </div>
             
             </div>
             </div>
@@ -158,8 +164,15 @@ export default function Home() {
             </Link>
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            lg:flex'>
+                            lg:flex'>            
             <div className='w-full h-full flex items-center justify-end'>
+
+              <div className='-mr-5 z-10'>
+              <Link href="/productlist">
+                  <Image src="/prod-comp-showmore-left.png" width={50} height={50} />
+              </Link>
+              </div>
+
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails">
                 <div className="block relative h-36 rounded overflow-hidden">
@@ -381,6 +394,12 @@ export default function Home() {
                 </div>
               </Link>
               </div>
+
+              <div className='-ml-5 z-10'>
+              <Link href="/productlist">
+                <Image src="/prod-comp-showmore-right.png" width={50} height={50} />
+              </Link>
+              </div>
             
             </div>
             </div>
@@ -410,6 +429,13 @@ export default function Home() {
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
                             lg:flex'>
             <div className='w-full h-full flex items-center justify-end'>
+
+              <div className='-mr-5 z-10'>
+              <Link href="/productlist">
+                  <Image src="/prod-comp-showmore-left.png" width={50} height={50} />
+              </Link>
+              </div>
+
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
               <Link href="/productdetails">
                 <div className="block relative h-36 rounded overflow-hidden">
