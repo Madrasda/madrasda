@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import AdminLayout from "@/components/layout-admin";
+import ReplacementModal from "@/components/replacement-modal";
 
 export default function Replacements () {
   return (
@@ -13,11 +14,39 @@ export default function Replacements () {
     </Head>
     
     <AdminLayout>
-    <section className="body-font font-algeria
-                        md:ml-32">
-      <div className="px-5 py-24 mx-auto">
-      </div>
-    </section>
+    <main className="body-font overflow-hidden font-algeria
+                                md:ml-32">
+                <div className="px-5 my-10 mx-auto">
+                <h1 className="text-3xl text-primary 
+                               md:ml-20 md:mt-10">Replacement Request</h1>
+
+                <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
+
+
+                <div className='flex mt-4 md:ml-20 lg:mr-20'>
+                <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
+                            <h1 className="text-2xl font-medium text-black mb-2"># Order Number</h1>
+                            <div className="flex flex-row">
+                            <img className="w-24 rounded-lg" src="https://cdn.discordapp.com/attachments/981618787491127306/1078972451930771486/Group_85.png" alt="picture"></img>
+                            <div className="flex flex-col ml-2">
+                            <h2 className="ml-4 font-bold text-lg ">Product Name</h2>
+                            <p className="ml-4 text-sm">Size-L</p>
+                            <p className="ml-4 text-sm">Qty-2</p>
+                            <span class="inline-flex items-center ml-2 mt-2 bg-[#c8e6c9] text-[#2e7d32] text-xs w-24 font-medium  px-2.5 py-0.5 rounded-full">
+                            <span class="w-2 h-2 mr-1 bg-[#4CAF50] rounded-full"></span> Accepted
+                            </span>
+                            </div>
+                            </div>
+                            <div className='w-full flex justify-end mb-4'>
+                              <ReplacementModal/>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </main>
     </AdminLayout>
     </>
   );
