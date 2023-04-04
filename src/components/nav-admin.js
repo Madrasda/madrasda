@@ -12,7 +12,7 @@ export default function NavAdmin() {
         <Link href="/">
             <Image src="/logo.png" width={90} height={90}/>
         </Link>
-            <div className="container flex flex-wrap flex-col h-full">
+            <div className="container flex flex-wrap flex-col h-full pt-4">
                 <nav className="text-sm flex flex-col flex-wrap items-start h-full font-bold">
 
                     <Link href="/admin/vendorlist">
@@ -51,6 +51,15 @@ export default function NavAdmin() {
                         </div>
                     </Link>
 
+                    <Link href="/admin/replacements">
+                        <div className={currentRoute === '/admin/replacements' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
+                            <div className="flex justify-start items-center py-4">
+                                <Image src="/product-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">Replacements</h3>
+                            </div>
+                        </div>
+                    </Link>
+
                     <Link href="/admin/payments">
                         <div className={currentRoute === '/admin/payments' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">
@@ -79,7 +88,7 @@ export default function NavAdmin() {
                     </Link>
 
                     <Link href="/admin">
-                        <div className="bg-none scale-75 w-52 px-8">
+                        <div className="bg-none w-52 px-8">
                             <div className="flex justify-start items-center py-24">
                                 <Image src="/user-icon.png" width={20} height={20}/>
                                 <h3 className="ml-2">Logout</h3>

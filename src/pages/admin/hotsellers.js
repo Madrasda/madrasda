@@ -20,7 +20,7 @@ export default function Hotsellers () {
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary md:ml-20 md:mt-10">HOTSELLERS</h1>
                
-                <div className="flex flex-row justify-start items-center mt-10 md:ml-20 md:mr-20 text-sm p-2">
+                <div className="flex flex-row justify-center items-center mt-4 md:justify-end md:mt-0 md:ml-20 md:mr-20 text-sm p-2">
                     <SearchVendor />
                 </div>
 

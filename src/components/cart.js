@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import ClientLayout from '@/components/layout-client';
 
 export default function Cart() {
   return (
@@ -12,7 +11,7 @@ export default function Cart() {
         <title>Madrasda | Cart</title>
       </Head>
           <div className="px-3 md:w-5/12">         
-            <div className="w-full flex items-center hover:bg-off-white rounded-lg">
+            <div className="w-full flex items-center rounded-lg">
                 <div className="overflow-hidden rounded-lg w-2/12 h-2/12 bg-[#D9D9D9] border border-gray">
                 <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -21,40 +20,44 @@ export default function Cart() {
                     <p className="text-gray">Vikram Collection</p>
                     <p className="text-gray">Size-L</p>
                 </div>
-                <div>
-                    <span class="font-medium text-black text-xl">₹699</span>
+                <div className='flex flex-col justify-center items-center'>
+                    <span>
+                        {/* why this aint working */}
+                        <h3>Qty:</h3> 
+                    </span>
+                    <span className="font-medium text-black text-xl">₹699</span>
                 </div>
                 <div>
-                    <button class="font-medium text-gray text-xl ml-4 mr-4">x</button>
+                    <button className="font-medium text-gray text-xl ml-4 mr-4">x</button>
                 </div>
             </div>
             <hr className="h-px my-6 border-[#D9D9D9] border-1 "></hr>
-            <div class="mb-6 pb-6 text-lg border-b border-[#D9D9D9] text-black">
-                <div class="w-full flex mb-3 items-center">
-                    <div class="flex-grow">
-                        <span class="text-black">Subtotal</span>
+            <div className="mb-6 pb-6 text-lg border-b border-[#D9D9D9] text-black">
+                <div className="w-full flex mb-3 items-center">
+                    <div className="flex-grow">
+                        <span className="text-black">Subtotal</span>
                     </div>
-                    <div class="pl-3">
-                        <span class="font-medium">₹699</span>
+                    <div className="pl-3">
+                        <span className="font-medium">₹699</span>
                     </div>
                 </div>
-                <div class="w-full flex items-center">
-                    <div class="flex-grow">
-                        <span class="text-black">Shipping</span>
+                <div className="w-full flex items-center">
+                    <div className="flex-grow">
+                        <span className="text-black">Shipping</span>
                     </div>
-                    <div class="pl-3">
-                        <span class="font-medium">Free</span>
+                    <div className="pl-3">
+                        <span className="font-medium">Free</span>
                     </div>
                 </div>
             </div>
-            <div class="mb-6 pb-6 border-b border-gray md:border-none text-gray-800 text-xl">
-                <div class="w-full flex items-center">
-                    <div class="flex-grow">
-                        <span class="text-gray-600">Total</span>
+            <div className="mb-6 pb-6 border-b border-gray md:border-none text-gray-800 text-xl">
+                <div className="w-full flex items-center">
+                    <div className="flex-grow">
+                        <span className="text-gray-600">Total</span>
                         <p className="text-sm text-gray">Including all taxes</p>
                     </div>
-                    <div class="pl-3">
-                        <span class="font-medium text-gray text-sm">INR</span> <span class="font-medium text-2xl">₹699</span>
+                    <div className="pl-3">
+                        <span className="font-medium text-gray text-sm">INR</span> <span className="font-medium text-2xl">₹699</span>
                     </div>
                 </div>
             </div>

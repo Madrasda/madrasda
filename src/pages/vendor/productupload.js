@@ -61,15 +61,46 @@ export default function ProductUpload () {
                        lg:mr-12"></hr>
         <div className="md:ml-20 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">2.Product Details</h1>
-            <h2 className="ml-2 title-font font-medium text-xl">Size & Fit</h2>
-            <div className="ml-2">
-                <h2 className="title-font font-medium text-xl">Material*</h2>
-                    <p className="text-lg text-gray">250 characters max</p>
-                    <div className="mb-6 mt-1 lg:mr-96 ">
-                    <input type="text" className="bg-white border border-[#D9D9D9] text-white text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter name of your Material"/>
-                    </div>
+
+            <div className="">Colors</div>
+            <div className="flex items-center mt-3 mb-3">
+              <div className="flex">
+                <div className='flex flex-col justify-center items-center px-2'>
+                  <button className="border-2 border-gray bg-black rounded-full w-10 h-10 focus:outline-none"></button>
+                  <p className='text-sm'>Black</p>
+                </div>
+                <div className='flex flex-col justify-center items-center px-2'>
+                  <button className="border-2 border-gray ml-1 bg-[#4A2129] rounded-full w-10 h-10 focus:outline-none"></button>
+                  <p className='text-sm'>Maroon</p>
+                </div>
+                <div className='flex flex-col justify-center items-center px-2'>
+                  <button className="border-2 border-gray ml-1 bg-gray rounded-full w-10 h-10 focus:outline-none"></button>
+                  <p className='text-sm'>Gray</p>
+                </div>
+                <div className='flex flex-col justify-center items-center px-2'>
+                  <button className="border-2 border-gray ml-1 bg-[#281477] rounded-full w-10 h-10 focus:outline-none"></button>
+                  <p className='text-sm'>Blue</p>
+                </div>
+                <div className='flex flex-col justify-center items-center px-2'>
+                  <button className="border-2 border-gray ml-1 rounded-full w-10 h-10 focus:outline-none"></button>
+                  <p className='text-sm'>White</p>
+                </div>
+              </div>
             </div>
-            <h2 className="ml-2 mb-6 title-font font-medium text-xl">Specifications*</h2>
+
+            <div className="mt-6">Size Guide</div>
+            <div className="flex justify-start items-center mt-3 mb-3">
+                <div className="relative">
+                    <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XS</button>
+                    <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">S</button>
+                    <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">M</button>
+                    <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">L</button>
+                    <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XL</button>
+                    <button className="w-10 text-sm justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XXL</button>
+                </div>
+            </div>
+
+            <h2 className="ml-2 mb-6 title-font font-medium text-xl mt-10">Specifications*</h2>
             <div className="grid gap-6 ml-2 mb-2 
                             md:grid-cols-2
                             lg:mr-96">

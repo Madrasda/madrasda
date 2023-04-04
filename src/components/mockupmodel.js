@@ -6,13 +6,13 @@ export default function MockupModel() {
   return (
     <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <Link href="/vendor/viewprod"> 
-            <a className="block relative h-fit rounded overflow-hidden">
+            <div className="block relative h-fit rounded overflow-hidden">
                 <Image src="/v-tee.png" 
                 alt="ecommerce" 
                 height={1080}
                 width={1920} 
                 className="object-contain object-center w-full h-full" />
-            </a>
+            </div>
             <div className="mt-4">
                 <h3 className="text-base title-font">Vikram Hoodies</h3>
                 <div className="flex">

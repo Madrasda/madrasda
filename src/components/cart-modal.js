@@ -18,7 +18,7 @@ export default function CartModal() {
           border: "transparent",
         }}
         >
-        <Image src="/cart.png" width={325} height={325}/>
+        <Image src="/cart.png" width={40} height={40}/>
         </Button>
         <Modal
             width="600px"

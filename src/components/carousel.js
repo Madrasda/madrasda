@@ -40,7 +40,7 @@ export default function Carousel() {
   };
 
   return (
-    <div className='max-w-screen h-screen w-full m-auto relative group'>
+    <div className='max-w-screen h-[90vh] w-full m-auto relative group'>
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className='w-full h-full bg-cover duration-500'

@@ -115,7 +115,7 @@ export default function checkout() {
                                     </div>
                                 </div>
                                 <div className="flex justify-end">
-                                <button type="button" className="text-white bg-primary  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
+                                <button type="button" className="text-white bg-primary  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Proceed to Payment</button>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export default function Table() {
   return (
@@ -15,6 +16,7 @@ export default function Table() {
                         <th scope="col" className=" px-6 py-4">Returns Contribution</th>
                         <th scope="col" className=" px-6 py-4">Stocks Sold</th>
                         <th scope="col" className=" px-6 py-4">Profit Amount</th>
+                        <th scope="col" className=" px-6 py-4">In Sale</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +27,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6">30%</td>
                         <td className="whitespace-nowrap px-6 py-6">35</td>
                         <td className="whitespace-nowrap px-6 py-6">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/green-tick.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">2</td>
@@ -33,6 +38,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/green-tick.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">3</td>
@@ -41,6 +49,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/red-cross.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">4</td>
@@ -49,6 +60,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/green-tick.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">5</td>
@@ -57,6 +71,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/red-cross.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">6</td>
@@ -65,6 +82,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/red-cross.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">7</td>
@@ -73,6 +93,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/green-tick.png" width={20} height={20} />
+                        </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
                         <td className="whitespace-nowrap px-6 py-6   font-medium">8</td>
@@ -81,6 +104,9 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">35</td>
                         <td className="whitespace-nowrap px-6 py-6  ">13</td>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
+                            <Image src="/green-tick.png" width={20} height={20} />
+                        </td>
                         </tr>
                     </tbody>
                     </table>

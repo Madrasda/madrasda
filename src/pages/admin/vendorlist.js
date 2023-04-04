@@ -20,12 +20,12 @@ export default function VendorList () {
       <div className="px-5 my-10 mx-auto">
         <h1 className="text-3xl text-primary 
                        md:ml-20">MY VENDORS</h1>
-        <div className="flex items-center justify-center m-5">
+        <div className="flex items-center justify-end m-5 mt-0">
           <SearchVendor />
         </div>
         <div className="flex flex-wrap justify-center">
           
-        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 lg:h-80 md:h-96 h-80 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
           <Link href="/admin/vendordetails">
             <div className="block relative h-fit rounded overflow-hidden">
                 <Image src="/myvendor-vikram.png" 
@@ -38,7 +38,7 @@ export default function VendorList () {
           </Link>
         </div>
 
-        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 lg:h-80 md:h-96 h-80 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
           <Link href="/admin/vendordetails">
             <div className="block relative h-fit rounded overflow-hidden">
                 <Image src="/myvendor-loki.png" 
@@ -51,7 +51,7 @@ export default function VendorList () {
           </Link>
         </div>
 
-        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 lg:h-80 md:h-96 h-80 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
           <Link href="/admin/vendordetails">
             <div className="block relative h-fit rounded overflow-hidden">
                 <Image src="/myvendor-redgiant.png" 
