@@ -40,6 +40,7 @@ export default function checkout() {
                                         <h6 className="font-medium text-2xl text-black">Round Neck Solid Mens T-Shirt</h6>
                                         <p className="text-gray">Vikram Collection</p>
                                         <p className="text-gray">Size-L</p>
+                                        <p className="text-gray">Qty-1</p>
                                     </div>
                                     <div>
                                         <span class="font-medium text-black text-xl">₹699</span>

@@ -2,6 +2,8 @@ import React from "react";
 import { Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import Cart from "./cart";
+import Incdec from "./incdec";
+import Link from "next/link";
 
 export default function CartModal() {
     const [visible, setVisible] = React.useState(false);
@@ -46,6 +48,20 @@ export default function CartModal() {
                     <h6 className="font-medium text-2xl text-black">Round Neck Solid Mens T-Shirt</h6>
                     <p className="text-gray">Vikram Collection</p>
                     <p className="text-gray">Size-L</p>
+                    <div className="flex flex-row objects-center">
+                      <p className="text-gray">Qty</p>
+                      <div className="flex items-center mt-4 h-4 ml-2 w-16">
+                          <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                          <button data-action="decrement" className="bg-white flex text-center border border-gray text-primary hover:text-primary hover:bg-gray h-4 w-16 rounded-l cursor-pointer">
+                            <span className="m-auto text-xs font-bold">-</span>
+                            </button>
+                            <input className="border border-gray focus:outline-none text-center h-4  w-full bg-white font-semibold text-xs hover:text-primary focus:text-primary md:text-basecursor-default flex items-center text-primary outline-none" value="0" onChange></input>
+                            <button data-action="increment" className="bg-white flex text-center border border-gray text-primary hover:text-primary hover:bg-gray h-4 w-16 rounded-r cursor-pointer">
+                            <span className="m-auto text-xs font-bold">+</span>
+                            </button>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <div>
                     <span class="font-medium text-black text-xl">₹699</span>
@@ -92,13 +108,15 @@ export default function CartModal() {
             <Button auto flat color="error" onPress={closeHandler}>
               Close
             </Button>
+            <Link href="/checkout">
             <Button auto
             onPress={closeHandler}
             style={{
               background: "#A5153F",
             }}>
-              Proceed To Payment
+              Proceed To Checkout
             </Button>
+            </Link>
           </Modal.Footer>
         </Modal>
       </div>

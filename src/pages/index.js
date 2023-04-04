@@ -30,7 +30,7 @@ export default function Home() {
             <div className='flex flex-col w-full'>
             <Link href="/productlist">
             <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
-                          lg:text-white lg:justify-end lg:pt-6'>KAMAL HAASAN HOUSE OF KADHAR</h1>
+                          lg:text-white lg:justify-end lg:pt-6 hover:text-2xl'>KAMAL HAASAN HOUSE OF KADHAR</h1>
             </Link>
 
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
@@ -160,7 +160,7 @@ export default function Home() {
             <div className='flex flex-col w-full'>
             <Link href="/productlist">
             <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
-                          lg:text-white lg:flex lg:justify-start lg:pt-6'>LOKI CINEMATIC UNIVERSE</h1>
+                          lg:text-white lg:flex lg:justify-start lg:pt-6 hover:text-2xl'>LOKI CINEMATIC UNIVERSE</h1>
             </Link>
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
@@ -293,7 +293,7 @@ export default function Home() {
             <div className='flex flex-col w-full'>
             <Link href="/productlist">
             <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
-                          lg:text-white lg:justify-end lg:pt-6'>RED GIANT PRODUCTIONS</h1>
+                          lg:text-white lg:justify-end lg:pt-6 hover:text-2xl'>RED GIANT PRODUCTIONS</h1>
             </Link>
 
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
@@ -423,7 +423,7 @@ export default function Home() {
             <div className='flex flex-col w-full'>
             <Link href="/productlist">
             <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
-                          lg:text-white lg:flex lg:justify-start lg:pt-6'>VIJAY SETHUPATHI</h1>
+                          lg:text-white lg:flex lg:justify-start lg:pt-6 hover:text-2xl'>VIJAY SETHUPATHI</h1>
             </Link>              
             {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden

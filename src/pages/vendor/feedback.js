@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
 import Accordion from '@/components/accordian'
+import Link from 'next/link'
 
 export default function Feedback () {
   return (
@@ -23,11 +24,34 @@ export default function Feedback () {
         <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
         
         <div className="md:ml-24 lg:ml-32"> 
-            <h1 className="title-font font-medium text-2xl pb-8">1.Post your Queries:</h1>
-            <div className=" mt-14 flex justify-center ">
-                <button type="button" className="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save as Draft</button>
-                <button type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Query</button>
-            </div>
+            <h1 className="title-font font-medium text-2xl pb-8">1.Post your Queries:</h1>            
+              <form>
+                <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                    <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                        <label for="comment" class="sr-only">Your comment</label>
+                        <textarea id="comment" rows="4" class="w-full px-0 text-sm text-black bg-white" placeholder="Write a comment..." required></textarea>
+                    </div>
+                    <div class="flex items-center justify-between px-3 py-2 border-t ">
+                        <button type="submit" class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg">
+                            Post comment
+                        </button>
+                        <div class="flex pl-0 space-x-1 sm:pl-2">
+                            <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer  ">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Attach file</span>
+                            </button>
+                            <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer  ">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Set location</span>
+                            </button>
+                            <button type="button" class="inline-flex justify-center p-2 text-gray-500 rounded cursor-pointer  ">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Upload image</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+              </form>
         </div>
 
         <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
@@ -49,6 +73,17 @@ export default function Feedback () {
         <h2>Whatsapp</h2>
         <h2>Email</h2>
         <h2>Phone Number</h2>
+      </div>
+
+      <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
+
+      <div className=" mt-14 flex justify-center ">
+        <Link href="/vendor/resolvedqueries">
+        <button type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Resolved Queries</button>
+        </Link>
+        <Link href="/vendor/unresolvedqueries">
+        <button type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Un-resolved Queries</button>
+        </Link>
       </div>
 
     </div>

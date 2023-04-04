@@ -34,7 +34,7 @@ export default function NavAdmin() {
                     </Link>
 
                     <Link href="/admin/queries">
-                        <div className={currentRoute === '/admin/queries' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
+                        <div className={currentRoute === '/admin/queries' || currentRoute === '/admin/resolvedqueries' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">
                                 <Image src="/comment-dots.png" width={30} height={30}/>
                                 <h3 className="ml-2">Queries and Feedback</h3>
