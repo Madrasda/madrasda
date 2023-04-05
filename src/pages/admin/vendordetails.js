@@ -42,7 +42,6 @@ export default function VendorDetails () {
                                 <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
                                 <h2 className="title-font font-bold  text-3xl text-primary">₹150254</h2>
                                 <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
-                                <p className="leading-relaxed text-xs text-primary font-bold underline">Withdraw</p>
                             </div>
                         </div>
                     </div>  
