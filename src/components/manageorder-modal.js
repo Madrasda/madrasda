@@ -46,6 +46,10 @@ export default function MangeOrderModal() {
                                 <input type="text" className="bg-[#D9D9D9] border-b border-black text-black text-sm w-4/6 md:w-96 p-2.5 cursor-default" placeholder="ID" readOnly/>
                             </div>
                             <div className="flex mb-2">
+                                <h2 className="text-lg mb-2 font-medium w-2/6 md:w-96 text-black flex items-center">SKU</h2>
+                                <input type="text" className="bg-[#D9D9D9] border-b border-black text-black text-sm w-4/6 md:w-96 p-2.5 cursor-default" placeholder="REDTEEWITHTOMANDJERRYDESIGNFORVENDOR" readOnly/>
+                            </div>
+                            <div className="flex mb-2">
                                 <h2 className="text-lg mb-2 font-medium w-2/6 md:w-96 text-black flex items-center">Product Details</h2>
                                 <input type="text" className="bg-[#D9D9D9] border-b border-black text-black text-sm w-4/6 md:w-96 p-2.5 cursor-default" placeholder="T-Shirt" readOnly/>
                             </div>
