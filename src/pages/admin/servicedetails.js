@@ -25,22 +25,14 @@ export default function CustomerDetails () {
                 <div className='flex mt-4 md:ml-20 lg:mr-44'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">
-                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">1.Delivery partner - Dhelivery</h1>
+                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">Ship Rocket</h1>
                             <div className="flex mb-2">
-                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Product Price</h2>
-                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="₹899" disabled readonly/>
+                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Services</h2>
+                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="Shipping, Invoices" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
-                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Shipping Mode</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="Dhelivery Air" disabled readonly/>
-                            </div>
-                            <div className="flex mb-2">
-                                <h2 for="company" className=" text-lg w-2/3 md:w-96 font-medium text-black flex items-center">Tracking ID</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5 " value="AWB0987136776" disabled readonly/>
-                            </div>
-                            <div className="flex mb-6 mt-4">
-                                <h2 for="company" className="text-lg w-2/3 md:w-96 font-medium text-black flex items-center">Status</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5 " value="Dispatched" disabled readonly/>
+                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Payment</h2>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="Rs.20/500gms" disabled readonly/>
                             </div>
                         </div>
                     </div>
@@ -48,27 +40,63 @@ export default function CustomerDetails () {
                 <div className='flex mt-4 md:ml-20 lg:mr-44'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">
-                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">2.Delivery partner - Dhelivery</h1>
+                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">Razor Pay</h1>
                             <div className="flex mb-2">
-                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Product Price</h2>
-                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="₹899" disabled readonly/>
+                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Services</h2>
+                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="Payment" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
-                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Shipping Mode</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="Dhelivery Air" disabled readonly/>
-                            </div>
-                            <div className="flex mb-2">
-                                <h2 for="company" className=" text-lg w-2/3 md:w-96 font-medium text-black flex items-center">Tracking ID</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5 " value="AWB0987136776" disabled readonly/>
-                            </div>
-                            <div className="flex mb-6 mt-4">
-                                <h2 for="company" className="text-lg w-2/3 md:w-96 font-medium text-black flex items-center">Status</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5 " value="Dispatched" disabled readonly/>
+                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Payment</h2>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                <div className='flex mt-4 md:ml-20 lg:mr-44'>
+                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
+                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">Google Cloud Platform</h1>
+                            <div className="flex mb-2">
+                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Services</h2>
+                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="Data and Image Storage" disabled readonly/>
+                            </div>
+                            <div className="flex mb-2">
+                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Payment</h2>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='flex mt-4 md:ml-20 lg:mr-44'>
+                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
+                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">Twillio</h1>
+                            <div className="flex mb-2">
+                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Services</h2>
+                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="OTP SMS verification" disabled readonly/>
+                            </div>
+                            <div className="flex mb-2">
+                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Payment</h2>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='flex mt-4 md:ml-20 lg:mr-44'>
+                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
+                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
+                            <h1 className="text-xl md:text-2xl font-medium text-black mb-6">Image Stack</h1>
+                            <div className="flex mb-2">
+                                <h2 className="text-lg font-medium w-2/3 md:w-96 text-black flex items-center">Services</h2>
+                                <input type="text" className="bg-[#D9D9D9] text-gray text-lg w-5/6 md:w-96 p-2.5" value="Store Images" disabled readonly/>
+                            </div>
+                            <div className="flex mb-2">
+                                <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Payment</h2>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="3875 exec tax" disabled readonly/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 </main>
             </AdminLayout>

@@ -85,7 +85,7 @@ export default function checkout() {
                                 <div className="mb-6">
                                     <h2 className="ml-2 mb-6 title-font font-medium text-xl">Email</h2>
                                     <div className="mb-2 ml-2 mt-1">
-                                        <input type="text" className="bg-white border border-[#D9D9D9] text-white text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter your Email Address"/>
+                                        <input type="text" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter your Email Address"/>
                                     </div>
                                     <div className="flex ml-2">
                                         <div className="flex items-center h-5">

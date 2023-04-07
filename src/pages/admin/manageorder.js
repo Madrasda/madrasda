@@ -39,8 +39,9 @@ export default function ManageOrder () {
                             </div>
                             </div>
                             <div className='w-full flex justify-end mb-4'>
-                            <button type="button" className=" text-white bg-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-8 mb-2">Ship Now</button>
-                              <MangeOrderModal/>
+                            <button type="button" className=" text-white bg-primary font-medium rounded-xl text-sm px-5 py-2.5 text-center mr-8 mb-2">Ship Now</button>
+                            <MangeOrderModal/>
+                            <button type="button" className="text-white bg-primary font-medium rounded-xl text-sm px-5 py-2.5 text-center ml-8 mb-2">Generate Report</button>
                             </div>
                             
                         </div>
