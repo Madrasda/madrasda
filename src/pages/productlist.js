@@ -1,20 +1,19 @@
 import Image from "next/image";
 import Head from "next/head";
 import ClientLayout from "@/components/layout-client";
-import productTile from "@/components/producTile";
 
 export default function ProductList () {
 
-  const [pageData, setPageData] = useState([]);
-  const [pageNo, setPageNo] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
-  useEffect(() =>{
-    const fetchPage = async () => {
-      const res=await axios.get("http://localhost:8080/api/client/allProducts?pageNo=" + pageNo + "&pageSize=" + pageSize);
-      setPageData(res.data);
-    }
-    fetchPage();
-  },[]);
+  // const [pageData, setPageData] = useState([]);
+  // const [pageNo, setPageNo] = useState(0);
+  // const [pageSize, setPageSize] = useState(10);
+  // useEffect(() =>{
+  //   const fetchPage = async () => {
+  //     const res=await axios.get("http://localhost:8080/api/client/allProducts?pageNo=" + pageNo + "&pageSize=" + pageSize);
+  //     setPageData(res.data);
+  //   }
+  //   fetchPage();
+  // },[]);
 
   return (
     <>
@@ -324,7 +323,6 @@ export default function ProductList () {
         </div>
       </div>
     </section>
-    <productTile/>
     </ClientLayout>
     </>
   );
