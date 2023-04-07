@@ -54,7 +54,7 @@ export default function Vendorlogin() {
                         </Link>
                     </div>
                 </form>
-                <div className="w-100 mt-12 underline    text-white text-sm text-center mt-3">
+                <div className="w-100 underline text-white text-sm text-center mt-3">
                     <Link href="/login">
                     Go Back
                     </Link>

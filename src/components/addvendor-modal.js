@@ -29,17 +29,35 @@ export default function AddVendorModal() {
         onClose={closeHandler}
       >
         <Modal.Header>
-          <Text id="modal-title" size={18}>
+          <Text id="modal-title" size={18} style={{
+          color: "#A5153F",
+        }}>
             Add Vendor
           </Text>
         </Modal.Header>
 
         <Modal.Body>
-        <Image src="/myvendor-vikram.png" 
-                alt="ecommerce" 
-                height={100}
-                width={100} 
-                className="object-cover rounded-full" />
+        <label for="dropzone-file" className="flex items-center justify-center w-full h-fit bg-white">
+            <div className="flex flex-col items-center justify-center px-4 relative group transition-all duration-300 ease-in-out">
+              {/* <h4 className="text-base">Upload</h4> */}
+              <div className="">
+              <Image src="/profile-logo.png" 
+                  alt="ecommerce" 
+                  height={60}
+                  width={60} 
+                  className="object-contain rounded-full cursor-pointer" />
+              </div>
+              <div className="absolute z-20 hidden group-hover:block">
+              <Image src="/hover profile logo.png" 
+                  alt="ecommerce" 
+                  height={60}
+                  width={60} 
+                  className="object-contain rounded-full cursor-pointer" />
+              </div>
+              {/* <h4 className="text-xs py-2">Upload</h4> */}
+            </div>
+            <input id="dropzone-file" type="file" className="hidden" />
+        </label>
             <AddVendorForm/>
         </Modal.Body>
       
