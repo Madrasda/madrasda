@@ -1,17 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import Link from 'next/link'
 import { useState } from 'react'
 import axios from "axios";
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Adminlogin() {
     const [mail,setmail]=useState();
     const [password,setpassword]=useState();
 const adminlogin = () =>{
-    console.log(mail,password);
+    // console.log(mail,password);
     axios
       .post('http://localhost:8080/api/auth/loginAdmin', {
         email: mail,
@@ -19,7 +16,7 @@ const adminlogin = () =>{
       })
       .then((response) => {
         console.log(response.data);
-        
+        window.location.href = '/admin/vendorlist'
       })
       .catch((err)=>{
         console.log(err.response.data.message);
@@ -48,7 +45,7 @@ const adminlogin = () =>{
                 LOGIN
             </h1>
                 <form>
-                    <div className='text-xl text-[#A5153F] m-2 text-center' id="responsesection"></div>
+                    <div className='text-base text-[#A5153F] m-2 text-center' id="responsesection"></div>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
                         <input
