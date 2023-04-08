@@ -16,7 +16,10 @@ const adminlogin = () =>{
       })
       .then((response) => {
         console.log(response.data);
-        window.location.href = '/admin/vendorlist'
+        if(response.status === 200) {
+            sessionStorage.setItem("token", response.data.token);
+            window.location.href = '/admin/vendorlist';
+        }
       })
       .catch((err)=>{
         console.log(err.response.data.message);

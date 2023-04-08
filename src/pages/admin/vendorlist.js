@@ -4,8 +4,22 @@ import Link from "next/link";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 import AddVendorModal from "@/components/addvendor-modal";
+import { useEffect, useState } from "react";
 
 export default function VendorList () {
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    // loader will be called here....
+    if (sessionStorage.getItem('token')) {
+      setToken(sessionStorage.getItem('token'));
+      console.log(token);
+    }
+    else {
+      window.location.href = '/admin';
+    }
+  }, [])
+
   return (
     <>
     <Head>
