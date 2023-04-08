@@ -350,7 +350,7 @@ export default function ProductList () {
                 <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">10</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary rounded-r-lg hover:bg-primary hover:text-white px-6">Next</a>
+                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary rounded-r-lg hover:bg-primary hover:text-white">Next</a>
               </li>
             </ul>
           </nav>
