@@ -2,10 +2,31 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Link from 'next/link'
+import { useState } from 'react'
+import axios from "axios";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Adminlogin() {
+    const [mail,setmail]=useState();
+    const [password,setpassword]=useState();
+const adminlogin = () =>{
+    console.log(mail,password);
+    axios
+      .post('http://localhost:8080/api/auth/loginAdmin', {
+        email: mail,
+        password: password
+      })
+      .then((response) => {
+        console.log(response.data);
+        
+      })
+      .catch((err)=>{
+        console.log(err.response.data.message);
+        document.getElementById("responsesection").innerHTML=err.response.data.message;
+      })
+      ;
+}
   return (
     <>
     <Head>
@@ -27,13 +48,14 @@ export default function Adminlogin() {
                 LOGIN
             </h1>
                 <form>
+                    <div className='text-xl text-[#A5153F] m-2 text-center' id="responsesection"></div>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
                         <input
                             type='email'
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='username'
-                            placeholder='example@example.com'
+                            placeholder='example@example.com' onChange={(e)=>setmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -43,14 +65,15 @@ export default function Adminlogin() {
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='password'
                             placeholder='**********'
+                            onChange={(e) => setpassword(e.target.value)}
                         />
                     </div>
                     <div className='flex justify-center items-center mt-6'>
-                        <Link href="/admin/vendorlist">
-                        <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}>
+                        {/* <Link href="/admin/vendorlist"> */}
+                        <button type="button" className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `} onClick={adminlogin}>
                             Login
                         </button>
-                        </Link>
+                        {/* </Linfk> */}
                     </div>
                 </form>
             <br/>
