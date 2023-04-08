@@ -1,6 +1,12 @@
 import React from 'react'
 
 export default function AddVendorForm() {
+  const [name, setName] = React.useState();
+  const [cname,setCompanyName] = React.useState();
+  const [curl, setCompanyUrl] = React.useState();
+  const [gstin, setGstin] = React.useState();
+  const [password, setpassword] = React.useState();
+  
   return (
     <>
       <h2 className="ml-2  title-font font-medium text-sm">Vendor Display Name :</h2>

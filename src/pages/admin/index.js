@@ -1,14 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from "axios";
 
 export default function Adminlogin() {
     const [mail,setmail]=useState();
     const [password,setpassword]=useState();
 const adminlogin = () =>{
-    // console.log(mail,password);
+    console.log(mail,password);
+    if(mail !== "" && password !== ""){
     axios
       .post('http://localhost:8080/api/auth/loginAdmin', {
         email: mail,
@@ -22,11 +23,18 @@ const adminlogin = () =>{
         }
       })
       .catch((err)=>{
-        console.log(err.response.data.message);
+        // console.log(err);
+        console.log(mail,password);
         document.getElementById("responsesection").innerHTML=err.response.data.message;
-      })
-      ;
+        // document.getElementById("responsesection").innerHTML="Password crt ha podra punda";
+
+    });
+    }
 }
+useEffect  (() =>{
+    setmail(document.getElementById("username").value);
+    setpassword(document.getElementById("password").value);
+});
   return (
     <>
     <Head>
@@ -55,7 +63,10 @@ const adminlogin = () =>{
                             type='email'
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='username'
-                            placeholder='example@example.com' onChange={(e)=>setmail(e.target.value)}
+                            required
+                            placeholder='example@example.com'
+                            onLoad={(e)=>setmail(e.target.value)}
+                            onChange={(e)=>setmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -65,6 +76,8 @@ const adminlogin = () =>{
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='password'
                             placeholder='**********'
+                            required
+                            onLoad={(e)=> setpassword(e.target.value)}
                             onChange={(e) => setpassword(e.target.value)}
                         />
                     </div>
