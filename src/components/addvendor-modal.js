@@ -43,6 +43,7 @@ export default function AddVendorModal() {
         console.log(response.data);
         if(response.status === 200) {
             console.log("success")
+            window.location.reload(true);
         }
       })
       .catch((err)=>{

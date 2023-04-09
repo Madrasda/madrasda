@@ -4,20 +4,37 @@ import Link from "next/link";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 import AddVendorModal from "@/components/addvendor-modal";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
+import axios from 'axios';
 
 export default function VendorList () {
   const [token, setToken] = useState();
-
+  const [vendorlist,setvendorlist]= useState([]);
+  // const img='';
   useEffect(() => {
     // loader will be called here....
     if (sessionStorage.getItem('token')) {
       setToken(sessionStorage.getItem('token'));
-      console.log(token);
+      // console.log(token);
     }
     else {
       window.location.href = '/admin';
     }
+
+    axios
+      .get('http://localhost:8080/api/admin/getVendors')
+      .then((response) => {
+        // console.log(response.data);
+        setvendorlist(response.data);
+        console.log(vendorlist)
+          // if(response.status === 200) {
+          //     console.log(response.data);
+          // }
+      })
+      .catch((err)=>{
+        console.log(err);
+    });
+
   }, [])
 
   return (
@@ -39,34 +56,26 @@ export default function VendorList () {
           <SearchVendor />
         </div>
         <div className="flex flex-wrap justify-center">
-          
-        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+        {vendorlist.map((i) => (
+        <div id={i.id} className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
           <Link href="/admin/vendordetails">
             <div className="block relative h-fit rounded overflow-hidden">
-                <Image src="/myvendor-vikram.png" 
-                alt="ecommerce" 
+                <Image
+                //  src="/myvendor-vikram.png" 
+                loader={() => {i.imgUrl}}
+                src={i.imgUrl}
+                alt={i.name+" img"}
                 height={300}
                 width={300} 
                 className="object-contain object-center w-full h-full" />
             </div>
-            <h3 className="text-base font-bold title-font mt-4 text-center flex justify-center items-center">KAMAL HASSAN HOUSE OF KHADDAR</h3>
+            <h3 className="text-base font-bold title-font mt-4 text-center flex justify-center items-center">{i.name}</h3>
           </Link>
-        </div>
+        </div>))}
+        
+        
 
-        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-          <Link href="/admin/vendordetails">
-            <div className="block relative h-fit rounded overflow-hidden">
-                <Image src="/myvendor-loki.png" 
-                alt="ecommerce" 
-                height={300}
-                width={300} 
-                className="object-contain object-center w-full h-full" />
-            </div>
-            <h3 className="text-base font-bold title-font mt-4 text-center flex justify-center items-center">LOKESH KANAGARAJ</h3>
-          </Link>
-        </div>
-
-        <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+        {/* <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
           <Link href="/admin/vendordetails">
             <div className="block relative h-fit rounded overflow-hidden">
                 <Image src="/myvendor-redgiant.png" 
@@ -77,7 +86,7 @@ export default function VendorList () {
             </div>
             <h3 className="text-base font-bold title-font mt-4 text-center flex justify-center items-center">RED GIANT PRODUCTIONS</h3>
           </Link>
-        </div>
+        </div> */}
 
         <div className="lg:w-1/6 md:w-1/2 p-4 w-4/6 lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
           <Link href="#" >

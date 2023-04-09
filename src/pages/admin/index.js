@@ -24,7 +24,7 @@ const adminlogin = () =>{
       })
       .catch((err)=>{
         // console.log(err);
-        console.log(mail,password);
+        console.log(err);
         document.getElementById("responsesection").innerHTML=err.response.data.message;
         // document.getElementById("responsesection").innerHTML="Password crt ha podra punda";
 
