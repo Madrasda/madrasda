@@ -6,20 +6,40 @@ import WithdrawModal from "@/components/withdraw-modal";
 import Link from "next/link";
 import axios from 'axios';
 import { useState,useRef, useEffect } from "react";
+import cookieCutter from 'cookie-cutter'
 
 export default function Dashboard () {
     const [token, setToken] = useState();
-    const [vendorlist,setvendorlist]= useState([]);
-    useEffect(()=>{
+    
+    const [vendorDetails,setvendordetails]=useState({});
+    
+   
+      
+    useEffect(() => {
         if (sessionStorage.getItem('token')) {
             setToken(sessionStorage.getItem('token'));
             console.log(token);
+
+            const mail=sessionStorage.getItem('mail');
+            console.log(mail);
+            axios
+            .get('http://localhost:8080/api/vendor/vendorDetails?email='+mail)
+            .then((vendorGetResponse)=>{
+                sessionStorage.setItem("id",vendorGetResponse.data.vendor.id);
+                // console.log(vendorGetResponse.data)
+                setvendordetails(vendorGetResponse.data);
+            })
+            .catch((vendorErr)=>{
+                // console.log(vendorErr);
+            })
           }
           else {
             window.location.href = '/admin';
           }
-    })
-    
+        
+      },[]);
+   
+    console.log(vendorDetails.salesAnalysis)
     return (
         <>
             <Head>
@@ -42,19 +62,19 @@ export default function Dashboard () {
                             <div className="p-4 w-1/2
                                             lg:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Products</h1>
-                                <h2 className="title-font font-bold text-3xl text-primary">52</h2>
+                                {/* <h2 className="title-font font-bold text-3xl text-primary">{vendorDetails.salesAnalysis.totalProducts}</h2> */}
                                 <p className="leading-relaxed text-xs">40% more than previous 28 days</p>
                             </div>
                             <div className="p-4 w-1/2
                                             lg:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Orders</h1>
-                                <h2 className="title-font font-bold text-3xl text-primary">1002</h2>
+                                {/* <h2 className="title-font font-bold text-3xl text-primary">{vendorDetails.salesAnalysis.totalOrders}</h2> */}
                                 <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                             </div>
                             <div className="p-4 w-full
                                             lg:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
-                                <h2 className="title-font font-bold  text-3xl text-primary">₹150254</h2>
+                                {/* <h2 className="title-font font-bold  text-3xl text-primary">₹{vendorDetails.salesAnalysis.totalProfit}</h2> */}
                                 <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                                 <div className="justify-center ml-40 mt-4">
                                 <WithdrawModal/>
@@ -66,7 +86,7 @@ export default function Dashboard () {
                 </section>
 
                 <div className='md:ml-20 flex justify-center items-center'>
-                    <LineGraph />
+                    {/* <LineGraph dataset={vendorDetails.salesAnalysis.monthlySales} /> */}
                 </div>
 
                 <div className="flex flex-col justify-center items-center -mt-[140%]

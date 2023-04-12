@@ -4,12 +4,17 @@ import { Inter } from '@next/font/google'
 import Link from 'next/link'
 import { useState,useEffect, useRef } from 'react';
 import axios from 'axios';
+import { useCookies,setCookie,getCookie } from "react-cookie"
+import cookieCutter from 'cookie-cutter'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Vendorlogin() {
     const [mail,setmail]=useState();
     const [password,setpassword]=useState();
+    // const [cookie,set]=useState();
+    const [cookie, setCookie] = useCookies(["id"])
+    
     const vendorlogin = () =>{
         console.log(mail,password);
         if(mail !== "" && password !== ""){
@@ -20,10 +25,16 @@ export default function Vendorlogin() {
           })
           .then((response) => {
             console.log(response.data);
+            
             if(response.status === 200) {
+
+
+                sessionStorage.setItem("mail",mail);
                 sessionStorage.setItem("token", response.data.token);
-                sessionStorage.setItem("id", response.data);
+                window.location.href = '/vendor/dashboard';
+                //sessionStorage.setItem("id", response.data);
                 // window.location.href = '/vendor/dashboard';
+                
             }
           })
           .catch((err)=>{
@@ -62,6 +73,7 @@ export default function Vendorlogin() {
                 LOGIN
             </h1>
                 <form>
+                    <div className='text-base text-[#A5153F] m-2 text-center' id="responsesection"></div>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
                         <input

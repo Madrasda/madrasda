@@ -6,13 +6,14 @@ ChartJS.register(
   CategoryScale, LinearScale, PointElement, Filler
 )
 
-export default function LineGraph() {
+export default function LineGraph(dataset) {
+  console.log(dataset.dataset);
   const [data, setData]= useState({
-    labels:["5","10", "15", "20", "25", "30"],
+    labels:["jan","Feb", "MAr", "Apr", "May", "Jun","Jul","Aug", "Sep", "Oct", "Nov", "Dec"],
     datasets:[
       {
         label:"First Dataset",
-        data:[10, 20, 5, 14, 32, 2,],
+        data:dataset.dataset,
         borderColor:"#A5153F",
         showLine:true
       }
