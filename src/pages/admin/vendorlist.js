@@ -15,7 +15,8 @@ export default function VendorList () {
     // loader will be called here....
     if (sessionStorage.getItem('token')) {
       setToken(sessionStorage.getItem('token'));
-      // console.log(token);
+      console.log(token);
+
     }
     else {
       window.location.href = '/admin';

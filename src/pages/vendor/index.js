@@ -2,10 +2,45 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Link from 'next/link'
+import { useState,useEffect, useRef } from 'react';
+import axios from 'axios';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Vendorlogin() {
+    const [mail,setmail]=useState();
+    const [password,setpassword]=useState();
+    const vendorlogin = () =>{
+        console.log(mail,password);
+        if(mail !== "" && password !== ""){
+        axios
+          .post('http://localhost:8080/api/auth/loginVendor', {
+            email: mail,
+            password: password
+          })
+          .then((response) => {
+            console.log(response.data);
+            if(response.status === 200) {
+                sessionStorage.setItem("token", response.data.token);
+                sessionStorage.setItem("id", response.data);
+                // window.location.href = '/vendor/dashboard';
+            }
+          })
+          .catch((err)=>{
+            // console.log(err);
+            console.log(err);
+            document.getElementById("responsesection").innerHTML=err.response.data.message;
+            // document.getElementById("responsesection").innerHTML="Password crt ha podra punda";
+    
+        });
+        }
+    }
+    useEffect  (() =>{
+        setmail(document.getElementById("username").value);
+        setpassword(document.getElementById("password").value);
+        // console.log(mail,password)
+    });
+    
   return (
     <>
     <Head>
@@ -34,6 +69,8 @@ export default function Vendorlogin() {
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='username'
                             placeholder='example@example.com'
+                            onLoad={(e)=>setmail(e.target.value)}
+                            onChange={(e)=>setmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -43,15 +80,17 @@ export default function Vendorlogin() {
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='password'
                             placeholder='**********'
+                            onLoad={(e)=> setpassword(e.target.value)}
+                            onChange={(e) => setpassword(e.target.value)}
                         />
                     </div>
 
                     <div className='flex justify-center items-center mt-6'>
-                        <Link href="/vendor/dashboard">
-                        <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}>
+                        
+                        <button type="button" className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `} onClick={vendorlogin}>
                             Login
                         </button>
-                        </Link>
+                
                     </div>
                 </form>
                 <div className="w-100 underline text-white text-sm text-center mt-3">

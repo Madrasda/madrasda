@@ -85,12 +85,13 @@ export default function AdminUploadModal() {
                 <button className="w-10 text-xs justify-center mr-5 text-gray transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline hover:bg-primary hover:text-white hover:border-primary">XXL</button>
                 </div>
               </div>
+              {/* <h2 className="ml-2 mt-4 title-font font-medium mb-2">Stock Available</h2>
+              <div className="mb-2 ml-2 ">
+                  <input type="Number" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Quantity" />
+              </div> */}
               <h2 className="ml-2 mt-4 title-font font-medium mb-2">Stock Available</h2>
               <div className="mb-2 ml-2 ">
                   <input type="Number" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Quantity" />
-              </div><h2 className="ml-2 mt-4 title-font font-medium mb-2">Technique</h2>
-              <div className="mb-2 ml-2 ">
-                  <input type="text" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="eg: PRINT" />
               </div>
           </div>
           </Modal.Body>

@@ -4,8 +4,22 @@ import LineGraph from "@/components/linegraph";
 import Image from "next/image";
 import WithdrawModal from "@/components/withdraw-modal";
 import Link from "next/link";
+import axios from 'axios';
+import { useState,useRef, useEffect } from "react";
 
 export default function Dashboard () {
+    const [token, setToken] = useState();
+    const [vendorlist,setvendorlist]= useState([]);
+    useEffect(()=>{
+        if (sessionStorage.getItem('token')) {
+            setToken(sessionStorage.getItem('token'));
+            console.log(token);
+          }
+          else {
+            window.location.href = '/admin';
+          }
+    })
+    
     return (
         <>
             <Head>

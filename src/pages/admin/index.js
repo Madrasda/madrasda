@@ -3,8 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState,useEffect } from 'react'
 import axios from "axios";
+import cors from "cors";
 
 export default function Adminlogin() {
+   
+
     const [mail,setmail]=useState();
     const [password,setpassword]=useState();
 const adminlogin = () =>{

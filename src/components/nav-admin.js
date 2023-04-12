@@ -59,7 +59,7 @@ export default function NavAdmin() {
                     <div className={currentRoute === '/admin/myproducts' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                         <div className="flex justify-start items-center py-4">
                             <Image src="/product-icon.png" width={30} height={30}/>
-                            <h3 className="ml-2">My Products</h3>
+                            <h3 className="ml-2">Mockups</h3>
                         </div>
                     </div>
                 </Link>
