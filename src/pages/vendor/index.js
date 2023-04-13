@@ -1,10 +1,38 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import Link from 'next/link'
 import { css, Dropdown } from "@nextui-org/react";
 
 export default function Vendorlogin() {
+
+  const showLogin = () => {
+    var login_element = document.getElementById("login");
+    login_element.classList.remove("hidden");
+
+    var signup_element = document.getElementById("signup");
+    signup_element.classList.add("hidden");
+
+    var login_button_element = document.getElementById("login_button");
+    login_button_element.classList.add("bg-primary");
+
+    var signup_button_element = document.getElementById("signup_button");
+    signup_button_element.classList.remove("bg-primary");
+  }
+
+  const showSignup = () => {
+    var signup_element = document.getElementById("signup");
+    signup_element.classList.remove("hidden");
+
+    var login_element = document.getElementById("login");
+    login_element.classList.add("hidden");
+
+    var signup_button_element = document.getElementById("signup_button");
+    signup_button_element.classList.add("bg-primary");
+
+    var login_button_element = document.getElementById("login_button");
+    login_button_element.classList.remove("bg-primary");
+
+  }
   return (
     <>
     <Head>
@@ -12,45 +40,30 @@ export default function Vendorlogin() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.png" />
         <title>Madrasda | Login</title>
-      </Head>
-      <div className="bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] w-screen h-screen">
-            <div className='w-full bg-cover bg-center flex-center flex-row bg-transparent max-w-md m-auto backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 px-16'>
+    </Head>
+    <div className="bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] min-w-screen min-h-screen w-full h-full">
+            
+        <div className='w-full h-fit bg-cover bg-center flex justify-around bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8'>
+            
+            <div className='flex flex-col'>
+            <div className='flex w-full justify-around transition-all ease-in-out duration-300'>
+                <button className='text-base text-white font-medium mt-2 mb-12 text-center bg-primary w-1/2 h-1/2 rounded-2xl flex justify-center items-center'
+                        onClick={showLogin} id="login_button">
+                    LOGIN
+                </button>
+                <button className='text-base text-white font-medium mt-2 mb-12 text-center w-1/2 h-1/2 rounded-2xl flex justify-center items-center'
+                        onClick={showSignup} id="signup_button">
+                    SIGN UP
+                </button>
+            </div>
+
+            <div className='flex flex-col px-16 w-full' id="login">
             <div className="flex flex-wrap justify-center">
                 <div className="w-24">
                     <img src="/logo.png" alt="LOGO"/>
                 </div>
             </div>
-            <div className='flex flex-wrap mt-2 justify-center'>
-            </div>
-            <h1 className='text-2xl text-white font-medium mt-2 mb-12 text-center'>
-                LOGIN
-            </h1>
                 <form>
-                    <div className='flex justify-center'>
-                    <Dropdown>
-                        <Dropdown.Button flat css={{
-                            background: '#F7F7F7',
-                            fontFamily: 'Algeria Sans',
-                            fontWeight: '$bold',
-                            color: '#1A1A1C',
-                        }}
-                        >Select Vendor</Dropdown.Button>
-                        <Dropdown.Menu aria-label="Static Actions" css={{
-                            fontFamily:'Algeria Sans',
-                            background: '#F7F7F7',
-                        }}>
-                            <Dropdown.Item key="production house" id="production-house">
-                                <Link href="#">Production House</Link>
-                            </Dropdown.Item>
-                            <Dropdown.Item key="influencer">
-                                <Link href="#">Influencer</Link>
-                            </Dropdown.Item>
-                            <Dropdown.Item key="youtuber">
-                                <Link href="#">Youtuber</Link>
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    </div>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
                         <input
@@ -73,7 +86,7 @@ export default function Vendorlogin() {
 
                     <div className='flex justify-center items-center mt-6'>
                         <Link href="/vendor/dashboard">
-                        <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}>
+                        <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
                             Login
                         </button>
                         </Link>
@@ -86,7 +99,96 @@ export default function Vendorlogin() {
                 </div>
             <br/>
             </div>
+            
+            <div className='hidden flex-col px-10 w-full' id="signup">
+                <div className="flex flex-wrap justify-center">
+                    <div className="w-24">
+                        <img src="/logo.png" alt="LOGO"/>
+                    </div>
+                </div>
+                    <form>
+                    <div className='flex justify-center items-center py-4'>
+                            <Dropdown>
+                                <Dropdown.Button flat css={{
+                                    background: '#F7F7F7',
+                                    fontFamily: 'Algeria Sans',
+                                    fontWeight: '$bold',
+                                    color: '#1A1A1C',
+                                }}
+                                >Select Vendor</Dropdown.Button>
+                                <Dropdown.Menu aria-label="Static Actions" css={{
+                                    fontFamily:'Algeria Sans',
+                                    background: '#F7F7F7',
+                                }}>
+                                    <Dropdown.Item key="production house" id="production-house">
+                                        <Link href="#">Production House</Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item key="influencer">
+                                        <Link href="#">Influencer</Link>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item key="youtuber">
+                                        <Link href="#">Youtuber</Link>
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </div>
+                        <div>
+                            <label htmlFor='vendor-name' className='text-white'>Vendor Display Name</label>
+                            <input
+                                type='text'
+                                className={'w-full p-2 text-bg rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
+                                id='vendor-display-name'
+                                placeholder='Example Vendor'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='company-name' className='text-white'>Company Name</label>
+                            <input
+                                type='text'
+                                className={'w-full p-2 text-bg rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
+                                id='company-name'
+                                placeholder='Example Company Name'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='company-url' className='text-white'>Company URL</label>
+                            <input
+                                type='text'
+                                className={'w-full p-2 text-bg rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
+                                id='company-url'
+                                placeholder='https://exampledomain.com'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='gst-in' className='text-white'>GST IN</label>
+                            <input
+                                type='text'
+                                className={'w-full p-2 text-bg rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
+                                id='gst-in'
+                                placeholder='12345678'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor='password' className='text-white'>Password</label>
+                            <input
+                                type='password'
+                                className={'w-full p-2 text-bg rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
+                                id='company-url'
+                                placeholder='********'
+                            />
+                        </div>
+                        <div className='flex justify-center items-center mt-6'>
+                            <Link href="/vendor">
+                            <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
+                                Sign Up
+                            </button>
+                            </Link>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
     </>
   )
 }
