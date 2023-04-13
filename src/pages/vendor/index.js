@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Link from 'next/link'
-
-const inter = Inter({ subsets: ['latin'] })
+import { css, Dropdown } from "@nextui-org/react";
 
 export default function Vendorlogin() {
   return (
@@ -27,6 +26,31 @@ export default function Vendorlogin() {
                 LOGIN
             </h1>
                 <form>
+                    <div className='flex justify-center'>
+                    <Dropdown>
+                        <Dropdown.Button flat css={{
+                            background: '#F7F7F7',
+                            fontFamily: 'Algeria Sans',
+                            fontWeight: '$bold',
+                            color: '#1A1A1C',
+                        }}
+                        >Select Vendor</Dropdown.Button>
+                        <Dropdown.Menu aria-label="Static Actions" css={{
+                            fontFamily:'Algeria Sans',
+                            background: '#F7F7F7',
+                        }}>
+                            <Dropdown.Item key="production house" id="production-house">
+                                <Link href="#">Production House</Link>
+                            </Dropdown.Item>
+                            <Dropdown.Item key="influencer">
+                                <Link href="#">Influencer</Link>
+                            </Dropdown.Item>
+                            <Dropdown.Item key="youtuber">
+                                <Link href="#">Youtuber</Link>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    </div>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
                         <input
@@ -45,6 +69,7 @@ export default function Vendorlogin() {
                             placeholder='**********'
                         />
                     </div>
+                    
 
                     <div className='flex justify-center items-center mt-6'>
                         <Link href="/vendor/dashboard">
