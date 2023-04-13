@@ -5,6 +5,12 @@ import { useRouter } from "next/router"
 export default function NavAdmin() {
     const router = useRouter();
     const currentRoute = router.pathname;
+
+    const logOut = async () => {
+        localStorage.removeItem("token");
+        router.push("/admin");
+    }
+
   return (
     <>
     <header className="bg-bg text-white font-algeria py-8 fixed z-20 h-screen overflow-y-auto no-scrollbar hidden md:block">
@@ -13,7 +19,7 @@ export default function NavAdmin() {
             <Image src="/logo.png" width={90} height={90}/>
         </Link>
 
-        <Link href="/admin">
+        <Link href="/admin" onClick={logOut}>
             <div className="bg-none w-52 px-10 py-2 font-bold">
                 <div className="flex justify-start items-center py-4">
                     <Image src="/user-icon.png" width={20} height={20}/>

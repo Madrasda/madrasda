@@ -2,29 +2,52 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Link from 'next/link'
-// import { useState } from 'react'
-// import axios from "axios";
+import { useEffect, useState } from 'react'
+import axios from "axios";
+import { useRouter } from 'next/router'
 
 export default function Adminlogin() {
-//     const [mail,setmail]=useState();
-//     const [password,setpassword]=useState();
-// const adminlogin = () =>{
-//     console.log(mail,password);
-//     axios
-//       .post('http://localhost:8080/api/auth/loginAdmin', {
-//         email: mail,
-//         password: password
-//       })
-//       .then((response) => {
-//         console.log(response.data);
-        
-//       })
-//       .catch((err)=>{
-//         console.log(err.response.data.message);
-//         document.getElementById("responsesection").innerHTML=err.response.data.message;
-//       })
-//       ;
-// }
+    const [mail,setEmail]=useState();
+    const [password,setPassword]=useState();
+    const router = useRouter();
+
+    const verifyToken = async () => {
+        const url = new URLSearchParams({
+          token: localStorage.getItem('token')
+        })
+        axios.get(
+          "http://localhost:8080/api/auth/?" + url
+        ).then((response) => {
+          router.push("/admin/vendorlist");
+        }).catch((err) => {
+          localStorage.removeItem("token");
+          router.push("/admin");
+        })
+    }
+
+    const adminlogin = (e) =>{
+        e.preventDefault();
+        axios
+          .post('http://localhost:8080/api/auth/loginAdmin', {
+            email: mail,
+            password: password
+          })
+          .then((response) => {
+            localStorage.setItem("token", response.data.token);
+            router.push("/admin/vendorlist");
+          })
+          .catch((err)=>{
+            alert(err.response.data.message);
+          })
+          ;
+    }
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token");
+        if(token)
+            verifyToken();
+    }, [])
+
   return (
     <>
     <Head>
@@ -45,7 +68,7 @@ export default function Adminlogin() {
             <h1 className='text-2xl text-white font-medium mt-2 mb-12 text-center'>
                 LOGIN
             </h1>
-                <form>
+                <form onSubmit={adminlogin}>
                     <div className='text-xl text-[#A5153F] m-2 text-center' id="responsesection"></div>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
@@ -53,7 +76,7 @@ export default function Adminlogin() {
                             type='email'
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='username'
-                            // placeholder='example@example.com' onChange={(e)=>setmail(e.target.value)}
+                            placeholder='example@example.com' onChange={(e)=>setEmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -63,17 +86,16 @@ export default function Adminlogin() {
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='password'
                             placeholder='**********'
-                            // onChange={(e) => setpassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className='flex justify-center items-center mt-6'>
-                        <Link href="/admin/vendorlist">
-                        <button type="button" className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}
-                        // onClick={adminlogin}
+                        <div>
+                        <button type="submit" className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}
                         >
                             Login
                         </button>
-                        </Link>
+                        </div>
                     </div>
                 </form>
             <br/>
