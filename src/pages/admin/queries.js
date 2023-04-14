@@ -3,11 +3,13 @@ import AdminLayout from '@/components/layout-admin'
 import Accordion from '@/components/accordian'
 import Link from 'next/link'
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import VendorQuery from '@/components/vendor-query';
 
 export default function Queries () {
   const router = useRouter();
+  const [queries, setQueries] = useState(null);
   const verifyToken = async () => {
     const url = new URLSearchParams({
       token: localStorage.getItem('token')
@@ -21,6 +23,17 @@ export default function Queries () {
       router.push("/admin");
     })
   }
+
+  const getQueries = async () => {
+    axios.get(
+      "http://localhost:8080/api/feedback/getAllQueries"
+    ).then((response) => {
+      setQueries(response.data.unresolvedQueries.content);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
   useEffect(()=>{
     const token = localStorage.getItem("token");
     if (!token) {
@@ -28,6 +41,7 @@ export default function Queries () {
     } else {
       try {
         verifyToken();
+        getQueries();
       } catch (err) {
         router.push("/admin");
       }
@@ -53,16 +67,26 @@ export default function Queries () {
 
         <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
         
-        <div className='flex mt-4 md:ml-20 lg:mr-20'>
-            <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
-                <div className="mx-6 my-6">
-                  <h1 className="text-lg font-bold">Vendor Name</h1>
-                    <input type="text" id="large-input" className="block w-full p-14 text-black bg-[#D9D9D9]" readOnly/>
-                    <div className='w-full flex justify-end'>
-                    <button type="button" className="mt-2 text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Mark as Resolved</button>
-                    </div>
-                </div>
-            </div>
+        <div className='flex flex-col mt-4 md:ml-20 lg:mr-20'>
+            {queries &&
+              queries.map((q) => {
+                return (
+                  <VendorQuery 
+                  key={q.id} 
+                  queryId={q.id} 
+                  name={q.vendorDTO.name} 
+                  query={q.query} 
+                  email={q.vendorDTO.email}
+                  />
+                )
+              })
+            }
+            {
+              queries && queries.length===0 &&
+              <h1 className='text-center text-xl text-gray font-light'>
+                No queries to be solved
+              </h1>
+            }
         </div>
         
         <div className='mt-14 flex justify-center'>
