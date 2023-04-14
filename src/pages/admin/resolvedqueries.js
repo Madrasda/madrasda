@@ -10,6 +10,9 @@ import { useState } from 'react';
 export default function Queries () {
   const router = useRouter();
   const [queries, setQueries] = useState(null);
+  const [pageNo, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(0);
+
   const verifyToken = async () => {
     const url = new URLSearchParams({
       token: localStorage.getItem('token')
@@ -25,14 +28,23 @@ export default function Queries () {
   }
 
   const getQueries = async () => {
+    const url = new URLSearchParams({
+        pageNo: pageNo,
+        pageSize: 4
+    })
     axios.get(
-      "http://localhost:8080/api/feedback/getAllQueries"
+      "http://localhost:8080/api/feedback/getAllQueries?" + url
     ).then((response) => {
       setQueries(response.data.resolvedQueries.content);
+      setPageSize(response.data.resolvedQueries.totalPages);
     }).catch((err) => {
       console.log(err);
     })
   }
+
+  useEffect(()=>{
+    getQueries();
+  }, [pageNo]);
 
   useEffect(()=>{
     const token = localStorage.getItem("token");
@@ -89,7 +101,25 @@ export default function Queries () {
               </h1>
             }
         </div>
-
+        {
+          queries && queries.length!==0 && 
+          <div className="flex justify-center mt-32">
+            <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
+                () => {
+                    setPage(pageNo===0 ? 0 : pageNo-1)
+                }
+            }>
+                Prev
+            </button>
+            <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
+                () => {
+                    setPage(pageNo===pageSize-1 ? pageNo : pageNo+1)
+                }
+            }>
+                Next
+            </button>
+        </div>
+        }
         <div className='mt-14 flex justify-center'>
           <Link href="/admin/queries">
           <button type="button" className="mt-2 text-white bg-black font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Back</button>  
