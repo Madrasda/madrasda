@@ -3,8 +3,44 @@ import Image from 'next/image';
 import VendorLayout from '@/components/layout-vendor';
 import UploadModal from '@/components/upload-modal';
 import Link from 'next/link';
+import axios from "axios";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function CreateTemplate(props) {
+  const router = useRouter();
+
+  const verifyToken = async () => {
+    const url = new URLSearchParams({
+      token: localStorage.getItem('token')
+    })
+    axios.get(
+      "http://localhost:8080/api/auth/?" + url
+    ).then((response) => {
+      console.log("refreshed");
+    }).catch((err) => {
+      localStorage.removeItem("token");
+      router.push("/vendor");
+    })
+  }
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/vendor");
+    } else {
+      try {
+        verifyToken();
+      } catch (err) {
+        router.push("/vendor");
+      }
+    }
+  }, []);
+
+
+
+
+  
+
   return (
     <>
     <Head>

@@ -3,8 +3,40 @@ import Table from '@/components/table'
 import Head from 'next/head'
 import PieChart from '@/components/piechart'
 import LineGraph from '@/components/linegraph'
-
+import axios from "axios";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 export default function Analytics () {
+  const router = useRouter();
+
+  const verifyToken = async () => {
+    const url = new URLSearchParams({
+      token: localStorage.getItem('token')
+    })
+    axios.get(
+      "http://localhost:8080/api/auth/?" + url
+    ).then((response) => {
+      console.log("refreshed");
+    }).catch((err) => {
+      localStorage.removeItem("token");
+      router.push("/vendor");
+    })
+  }
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/vendor");
+    } else {
+      try {
+        verifyToken();
+      } catch (err) {
+        router.push("/vendor");
+      }
+    }
+  }, []);
+
+
+
   return (
     <>
       <Head>

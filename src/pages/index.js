@@ -3,6 +3,7 @@ import Carousel from '@/components/carousel'
 import Image from 'next/image'
 import Link from 'next/link'
 import ClientLayout from '@/components/layout-client'
+ 
 
 export default function Home() {
   return (

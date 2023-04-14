@@ -5,6 +5,11 @@ import { useRouter } from "next/router"
 export default function NavVendor() {
     const router = useRouter();
     const currentRoute = router.pathname;
+
+    const logout =async()=>{
+        localStorage.removeItem("token");
+        router.push("/vendor");
+    }
   return (
     <>
     <header className="bg-bg text-white font-algeria py-8 overflow-y-auto no-scrollbar fixed z-20 h-screen hidden md:block">
@@ -17,7 +22,7 @@ export default function NavVendor() {
                 <p className="text-sm">Go to Profile</p>
             </Link>
 
-            <Link href="/vendor">
+            <Link href="/vendor" onClick={logout}>
                 <div className="bg-none w-52 px-10 py-4 font-bold">
                     <div className="flex justify-start items-center py-4">
                         <Image src="/user-icon.png" width={20} height={20}/>
