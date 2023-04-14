@@ -12,6 +12,8 @@ export default function Adminlogin() {
     const router = useRouter();
 
     const verifyToken = async () => {
+        if(mail==="" || password==="")
+          return;
         const url = new URLSearchParams({
           token: localStorage.getItem('token')
         })

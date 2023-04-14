@@ -21,7 +21,7 @@ export default function VendorList(props) {
     axios.get(
       "http://localhost:8080/api/auth/?" + url
     ).then((response) => {
-      console.log("ok");
+      console.log("refreshed");
     }).catch((err) => {
       localStorage.removeItem("token");
       router.push("/admin");
@@ -33,7 +33,6 @@ export default function VendorList(props) {
       "http://localhost:8080/api/admin/getVendors"
     ).then((response) => {
       setVendors(response.data);
-      console.log(response.data);
     }).catch((err)=>{
       console.log(err);
     })
@@ -67,22 +66,19 @@ export default function VendorList(props) {
           className="body-font overflow-hidden font-algeria
                         md:ml-32"
         >
-          <div className="px-5 my-10 mx-auto">
+          <div className="px-5 my-15 mx-auto">
             <h1 className="text-3xl text-primary 
-                       md:ml-20">MY VENDORS</h1>
-            <div className="flex items-center justify-end m-5 mt-0">
-              <SearchVendor />
-            </div>
+                       md:ml-20 m-5">MY VENDORS</h1>
             <div className="flex flex-wrap justify-center">
               {vendors &&
                 vendors.map((vendor) => (
-                  <div className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                  <Link href={`/admin/vendorDetails/${vendor.id}`} className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                     <VendorListItem
                       key={vendor.id}
                       vendorName={vendor.name}
                       image={vendor.imgUrl}
                     />
-                  </div>
+                  </Link>
                 ))}
 
               <div className="lg:w-1/6 md:w-1/2 p-4 w-4/6 lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">

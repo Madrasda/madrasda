@@ -2,8 +2,38 @@ import Head from 'next/head'
 import AdminLayout from '@/components/layout-admin'
 import Accordion from '@/components/accordian'
 import Link from 'next/link'
+import axios from "axios";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Queries () {
+  const router = useRouter();
+  const verifyToken = async () => {
+    const url = new URLSearchParams({
+      token: localStorage.getItem('token')
+    })
+    axios.get(
+      "http://localhost:8080/api/auth/?" + url
+    ).then((response) => {
+      console.log("refreshed");
+    }).catch((err) => {
+      localStorage.removeItem("token");
+      router.push("/admin");
+    })
+  }
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/admin");
+    } else {
+      try {
+        verifyToken();
+      } catch (err) {
+        router.push("/admin");
+      }
+    }
+  }, []);
+  
   return (
     <>
     <Head>
