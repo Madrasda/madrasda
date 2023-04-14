@@ -38,6 +38,23 @@ export default function VendorList(props) {
     })
   };
 
+  const handleSubmit = (formData) => {
+      registerVendor(formData);
+  }
+
+  const registerVendor = async (data) => {
+    axios.post(
+      "http://localhost:8080/api/admin/addVendor",
+      data
+    ).then((response) => {
+      console.log(response);
+      getVendors();
+    }).catch((err)=>{
+      console.log(data);
+      console.log(err);
+    })
+  };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -66,25 +83,14 @@ export default function VendorList(props) {
           className="body-font overflow-hidden font-algeria
                         md:ml-32"
         >
-          <div className="px-5 my-15 mx-auto">
+          <div className="px-10 my-15 mx-auto">
             <h1 className="text-3xl text-primary 
                        md:ml-20 m-5">MY VENDORS</h1>
-            <div className="flex flex-wrap justify-center">
-              {vendors &&
-                vendors.map((vendor) => (
-                  <Link href={`/admin/vendorDetails/${vendor.id}`} className="lg:w-1/6 md:w-1/2 p-4 min-h-full w-4/6 h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                    <VendorListItem
-                      key={vendor.id}
-                      vendorName={vendor.name}
-                      image={vendor.imgUrl}
-                    />
-                  </Link>
-                ))}
-
+            <div className="flex flex-wrap md:ml-14">
               <div className="lg:w-1/6 md:w-1/2 p-4 w-4/6 lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
                 <Link href="#">
                   <div className="flex flex-col items-center justify-center cursor-pointer">
-                    <AddVendorModal />
+                    <AddVendorModal getFormData={handleSubmit} />
                     <p className="font-semibold text-base text-center">
                       Add new vendor
                     </p>
@@ -94,6 +100,17 @@ export default function VendorList(props) {
                   </div>
                 </Link>
               </div>
+
+              {vendors &&
+                vendors.map((vendor) => (
+                  <Link href={`/admin/vendorDetails/${vendor.id}`} className="lg:w-1/6 md:w-1/2 p-4 pb-0 min-h-full h-72 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                    <VendorListItem
+                      key={vendor.id}
+                      vendorName={vendor.name}
+                      image={vendor.imgUrl}
+                    />
+                  </Link>
+                ))}
             </div>
           </div>
         </section>

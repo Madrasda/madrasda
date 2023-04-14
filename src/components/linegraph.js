@@ -19,12 +19,12 @@ export default function LineGraph(props) {
     ]
   });
 
-  const maxDataValue = Math.max(...data.datasets[0].data); // Get max value of data
+  const maxDataValue = Math.max(...data.datasets[0].data);
 
   const options = {
     scales: {
       y: {
-        suggestedMax: maxDataValue * 1.2, // Set y-axis max value to be 20% larger than max data value
+        suggestedMax: maxDataValue * 1.2, 
         ticks: {
           beginAtZero: true,
           precision: 0

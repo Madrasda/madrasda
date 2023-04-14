@@ -47,10 +47,6 @@ export default function CustomerDetails () {
                                 md:ml-32">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary md:ml-20 md:mt-10">SERVICE DETAILS</h1>
-               
-                <div className="flex flex-row justify-start items-center mt-10 md:ml-20 md:mr-20 text-lg p-2">
-                    <SearchVendor />
-                </div>
                 <div className='flex mt-4 md:ml-20 lg:mr-44'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">

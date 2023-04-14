@@ -32,7 +32,7 @@ export default function NavAdmin() {
             <nav className="text-sm flex flex-col items-start h-full font-bold">
 
                 <Link href="/admin/vendorlist">
-                    <div className={currentRoute === '/admin/vendorlist' || currentRoute === '/admin/vendordetails' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
+                    <div className={currentRoute === '/admin/vendorlist' || currentRoute === '/admin/vendordetails' || currentRoute === '/admin/vendorlist/*' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                         <div className="flex justify-start items-center py-4">
                             <Image src="/vendors-icon.png" className="w-auto h-auto" width={30} height={30} alt="logo"/>
                             <h3 className="ml-2">My Vendors</h3>
@@ -62,7 +62,7 @@ export default function NavAdmin() {
                     <div className={currentRoute === '/admin/myproducts' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                         <div className="flex justify-start items-center py-4">
                             <Image src="/product-icon.png" className="w-auto h-auto" width={30} height={30} alt="logo"/>
-                            <h3 className="ml-2">My Products</h3>
+                            <h3 className="ml-2">Mockups</h3>
                         </div>
                     </div>
                 </Link>

@@ -1,15 +1,18 @@
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 import AdminUploadModal from "@/components/adminuploadmodal";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Mockup from "@/components/mockup";
 
 export default function MyProducts () {
     const router = useRouter();
+    const [mockups, setMockups] = useState(null);
+    const [pageNo, setPage] = useState(0);
+    const [pageSize, setPageSize] = useState(0);
+
     const verifyToken = async () => {
     const url = new URLSearchParams({
       token: localStorage.getItem('token')
@@ -23,6 +26,44 @@ export default function MyProducts () {
       router.push("/admin");
     })
   }
+
+  const getMockups = async () => {
+    const url = new URLSearchParams({
+        pageNo: pageNo,
+        pageSize: 5
+    })
+    axios.get(
+        "http://localhost:8080/api/mockup/getAllMockups?" + url
+    ).then((response) => {
+        setMockups(response.data.content);
+        setPageSize(response.data.totalPages);
+    }).catch((err) => {
+        console.log(err);
+    })
+  }
+
+  const getAvailableSizes = (skuMapping) => {
+        var availableSizes = []
+        skuMapping.forEach(sku => {
+            if(!availableSizes.includes(sku.size.size))
+                availableSizes.push(sku.size.size);
+        });
+        return availableSizes;
+  }
+
+  const getAvailableColors = (skuMapping) => {
+        var availableColors = []
+        skuMapping.forEach(sku => {
+            if(!availableColors.includes(sku.color.hexValue))
+                availableColors.push(sku.color.hexValue);
+        });
+        return availableColors;
+  }
+
+  useEffect(()=>{
+    getMockups();
+  }, [pageNo])
+
   useEffect(()=>{
     const token = localStorage.getItem("token");
     if (!token) {
@@ -30,6 +71,7 @@ export default function MyProducts () {
     } else {
       try {
         verifyToken();
+        getMockups();
       } catch (err) {
         router.push("/admin");
       }
@@ -50,123 +92,50 @@ export default function MyProducts () {
                             md:ml-32">
         <div className="px-5 my-10 mx-auto">
             <h1 className="text-3xl text-primary 
-                           md:ml-20">MY PRODUCTS</h1>
-            <div className="flex items-center justify-center m-5">
-            <SearchVendor />
-            </div>
+                           md:ml-20">MOCKUPS </h1>
             <div className="flex flex-wrap justify-center">
             
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
-            <Link href="#" >
-            <div className="flex flex-col items-center justify-center cursor-pointer">
-                <AdminUploadModal/>
-                <p className="font-semibold font-base">Upload Mockup</p>
-                <p className="font-light text-gray font-sm">Add them to your product list for vendors</p>
-            </div>
-            </Link>
-            </div>
-            
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                <span className="w-full text-gray flex justify-end">x</span>
-                <a className="block relative h-fit rounded overflow-hidden">
-                    <Image src="/v-tee.png" 
-                    alt="ecommerce" 
-                    height={1080}
-                    width={1920} 
-                    className="object-contain object-center w-full h-full" />
-                </a>
-                <div className="mt-4">
-                    <h3 className="text-base title-font">Vikram Hoodies</h3>
-                    <div className="flex">
-                        <h2 className="title-font text-sm text-gray">Technique:</h2>
-                        <p className="pl-1 text-gray text-sm">PRINT</p>
+                <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
+                    <Link href="#" >
+                    <div className="flex flex-col items-center justify-center cursor-pointer">
+                        <AdminUploadModal/>
+                        <p className="font-semibold font-base">Upload Mockup</p>
+                        <p className="font-light text-gray font-sm">Add them to your product list for vendors</p>
                     </div>
-                    <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
-                    <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                    </Link>
                 </div>
-            </div>
 
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                <span className="w-full text-gray flex justify-end">x</span>
-                <a className="block relative h-fit rounded overflow-hidden">
-                    <Image src="/v-tee.png" 
-                    alt="ecommerce" 
-                    height={1080}
-                    width={1920} 
-                    className="object-contain object-center w-full h-full" />
-                </a>
-                <div className="mt-4">
-                    <h3 className="text-base title-font">Vikram Hoodies</h3>
-                    <div className="flex">
-                        <h2 className="title-font text-sm text-gray">Technique:</h2>
-                        <p className="pl-1 text-gray text-sm">PRINT</p>
-                    </div>
-                    <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
-                    <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
+                {   mockups &&
+
+                    mockups.map((m) => {
+                        return (
+                            <Mockup 
+                                image={m.frontImage}
+                                model={m.model}
+                                name={m.name}
+                                sizes={getAvailableSizes(m.skuMapping)}
+                                colors={getAvailableColors(m.skuMapping)}
+                            />
+                        )
+                    })
+                }
+            </div>
+                <div className="flex justify-center mt-32">
+                    <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
+                        () => {
+                            setPage(pageNo===0 ? 0 : pageNo-1)
+                        }
+                    }>
+                        Prev
+                    </button>
+                    <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
+                        () => {
+                            setPage(pageNo===pageSize-1 ? pageNo : pageNo+1)
+                        }
+                    }>
+                        Next
+                    </button>
                 </div>
-            </div>
-
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                <span className="w-full text-gray flex justify-end">x</span>
-                <a className="block relative h-fit rounded overflow-hidden">
-                    <Image src="/v-tee.png" 
-                    alt="ecommerce" 
-                    height={1080}
-                    width={1920} 
-                    className="object-contain object-center w-full h-full" />
-                </a>
-                <div className="mt-4">
-                    <h3 className="text-base title-font">Vikram Hoodies</h3>
-                    <div className="flex">
-                        <h2 className="title-font text-sm text-gray">Technique:</h2>
-                        <p className="pl-1 text-gray text-sm">PRINT</p>
-                    </div>
-                    <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
-                    <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
-                </div>
-            </div>
-
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                <span className="w-full text-gray flex justify-end">x</span>
-                <a className="block relative h-fit rounded overflow-hidden">
-                    <Image src="/v-tee.png" 
-                    alt="ecommerce" 
-                    height={1080}
-                    width={1920} 
-                    className="object-contain object-center w-full h-full" />
-                </a>
-                <div className="mt-4">
-                    <h3 className="text-base title-font">Vikram Hoodies</h3>
-                    <div className="flex">
-                        <h2 className="title-font text-sm text-gray">Technique:</h2>
-                        <p className="pl-1 text-gray text-sm">PRINT</p>
-                    </div>
-                    <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
-                    <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
-                </div>
-            </div>
-
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                <span className="w-full text-gray flex justify-end">x</span>
-                <a className="block relative h-fit rounded overflow-hidden">
-                    <Image src="/v-tee.png" 
-                    alt="ecommerce" 
-                    height={1080}
-                    width={1920} 
-                    className="object-contain object-center w-full h-full" />
-                </a>
-                <div className="mt-4">
-                    <h3 className="text-base title-font">Vikram Hoodies</h3>
-                    <div className="flex">
-                        <h2 className="title-font text-sm text-gray">Technique:</h2>
-                        <p className="pl-1 text-gray text-sm">PRINT</p>
-                    </div>
-                    <span className="mt-1 text-gray pr-1 text-sm">Sizes:</span>
-                    <span className="mt-1 text-gray pr-1 text-sm">S,M,L,XL,XXL,XXXL,4XL,5XL </span>
-                </div>
-            </div>
-
-            </div>
         </div>
         </section>
         </AdminLayout>

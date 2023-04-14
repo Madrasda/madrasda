@@ -1,15 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import { Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import WithdrawForm from "./withdraw-form";
 import AddVendorForm from "./addvendor-form";
 
-export default function AddVendorModal() {
-  const [visible, setVisible] = React.useState(false);
+export default function AddVendorModal({getFormData}) {
+  const [visible, setVisible] = useState(false);
+  const [form, setForm] = useState(null);
+
+  const handleSubmit = (data) => {
+    setForm(data);
+    getFormData(data);
+    closeHandler();
+  }
+
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
-    console.log("closed");
+    setForm(null);
   };
   return (
     <div>
@@ -54,23 +62,14 @@ export default function AddVendorModal() {
                   width={60} 
                   className="object-contain rounded-full cursor-pointer" />
               </div>
-              {/* <h4 className="text-xs py-2">Upload</h4> */}
             </div>
             <input id="dropzone-file" type="file" className="hidden" />
         </label>
-            <AddVendorForm/>
+            <AddVendorForm onSubmit={handleSubmit} />
         </Modal.Body>
-      
         <Modal.Footer>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
-          </Button>
-          <Button auto
-          onPress={closeHandler}
-          style={{
-            background: "#A5153F",
-          }}>
-            Add Vendor
           </Button>
         </Modal.Footer>
       </Modal>
