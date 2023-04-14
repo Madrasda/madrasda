@@ -2,8 +2,49 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { css, Dropdown } from "@nextui-org/react";
+import { useEffect,useState } from 'react';
+import axios from "axios";
+import { useRouter } from 'next/router';
 
 export default function Vendorlogin() {
+    const [mail,setEmail]=useState();
+    const [password,setPassword] = useState();
+    const router = useRouter(); 
+    const verifyToken = async() =>{
+      if(mail==="" || password==="")
+        return;
+      const url = new URLSearchParams({
+        token: localStorage.getItem('token')
+      })
+      axios.get(
+        "http://localhost:8080/api/auth/?" + url
+      ).then((response) => {
+        router.push("/vendor/dashboard");
+      }).catch((err) => {
+        localStorage.removeItem("token");
+        router.push("/vendor");
+      })
+    }
+    const vendorlogin = (e) =>{
+        e.preventDefault();
+        axios.post('http://localhost:8080/api/auth/loginVendor',
+        {email: mail,password: password
+        })
+        .then((response)=>{
+            localStorage.setItem("token",response.data.token);
+            router.push("/vendor/dashboard");
+        })
+        .catch((err)=>{
+            alert(err.response.data.message);
+        })
+        ;
+    }
+    useEffect(()=>{
+        const token=localStorage.getItem("token")
+        
+        if(token)
+            verifyToken();
+    },[])
 
   const showLogin = () => {
     var login_element = document.getElementById("login");
@@ -32,7 +73,7 @@ export default function Vendorlogin() {
     var login_button_element = document.getElementById("login_button");
     login_button_element.classList.remove("bg-primary");
 
-  }
+}
   return (
     <>
     <Head>
@@ -63,14 +104,14 @@ export default function Vendorlogin() {
                     <img src="/logo.png" alt="LOGO"/>
                 </div>
             </div>
-                <form>
+                <form onSubmit={vendorlogin}>
                     <div>
                         <label htmlFor='email' className='text-white'>Username</label>
                         <input
                             type='email'
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='username'
-                            placeholder='example@example.com'
+                            placeholder='example@example.com' onChange={(e)=>setEmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -80,13 +121,14 @@ export default function Vendorlogin() {
                             className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                             id='password'
                             placeholder='**********'
+                            onChange={(e)=> setPassword(e.target.value)}
                         />
                     </div>
                     
 
                     <div className='flex justify-center items-center mt-6'>
                         <Link href="/vendor/dashboard">
-                        <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
+                        <button onClick={vendorlogin} className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
                             Login
                         </button>
                         </Link>
@@ -108,7 +150,7 @@ export default function Vendorlogin() {
                 </div>
                     <form>
                     <div className='flex justify-center items-center py-4'>
-                            <Dropdown>
+                            {/* <Dropdown>
                                 <Dropdown.Button flat css={{
                                     background: '#F7F7F7',
                                     fontFamily: 'Algeria Sans',
@@ -130,7 +172,16 @@ export default function Vendorlogin() {
                                         <Link href="#">Youtuber</Link>
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
-                            </Dropdown>
+                            </Dropdown> */}
+                        </div>
+                        <div>
+                            <label htmlFor='email' className='text-white'>E-mail</label>
+                            <input
+                                type='text'
+                                className={'w-full p-2 text-bg rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
+                                id='company-url'
+                                placeholder='example@example.com'
+                            />
                         </div>
                         <div>
                             <label htmlFor='vendor-name' className='text-white'>Vendor Display Name</label>
@@ -168,7 +219,7 @@ export default function Vendorlogin() {
                                 placeholder='12345678'
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <label htmlFor='password' className='text-white'>Password</label>
                             <input
                                 type='password'
@@ -176,7 +227,7 @@ export default function Vendorlogin() {
                                 id='company-url'
                                 placeholder='********'
                             />
-                        </div>
+                        </div> */}
                         <div className='flex justify-center items-center mt-6'>
                             <Link href="/vendor">
                             <button className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
