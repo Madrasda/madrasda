@@ -43,7 +43,7 @@ export default function CustomerDetails () {
             </Head>
 
             <AdminLayout>
-                <main className="body-font overflow-hidden font-algeria
+                <main className="body-font overflow-y-scroll font-algeria
                                 md:ml-32">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary md:ml-20 md:mt-10">SERVICE DETAILS</h1>

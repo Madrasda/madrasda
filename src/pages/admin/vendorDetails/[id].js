@@ -48,9 +48,22 @@ export default function VendorDetails(props) {
                 <h1 className="text-3xl text-primary 
                                md:ml-20 md:mt-30">MY VENDORS</h1>
                 
-                <div className="md:ml-24 mt-10 flex items-center">
-                    <Image className="rounded-3xl" src={details.vendor.imgUrl} width={100} height={100} />
-                    <h2 className="p-3 font-bold text-xl">{details.vendor.name}</h2>
+                <div className="md:ml-24 mt-10 flex justify-between items-center">
+                    <div className="flex space-x-4 items-center">
+                        <Image className="rounded-3xl" src={details.vendor.imgUrl} width={100} height={100} />
+                        <div className="flex flex-col">
+                            <h2 className="font-bold text-xl">{details.vendor.name}</h2>
+                            <h2 className="text-lg">{details.vendor.email}</h2>
+                        </div>
+                    </div>
+                    <div className="flex flex-col">
+                        <h1 className="text-right text-lg">Company URL</h1>
+                        <h1 className="text-right font-bold text-xl">{details.vendor.companyUrl}</h1>
+                    </div>
+                    <div className="flex flex-col">
+                        <h1 className="text-right text-lg">Company Name</h1>
+                        <h1 className="text-right font-bold text-xl">{details.vendor.companyName}</h1>
+                    </div>
                 </div>
                 
                 <section className="text-gray-600 body-font">
@@ -59,17 +72,14 @@ export default function VendorDetails(props) {
                             <div className="p-4 w-1/2 md:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Products</h1>
                                 <h2 className="title-font font-bold text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalProducts : 0}</h2>
-                                <p className="leading-relaxed text-xs">40% more than previous 28 days</p>
                             </div>
                             <div className="p-4 w-1/2 md:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Orders</h1>
                                 <h2 className="title-font font-bold text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalOrders : 0}</h2>
-                                <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                             </div>
                             <div className="p-4 w-full md:w-1/3">
                                 <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
                                 <h2 className="title-font font-bold  text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalProfit : 0}</h2>
-                                <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
                             </div>
                         </div>
                     </div>  

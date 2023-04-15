@@ -12,6 +12,8 @@ export default function MyProducts () {
     const [mockups, setMockups] = useState(null);
     const [pageNo, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(0);
+    const [colors, setColors] = useState(null);
+    const [sizes, setSizes] = useState(null);
 
     const verifyToken = async () => {
     const url = new URLSearchParams({
@@ -42,6 +44,17 @@ export default function MyProducts () {
     })
   }
 
+  const getAllColorsAndSizes = async () => {
+    axios.get(
+      "http://localhost:8080/api/colorsAndSizes/getColorsAndSizes"
+    ).then((response) => {
+      setColors(response.data.colors);
+      setSizes(response.data.sizes);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
   const getAvailableSizes = (skuMapping) => {
         var availableSizes = []
         skuMapping.forEach(sku => {
@@ -60,6 +73,22 @@ export default function MyProducts () {
         return availableColors;
   }
 
+  const handleSubmit = (data) => {
+    createMockup(data);
+  }
+
+  const createMockup = (mockup) => {
+    axios.post(
+      "http://localhost:8080/api/mockup/addMockup",
+      mockup
+    ).then((response) => {
+      getMockups();
+    }).catch((err) => {
+      console.log(mockup);
+      console.log(err);
+    })
+  }
+
   useEffect(()=>{
     getMockups();
   }, [pageNo])
@@ -72,6 +101,7 @@ export default function MyProducts () {
       try {
         verifyToken();
         getMockups();
+        getAllColorsAndSizes();
       } catch (err) {
         router.push("/admin");
       }
@@ -98,7 +128,11 @@ export default function MyProducts () {
                 <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
                     <Link href="#" >
                     <div className="flex flex-col items-center justify-center cursor-pointer">
-                        <AdminUploadModal/>
+                        <AdminUploadModal
+                          colors={colors}
+                          sizes={sizes}
+                          onSubmit={handleSubmit}
+                        />
                         <p className="font-semibold font-base">Upload Mockup</p>
                         <p className="font-light text-gray font-sm">Add them to your product list for vendors</p>
                     </div>
