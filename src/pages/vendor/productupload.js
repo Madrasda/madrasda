@@ -3,46 +3,24 @@ import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
 import Link from 'next/link'
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { isTokenValid } from "@/utils/JWTVerifier"
 
 export default function ProductUpload () {
-    const router = useRouter();
-
-    const verifyToken = async () => {
-      const url = new URLSearchParams({
-        token: localStorage.getItem('token')
-      })
-      axios.get(
-        "http://localhost:8080/api/auth/?" + url
-      ).then((response) => {
-        console.log("refreshed");
-      }).catch((err) => {
-        localStorage.removeItem("token");
-        router.push("/vendor");
-      })
-    }
-    useEffect(()=>{
-      const token = localStorage.getItem("token");
-      if (!token) {
-        router.push("/vendor");
-      } else {
-        try {
-          verifyToken();
-        } catch (err) {
-          router.push("/vendor");
-        }
-      }
-    }, []);
+  const [tokenExists, setTokenExists] = useState(false)
+  const router = useRouter();
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("token")
+    if(jwtToken === undefined || !isTokenValid(jwtToken))
+      router.push("/vendor");
+    else
+      setTokenExists(true);
+  }, []);
   
-  
-  
-
-
-
-    function lol() {
+  function lol() {
         alert("Your Product has been uploaded Successfully!!")
-    }
+  }
   return (
     <>
     <Head>

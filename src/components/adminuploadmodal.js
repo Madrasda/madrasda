@@ -16,6 +16,8 @@ export default function AdminUploadModal(props) {
     const [category, setCategory] = useState(null);
     const [prodType, setProdType] = useState(null);
     const [info, setInfo] = useState(null);
+    const [frontImg, setFrontImg] = useState(null);
+    const [backImg, setBackImg] = useState(null);
 
     const getColorCode = (colorName) =>{
       const words = colorName.split(' ');
@@ -67,26 +69,15 @@ export default function AdminUploadModal(props) {
         }
         return skuMapping;
     }
-
-    // useEffect(()=>{
-    //   console.log(selectedSizes);
-    //   console.log(selectedSizeNames);
-    // }, [selectedSizes]);
-
-    // useEffect(()=>{
-    //   console.log(selectedColors);
-    //   console.log(selectedColorNames);
-    // }, [selectedColors]);
-
     const handler = () => setVisible(true);
     const closeHandler = () => {
       setVisible(false);
-      if(!submit){
+      if(!submit && name && skuName && skuModel && model && category && prodType && info){
         props.onSubmit(
           {
             name: name,
-            frontImage: "https://media.discordapp.net/attachments/1096392973387837462/1096663854244708372/4083516_0.png?width=662&height=662",
-            backImage: "https://media.discordapp.net/attachments/1096392973387837462/1096663854244708372/4083516_0.png?width=662&height=662",
+            frontImage: frontImg,
+            backImage: backImg,
             productType: prodType,
             category: category,
             model: model,
@@ -99,6 +90,8 @@ export default function AdminUploadModal(props) {
       setColorNames([]);
       setSelectedColors([]);
       setSelectedSizes([]);
+      setFrontImg(null);
+      setBackImg(null);
     };
     return (
       <div>
@@ -126,16 +119,27 @@ export default function AdminUploadModal(props) {
   
           <Modal.Body>
           <div className="bg-[#D9D9D9] m-3 p-5 rounded-lg">
-            <div className="flex justify-around items-center">
-              <label for="dropzone-file" className="flex flex-col mx-2 items-center justify-center w-full h-fit border-2 border-[#D9D9D9] rounded-lg cursor-pointer bg-white">
-                  <div className="flex flex-row items-center justify-center py-6 px-4 ">
-                  <Image src="/upload.svg" alt="upload-icon" width={50} height={50} className="mr-4"/>
-                      <p className="text-xs text-black flex flex-col justify-center">Click to<span className="font-semibold flex justify-center">Upload Mockup</span></p>
-                  </div>
-                  <input id="dropzone-file" type="file" className="hidden" />
-              </label>
+              <h2 className="mx-2">Front Side Image</h2>
+              <div className="flex justify-around items-center">
+                <label for="front-image" className="flex flex-col mx-2 items-center justify-center w-full h-fit border-2 border-[#D9D9D9] rounded-lg cursor-pointer bg-white">
+                    <div className="flex flex-row items-center justify-center py-6 px-4 ">
+                    <Image src="/upload.svg" alt="upload-icon" width={50} height={50} className="mr-4"/>
+                        <p className="text-xs text-black flex flex-col justify-center">{!frontImg && "Click to"}<span className="font-semibold flex justify-center">{frontImg ? frontImg.name : "Upload Mockup"}</span></p>
+                    </div>
+                    <input id="front-image" type="file" className="hidden" accept="images/jpeg" onChange={(e) => setFrontImg(e.target.files[0])} />
+                </label>
               </div>
-              <h2 className="ml-2 mt-8 title-font font-medium mb-2">Mockup Name</h2>
+              <h2 className="mx-2">Back Side Image</h2>
+              <div className="flex justify-around items-center">
+                <label for="back-image" className="flex flex-col mx-2 items-center justify-center w-full h-fit border-2 border-[#D9D9D9] rounded-lg cursor-pointer bg-white">
+                    <div className="flex flex-row items-center justify-center py-6 px-4 ">
+                    <Image src="/upload.svg" alt="upload-icon" width={50} height={50} className="mr-4"/>
+                        <p className="text-xs text-black flex flex-col justify-center">{!backImg && "Click to"}<span className="font-semibold flex justify-center">{backImg ? backImg.name : "Upload Mockup"}</span></p>
+                    </div>
+                    <input id="back-image" type="file" className="hidden" accept="images/jpeg" onChange={(e) => setBackImg(e.target.files[0])} />
+                </label>
+              </div>              
+              <h2 className="ml-2 mt-2 title-font font-medium mb-2">Mockup Name</h2>
               <div className="mb-2 ml-2 ">
                   <input type="text" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter Mockup Name" onChange={
                     (e) => setName(e.target.value)

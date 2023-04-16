@@ -6,18 +6,19 @@ import AddVendorForm from "./addvendor-form";
 
 export default function AddVendorModal({getFormData}) {
   const [visible, setVisible] = useState(false);
-  const [form, setForm] = useState(null);
+  const [image, setImage] = useState(null);
 
   const handleSubmit = (data) => {
-    setForm(data);
-    getFormData(data);
+    getFormData({
+      ...data,
+      imgUrl : image
+    });
     closeHandler();
   }
 
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
-    setForm(null);
   };
   return (
     <div>
@@ -63,7 +64,7 @@ export default function AddVendorModal({getFormData}) {
                   className="object-contain rounded-full cursor-pointer" />
               </div>
             </div>
-            <input id="dropzone-file" type="file" className="hidden" />
+            <input id="dropzone-file" type="file" className="hidden" onChange={(e) => {setImage(e.target.files[0])}} accept="image/jpeg" />
         </label>
             <AddVendorForm onSubmit={handleSubmit} />
         </Modal.Body>

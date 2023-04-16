@@ -17,7 +17,7 @@ export default function AddVendorForm({onSubmit}) {
       {
         name: name,
         email: email,
-        imgUrl: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ7IryN086-2xO9kANHTceq_lWWljufT0K4z26rPWd-fK_gmy25",
+        imgUrl: "",
         password: password,
         companyName: companyName,
         gstin: gst,

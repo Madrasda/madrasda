@@ -4,6 +4,7 @@ import Image from "next/image";
 import AdminLayout from "@/components/layout-admin";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { isTokenValid } from "@/utils/JWTVerifier";
 import axios from "axios";
 
 export default function VendorDetails(props) {
@@ -27,6 +28,11 @@ export default function VendorDetails(props) {
     if(isReady)
         getVendorDetails();
   }, [isReady]);
+
+  useEffect(() => {
+    if(isTokenValid(localStorage.getItem('token')))
+        console.log("nice");
+  }, []);
 
   if (!details) {
     return <div>Loading..</div>;
@@ -134,7 +140,6 @@ export default function VendorDetails(props) {
                                 </div>}
                             </div>
                 </div>}
-
                 </div>
                 </main>
             </AdminLayout>

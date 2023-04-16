@@ -2,6 +2,7 @@
   "name": "madrasda",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://post.imageshack.us/upload_api.php/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,6 +17,7 @@
     "chart.js": "^4.2.1",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "firebase": "^9.19.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "next": "13.1.6",
@@ -25,7 +27,8 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
     "react-router": "^6.9.0",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13"

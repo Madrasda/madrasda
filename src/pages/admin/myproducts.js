@@ -6,6 +6,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Mockup from "@/components/mockup";
+import { storage } from "../../firebaseConfig";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 
 export default function MyProducts () {
     const router = useRouter();
@@ -77,10 +80,26 @@ export default function MyProducts () {
     createMockup(data);
   }
 
-  const createMockup = (mockup) => {
+  const uploadImagesOnline = async (file1, file2) => {
+    const imageRef1 = ref(storage, `mockups/${file1.name + v4()}`);
+    const imageRef2 = ref(storage, `mockups/${file2.name + v4()}`)
+    await uploadBytes(imageRef1, file1);
+    await uploadBytes(imageRef2, file2);
+    const url1 = await getDownloadURL(imageRef1);
+    const url2 = await getDownloadURL(imageRef2);
+    return { url1, url2 };
+  }
+
+  const createMockup = async (mockup) => {
+    console.log(mockup.frontImage + " " + mockup.backImage);
+    const {url1,url2} = await uploadImagesOnline(mockup.frontImage, mockup.backImage);
     axios.post(
       "http://localhost:8080/api/mockup/addMockup",
-      mockup
+      {
+        ...mockup,
+        frontImage: url1,
+        backImage: url2
+      } 
     ).then((response) => {
       getMockups();
     }).catch((err) => {

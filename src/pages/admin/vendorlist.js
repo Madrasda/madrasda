@@ -1,18 +1,20 @@
-import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import jwt from "jsonwebtoken";
 import axios from "axios";
-import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 import AddVendorModal from "@/components/addvendor-modal";
 import VendorListItem from "@/components/vendorlist-item";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import { storage } from "../../firebaseConfig";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
+ 
 export default function VendorList(props) {
   const router = useRouter();
   const [vendors, setVendors] = useState(null);
+  const [imageUrl, setImage] = useState("");
+  const [vendorData, setVendor] = useState({});
 
   const verifyToken = async () => {
     const url = new URLSearchParams({
@@ -42,17 +44,28 @@ export default function VendorList(props) {
       registerVendor(formData);
   }
 
+  const uploadImageOnline = async (file) => {
+    const imageRef = ref(storage, `vendors/${file.name + v4()}`);
+    await uploadBytes(imageRef, file);
+    const url = await getDownloadURL(imageRef);
+    return url;
+  }
+
+
   const registerVendor = async (data) => {
-    axios.post(
-      "http://localhost:8080/api/admin/addVendor",
-      data
-    ).then((response) => {
-      console.log(response);
-      getVendors();
-    }).catch((err)=>{
-      console.log(data);
-      console.log(err);
-    })
+    console.log(data.imgUrl);
+    const url = await uploadImageOnline(data.imgUrl);
+        axios.post(
+        "http://localhost:8080/api/admin/addVendor",
+        {
+          ...data, imgUrl : url
+        }
+        ).then((response) => {
+          console.log(response);
+          getVendors();
+        }).catch((err)=>{
+          console.log(err);
+        })
   };
 
   useEffect(() => {
