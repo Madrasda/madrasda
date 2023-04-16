@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function VendorQuery(props) {
     const router = useRouter();
+
     const resolveQuery = async () => {
         axios.put(
             `http://localhost:8080/api/feedback/toggleFeedbackResolution/${props.queryId}`

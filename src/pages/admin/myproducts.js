@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Mockup from "@/components/mockup";
+import { isTokenValid } from "@/utils/JWTVerifier";
 import { storage } from "../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
@@ -17,20 +18,17 @@ export default function MyProducts () {
     const [pageSize, setPageSize] = useState(0);
     const [colors, setColors] = useState(null);
     const [sizes, setSizes] = useState(null);
+    const [tokenExists, setTokenExists] = useState(false);
 
-    const verifyToken = async () => {
-    const url = new URLSearchParams({
-      token: localStorage.getItem('token')
-    })
-    axios.get(
-      "http://localhost:8080/api/auth/?" + url
-    ).then((response) => {
-      console.log("refreshed");
-    }).catch((err) => {
-      localStorage.removeItem("token");
-      router.push("/admin");
-    })
-  }
+    useEffect(() => {
+      const jwtToken = localStorage.getItem("token")
+      if(jwtToken === undefined || !isTokenValid(jwtToken))
+        router.push("/admin");
+      else
+        setTokenExists(true);
+      getAllColorsAndSizes();
+      getMockups();
+    }, []);
 
   const getMockups = async () => {
     const url = new URLSearchParams({
@@ -110,22 +108,7 @@ export default function MyProducts () {
 
   useEffect(()=>{
     getMockups();
-  }, [pageNo])
-
-  useEffect(()=>{
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/admin");
-    } else {
-      try {
-        verifyToken();
-        getMockups();
-        getAllColorsAndSizes();
-      } catch (err) {
-        router.push("/admin");
-      }
-    }
-  }, []);
+  }, [pageNo]);
   
   return (
     <>

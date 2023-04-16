@@ -3,36 +3,21 @@ import SearchVendor from "@/components/search-vendor";
 import Payments from "@/components/payments";
 import AdminLayout from "@/components/layout-admin";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { isTokenValid } from "@/utils/JWTVerifier";
 import { useRouter } from "next/router";
 
 export default function CustomerDetails () {
     const router = useRouter();
-    const verifyToken = async () => {
-    const url = new URLSearchParams({
-      token: localStorage.getItem('token')
-    })
-    axios.get(
-      "http://localhost:8080/api/auth/?" + url
-    ).then((response) => {
-      console.log("refreshed");
-    }).catch((err) => {
-      localStorage.removeItem("token");
-      router.push("/admin");
-    })
-  }
-  useEffect(()=>{
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/admin");
-    } else {
-      try {
-        verifyToken();
-      } catch (err) {
-        router.push("/admin");
-      }
-    }
-  }, []);
+    const [tokenExists, setTokenExists] = useState(false);
+
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token")
+        if(jwtToken === undefined || !isTokenValid(jwtToken))
+          router.push("/admin");
+        else
+          setTokenExists(true);
+    }, []);
     return (
         <>
             <Head>

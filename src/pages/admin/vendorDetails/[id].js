@@ -8,6 +8,7 @@ import { isTokenValid } from "@/utils/JWTVerifier";
 import axios from "axios";
 
 export default function VendorDetails(props) {
+  const [tokenExists, setTokenExists] = useState(false);
   const router = useRouter();
   let isReady = router.isReady;
   const { id } = router.query;
@@ -30,8 +31,11 @@ export default function VendorDetails(props) {
   }, [isReady]);
 
   useEffect(() => {
-    if(isTokenValid(localStorage.getItem('token')))
-        console.log("nice");
+    const jwtToken = localStorage.getItem("token")
+    if(jwtToken === undefined || !isTokenValid(jwtToken))
+      router.push("/admin");
+    else
+      setTokenExists(true);
   }, []);
 
   if (!details) {

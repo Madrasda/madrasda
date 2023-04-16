@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Link from 'next/link'
+import { isTokenValid } from '@/utils/JWTVerifier'
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import { useRouter } from 'next/router'
@@ -10,22 +11,6 @@ export default function Adminlogin() {
     const [mail,setEmail]=useState();
     const [password,setPassword]=useState();
     const router = useRouter();
-
-    const verifyToken = async () => {
-        if(mail==="" || password==="")
-          return;
-        const url = new URLSearchParams({
-          token: localStorage.getItem('token')
-        })
-        axios.get(
-          "http://localhost:8080/api/auth/?" + url
-        ).then((response) => {
-          router.push("/admin/vendorlist");
-        }).catch((err) => {
-          localStorage.removeItem("token");
-          router.push("/admin");
-        })
-    }
 
     const adminlogin = (e) =>{
         e.preventDefault();
@@ -44,10 +29,10 @@ export default function Adminlogin() {
           ;
     }
 
-    useEffect(()=>{
-        const token = localStorage.getItem("token");
-        if(token)
-            verifyToken();
+  useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token && isTokenValid(token))
+            router.push("/admin/vendorlist");
     }, [])
 
   return (

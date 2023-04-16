@@ -4,7 +4,6 @@ import LineGraph from "@/components/linegraph";
 import Image from "next/image";
 import WithdrawModal from "@/components/withdraw-modal";
 import Link from "next/link";
-import axios from "axios";
 import { isTokenValid } from "@/utils/JWTVerifier";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";

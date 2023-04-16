@@ -11,7 +11,7 @@ export default function App({Component, pageProps}) {
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-        console.log(!isTokenValid(jwtToken))
+        // console.log(!isTokenValid(jwtToken))
         if (jwtToken === undefined || isTokenValid(jwtToken)) {
             setToken(jwtToken)
             axios.get("http://localhost:8080/api/cart/", {
@@ -19,10 +19,12 @@ export default function App({Component, pageProps}) {
                     "Authorization": "Bearer " + jwtToken
                 }
             })
-                .then(response => {
-                    setCart(response.data)
-                });
-
+            .then(response => {
+                setCart(response.data)
+            })
+            .catch((err) => {
+                // console.log(userDetails);
+            })
         }
     }, []);
     const decrementQty = (id) => {

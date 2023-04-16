@@ -9,26 +9,14 @@ import { useRouter } from "next/router";
 import { storage } from "../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
- 
+import { isTokenValid } from "@/utils/JWTVerifier";
+
 export default function VendorList(props) {
   const router = useRouter();
+  const [tokenExists, setTokenExists] = useState(false);
   const [vendors, setVendors] = useState(null);
   const [imageUrl, setImage] = useState("");
   const [vendorData, setVendor] = useState({});
-
-  const verifyToken = async () => {
-    const url = new URLSearchParams({
-      token: localStorage.getItem('token')
-    })
-    axios.get(
-      "http://localhost:8080/api/auth/?" + url
-    ).then((response) => {
-      console.log("refreshed");
-    }).catch((err) => {
-      localStorage.removeItem("token");
-      router.push("/admin");
-    })
-  }
 
   const getVendors = async () => {
     axios.get(
@@ -68,19 +56,15 @@ export default function VendorList(props) {
         })
   };
 
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/admin");
-    } else {
-      try {
-        verifyToken();
-        getVendors();
-      } catch (err) {
+      const jwtToken = localStorage.getItem("token")
+      if(jwtToken === undefined || !isTokenValid(jwtToken))
         router.push("/admin");
-      }
-    }
-  }, []);
+      else
+        setTokenExists(true);
+      getVendors();
+    }, []);
 
   return (
     <>

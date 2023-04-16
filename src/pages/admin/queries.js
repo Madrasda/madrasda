@@ -5,6 +5,7 @@ import Link from 'next/link'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { isTokenValid } from '@/utils/JWTVerifier';
 import VendorQuery from '@/components/vendor-query';
 
 export default function Queries () {
@@ -12,20 +13,7 @@ export default function Queries () {
   const [queries, setQueries] = useState(null);
   const [pageNo, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(0);
-
-  const verifyToken = async () => {
-    const url = new URLSearchParams({
-      token: localStorage.getItem('token')
-    })
-    axios.get(
-      "http://localhost:8080/api/auth/?" + url
-    ).then((response) => {
-      console.log("refreshed");
-    }).catch((err) => {
-      localStorage.removeItem("token");
-      router.push("/admin");
-    })
-  }
+  const [tokenExists, setTokenExists] = useState(false);
 
   const getQueries = async () => {
     const url = new URLSearchParams({
@@ -46,19 +34,13 @@ export default function Queries () {
     getQueries();
   }, [pageNo]);
 
-  useEffect(()=>{
-    const token = localStorage.getItem("token");
-    if (!token) {
-      router.push("/admin");
-    } else {
-      try {
-        verifyToken();
-        getQueries();
-      } catch (err) {
+    useEffect(() => {
+      const jwtToken = localStorage.getItem("token")
+      if(jwtToken === undefined || !isTokenValid(jwtToken))
         router.push("/admin");
-      }
-    }
-  }, []);
+      else
+        setTokenExists(true);
+    }, []);
   
   return (
     <>
@@ -86,9 +68,9 @@ export default function Queries () {
                   <VendorQuery 
                   key={q.id} 
                   queryId={q.id} 
-                  name={q.vendorDTO.name} 
+                  name={q.vendorName} 
                   query={q.query} 
-                  email={q.vendorDTO.email}
+                  email={q.email}
                   />
                 )
               })
