@@ -18,7 +18,7 @@ export default function NavClient() {
               <Dropdown>
                   <Dropdown.Button flat css={{
                     background: '#1A1A1C',
-                    fontFamily: 'Algeria Sans',
+                    fontFamily: '$algeria',
                     fontWeight: '$bold',
                     color: 'White',
                   }}

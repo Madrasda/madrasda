@@ -3,7 +3,16 @@ import {UserContext} from "../../context/context";
 import {useEffect, useState} from "react";
 import {isTokenValid} from "@/utils/JWTVerifier";
 import axios from "axios";
+import { createTheme } from '@nextui-org/react'
 
+const theme = createTheme({
+    type: 'dark',
+    theme: {
+        fonts: {
+            algeria: 'Algeria Sans',
+        },
+    },
+})
 export default function App({Component, pageProps}) {
     const [cart, setCart] = useState({});
     const [userDetails, setUserDetails] = useState({});
@@ -23,7 +32,7 @@ export default function App({Component, pageProps}) {
                 setCart(response.data)
             })
             .catch((err) => {
-                // console.log(userDetails);
+                console.log(userDetails);
             })
         }
     }, []);

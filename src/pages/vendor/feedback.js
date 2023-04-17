@@ -13,30 +13,25 @@ export default function Feedback () {
   const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
   let isReady = router.isReady;
-  const [query, setQuery] = useState(null);
+  const [inputValue, setInputValue] = useState("");
 
-  const handleSubmit = (fdata) => {
-    postFeedbackDetails(fdata);
-  }
-
-  const postFeedbackDetails = async (data) => {
-    console.log(data);
-      const response = await axios.post(
-        "http://localhost:8080/api/feedback/postFeedback", { 
-          
-          headers : {
-            Authorization : "Bearer " + localStorage.getItem('token')
-          }
-          ,query : query
-        }  
-      );
-      setQuery(response.data);
-  }
-
-  useEffect(() => {
-    if(isReady)
-        postFeedbackDetails();
-  }, [isReady]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/api/feedback/postFeedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization : "Bearer " + localStorage.getItem('token')
+        },
+        body: JSON.stringify({ query: inputValue,resolution: false }),
+      }).then((res) => {
+        console.log(res.data)
+         setInputValue('')}) ;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
@@ -56,8 +51,9 @@ export default function Feedback () {
         <link rel="icon" href="/logo.png" />
         <title>Madrasda | Feedback</title>
     </Head>
-    
-    <VendorLayout onSubmit={postFeedbackDetails}>
+    {!tokenExists && <h1> LOADING... </h1>}
+      {tokenExists &&
+    <VendorLayout>
     <main className='md:ml-32 overflow-hidden font-algeria'>
     <div className="px-5 my-10 mx-auto">
         <div className="md:ml-20 md:mt-10">
@@ -68,18 +64,14 @@ export default function Feedback () {
         
         <div className="md:ml-24 lg:ml-32"> 
             <h1 className="title-font font-medium text-2xl pb-8">1.Post your Queries:</h1>            
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                     <div className="px-4 py-2 bg-white rounded-t-lg focus:ring-white">
                         <label for="comment" className="sr-only">Your comment</label>
-                        <textarea id="comment" rows="4" className="w-full px-0 text-sm text-black bg-white focus:ring-white " placeholder="Write a comment..." required onChange={
-                          (e) => {
-                            setQuery(e.target.value)
-                          }
-                        }/>
+                        <textarea id="comment" rows="4" className="w-full px-0 text-sm text-black bg-white focus:ring-white " placeholder="Write a comment..." required onChange={ (e)=> setInputValue(e.target.value)} />
                     </div>
                     <div className="flex items-center justify-between px-3 py-2 border-t ">
-                        <button type="submit" className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg ">
+                        <button type="submit" className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary rounded-lg " onClick={handleSubmit}>
                             Post Query
                         </button>
                         
@@ -122,7 +114,7 @@ export default function Feedback () {
 
     </div>
     </main>
-    </VendorLayout>
+    </VendorLayout>}
     </>
   )
 }
