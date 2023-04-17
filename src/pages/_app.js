@@ -40,7 +40,6 @@ function Loading() {
         </div>
     )
 }
-
 export default function App({Component, pageProps}) {
     const [cart, setCart] = useState({});
     const [userDetails, setUserDetails] = useState({});
@@ -60,7 +59,7 @@ export default function App({Component, pageProps}) {
                 setCart(response.data)
             })
             .catch((err) => {
-                // console.log(userDetails);
+                console.log(userDetails);
             })
         }
     }, []);
