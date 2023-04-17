@@ -1,7 +1,18 @@
 import React from 'react'
 import Image from 'next/image'
+import { useState } from 'react'
 
 export default function Table() {
+
+  const [sale, setSale] = useState("false");
+  const toggleSale = () => {
+    if(sale == "false") { 
+        setSale("true");
+    }
+    else {
+        setSale("false");
+    }
+  }
   return (
         <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -28,7 +39,10 @@ export default function Table() {
                         <td className="whitespace-nowrap px-6 py-6">35</td>
                         <td className="whitespace-nowrap px-6 py-6">13</td>
                         <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/green-tick.png" width={20} height={20} />
+                            <button onClick={toggleSale}>
+                            {/* <Image src="/green-tick.png" width={20} height={20} /> */}
+                            <div id="saleStatus">{sale}</div>
+                            </button>
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">

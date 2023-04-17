@@ -315,42 +315,42 @@ export default function ProductList () {
         <br/>
         <div className="flex justify-center mt-8"> 
           <nav aria-label="Page navigation example">
-            <ul class="inline-flex -space-x-px">
+            <ul className="inline-flex -space-x-px">
               <li>
-                <a href="#" class="px-3 py-2 ml-0 leading-tight text-primary bg-white border border-primary rounded-l-lg hover:bg-primary hover:text-white">Previous</a>
+                <a href="#" className="px-3 py-2 ml-0 leading-tight text-primary bg-white border border-primary rounded-l-lg hover:bg-primary hover:text-white">Previous</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">1</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">1</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">2</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">2</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary border border-primary bg-white hover:bg-primary hover:text-white">3</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary border border-primary bg-white hover:bg-primary hover:text-white">3</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">4</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">4</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">5</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">5</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">6</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">6</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">7</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">7</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">8</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">8</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">9</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">9</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">10</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary hover:bg-primary hover:text-white">10</a>
               </li>
               <li>
-                <a href="#" class="px-3 py-2 leading-tight text-primary bg-white border border-primary rounded-r-lg hover:bg-primary hover:text-white">Next</a>
+                <a href="#" className="px-3 py-2 leading-tight text-primary bg-white border border-primary rounded-r-lg hover:bg-primary hover:text-white">Next</a>
               </li>
             </ul>
           </nav>

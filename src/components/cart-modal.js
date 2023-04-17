@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {Button, Modal, Text} from "@nextui-org/react";
+import {css, Button, Modal, Text} from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import CartItem from "@/components/CartItem";
@@ -36,21 +36,22 @@ export default function CartModal() {
                 aria-labelledby="modal-title"
                 open={visible}
                 onClose={closeHandler}
+                css={{fontFamily: '$algeria'}}
             >
-                <Modal.Header>
+                <Modal.Header css={{fontFamily: '$algeria'}}>
                     <Text id="modal-title" size={24}>
                     </Text>
                 </Modal.Header>
                 {
                     (ctx.cart.cartItems === undefined || ctx.cart.cartItems.length === 0) &&
-                    <Modal.Body>
+                    <Modal.Body css={{fontFamily: '$algeria'}}>
                         <h1 className={"text-center text-3xl pb-10"}> Your cart is empty :( </h1>
                     </Modal.Body>
                 }
                 {
                     (ctx.cart.cartItems !== undefined && ctx.cart.cartItems.length !== 0) &&
                     <>
-                        <Modal.Body>
+                        <Modal.Body css={{fontFamily: '$algeria'}}>
                             <div className=" bg-[#D9D9D9] w-full p-5 rounded-lg">
                                 <div className="px-3 w-full">
                                     {
@@ -97,7 +98,7 @@ export default function CartModal() {
                                 </div>
                             </div>
                         </Modal.Body>
-                        <Modal.Footer>
+                        <Modal.Footer css={{fontFamily: '$algeria'}}>
                             <Button auto flat color="error" onPress={closeHandler}>
                                 Close
                             </Button>

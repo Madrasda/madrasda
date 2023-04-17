@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 
 export default function AdminUploadModal(props) {
@@ -110,14 +110,15 @@ export default function AdminUploadModal(props) {
           aria-labelledby="modal-title"
           open={visible}
           onClose={closeHandler}
+          css={{fontFamily: '$algeria'}}
         >
-          <Modal.Header>
+          <Modal.Header css={{fontFamily: '$algeria'}}>
             <Text id="modal-title" size={18}>
               Upload Mockup
             </Text>
           </Modal.Header>
   
-          <Modal.Body>
+          <Modal.Body css={{fontFamily: '$algeria'}}>
           <div className="bg-[#D9D9D9] m-3 p-5 rounded-lg">
               <h2 className="mx-2">Front Side Image</h2>
               <div className="flex justify-around items-center">
@@ -227,7 +228,7 @@ export default function AdminUploadModal(props) {
           </div>
           </Modal.Body>
         
-          <Modal.Footer>
+          <Modal.Footer css={{fontFamily: '$algeria'}}>
             <Button auto flat color="error" onPress={closeHandler}>
               Close
             </Button>

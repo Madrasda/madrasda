@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import WithdrawForm from "./withdraw-form";
 import AddVendorForm from "./addvendor-form";
@@ -27,14 +27,15 @@ export default function OrderDetailsModal() {
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
+        css={{fontFamily: '$algeria'}}
       >
-        <Modal.Header>
+        <Modal.Header css={{fontFamily: '$algeria'}}>
           <Text id="modal-title" size={18}>
             Add Vendor
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
         <div class="bg-white shadow-lg rounded-lg overflow-hidden w-full md:w-3/4 mx-auto">
   {/* <!-- Order header --> */}
   <div class="bg-bg text-white py-4 px-6 flex justify-between items-center">
@@ -101,7 +102,7 @@ export default function OrderDetailsModal() {
 
         </Modal.Body>
       
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>

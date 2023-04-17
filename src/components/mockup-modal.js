@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Grid, Dropdown, Radio } from "@nextui-org/react";
@@ -47,6 +47,7 @@ export default function MockupModal({mockups, selectMockup}) {
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
+        css={{fontFamily: '$algeria'}}
       >
         <Modal.Header>
           <Text id="modal-title" size={18}>
@@ -54,7 +55,7 @@ export default function MockupModal({mockups, selectMockup}) {
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
         <div className="bg-[#D9D9D9] w-11/12 overflow-hidden m-3 p-5 rounded-lg">
         <div className="my-2 font-bold">Audience
               <ul class="w-48 flex flex-wrap text-sm  font-medium text-black">
@@ -88,7 +89,7 @@ export default function MockupModal({mockups, selectMockup}) {
           <Grid.Container gap={1.5} justify="flex-center">
             <Grid xs={200}>
               <Grid>
-                <Dropdown>
+                <Dropdown css={{fontFamily: '$algeria'}}>
                   <Dropdown.Button color="error" shadow>
                     Mockup
                   </Dropdown.Button>
@@ -97,11 +98,12 @@ export default function MockupModal({mockups, selectMockup}) {
                     variant="shadow"
                     aria-label="Actions"
                     height="200"
+                    css={{fontFamily: '$algeria'}}
                   >
                     { mockups &&
                       mockups.map((m) => {
                         return (
-                          <Dropdown.Item key={m.id} textValue="">
+                          <Dropdown.Item key={m.id} textValue="" css={{fontFamily: '$algeria'}}>
                             <div onClick={() => {
                               setSelected(m.name);
                               setMockupDetails(m);
@@ -124,7 +126,7 @@ export default function MockupModal({mockups, selectMockup}) {
         </div>
         </Modal.Body>
       
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>

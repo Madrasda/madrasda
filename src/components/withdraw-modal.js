@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import WithdrawForm from "./withdraw-form";
 
@@ -12,7 +12,7 @@ export default function WithdrawModal() {
   };
   return (
     <div>
-      <Button auto onPress={handler} color="error"
+      <Button auto onPress={handler} color="error" css={{fontFamily: '$algeria'}}
       style={{
         background: "#A5153F",
       }}>
@@ -24,18 +24,19 @@ export default function WithdrawModal() {
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
+        css={{fontFamily: '$algeria'}}
       >
-        <Modal.Header>
+        <Modal.Header css={{fontFamily: '$algeria'}}>
           <Text id="modal-title" size={18}>
             Withdraw Request
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
             <WithdrawForm/>
         </Modal.Body>
       
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
