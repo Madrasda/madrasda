@@ -3,26 +3,82 @@ import Head from "next/head";
 import Link from "next/link";
 import SearchVendor from "@/components/search-vendor";
 import VendorLayout from "@/components/layout-vendor";
-import MockupModel from "@/components/mockupmodel";
+import Mockup from "@/components/mockup";
 import MockupModal from "@/components/mockup-modal";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier"
-// import MockupModal from "@/components/mockup-modal";
+import MockupModel from "@/components/mockupmodel";
 
 export default function TemplateList () {
-  
-  const [tokenExists, setTokenExists] = useState(false)
+  const [products, setProducts] = useState(null);
+  const [pageNo, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(0);
+  const [mockupDetails, setMockupDetails] = useState(null);
+  const [totalElements, setTotalElements] = useState(0);
+  const [colors, setColors] = useState(null);
+  const [sizes, setSizes] = useState(null);
+  const [tokenExists, setTokenExists] = useState(false);
+  const [mockups, setMockups] = useState([]);
   const router = useRouter();
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
     else
       setTokenExists(true);
+    getVendorID();
+    getAllMockups();
   }, []);
 
+  const getVendorID = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/vendor/" , { 
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }  
+    );
+
+    getVendorProducts(response.data.vendor.id);
+  }
+
+  const getVendorProducts = async (id) => {
+    const url = new URLSearchParams({
+      pageNo: pageNo,
+      pageSize : 5
+    });
+    const response = await axios.get("http://localhost:8080/api/client/getProductsByVendor/" + id);
+    setProducts(response.data.content);
+  }
+
+  const getAllMockups = async () => {
+    const response = await axios.get(
+        "http://localhost:8080/api/mockup/getAllMockups"
+    );
+    setMockups(response.data.content);
+    console.log(response.data.content);
+  }
+
+  const getAvailableSizes = (items) => {
+        var availableSizes = []
+        items.forEach(item => {
+            if(!availableSizes.includes(item.size))
+                availableSizes.push(item.size);
+        });
+        return availableSizes;
+  }
+
+  const getAvailableColors = (items) => {
+        var availableColors = []
+        items.forEach(item => {
+            if(!availableColors.includes(item.hexValue))
+                availableColors.push(item.hexValue);
+        });
+        return availableColors;
+  }
 
   return (
     <>
@@ -39,25 +95,47 @@ export default function TemplateList () {
       <div className="px-5 my-10 mx-auto">
         <h1 className="text-3xl text-primary
                        md:ml-20">CREATE TEMPLATE</h1>
-        <div className="flex items-center justify-center m-5">
-          <SearchVendor />
-        </div>
         <div className="flex flex-wrap justify-center">
           
         <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
   
           <div className="flex flex-col items-center justify-center cursor-pointer">
-            <MockupModal />
+            <MockupModal
+              mockups={mockups}
+            />
             <p className="font-semibold font-base">Create more templates</p>
             <p className="font-light text-gray font-sm">Add them to your merch and start selling</p>
           </div>
         </div>
-        {/* <MockupModal /> */}
-        <MockupModel/>
-        <MockupModel/>
-        <MockupModel/>
-        <MockupModel/>
-        <MockupModel/>
+
+        {   products &&
+            products.map((m) => {
+                return (
+                    <MockupModel
+                      image={m.colors[0].images[0]}
+                      name={m.name}
+                      sizes={getAvailableSizes(m.colors[0].sizes)}
+                      colors={getAvailableColors(m.colors)}
+                    />
+                )
+            })
+        }
+        </div>
+        <div className="flex justify-center mt-32">
+            <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
+                () => {
+                    setPage(pageNo===0 ? 0 : pageNo-1)
+                }
+            }>
+                Prev
+            </button>
+            <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
+                () => {
+                    setPage(pageNo===pageSize-1 ? pageNo : pageNo+1)
+                }
+            }>
+                Next
+            </button>
         </div>
       </div>
     </section>

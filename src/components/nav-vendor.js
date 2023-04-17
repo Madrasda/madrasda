@@ -52,15 +52,6 @@ export default function NavVendor() {
                         </div>
                     </Link>
                     
-                    <Link href="/vendor/productupload">
-                        <div className={currentRoute === '/vendor/productupload' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
-                            <div className="flex justify-start items-center py-4">
-                                <Image src="/upload-products-icon.png" width={30} height={30}/>
-                                <h3 className="ml-2">Add Product Information</h3>
-                            </div>  
-                        </div>
-                    </Link>
-
                     <Link href="/vendor/productlist">
                         <div className={currentRoute === '/vendor/productlist' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">

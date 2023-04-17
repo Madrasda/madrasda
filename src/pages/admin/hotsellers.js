@@ -2,8 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { isTokenValid } from "@/utils/JWTVerifier";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 
@@ -130,11 +131,6 @@ const [tokenExists, setTokenExists] = useState(false)
                             </div>
                         </Link>
                         </div>
-                    </div>
-                    <div className="flex justify-center items-center mt-10">
-                        <Link href="/admin/bestsellers">
-                        <button className="text-white bg-primary p-2 rounded-lg text-sm">See More</button>
-                        </Link>
                     </div>
                     </div>
                 </section>

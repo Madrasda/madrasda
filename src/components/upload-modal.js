@@ -1,14 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button, Text } from "@nextui-org/react";
+import axios from "axios";
 import Image from "next/image";
 
 export default function UploadModal() {
   const [visible, setVisible] = React.useState(false);
+  const [designs, setDesigns] = useState([]);
   const handler = () => setVisible(true);
+  
   const closeHandler = () => {
     setVisible(false);
-    console.log("closed");
+    console.log("closed"); 
   };
+  // UwU
+  // onii-chan
+  // yamate yo nii saan
+  const getDesigns = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/vendor/designs" , { 
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }  
+    );
+    setDesigns(response.data);
+    console.log(designs);
+  }
+
+  useEffect(() => {
+    getDesigns();
+  }, []);
+
   return (
     <div>
       <Button auto ghost color="black" onPress={handler}>
@@ -30,16 +52,14 @@ export default function UploadModal() {
         <Modal.Body>
         <div className="bg-[#D9D9D9] m-3 p-5 rounded-lg">
           <div className="flex justify-around items-center flex-wrap">
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
-            <Image src="/wake-up.png" width={100} height={40} className="p-2"/>
+            {
+              designs && 
+              designs.map((d) => {
+                return (
+                  <Image src={d.imgUrl} width={100} height={40} className="p-2"/>
+                )
+              })  
+            }
             </div>
         </div>
         </Modal.Body>

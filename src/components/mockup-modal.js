@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Grid, Dropdown, Radio } from "@nextui-org/react";
 
-export default function MockupModal() {
+export default function MockupModal({mockups, selectMockup}) {
   const [visible, setVisible] = React.useState(false);
+  const [selected, setSelected] = useState(null);
+  const [audience, setAudience] = useState(null);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [mockupDetails, setMockupDetails] = useState(null);
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
     console.log("closed");
   };
-  const [selectedColor, setSelectedColor] = React.useState("default");
+  const [selectedColor, setSelectedColor] = useState("default");
   const colors = [
     "default",
     "primary",
@@ -25,6 +29,7 @@ export default function MockupModal() {
     const lower = str.toLowerCase();
     return str.charAt(0).toUpperCase() + lower.slice(1);
   };
+
   return (
     <div>
         <Button auto ghost onPress={handler}
@@ -45,36 +50,36 @@ export default function MockupModal() {
       >
         <Modal.Header>
           <Text id="modal-title" size={18}>
-            Choose Category
+            Create a new product design
           </Text>
         </Modal.Header>
 
         <Modal.Body>
         <div className="bg-[#D9D9D9] w-11/12 overflow-hidden m-3 p-5 rounded-lg">
-        <div className="my-2 font-bold">Category
-              <ul class="w-48 flex flex-row text-sm  font-medium text-black">
-                  <li class="w-full">
+        <div className="my-2 font-bold">Audience
+              <ul class="w-48 flex flex-wrap text-sm  font-medium text-black">
+                  <li>
                       <div class="flex items-center pl-3">
-                          <input id="list-radio-license" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                          <input id="list-radio-license" type="radio" value="Men" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={(e) => setAudience(e.target.value)}/>
                           <label for="list-radio-license" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Men</label>
                       </div>
                   </li>
-                  <li class="w-full">
+                  <li>
                       <div class="flex items-center pl-3">
-                          <input id="list-radio-id" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                          <input id="list-radio-id" type="radio" value="Women" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={(e) => setAudience(e.target.value)} />
                           <label for="list-radio-id" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Women</label>
                       </div>
                   </li>
-                  <li class="w-full">
+                  <li >
                       <div class="flex items-center pl-3">
-                          <input id="list-radio-license" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
+                          <input id="list-radio-license" type="radio" value="Kids" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={(e) => setAudience(e.target.value)} />
                           <label for="list-radio-license" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kids</label>
-                      </div>
+                      </div>  
                   </li>
-                  <li class="w-full">
+                  <li>
                       <div class="flex items-center pl-3">
-                          <input id="list-radio-id" type="radio" value="" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" />
-                          <label for="list-radio-id" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Accessories</label>
+                          <input id="list-radio-id" type="radio" value="Unisex" name="list-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" onChange={(e) => setAudience(e.target.value)} />
+                          <label for="list-radio-id" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Unisex</label>
                       </div>
                   </li>
               </ul>
@@ -93,12 +98,24 @@ export default function MockupModal() {
                     aria-label="Actions"
                     height="200"
                   >
-                    <Dropdown.Item key="tshirt">T-Shirt</Dropdown.Item>
-                    <Dropdown.Item key="hoodie">Hoodie</Dropdown.Item>
-                    <Dropdown.Item key="sweatshirt">SweatShirt</Dropdown.Item>
-                    <Dropdown.Item key="bag">Bag</Dropdown.Item>
+                    { mockups &&
+                      mockups.map((m) => {
+                        return (
+                          <Dropdown.Item key={m.id} textValue="">
+                            <div onClick={() => {
+                              setSelected(m.name);
+                              setMockupDetails(m);
+                              }
+                            }>
+                              {m.name}
+                            </div>
+                          </Dropdown.Item>
+                        )
+                      })
+                    }
                   </Dropdown.Menu>
                 </Dropdown>
+                <h1>{selected && selected}</h1>
               </Grid>
             </Grid>
           </Grid.Container>
@@ -111,7 +128,9 @@ export default function MockupModal() {
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
-          <Link href="/vendor/createtemplate">
+          {
+            mockupDetails && 
+            <Link href={`/vendor/createproduct/${mockupDetails.id}?audience=${audience}`}>
           <Button auto 
           onPress={closeHandler}
           style={{
@@ -119,7 +138,7 @@ export default function MockupModal() {
           }}>
             Proceed
           </Button>
-          </Link>
+          </Link>}
         </Modal.Footer>
       </Modal>
     </div>

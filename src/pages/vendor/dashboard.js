@@ -7,11 +7,34 @@ import Link from "next/link";
 import { isTokenValid } from "@/utils/JWTVerifier";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
-export default function Dashboard() {
 
+export default function Dashboard(props) {
+
+  
   const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
+  let isReady = router.isReady;
+  const [details, setDetails] = useState(null);
+
+  const getVendorDetails = async () => {
+      const response = await axios.get(
+        "http://localhost:8080/api/vendor/" , { 
+          headers : {
+            Authorization : "Bearer " + localStorage.getItem('token')
+          }
+        }  
+      );
+      setDetails(response.data);
+      console.log(response.data);
+  }
+
+  useEffect(() => {
+    if(isReady)
+        getVendorDetails();
+  }, [isReady]);
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
@@ -19,7 +42,7 @@ export default function Dashboard() {
     else
       setTokenExists(true);
   }, []);
-
+  
   return (
 
     <div>
@@ -30,7 +53,7 @@ export default function Dashboard() {
         <title>Madrasda | Dashboard</title>
       </Head>
       {!tokenExists && <h1> LOADING... </h1>}
-      {tokenExists &&
+      {tokenExists && details &&
         <VendorLayout>
           <main className="body-font font-algeria overflow-hidden
                                 md:ml-36">
@@ -41,23 +64,20 @@ export default function Dashboard() {
               <section className="text-gray-600 body-font">
                 <div className="container px-5 py-14 mx-auto">
                   <div className="flex flex-nowrap -m-4 text-center">
-                    <div className="p-4 w-1/2
-                                            lg:w-1/3">
+                    <div className="p-4 w-1/2 lg:w-1/3">
+                      
                       <h1 className="title-font font-bold text-xl">Total Products</h1>
-                      <h2 className="title-font font-bold text-3xl text-primary">52</h2>
-                      <p className="leading-relaxed text-xs">40% more than previous 28 days</p>
+                      <h2 className="title-font font-bold text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalProducts : 0}</h2>
                     </div>
                     <div className="p-4 w-1/2
                                             lg:w-1/3">
                       <h1 className="title-font font-bold text-xl">Total Orders</h1>
-                      <h2 className="title-font font-bold text-3xl text-primary">1002</h2>
-                      <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
+                      <h2 className="title-font font-bold text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalOrders : 0}</h2>
                     </div>
                     <div className="p-4 w-full
                                             lg:w-1/3">
                       <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
-                      <h2 className="title-font font-bold  text-3xl text-primary">₹150254</h2>
-                      <p className="leading-relaxed text-xs">460% more than previous 28 days</p>
+                      <h2 className="title-font font-bold  text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalProfit : 0}</h2>
                       <div className="justify-center ml-40 mt-4">
                         <WithdrawModal />
                       </div>
@@ -68,7 +88,7 @@ export default function Dashboard() {
               </section>
 
               <div className='md:ml-20 flex justify-center items-center'>
-                <LineGraph />
+                <LineGraph monthlySales = {details.salesAnalysis ? details.salesAnalysis.monthlySales : []}/>
               </div>
 
               <div className="flex flex-col justify-center items-center -mt-[140%]
@@ -78,7 +98,7 @@ export default function Dashboard() {
                 <div className="flex text-lg justify-center items-center w-full
                                     lg:w-1/3">
                   <h2 className="p-1">We have sold</h2>
-                  <h3 className="text-primary p-1 font-semibold text-2xl">10</h3>
+                  <h3 className="text-primary p-1 font-semibold text-2xl">{details.salesAnalysis ? details.salesAnalysis.productsSoldToday : 0}</h3>
                   <h2 className="p-1">products today!</h2>
                 </div>
               </div>
@@ -104,25 +124,41 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-20 
+              { details.salesAnalysis && 
+                <div className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-20
                                 md:ml-20">
-                <h1 className="pl-5 pt-10 text-xl text-white font-semibold
+                            <h1 className="pl-5 pt-10 te    xt-xl text-white font-semibold
                                    md:pl-10 md:text-3xl">TOP SELLERS THIS WEEK</h1>
-                <div className="flex py-10 justify-around flex-wrap">
-                  <div className="flex flex-col items-center pt-16 w-1/3 p-2">
-                    <Image src="/your-templates.png" width={200} height={233.33} className="object-contain" />
-                    <div className="py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white text-xl text-primary font-semibold italic">#2</div>
-                  </div>
-                  <div className="flex flex-col items-center pb-26 w-1/3 p-2">
-                    <Image src="/your-templates.png" width={200} height={233.33} className="object-contain" />
-                    <div className="py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white text-xl text-primary font-semibold italic">#1</div>
-                  </div>
-                  <div className="flex flex-col items-center pt-32 w-1/3 p-2">
-                    <Image src="/your-templates.png" width={200} height={233.33} className="object-contain" />
-                    <div className="py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white text-xl text-primary font-semibold italic">#3</div>
-                  </div>
-                </div>
-              </div>
+                            <div className="flex py-10 justify-around flex-wrap">
+                                {    
+                                    details.productLadder[1] &&
+                                    <div className="flex flex-col items-center pt-16 w-1/3 p-2">
+                                    <Image src={details.productLadder[1].imgUrl} width={200} height={233.33}
+                                           className="object-contain"/>
+                                    <div className="py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white
+                             text-xl text-primary font-semibold italic">#2
+                                    </div>
+                                </div>}
+                                {   details.productLadder[0] &&
+                                    <div className="flex flex-col items-center pb-26 w-1/3 p-2">
+                                    <Image src={details.productLadder[0].imgUrl} width={200} height={233.33}
+                                           className="object-contain"/>
+                                    <div className="py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white
+                            text-xl text-primary font-semibold italic">#1
+                                    </div>
+                                </div>}
+                                {
+                                    details.productLadder[2] &&
+                                    <div className="flex flex-col items-center pt-32 w-1/3 p-2">
+                                    <Image src={details.productLadder[2].imgUrl} width={200} height={233.33}
+                                           className="object-contain"/>
+                                    <div className="py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white
+                            text-xl text-primary font-semibold italic">#3
+                                    </div>
+                                </div>
+                                }
+                            </div>
+                </div>}
 
             </div>
           </main>
