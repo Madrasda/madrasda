@@ -7,31 +7,12 @@ ChartJS.register(
   CategoryScale, LinearScale, PointElement, Filler
 )
 
-export default function PieChart() {
+export default function PieChart({products, prodData}) {
   const data = {
-    labels: [
-      'Vikram Kamal T-shirt',
-      'Vikram Rolex Hoodies',
-      'Uthama villain hoodies',
-      'Vikram Kamal Shirts',
-      'LCU TRIO Shorts',
-      'LCU TRIO Shirts',
-      'LCU V-neck T-shirt',
-      'Vikram Title Shirt'
-    ],
+    labels: products,
     datasets: [{
       label: 'Product Contribution',
-      data: [44,35,5,31,29,17,7,22],
-      backgroundColor: [
-        '#560B21',
-        '#821031',
-        '#AE1541',
-        '#CB184C',
-        '#E73E6F',
-        '#EC6A8F',
-        '#F18EAA',
-        '#FADEE6',
-      ],
+      data: prodData,
       hoverOffset: 4
     }]
   };

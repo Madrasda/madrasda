@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
 import Accordion from '@/components/accordian'
+import Image from "next/image"
 import Link from 'next/link'
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -11,6 +12,14 @@ export default function Feedback () {
   
   const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
@@ -19,6 +28,10 @@ export default function Feedback () {
       setTokenExists(true);
   }, []);
 
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
     <Head>
@@ -47,9 +60,7 @@ export default function Feedback () {
         </div>
 
         <div className=" mt-14 flex justify-center ">
-            <Link href="/vendor/feedback">
-            <button type="button" className="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Back</button>
-            </Link>
+            <button type="button" className="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2" onClick={() => router.push("/vendor/feedback")}>Back</button>
             <Link href="/vendor/resolvedqueries">
             <button type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Resolved Queries</button>
             </Link>

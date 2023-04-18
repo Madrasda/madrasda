@@ -3,6 +3,7 @@ import AdminLayout from '@/components/layout-admin'
 import Accordion from '@/components/accordian'
 import Link from 'next/link'
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from '@/utils/JWTVerifier';
@@ -14,7 +15,14 @@ export default function Queries () {
   const [pageNo, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(0);
   const [tokenExists, setTokenExists] = useState(false);
-
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+        setLoading(false);
+        }, 1000);
+    }, []);
   const getQueries = async () => {
     const url = new URLSearchParams({
         pageNo: pageNo,
@@ -41,7 +49,11 @@ export default function Queries () {
       else
         setTokenExists(true);
     }, []);
-  
+
+    if(loading && isReady)
+    return (<div className='z-50 h-screen w-screen overflow-hidden'>
+    <Image src="/loader.gif" width={1920} height={1080}/>
+    </div>);
   return (
     <>
     <Head>

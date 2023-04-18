@@ -1,5 +1,7 @@
 import Head from "next/head";
 import VendorLayout from "@/components/layout-vendor";
+import Image from "next/image";
+import ProductTable from "@/components/product-table";
 import SearchVendor from "@/components/search-vendor";
 import Table from "@/components/table";
 import axios from "axios";
@@ -11,14 +13,47 @@ export default function ProductList () {
 
   const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
+
+  const getProductDetails = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/vendor/" , { 
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }  
+    );
+    const id= response.data.vendor.id
+    const prod = await axios.get(
+      "http://localhost:8080/api/client/getProductsByVendor/" + id
+    );
+    setProducts(prod.data.content);
+  }
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
-    else
+    else{
       setTokenExists(true);
+      getProductDetails();
+    }
   }, []);
 
+  
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
     return (
         <>
             <Head>
@@ -35,7 +70,9 @@ export default function ProductList () {
                 <h1 className="text-3xl text-primary 
                                md:ml-20 md:mt-10">VIEW PRODUCTS</h1>
                 <div className='mt-4 md:ml-20'>
-                    <Table />
+                    {
+                      products && 
+                      <ProductTable products={products} />}
                 </div>
                 </div>
                 </main>

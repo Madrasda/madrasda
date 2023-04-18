@@ -2,6 +2,7 @@ import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
 import Accordion from '@/components/accordian'
 import Link from 'next/link'
+import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -11,6 +12,14 @@ export default function ResolvedQuery () {
 
   const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
@@ -18,8 +27,10 @@ export default function ResolvedQuery () {
     else
       setTokenExists(true);
   }, []);
-
-
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
     <Head>

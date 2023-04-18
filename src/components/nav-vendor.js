@@ -47,7 +47,7 @@ export default function NavVendor() {
                         <div className={currentRoute === '/vendor/templatelist' || currentRoute === '/vendor/createtemplate' || currentRoute === '/vendor/viewprod' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">
                                 <Image src="/create-template-icon.png" width={30} height={30}/>
-                                <h3 className="ml-2">Create Template</h3>
+                                <h3 className="ml-2">My Templates</h3>
                             </div>
                         </div>
                     </Link>

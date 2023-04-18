@@ -17,7 +17,14 @@ export default function Dashboard(props) {
   const router = useRouter();
   let isReady = router.isReady;
   const [details, setDetails] = useState(null);
-
+  const [designs, setDesigns] = useState(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   const getVendorDetails = async () => {
       const response = await axios.get(
         "http://localhost:8080/api/vendor/" , { 
@@ -27,22 +34,34 @@ export default function Dashboard(props) {
         }  
       );
       setDetails(response.data);
-      console.log(response.data);
   }
 
-  useEffect(() => {
-    if(isReady)
-        getVendorDetails();
-  }, [isReady]);
+  const getDesigns = async () => {
+    const response = await axios.get(
+      "http://localhost:8080/api/vendor/designs" , { 
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }  
+    );
+    setDesigns(response.data);
+  }
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
-    else
+    else{
       setTokenExists(true);
+      getVendorDetails();
+      getDesigns();
+    }
   }, []);
-  
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
+
   return (
 
     <div>
@@ -52,7 +71,6 @@ export default function Dashboard(props) {
         <link rel="icon" href="/logo.png" />
         <title>Madrasda | Dashboard</title>
       </Head>
-      {!tokenExists && <h1> LOADING... </h1>}
       {tokenExists && details &&
         <VendorLayout>
           <main className="body-font font-algeria overflow-hidden
@@ -78,10 +96,6 @@ export default function Dashboard(props) {
                                             lg:w-1/3">
                       <h1 className="title-font font-bold text-xl">Total Profit Earned</h1>
                       <h2 className="title-font font-bold  text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalProfit : 0}</h2>
-                      <div className="justify-center ml-40 mt-4">
-                        <WithdrawModal />
-                      </div>
-                      {/* <button type="submit" className="text-white bg-primary font-medium rounded-full text-sm px-4 py-2 text-center mt-4" >Withdraw</button> */}
                     </div>
                   </div>
                 </div>
@@ -103,26 +117,26 @@ export default function Dashboard(props) {
                 </div>
               </div>
 
-              <div className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-4
+              {
+                designs &&
+                <div className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-4
                                 md:ml-20 md:mt-20">
                 <div className="flex justify-between items-center px-5 pt-10 md:pl-10">
                   <h1 className="text-xl text-white font-semibold
-                                    md:text-3xl">YOUR TEMPLATES</h1>
-                  <Link href="/vendor/designgallery">
+                                    md:text-3xl">YOUR DESIGNS</h1>
+                  <Link href={`/vendor/designgallery`}>
                     <Image src="/add-template-icon.png" width={90} height={90} className="cursor-pointer" />
                   </Link>
                 </div>
-                <div className="flex justify-around items-center py-10 flex-wrap">
-                  <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
-                  <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
-                  <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
+                <div className="flex flex-wrap justify-between items-center py-10">
+                  {designs[0] && <Image className="w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8" src={designs[0].imgUrl} width={200} height={233.33} />}
+                  {designs[1] && <Image className="w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8" src={designs[1].imgUrl} width={200} height={233.33} />}
+                  {designs[2] && <Image className="w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8" src={designs[2].imgUrl} width={200} height={233.33} />}
+                  {designs[3] && <Image className="w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8" src={designs[3].imgUrl} width={200} height={233.33} />}
+                  {designs[4] && <Image className="w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8" src={designs[4].imgUrl} width={200} height={233.33} />}
+                  {designs[5] && <Image className="w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8" src={designs[5].imgUrl} width={200} height={233.33} />}
                 </div>
-                <div className="flex justify-around items-center py-10 flex-wrap">
-                  <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
-                  <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
-                  <Image className="w-1/3 p-2 lg:w-1/5 md:p-none" src="/your-templates.png" width={200} height={233.33} />
-                </div>
-              </div>
+              </div>}
 
               { details.salesAnalysis && 
                 <div className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-20
@@ -163,6 +177,7 @@ export default function Dashboard(props) {
             </div>
           </main>
         </VendorLayout>
-}
+    }
     </div>
-)}
+    )
+}

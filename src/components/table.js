@@ -2,17 +2,8 @@ import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
 
-export default function Table() {
-
-  const [sale, setSale] = useState("false");
-  const toggleSale = () => {
-    if(sale == "false") { 
-        setSale("true");
-    }
-    else {
-        setSale("false");
-    }
-  }
+export default function Table({products}) {
+    
   return (
         <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -23,105 +14,27 @@ export default function Table() {
                         <tr>
                         <th scope="col" className=" px-6 py-4">Rank</th>
                         <th scope="col" className=" px-6 py-4">Product</th>
-                        <th scope="col" className=" px-6 py-4">Profit/Loss</th>
+                        <th scope="col" className=" px-6 py-4">Profit Amount</th>
                         <th scope="col" className=" px-6 py-4">Returns Contribution</th>
                         <th scope="col" className=" px-6 py-4">Stocks Sold</th>
-                        <th scope="col" className=" px-6 py-4">Profit Amount</th>
-                        <th scope="col" className=" px-6 py-4">In Sale</th>
+                        <th scope="col" className=" px-6 py-4">Product Profit</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6 font-medium">1</td>
-                        <td className="whitespace-nowrap px-6 py-6">Vikram Kamal T-shirt</td>
-                        <td className="whitespace-nowrap px-6 py-6">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6">35</td>
-                        <td className="whitespace-nowrap px-6 py-6">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <button onClick={toggleSale}>
-                            {/* <Image src="/green-tick.png" width={20} height={20} /> */}
-                            <div id="saleStatus">{sale}</div>
-                            </button>
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">2</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">Vikram Rolex Hoodies</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/green-tick.png" width={20} height={20} />
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">3</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">Uthama villain hoodies</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/red-cross.png" width={20} height={20} />
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">4</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">Vikram Kamal Shirts</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/green-tick.png" width={20} height={20} />
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">5</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">LCU TRIO Shorts</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/red-cross.png" width={20} height={20} />
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">6</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">LCU TRIO Shirts</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/red-cross.png" width={20} height={20} />
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">7</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">LCU V-neck T-shirt</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/green-tick.png" width={20} height={20} />
-                        </td>
-                        </tr>
-                        <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">8</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">Vikram Title Shirt</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">15%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">30%</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">35</td>
-                        <td className="whitespace-nowrap px-6 py-6  ">13</td>
-                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                            <Image src="/green-tick.png" width={20} height={20} />
-                        </td>
-                        </tr>
+                        {
+                            products.map((item, index) => {
+                                return (
+                                    <tr className="border-b dark:border-neutral-500" key={item.id}>
+                                        <td className="whitespace-nowrap px-6 py-6 font-medium">{index+1}</td>
+                                        <td className="whitespace-nowrap px-6 py-6">{item.name}</td>
+                                        <td className="whitespace-nowrap px-6 py-6">{item.profitAmount}</td>
+                                        <td className="whitespace-nowrap px-6 py-6">{item.returnsContribution}</td>
+                                        <td className="whitespace-nowrap px-6 py-6">{item.stocksSold}</td>
+                                        <td className="whitespace-nowrap px-6 py-6">{item.profit}</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                     </table>
                 </div>

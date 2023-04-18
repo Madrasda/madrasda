@@ -14,7 +14,6 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 export default function CreateTemplate(props) {
   const [design, setDesign] = useState({});
   const [tokenExists, setTokenExists] = useState(false);
-  const [selectedColors, setSelectedColors] = useState([]);
   const [template, setTemplateImage] = useState(null);
   const [canvas, setCanvas] = useState(null);
   const [position, setPosition] = useState("");
@@ -112,14 +111,6 @@ export default function CreateTemplate(props) {
     setDetails(response.data);
   }
 
-  const handleColorSelection = (selectedColor) => {
-      if (selectedColors.includes(selectedColor)) {
-        setSelectedColors(selectedColors.filter(color => color !== selectedColor));
-      } else {
-        setSelectedColors([...selectedColors, selectedColor]);
-      }
-}
-
   const getAvailableSizes = (skuMapping) => {
         var availableSizes = []
         skuMapping.forEach(sku => {
@@ -173,11 +164,13 @@ export default function CreateTemplate(props) {
         id : design.id
       };
       data.frontDesignImage = image;
+      data.frontDesignPlacement = position;
     }else{
       data.backDesign = {
         id : design.id
       };
       data.backDesignImage = image;
+      data.backDesignPlacement = position;
     }
     const response = await axios.post(
       "http://localhost:8080/api/templates/saveTemplate",
@@ -250,7 +243,7 @@ export default function CreateTemplate(props) {
             </div>
             </div>
 
-            <div className="mt-6">Colors</div>
+            <div className="mt-6">Available Colors</div>
             <div className="flex justify-start items-center mt-3 mb-3">
                 <div className="relative">
                     <div className="flex flex-wrap space-x-1">
@@ -260,13 +253,8 @@ export default function CreateTemplate(props) {
                             return (
                                 <div className='flex flex-col justify-center items-center px-2' key={color.id}>
                                   <button
-                                    className={`border-2 border-gray rounded-full w-10 h-10 focus:outline-none ${
-                                      selectedColors.findIndex((selectedColor) => selectedColor === color.id) !== -1
-                                        ? 'border-primary border-[3px]'
-                                        : ''
-                                    }`} onClick={() => handleColorSelection(color.id)}
+                                    className={`border-2 border-gray rounded-full w-10 h-10 focus:outline-non`}
                                     style={{backgroundColor : color.hexValue}}
-                                    // onClick={() => handleColorSelection(color.id, color.color)}
                                   ></button>
                                   <p className='text-[10px] mx-auto'>{color.color}</p>
                                 </div>

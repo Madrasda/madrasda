@@ -19,6 +19,7 @@ export default function LoginForm() {
     const [showOtp, setShowOtp] = useState(false);
     const [invalidMessage, setInvalidMessage] = useState("");
     const [phone, setPhone] = useState("");
+    let isReady = router.isReady;
     const submitPhoneHandler = () => {
         const phone = phoneRef.current.value;
         if (/^[0-9]{10}$/.test(phone)) {
@@ -54,6 +55,13 @@ export default function LoginForm() {
             setInvalidMessage("Invalid OTP")
         }
     }
+    if (!isReady) {
+        return (
+            <div className='z-50 h-screen w-screen overflow-hidden'>
+                <Image src="/loader.gif" width={1920} height={1080}/>
+            </div>
+        );
+      }
 
     return (
         <>

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import axios from "axios";
+import Image from "next/image";
 import AdminLayout from "@/components/layout-admin";
 import AddVendorModal from "@/components/addvendor-modal";
 import VendorListItem from "@/components/vendorlist-item";
@@ -17,7 +18,14 @@ export default function VendorList(props) {
   const [vendors, setVendors] = useState(null);
   const [imageUrl, setImage] = useState("");
   const [vendorData, setVendor] = useState({});
-
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+        setLoading(false);
+        }, 1000);
+    }, []);
   const getVendors = async () => {
     axios.get(
       "http://localhost:8080/api/admin/getVendors"
@@ -66,6 +74,10 @@ export default function VendorList(props) {
       getVendors();
     }, []);
 
+    if(loading && isReady)
+    return (<div className='z-50 h-screen w-screen overflow-hidden'>
+    <Image src="/loader.gif" width={1920} height={1080}/>
+    </div>);
   return (
     <>
       <Head>

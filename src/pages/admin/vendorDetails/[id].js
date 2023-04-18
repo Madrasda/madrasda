@@ -7,12 +7,19 @@ import { useEffect, useState } from "react";
 import { isTokenValid } from "@/utils/JWTVerifier";
 import axios from "axios";
 
-export default function VendorDetails(props) {
+export default function VendorDetails() {
   const [tokenExists, setTokenExists] = useState(false);
   const router = useRouter();
   let isReady = router.isReady;
   const { id } = router.query;
   const [details, setDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
 
   const getVendorDetails = async () => {
     axios
@@ -38,10 +45,11 @@ export default function VendorDetails(props) {
       setTokenExists(true);
   }, []);
 
-  if (!details) {
-    return <div>Loading..</div>;
-  }
-
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
+    
     return (
         <>
             <Head>
@@ -52,6 +60,7 @@ export default function VendorDetails(props) {
             </Head>
 
             <AdminLayout>
+                { details &&
                 <main className="body-font overflow-hidden font-algeria
                                 md:ml-32">
                 <div className="px-5 my-10 mx-auto">
@@ -145,7 +154,7 @@ export default function VendorDetails(props) {
                             </div>
                 </div>}
                 </div>
-                </main>
+                </main>}
             </AdminLayout>
         </>
     )

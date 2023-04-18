@@ -3,6 +3,7 @@ import SearchVendor from "@/components/search-vendor";
 import Payments from "@/components/payments";
 import AdminLayout from "@/components/layout-admin";
 import axios from "axios";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier";
@@ -10,7 +11,14 @@ import { isTokenValid } from "@/utils/JWTVerifier";
 export default function CustomerDetails () {
   const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
-
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
@@ -18,7 +26,13 @@ export default function CustomerDetails () {
     else
       setTokenExists(true);
   }, []);
+
+
   
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
     return (
         <>
             <Head>

@@ -1,8 +1,9 @@
-import Image from "next/image"
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Mockup(props){
     return (
-        <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+        <div>
                 <span className="w-full text-gray flex justify-end">x</span>
                 <a className="block relative h-fit rounded overflow-hidden">
                     <Image src={props.image} 

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
 import Accordion from '@/components/accordian'
 import Link from 'next/link'
+import Image from 'next/image'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -14,9 +15,17 @@ export default function Feedback () {
   const router = useRouter();
   let isReady = router.isReady;
   const [inputValue, setInputValue] = useState("");
-
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(inputValue==="")
+      return; 
     try {
       const response = await fetch('http://localhost:8080/api/feedback/postFeedback', {
         method: 'POST',
@@ -27,6 +36,8 @@ export default function Feedback () {
         body: JSON.stringify({ query: inputValue,resolution: false }),
       }).then((res) => {
         console.log(res.data)
+         alert("Query Successfully Sent");
+         router.push('/vendor/unresolvedqueries');
          setInputValue('')}) ;
     } catch (error) {
       console.error(error);
@@ -40,8 +51,10 @@ export default function Feedback () {
     else
       setTokenExists(true);
   }, []);
-
-
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
     <Head>
@@ -51,7 +64,6 @@ export default function Feedback () {
         <link rel="icon" href="/logo.png" />
         <title>Madrasda | Feedback</title>
     </Head>
-    {!tokenExists && <h1> LOADING... </h1>}
       {tokenExists &&
     <VendorLayout>
     <main className='md:ml-32 overflow-hidden font-algeria'>
@@ -102,15 +114,6 @@ export default function Feedback () {
       </div>
 
       <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
-
-      <div className=" mt-14 flex justify-center ">
-        <Link href="/vendor/resolvedqueries">
-        <button type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Resolved Queries</button>
-        </Link>
-        <Link href="/vendor/unresolvedqueries">
-        <button type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Un-resolved Queries</button>
-        </Link>
-      </div>
 
     </div>
     </main>

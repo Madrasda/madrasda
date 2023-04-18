@@ -11,6 +11,14 @@ import AdminLayout from "@/components/layout-admin";
 export default function Hotsellers () {
 const [tokenExists, setTokenExists] = useState(false)
   const router = useRouter();
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
@@ -19,7 +27,10 @@ const [tokenExists, setTokenExists] = useState(false)
     else
       setTokenExists(true);
   }, []);
-    
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
     return (
         <>
             <Head>

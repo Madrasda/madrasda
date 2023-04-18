@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { css, Dropdown } from "@nextui-org/react";
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
@@ -11,6 +10,7 @@ export default function Vendorlogin() {
     const mail = useRef();
     const password = useRef();
     const router = useRouter();
+    let isReady = router.isReady;
     const vendorlogin = (e) => {
         e.preventDefault();
         axios.post('http://localhost:8080/api/auth/loginVendor',
@@ -30,7 +30,6 @@ export default function Vendorlogin() {
         const token = localStorage.getItem("token")
         if (token && isTokenValid(token))
             router.push("/vendor/dashboard");
-
     }, [])
 
     const showLogin = () => {
@@ -61,6 +60,17 @@ export default function Vendorlogin() {
         login_button_element.classList.remove("bg-primary");
 
     }
+    const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
+  if(loading && isReady)
+    return (<div className='z-50 h-screen w-screen overflow-hidden'>
+    <Image src="/loader.gif" width={1920} height={1080}/>
+    </div>);
     return (
         <>
             <Head>

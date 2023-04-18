@@ -15,7 +15,13 @@ export default function VendorProfile(props) {
   let isReady = router.isReady;
   const { id } = router.query;
   const [details, setDetails] = useState(null);
-
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   const getVendorDetails = async () => {
     const response = await axios.get(
       "http://localhost:8080/api/vendor/" , { 
@@ -41,6 +47,10 @@ useEffect(() => {
       setTokenExists(true);
   }, []);
 
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
      <Head>

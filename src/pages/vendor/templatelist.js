@@ -22,7 +22,14 @@ export default function TemplateList () {
   const [tokenExists, setTokenExists] = useState(false);
   const [mockups, setMockups] = useState([]);
   const router = useRouter();
-
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
@@ -33,10 +40,14 @@ export default function TemplateList () {
     getVendorProducts();
   }, []);
 
+  useEffect(()=>{
+    getVendorProducts();
+  }, [pageNo]);
+
   const getVendorProducts = async (id) => {
     const url = new URLSearchParams({
       pageNo: pageNo,
-      pageSize : 3
+      pageSize : 5
     });
     const response = await axios.get("http://localhost:8080/api/templates/getTemplates?" + url , {
       headers : {
@@ -45,7 +56,6 @@ export default function TemplateList () {
     });
     setProducts(response.data.content);
     setPageSize(response.data.totalPages);
-    console.log(response.data.content);
   }
 
   const getAllMockups = async () => {
@@ -72,7 +82,10 @@ export default function TemplateList () {
         });
         return availableColors;
   }
-
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
     <Head>
@@ -100,16 +113,19 @@ export default function TemplateList () {
             <p className="font-light text-gray font-sm">Add them to your merch and start selling</p>
           </div>
         </div>
-
+{/*  */}
         {   products &&
             products.map((m) => {
                 return (
-                    <Mockup
-                      image={m.frontDesignImage || m.backDesignImage}
-                      name={m.mockup.name}
-                      sizes={getAvailableSizes(m.mockup.skuMapping)}
-                      colors={getAvailableColors(m.mockup.skuMapping)}
-                    />
+                    <Link href={`/vendor/uploadproduct/${m.id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                      <Mockup
+                        key={m.id}
+                        image={m.frontDesignImage || m.backDesignImage}
+                        name={m.mockup.name}
+                        sizes={getAvailableSizes(m.mockup.skuMapping)}
+                        colors={getAvailableColors(m.mockup.skuMapping)}
+                      />
+                    </Link>
                 )
             })
         }
@@ -125,7 +141,6 @@ export default function TemplateList () {
             <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
                 () => {
                     setPage(pageNo===pageSize-1 ? pageNo : pageNo+1);
-                    getVendorProducts();
                 }
             }>
                 Next
