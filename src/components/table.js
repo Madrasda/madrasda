@@ -19,9 +19,9 @@ export default function Table() {
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
                     <table className="min-w-full text-center text-sm font-medium">
-                    <thead className="border-b text-m font-bold dark:border-neutral-500">
+                    <thead className="border-b text-m font-bold">
                         <tr>
-                        <th scope="col" className=" px-6 py-4">Rank</th>
+                        <th scope="col" className=" pr-6 py-4">Rank</th>
                         <th scope="col" className=" px-6 py-4">Product</th>
                         <th scope="col" className=" px-6 py-4">Profit/Loss</th>
                         <th scope="col" className=" px-6 py-4">Returns Contribution</th>
@@ -32,7 +32,7 @@ export default function Table() {
                     </thead>
                     <tbody>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6 font-medium">1</td>
+                        <td className="whitespace-nowrap pr-6 py-6 font-medium">1</td>
                         <td className="whitespace-nowrap px-6 py-6">Vikram Kamal T-shirt</td>
                         <td className="whitespace-nowrap px-6 py-6">15%</td>
                         <td className="whitespace-nowrap px-6 py-6">30%</td>
@@ -46,7 +46,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">2</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">2</td>
                         <td className="whitespace-nowrap px-6 py-6  ">Vikram Rolex Hoodies</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
@@ -57,7 +57,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">3</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">3</td>
                         <td className="whitespace-nowrap px-6 py-6  ">Uthama villain hoodies</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
@@ -68,7 +68,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">4</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">4</td>
                         <td className="whitespace-nowrap px-6 py-6  ">Vikram Kamal Shirts</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
@@ -79,7 +79,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">5</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">5</td>
                         <td className="whitespace-nowrap px-6 py-6  ">LCU TRIO Shorts</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
@@ -90,7 +90,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">6</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">6</td>
                         <td className="whitespace-nowrap px-6 py-6  ">LCU TRIO Shirts</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
@@ -101,7 +101,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">7</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">7</td>
                         <td className="whitespace-nowrap px-6 py-6  ">LCU V-neck T-shirt</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>
@@ -112,7 +112,7 @@ export default function Table() {
                         </td>
                         </tr>
                         <tr className="border-b dark:border-neutral-500">
-                        <td className="whitespace-nowrap px-6 py-6   font-medium">8</td>
+                        <td className="whitespace-nowrap pr-6 py-6   font-medium">8</td>
                         <td className="whitespace-nowrap px-6 py-6  ">Vikram Title Shirt</td>
                         <td className="whitespace-nowrap px-6 py-6  ">15%</td>
                         <td className="whitespace-nowrap px-6 py-6  ">30%</td>

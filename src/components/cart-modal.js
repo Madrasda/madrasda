@@ -21,9 +21,11 @@ export default function CartModal() {
 
         <div>
             <Button auto ghost onPress={handler}
-                    style={{
+                    css={{
                         background: "transparent",
                         border: "transparent",
+                        width: "auto",
+                        height: "auto"
                     }}
             >
                 <Image src="/cart.png" width={40} height={40}/>
