@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Head from "next/head";
 import ClientLayout from "@/components/layout-client";
-
+import { useState, useEffect } from "react";
+import axios from "axios";
 export default function ProductList () {
 
   const [pageData, setPageData] = useState([]);
