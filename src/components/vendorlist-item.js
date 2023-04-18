@@ -4,6 +4,7 @@ function VendorListItem(props) {
     return (
         <div>
             <div className="block relative h-[200px] rounded overflow-hidden">
+            <span className="w-full text-gray flex justify-end">x</span>
                 <Image src={props.image} 
                 alt="ecommerce" 
                 height={200}

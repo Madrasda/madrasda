@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import WithdrawForm from "./withdraw-form";
 import AddVendorForm from "./addvendor-form";
@@ -19,7 +19,7 @@ export default function ReplacementModal() {
       }}>
         View Details 
       </Button>
-      <Modal
+      <Modal css={{fontFamily: '$algeria'}}
         width="1000px"
         closeButton
         preventClose
@@ -33,7 +33,7 @@ export default function ReplacementModal() {
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
         <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">
                             <h1 className="text-2xl font-medium text-black mb-6"># Order Number</h1>
@@ -74,7 +74,7 @@ export default function ReplacementModal() {
                     </div>
         </Modal.Body>
       
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>

@@ -18,13 +18,13 @@ export default function NavClient() {
               <Dropdown>
                   <Dropdown.Button flat css={{
                     background: '#1A1A1C',
-                    fontFamily: 'Algeria Sans',
+                    fontFamily: '$algeria',
                     fontWeight: '$bold',
                     color: 'White',
                   }}
                   >SHOP</Dropdown.Button>
                   <Dropdown.Menu aria-label="Static Actions" css={{
-                    fontFamily:'Algeria Sans',
+                    fontFamily:'$sans',
                   }}>
                     <Dropdown.Item key="men">
                         <Link href="/productlist">Men</Link>
@@ -43,13 +43,13 @@ export default function NavClient() {
               <Dropdown>
                 <Dropdown.Button flat css={{
                   background: '#1A1A1C',
-                  fontFamily: 'Algeria Sans',
+                  fontFamily: '$sans',
                   fontWeight: '$bold',
                   color: 'White',
                 }}
                 >CATEGORIES</Dropdown.Button>
                 <Dropdown.Menu aria-label="Static Actions" css={{
-                  fontFamily:'Algeria Sans',
+                  fontFamily:'$sans',
                 }}>
                   <Dropdown.Item key="khkk">
                       <Link href="/productlist">House of Kaadhar</Link>

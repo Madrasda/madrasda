@@ -76,7 +76,7 @@ export default function Analytics () {
 {/* --------- LINE GRAPH END -------- */}
 
 {/* --------- PIE CHART -------- */}
-          <h2 className='-mt-[140%] text-primary font-semibold text-2xl
+          <h2 className='text-primary font-semibold text-2xl
                           md:ml-20 md:-mt-[80%]
                           lg:-mt-72'>Product Contribution</h2>
           <div className='flex justify-center items-center

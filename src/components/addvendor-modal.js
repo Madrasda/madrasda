@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import WithdrawForm from "./withdraw-form";
 import AddVendorForm from "./addvendor-form";
@@ -36,6 +36,7 @@ export default function AddVendorModal({getFormData}) {
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
+        css={{fontFamily: '$algeria'}}
       >
         <Modal.Header>
           <Text id="modal-title" size={18} style={{
@@ -45,7 +46,7 @@ export default function AddVendorModal({getFormData}) {
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
         <label for="dropzone-file" className="flex items-center justify-center w-full h-fit bg-white">
             <div className="flex flex-col items-center justify-center px-4 relative group transition-all duration-300 ease-in-out">
               {/* <h4 className="text-base">Upload</h4> */}
@@ -68,7 +69,7 @@ export default function AddVendorModal({getFormData}) {
         </label>
             <AddVendorForm onSubmit={handleSubmit} />
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>

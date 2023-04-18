@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import axios from "axios";
 import Image from "next/image";
 
@@ -41,14 +41,15 @@ export default function UploadModal({chooseDesign}) {
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
+        css={{fontFamily: '$algeria'}}
       >
-        <Modal.Header>
+        <Modal.Header css={{fontFamily: '$algeria'}}>
           <Text id="modal-title" size={18}>
             Select Design
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
         <div className="bg-[#D9D9D9] m-3 p-5 rounded-lg">
           <div className="flex justify-around items-center flex-wrap">
             {
@@ -66,7 +67,7 @@ export default function UploadModal({chooseDesign}) {
         </div>
         </Modal.Body>
       
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>

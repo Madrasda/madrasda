@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Text } from "@nextui-org/react";
+import { css, Modal, Button, Text } from "@nextui-org/react";
 import Image from "next/image";
 import WithdrawForm from "./withdraw-form";
 import AddVendorForm from "./addvendor-form";
@@ -16,7 +16,8 @@ export default function MangeOrderModal() {
       <Button auto onPress={handler} color="error"
       style={{
         background: "#A5153F",
-      }}>
+      }}
+      css={{fontFamily: '$algeria'}}>
         View Details 
       </Button>
       <Modal
@@ -26,14 +27,15 @@ export default function MangeOrderModal() {
         aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
+        css={{fontFamily: '$algeria'}}
       >
-        <Modal.Header>
+        <Modal.Header css={{fontFamily: '$algeria'}}>
           <Text id="modal-title" size={18}>
             Order Details
           </Text>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body css={{fontFamily: '$algeria'}}>
         <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">
                             <h1 className="text-2xl font-medium text-black mb-6"># Order Number</h1>
@@ -82,7 +84,7 @@ export default function MangeOrderModal() {
                     </div>
         </Modal.Body>
       
-        <Modal.Footer>
+        <Modal.Footer css={{fontFamily: '$algeria'}}>
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
