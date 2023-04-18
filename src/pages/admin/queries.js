@@ -37,7 +37,7 @@ export default function Queries () {
     useEffect(() => {
       const jwtToken = localStorage.getItem("token")
       if(jwtToken === undefined || !isTokenValid(jwtToken))
-        router.push("/admin");
+        router.push("/admin");  
       else
         setTokenExists(true);
     }, []);

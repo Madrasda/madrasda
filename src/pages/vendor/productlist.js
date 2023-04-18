@@ -34,12 +34,6 @@ export default function ProductList () {
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary 
                                md:ml-20 md:mt-10">VIEW PRODUCTS</h1>
-                
-
-                <div className="flex justify-start items-center mt-6 text-sm p-2
-                                md:ml-20 md:mr-20 md:justify-end md:mt-0">
-                    <SearchVendor />
-                </div>
                 <div className='mt-4 md:ml-20'>
                     <Table />
                 </div>

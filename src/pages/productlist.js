@@ -4,16 +4,16 @@ import ClientLayout from "@/components/layout-client";
 
 export default function ProductList () {
 
-  // const [pageData, setPageData] = useState([]);
-  // const [pageNo, setPageNo] = useState(0);
-  // const [pageSize, setPageSize] = useState(10);
-  // useEffect(() =>{
-  //   const fetchPage = async () => {
-  //     const res=await axios.get("http://localhost:8080/api/client/allProducts?pageNo=" + pageNo + "&pageSize=" + pageSize);
-  //     setPageData(res.data);
-  //   }
-  //   fetchPage();
-  // },[]);
+  const [pageData, setPageData] = useState([]);
+  const [pageNo, setPageNo] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  useEffect(() =>{
+    const fetchPage = async () => {
+      const res=await axios.get("http://localhost:8080/api/client/allProducts?pageNo=" + pageNo + "&pageSize=" + pageSize);
+      setPageData(res.data);
+    }
+    fetchPage();
+  },[]);
 
   return (
     <>
@@ -99,7 +99,7 @@ export default function ProductList () {
               <span className="mt-1 text-black pr-1">₹699</span>
               <span className="mt-1 line-through text-gray pr-1">₹899</span>
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-            </div>
+            </div>fse
           </div>
 
           <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">

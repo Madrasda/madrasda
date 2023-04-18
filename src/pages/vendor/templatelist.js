@@ -29,29 +29,23 @@ export default function TemplateList () {
       router.push("/vendor");
     else
       setTokenExists(true);
-    getVendorID();
     getAllMockups();
+    getVendorProducts();
   }, []);
-
-  const getVendorID = async () => {
-    const response = await axios.get(
-      "http://localhost:8080/api/vendor/" , { 
-        headers : {
-          Authorization : "Bearer " + localStorage.getItem('token')
-        }
-      }  
-    );
-
-    getVendorProducts(response.data.vendor.id);
-  }
 
   const getVendorProducts = async (id) => {
     const url = new URLSearchParams({
       pageNo: pageNo,
-      pageSize : 5
+      pageSize : 3
     });
-    const response = await axios.get("http://localhost:8080/api/client/getProductsByVendor/" + id);
+    const response = await axios.get("http://localhost:8080/api/templates/getTemplates?" + url , {
+      headers : {
+        Authorization : "Bearer " + localStorage.getItem('token') 
+      }
+    });
     setProducts(response.data.content);
+    setPageSize(response.data.totalPages);
+    console.log(response.data.content);
   }
 
   const getAllMockups = async () => {
@@ -59,23 +53,22 @@ export default function TemplateList () {
         "http://localhost:8080/api/mockup/getAllMockups"
     );
     setMockups(response.data.content);
-    console.log(response.data.content);
   }
 
-  const getAvailableSizes = (items) => {
+  const getAvailableSizes = (skuMapping) => {
         var availableSizes = []
-        items.forEach(item => {
-            if(!availableSizes.includes(item.size))
-                availableSizes.push(item.size);
+        skuMapping.forEach(sku => {
+            if(!availableSizes.includes(sku.size.size))
+                availableSizes.push(sku.size.size);
         });
         return availableSizes;
   }
 
-  const getAvailableColors = (items) => {
+  const getAvailableColors = (skuMapping) => {
         var availableColors = []
-        items.forEach(item => {
-            if(!availableColors.includes(item.hexValue))
-                availableColors.push(item.hexValue);
+        skuMapping.forEach(sku => {
+            if(!availableColors.includes(sku.color.hexValue))
+                availableColors.push(sku.color.hexValue);
         });
         return availableColors;
   }
@@ -111,11 +104,11 @@ export default function TemplateList () {
         {   products &&
             products.map((m) => {
                 return (
-                    <MockupModel
-                      image={m.colors[0].images[0]}
-                      name={m.name}
-                      sizes={getAvailableSizes(m.colors[0].sizes)}
-                      colors={getAvailableColors(m.colors)}
+                    <Mockup
+                      image={m.frontDesignImage || m.backDesignImage}
+                      name={m.mockup.name}
+                      sizes={getAvailableSizes(m.mockup.skuMapping)}
+                      colors={getAvailableColors(m.mockup.skuMapping)}
                     />
                 )
             })
@@ -131,7 +124,8 @@ export default function TemplateList () {
             </button>
             <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
                 () => {
-                    setPage(pageNo===pageSize-1 ? pageNo : pageNo+1)
+                    setPage(pageNo===pageSize-1 ? pageNo : pageNo+1);
+                    getVendorProducts();
                 }
             }>
                 Next

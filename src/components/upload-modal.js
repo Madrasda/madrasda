@@ -3,18 +3,18 @@ import { Modal, Button, Text } from "@nextui-org/react";
 import axios from "axios";
 import Image from "next/image";
 
-export default function UploadModal() {
+export default function UploadModal({chooseDesign}) {
   const [visible, setVisible] = React.useState(false);
   const [designs, setDesigns] = useState([]);
+  const [selected, setSelected] = useState({});
   const handler = () => setVisible(true);
   
   const closeHandler = () => {
     setVisible(false);
+    console.log(selected);
+    chooseDesign(selected);
     console.log("closed"); 
   };
-  // UwU
-  // onii-chan
-  // yamate yo nii saan
   const getDesigns = async () => {
     const response = await axios.get(
       "http://localhost:8080/api/vendor/designs" , { 
@@ -24,7 +24,6 @@ export default function UploadModal() {
       }  
     );
     setDesigns(response.data);
-    console.log(designs);
   }
 
   useEffect(() => {
@@ -56,7 +55,10 @@ export default function UploadModal() {
               designs && 
               designs.map((d) => {
                 return (
-                  <Image src={d.imgUrl} width={100} height={40} className="p-2"/>
+                  <Image src={d.imgUrl} width={100} height={40} className="p-2" onClick={() => {
+                      setSelected(d);
+                      closeHandler();
+                  }}/>
                 )
               })  
             }
