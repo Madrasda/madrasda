@@ -2,8 +2,26 @@ import ClientLayout from '@/components/layout-client';
 import OrderDetailsModal from '@/components/orderdetails-modal';
 import Head from 'next/head';
 import Image from 'next/image';
-
+import { useEffect,useState } from 'react';
+import { useRouter } from "next/router";
 export default function clientprofile() {
+
+  const router = useRouter();
+  let isReady = router.isReady;
+  const [details, setDetails] = useState(null);
+  const [designs, setDesigns] = useState(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
+
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
       <Head>

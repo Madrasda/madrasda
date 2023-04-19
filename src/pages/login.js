@@ -6,20 +6,21 @@ import Image from "next/image";
 import Otp from "@/components/Otp";
 import Login from "@/components/Login";
 import {useRouter} from "next/router";
+import { useEffect} from 'react';
 
 // import './ToggleSwitch.css'
 
-const inter = Inter({subsets: ['latin']})
-
-
 export default function LoginForm() {
+    const router = useRouter();
+    let isReady = router.isReady;
+    const [details, setDetails] = useState(null);
+    const [designs, setDesigns] = useState(null);
+    const [loading, setLoading] = useState(false);
     const phoneRef = useRef();
     const otpRef = useRef();
-    const router = useRouter();
     const [showOtp, setShowOtp] = useState(false);
     const [invalidMessage, setInvalidMessage] = useState("");
     const [phone, setPhone] = useState("");
-    let isReady = router.isReady;
     const submitPhoneHandler = () => {
         const phone = phoneRef.current.value;
         if (/^[0-9]{10}$/.test(phone)) {
@@ -55,13 +56,17 @@ export default function LoginForm() {
             setInvalidMessage("Invalid OTP")
         }
     }
-    if (!isReady) {
-        return (
-            <div className='z-50 h-screen w-screen overflow-hidden'>
-                <Image src="/loader.gif" width={1920} height={1080}/>
-            </div>
-        );
-      }
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+        setLoading(false);
+          }, 1000);
+      }, []);
+    
+    if(loading && isReady)
+    return (<div className='z-50 h-screen w-screen overflow-hidden'>
+    <Image src="/loader.gif" width={1920} height={1080}/>
+    </div>);
 
     return (
         <>

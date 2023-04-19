@@ -1,9 +1,28 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import ClientLayout from '@/components/layout-client';
+import { useRouter } from "next/router";
 import Link from 'next/link';
-
+import { useEffect,useState } from 'react';
 export default function ProductDetails (props) {
+
+
+  const router = useRouter();
+  let isReady = router.isReady;
+  const [details, setDetails] = useState(null);
+  const [designs, setDesigns] = useState(null);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
+
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
     <Head>
