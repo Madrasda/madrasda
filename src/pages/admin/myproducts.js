@@ -11,6 +11,7 @@ import { isTokenValid } from "@/utils/JWTVerifier";
 import { storage } from "../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
+import CloseConfirm from "@/components/close-confirm-modal";
 
 export default function MyProducts () {
     const router = useRouter();
@@ -42,15 +43,23 @@ export default function MyProducts () {
     const url = new URLSearchParams({
         pageNo: pageNo,
         pageSize: 5
-    })
-    axios.get(
+    })  
+    const response = await axios.get(
         "http://localhost:8080/api/mockup/getAllMockups?" + url
-    ).then((response) => {
-        setMockups(response.data.content);
-        setPageSize(response.data.totalPages);
-    }).catch((err) => {
-        console.log(err);
-    })
+    );
+    setMockups(response.data.content);
+    setPageSize(response.data.totalPages);
+  }
+
+  const deleteMockup = async (mockupId) => {
+    const response = axios.delete(
+      "http://localhost:8080/api/mockup/deleteMockup/" + mockupId, {
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }
+    );
+    router.reload();
   }
 
   const getAllColorsAndSizes = async () => {
@@ -140,7 +149,6 @@ export default function MyProducts () {
             <div className="flex flex-wrap justify-center">
             
                 <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
-                    <Link href="#" >
                     <div className="flex flex-col items-center justify-center cursor-pointer">
                         <AdminUploadModal
                           colors={colors}
@@ -150,20 +158,25 @@ export default function MyProducts () {
                         <p className="font-semibold font-base">Upload Mockup</p>
                         <p className="font-light text-gray font-sm">Add them to your product list for vendors</p>
                     </div>
-                    </Link>
                 </div>
 
                 {   mockups &&
 
                     mockups.map((m) => {
                         return (
-                            <Mockup 
+                            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                              <span className="flex justify-end">
+                                <CloseConfirm mockup={true} delete={(e) => {if(e) deleteMockup(m.id);}}/>
+                              </span>
+                              <Mockup 
+                                key={m.id}
                                 image={m.frontImage}
                                 model={m.model}
                                 name={m.name}
                                 sizes={getAvailableSizes(m.skuMapping)}
                                 colors={getAvailableColors(m.skuMapping)}
-                            />
+                              />
+                            </div>
                         )
                     })
                 }

@@ -72,7 +72,7 @@ export default function ProductList () {
                 <div className='mt-4 md:ml-20'>
                     {
                       products && 
-                      <ProductTable products={products} />}
+                      <ProductTable products={products} toggle={(e) => {if(e) getProductDetails()}}/>}
                 </div>
                 </div>
                 </main>

@@ -67,15 +67,6 @@ export default function NavAdmin() {
                     </div>
                 </Link>
 
-                <Link href="/admin/replacements">
-                    <div className={currentRoute === '/admin/replacements' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
-                        <div className="flex justify-start items-center py-4">
-                            <Image src="/product-icon.png" className="w-auto h-auto" width={30} height={30}/>
-                            <h3 className="ml-2">Replacements</h3>
-                        </div>
-                    </div>
-                </Link>
-
                 <Link href="/admin/payments">
                     <div className={currentRoute === '/admin/payments' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                         <div className="flex justify-start items-center py-4">
@@ -99,15 +90,6 @@ export default function NavAdmin() {
                         <div className="flex justify-start items-center py-4">
                             <Image src="/hot-seller.png" className="w-auto h-auto" width={30} height={30}/>
                             <h3 className="ml-2">Hot Sellers</h3>
-                        </div>
-                    </div>
-                </Link>
-
-                <Link href="/admin/manageorder">
-                    <div className={currentRoute === '/admin/manageorder' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
-                        <div className="flex justify-start items-center py-4">
-                            <Image src="/cart.png" className="w-auto h-auto" width={30} height={30}/>
-                            <h3 className="ml-2">Manage Order</h3>
                         </div>
                     </div>
                 </Link>

@@ -11,6 +11,7 @@ import { storage } from "../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { isTokenValid } from "@/utils/JWTVerifier";
+import CloseConfirm from "@/components/close-confirm-modal";
 
 export default function VendorList(props) {
   const router = useRouter();
@@ -64,6 +65,17 @@ export default function VendorList(props) {
         })
   };
 
+  const deleteVendor = async (vendorId) => {
+    const response = await axios.delete(
+      "http://localhost:8080/api/admin/deleteVendor/" + vendorId , {
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }
+    );
+    getVendors();
+  }
+
 
   useEffect(() => {
       const jwtToken = localStorage.getItem("token")
@@ -112,13 +124,18 @@ export default function VendorList(props) {
 
               {vendors &&
                 vendors.map((vendor) => (
-                  <Link href={`/admin/vendorDetails/${vendor.id}`} className="lg:w-1/6 md:w-1/2 p-4 pb-0 min-h-full h-72 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                    <VendorListItem
+                  <div className="lg:w-1/6 md:w-1/2 p-4 pb-0 min-h-full h-72 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                    <span className="w-full ml-5 flex justify-end">
+                      <CloseConfirm vendor={true} delete={(e) => {if(e) deleteVendor(vendor.id)}} />
+                    </span>
+                    <Link href={`/admin/vendorDetails/${vendor.id}`}>
+                      <VendorListItem
                       key={vendor.id}
                       vendorName={vendor.name}
                       image={vendor.imgUrl}
                     />
-                  </Link>
+                    </Link>
+                  </div>
                 ))}
             </div>
           </div>

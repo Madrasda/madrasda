@@ -2,7 +2,7 @@ import { css, Modal, Button} from "@nextui-org/react";
 import Image from "next/image";
 import { useState } from "react";
 
-export default function CloseConfirm () {
+export default function CloseConfirm (props) {
     const [visible, setVisible] = useState(false);
     const handler = () => setVisible(true);
   
@@ -10,6 +10,12 @@ export default function CloseConfirm () {
       setVisible(false);
       console.log("closed");
     };
+
+    const deleteTrue = () => {
+        closeHandler();
+        props.delete(true);
+    }
+
     return(
         <>
         <Button auto ghost onPress={handler}
@@ -36,10 +42,12 @@ export default function CloseConfirm () {
                     Confirm
                 </Modal.Header>
                 <Modal.Body css={{fontFamily: '$algeria'}}>
-                    <h1 className={"text-center pb-10"}>Confirmation message</h1>
+                    {props.template && <h1 className={"text-center pb-10"}>Are you sure you want to delete this template?</h1>}
+                    {props.vendor && <h1 className={"text-center pb-10"}>Are you sure you want to delete this vendor?</h1>}
+                    {props.mockup && <h1 className={"text-center pb-10"}>Are you sure you want to delete this mockup?</h1>}
                 </Modal.Body>
                 <Modal.Footer css={{fontFamily: '$algeria'}}>
-                    <Button auto flat color="success" onPress={closeHandler}>
+                    <Button auto flat color="success" onPress={deleteTrue}>
                         Yes
                     </Button>
                     <Button auto flat color="error" onPress={closeHandler}>

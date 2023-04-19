@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier"
 import MockupModel from "@/components/mockupmodel";
+import CloseConfirm from "@/components/close-confirm-modal";
 
 export default function TemplateList () {
   const [products, setProducts] = useState(null);
@@ -34,17 +35,18 @@ export default function TemplateList () {
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
-    else
+    else{
       setTokenExists(true);
-    getAllMockups();
-    getVendorProducts();
+      getAllMockups();
+      getVendorProducts();
+    }
   }, []);
 
   useEffect(()=>{
     getVendorProducts();
   }, [pageNo]);
 
-  const getVendorProducts = async (id) => {
+  const getVendorProducts = async () => {
     const url = new URLSearchParams({
       pageNo: pageNo,
       pageSize : 5
@@ -82,10 +84,25 @@ export default function TemplateList () {
         });
         return availableColors;
   }
+
+  const deleteTemplate = async (tempId) => {
+      const response = await axios.delete(
+        'http://localhost:8080/api/templates/deleteTemplate/' + tempId, 
+        {
+          headers : {
+            Authorization : 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+      );
+      getVendorProducts();
+      console.log(response.data);
+  }
+
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
   <Image src="/loader.gif" width={1920} height={1080}/>
   </div>);
+  
   return (
     <>
     <Head>
@@ -117,15 +134,20 @@ export default function TemplateList () {
         {   products &&
             products.map((m) => {
                 return (
-                    <Link href={`/vendor/uploadproduct/${m.id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                      <Mockup
+                    <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                      <span className="w-full ml-5 flex justify-end">
+                        <CloseConfirm template={true} delete={(e) => {if(e) deleteTemplate(m.id)}} />
+                      </span>
+                      <Link href={`/vendor/uploadproduct/${m.id}`}>
+                        <Mockup
                         key={m.id}
                         image={m.frontDesignImage || m.backDesignImage}
                         name={m.mockup.name}
                         sizes={getAvailableSizes(m.mockup.skuMapping)}
                         colors={getAvailableColors(m.mockup.skuMapping)}
                       />
-                    </Link>
+                      </Link>
+                    </div>
                 )
             })
         }

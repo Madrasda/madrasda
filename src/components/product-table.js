@@ -1,8 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
+import axios from 'axios'
+import { headers } from 'next.config'
 
-export default function ProductTable({products}) {
+export default function ProductTable({products, toggle}) {
 
   const getAvailableColors = (colors) => {
     var Available = [];
@@ -11,6 +13,19 @@ export default function ProductTable({products}) {
             Available.push(item.hexValue);
     })
     return Available;
+  }
+
+  const toggetPublishStatus = async (id) => {
+    const response = await fetch(
+        "http://localhost:8080/api/product/togglePublishState/" + id,
+        {
+            method : 'PUT',
+            headers : {
+                'Authorization' : "Bearer " + localStorage.getItem('token')
+            }
+        }
+    );
+    toggle(true);
   }
     
   const [sale, setSale] = useState(false);
@@ -47,8 +62,8 @@ export default function ProductTable({products}) {
                                             </div>
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-6 flex justify-center">
-                                        <button onClick={() => setSale(!sale)}>
-                                        <Image src={item.publishStatus ? "/green-tick.png" : "/red-cross.png"} alt="publish-status" width={20} height={20} />
+                                        <button onClick={() => toggetPublishStatus(item.id)}>
+                                            <Image src={item.publishStatus ? "/green-tick.png" : "/red-cross.png"} alt="publish-status" width={20} height={20} />
                                         </button>
                                         </td>
                                     </tr>

@@ -8,6 +8,9 @@ import { useEffect,useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier"
 import { resolve } from 'styled-jsx/css'
+import { storage } from "../../.././firebaseConfig";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 export default function ViewProd () {
     
   const [tokenExists, setTokenExists] = useState(false);
@@ -33,6 +36,78 @@ export default function ViewProd () {
   const [selectedColors, setSelectedColors] = useState([]);
   const [template, setTemplate] = useState(null);
 
+  const uploadProduct = async () => {
+    if(!template && productImages.length === 0)
+      return;
+    var colorId = [];
+    if(selectedColors){
+      selectedColors.forEach((color) => {
+        colorId.push(color.id);
+      })
+    }
+    const data = {
+      name : name,
+      audience : audience,
+      description : desc,
+      basePrice : Number(basePrice),
+      shipping : Number(shipping),
+      discount : Number(discount),
+      total : Number(total),
+      profit : Number(profit),
+      tax : Number(tax),
+      publishStatus : publishStatus,
+      vendor : {
+        id : template.vendorId
+      },
+      mockupId : template.mockup.id,
+      colors : colorId
+    };
+    var uploadedImages = [];
+    productImages.map(async (image) => {
+        const url = await uploadBlob(image.imgUrl);
+        uploadedImages.push({color: image.color, imgUrl : url});
+    })
+    data.productImages = uploadedImages;
+    if(template.frontDesignPlacement){
+      data.frontDesignPlacement = template.frontDesignPlacement;
+      data.frontDesignUrl = template.frontDesignImage;
+    }else{
+      data.backDesignPlacement = template.backDesignPlacement;
+      data.backDesignUrl = template.backDesignImage;
+    };
+    console.log(data);
+    const response = await axios.post(
+      "http://localhost:8080/api/product/createProduct", data , {
+        headers : {
+          Authorization : "Bearer " + localStorage.getItem('token')
+        }
+      }
+    );
+    console.log(response.data);
+    const tempResponse = await axios.delete(
+        'http://localhost:8080/api/templates/deleteTemplate/' + id, 
+        {
+          headers : {
+            Authorization : 'Bearer ' + localStorage.getItem('token')
+          }
+        }
+    );
+    router.push('/vendor/templatelist');
+  }
+
+  const uploadBlob = async (blobUrl) => {
+    const response = await fetch(blobUrl);
+    const blob = await response.blob(); 
+    const imageRef = ref(storage, `products/${new Date().getTime()}`);
+      const metadata = {
+      contentType: 'image/jpeg'
+    };
+    await uploadBytes(imageRef, blob, metadata);
+    const url = await getDownloadURL(imageRef);
+    console.log(url);
+    return url;
+  }
+ 
   useEffect(() => {
     setProfit(0);
     setLoading(true);
@@ -47,7 +122,7 @@ export default function ViewProd () {
   }, [isReady]);
 
   useEffect(() => {
-    setProfit(total - basePrice - (discount*0.01*basePrice) - shipping);
+    setProfit(total - basePrice - (discount*0.01*total) - shipping);
   }, [basePrice, shipping, total, discount])
 
   useEffect(() => {
@@ -58,6 +133,22 @@ export default function ViewProd () {
         setTokenExists(true);
     }
   }, []);
+
+  const getDataUrlFromFile = (file) => {
+    const url = URL.createObjectURL(file);
+    return url;
+  }
+
+  useEffect(() => {
+    if(productImages.length > 0){
+      console.log(productImages);
+    }
+  }, [productImages]);
+
+  const handleRemove = (image) => {
+    if(image)
+    setProductImages(productImages.filter(item => item.imgUrl != image.imgUrl));
+  }
 
   const getTemplateDetails = async () => {
     const response = await axios.get(
@@ -101,12 +192,6 @@ export default function ViewProd () {
         });
         return availableColors;
   }
-
-  useEffect(() => {
-    if(selectedColors !== null){
-        console.log(selectedColors);
-    }
-  }, [selectedColors]);
 
   
   if(loading && isReady && template)
@@ -192,7 +277,7 @@ export default function ViewProd () {
               </div>
             </div>
 
-            <h1>Product Images</h1>
+            <h1>Select Your Color Wise Product Images</h1>
             <div className="items-center mt-3 mb-3">
               <div className="flex flex-wrap">
                 {
@@ -217,21 +302,21 @@ export default function ViewProd () {
             </div>
 
             <div>
-                <div className="ml-2">
+                { currenId &&
+                  <div className="ml-2">
                     <label for="dropzone-file" className="flex flex-col items-center justify-center w-full px-3 h-auto border-2 border-[#D9D9D9] border-dashed rounded-lg cursor-pointer bg-white">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <svg aria-hidden="true" className="w-10 h-10 mb-3 text-black-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                             <p className="mb-2 text-sm text-black"><span className="font-semibold">Click to upload</span></p>
                         </div>
-                        <input id="dropzone-file" type="file" accept='image/jpeg' className="hidden" onChange={(e) => setProductImages(
-                            [...productImages, 
-                            {
-                                imgUrl : e.target.files[0],
-                                color : currenId
-                            }]
-                        )} />
+                        <input id="dropzone-file" type="file" accept='image/jpeg' className="hidden" onChange={(e) => 
+                          {
+                            if(e.target.files[0] !== null)
+                            setProductImages([...productImages, {color:currenId,imgUrl:getDataUrlFromFile(e.target.files[0])}]);
+                          }
+                        } />
                     </label>
-                </div>
+                </div>}
             </div>
 
             <div className="mt-6">Available Sizes</div>
@@ -247,8 +332,23 @@ export default function ViewProd () {
                     })
                 }
             </div>
-
-            
+            {/* Image Preview */}
+            { productImages && currenId &&
+              <div className='space-x-3 justify-center flex flex-wrap'>
+                {
+                  productImages.map((image) => {
+                      if(image.color === currenId){
+                        return(
+                          <div>
+                            <span className='cursor-pointer' onClick={() => handleRemove(image)}>x</span>
+                            <img className='h-28 w-h-28' src={image.imgUrl} />
+                          </div>
+                        )
+                      }
+                  })
+                }
+              </div>
+            }            
         </div>
         <hr className="h-px my-6 bg-black border-1 dark:bg-primary
                        md:ml-20 
@@ -261,32 +361,32 @@ export default function ViewProd () {
                             lg:mr-96">
                 <div>
                     <label for="first_name" className="block mb-2 text-lg font-medium text-black">Base Price (₹)</label>
-                    <input type="text" className="bg-black-50 border-b border-gray text-black text-sm block w-full p-2.5" placeholder="₹" required onChange={(e) => setBasePrice(e.target.value)} >
+                    <input type="number" className="bg-black-50 border-b border-gray text-black text-sm block w-full p-2.5" placeholder="₹" required onChange={(e) => setBasePrice(e.target.value)} >
                     </input>
                 </div>
                 <div>
                     <label for="last_name" className="block mb-2 text-lg font-medium text-black">Shipping Charges (₹)</label>
-                    <input type="text" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5" placeholder="₹" required onChange={(e) => setShipping(e.target.value)} >
+                    <input type="number" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5" placeholder="₹" required onChange={(e) => setShipping(e.target.value)} >
                     </input>
                 </div> 
                 <div>
                     <label for="company" className="block mb-2 text-lg font-medium text-black">Maximum retail Price (₹)</label>
-                    <input type="text" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5 " placeholder="₹" required onChange={(e) => setTotal(e.target.value)}>
+                    <input type="number" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5 " placeholder="₹" required onChange={(e) => setTotal(e.target.value)}>
                     </input>
                 </div>
                 <div>
                     <label for="company" className="block mb-2 text-lg font-medium text-black">Discount/ Offer %</label>
-                    <input type="text" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5 " placeholder="%" required onChange={(e) => setDiscount(e.target.value)}>
+                    <input type="number" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5 " placeholder="%" required onChange={(e) => setDiscount(e.target.value)}>
                     </input>
                 </div>
                 <div>
                     <label for="company" className="block mb-2 text-lg font-medium text-black">Profit Earned (₹)</label>
-                    <input type="text" class="bg-white border border-gray text-gray text-sm rounded-lg block w-full p-2.5 cursor-not-allowed" value={profit} disabled readonly/>
+                    <input type="number" class="bg-white border border-gray text-gray text-sm rounded-lg block w-full p-2.5 cursor-not-allowed" value={profit} disabled readonly/>
                 </div>
                 </div>
         </div>
         <div className=" mt-14 flex justify-center ">
-        <button type="button" class="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
+        <button type="button" onClick={() => uploadProduct()} className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
         </div>
     </div>
     </main>
