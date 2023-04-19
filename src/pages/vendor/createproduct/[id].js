@@ -204,7 +204,7 @@ export default function CreateTemplate(props) {
     <section className="body-font font-algeria overflow-hidden
                         md:ml-56
                         lg:ml-36">
-    <div className="px-5 my-10 mx-auto">
+    <div className="mt-20 px-5 md:my-10 mx-auto">
     <h1 className="text-3xl text-primary lg:ml-20 md:mt-10">CREATE TEMPLATE</h1>
       <div className="px-5 py-10 mx-auto flex justify-center">
         <div className="lg:w-5/6 flex justify-start flex-col

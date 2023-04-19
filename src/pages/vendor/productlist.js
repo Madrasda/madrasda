@@ -66,7 +66,7 @@ export default function ProductList () {
             <VendorLayout>
                 <main className="body-font font-algeria overflow-hidden
                                  md:ml-36">
-                <div className="px-5 my-10 mx-auto">
+                <div className="mt-20 px-5 md:my-10 mx-auto">
                 <h1 className="text-3xl text-primary 
                                md:ml-20 md:mt-10">VIEW PRODUCTS</h1>
                 <div className='mt-4 md:ml-20'>

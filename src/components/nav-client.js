@@ -43,7 +43,7 @@ export default function NavClient() {
                   </Dropdown.Menu>
                 </Dropdown>
 
-              <Link href="/productlist">BESTSELLERS</Link>
+              <Link href="/productlist" className="font-bold">BESTSELLERS</Link>
 
               <Dropdown>
                 <Dropdown.Button flat css={{
@@ -98,7 +98,7 @@ export default function NavClient() {
                   <Dropdown.Button flat css={{
                     background: '#1A1A1C',
                     fontFamily: '$algeria',
-                    fontWeight: '$bold',
+                    fontWeight: '700',
                     color: 'White',
                   }}
                   >SHOP</Dropdown.Button>
@@ -117,13 +117,13 @@ export default function NavClient() {
                   </Dropdown.Menu>
                 </Dropdown>
 
-              <Link href="/productlist">BESTSELLERS</Link>
+              <Link href="/productlist" className="font-semibold">BESTSELLERS</Link>
 
               <Dropdown>
                 <Dropdown.Button flat css={{
                   background: '#1A1A1C',
                   fontFamily: '$sans',
-                  fontWeight: '$bold',
+                  fontWeight: '700',
                   color: 'White',
                 }}
                 >CATEGORIES</Dropdown.Button>
