@@ -24,6 +24,7 @@ module.exports = {
     },
     fontFamily: {
       algeria: ['Algeria Sans', 'sans-serif'],
+      algeria: ['Montserrat', 'sans-serif'],
       // serif: ['Merriweather', 'serif'],
     },
   },

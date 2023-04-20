@@ -9,8 +9,11 @@ import { isTokenValid } from "@/utils/JWTVerifier";
 import { useRouter } from "next/router";
 
 export default function CustomerDetails () {
+
     const router = useRouter();
     const [tokenExists, setTokenExists] = useState(false);
+    
+
     let isReady = router.isReady;
     const [loading, setLoading] = useState(false);
     useEffect(() => {

@@ -24,12 +24,12 @@ export default function NavClient() {
                   <Dropdown.Button flat css={{
                     background: '#1A1A1C',
                     fontFamily: '$algeria',
-                    fontWeight: '$bold',
+                    fontWeight: '700',
                     color: 'White',
                   }}
-                  >SHOP</Dropdown.Button>
+                  >Shop</Dropdown.Button>
                   <Dropdown.Menu aria-label="Static Actions" css={{
-                    fontFamily:'$sans',
+                    fontFamily:'$algeria',
                   }}>
                     <Dropdown.Item key="men">
                         <Link href="/productlist">Men</Link>
@@ -43,18 +43,18 @@ export default function NavClient() {
                   </Dropdown.Menu>
                 </Dropdown>
 
-              <Link href="/productlist">BESTSELLERS</Link>
+              <Link href="/productlist" className="font-bold">Bestsellers</Link>
 
               <Dropdown>
                 <Dropdown.Button flat css={{
                   background: '#1A1A1C',
-                  fontFamily: '$sans',
-                  fontWeight: '$bold',
+                  fontFamily: '$algeria',
+                  fontWeight: '700',
                   color: 'White',
                 }}
-                >CATEGORIES</Dropdown.Button>
+                >Categories</Dropdown.Button>
                 <Dropdown.Menu aria-label="Static Actions" css={{
-                  fontFamily:'$sans',
+                  fontFamily:'$algeria',
                 }}>
                   <Dropdown.Item key="khkk">
                       <Link href="/productlist">House of Kaadhar</Link>
@@ -98,12 +98,12 @@ export default function NavClient() {
                   <Dropdown.Button flat css={{
                     background: '#1A1A1C',
                     fontFamily: '$algeria',
-                    fontWeight: '$bold',
+                    fontWeight: '800',
                     color: 'White',
                   }}
-                  >SHOP</Dropdown.Button>
+                  >Shop</Dropdown.Button>
                   <Dropdown.Menu aria-label="Static Actions" css={{
-                    fontFamily:'$sans',
+                    fontFamily:'$algeria',
                   }}>
                     <Dropdown.Item key="men">
                         <Link href="/productlist">Men</Link>
@@ -117,18 +117,18 @@ export default function NavClient() {
                   </Dropdown.Menu>
                 </Dropdown>
 
-              <Link href="/productlist">BESTSELLERS</Link>
+              <Link href="/productlist" className="font-bold">Bestsellers</Link>
 
               <Dropdown>
                 <Dropdown.Button flat css={{
                   background: '#1A1A1C',
-                  fontFamily: '$sans',
-                  fontWeight: '$bold',
+                  fontFamily: '$algeria',
+                  fontWeight: '800',
                   color: 'White',
                 }}
-                >CATEGORIES</Dropdown.Button>
+                >Categories</Dropdown.Button>
                 <Dropdown.Menu aria-label="Static Actions" css={{
-                  fontFamily:'$sans',
+                  fontFamily:'$algeria',
                 }}>
                   <Dropdown.Item key="khkk">
                       <Link href="/productlist">House of Kaadhar</Link>

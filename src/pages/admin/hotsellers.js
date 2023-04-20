@@ -9,10 +9,24 @@ import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 
 export default function Hotsellers () {
-const [tokenExists, setTokenExists] = useState(false)
+const [tokenExists, setTokenExists] = useState(false);
+const [products, setProducts] = useState([]);
+
   const router = useRouter();
   let isReady = router.isReady;
   const [loading, setLoading] = useState(false);
+
+  const getAllProducts = async () => {
+    const response = await axios.get(
+        "http://localhost:8080/api/product/hotsellers", {
+            headers : {
+                Authorization : "Bearer " + localStorage.getItem('token')
+            }
+        }
+    );
+    setProducts(response.data.content);
+  }
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -24,9 +38,13 @@ const [tokenExists, setTokenExists] = useState(false)
     const jwtToken = localStorage.getItem("token")
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
-    else
-      setTokenExists(true);
+    else{
+        setTokenExists(true);
+        getAllProducts();
+    }
   }, []);
+
+
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
   <Image src="/loader.gif" width={1920} height={1080}/>
@@ -45,103 +63,36 @@ const [tokenExists, setTokenExists] = useState(false)
                                 md:ml-32">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary md:ml-20 md:mt-10">HOTSELLERS</h1>
-               
-                <div className="flex flex-row justify-center items-center mt-4 md:justify-end md:mt-0 md:ml-20 md:mr-20 text-sm p-2">
-                    <SearchVendor />
-                </div>
 
                 <div className='mt-4 md:ml-20'>
                 <section className="text-gray-600 body-font bg-[url('/templates-bg.png')] bg-no-repeat bg-cover">
-                    <div className="px-5 py-10 lg:mx-32">
+                    <div className="px-5 py-52 lg:mx-32">
                     <div className="flex flex-wrap lg:flex-nowrap justify-center">
-
-                        <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="#">
-                            <div className="block relative h-48 rounded overflow-hidden">
-                                <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                            </div>
-                            <div className="mt-4">
-                                <div className='flex flex-row items-center w-full'>
-                                    <div className='flex justify-start'>
-                                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+                       {
+                        !products &&  
+                        <h1 className="text-5xl font-black text-center text-white">
+                            No products to show!
+                        </h1>
+                       }
+                       {    products &&
+                            products.map((product) => {
+                                return (
+                                     <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+                                        <div className="block relative h-48 rounded overflow-hidden">
+                                            <Image src={product.colors[0].images[0]} alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
+                                        </div>
+                                        <div className="mt-4">
+                                            <h2 className="title-font text-base font-medium">{product.name}</h2>
+                                            <span className="mt-1 text-black text-lg pr-1">
+                                                ₹{product.total -(product.total*product.discount*0.01)}
+                                            </span>
+                                            <span className="mt-1 line-through text-gray pr-1">₹{product.total}</span>
+                                            <span className="title-font text-xs font-medium text-[#088240]">{product.discount}% OFF</span>
+                                        </div>
                                     </div>
-                                    <div className='flex justify-end w-full'>
-                                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                                    </div>
-                                </div>
-                                <h2 className="title-font text-base font-medium">Product Name</h2>
-                                <span className="mt-1 text-black text-lg pr-1">₹699</span>
-                                <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                            </div>
-                        </Link>
-                        </div>
-
-                        <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="#">
-                            <div className="block relative h-48 rounded overflow-hidden">
-                                <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                            </div>
-                            <div className="mt-4">
-                                <div className='flex flex-row items-center w-full'>
-                                    <div className='flex justify-start'>
-                                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                    </div>
-                                    <div className='flex justify-end w-full'>
-                                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                                    </div>
-                                </div>
-                                <h2 className="title-font text-base font-medium">Product Name</h2>
-                                <span className="mt-1 text-black pr-1">₹699</span>
-                                <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                            </div>
-                        </Link>
-                        </div>
-
-                        <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="#">
-                            <div className="block relative h-48 rounded overflow-hidden">
-                                <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                            </div>
-                            <div className="mt-4">
-                                <div className='flex flex-row items-center w-full'>
-                                    <div className='flex justify-start'>
-                                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                    </div>
-                                    <div className='flex justify-end w-full'>
-                                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                                    </div>
-                                </div>
-                                <h2 className="title-font text-base font-medium">Product Name</h2>
-                                <span className="mt-1 text-black pr-1">₹699</span>
-                                <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                            </div>
-                        </Link>
-                        </div>
-
-                        <div className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                        <Link href="#">
-                            <div className="block relative h-48 rounded overflow-hidden">
-                                <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                            </div>
-                            <div className="mt-4">
-                                <div className='flex flex-row items-center w-full'>
-                                    <div className='flex justify-start'>
-                                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                    </div>
-                                    <div className='flex justify-end w-full'>
-                                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                                    </div>
-                                </div>
-                                <h2 className="title-font text-base font-medium">Product name</h2>
-                                <span className="mt-1 text-black pr-1">₹699</span>
-                                <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                            </div>
-                        </Link>
-                        </div>
+                                )
+                            })
+                       }
                     </div>
                     </div>
                 </section>

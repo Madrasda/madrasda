@@ -37,7 +37,6 @@ export default function Feedback () {
       }).then((res) => {
         console.log(res.data)
          alert("Query Successfully Sent");
-         router.push('/vendor/unresolvedqueries');
          setInputValue('')}) ;
     } catch (error) {
       console.error(error);

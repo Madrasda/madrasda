@@ -81,9 +81,10 @@ export default function VendorList(props) {
       const jwtToken = localStorage.getItem("token")
       if(jwtToken === undefined || !isTokenValid(jwtToken))
         router.push("/admin");
-      else
+      else{
         setTokenExists(true);
-      getVendors();
+        getVendors();
+      }
     }, []);
 
     if(loading && isReady)

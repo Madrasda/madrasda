@@ -28,7 +28,7 @@ export default function ProductList () {
     <ClientLayout>
     <section className="body-font font-algeria">
       <div className="px-5 py-24 mx-auto">
-      <h1 className="text-3xl text-primary md:ml-10 md:mt-4">PRODUCT LIST</h1>
+      <h1 className="text-3xl text-primary md:ml-10 md:mt-4">Product List</h1>
         <div className="flex flex-wrap justify-center">
           
           <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
@@ -44,9 +44,9 @@ export default function ProductList () {
                 <div className='flex justify-start'>
                   <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
                 </div>
-                <div className='flex justify-end w-full'>
+                {/* <div className='flex justify-end w-full'>
                   <Image src="/wishlist.png" width={25} height={25} className=''/>
-                </div>
+                </div> */}
             </div>
               <h2 className="title-font text-lg font-medium">Product Name</h2>
               <span className="mt-1 text-black pr-1">₹699</span>
@@ -55,7 +55,7 @@ export default function ProductList () {
             </div>
           </div>
           
-          <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+          {/* <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
             <a className="block relative h-fit rounded overflow-hidden">
               <Image src="/v-tee.png" 
               alt="ecommerce" 
@@ -311,7 +311,7 @@ export default function ProductList () {
               <span className="mt-1 line-through text-gray pr-1">₹899</span>
               <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
             </div>
-          </div>
+          </div> */}
         </div>
         <br/>
         <div className="flex justify-center mt-8"> 

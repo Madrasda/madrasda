@@ -46,10 +46,6 @@ export default function CustomerDetails () {
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary 
                                md:ml-20 md:mt-10">PAYMENTS</h1>
-               
-                <div className="flex flex-row justify-start items-center mt-10 md:ml-20 md:mr-20 text-sm p-2">
-                    <SearchVendor />
-                </div>
                 <div className='flex mt-4 md:ml-20 lg:mr-20'>
                     <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
                         <div className=" ml-8 mb-2 mr-20 mt-4 ">
@@ -77,35 +73,6 @@ export default function CustomerDetails () {
                         </div>
                     </div>
                 </div>
-
-                <div className='flex mt-4 md:ml-20 lg:mr-20'>
-                    <div className="container mt-8 bg-[#D9D9D9] rounded-lg w-full">
-                        <div className=" ml-8 mb-2 mr-20 mt-4 ">
-                            <h1 className="text-2xl font-medium text-black mb-6">2.Pughalesh L - LEO tshirt</h1>
-                            <div className="flex mb-2">
-                                <h2 className="text-lg mb-2 font-medium w-2/6 md:w-96 text-black flex items-center">Base Price</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b border-black text-black text-sm w-4/6 md:w-96 p-2.5" placeholder="₹" required/>
-                            </div>
-                            <div className="flex mb-2">
-                                <h2 for="last_name" className="mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center">Shipping Charges</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b  border-black  text-black text-sm w-4/6 md:w-96 p-2.5" placeholder="₹" required/>
-                            </div>
-                            <div className="flex mb-2">
-                                <h2 for="company" className="mb-2 text-lg w-2/6 md:w-96 font-medium text-black flex items-center">GST</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b  border-black text-black text-sm w-4/6 md:w-96 p-2.5 " placeholder="%" required/>
-                            </div>
-                            <div className="flex mb-2 mt-4">
-                                <h2 for="company" className="mb-2 text-lg w-2/6 md:w-96 font-medium text-black flex items-center">Maximum Retail Price</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b  border-black text-black text-sm w-4/6 md:w-96 p-2.5 " placeholder="₹" required/>
-                            </div>
-                            <div className="flex mb-6 mt-4">
-                                <h2 for="company" className="mb-2 text-lg w-2/6 md:w-96 font-medium text-black flex items-center">Discount/Offer</h2>
-                                <input type="text" className="bg-[#D9D9D9] border-b  border-black  text-black text-sm w-4/6 md:w-96 p-2.5 " placeholder="%" required/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 </div>
                 </main>
             </AdminLayout>

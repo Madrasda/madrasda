@@ -37,53 +37,60 @@ export default function ViewProd () {
   const [template, setTemplate] = useState(null);
 
   const uploadProduct = async () => {
-    if(!template && productImages.length === 0)
-      return;
-    var colorId = [];
-    if(selectedColors){
-      selectedColors.forEach((color) => {
-        colorId.push(color.id);
-      })
-    }
-    const data = {
-      name : name,
-      audience : audience,
-      description : desc,
-      basePrice : Number(basePrice),
-      shipping : Number(shipping),
-      discount : Number(discount),
-      total : Number(total),
-      profit : Number(profit),
-      tax : Number(tax),
-      publishStatus : publishStatus,
-      vendor : {
-        id : template.vendorId
-      },
-      mockupId : template.mockup.id,
-      colors : colorId
-    };
-    var uploadedImages = [];
-    productImages.map(async (image) => {
-        const url = await uploadBlob(image.imgUrl);
-        uploadedImages.push({color: image.color, imgUrl : url});
-    })
-    data.productImages = uploadedImages;
-    if(template.frontDesignPlacement){
-      data.frontDesignPlacement = template.frontDesignPlacement;
-      data.frontDesignUrl = template.frontDesignImage;
-    }else{
-      data.backDesignPlacement = template.backDesignPlacement;
-      data.backDesignUrl = template.backDesignImage;
-    };
-    console.log(data);
+  if (!template && productImages.length === 0) return;
+
+  var colorId = [];
+  if (selectedColors) {
+    selectedColors.forEach((color) => {
+      colorId.push(color.id);
+    });
+  }
+
+  const data = {
+    name: name,
+    audience: audience,
+    description: desc,
+    basePrice: Number(basePrice),
+    shipping: Number(shipping),
+    discount: Number(discount),
+    total: Number(total),
+    profit: Number(profit),
+    tax: Number(tax),
+    publishStatus: publishStatus,
+    vendor: {
+      id: template.vendorId,
+    },
+    mockupId: template.mockup.id,
+    colors: colorId,
+  };
+
+  const uploadPromises = productImages.map(async (image) => {
+    const url = await uploadBlob(image.imgUrl);
+    return { color: image.color, imageUrl: url };
+  });
+  const uploadedImages = await Promise.all(uploadPromises);
+  data.productImages = uploadedImages
+
+  if (template.frontDesignPlacement) {
+    data.frontDesignPlacement = JSON.stringify(template.frontDesignPlacement);
+    data.frontDesignUrl = template.frontDesignImage;
+  } else {
+    data.backDesignPlacement = JSON.stringify(template.backDesignPlacement);
+    data.backDesignUrl = template.backDesignImage;
+  }
+
+  if(data.productImages[0].imgUrl !== null){
     const response = await axios.post(
-      "http://localhost:8080/api/product/createProduct", data , {
-        headers : {
-          Authorization : "Bearer " + localStorage.getItem('token')
-        }
+      "http://localhost:8080/api/product/createProduct",
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       }
     );
     console.log(response.data);
+    }
     const tempResponse = await axios.delete(
         'http://localhost:8080/api/templates/deleteTemplate/' + id, 
         {
@@ -93,7 +100,12 @@ export default function ViewProd () {
         }
     );
     router.push('/vendor/templatelist');
-  }
+};
+
+
+
+  
+
 
   const uploadBlob = async (blobUrl) => {
     const response = await fetch(blobUrl);
@@ -104,7 +116,6 @@ export default function ViewProd () {
     };
     await uploadBytes(imageRef, blob, metadata);
     const url = await getDownloadURL(imageRef);
-    console.log(url);
     return url;
   }
  
@@ -229,7 +240,7 @@ export default function ViewProd () {
             <h1 className="title-font font-medium text-xl pb-3">Audience</h1>
             <div className="mb-6 ml-2 mt-1
                             lg:mr-96">
-                <input type="text" className="bg-white border border-[#D9D9D9] text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter the title of your product" onChange={(e) => setAudience(e.target.value)}/>
+                <input type="text" className="bg-white border border-[#D9D9D9] text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="Enter the target of your product" onChange={(e) => setAudience(e.target.value)}/>
             </div>
             <div className="ml-2">
                 <h2 className="title-font font-medium text-xl mb-6">Description</h2>
