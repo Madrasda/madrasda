@@ -58,7 +58,9 @@ export default function ProductTable({products, toggle}) {
                                         <td className="whitespace-nowrap px-6 py-6">{item.total}</td>
                                         <td>
                                             <div className="flex flex-wrap justify-center space-x-2">
-                                                {getAvailableColors(item.colors).map((i) => <div style={{backgroundColor : i}} className='border-gray border-[2px] rounded-full h-4 w-4'></div>)}
+                                                {getAvailableColors(item.colors).map((i) =>
+                                                    <div style={{backgroundColor : i}}
+                                                         className='border-gray border-[2px] rounded-full h-4 w-4'></div>)}
                                             </div>
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-6 flex justify-center">
