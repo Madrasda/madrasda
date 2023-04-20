@@ -65,7 +65,7 @@ export default function DesignGallery () {
     <VendorLayout>
     <section className="body-font font-algeria
                         md:ml-32">
-      <div className="px-20 py-4 mx-auto">
+      <div className="mt-20 px-5 md:my-10 mx-auto">
         <div className="p-4 w-full h-full cursor-pointer space-y-3 m-5 rounded">
                   <h1 className="text-3xl font-bold">Upload a new design</h1>
                   <UploadModal

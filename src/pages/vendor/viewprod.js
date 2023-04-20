@@ -49,7 +49,7 @@ export default function ViewProd () {
     <VendorLayout>
     <main className='overflow-hidden font-algeria
                     md:ml-36'>
-    <div className="px-5 my-10 mx-auto">
+    <div className="mt-20 px-5 md:my-10 mx-auto">
         <div className="md:ml-20 md:mt-10">
           <h1 className="body-font text-primary text-3xl">Edit Product Info</h1>
         </div>
