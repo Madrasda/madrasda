@@ -5,7 +5,6 @@ import {isTokenValid} from "@/utils/JWTVerifier";
 import axios from "axios";
 import {createTheme} from '@nextui-org/react'
 import {useRouter} from 'next/router';
-import {router} from "next/client";
 
 const theme = createTheme({
     type: 'dark', theme: {
@@ -16,7 +15,6 @@ const theme = createTheme({
 })
 
 function Loading() {
-    const router = useRouter();
     // const [loading, setLoading] = useState(false);
     // useEffect(() => {
     //     const handleStart = (url) => (url !== router.asPath) && setLoading(true);
@@ -44,6 +42,7 @@ export default function App({Component, pageProps}) {
     const [cart, setCart] = useState({});
     const [userDetails, setUserDetails] = useState({});
     const [token, setToken] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
@@ -138,20 +137,17 @@ export default function App({Component, pageProps}) {
     const addToCart = (product) => {
         if (isTokenValid(token)) {
             const cartItem = {
-                "productDTO": {
-                    "id": product.id,
-                    "colors": product.colors,
-                    quantity: product.quantity
-                }
+                "id": product.id,
+                "colors": product.colors,
+                quantity: product.quantity
             }
             console.log(cartItem)
-            /*axios.post("http://localhost:8080/api/cart/addToCart", cartItem, {
+            axios.post("http://localhost:8080/api/cart/addToCart", cartItem, {
                 headers: {
                     Authorization: "Bearer " + token
                 }
-            })*/
-        }
-        else{
+            })
+        } else {
             router.push("/login")
         }
     }
