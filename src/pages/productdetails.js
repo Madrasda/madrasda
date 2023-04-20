@@ -77,7 +77,7 @@ export default function ProductDetails({productId}) {
 
 
     if (loading && isReady) return (<div className='z-50 h-screen w-screen overflow-hidden'>
-        <Image src="/loader.gif" width={1920} height={1080} alt={"img"}/>
+        <Image src="/loader.gif" width={1920} height={1080} alt={"img"} className="object-cover object-center w-full h-full"/>
     </div>);
 
     const handleSetColor = (color) => {

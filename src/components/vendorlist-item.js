@@ -9,7 +9,7 @@ function VendorListItem(props) {
                 alt="ecommerce" 
                 height={200}
                 width={200} 
-                className="object-contain object-center w-50 h-50" />
+                className="object-contain object-center w-full h-full" />
             </div>
             <div className="h-[20%]">
                 <h3 className="text-base font-bold title-font mt-4 text-center flex justify-center items-center">

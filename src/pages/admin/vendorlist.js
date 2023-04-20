@@ -89,7 +89,7 @@ export default function VendorList(props) {
 
     if(loading && isReady)
     return (<div className='z-50 h-screen w-screen overflow-hidden'>
-    <Image src="/loader.gif" width={1920} height={1080}/>
+    <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
     </div>);
   return (
     <>
@@ -105,11 +105,11 @@ export default function VendorList(props) {
           className="body-font overflow-hidden font-algeria
                         md:ml-32"
         >
-          <div className="px-10 my-15 mx-auto">
+          <div className="mt-20 px-5 md:my-10 mx-auto">
             <h1 className="text-3xl text-primary 
                        md:ml-20 m-5">MY VENDORS</h1>
-            <div className="flex flex-wrap md:ml-14">
-              <div className="lg:w-1/6 md:w-1/2 p-4 w-4/6 lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
+            <div className="flex flex-wrap justify-start md:ml-20">
+              <div className="lg:w-1/6 md:w-3/4 p-4 w-full lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
                 <Link href="#">
                   <div className="flex flex-col items-center justify-center cursor-pointer">
                     <AddVendorModal getFormData={handleSubmit} />
@@ -125,7 +125,7 @@ export default function VendorList(props) {
 
               {vendors &&
                 vendors.map((vendor) => (
-                  <div className="lg:w-1/6 md:w-1/2 p-4 pb-0 min-h-full h-72 cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                  <div className="lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                     <span className="w-full ml-5 flex justify-end">
                       <CloseConfirm vendor={true} delete={(e) => {if(e) deleteVendor(vendor.id)}} />
                     </span>
