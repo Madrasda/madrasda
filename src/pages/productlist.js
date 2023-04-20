@@ -3,19 +3,34 @@ import Head from "next/head";
 import ClientLayout from "@/components/layout-client";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
+import ProductTile from "@/pages/ProductTile";
 export default function ProductList () {
 
   const [pageData, setPageData] = useState([]);
   const [pageNo, setPageNo] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  useEffect(() =>{
-    const fetchPage = async () => {
-      const res=await axios.get("http://localhost:8080/api/client/allProducts?pageNo=" + pageNo + "&pageSize=" + pageSize);
-      setPageData(res.data);
-    }
-    fetchPage();
-  },[]);
+  const router = useRouter();
+  let isReady = router.isReady;
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+    setLoading(false);
+      }, 1000);
+  }, []);
+  // useEffect(() =>{
+  //   const fetchPage = async () => {
+  //     const res=await axios.get("http://localhost:8080/api/client/allProducts?pageNo=" + pageNo + "&pageSize=" + pageSize);
+  //     setPageData(res.data);
+  //   }
+  //   fetchPage();
+  // },[]);
 
+  if(loading && isReady)
+  return (<div className='z-50 h-screen w-screen overflow-hidden'>
+  <Image src="/loader.gif" width={1920} height={1080}/>
+  </div>);
   return (
     <>
     <Head>

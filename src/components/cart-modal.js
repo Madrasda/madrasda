@@ -1,20 +1,26 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {css, Button, Modal, Text} from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import CartItem from "@/components/CartItem";
 import {UserContext} from "../../context/context";
+import {useRouter} from "next/router";
+import {isTokenValid} from "@/utils/JWTVerifier";
 
 
 export default function CartModal() {
     const [visible, setVisible] = React.useState(false);
     const handler = () => setVisible(true);
+    const router = useRouter();
     const closeHandler = () => {
         setVisible(false);
-        console.log("closed");
     };
     const ctx = useContext(UserContext);
-    console.log(ctx);
+    useEffect(() => {
+        if(visible && isTokenValid(localStorage.getItem("token"))){
+            router.push("/login")
+        }
+    })
 
     return (
 

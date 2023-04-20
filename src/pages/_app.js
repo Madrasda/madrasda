@@ -3,13 +3,11 @@ import {UserContext} from "../../context/context";
 import {useEffect, useState} from "react";
 import {isTokenValid} from "@/utils/JWTVerifier";
 import axios from "axios";
-import { createTheme } from '@nextui-org/react'
-import Router, { useRouter } from 'next/router';
-import Image from 'next/image';
+import {createTheme} from '@nextui-org/react'
+import {useRouter} from 'next/router';
 
 const theme = createTheme({
-    type: 'dark',
-    theme: {
+    type: 'dark', theme: {
         fonts: {
             // algeria: 'Algeria Sans',
             algeria: 'Montserrat',
@@ -20,14 +18,15 @@ const theme = createTheme({
 function Loading() {
     const router = useRouter();
 }
+
 export default function App({Component, pageProps}) {
     const [cart, setCart] = useState({});
     const [userDetails, setUserDetails] = useState({});
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState("");
+    const router = useRouter();
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-        // console.log(!isTokenValid(jwtToken))
         if (jwtToken === undefined || isTokenValid(jwtToken)) {
             setToken(jwtToken)
             axios.get("http://localhost:8080/api/cart/", {
@@ -35,12 +34,12 @@ export default function App({Component, pageProps}) {
                     "Authorization": "Bearer " + jwtToken
                 }
             })
-            .then(response => {
-                setCart(response.data)
-            })
-            .catch((err) => {
-                console.log(userDetails);
-            })
+                .then(response => {
+                    setCart(response.data)
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
         }
     }, []);
     const decrementQty = (id) => {
@@ -59,11 +58,11 @@ export default function App({Component, pageProps}) {
                 ...oldCart, cartItems: newCart
             };
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/"+ id + "&&" + qty, null, {
+        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, null, {
             headers: {
                 Authorization: "Bearer " + token
             }
-        } )
+        })
             .catch(err => console.log(err));
     }
     const incrementQty = (id) => {
@@ -78,11 +77,11 @@ export default function App({Component, pageProps}) {
                 })
             };
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/"+ id + "&&" + qty,null, {
+        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, null, {
             headers: {
                 Authorization: "Bearer " + token
             }
-        } )
+        })
             .catch(err => console.log(err));
     }
     const customQuantity = (id, qty) => {
@@ -96,39 +95,56 @@ export default function App({Component, pageProps}) {
             });
             return {...oldCart, cartItems: [...newCart]};
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/"+ id + "&&" + qty,{}, {
+        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
-        } )
+        })
             .catch(err => console.log(err));
     }
     const removeItem = (id) => {
         setCart(oldCart => {
-            console.log(oldCart.cartItems.filter(item => item.id !== id))
             return {
                 ...oldCart, cartItems: oldCart.cartItems.filter(item => item.id !== id)
             }
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/"+ id + "&&0",{}, {
+        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&0", {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
-        } )
+        })
             .catch(err => console.log(err));
     }
-    return (
-        <>
-        <Loading />
-        <UserContext.Provider value={{
-            decrementQty: decrementQty,
-            incrementQty: incrementQty,
-            customQuantity: customQuantity,
-            removeItem: removeItem,
-            cart: cart
-        }}>
-            <Component {...pageProps} id="page"/>
-        </UserContext.Provider>
+    const addToCart = (product) => {
+        if (isTokenValid(token)) {
+            const cartItem = {
+                "id": product.id,
+                "colors": product.colors,
+                quantity: product.quantity
+            }
+            console.log(cartItem)
+            axios.post("http://localhost:8080/api/cart/addToCart", cartItem, {
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+        } else {
+            router.push("/login")
+        }
+    }
+
+    return (<>
+            <Loading/>
+            <UserContext.Provider value={{
+                decrementQty: decrementQty,
+                incrementQty: incrementQty,
+                customQuantity: customQuantity,
+                removeItem: removeItem,
+                addToCart: addToCart,
+                cart: cart
+            }}>
+                <Component {...pageProps} id="page"/>
+            </UserContext.Provider>
         </>
 
     )

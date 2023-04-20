@@ -10,6 +10,11 @@ export default function NavVendor() {
         localStorage.removeItem("token");
         router.push("/vendor");
     }
+    const toggleMenu = () => {
+        var menu = document.getElementById("mobile_menu");
+        menu.classList.toggle("hidden");
+        console.log("menu toggled");
+      }
   return (
     <>
     <header className="bg-bg text-white font-algeria py-8 overflow-y-auto no-scrollbar fixed z-20 h-screen hidden md:block">
@@ -80,7 +85,72 @@ export default function NavVendor() {
                     </Link>
                 </nav>
             </div>
+
+            
         </div>
+    </header>
+    <header className="bg-bg text-white font-algeria px-8 overflow-y-auto no-scrollbar w-full fixed z-20">
+    <div className="w-full flex md:hidden">
+            <div className="flex flex-col w-full">
+                <div className="flex">
+                    <Link href="/">
+                        <Image src="/logo.png" width={70} height={70}/>
+                    </Link>
+                    <div className="flex flex-row-reverse w-full items-center justify-start">
+                        <Image src="/burger-icon.png" width={30} height={30} onClick={toggleMenu}/>
+                    </div>
+                </div>
+            <div className="hidden" id="mobile_menu">
+
+                <nav className="text-sm flex flex-col items-center w-full font-bold">
+                    <Link href="/vendor/dashboard" className="w-full">
+                        <div className={currentRoute === '/vendor/dashboard' || currentRoute === '/vendor/designgallery' ? "bg-primary w-full px-8" : "bg-none w-full px-8" }>
+                            <div className="flex justify-center items-center py-4">
+                                <Image src="/dashboard-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">Dashboard</h3>
+                            </div>
+                        </div>
+                    </Link>
+                
+                    <Link href="/vendor/templatelist" className="w-full">
+                        <div className={currentRoute === '/vendor/templatelist' || currentRoute === '/vendor/createtemplate' || currentRoute === '/vendor/viewprod' ? "bg-primary w-full px-8" : "bg-none w-full px-8" }>
+                            <div className="flex justify-center items-center py-4">
+                                <Image src="/create-template-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">My Templates</h3>
+                            </div>
+                        </div>
+                    </Link>
+                    
+                    <Link href="/vendor/productlist" className="w-full">
+                        <div className={currentRoute === '/vendor/productlist' ? "bg-primary w-full px-8" : "bg-none w-full px-8" }>
+                            <div className="flex justify-center items-center py-4">
+                                <Image src="/view-products-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">View Products</h3>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link href="/vendor/analytics" className="w-full">
+                        <div className={currentRoute === '/vendor/analytics' ? "bg-primary w-full px-8" : "bg-none w-full px-8" }>
+                            <div className="flex justify-center items-center py-4">
+                                <Image src="/analytics-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">Analytics</h3>
+                            </div>
+                        </div>
+                    </Link>
+
+                    <Link href="/vendor/feedback" className="w-full">       
+                        <div className={currentRoute === '/vendor/feedback' || currentRoute === '/vendor/unresolvedqueries' || currentRoute === '/vendor/resolvedqueries' ? "bg-primary w-full px-8" : "bg-none w-full px-8" }>
+                            <div className="flex justify-center items-center py-4">
+                                <Image src="/feedback-icon.png" width={30} height={30}/>
+                                <h3 className="ml-2">Feedback</h3>
+                            </div>
+                        </div>
+                    </Link>
+                </nav>
+            </div>
+            </div>
+    </div>
     </header>
     </>
   )
