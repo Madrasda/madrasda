@@ -8,7 +8,7 @@ import {useContext} from "react";
 import {uuidv4} from "@firebase/util";
 
 
-export default function NavClient() {
+export default function NavClient({client}) {
     const router = useRouter();
     const ctx = useContext(UserContext);
     const toggleMenu = () => {
@@ -31,9 +31,11 @@ export default function NavClient() {
             pathname: '/product-gender',
             query: {gender: filter},
         }, '/products?gender=' + filter);
-
-
     };
+    const logout = () => {
+        localStorage.removeItem('token');
+        router.push('/login');
+    }
 
     return (
         <>
@@ -121,9 +123,17 @@ export default function NavClient() {
                         </nav>
                     </div>
                     <div className="flex flex-row-reverse items-center mr-6">
-                        <Link href="/login">
-                            <Image src="/user-icon.png" width={20} height={20} className="ml-10 cursor-pointer"/>
-                        </Link>
+                        {   !client &&
+                            <Link href="/login">
+                                <Image src="/user-icon.png" width={20} height={20} className="ml-10 cursor-pointer"/>
+                            </Link>
+                        }
+                        {   client &&
+                            <div className="flex space-x-2 cursor-pointer" onClick={() => logout()}>
+                                <Image src="/user-icon.png" width={20} height={20} className="ml-10 cursor-pointer"/>
+                                <h1 className="text-xs my-auto">Logout</h1>
+                            </div>
+                        }
                         <CartModal/>
                     </div>
                 </div>

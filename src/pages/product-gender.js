@@ -2,6 +2,7 @@ import {useRouter} from 'next/router';
 import ProductList from "@/pages/productlist";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
 
 function PersonBasedProductsPage() {
     const router = useRouter();
@@ -9,6 +10,8 @@ function PersonBasedProductsPage() {
     const [title, setTitle] = useState("")
     const [products, setProducts] = useState([]);
     const {gender} = router.query;
+    const [client, setClient] = useState(false);
+
     useEffect(() => {
         if (router.isReady) {
             setTitle(gender + "'s Products");
@@ -17,6 +20,18 @@ function PersonBasedProductsPage() {
                 .catch(err => console.log(err));
         }
     }, [gender, pageNo]);
+
+    useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
+  }, []);
 
     return <ProductList productsPage={products} setPageNo={setPageNo} pageNo={pageNo} title={title}/>;
 }

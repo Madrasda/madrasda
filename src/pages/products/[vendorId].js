@@ -15,7 +15,7 @@ function VendorProductsPage() {
     useEffect(() => {
         if(ctx.vendorList !== undefined && router.isReady) {
             setTitle(ctx.vendorList.find((vendor) => vendor.id === parseInt(vendorId)).name + "'s Products");
-        axios.get("http://localhost:8080/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo)
+        axios.get("http://localhost:8080/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo + "&pageSize=20")
             .then(response => setVendorProducts(response.data))
             .catch(err => console.log(err));
         }

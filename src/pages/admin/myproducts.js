@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Mockup from "@/components/mockup";
-import { isTokenValid } from "@/utils/JWTVerifier";
+import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import { storage } from "../../firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
@@ -31,6 +31,10 @@ export default function MyProducts () {
     }, []);
     useEffect(() => {
       const jwtToken = localStorage.getItem("token")
+      if(jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
+            router.push("/");
+      if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+          router.push("/vendor");
       if(jwtToken === undefined || !isTokenValid(jwtToken))
         router.push("/admin");
       else

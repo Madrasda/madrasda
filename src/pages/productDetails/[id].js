@@ -7,6 +7,8 @@ import {UserContext} from "../../../context/context";
 import axios from "axios";
 import ColorOption from "../../components/ColorOption";
 import {uuidv4} from "@firebase/util";
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+import HotSellers from '@/components/hotsellers-client';
 
 export default function ProductId() {
 
@@ -14,6 +16,7 @@ export default function ProductId() {
     const ctx = useContext(UserContext);
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [client, setClient] = useState(false);
     const [activeImage, setActiveImage] = useState("https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif");
     const qtyRef = useRef();
     let isReady = router.isReady;
@@ -78,6 +81,17 @@ export default function ProductId() {
         }
     }, [isReady]);
 
+    useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
+  }, []);
 
     if (loading && isReady) return (<div className='z-50 h-screen w-screen overflow-hidden'>
         <Image src="/loader.gif" width={1920} height={1080} alt={"img"} className="object-cover object-center w-full h-full"/>
@@ -96,7 +110,7 @@ export default function ProductId() {
             <title>Madrasda | View Product</title>
         </Head>
 
-        {isReady && <ClientLayout>
+        {isReady && <ClientLayout client={client}>
             <section className="text-black body-font font-algeria overflow-hidden">
                 <div className="px-5 pt-24 mx-auto flex justify-center">
                     <div className="flex justify-start flex-row flex-wrap md:flex-nowrap">
@@ -125,6 +139,9 @@ export default function ProductId() {
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                                 {product.name}
                             </h1>
+                            <span>
+                                <h1>{product.description}</h1>
+                            </span>
                             <div className="flex mb-4 items-center">
                             </div>
                             <div className='flex flex-row items-baseline'>
@@ -156,7 +173,6 @@ export default function ProductId() {
                                             />)}
                                 </div>
                             </div>
-
                             <span
                                 className="title-font font-medium underline text-black text-xs ml-64">Size Guide</span>
                             <div className="flex items-center">
@@ -227,126 +243,7 @@ export default function ProductId() {
                     </div>
                 </div>
             </section>
-            <div className='p-10 font-algeria'>
-                <div className='border-black border-2 rounded-xl scale-[90%]'>
-                    <div className='relative'>
-                        <h2 className='font-algeria font-semibold text-xl flex justify-center items-center w-full
-                      m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1'>
-          <span className='bg-white px-8 py-4 rounded-full text-black'>
-            SUGGESTED DEALS
-          </span>
-                        </h2>
-                    </div>
-
-                    <section className="text-black body-font">
-                        <div className="px-5 py-10 mx-26">
-                            <div
-                                className="flex flex-col justify-center items-center md:flex-row md:flex-wrap lg:flex-nowrap">
-
-                                <div
-                                    className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                                    <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920}
-                                               className="object-contain object-center w-full h-full block"/>
-                                    </a>
-                                    <div className="mt-4">
-                                        <div className='flex flex-row items-center w-full'>
-                                            <div className='flex justify-start'>
-                                                <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                            </div>
-                                            <div className='flex justify-end w-full'>
-                                                <Image src="/wishlist.png" width={25} height={25} className=''
-                                                       alt={"img"}/>
-                                            </div>
-                                        </div>
-                                        <h2 className="title-font text-lg font-medium">Product Name</h2>
-                                        <span className="mt-1 text-black text-lg pr-1">₹699</span>
-                                        <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                        <span
-                                            className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                                    </div>
-                                </div>
-
-                                <div
-                                    className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                                    <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080}
-                                               height={1920}
-                                               className="object-contain object-center w-full h-full block"/>
-                                    </a>
-                                    <div className="mt-4">
-                                        <div className='flex flex-row items-center w-full'>
-                                            <div className='flex justify-start'>
-                                                <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                            </div>
-                                            <div className='flex justify-end w-full'>
-                                                <Image src="/wishlist.png" width={25} height={25} className=''
-                                                       alt={"img"}/>
-                                            </div>
-                                        </div>
-                                        <h2 className="title-font text-lg font-medium">Product Name</h2>
-                                        <span className="mt-1 text-black pr-1">₹699</span>
-                                        <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                        <span
-                                            className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                                    </div>
-                                </div>
-
-                                <div
-                                    className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                                    <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080}
-                                               height={1920}
-                                               className="object-contain object-center w-full h-full block"/>
-                                    </a>
-                                    <div className="mt-4">
-                                        <div className='flex flex-row items-center w-full'>
-                                            <div className='flex justify-start'>
-                                                <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                            </div>
-                                            <div className='flex justify-end w-full'>
-                                                <Image src="/wishlist.png" width={25} height={25} className=''
-                                                       alt={"img"}/>
-                                            </div>
-                                        </div>
-                                        <h2 className="title-font text-lg font-medium">Product Name</h2>
-                                        <span className="mt-1 text-black pr-1">₹699</span>
-                                        <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                        <span
-                                            className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                                    </div>
-                                </div>
-
-                                <div
-                                    className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-                                    <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/madrasda-bag.png" alt="ecommerce" width={1080}
-                                               height={1920}
-                                               className="object-contain object-center w-full h-full block"/>
-                                    </a>
-                                    <div className="mt-4">
-                                        <div className='flex flex-row items-center w-full'>
-                                            <div className='flex justify-start'>
-                                                <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                                            </div>
-                                            <div className='flex justify-end w-full'>
-                                                <Image src="/wishlist.png" width={25} height={25} className=''
-                                                       alt={"img"}/>
-                                            </div>
-                                        </div>
-                                        <h2 className="title-font text-lg font-medium">Product name</h2>
-                                        <span className="mt-1 text-black pr-1">₹699</span>
-                                        <span className="mt-1 line-through text-gray pr-1">₹899</span>
-                                        <span
-                                            className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+            <HotSellers />
 
         </ClientLayout>}
     </>)

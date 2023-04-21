@@ -6,12 +6,14 @@ import {useRouter} from "next/router";
 import {UserContext} from "../../context/context";
 import {uuidv4} from "@firebase/util";
 import ProductTile from "@/pages/ProductTile";
-import Link from "next/link";
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
 
 export default function ProductList({productsPage, setPageNo, pageNo, title}) {
 
     const [loading, setLoading] = useState(false);
     const [pageButtons, setPageButtons] = useState([]);
+    const [client, setClient] = useState(false);
+
     const router = useRouter();
     const ctx = useContext(UserContext);
     let isReady = router.isReady;
@@ -23,10 +25,21 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
     }
 
     useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
+  }, [])
+
+    useEffect(() => {
             setLoading(true);
             if (productsPage.content !== undefined) {
                 setLoading(false);
-
                 setPageButtons((oldList) => {
                         let buttons = [];
                         for (let i = 1; i <= productsPage.totalPages; i++) {
@@ -56,7 +69,6 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                 <Image src="/loader.gif" width={1920} height={1080}
                        className="object-cover object-center w-full h-full"/>
             </div>);
-    console.log(productsPage);
 
     function viewProduct(id) {
         router.push("/productDetails/" + id)
@@ -72,7 +84,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
             </Head>
             {
                 productsPage.content !== undefined &&
-                <ClientLayout>
+                <ClientLayout client={client}>
                     <section className="body-font font-algeria">
                         <div className="px-5 py-24 mx-auto">
                             <h1 className="text-3xl text-primary md:ml-10 md:mt-4">{title}</h1>

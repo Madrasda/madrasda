@@ -4,7 +4,7 @@ import Image from "next/image";
 import AdminLayout from "@/components/layout-admin";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { isTokenValid } from "@/utils/JWTVerifier";
+import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import axios from "axios";
 
 export default function VendorDetails() {
@@ -39,6 +39,10 @@ export default function VendorDetails() {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
+    if(jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
+        router.push("/");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+          router.push("/vendor");
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/admin");
     else

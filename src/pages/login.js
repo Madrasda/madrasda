@@ -2,13 +2,12 @@ import Head from 'next/head'
 import {Inter} from '@next/font/google'
 import {useRef, useState} from "react";
 import axios from "axios";
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
 import Image from "next/image";
 import Otp from "@/components/Otp";
 import Login from "@/components/Login";
 import {useRouter} from "next/router";
 import { useEffect} from 'react';
-
-// import './ToggleSwitch.css'
 
 export default function LoginForm() {
     const router = useRouter();
@@ -21,6 +20,8 @@ export default function LoginForm() {
     const [showOtp, setShowOtp] = useState(false);
     const [invalidMessage, setInvalidMessage] = useState("");
     const [phone, setPhone] = useState("");
+    const [client, setClient] = useState(false);
+
     const submitPhoneHandler = () => {
         const phone = phoneRef.current.value;
         if (/^[0-9]{10}$/.test(phone)) {
@@ -62,6 +63,16 @@ export default function LoginForm() {
         setLoading(false);
           }, 1000);
       }, []);
+
+      useEffect(() => {
+          const jwtToken = localStorage.getItem('token');
+          if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+              router.push("/admin");
+          if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+              router.push("/vendor");
+          if(jwtToken && isTokenValid(jwtToken))
+            router.push("/");
+      }, [])
     
     if(loading && isReady)
     return (<div className='z-50 h-screen w-screen overflow-hidden'>

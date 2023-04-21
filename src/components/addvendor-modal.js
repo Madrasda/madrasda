@@ -66,6 +66,7 @@ export default function AddVendorModal({getFormData}) {
               </div>
             </div>
             <input id="dropzone-file" type="file" className="hidden" onChange={(e) => {setImage(e.target.files[0])}} accept="image/jpeg" />
+            {image && <h1>{image.name}</h1>}
         </label>
             <AddVendorForm onSubmit={handleSubmit} />
         </Modal.Body>

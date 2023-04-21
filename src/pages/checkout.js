@@ -3,18 +3,32 @@ import Image from 'next/image';
 import ClientLayout from '@/components/layout-client';
 import { useRouter } from "next/router";
 import { useEffect,useState } from 'react';
+import { getRole, isTokenValid } from '@/utils/JWTVerifier';
 export default function checkout() {
     const router = useRouter();
   let isReady = router.isReady;
   const [details, setDetails] = useState(null);
   const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [client, setClient] = useState(false);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
     setLoading(false);
       }, 1000);
   }, []);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
+  }, [])
 
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
@@ -30,7 +44,7 @@ export default function checkout() {
       <title>Madrasda | Checkout</title>
     </Head>
 
-    <ClientLayout>
+    <ClientLayout client={client}>
         <main>
             <div className="min-w-screen min-h-screen bg-gray-50 py-5">
                 <div className="px-5">

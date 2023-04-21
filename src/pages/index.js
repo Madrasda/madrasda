@@ -6,18 +6,40 @@ import ClientLayout from '@/components/layout-client'
 import RightsideDisc from '@/components/rightside-disc'
 import LeftsideDisc from '@/components/leftside-disc'
 import { useRouter } from "next/router";
-import { useEffect,useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import {UserContext} from "../../context/context";
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+import { uuidv4 } from '@firebase/util'
+import HotSellers from '@/components/hotsellers-client'
+
 export default function Home() {
   const router = useRouter();
+  const ctx = useContext(UserContext);
   let isReady = router.isReady;
   const [details, setDetails] = useState(null);
   const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [client, setClient] = useState(false);
+  const [allVendor, setAllVendor] = useState([]);
+
+  
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
     setLoading(false);
       }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
   }, []);
 
   if(loading && isReady)
@@ -35,384 +57,25 @@ export default function Home() {
         <title>Madrasda</title>
       </Head>
       
-      <ClientLayout>
-
+      <ClientLayout client={client}>
         <Carousel />
-
-{/* -------- OFFICIAL MERCHANDISE START -------- */}
           <h1 className='font-algeria font-bold text-3xl my-10 px-10'>OFFICIAL MERCHANDISE</h1>
           
-          <RightsideDisc />
-
-          <LeftsideDisc />
-
-
-          <div className='overflow-hidden mx-auto px-10
-                          lg:my-4 lg:pl-10 lg:px-0'>
-          <span className='bg-none flex flex-col justify-center items-center w-full
-                           lg:flex-row lg:bg-bg md:rounded-l-full md:rounded-r-none'>
-            <Image className="animate-spin" src="/disc-redgiant.svg" width={400} height={400}/>
-            
-            <div className='flex flex-col w-full'>
-            <Link href="/productlist">
-            <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
-                          lg:text-white lg:justify-end lg:pt-6 hover:text-2xl'>RED GIANT PRODUCTIONS</h1>
-            </Link>
-
-            {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
-            <div className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            lg:flex'>
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]" >
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-              
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]" >
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]" >
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-            
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]" >
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-
-              <div className='-ml-5 z-10'>
-              <Link href="/productlist">
-                <Image src="/prod-comp-showmore-right.png" width={50} height={50} />
-              </Link>
-              </div>
-            
-            </div>
-            </div>
-            {/* -------- LARGE SCREEN CONTENT END -------- */}
-            {/* -------- VISIBLE ON SMALL SCREENS ONLY -------- */}
-            <Link href="/productlist">
-            <button className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
-                              lg:hidden'>View More</button>
-            </Link>
-            {/* -------- SMALL SCREEN CONTENT END -------- */}
-            </span>
-          </div>
-          
-
-
-          <div className='overflow-hidden mx-auto px-10
-                          lg:my-4 lg:pr-10 lg:px-0'>
-            <span className='bg-none flex flex-col justify-center items-center w-full
-                             lg:flex-row lg:bg-bg md:rounded-l-non md:rounded-r-full'>
-
-            <div className='flex flex-col w-full'>
-            <Link href="/productlist">
-            <h1 className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden
-                          lg:text-white lg:flex lg:justify-start lg:pt-6 hover:text-2xl'>VIJAY SETHUPATHI</h1>
-            </Link>              
-            {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
-            <div className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            lg:flex'>
-            <div className='w-full h-full flex items-center justify-end'>
-
-              <div className='-mr-5 z-10'>
-              <Link href="/productlist">
-                  <Image src="/prod-comp-showmore-left.png" width={50} height={50} />
-              </Link>
-              </div>
-
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]">
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-              
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="productdetails">
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]">
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-            
-              <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productDetails/[id]">
-                <div className="block relative h-36 rounded overflow-hidden">
-                  <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                </div>
-                <div className="mt-4">
-                  <div className='flex flex-row items-center w-full'>
-                      <div className='flex justify-start'>
-                        <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                      </div>
-                      <div className='flex justify-end w-full'>
-                        <Image src="/wishlist.png" width={25} height={25} className=''/>
-                      </div>
-                  </div>
-                  <h2 className="title-font text-lg font-medium">Product Name</h2>
-                  <span className="mt-1 text-black text-lg">₹699</span>
-                  <span>     </span>
-                  <span className="mt-1 line-through text-gray">₹899</span>
-                  <span>     </span>
-                  <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-                </div>
-              </Link>
-              </div>
-            
-            </div>
-            </div>
-            </div>
-
-            <Image className="animate-spin" src="/disc-vjs.svg" width={400} height={400}/>
-            {/* -------- LARGE SCREEN CONTENT END -------- */}
-            {/* -------- VISIBLE ON SMALL SCREENS ONLY -------- */}
-            <h1 className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
-                          lg:text-white lg:hidden lg:justify-start lg:pt-6'>VIJAY SETHUPATHI</h1>
-            <Link href="/productlist">
-            <button className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
-                              lg:hidden'>View More</button>
-            </Link>
-            {/* -------- SMALL SCREENS CONTENT END -------- */}
-            </span>
-          </div>
-{/* -------- OFFICIAL MERCHANDISE END -------- */}
-
-{/* -------- BIGGEST DEALS START -------- */}
-          <div className='mb-20 mt-14'>
-            <div className='relative'>
-              <h2 className='font-algeria font-semibold text-xl flex justify-center items-center w-full
-                            m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1 border-t-[2px] border-black'>
-                <span className='bg-primary px-8 py-4 rounded-full text-white'>
-                  BIGGEST DEALS
-                </span>
-              </h2>
-            </div>
-          </div>
-
-      <section className="text-black body-font m-10">
-      <div className="px-5 py-10 mx-26">
-        <div className="flex flex-col justify-center items-center md:flex-row md:flex-wrap lg:flex-nowrap">
-
-          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-            <a className="block relative h-48 rounded overflow-hidden">
-              <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-            </a>
-            <div className="mt-4">
-              <div className='flex flex-row items-center w-full'>
-                  <div className='flex justify-start'>
-                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  </div>
-                  <div className='flex justify-end w-full'>
-                    <Image src="/wishlist.png" width={25} height={25} className=''/>
-                  </div>
-              </div>
-              <h2 className="title-font text-lg font-medium">Product Name</h2>
-              <span className="mt-1 text-black text-lg pr-1">₹699</span>
-              <span className="mt-1 line-through text-gray pr-1">₹899</span>
-              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-            </div>
-          </div>
-
-          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-            <a className="block relative h-48 rounded overflow-hidden">
-              <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-            </a>
-            <div className="mt-4">
-              <div className='flex flex-row items-center w-full'>
-                  <div className='flex justify-start'>
-                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  </div>
-                  <div className='flex justify-end w-full'>
-                    <Image src="/wishlist.png" width={25} height={25} className=''/>
-                  </div>
-              </div>
-              <h2 className="title-font text-lg font-medium">Product Name</h2>
-              <span className="mt-1 text-black pr-1">₹699</span>
-              <span className="mt-1 line-through text-gray pr-1">₹899</span>
-              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-            </div>
-          </div>
-
-          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-            <a className="block relative h-48 rounded overflow-hidden">
-              <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-            </a>
-            <div className="mt-4">
-              <div className='flex flex-row items-center w-full'>
-                  <div className='flex justify-start'>
-                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  </div>
-                  <div className='flex justify-end w-full'>
-                    <Image src="/wishlist.png" width={25} height={25} className=''/>
-                  </div>
-              </div>
-              <h2 className="title-font text-lg font-medium">Product Name</h2>
-              <span className="mt-1 text-black pr-1">₹699</span>
-              <span className="mt-1 line-through text-gray pr-1">₹899</span>
-              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-            </div>
-          </div>
-
-          <div className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-            <a className="block relative h-48 rounded overflow-hidden">
-              <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-            </a>
-            <div className="mt-4">
-              <div className='flex flex-row items-center w-full'>
-                  <div className='flex justify-start'>
-                    <h3 className="text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  </div>
-                  <div className='flex justify-end w-full'>
-                    <Image src="/wishlist.png" width={25} height={25} className=''/>
-                  </div>
-              </div>
-              <h2 className="title-font text-lg font-medium">Product name</h2>
-              <span className="mt-1 text-black pr-1">₹699</span>
-              <span className="mt-1 line-through text-gray pr-1">₹899</span>
-              <span className="title-font text-xs font-medium text-[#088240]">22% OFF</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-{/* -------- BIGGEST DEALS END -------- */}
+          {
+            ctx.vendorList &&
+            ctx.vendorList.map((vendor, index) => {
+              if(index%2===0){
+                return (
+                  <RightsideDisc key={uuidv4} id={vendor.id} name={vendor.name} imgUrl={vendor.imgUrl} />
+                )
+              }else{
+                return (
+                  <LeftsideDisc key={uuidv4} id={vendor.id} name={vendor.name} imgUrl={vendor.imgUrl} />
+                )
+              }
+            })
+          }
+      <HotSellers />
       </ClientLayout>
     </>
   )

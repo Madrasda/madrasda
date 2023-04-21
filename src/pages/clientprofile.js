@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useEffect,useState } from 'react';
 import { useRouter } from "next/router";
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+
 export default function clientprofile() {
 
   const router = useRouter();
@@ -11,12 +13,26 @@ export default function clientprofile() {
   const [details, setDetails] = useState(null);
   const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [client, setClient] = useState(false);
+  
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
     setLoading(false);
       }, 1000);
   }, []);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
+  }, [])
 
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
@@ -31,7 +47,7 @@ export default function clientprofile() {
         <title>Madrasda | Profile</title>
       </Head>
 
-      <ClientLayout>
+      <ClientLayout client={client}>
       <section className="body-font font-algeria">
       <div className="px-5 py-24 mx-auto">
       <h1 className="text-3xl font-bold text-primary md:ml-10 md:mt-4">My Profile</h1>

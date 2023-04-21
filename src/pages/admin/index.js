@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { isTokenValid } from '@/utils/JWTVerifier'
+import { getRole, isTokenValid } from '@/utils/JWTVerifier'
 import { useEffect, useState } from 'react'
 import axios from "axios";
 import { useRouter } from 'next/router'
@@ -38,8 +38,12 @@ export default function Adminlogin() {
 
   useEffect(() => {
         const token = localStorage.getItem("token")
+        if(token && getRole(token) === "ROLE_CUSTOMER")
+            router.push("/");
+        if(token && getRole(token) === "ROLE_VENDOR")
+            router.push("/vendor");
         if (token && isTokenValid(token))
-            router.push("/admin/vendorlist");
+        router.push("/admin/vendorlist");
     }, [])
 
     if(loading && isReady)

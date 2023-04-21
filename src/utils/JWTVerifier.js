@@ -12,3 +12,11 @@ export const isTokenValid = (token) => {
         return false;
     }
 }
+export const getRole = (token) => {
+    try {
+        const decodedToken = jwtDecode(token);
+        return decodedToken.role;
+    } catch (error) {
+        return false;
+    }
+}

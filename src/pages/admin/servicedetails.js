@@ -5,7 +5,7 @@ import AdminLayout from "@/components/layout-admin";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { isTokenValid } from "@/utils/JWTVerifier";
+import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import { useRouter } from "next/router";
 
 export default function CustomerDetails () {
@@ -114,15 +114,15 @@ export default function CustomerDetails () {
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Service SID</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="VAcc0dd61369d2d89083085064ccb6ceb3" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Account SID</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="AC9af313760163b43c9a9a67ee9ca9bd03" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Auth Token</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="87436573660467c86096f5f9f51700ea" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                         </div>
                     </div>
@@ -137,27 +137,27 @@ export default function CustomerDetails () {
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">API Key</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="AIzaSyDTe4Rdgq9W_oMXOQERHuSu5gV_S1pWU9o" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Auth Domain</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="madrasda-59f3e.firebaseapp.com" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Project IS</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="madrasda-59f3e" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Storage Bucket</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="madrasda-59f3e.appspot.com" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">Message Sender ID</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="206873668873" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                             <div className="flex mb-2">
                                 <h2 for="last_name" className="w-2/3 md:w-96 text-lg font-medium text-black flex items-center">APP ID</h2>
-                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="1:206873668873:web:0e1836f928f560514d77d8" disabled readonly/>
+                                <input type="text" className="bg-[#D9D9D9]  text-gray text-lg w-5/6 md:w-96 p-2.5" value="" disabled readonly/>
                             </div>
                         </div>
                     </div>

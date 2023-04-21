@@ -4,18 +4,34 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from "next/router";
 import { useEffect,useState } from 'react';
+import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+
 export default function contact() {
   const router = useRouter();
   let isReady = router.isReady;
   const [details, setDetails] = useState(null);
   const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [client, setClient] = useState(false);
+  
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
     setLoading(false);
       }, 1000);
   }, []);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem('token');
+    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+        router.push("/admin");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
+    if(jwtToken && isTokenValid(jwtToken))
+        setClient(true);
+    else
+        setClient(false);
+  }, [])
 
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
@@ -30,7 +46,7 @@ export default function contact() {
             <title>Contact Us</title>
         </Head>
         <div className="bg-[url(https://cdn.discordapp.com/attachments/981618787491127306/1088401159821213717/bg.png)]">
-        <ClientLayout>
+        <ClientLayout client={client}>
         <section class="text-gray-600 body-font relative">
             <div class="container px-5 py-24 mx-auto">
               <div class="flex flex-col text-center w-full mb-12">

@@ -36,6 +36,10 @@ const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
+    if(jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
+            router.push("/");
+    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+        router.push("/vendor");
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
     else{
@@ -84,7 +88,7 @@ const [products, setProducts] = useState([]);
                                         <div className="mt-4">
                                             <h2 className="title-font text-base font-medium">{product.name}</h2>
                                             <span className="mt-1 text-black text-lg pr-1">
-                                                ₹{product.total -(product.total*product.discount*0.01)}
+                                                ₹{Math.round(product.total -(product.total*product.discount*0.01))}
                                             </span>
                                             <span className="mt-1 line-through text-gray pr-1">₹{product.total}</span>
                                             <span className="title-font text-xs font-medium text-[#088240]">{product.discount}% OFF</span>
