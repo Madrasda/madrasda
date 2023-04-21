@@ -2,15 +2,35 @@ import Head from 'next/head';
 import Image from 'next/image';
 import ClientLayout from '@/components/layout-client';
 import { useRouter } from "next/router";
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import { getRole, isTokenValid } from '@/utils/JWTVerifier';
+import {UserContext} from "../../context/context";
+import axios from 'axios';
+import CartItem from '@/components/CartItem';
+import { uuidv4 } from '@firebase/util';
+
 export default function checkout() {
-    const router = useRouter();
+  const router = useRouter();
   let isReady = router.isReady;
-  const [details, setDetails] = useState(null);
-  const [designs, setDesigns] = useState(null);
+  const ctx = useContext(UserContext);
+  const [cart, setCart] = useState({});
+  const [visible, setVisible] = useState(false);
+  const [subTotal, setSubtotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [client, setClient] = useState(false);
+
+  useEffect(() => {
+        if (visible && !isTokenValid(localStorage.getItem("token"))) {
+            router.push("/login")
+        } else {
+            if (ctx.cart.cartItems !== undefined) {
+                const sum = ctx.cart.cartItems.reduce((prev, curr) => prev += curr.quantity * curr.product.total, 0);
+                setSubtotal(sum);
+            }
+        }
+    }, [ctx.cart])
+
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -63,51 +83,47 @@ export default function checkout() {
                     <div className="w-full">
                         <div className="-mx-3 md:ml-20 md:flex items-start">
                             {/* CART DETAILS */}
-                            <div className="px-3 md:w-5/12">         
-                                <div className="w-full flex items-center hover:bg-off-white rounded-lg">
-                                    <div className="overflow-hidden rounded-lg w-2/12 h-2/12 bg-[#D9D9D9] border border-gray">
-                                    <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
-                                    </div>
-                                    <div className="flex-grow pl-3 ml-4">
-                                        <h6 className="font-medium text-2xl text-black">Round Neck Solid Mens T-Shirt</h6>
-                                        <p className="text-gray">Vikram Collection</p>
-                                        <p className="text-gray">Size-L</p>
-                                        <p className="text-gray">Qty-1</p>
-                                    </div>
-                                    <div>
-                                        <span class="font-medium text-black text-xl">₹699</span>
-                                    </div>
-                                    <div>
-                                        <button class="font-medium text-gray text-xl ml-4 mr-4">x</button>
-                                    </div>
-                                </div>
-                                <hr className="h-px my-6 border-[#D9D9D9] border-1 "></hr>
-                                <div class="mb-6 pb-6 text-lg border-b border-[#D9D9D9] text-black">
-                                    <div class="w-full flex mb-3 items-center">
-                                        <div class="flex-grow">
-                                            <span class="text-black">Subtotal</span>
+                            <div className=" bg-[#D9D9D9] w-full p-5 rounded-lg">
+                                <div className="px-3 w-full">
+                                    {   ctx.cart && ctx.cart.cartItems &&
+                                        ctx.cart.cartItems.map(item =>
+                                            <CartItem
+                                                key={uuidv4()}
+                                                id={item.id}
+                                                qty={item.quantity}
+                                                product={item.product}
+                                            />)
+                                    }
+                                    <hr className="h-px my-6 border-[#D9D9D9] border-1 "></hr>
+                                    <div className="mb-6 pb-6 text-lg border-b border-[#D9D9D9] text-black">
+                                        <div className="w-full flex mb-3 items-center">
+                                            <div className="flex-grow">
+                                                <span className="text-black">Subtotal</span>
+                                            </div>
+                                            <div className="pl-3">
+                                                <span className="font-medium">₹{subTotal}</span>
+                                            </div>
                                         </div>
-                                        <div class="pl-3">
-                                            <span class="font-medium">₹699</span>
-                                        </div>
-                                    </div>
-                                    <div class="w-full flex items-center">
-                                        <div class="flex-grow">
-                                            <span class="text-black">Shipping</span>
-                                        </div>
-                                        <div class="pl-3">
-                                            <span class="font-medium">Free</span>
+                                        <div className="w-full flex items-center">
+                                            <div className="flex-grow">
+                                                <span className="text-black">Shipping</span>
+                                            </div>
+                                            <div className="pl-3">
+                                                <span className="font-medium">Free</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mb-6 pb-6 border-b border-gray md:border-none text-gray-800 text-xl">
-                                    <div class="w-full flex items-center">
-                                        <div class="flex-grow">
-                                            <span class="text-gray-600">Total</span>
-                                            <p className="text-sm text-gray">Including all taxes</p>
-                                        </div>
-                                        <div class="pl-3">
-                                            <span class="font-medium text-gray text-sm">INR</span> <span class="font-medium text-2xl">₹699</span>
+                                    <div
+                                        className="mb-6 pb-6 border-b border-gray md:border-none text-gray-800 text-xl">
+                                        <div className="w-full flex items-center">
+                                            <div className="flex-grow">
+                                                <span className="text-gray-600">Total</span>
+                                                <p className="text-sm text-gray">Including all taxes</p>
+                                            </div>
+                                            <div className="pl-3">
+                                                <span className="font-medium text-gray text-sm">INR</span> <span
+                                                className="font-medium text-2xl">₹{subTotal}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

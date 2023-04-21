@@ -8,11 +8,7 @@ export default function HotSellers() {
 
     const getAllProducts = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/client/allProducts", {
-            headers : {
-                Authorization : "Bearer " + localStorage.getItem('token')
-            }
-        }
+      "http://localhost:8080/api/client/allProducts?pageNo=0&pageSize=4"
     );
     setProducts(response.data.content);
   }

@@ -41,6 +41,7 @@ export default function ProductList () {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
+    
     if(jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
     else{

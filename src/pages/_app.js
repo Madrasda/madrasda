@@ -9,7 +9,6 @@ import {useRouter} from 'next/router';
 const theme = createTheme({
     type: 'dark', theme: {
         fonts: {
-            // algeria: 'Algeria Sans',
             algeria: 'Montserrat',
         },
     },
