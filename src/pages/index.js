@@ -25,6 +25,7 @@ export default function Home() {
   <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
   </div>);
 
+
   return (
     <>
       <Head>
@@ -62,7 +63,7 @@ export default function Home() {
             <div className='w-full h-full items-center justify-start px-4 py-2 hidden
                             lg:flex'>
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails" >
+              <Link href="/productDetails/[id]" >
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -86,7 +87,7 @@ export default function Home() {
               </div>
               
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails" >
+              <Link href="/productDetails/[id]" >
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -110,7 +111,7 @@ export default function Home() {
               </div>
 
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails" >
+              <Link href="/productDetails/[id]" >
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -134,7 +135,7 @@ export default function Home() {
               </div>
             
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails" >
+              <Link href="/productDetails/[id]" >
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -199,7 +200,7 @@ export default function Home() {
               </div>
 
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails">
+              <Link href="/productDetails/[id]">
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/vikram-tee.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -247,7 +248,7 @@ export default function Home() {
               </div>
 
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails">
+              <Link href="/productDetails/[id]">
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>
@@ -271,7 +272,7 @@ export default function Home() {
               </div>
             
               <div className="lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
-              <Link href="/productdetails">
+              <Link href="/productDetails/[id]">
                 <div className="block relative h-36 rounded overflow-hidden">
                   <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                 </div>

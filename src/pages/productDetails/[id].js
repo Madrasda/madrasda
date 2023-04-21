@@ -3,12 +3,12 @@ import Image from 'next/image';
 import ClientLayout from "@/components/layout-client";
 import {useRouter} from "next/router";
 import React, {useContext, useEffect, useRef, useState} from 'react';
-import {UserContext} from "../../context/context";
+import {UserContext} from "../../../context/context";
 import axios from "axios";
-import ColorOption from "../components/ColorOption";
+import ColorOption from "../../components/ColorOption";
 import {uuidv4} from "@firebase/util";
 
-export default function ProductDetails({productId}) {
+export default function ProductId() {
 
     const router = useRouter();
     const ctx = useContext(UserContext);
@@ -57,23 +57,26 @@ export default function ProductDetails({productId}) {
     };
     useEffect(() => {
         setLoading(true);
-        axios.get("http://localhost:8080/api/product/getProductDetails/12")
-            .then(response => {
-                setProduct(response.data)
-                return response.data
-            })
-            .then((product) => {
-                setCurrentColor(product.colors[0])
-                return product.colors[0];
-            })
-            .then((color) => {
-                setActiveImage(color.images[0])
-                return color.sizes;
-            })
-            .then((sizes) => setCurrentSize(sizes[0]))
-            .then(() => setLoading(false))
-            .catch(err => console.log(err));
-    }, []);
+        if (isReady) {
+            const {id} = router.query;
+            axios.get("http://localhost:8080/api/product/getProductDetails/" + id)
+                .then(response => {
+                    setProduct(response.data)
+                    return response.data
+                })
+                .then((product) => {
+                    setCurrentColor(product.colors[0])
+                    return product.colors[0];
+                })
+                .then((color) => {
+                    setActiveImage(color.images[0])
+                    return color.sizes;
+                })
+                .then((sizes) => setCurrentSize(sizes[0]))
+                .then(() => setLoading(false))
+                .catch(err => console.log(err));
+        }
+    }, [isReady]);
 
 
     if (loading && isReady) return (<div className='z-50 h-screen w-screen overflow-hidden'>
@@ -93,7 +96,7 @@ export default function ProductDetails({productId}) {
             <title>Madrasda | View Product</title>
         </Head>
 
-        <ClientLayout>
+        {isReady && <ClientLayout>
             <section className="text-black body-font font-algeria overflow-hidden">
                 <div className="px-5 pt-24 mx-auto flex justify-center">
                     <div className="flex justify-start flex-row flex-wrap md:flex-nowrap">
@@ -141,13 +144,16 @@ export default function ProductDetails({productId}) {
                             <div className="mt-6">Colors</div>
                             <div className="flex items-center mt-3 mb-3">
                                 <div className="flex">
-                                    {product.colors.map(color => <ColorOption key={color.id} hex={color.hexValue}
-                                                                              id={color.id}
-                                                                              color={color.color}
-                                                                              currentColor={color}
-                                                                              setColor={handleSetColor}
-                                                                              setImage={setActiveImage}
-                                    />)}
+                                    {product.colors
+                                        .map(color =>
+                                            <ColorOption key={color.id}
+                                                         hex={color.hexValue}
+                                                         id={color.id}
+                                                         color={color.color}
+                                                         currentColor={color}
+                                                         setColor={handleSetColor}
+                                                         setImage={setActiveImage}
+                                            />)}
                                 </div>
                             </div>
 
@@ -155,17 +161,15 @@ export default function ProductDetails({productId}) {
                                 className="title-font font-medium underline text-black text-xs ml-64">Size Guide</span>
                             <div className="flex items-center">
                                 <div className="relative">
-                                    {currentColor.sizes.map(size => (
-                                        <button
-                                            key={size.id}
-                                            onClick={() => {
-                                                setCurrentSize(size)
-                                            }}
-                                            className={`px-4 py-2 m-3 text-black font-semibold rounded-lg shadow-lg transition-shadow
-                                            ${size === currentSize ? 'bg-primary text-white' :
-                                                'bg-white hover:bg-off-white hover:shadow-gray' }
+                                    {currentColor.sizes.map(size => (<button
+                                        key={size.id}
+                                        onClick={() => {
+                                            setCurrentSize(size)
+                                        }}
+                                        className={`px-4 py-2 m-3 text-black font-semibold rounded-lg shadow-lg transition-shadow
+                                            ${size === currentSize ? 'bg-primary text-white' : 'bg-white hover:bg-off-white hover:shadow-gray'}
         `}
-                                        >
+                                    >
                                         <input
                                             type="radio"
                                             id={size.id}
@@ -176,7 +180,7 @@ export default function ProductDetails({productId}) {
                                             className="sr-only"
                                         />
                                         <label htmlFor={size.id}>{size.size}</label>
-                                        </button>))}
+                                    </button>))}
                                 </div>
                             </div>
 
@@ -184,7 +188,8 @@ export default function ProductDetails({productId}) {
 
                             <div className="flex items-center h-10 w-32">
                                 <h2 className="w-full text-black mr-5 text-sm font-semibold">Qty</h2>
-                                <div className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                <div
+                                    className="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                     <button className=" bg-white text-center border border-gray text-primary hover:text-primary
                   hover:bg-gray h-full w-20 rounded-l cursor-pointer outline-none"
                                             onClick={handleDecrement}>
@@ -265,7 +270,8 @@ export default function ProductDetails({productId}) {
                                 <div
                                     className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
                                     <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080} height={1920}
+                                        <Image src="/vikram-hoodie.png" alt="ecommerce" width={1080}
+                                               height={1920}
                                                className="object-contain object-center w-full h-full block"/>
                                     </a>
                                     <div className="mt-4">
@@ -289,7 +295,8 @@ export default function ProductDetails({productId}) {
                                 <div
                                     className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
                                     <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080} height={1920}
+                                        <Image src="/wakeup-hoodie.png" alt="ecommerce" width={1080}
+                                               height={1920}
                                                className="object-contain object-center w-full h-full block"/>
                                     </a>
                                     <div className="mt-4">
@@ -313,7 +320,8 @@ export default function ProductDetails({productId}) {
                                 <div
                                     className="lg:w-1/4 md:w-1/3 p-4 w-full cursor-pointer bg-off-white mx-2 mb-4 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
                                     <a className="block relative h-48 rounded overflow-hidden">
-                                        <Image src="/madrasda-bag.png" alt="ecommerce" width={1080} height={1920}
+                                        <Image src="/madrasda-bag.png" alt="ecommerce" width={1080}
+                                               height={1920}
                                                className="object-contain object-center w-full h-full block"/>
                                     </a>
                                     <div className="mt-4">
@@ -340,6 +348,6 @@ export default function ProductDetails({productId}) {
                 </div>
             </div>
 
-        </ClientLayout>
-    </>);
+        </ClientLayout>}
+    </>)
 }

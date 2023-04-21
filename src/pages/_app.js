@@ -23,6 +23,7 @@ export default function App({Component, pageProps}) {
     const [cart, setCart] = useState({});
     const [userDetails, setUserDetails] = useState({});
     const [token, setToken] = useState("");
+    const [vendorList, setVendorList] = useState([]);
     const router = useRouter();
 
     useEffect(() => {
@@ -40,24 +41,23 @@ export default function App({Component, pageProps}) {
                 .catch((err) => {
                     console.log(err);
                 })
+            axios.get("http://localhost:8080/api/admin/getVendors")
+                .then(response => setVendorList(response.data))
+                .catch(err => console.log(err));
         }
     }, []);
-    const decrementQty = (id) => {
-        let qty;
+    const decrementQty = (id, qty) => {
         setCart(oldCart => {
             let newCart = []
             for (let item of oldCart.cartItems) {
-                if (item.id === id) {
-                    if (item.quantity <= 1) continue;
-                    qty = --item.quantity;
-                    newCart.push(item);
-                }
+                if (item.id === id)
+                    if (qty < 1) continue
+                    else item.quantity = qty
+                newCart.push(item);
             }
+            return {...oldCart, cartItems: newCart};
+        });
 
-            return {
-                ...oldCart, cartItems: newCart
-            };
-        })
         axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, null, {
             headers: {
                 Authorization: "Bearer " + token
@@ -122,12 +122,27 @@ export default function App({Component, pageProps}) {
                 "colors": product.colors,
                 quantity: product.quantity
             }
-            console.log(cartItem)
             axios.post("http://localhost:8080/api/cart/addToCart", cartItem, {
                 headers: {
                     Authorization: "Bearer " + token
                 }
             })
+                .then((response) => {
+                    console.log(response)
+                    return axios.get("http://localhost:8080/api/cart/", {
+                        headers: {
+                            "Authorization": "Bearer " + token
+                        }
+                    })
+                })
+                .then(response => {
+                    setCart(response.data)
+                    return cart;
+                })
+                .then((cart) => console.log(cart))
+                .catch((err) => {
+                    console.log(err);
+                })
         } else {
             router.push("/login")
         }
@@ -141,7 +156,8 @@ export default function App({Component, pageProps}) {
                 customQuantity: customQuantity,
                 removeItem: removeItem,
                 addToCart: addToCart,
-                cart: cart
+                cart: cart,
+                vendorList: vendorList,
             }}>
                 <Component {...pageProps} id="page"/>
             </UserContext.Provider>
