@@ -1,15 +1,17 @@
 import React, {useContext, useEffect} from "react";
-import {css, Button, Modal, Text} from "@nextui-org/react";
+import {Button, Modal, Text} from "@nextui-org/react";
 import Image from "next/image";
 import Link from "next/link";
 import CartItem from "@/components/CartItem";
 import {UserContext} from "../../context/context";
 import {useRouter} from "next/router";
 import {isTokenValid} from "@/utils/JWTVerifier";
+import {uuidv4} from "@firebase/util";
 
 
 export default function CartModal() {
     const [visible, setVisible] = React.useState(false);
+    const [subTotal, setSubtotal] = React.useState(0);
     const handler = () => setVisible(true);
     const router = useRouter();
     const closeHandler = () => {
@@ -17,14 +19,17 @@ export default function CartModal() {
     };
     const ctx = useContext(UserContext);
     useEffect(() => {
-        if(visible && isTokenValid(localStorage.getItem("token"))){
+        if (visible && !isTokenValid(localStorage.getItem("token"))) {
             router.push("/login")
+        } else {
+            if (ctx.cart.cartItems !== undefined) {
+                const sum = ctx.cart.cartItems.reduce((prev, curr) => prev += curr.quantity * curr.product.total, 0);
+                setSubtotal(sum);
+            }
         }
-    })
+    }, [ctx.cart])
 
     return (
-
-
         <div>
             <Button auto ghost onPress={handler}
                     css={{
@@ -40,7 +45,7 @@ export default function CartModal() {
                 width="800px"
                 scroll="false"
                 closeButton
-                shadow
+                className={"shadow-lg"}
                 aria-labelledby="modal-title"
                 open={visible}
                 onClose={closeHandler}
@@ -65,7 +70,7 @@ export default function CartModal() {
                                     {
                                         ctx.cart.cartItems.map(item =>
                                             <CartItem
-                                                key={Date.now()}
+                                                key={uuidv4()}
                                                 id={item.id}
                                                 qty={item.quantity}
                                                 product={item.product}
@@ -78,7 +83,7 @@ export default function CartModal() {
                                                 <span className="text-black">Subtotal</span>
                                             </div>
                                             <div className="pl-3">
-                                                <span className="font-medium">₹699</span>
+                                                <span className="font-medium">₹{subTotal}</span>
                                             </div>
                                         </div>
                                         <div className="w-full flex items-center">
@@ -99,7 +104,7 @@ export default function CartModal() {
                                             </div>
                                             <div className="pl-3">
                                                 <span className="font-medium text-gray text-sm">INR</span> <span
-                                                className="font-medium text-2xl">₹699</span>
+                                                className="font-medium text-2xl">₹{subTotal}</span>
                                             </div>
                                         </div>
                                     </div>

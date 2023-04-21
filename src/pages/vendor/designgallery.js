@@ -51,7 +51,7 @@ export default function DesignGallery () {
 
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080}/>
+  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
   </div>);
   return (
     <>
@@ -63,28 +63,30 @@ export default function DesignGallery () {
     </Head>
     
     <VendorLayout>
-    <section className="body-font font-algeria
-                        md:ml-32">
+    <section className="body-font overflow-hidden font-algeria
+                        md:ml-36">
       <div className="mt-20 px-5 md:my-10 mx-auto">
-        <div className="p-4 w-full h-full cursor-pointer space-y-3 m-5 rounded">
-                  <h1 className="text-3xl font-bold">Upload a new design</h1>
-                  <UploadModal
-                    upload={true}
-                    uploadSuccess={() => {router.reload()}}
-                  />
-          </div>
-        <div className="flex flex-wrap justify-center">
+        <h1 className="text-3xl text-primary
+                       md:ml-20">DESIGN GALLERY</h1>
+        <div className="md:ml-20 md:mt-10">
+            <h1 className="text-lg my-5">Upload a new design</h1>
+            <UploadModal
+              upload={true}
+              uploadSuccess={() => {router.reload()}}
+            />
+        </div>
+        <div className="flex flex-wrap justify-start md:ml-20">
           { designs &&
             designs.map((d) => {
               return (
-                <div className="lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out" key={d.id}>
-                  <a className="block relative h-fit rounded overflow-hidden">
+                <div className="lg:w-1/4 md:w-1/3 p-4 w-full h-full bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)]" key={d.id}>
+                  <div className="block relative h-[200px] md:h-[100px] lg:h-[200px] rounded overflow-hidden">
                     <Image src={d.imgUrl}
                     alt="ecommerce" 
                     height={1080}
                     width={1920} 
                     className="object-contain object-center w-full h-full" />
-                  </a>
+                  </div>
                 </div>
               )
             })

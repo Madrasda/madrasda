@@ -31,7 +31,7 @@ export default function CustomerDetails () {
     }, []);
     if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080}/>
+  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
   </div>);
     return (
         <>

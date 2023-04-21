@@ -129,7 +129,7 @@ export default function MyProducts () {
 
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080}/>
+  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
   </div>);
   return (
     <>
@@ -143,12 +143,12 @@ export default function MyProducts () {
         <AdminLayout>
         <section className="body-font overflow-hidden font-algeria
                             md:ml-32">
-        <div className="px-5 my-10 mx-auto">
+        <div className="mt-20 px-5 md:my-10 mx-auto">
             <h1 className="text-3xl text-primary 
                            md:ml-20">MOCKUPS </h1>
-            <div className="flex flex-wrap justify-center">
             
-                <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
+            <div className="flex flex-wrap justify-start md:ml-20">
+                <div className="lg:w-1/4 md:w-3/4 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
                     <div className="flex flex-col items-center justify-center cursor-pointer">
                         <AdminUploadModal
                           colors={colors}
@@ -164,7 +164,7 @@ export default function MyProducts () {
 
                     mockups.map((m) => {
                         return (
-                            <div className="lg:w-1/4 md:w-1/2 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                            <div className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                               <span className="flex justify-end">
                                 <CloseConfirm mockup={true} delete={(e) => {if(e) deleteMockup(m.id);}}/>
                               </span>
@@ -180,7 +180,7 @@ export default function MyProducts () {
                         )
                     })
                 }
-            </div>
+                </div>
                 <div className="flex justify-center mt-32">
                     <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
                         () => {
