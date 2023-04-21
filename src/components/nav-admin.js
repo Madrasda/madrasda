@@ -80,15 +80,6 @@ export default function NavAdmin() {
                     </div>
                 </Link>
 
-                <Link href="/admin/customerdetails">
-                    <div className={currentRoute === '/admin/customerdetails' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
-                        <div className="flex justify-start items-center py-4">
-                            <Image src="/customerdetails-icon.png" className="w-auto h-auto" width={30} height={30}/>
-                            <h3 className="ml-2">Customer Details</h3>
-                        </div>
-                    </div>
-                </Link>
-
                 <Link href="/admin/hotsellers">
                     <div className={currentRoute === '/admin/hotsellers' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                         <div className="flex justify-start items-center py-4">
