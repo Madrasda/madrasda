@@ -20,11 +20,14 @@ module.exports = {
       'white': '#FFFFFF',
       'black': '#000000',
       'gray': '#808080',
-      'off-white': '#F7F7F7'
+      'shadowGrey':'rgba(62,62,62,0.63)' ,
+      'off-white': '#F7F7F7',
+      'red': "#ff2c2c",
+      'invalidValue': "rgba(255,171,171,0.51)"
     },
     fontFamily: {
-      algeria: ['Algeria Sans', 'sans-serif'],
-      algeria: ['Montserrat', 'sans-serif'],
+      // algeria: ['Algeria Sans', 'sans-serif'],
+      algeria: ['Anuphan', 'cursive'],
       // serif: ['Merriweather', 'serif'],
     },
   },
