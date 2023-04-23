@@ -20,3 +20,11 @@ export const getRole = (token) => {
         return false;
     }
 }
+export const getPhone = (token) => {
+  try {
+    const decodedToken = jwtDecode(token);
+    return decodedToken.sub;
+  } catch (error) {
+    return false;
+  }
+};

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from "next/router";
 import { useEffect,useState } from 'react';
 import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+import Image from "next/image";
 
 export default function contact() {
   const router = useRouter();

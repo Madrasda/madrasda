@@ -143,6 +143,7 @@ export default function App({Component, pageProps}) {
                     console.log(err);
                 })
         } else {
+            console.log(isTokenValid(token));
             router.push("/login")
         }
     }
