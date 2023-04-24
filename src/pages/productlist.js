@@ -102,8 +102,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                                         imageUrl={product.colors[0].images[0]}
 
                                     />
-                                )
-                                }
+                                )}
 
                             </div>
                             <br/>

@@ -18,6 +18,9 @@ export default function ProductId() {
     const [loading, setLoading] = useState(false);
     const [client, setClient] = useState(false);
     const [activeImage, setActiveImage] = useState("https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif");
+    const [message, setMessage] = useState("");
+    const [severity, setSeverity] = useState("");
+    const [open, setOpen] = useState(false);
     const qtyRef = useRef();
     let isReady = router.isReady;
     const [currentColor, setCurrentColor] = useState({
@@ -56,7 +59,10 @@ export default function ProductId() {
         const addToCartItem = {
             id: product.id, colors: [color], quantity: qtyRef.current.value
         }
-        ctx.addToCart(addToCartItem);
+        ctx.addToCart(addToCartItem)
+            .then(status => {
+                console.log(status)
+            });
     };
     useEffect(() => {
         setLoading(true);
@@ -111,7 +117,7 @@ export default function ProductId() {
             <title>Madrasda | View Product</title>
         </Head>
 
-        {isReady && <ClientLayout client={client}>
+        {isReady && <ClientLayout client={client} state={state} severity={severity} message={message}>
             <section className="text-black body-font font-algeria overflow-hidden">
                 <div className="px-5 pt-24 mx-auto flex justify-center">
                     <div className="flex justify-start flex-row flex-wrap md:flex-nowrap">

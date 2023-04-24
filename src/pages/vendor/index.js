@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { isTokenValid } from '@/utils/JWTVerifier';
+import {Button} from '@mui/material'
 import { useRef } from 'react';
 export default function Vendorlogin() {
     const mail = useRef();
@@ -125,11 +126,20 @@ export default function Vendorlogin() {
 
 
                                 <div className='flex justify-center items-center mt-6'>
-                                    <Link href="/vendor/dashboard">
-                                        <button onClick={vendorlogin} className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
+                                        <Button
+                                            variant={"contained"}
+                                            sx={{
+                                                backgroundColor: '#A5153F', // sets the background color to primary
+                                                color: 'white', // sets the text color to white
+                                                '&:hover': {
+                                                    backgroundColor: '#c51a4c', // sets the background color on hover to accent
+                                                },
+                                            }}
+                                            type={"submit"}
+                                            onClick={vendorlogin}
+                                        >
                                             Login
-                                        </button>
-                                    </Link>
+                                        </Button>
                                 </div>
                             </form>
                             <div className="w-100 underline text-white text-sm text-center mt-3">

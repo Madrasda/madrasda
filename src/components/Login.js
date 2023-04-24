@@ -1,4 +1,6 @@
 import Link from "next/link";
+import {TextField} from "@mui/material";
+import React from "react";
 
 const Login = (props) => {
     return <>
@@ -6,23 +8,43 @@ const Login = (props) => {
             LOGIN
         </h1>
         <div>
-            <label htmlFor="number" className="text-white">Phone Number</label>
-            <input
-                type="phone number"
-                className={"w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"}
-                id="number"
-                ref={props.phoneRef}
+            <TextField
+                variant="outlined"
+                label={"Phone Number"}
+                inputProps={{inputMode: 'numeric', pattern: '[0-9]*'}} id="number"
+                inputRef={props.phoneRef}
+                className={'w-full'}
                 required={true}
+                sx={{
+                    color: "white",
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: 'white',
+                            color: 'white'
+                        },
+                        '&:hover fieldset': {
+                            borderColor: 'gray',
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: 'white',
+                        },
+                    },
+                    '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'red',
+                    },
+
+                }}
             />
         </div>
 
         <div className="flex justify-center items-center mt-4">
-
             <button
-                className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}
+                type='submit'
+                className={`text-white shadow-lg shadow-shadowGrey bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded mr-2 mb-2`}
                 onClick={props.submitPhoneHandler}>
                 Login
             </button>
+
 
         </div>
 

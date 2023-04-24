@@ -28,7 +28,6 @@ export default function App({Component, pageProps}) {
     const [isLoggedIn, setIsLoggedIn] = useState(true)
 
 
-
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
         if (jwtToken === undefined || isTokenValid(jwtToken)) {
@@ -51,7 +50,7 @@ export default function App({Component, pageProps}) {
     }, []);
     const resetVendorList = () => {
         console.log("in reset vendor list")
-        
+
     }
     const decrementQty = (id, qty) => {
         setCart(oldCart => {
@@ -123,20 +122,18 @@ export default function App({Component, pageProps}) {
             .catch(err => console.log(err));
     }
     const addToCart = (product) => {
-        console.log(isTokenValid(token) + " -> token validity");
         if (isTokenValid(token)) {
             const cartItem = {
                 "id": product.id,
                 "colors": product.colors,
                 quantity: product.quantity
             }
-            axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
+            return axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
                 headers: {
                     Authorization: "Bearer " + token
                 }
             })
                 .then((response) => {
-                    console.log(response)
                     return axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
                         headers: {
                             "Authorization": "Bearer " + token
@@ -145,9 +142,8 @@ export default function App({Component, pageProps}) {
                 })
                 .then(response => {
                     setCart(response.data)
-                    return cart;
+                    return response.status;
                 })
-                .then((cart) => console.log(cart))
                 .catch((err) => {
                     console.log(err);
                 })
