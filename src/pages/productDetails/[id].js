@@ -61,7 +61,14 @@ export default function ProductId() {
         }
         ctx.addToCart(addToCartItem)
             .then(status => {
-                console.log(status)
+                setOpen(true);
+                if (status === 200) {
+                    setMessage("Added To Cart!");
+                    setSeverity("success");
+                } else {
+                    setMessage("Error Adding To Cart!");
+                    setSeverity("error");
+                }
             });
     };
     useEffect(() => {
@@ -117,7 +124,7 @@ export default function ProductId() {
             <title>Madrasda | View Product</title>
         </Head>
 
-        {isReady && <ClientLayout client={client} state={state} severity={severity} message={message}>
+        {isReady && <ClientLayout client={client} state={open} severity={severity} message={message} setState={setOpen}>
             <section className="text-black body-font font-algeria overflow-hidden">
                 <div className="px-5 pt-24 mx-auto flex justify-center">
                     <div className="flex justify-start flex-row flex-wrap md:flex-nowrap">
@@ -157,7 +164,7 @@ export default function ProductId() {
               </span>
                                 <span className="title-font line-through font-small text-lg
                                 text-gray-600 mr-2 flex justify-center">
-                ₹{product.total }
+                ₹{product.total}
               </span>
                                 <span
                                     className='bg-primary rounded-lg mr-2 px-2 py-1 scale-75 text-base text-white flex justify-center'>

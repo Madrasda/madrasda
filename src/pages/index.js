@@ -16,11 +16,8 @@ export default function Home() {
   const router = useRouter();
   const ctx = useContext(UserContext);
   let isReady = router.isReady;
-  const [details, setDetails] = useState(null);
-  const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
   const [client, setClient] = useState(false);
-  const [allVendor, setAllVendor] = useState([]);
 
   
   useEffect(() => {
@@ -66,11 +63,11 @@ export default function Home() {
             ctx.vendorList.map((vendor, index) => {
               if(index%2===0){
                 return (
-                  <RightsideDisc key={uuidv4} id={vendor.id} name={vendor.name} imgUrl={vendor.imgUrl} />
+                  <RightsideDisc key={uuidv4()} id={vendor.id} name={vendor.name} imgUrl={vendor.imgUrl} />
                 )
               }else{
                 return (
-                  <LeftsideDisc key={uuidv4} id={vendor.id} name={vendor.name} imgUrl={vendor.imgUrl} />
+                  <LeftsideDisc key={uuidv4()} id={vendor.id} name={vendor.name} imgUrl={vendor.imgUrl} />
                 )
               }
             })

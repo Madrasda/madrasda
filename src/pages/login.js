@@ -1,133 +1,160 @@
 import Head from 'next/head'
-import {Inter} from '@next/font/google'
-import {useContext, useRef, useState} from "react";
+import {forwardRef, useEffect, useRef, useState} from "react";
 import axios from "axios";
-import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import Image from "next/image";
 import Otp from "@/components/Otp";
 import Login from "@/components/Login";
 import {useRouter} from "next/router";
-import { useEffect} from 'react';
-import { UserContext } from "context/context";
-import {Backdrop, CircularProgress} from "@mui/material";
+import {Backdrop, CircularProgress, Snackbar} from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 
+const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function LoginForm() {
-  const router = useRouter();
-  let isReady = router.isReady;
-  const [details, setDetails] = useState(null);
-  const [designs, setDesigns] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [spinner, setSpinnerState] = useState(false);
-  const phoneRef = useRef();
-  const otpRef = useRef();
-  const [showOtp, setShowOtp] = useState(false);
-  const [invalidMessage, setInvalidMessage] = useState("");
-  const [phone, setPhone] = useState("");
-  const ctx = useContext(UserContext);
-  const submitPhoneHandler = () => {
-    const phone = phoneRef.current.value;
-    if (/^[0-9]{10}$/.test(phone)) {
-      setSpinnerState(true)
-      axios
-          .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" + phone)
-          .then((response) => {
-            setShowOtp(true);
-            setInvalidMessage("");
-            setPhone(phone);
-          }).then(() => setSpinnerState(false))
-          .catch((err) => console.log(err));
-    } else {
-      setInvalidMessage("Invalid Phone Number");
-    }
-  };
-  const onSubmitOtpHandler = (event) => {
-    const otp = otpRef.current.value;
-    if (otp.length === 6) {
-      setSpinnerState(true)
-      axios
-        .post(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
-            "phone=" +
-            phone +
-            "&otp=" +
-            otp
-        )
-        .then((response) => {
-          console.log(response);
-          if (response.status === 200) {
-            localStorage.setItem("token", response.data.token);
-            router.push("/");
-          } else {
-            setInvalidMessage("Invalid OTP");
-          }
-        })
-        .catch((err) => console.log(err));
-    } else {
-      setInvalidMessage("Invalid OTP");
-    }
-  };
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+    const router = useRouter();
+    let isReady = router.isReady;
+    const [details, setDetails] = useState(null);
+    const [designs, setDesigns] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [spinner, setSpinnerState] = useState(false);
+    const phoneRef = useRef();
+    const otpRef = useRef();
+    const [showOtp, setShowOtp] = useState(false);
+    const [phone, setPhone] = useState("");
+    const [message, setMessage] = useState("");
+    const [severity, setSeverity] = useState("");
+    const [open, setOpen] = useState(false);
+    const handleClose = (event, reason) => {
+        console.log(reason);
+        if (reason === 'clickaway') {
+            return;
+        }
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
-    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken && isTokenValid(jwtToken)) router.push("/");
-  }, []);
+        setOpen(false);
+    };
+    const submitPhoneHandler = () => {
+        const phone = phoneRef.current.value;
+        if (/^[0-9]{10}$/.test(phone)) {
+            axios
+                .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" + phone)
+                .then((response) => {
+                    setShowOtp(true);
+                    setPhone(phone);
+                }).then(() => setSpinnerState(false))
+                .catch((err) => {
+                    setOpen(true)
+                    setMessage(err.data);
+                    setSeverity("error");
+                    console.log(err)
+                });
 
-  if (loading && isReady)
-    return (
-      <div className='z-50 h-screen w-screen overflow-hidden'>
-        <Image
-          src='/loader.gif'
-          width={1920}
-          height={1080}
-          className='object-cover object-center w-full h-full'
-        />
-      </div>
-    );
+            setSpinnerState(true)
+        } else {
+            setOpen(true)
+            setMessage("Invalid Phone Number");
+            setSeverity("error");
+        }
+    };
+    const onSubmitOtpHandler = (event) => {
+        const otp = otpRef.current.value;
+        if (otp.length === 6) {
+            setSpinnerState(true)
+            axios
+                .post(
+                    "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
+                    "phone=" +
+                    phone +
+                    "&otp=" +
+                    otp
+                )
+                .then((response) => {
+                    console.log(response);
+                    if (response.status === 200) {
+                        localStorage.setItem("token", response.data.token);
+                        router.push("/");
+                    } else {
+                        setOpen(true)
+                        setMessage("Invalid Phone Number");
+                        setSeverity("error");
+                    }
+                })
+                .catch((err) => console.log(err));
+        } else {
+            setOpen(true)
+            setMessage("Invalid Phone Number");
+            setSeverity("error");
+        }
+    };
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+    }, []);
 
-  return (
-    <>
-      <Head>
-        <meta name='description' content='Generated by create next app' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/logo.png' />
-        <title>Madrasda | Login</title>
-      </Head>
-      <div className='bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] w-screen h-screen'>
-        <div className='w-full bg-cover bg-center flex-center flex-row bg-transparent max-w-md m-auto backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 px-16'>
-          <div className='flex flex-wrap justify-center'>
-            <div className='w-24'>
-              <Image src='/logo.png' alt='LOGO' width={300} height={300} />
+    useEffect(() => {
+        const jwtToken = localStorage.getItem("token");
+        if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
+        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
+        if (jwtToken && isTokenValid(jwtToken)) router.push("/");
+    }, []);
+
+    if (loading && isReady)
+        return (
+            <div className='z-50 h-screen w-screen overflow-hidden'>
+                <Image
+                    src='/loader.gif'
+                    width={1920}
+                    height={1080}
+                    className='object-cover object-center w-full h-full'
+                />
             </div>
-          </div>
-          <Backdrop
-              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-              open={spinner}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
-          {showOtp && (
-            <Otp otpRef={otpRef} onSubmitOtpHandler={onSubmitOtpHandler} />
-          )}
-          {!showOtp && (
-            <Login
-              phoneRef={phoneRef}
-              submitPhoneHandler={submitPhoneHandler}
-            />
-          )}
-          <h3 className='text-xl text-primary font-medium mt-2 mb-12 text-center'>
-            {invalidMessage}
-          </h3>
-          <br />
-        </div>
-      </div>
-    </>
-  );
+        );
+
+    return (
+        <>
+            <Head>
+                <meta name='description' content='Generated by create next app'/>
+                <meta name='viewport' content='width=device-width, initial-scale=1'/>
+                <link rel='icon' href='/logo.png'/>
+                <title>Madrasda | Login</title>
+            </Head>
+            <Backdrop
+                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
+                open={spinner}
+            >
+                <CircularProgress color="inherit"/>
+            </Backdrop>
+            <Snackbar className={"mt-14"} open={open} autoHideDuration={1400}
+                      onClose={handleClose} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
+                <Alert onClose={handleClose} severity={severity}>
+                    {message}
+                </Alert>
+            </Snackbar>
+            <div
+                className='bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] w-screen h-screen'>
+                <div
+                    className='w-full bg-cover bg-center flex-center flex-row bg-transparent max-w-md m-auto backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 px-16'>
+                    <div className='flex flex-wrap justify-center'>
+                        <div className='w-24'>
+                            <Image src='/logo.png' alt='LOGO' width={300} height={300}/>
+                        </div>
+                    </div>
+
+                    {showOtp && (
+                        <Otp otpRef={otpRef} onSubmitOtpHandler={onSubmitOtpHandler}/>
+                    )}
+                    {!showOtp && (
+                        <Login
+                            phoneRef={phoneRef}
+                            submitPhoneHandler={submitPhoneHandler}
+                        />
+                    )}
+                    <br/>
+                </div>
+            </div>
+        </>
+    );
 }

@@ -14,27 +14,28 @@ function VendorProductsPage() {
     const [title, setTitle] = useState("")
     const [vendorList, setVendorList] = useState([]);
     const setPageData = (vendors) => {
-        console.log(vendors);
         setTitle((vendors.find((vendor) => vendor.id === parseInt(router.query.vendorId))).name + "'s Products");
         axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo + "&pageSize=20")
             .then(response => setVendorProducts(response.data))
             .catch(err => console.log(err));
     }
     useEffect(() => {
-        if((ctx.vendorList.length !== 0) && router.isReady) {
-            console.log((ctx.vendorList.length === 0) + " LIST IS EMPTY");
-            setPageData(ctx.vendorList);
-        }
-        else {
-            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
-                .then(response => {
-                    console.log(response.data);
-                    setPageData(response.data)
-                })
-                .catch(err => console.log(err));
+        if (router.isReady) {
+            console.log(((ctx.vendorList.length !== 0 && ctx.vendorList !== undefined)) + " LIST IS NOT EMPTY");
+
+            if ((ctx.vendorList.length !== 0 && ctx.vendorList !== undefined)) {
+                console.log(ctx.vendorList);
+                setPageData(ctx.vendorList);
+            } else {
+                axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
+                    .then(response => {
+                        setPageData(response.data)
+                    })
+                    .catch(err => console.log(err));
+            }
         }
     }, [vendorId, pageNo]);
-    
+
 
     return <ProductList productsPage={vendorProducts} setPageNo={setPageNo} pageNo={pageNo} title={title}/>;
 }

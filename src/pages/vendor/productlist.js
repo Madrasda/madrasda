@@ -34,7 +34,7 @@ export default function ProductList () {
     );
     const id= response.data.vendor.id
     const prod = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/" + id
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/getProductsByVendor/" + id
     );
     setProducts(prod.data.content);
   }

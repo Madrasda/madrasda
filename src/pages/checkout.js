@@ -7,7 +7,7 @@ import {UserContext} from "../../context/context";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import { uuidv4 } from "@firebase/util";
 import axios from "axios";
-import { TextField } from "@mui/material";
+import {Backdrop, Box, CircularProgress, TextField} from "@mui/material";
 
 export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
@@ -15,6 +15,7 @@ export default function Checkout() {
   const [pincode, setPincode] = useState("");
   const [error, setError] = useState(false);
   const [client, setClient] = useState(false);
+  const [spinner, setSpinner] = useState(false);
   const email = useRef();
   const country = useRef();
   const firstName = useRef();
@@ -45,6 +46,7 @@ export default function Checkout() {
       setTimeout(() => {
         if (text.length === 6) {
           setError(false);
+          setSpinner(true);
           axios
               .get(
                   "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" + text,
@@ -54,7 +56,10 @@ export default function Checkout() {
                     },
                   }
               )
-              .then((response) => setShippingCharges(response.data))
+              .then((response) => {
+                setShippingCharges(response.data);
+                setSpinner(false);
+              })
               .catch((err) => console.log(err));
         } else {
           setError(true);
@@ -119,7 +124,12 @@ export default function Checkout() {
           <link rel='icon' href='/logo.png' />
           <title>Madrasda | Checkout</title>
         </Head>
-
+        <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={spinner}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <ClientLayout client={client}>
           <main>
             <div className='min-w-screen min-h-screen bg-gray-50 py-5'>

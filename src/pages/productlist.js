@@ -38,7 +38,8 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
 
     useEffect(() => {
             setLoading(true);
-            if (productsPage.content && productsPage.content.length > 0) {
+            console.log(productsPage)
+            if (productsPage.content !== undefined) {
                 setLoading(false);
                 setPageButtons((oldList) => {
                         let buttons = [];
