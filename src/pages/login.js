@@ -9,6 +9,7 @@ import Login from "@/components/Login";
 import {useRouter} from "next/router";
 import { useEffect} from 'react';
 import { UserContext } from "context/context";
+import {Backdrop, CircularProgress} from "@mui/material";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function LoginForm() {
   const [details, setDetails] = useState(null);
   const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [spinner, setSpinnerState] = useState(false);
   const phoneRef = useRef();
   const otpRef = useRef();
   const [showOtp, setShowOtp] = useState(false);
@@ -25,14 +27,15 @@ export default function LoginForm() {
   const submitPhoneHandler = () => {
     const phone = phoneRef.current.value;
     if (/^[0-9]{10}$/.test(phone)) {
+      setSpinnerState(true)
       axios
-        .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" + phone)
-        .then((response) => {
-          setShowOtp(true);
-          setInvalidMessage("");
-          setPhone(phone);
-        })
-        .catch((err) => console.log(err));
+          .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" + phone)
+          .then((response) => {
+            setShowOtp(true);
+            setInvalidMessage("");
+            setPhone(phone);
+          }).then(() => setSpinnerState(false))
+          .catch((err) => console.log(err));
     } else {
       setInvalidMessage("Invalid Phone Number");
     }
@@ -40,6 +43,7 @@ export default function LoginForm() {
   const onSubmitOtpHandler = (event) => {
     const otp = otpRef.current.value;
     if (otp.length === 6) {
+      setSpinnerState(true)
       axios
         .post(
           "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
@@ -52,7 +56,6 @@ export default function LoginForm() {
           console.log(response);
           if (response.status === 200) {
             localStorage.setItem("token", response.data.token);
-            ctx.toggleLoginState(true)
             router.push("/");
           } else {
             setInvalidMessage("Invalid OTP");
@@ -104,7 +107,12 @@ export default function LoginForm() {
               <Image src='/logo.png' alt='LOGO' width={300} height={300} />
             </div>
           </div>
-          <div className='flex flex-wrap mt-2 justify-center'></div>
+          <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={spinner}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
           {showOtp && (
             <Otp otpRef={otpRef} onSubmitOtpHandler={onSubmitOtpHandler} />
           )}

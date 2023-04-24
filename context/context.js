@@ -1,9 +1,7 @@
 import {createContext} from "react";
 
 export const UserContext = createContext({
-    userDetails: {}, vendorList: [], isLoggedIn: false, toggleLoginState: (state) => {
-    },
-    resetVendorList: () => {},
+    userDetails: {}, vendorList: [], isLoggedIn: false,
     cart: {
         "id": 0, "cartItems": [{
             "id": 0, "product": {

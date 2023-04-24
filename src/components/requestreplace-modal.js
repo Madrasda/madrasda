@@ -65,7 +65,7 @@ export default function RequestReplacementModal() {
                             <h2 for="company" className="mb-2 text-lg w-2/6 md:w-96 font-medium text-black">Comments</h2>
                             <input type="text" id="large-input" className="block border-2 border-gray rounded-lg w-full p-14 text-black bg-[#D9D9D9] cursor-default" placeholder="Explanation....."  />
                             <div className="mb-6 mt-6 ml-2">
-                            <input class="block w-full mb-5 text-xs text-black   cursor-pointer bg-off-white" id="small_size" type="file"/>
+                            <input className="block w-full mb-5 text-xs text-black   cursor-pointer bg-off-white" id="small_size" type="file"/>
                             </div>
                         </div>
                     </div>

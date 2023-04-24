@@ -7,7 +7,7 @@ function CategoryProductsPage() {
 
     // Fetch the products for the specified vendorId
     const products = [];
-    return <ProductList products={products} />;
+    // return <ProductList products={products} />;
 }
 
 export default CategoryProductsPage;

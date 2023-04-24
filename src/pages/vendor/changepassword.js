@@ -68,8 +68,8 @@ export default function VendorProfile() {
                     </input>
                 </div>
                 <div className=" mt-14 flex justify-center ">
-                <Link href ="//vendor/vendorprofile">
-                  <button type="button" class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Change Password</button>
+                <Link href ="/vendor/vendorprofile">
+                  <button type="button" className="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Change Password</button>
                 </Link>
                 </div>
             </div>

@@ -7,7 +7,7 @@ import {UserContext} from "../../../context/context";
 import axios from "axios";
 import ColorOption from "../../components/ColorOption";
 import {uuidv4} from "@firebase/util";
-import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import HotSellers from '@/components/hotsellers-client';
 
 export default function ProductId() {
@@ -82,19 +82,20 @@ export default function ProductId() {
     }, [isReady]);
 
     useEffect(() => {
-    const jwtToken = localStorage.getItem('token');
-    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
-        router.push("/admin");
-    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-        router.push("/vendor");
-    if(jwtToken && isTokenValid(jwtToken))
-        setClient(true);
-    else
-        setClient(false);
-  }, []);
+        const jwtToken = localStorage.getItem('token');
+        if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
+            router.push("/admin");
+        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+            router.push("/vendor");
+        if (jwtToken && isTokenValid(jwtToken))
+            setClient(true);
+        else
+            setClient(false);
+    }, []);
 
     if (loading && isReady) return (<div className='z-50 h-screen w-screen overflow-hidden'>
-        <Image src="/loader.gif" width={1920} height={1080} alt={"img"} className="object-cover object-center w-full h-full"/>
+        <Image src="/loader.gif" width={1920} height={1080} alt={"img"}
+               className="object-cover object-center w-full h-full"/>
     </div>);
 
     const handleSetColor = (color) => {
@@ -146,11 +147,11 @@ export default function ProductId() {
                             </div>
                             <div className='flex flex-row items-baseline'>
               <span className="title-font font-medium text-2xl text-gray-900 mr-2 flex justify-center">
-                ₹{product.total}
+                ₹{product.total * (100 - product.discount) / 100}
               </span>
                                 <span className="title-font line-through font-small text-lg
                                 text-gray-600 mr-2 flex justify-center">
-                ₹{product.total * (100 + product.discount) / 100}
+                ₹{product.total }
               </span>
                                 <span
                                     className='bg-primary rounded-lg mr-2 px-2 py-1 scale-75 text-base text-white flex justify-center'>
@@ -243,7 +244,7 @@ export default function ProductId() {
                     </div>
                 </div>
             </section>
-            <HotSellers />
+            <HotSellers/>
 
         </ClientLayout>}
     </>)

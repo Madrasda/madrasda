@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Head from "next/head";
 import ClientLayout from "@/components/layout-client";
-import {useContext, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {UserContext} from "../../context/context";
 import {uuidv4} from "@firebase/util";
@@ -18,11 +18,11 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
     const ctx = useContext(UserContext);
     let isReady = router.isReady;
 
-    function handlePageChange(event) {
+    const handlePageChange = useCallback((event) => {
         console.log(event.target.value);
         const page = parseInt(event.target.value) - 1;
         setPageNo(page);
-    }
+    }, [setPageNo])
 
     useEffect(() => {
     const jwtToken = localStorage.getItem('token');
@@ -38,7 +38,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
 
     useEffect(() => {
             setLoading(true);
-            if (productsPage.content !== undefined) {
+            if (productsPage.content && productsPage.content.length > 0) {
                 setLoading(false);
                 setPageButtons((oldList) => {
                         let buttons = [];
@@ -60,7 +60,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                 )
             }
         },
-        [ctx.vendorList, productsPage]
+        [ctx.vendorList, handlePageChange, pageNo, productsPage]
     );
 
     if (loading && isReady)
@@ -83,7 +83,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                 <title>Madrasda | Product List</title>
             </Head>
             {
-                productsPage.content !== undefined &&
+                productsPage?.content &&
                 <ClientLayout client={client}>
                     <section className="body-font font-algeria">
                         <div className="px-5 py-24 mx-auto">

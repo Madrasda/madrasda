@@ -213,14 +213,14 @@ export default function ViewProd () {
                 </div>
                 <div>
                     <label for="company" className="block mb-2 text-lg font-medium text-black">Profit</label>
-                    <input type="text" class="bg-white border border-gray text-gray text-sm rounded-lg block w-full p-2.5 cursor-not-allowed" value="Profit earned" disabled readonly/>
+                    <input type="text" className="bg-white border border-gray text-gray text-sm rounded-lg block w-full p-2.5 cursor-not-allowed" value="Profit earned" disabled readonly/>
                 </div>
                 </div>
         </div>
         <div className=" mt-14 flex justify-center ">
         <Link href="/vendor/templatelist">
-        <button type="button" class="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save as Draft</button>
-        </Link>        <button onClick={lol} type="button" class="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
+        <button type="button" className="text-white bg-black hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Save as Draft</button>
+        </Link>        <button onClick={lol} type="button" className="text-white bg-primary hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Upload Product</button>
         </div>
     </div>
     </main>

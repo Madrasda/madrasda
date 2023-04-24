@@ -392,7 +392,7 @@ export default function ViewProd () {
                 </div>
                 <div>
                     <label for="company" className="block mb-2 text-lg font-medium text-black">Profit Earned (₹)</label>
-                    <input type="number" class="bg-white border border-gray text-gray text-sm rounded-lg block w-full p-2.5 cursor-not-allowed" value={profit} disabled readonly/>
+                    <input type="number" className="bg-white border border-gray text-gray text-sm rounded-lg block w-full p-2.5 cursor-not-allowed" value={profit} disabled readonly/>
                 </div>
                 </div>
         </div>

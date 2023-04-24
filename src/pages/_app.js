@@ -123,6 +123,7 @@ export default function App({Component, pageProps}) {
             .catch(err => console.log(err));
     }
     const addToCart = (product) => {
+        console.log(isTokenValid(token) + " -> token validity");
         if (isTokenValid(token)) {
             const cartItem = {
                 "id": product.id,
@@ -158,6 +159,7 @@ export default function App({Component, pageProps}) {
     }
 
     return (<>
+
             <Loading/>
             <UserContext.Provider value={{
                 decrementQty: decrementQty,
