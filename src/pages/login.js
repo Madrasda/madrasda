@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import {Inter} from '@next/font/google'
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import axios from "axios";
 import { isTokenValid, getRole } from '@/utils/JWTVerifier';
 import Image from "next/image";
@@ -21,13 +21,12 @@ export default function LoginForm() {
   const [showOtp, setShowOtp] = useState(false);
   const [invalidMessage, setInvalidMessage] = useState("");
   const [phone, setPhone] = useState("");
-  const [client, setClient] = useState(false);
-
+  const ctx = useContext(UserContext);
   const submitPhoneHandler = () => {
     const phone = phoneRef.current.value;
     if (/^[0-9]{10}$/.test(phone)) {
       axios
-        .post("http://localhost:8080/api/auth/loginClient?phone=" + phone)
+        .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" + phone)
         .then((response) => {
           setShowOtp(true);
           setInvalidMessage("");
@@ -43,7 +42,7 @@ export default function LoginForm() {
     if (otp.length === 6) {
       axios
         .post(
-          "http://localhost:8080/api/auth/verifyOtp?" +
+          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
             "phone=" +
             phone +
             "&otp=" +
@@ -53,6 +52,7 @@ export default function LoginForm() {
           console.log(response);
           if (response.status === 200) {
             localStorage.setItem("token", response.data.token);
+            ctx.toggleLoginState(true)
             router.push("/");
           } else {
             setInvalidMessage("Invalid OTP");

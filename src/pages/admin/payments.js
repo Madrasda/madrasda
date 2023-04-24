@@ -18,7 +18,7 @@ export default function CustomerDetails() {
 
   const getAllPayoutRequest = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/admin/getPayoutRequestedVendors",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getPayoutRequestedVendors",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -30,7 +30,7 @@ export default function CustomerDetails() {
 
   const completePayout = async (id) => {
     const response = await axios.post(
-      "http://localhost:8080/api/admin/completePayout/" + id
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/completePayout/" + id
     );
     getAllPayoutRequest();
   };

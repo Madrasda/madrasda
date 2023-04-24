@@ -62,7 +62,7 @@ export default function ProductId() {
         setLoading(true);
         if (isReady) {
             const {id} = router.query;
-            axios.get("http://localhost:8080/api/product/getProductDetails/" + id)
+            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductDetails/" + id)
                 .then(response => {
                     setProduct(response.data)
                     return response.data

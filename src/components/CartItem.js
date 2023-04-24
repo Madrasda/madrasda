@@ -42,7 +42,7 @@ const CartItem = ({id, product, qty}) =>{
                 </div>
             </div>
             <div>
-                <span className="font-medium text-black text-xl">₹{product.total * qty}</span>
+                <span className="font-medium text-black text-xl">₹{((100 - product.discount)/ 100) * (product.total) * qty}</span>
             </div>
             <div>
                 <button onClick={removeItem} className="font-medium text-gray text-xl ml-4 mr-4"> X </button>

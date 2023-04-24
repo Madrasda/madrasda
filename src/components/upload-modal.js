@@ -32,7 +32,7 @@ export default function UploadModal({chooseDesign, upload, uploadSuccess}) {
   };
   const getDesigns = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/vendor/designs" , { 
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs" , { 
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }
@@ -43,7 +43,7 @@ export default function UploadModal({chooseDesign, upload, uploadSuccess}) {
 
   const uploadDesign = async (file) => {
     const response = await axios.post(
-      "http://localhost:8080/api/vendor/addDesign",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/addDesign",
        {
          imgUrl : file,
          designType : designType,

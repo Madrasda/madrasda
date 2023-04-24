@@ -23,7 +23,7 @@ export default function VendorDetails() {
 
   const getVendorDetails = async () => {
     axios
-      .get("http://localhost:8080/api/vendor/vendorDetails/" + id)
+      .get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/vendorDetails/" + id)
       .then((response) => {
         setDetails(response.data);
       })

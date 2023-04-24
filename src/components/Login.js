@@ -28,7 +28,7 @@ const Login = (props) => {
 
         <div className="w-100 underline text-white text-sm text-center mt-3">
             <Link href="/vendor">
-                Click to Vendor Login
+                {`You're a Vendor?`}
             </Link>
         </div>
     </>;

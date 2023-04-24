@@ -21,7 +21,7 @@ export default function DesignGallery () {
   }, []);
   const getDesigns = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/vendor/designs" , { 
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs" , { 
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }

@@ -8,7 +8,7 @@ export default function HotSellers() {
 
     const getAllProducts = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/client/allProducts?pageNo=0&pageSize=4"
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/allProducts?pageNo=0&pageSize=4"
     );
     setProducts(response.data.content);
   }

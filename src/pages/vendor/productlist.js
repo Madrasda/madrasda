@@ -26,7 +26,7 @@ export default function ProductList () {
 
   const getProductDetails = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/vendor/" , { 
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/" , { 
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }
@@ -34,7 +34,7 @@ export default function ProductList () {
     );
     const id= response.data.vendor.id
     const prod = await axios.get(
-      "http://localhost:8080/api/client/getProductsByVendor/" + id
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/" + id
     );
     setProducts(prod.data.content);
   }

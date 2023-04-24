@@ -6,7 +6,7 @@ export default function VendorQuery(props) {
 
     const resolveQuery = async () => {
         axios.put(
-            `http://localhost:8080/api/feedback/toggleFeedbackResolution/${props.queryId}`
+            `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/feedback/toggleFeedbackResolution/${props.queryId}`
         ).then((response) => {
             console.log("resolved");
         }).catch((err) => {

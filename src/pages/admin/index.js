@@ -22,16 +22,16 @@ export default function Adminlogin() {
     const adminlogin = (e) =>{
         e.preventDefault();
         axios
-          .post('http://localhost:8080/api/auth/loginAdmin', {
+          .post('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginAdmin', {
             email: mail,
             password: password
           })
           .then((response) => {
             localStorage.setItem("token", response.data.token);
-            router.push("/admin/vendorlist");
+              router.push("/admin/vendorlist");
           })
           .catch((err)=>{
-            alert(err.response.data.message);
+            alert(err);
           })
           ;
     }

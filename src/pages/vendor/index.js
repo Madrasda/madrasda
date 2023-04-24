@@ -13,7 +13,7 @@ export default function Vendorlogin() {
     let isReady = router.isReady;
     const vendorlogin = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8080/api/auth/loginVendor',
+        axios.post('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginVendor',
             {
                 email: mail.current.value,
                 password: password.current.value

@@ -29,7 +29,7 @@ export default function VendorList(props) {
     }, []);
   const getVendors = async () => {
     axios.get(
-      "http://localhost:8080/api/admin/getVendors"
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
     ).then((response) => {
       setVendors(response.data);
     }).catch((err)=>{
@@ -53,7 +53,7 @@ export default function VendorList(props) {
     console.log(data.imgUrl);
     const url = await uploadImageOnline(data.imgUrl);
         axios.post(
-        "http://localhost:8080/api/admin/addVendor",
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/addVendor",
         {
           ...data, imgUrl : url
         }
@@ -67,7 +67,7 @@ export default function VendorList(props) {
 
   const deleteVendor = async (vendorId) => {
     const response = await axios.delete(
-      "http://localhost:8080/api/admin/deleteVendor/" + vendorId , {
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendor/" + vendorId , {
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }

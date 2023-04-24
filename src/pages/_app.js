@@ -19,17 +19,21 @@ function Loading() {
 }
 
 export default function App({Component, pageProps}) {
+
     const [cart, setCart] = useState({});
     const [userDetails, setUserDetails] = useState({});
     const [token, setToken] = useState("");
     const [vendorList, setVendorList] = useState([]);
     const router = useRouter();
+    const [isLoggedIn, setIsLoggedIn] = useState(true)
+
+
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
         if (jwtToken === undefined || isTokenValid(jwtToken)) {
             setToken(jwtToken)
-            axios.get("http://localhost:8080/api/cart/", {
+            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
                 headers: {
                     "Authorization": "Bearer " + jwtToken
                 }
@@ -40,11 +44,15 @@ export default function App({Component, pageProps}) {
                 .catch((err) => {
                     console.log(err);
                 })
-            axios.get("http://localhost:8080/api/admin/getVendors")
+            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
                 .then(response => setVendorList(response.data))
                 .catch(err => console.log(err));
         }
     }, []);
+    const resetVendorList = () => {
+        console.log("in reset vendor list")
+        
+    }
     const decrementQty = (id, qty) => {
         setCart(oldCart => {
             let newCart = []
@@ -57,7 +65,7 @@ export default function App({Component, pageProps}) {
             return {...oldCart, cartItems: newCart};
         });
 
-        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, null, {
+        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" + id + "&&" + qty, null, {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -76,7 +84,7 @@ export default function App({Component, pageProps}) {
                 })
             };
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, null, {
+        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" + id + "&&" + qty, null, {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -94,7 +102,7 @@ export default function App({Component, pageProps}) {
             });
             return {...oldCart, cartItems: [...newCart]};
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&" + qty, {}, {
+        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" + id + "&&" + qty, {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -107,7 +115,7 @@ export default function App({Component, pageProps}) {
                 ...oldCart, cartItems: oldCart.cartItems.filter(item => item.id !== id)
             }
         })
-        axios.put("http://localhost:8080/api/cart/changeQuantity/" + id + "&&0", {}, {
+        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" + id + "&&0", {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -121,14 +129,14 @@ export default function App({Component, pageProps}) {
                 "colors": product.colors,
                 quantity: product.quantity
             }
-            axios.post("http://localhost:8080/api/cart/addToCart", cartItem, {
+            axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
                 headers: {
                     Authorization: "Bearer " + token
                 }
             })
                 .then((response) => {
                     console.log(response)
-                    return axios.get("http://localhost:8080/api/cart/", {
+                    return axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
                         headers: {
                             "Authorization": "Bearer " + token
                         }
@@ -146,6 +154,7 @@ export default function App({Component, pageProps}) {
             console.log(isTokenValid(token));
             router.push("/login")
         }
+
     }
 
     return (<>
@@ -158,6 +167,7 @@ export default function App({Component, pageProps}) {
                 addToCart: addToCart,
                 cart: cart,
                 vendorList: vendorList,
+                resetVendorList: resetVendorList
             }}>
                 <Component {...pageProps} id="page"/>
             </UserContext.Provider>

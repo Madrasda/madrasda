@@ -75,10 +75,6 @@ export default function OrderDetailsModal({ order }) {
                   <p class='font-medium'>{order.shippingAddress.email}</p>
                 </div>
                 <div>
-                  <span class='text-black'>Phone</span>
-                  <p class='font-medium'>{order.shippingAddress.phone}</p>
-                </div>
-                <div>
                   <span class='text-black'>Address</span>
                   <p class='font-medium'>
                     {order.shippingAddress.addressLine1}

@@ -12,14 +12,29 @@ function VendorProductsPage() {
     const [vendorProducts, setVendorProducts] = useState([]);
     const [pageNo, setPageNo] = useState(0);
     const [title, setTitle] = useState("")
-    useEffect(() => {
-        if(ctx.vendorList !== undefined && router.isReady) {
-            setTitle(ctx.vendorList.find((vendor) => vendor.id === parseInt(vendorId)).name + "'s Products");
-        axios.get("http://localhost:8080/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo + "&pageSize=20")
+    const [vendorList, setVendorList] = useState([]);
+    const setPageData = (vendors) => {
+        console.log(vendors);
+        setTitle((vendors.find((vendor) => vendor.id === parseInt(router.query.vendorId))).name + "'s Products");
+        axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo + "&pageSize=20")
             .then(response => setVendorProducts(response.data))
             .catch(err => console.log(err));
+    }
+    useEffect(() => {
+        if((ctx.vendorList.length !== 0) && router.isReady) {
+            console.log((ctx.vendorList.length === 0) + " LIST IS EMPTY");
+            setPageData(ctx.vendorList);
+        }
+        else {
+            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
+                .then(response => {
+                    console.log(response.data);
+                    setPageData(response.data)
+                })
+                .catch(err => console.log(err));
         }
     }, [vendorId, pageNo]);
+    
 
     return <ProductList productsPage={vendorProducts} setPageNo={setPageNo} pageNo={pageNo} title={title}/>;
 }

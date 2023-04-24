@@ -24,7 +24,7 @@ export default function Dashboard(props) {
     }, 1000);
   }, []);
   const getVendorDetails = async () => {
-    const response = await axios.get("http://localhost:8080/api/vendor/", {
+    const response = await axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -34,7 +34,7 @@ export default function Dashboard(props) {
 
   const getDesigns = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/vendor/designs",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -46,7 +46,7 @@ export default function Dashboard(props) {
 
   const requestPayout = async () => {
     const response = await axios.post(
-      "http://localhost:8080/api/vendor/requestPayout",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/requestPayout",
       {},
       {
         headers: {

@@ -18,7 +18,7 @@ export default function Hotsellers() {
 
   const getAllProducts = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/product/hotsellers",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),

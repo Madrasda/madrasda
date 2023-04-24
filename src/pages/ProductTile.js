@@ -26,8 +26,8 @@ const ProductTile = ({id, name, category, total, discount, imageUrl}) => {
 
                 </div>
                 <h2 className="title-font text-lg font-medium">{name}</h2>
-                <span className="mt-1 text-black pr-1">₹{total}</span>
-                <span className="mt-1 line-through text-gray pr-1">₹{total * (100 + discount) / 100}</span>
+                <span className="mt-1 text-black pr-1">₹{total * (100 - discount) / 100}</span>
+                <span className="mt-1 line-through text-gray pr-1">₹{total}</span>
                 <span className="title-font text-xs font-medium text-[#088240]">{discount}% OFF</span>
             </div>
         </div>

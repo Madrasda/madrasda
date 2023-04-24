@@ -23,7 +23,7 @@ export default function CartModal() {
             router.push("/login")
         } else {
             if (ctx.cart.cartItems !== undefined) {
-                const sum = ctx.cart.cartItems.reduce((prev, curr) => prev += curr.quantity * curr.product.total, 0);
+                const sum = ctx.cart.cartItems.reduce((prev, curr) => prev += curr.quantity * (curr.product.total * (100 - curr.product.discount) / 100), 0);
                 setSubtotal(sum);
             }
         }
@@ -86,16 +86,6 @@ export default function CartModal() {
                           </div>
                           <div className='pl-3'>
                             <span className='font-medium'>₹{subTotal}</span>
-                          </div>
-                        </div>
-                        <div className='w-full flex items-center'>
-                          <div className='flex-grow'>
-                            <span className='text-black'>Shipping</span>
-                          </div>
-                          <div className='pl-3'>
-                            <span className='font-medium'>
-                              To Be Calculated
-                            </span>
                           </div>
                         </div>
                       </div>

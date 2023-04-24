@@ -29,7 +29,7 @@ export default function Queries () {
         pageSize: 4
     })
     axios.get(
-      "http://localhost:8080/api/feedback/getAllQueries?" + url
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/feedback/getAllQueries?" + url
     ).then((response) => {
       setQueries(response.data.resolvedQueries.content);
       console.log(response.data.resolvedQueries.content);

@@ -16,7 +16,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
         pageSize: 4
       })
       const response = await axios.get(
-        `http://localhost:8080/api/client/getProductsByVendor/${id}?` + params
+        `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/${id}?` + params
       );
       setProducts(response.data.content);
     }

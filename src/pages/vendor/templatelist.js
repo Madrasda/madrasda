@@ -51,7 +51,7 @@ export default function TemplateList () {
       pageNo: pageNo,
       pageSize : 5
     });
-    const response = await axios.get("http://localhost:8080/api/templates/getTemplates?" + url , {
+    const response = await axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplates?" + url , {
       headers : {
         Authorization : "Bearer " + localStorage.getItem('token') 
       }
@@ -62,7 +62,7 @@ export default function TemplateList () {
 
   const getAllMockups = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/mockup/getAllMockups"
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups"
     );
     setMockups(response.data.content);
   }
@@ -87,7 +87,7 @@ export default function TemplateList () {
 
   const deleteTemplate = async (tempId) => {
       const response = await axios.delete(
-        'http://localhost:8080/api/templates/deleteTemplate/' + tempId, 
+        'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + tempId, 
         {
           headers : {
             Authorization : 'Bearer ' + localStorage.getItem('token')

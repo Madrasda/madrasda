@@ -81,7 +81,7 @@ export default function ViewProd () {
 
   if(data.productImages[0].imgUrl !== null){
     const response = await axios.post(
-      "http://localhost:8080/api/product/createProduct",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/createProduct",
       data,
       {
         headers: {
@@ -92,7 +92,7 @@ export default function ViewProd () {
     console.log(response.data);
     }
     const tempResponse = await axios.delete(
-        'http://localhost:8080/api/templates/deleteTemplate/' + id, 
+        'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + id, 
         {
           headers : {
             Authorization : 'Bearer ' + localStorage.getItem('token')
@@ -163,7 +163,7 @@ export default function ViewProd () {
 
   const getTemplateDetails = async () => {
     const response = await axios.get(
-        `http://localhost:8080/api/templates/getTemplate/${id}`, {
+        `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplate/${id}`, {
             headers : {
                 Authorization : "Bearer " + localStorage.getItem('token')
             }

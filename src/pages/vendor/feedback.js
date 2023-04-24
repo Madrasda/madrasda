@@ -27,7 +27,7 @@ export default function Feedback () {
     if(inputValue==="")
       return; 
     try {
-      const response = await fetch('http://localhost:8080/api/feedback/postFeedback', {
+      const response = await fetch('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/feedback/postFeedback', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

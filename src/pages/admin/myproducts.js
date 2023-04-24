@@ -49,7 +49,7 @@ export default function MyProducts () {
         pageSize: 5
     })  
     const response = await axios.get(
-        "http://localhost:8080/api/mockup/getAllMockups?" + url
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups?" + url
     );
     setMockups(response.data.content);
     setPageSize(response.data.totalPages);
@@ -57,7 +57,7 @@ export default function MyProducts () {
 
   const deleteMockup = async (mockupId) => {
     const response = axios.delete(
-      "http://localhost:8080/api/mockup/deleteMockup/" + mockupId, {
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/deleteMockup/" + mockupId, {
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }
@@ -68,7 +68,7 @@ export default function MyProducts () {
 
   const getAllColorsAndSizes = async () => {
     axios.get(
-      "http://localhost:8080/api/colorsAndSizes/getColorsAndSizes"
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/colorsAndSizes/getColorsAndSizes"
     ).then((response) => {
       setColors(response.data.colors);
       setSizes(response.data.sizes);
@@ -113,7 +113,7 @@ export default function MyProducts () {
     console.log(mockup.frontImage + " " + mockup.backImage);
     const {url1,url2} = await uploadImagesOnline(mockup.frontImage, mockup.backImage);
     axios.post(
-      "http://localhost:8080/api/mockup/addMockup",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
       {
         ...mockup,
         frontImage: url1,

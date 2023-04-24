@@ -106,7 +106,7 @@ export default function CreateTemplate(props) {
 
   const getMockupDetails = async () => {
     const response = await axios.get(
-        "http://localhost:8080/api/mockup/getMockup/" + id
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" + id
     );
     setDetails(response.data);
   }
@@ -174,7 +174,7 @@ export default function CreateTemplate(props) {
       data.backDesignPlacement = position;
     }
     const response = await axios.post(
-      "http://localhost:8080/api/templates/saveTemplate",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/saveTemplate",
        data , {
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')

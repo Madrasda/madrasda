@@ -17,7 +17,7 @@ export default function ProductTable({products, toggle}) {
 
   const toggetPublishStatus = async (id) => {
     const response = await fetch(
-        "http://localhost:8080/api/product/togglePublishState/" + id,
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/togglePublishState/" + id,
         {
             method : 'PUT',
             headers : {

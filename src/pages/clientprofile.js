@@ -7,8 +7,9 @@ import { useRouter } from "next/router";
 import { isTokenValid, getRole, getPhone } from "@/utils/JWTVerifier";
 import { UserContext } from "context/context";
 import axios from "axios";
+import {uuidv4} from "@firebase/util";
 
-export default function clientprofile() {
+export default function ClientProfile() {
   const router = useRouter();
   let isReady = router.isReady;
   const ctx = useContext(UserContext);
@@ -20,7 +21,7 @@ export default function clientprofile() {
 
   const getOrderHistory = async () => {
     const response = await axios.get(
-      "http://localhost:8080/api/transaction/getAllOrdersById/",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllOrdersById/",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -96,7 +97,7 @@ export default function clientprofile() {
             )}
             {details &&
               details.map((order) => (
-                <div className='px-3 md:w-7/12 ml-16 mb-4 mt-8'>
+                <div key={uuidv4()} className='px-3 md:w-7/12 ml-16 mb-4 mt-8'>
                   <div className='w-full flex items-center bg-off-white rounded-lg'>
                     {/* <div className='overflow-hidden rounded-lg w-2/12 h-2/12 bg-[#D9D9D9] border border-gray'>
                       <Image
@@ -130,7 +131,7 @@ export default function clientprofile() {
                       </h6>
                     </div>
                     <div className='w-1/5 scale-75'>
-                      <OrderDetailsModal order={order} />
+                      <OrderDetailsModal order={order}/>
                     </div>
                   </div>
                 </div>
