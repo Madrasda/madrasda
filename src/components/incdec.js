@@ -18,7 +18,7 @@ export default function ncdec() {
   return (  
     <>
     <div className="value-button" id="decrease" onclick={decreaseValue} value="Decrease Value">-</div>
-    <input type="number" id="number" value="0" />
+    <input type="numeric" id="number" value="0" />
     <div className="value-button" id="increase" onclick={increaseValue} value="Increase Value">+</div>
     </>
   )

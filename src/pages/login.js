@@ -79,8 +79,9 @@ export default function LoginForm() {
                         router.push("/");
                     } else {
                         setOpen(true)
-                        setMessage("Invalid Phone Number");
+                        setMessage("Invalid OTP");
                         setSeverity("error");
+                        setSpinnerState(false);
                     }
                 })
                 .catch((err) => console.log(err));

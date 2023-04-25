@@ -2,32 +2,47 @@ import Image from "next/image";
 import Head from "next/head";
 import VendorLayout from "@/components/layout-vendor";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier"
 import UploadModal from "@/components/upload-modal";
+import {forwardRef, useEffect, useRef, useState} from "react";
+import MuiAlert from "@mui/material/Alert";
+import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
 
+
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function DesignGallery () {
   const [tokenExists, setTokenExists] = useState(false)
   const [designs, setDesigns] = useState(null);
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState(""); // success , error
+  const [open, setOpen] = useState(false); // same as spinner 
+  const [spinner, setSpinner] = useState(false);
   const router = useRouter();
   const isReady = router.isReady;
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-    setLoading(false);
-      }, 1000);
-  }, []);
+  const handleClose = (event, reason) => {
+    console.log(reason);
+    if (reason === 'clickaway') {
+        return;
+    }
+
+    setOpen(false);
+};
   const getDesigns = async () => {
-    const response = await axios.get(
+    setSpinner(true)
+    axios.get(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs" , { 
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }
       }  
-    );
-    setDesigns(response.data);
+    ).then((response) => {
+      setSpinner(false)
+      setDesigns(response.data);
+    })
+    .catch(err => console.log(err))
   }
 
   const handleUpload = (bool) => {
@@ -47,11 +62,6 @@ export default function DesignGallery () {
     }
   }, []);
 
-
-  if(loading && isReady)
-  return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
-  </div>);
   return (
     <>
     <Head>
@@ -62,6 +72,19 @@ export default function DesignGallery () {
     </Head>
     
     <VendorLayout>
+    <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={spinner}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+
+    <Snackbar className={"mt-14"} open={open} autoHideDuration={1400}
+                      onClose={handleClose} anchorOrigin={{vertical: "bottom", horizontal: "right"}}>
+                <Alert onClose={handleClose} severity={severity}>
+                    {message}
+                </Alert>
+            </Snackbar>
     <section className="body-font overflow-hidden font-algeria
                         md:ml-36">
       <div className="mt-20 px-5 md:my-10 mx-auto">
@@ -71,7 +94,10 @@ export default function DesignGallery () {
             <h1 className="text-lg my-5">Upload a new design</h1>
             <UploadModal
               upload={true}
-              uploadSuccess={() => {router.reload()}}
+              setMessage={setMessage}
+              setOpen={setOpen}
+              setSeverity={setSeverity}
+              setDesigns={setDesigns}
             />
         </div>
         <div className="flex flex-wrap justify-start md:ml-20">

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
+import { uuidv4 } from "@firebase/util";
 
 export default function Hotsellers() {
   const [tokenExists, setTokenExists] = useState(false);
@@ -29,13 +30,6 @@ export default function Hotsellers() {
   };
 
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
-
-  useEffect(() => {
     const jwtToken = localStorage.getItem("token");
     if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER") router.push("/");
     if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
@@ -46,18 +40,6 @@ export default function Hotsellers() {
       getAllProducts();
     }
   }, []);
-
-  if (loading && isReady)
-    return (
-      <div className='z-50 h-screen w-screen overflow-hidden'>
-        <Image
-          src='/loader.gif'
-          width={1920}
-          height={1080}
-          className='object-cover object-center w-full h-full'
-        />
-      </div>
-    );
   return (
     <>
       <Head>
@@ -86,7 +68,7 @@ export default function Hotsellers() {
                     {products &&
                       products.map((product) => {
                         return (
-                          <div className='lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
+                          <div key={uuidv4()} className='lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
                             <div className='block relative h-48 rounded overflow-hidden'>
                               <Image
                                 src={product.colors[0].images[0]}

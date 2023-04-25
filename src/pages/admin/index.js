@@ -6,6 +6,7 @@ import {useContext, useEffect, useState} from 'react'
 import axios from "axios";
 import { useRouter } from 'next/router'
 import {UserContext} from "../../../context/context";
+import {Button} from "@mui/material";
 
 export default function Adminlogin() {
     const [mail,setEmail]=useState();
@@ -96,10 +97,20 @@ export default function Adminlogin() {
                     </div>
                     <div className='flex justify-center items-center mt-6'>
                         <div>
-                        <button type="submit" className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-l text-white rounded focus:outline-none `}
-                        >
+                            <Button
+                                variant={"contained"}
+                                sx={{
+                                    backgroundColor: '#ab1641 !important', // sets the background color to primary
+                                    color: 'white', // sets the text color to white
+                                    '&:hover': {
+                                        backgroundColor: '#c51a4c !important', // sets the background color on hover to accent
+                                    },
+                                }}
+                                className={"w-full"}
+                                type={"submit"}
+                            >
                             Login
-                        </button>
+                        </Button>
                         </div>
                     </div>
                 </form>

@@ -20,13 +20,6 @@ export default function VendorList(props) {
   const [imageUrl, setImage] = useState("");
   const [vendorData, setVendor] = useState({});
   let isReady = router.isReady;
-  const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-        setLoading(false);
-        }, 1000);
-    }, []);
   const getVendors = async () => {
     axios.get(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
@@ -89,10 +82,6 @@ export default function VendorList(props) {
       }
     }, []);
 
-    if(loading && isReady)
-    return (<div className='z-50 h-screen w-screen overflow-hidden'>
-    <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
-    </div>);
   return (
     <>
       <Head>
@@ -127,7 +116,7 @@ export default function VendorList(props) {
 
               {vendors &&
                 vendors.map((vendor) => (
-                  <div className="lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                  <div key={uuidv4()} className="lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                     <span className="w-full ml-5 flex justify-end">
                       <CloseConfirm vendor={true} delete={(e) => {if(e) deleteVendor(vendor.id)}} />
                     </span>

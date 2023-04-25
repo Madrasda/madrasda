@@ -12,16 +12,8 @@ export default function CustomerDetails () {
 
     const router = useRouter();
     const [tokenExists, setTokenExists] = useState(false);
-
-
     let isReady = router.isReady;
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-        setLoading(false);
-        }, 1000);
-    }, []);
+
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
         if(jwtToken === undefined || !isTokenValid(jwtToken))
@@ -29,10 +21,6 @@ export default function CustomerDetails () {
         else
           setTokenExists(true);
     }, []);
-    if(loading && isReady)
-  return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
-  </div>);
     return (
         <>
             <Head>

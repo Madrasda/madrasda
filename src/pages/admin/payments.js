@@ -14,7 +14,6 @@ export default function CustomerDetails() {
   const [tokenExists, setTokenExists] = useState(false);
   const [payouts, setPayouts] = useState([]);
   let isReady = router.isReady;
-  const [loading, setLoading] = useState(false);
 
   const getAllPayoutRequest = async () => {
     const response = await axios.get(
@@ -35,12 +34,7 @@ export default function CustomerDetails() {
     getAllPayoutRequest();
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
     if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER") router.push("/");
@@ -53,17 +47,7 @@ export default function CustomerDetails() {
     }
   }, []);
 
-  if (loading && isReady)
-    return (
-      <div className='z-50 h-screen w-screen overflow-hidden'>
-        <Image
-          src='/loader.gif'
-          width={1920}
-          height={1080}
-          className='object-cover object-center w-full h-full'
-        />
-      </div>
-    );
+
   return (
     <>
       <Head>
@@ -88,7 +72,8 @@ export default function CustomerDetails() {
             )}
             {payouts &&
               payouts.map((vendor) => (
-                <div className='flex mt-4 md:ml-20 lg:mr-20'>
+                <div key={uuidv4()}
+               className='flex mt-4 md:ml-20 lg:mr-20'>
                   <div className='container mt-8 bg-[#D9D9D9] rounded-lg w-full'>
                     <div className=' ml-8 mb-2 mr-20 mt-4 '>
                       <Image src={vendor.imgUrl} width={70} height={70} />

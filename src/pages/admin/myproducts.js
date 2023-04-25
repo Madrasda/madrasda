@@ -22,13 +22,6 @@ export default function MyProducts () {
     const [sizes, setSizes] = useState(null);
     const [tokenExists, setTokenExists] = useState(false);
     let isReady = router.isReady;
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-        setLoading(false);
-        }, 1000);
-    }, []);
     useEffect(() => {
       const jwtToken = localStorage.getItem("token")
       if(jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
@@ -128,11 +121,6 @@ export default function MyProducts () {
   useEffect(()=>{
     getMockups();
   }, [pageNo]);
-
-  if(loading && isReady)
-  return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
-  </div>);
   return (
     <>
         <Head>
@@ -166,7 +154,7 @@ export default function MyProducts () {
 
                     mockups.map((m) => {
                         return (
-                            <div className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                            <div key={uuidv4()} className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                               <span className="flex justify-end">
                                 <CloseConfirm mockup={true} delete={(e) => {if(e) deleteMockup(m.id);}}/>
                               </span>

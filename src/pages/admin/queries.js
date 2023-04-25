@@ -16,13 +16,6 @@ export default function Queries () {
   const [pageSize, setPageSize] = useState(0);
   const [tokenExists, setTokenExists] = useState(false);
   let isReady = router.isReady;
-  const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-        setLoading(false);
-        }, 1000);
-    }, []);
   const getQueries = async () => {
     const url = new URLSearchParams({
         pageNo: pageNo,
@@ -54,10 +47,7 @@ export default function Queries () {
         setTokenExists(true);
     }, []);
 
-    if(loading && isReady)
-    return (<div className='z-50 h-screen w-screen overflow-hidden'>
-    <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
-    </div>);
+
   return (
     <>
     <Head>
