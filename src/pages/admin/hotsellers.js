@@ -26,7 +26,6 @@ export default function Hotsellers() {
       }
     );
     setProducts(response.data);
-    console.log(response.data);
   };
 
   useEffect(() => {

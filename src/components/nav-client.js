@@ -27,7 +27,6 @@ export default function NavClient({client}) {
     };
     const handleVendorProductsClick = (id) => {
         const filter = id;
-        console.log(id);
         router.push("/products/[vendorId]", "/products/" + filter);
     };
 

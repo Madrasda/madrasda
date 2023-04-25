@@ -90,7 +90,6 @@ export default function ViewProd () {
         },
       }
     );
-    console.log(response.data);
     }
     const tempResponse = await axios.delete(
         'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + id, 
@@ -153,7 +152,6 @@ export default function ViewProd () {
 
   useEffect(() => {
     if(productImages.length > 0){
-      console.log(productImages);
     }
   }, [productImages]);
 
@@ -170,7 +168,6 @@ export default function ViewProd () {
             }
         }
     );
-    console.log(response.data);
     setTemplate(response.data);
     setSizes(getAvailableSizes(response.data.mockup.skuMapping));
     setColors(getAvailableColors(response.data.mockup.skuMapping));

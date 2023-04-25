@@ -110,7 +110,6 @@ export default function MyProducts () {
   }
 
   const createMockup = async (mockup) => {
-    console.log(mockup.frontImage + " " + mockup.backImage);
     const {url1,url2} = await uploadImagesOnline(mockup.frontImage, mockup.backImage);
     axios.post(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
@@ -122,7 +121,6 @@ export default function MyProducts () {
     ).then((response) => {
       getMockups();
     }).catch((err) => {
-      console.log(mockup);
       console.log(err);
     })
   }

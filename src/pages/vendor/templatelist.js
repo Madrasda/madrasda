@@ -95,7 +95,6 @@ export default function TemplateList () {
         }
       );
       getVendorProducts();
-      console.log(response.data);
   }
 
   if(loading && isReady)

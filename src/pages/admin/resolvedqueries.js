@@ -32,7 +32,6 @@ export default function Queries () {
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/feedback/getAllQueries?" + url
     ).then((response) => {
       setQueries(response.data.resolvedQueries.content);
-      console.log(response.data.resolvedQueries.content);
       setPageSize(response.data.resolvedQueries.totalPages);
     }).catch((err) => {
       console.log(err);

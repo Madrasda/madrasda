@@ -21,33 +21,32 @@ function Loading() {
 export default function App({Component, pageProps}) {
 
     const [cart, setCart] = useState({});
-    const [userDetails, setUserDetails] = useState({});
     const [token, setToken] = useState("");
     const [vendorList, setVendorList] = useState([]);
     const router = useRouter();
     const [isLoggedIn, setIsLoggedIn] = useState(true)
-
+    const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-        console.log("context useEffect")
         if (jwtToken === undefined || isTokenValid(jwtToken)) {
-            setToken(jwtToken)
+            setToken(jwtToken);
             axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
                 headers: {
                     "Authorization": "Bearer " + jwtToken
                 }
             })
                 .then(response => {
-                    setCart(response.data)
+                    setCart(response.data);
                 })
                 .catch((err) => {
                     console.log(err);
                 })
-            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
-                .then(response => setVendorList(response.data))
-                .catch(err => console.log(err));
         }
+        axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
+            .then(response => setVendorList(response.data))
+            .catch(err => console.log(err));
+
     }, [isLoggedIn]);
 
     const decrementQty = (id, qty) => {
@@ -146,7 +145,6 @@ export default function App({Component, pageProps}) {
                     console.log(err);
                 }))
         } else {
-            console.log((token));
             router.push("/login")
         }
 
@@ -164,6 +162,8 @@ export default function App({Component, pageProps}) {
                 cart: cart,
                 vendorList: vendorList,
                 setIsLoggedIn: setIsLoggedIn,
+                setRefresh: setRefresh,
+
 
             }}>
                 <Component {...pageProps} id="page"/>

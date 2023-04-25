@@ -19,7 +19,6 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
     let isReady = router.isReady;
 
     const handlePageChange = useCallback((event) => {
-        console.log(event.target.value);
         const page = parseInt(event.target.value) - 1;
         setPageNo(page);
     }, [setPageNo])
@@ -38,7 +37,6 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
 
     useEffect(() => {
             setLoading(true);
-            console.log(productsPage)
             if (productsPage.content !== undefined) {
                 setLoading(false);
                 setPageButtons((oldList) => {

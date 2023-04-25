@@ -145,11 +145,9 @@ export default function CreateTemplate(props) {
     };
 
     const uploadBlob = async (blob) => {
-        console.log(blob);
         const imageRef = ref(storage, `templates/${new Date().getTime()}`);
         await uploadBytes(imageRef, blob);
         const url = await getDownloadURL(imageRef);
-        console.log(url);
         setTemplateImage(url);
         saveTemplate(url);
     }

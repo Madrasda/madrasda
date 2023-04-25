@@ -105,7 +105,6 @@ export default function Checkout() {
         )
         .catch((err) => console.log(err));
 
-    console.log(transaction);
   };
 
   useEffect(() => {

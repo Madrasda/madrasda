@@ -31,7 +31,6 @@ export default function VendorProfile(props) {
       }  
     );
     setDetails(response.data);
-    console.log(response.data);
 }
 
 useEffect(() => {

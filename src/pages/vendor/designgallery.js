@@ -31,7 +31,6 @@ export default function DesignGallery () {
   }
 
   const handleUpload = (bool) => {
-    console.log(bool);
     if(bool){
       getDesigns();
     }

@@ -21,10 +21,8 @@ function VendorProductsPage() {
     }
     useEffect(() => {
         if (router.isReady) {
-            console.log(((ctx.vendorList.length !== 0 && ctx.vendorList !== undefined)) + " LIST IS NOT EMPTY");
 
             if ((ctx.vendorList.length !== 0 && ctx.vendorList !== undefined)) {
-                console.log(ctx.vendorList);
                 setPageData(ctx.vendorList);
             } else {
                 axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")

@@ -35,7 +35,6 @@ export default function Feedback () {
         },
         body: JSON.stringify({ query: inputValue,resolution: false }),
       }).then((res) => {
-        console.log(res.data)
          alert("Query Successfully Sent");
          setInputValue('')}) ;
     } catch (error) {

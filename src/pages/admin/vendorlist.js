@@ -50,7 +50,6 @@ export default function VendorList(props) {
 
 
   const registerVendor = async (data) => {
-    console.log(data.imgUrl);
     const url = await uploadImageOnline(data.imgUrl);
         axios.post(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/addVendor",
@@ -58,7 +57,6 @@ export default function VendorList(props) {
           ...data, imgUrl : url
         }
         ).then((response) => {
-          console.log(response);
           getVendors();
         }).catch((err)=>{
           console.log(err);
