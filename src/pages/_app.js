@@ -48,10 +48,7 @@ export default function App({Component, pageProps}) {
                 .catch(err => console.log(err));
         }
     }, []);
-    const resetVendorList = () => {
-        console.log("in reset vendor list")
 
-    }
     const decrementQty = (id, qty) => {
         setCart(oldCart => {
             let newCart = []
@@ -128,7 +125,7 @@ export default function App({Component, pageProps}) {
                 "colors": product.colors,
                 quantity: product.quantity
             }
-            return axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
+            return (axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
                 headers: {
                     Authorization: "Bearer " + token
                 }
@@ -146,7 +143,7 @@ export default function App({Component, pageProps}) {
                 })
                 .catch((err) => {
                     console.log(err);
-                })
+                }))
         } else {
             console.log(isTokenValid(token));
             router.push("/login")
@@ -165,7 +162,6 @@ export default function App({Component, pageProps}) {
                 addToCart: addToCart,
                 cart: cart,
                 vendorList: vendorList,
-                resetVendorList: resetVendorList
             }}>
                 <Component {...pageProps} id="page"/>
             </UserContext.Provider>

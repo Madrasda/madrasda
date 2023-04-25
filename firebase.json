@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "rewrites": [{
+      "source": "**",
+      "run": {
+        "serviceId": "nextjs-madrasda",
+        "region": "asia-south2"
+      }
+    }]
+  }
+}

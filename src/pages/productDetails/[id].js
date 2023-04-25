@@ -53,23 +53,22 @@ export default function ProductId() {
             setQuantity(quantity - 1);
         }
     };
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         const color = {...currentColor, sizes: [currentSize]};
 
         const addToCartItem = {
             id: product.id, colors: [color], quantity: qtyRef.current.value
         }
-        ctx.addToCart(addToCartItem)
-            .then(status => {
-                setOpen(true);
-                if (status === 200) {
-                    setMessage("Added To Cart!");
-                    setSeverity("success");
-                } else {
-                    setMessage("Error Adding To Cart!");
-                    setSeverity("error");
-                }
-            });
+        const status = await ctx.addToCart(addToCartItem);
+
+        setOpen(true);
+        if (status === 200) {
+            setMessage("Added To Cart!");
+            setSeverity("success");
+        } else {
+            setMessage("Error Adding To Cart!");
+            setSeverity("error");
+        }
     };
     useEffect(() => {
         setLoading(true);

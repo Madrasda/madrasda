@@ -10,6 +10,7 @@ import { isTokenValid } from "@/utils/JWTVerifier"
 import { resolve } from 'styled-jsx/css'
 import { storage } from "../../.././firebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {uuidv4} from "@firebase/util";
 
 export default function ViewProd () {
     
@@ -336,7 +337,7 @@ export default function ViewProd () {
                     sizes && 
                     sizes.map((item) => {
                         return (
-                            <div className="relative">
+                            <div key={uuidv4()} className="relative">
                                 <button className="w-10 text-sm justify-center mr-5 transition-colors duration-150 border border-gray rounded-lg focus:shadow-outline bg-primary text-white hover:border-primary">{item}</button>
                             </div>
                         )
@@ -350,7 +351,7 @@ export default function ViewProd () {
                   productImages.map((image) => {
                       if(image.color === currenId){
                         return(
-                          <div>
+                          <div key={uuidv4()}>
                             <span className='cursor-pointer' onClick={() => handleRemove(image)}>x</span>
                             <img className='h-28 w-h-28' src={image.imgUrl} />
                           </div>
