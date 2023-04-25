@@ -2,6 +2,7 @@ import axios from "axios";
 import Image from "next/image"
 import Link from "next/link";
 import { useEffect, useState } from "react"
+import {uuidv4} from "@firebase/util";
 
 export default function HotSellers() {
     const [products, setProducts] = useState([]);
@@ -35,7 +36,7 @@ export default function HotSellers() {
             <div className="flex justify-center">
                 {products && products.map((product) => {
                          return (
-                              <Link href={`/productDetails/${product.id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
+                              <Link key={uuidv4()} href={`/productDetails/${product.id}`} className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out">
                                  <div className="block relative h-48 rounded overflow-hidden">
                                      <Image src={product.colors[0].images[0]} alt="ecommerce" width={1080} height={1920} className="object-contain object-center w-full h-full block" />
                                  </div>

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {forwardRef, useEffect, useRef, useState} from "react";
+import {forwardRef, useContext, useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import Image from "next/image";
@@ -8,6 +8,7 @@ import Login from "@/components/Login";
 import {useRouter} from "next/router";
 import {Backdrop, CircularProgress, Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
+import {UserContext} from "../../context/context";
 
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -21,11 +22,13 @@ export default function LoginForm() {
     const [spinner, setSpinnerState] = useState(false);
     const phoneRef = useRef();
     const otpRef = useRef();
+    const ctx = useContext(UserContext);
     const [showOtp, setShowOtp] = useState(false);
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
     const [severity, setSeverity] = useState("");
     const [open, setOpen] = useState(false);
+
     const handleClose = (event, reason) => {
         console.log(reason);
         if (reason === 'clickaway') {
@@ -73,6 +76,7 @@ export default function LoginForm() {
                     console.log(response);
                     if (response.status === 200) {
                         localStorage.setItem("token", response.data.token);
+                        ctx.setIsLoggedIn(true);
                         router.push("/");
                     } else {
                         setOpen(true)

@@ -2,13 +2,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getRole, isTokenValid } from '@/utils/JWTVerifier'
-import { useEffect, useState } from 'react'
+import {useContext, useEffect, useState} from 'react'
 import axios from "axios";
 import { useRouter } from 'next/router'
+import {UserContext} from "../../../context/context";
 
 export default function Adminlogin() {
     const [mail,setEmail]=useState();
     const [password,setPassword]=useState();
+    const ctx = useContext(UserContext);
     const router = useRouter();
     let isReady = router.isReady;
     const [loading, setLoading] = useState(false);
@@ -28,6 +30,7 @@ export default function Adminlogin() {
           })
           .then((response) => {
             localStorage.setItem("token", response.data.token);
+              ctx.setIsLoggedIn(true);
               router.push("/admin/vendorlist");
           })
           .catch((err)=>{

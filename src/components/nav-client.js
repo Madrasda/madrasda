@@ -47,7 +47,7 @@ export default function NavClient({client}) {
     };
     const logout = () => {
         localStorage.removeItem("token");
-
+        ctx.setIsLoggedIn(false);
         router.push("/login");
     };
 

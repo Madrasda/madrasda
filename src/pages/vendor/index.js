@@ -1,17 +1,20 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { isTokenValid } from '@/utils/JWTVerifier';
 import {Button} from '@mui/material'
 import { useRef } from 'react';
+import {UserContext} from "../../../context/context";
 export default function Vendorlogin() {
     const mail = useRef();
     const password = useRef();
     const router = useRouter();
+    const ctx = useContext(UserContext);
     let isReady = router.isReady;
+
     const vendorlogin = (e) => {
         e.preventDefault();
         axios.post('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginVendor',
@@ -20,6 +23,7 @@ export default function Vendorlogin() {
                 password: password.current.value
             })
             .then((response) => {
+                ctx.setIsLoggedIn(true);
                 localStorage.setItem("token", response.data.token);
                 router.push("/vendor/dashboard");
             })
@@ -30,6 +34,7 @@ export default function Vendorlogin() {
     useEffect(() => {
         const token = localStorage.getItem("token")
         if (token && isTokenValid(token))
+
             router.push("/vendor/dashboard");
     }, [])
 

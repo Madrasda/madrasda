@@ -10,6 +10,7 @@ export default function NavAdmin() {
     const ctx = useContext(UserContext);
     const logOut = async () => {
         localStorage.removeItem("token");
+        ctx.setIsLoggedIn(false);
         router.push("/admin");
     }
     const toggleMenu = () => {

@@ -1,13 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import {useContext} from "react";
+import {UserContext} from "../../context/context";
 
 export default function NavVendor() {
     const router = useRouter();
     const currentRoute = router.pathname;
-
+    const ctx = useContext(UserContext);
     const logout =async()=>{
         localStorage.removeItem("token");
+        ctx.setIsLoggedIn(false);
         router.push("/vendor");
     }
     const toggleMenu = () => {

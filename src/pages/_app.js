@@ -30,6 +30,7 @@ export default function App({Component, pageProps}) {
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
+        console.log("context useEffect")
         if (jwtToken === undefined || isTokenValid(jwtToken)) {
             setToken(jwtToken)
             axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
@@ -47,7 +48,7 @@ export default function App({Component, pageProps}) {
                 .then(response => setVendorList(response.data))
                 .catch(err => console.log(err));
         }
-    }, []);
+    }, [isLoggedIn]);
 
     const decrementQty = (id, qty) => {
         setCart(oldCart => {
@@ -118,14 +119,14 @@ export default function App({Component, pageProps}) {
         })
             .catch(err => console.log(err));
     }
-    const addToCart = (product) => {
+    const addToCart = async (product) => {
         if (isTokenValid(token)) {
             const cartItem = {
                 "id": product.id,
                 "colors": product.colors,
                 quantity: product.quantity
             }
-            return (axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
+            return (await axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart", cartItem, {
                 headers: {
                     Authorization: "Bearer " + token
                 }
@@ -145,7 +146,7 @@ export default function App({Component, pageProps}) {
                     console.log(err);
                 }))
         } else {
-            console.log(isTokenValid(token));
+            console.log((token));
             router.push("/login")
         }
 
@@ -162,6 +163,8 @@ export default function App({Component, pageProps}) {
                 addToCart: addToCart,
                 cart: cart,
                 vendorList: vendorList,
+                setIsLoggedIn: setIsLoggedIn,
+
             }}>
                 <Component {...pageProps} id="page"/>
             </UserContext.Provider>
