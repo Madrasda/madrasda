@@ -3,7 +3,7 @@ import {useRouter} from "next/router";
 import {CircularProgress, Grow, Paper} from "@mui/material";
 import {useState} from "react";
 
-export default function VendorQuery(props, resolve, setResolution) {
+export default function VendorQuery(props) {
     const router = useRouter();
     const [spinner, setSpinner] = useState(false);
 
@@ -14,15 +14,16 @@ export default function VendorQuery(props, resolve, setResolution) {
         ).then((response) => {
             console.log("resolved");
             setSpinner(false);
+            props.setResolution(props.queryId)
         }).catch((err) => {
             setSpinner(false);
             console.log(err);
         });
+
     }
 
     return (
-        <Grow in timeout={700} >
-
+        <Grow in timeout={600 * props.i % (600 * 5)}>
             <Paper className="container mt-8 w-full" elevation={8}>
                 <div className="mx-6 my-6 flex flex-col space-y-4">
                     <div className="flex justify-between items-center">
@@ -34,12 +35,12 @@ export default function VendorQuery(props, resolve, setResolution) {
                     </div>
                     <div className='w-full flex justify-end'>
                         {spinner && <CircularProgress color={"primary"}/>}
-                        <button type="button" className="mt-2 text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5
+                        {!spinner && <button type="button" className="mt-2 text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5
                     text-center mr-2 mb-2" onClick={resolveQuery}>
                             {
-                                resolve ? "Mark as Unresolved" : "Mark as Resolved"
+                                props.resolve ? "Mark as Unresolved" : "Mark as Resolved"
                             }
-                        </button>
+                        </button>}
                     </div>
                 </div>
             </Paper>

@@ -33,7 +33,6 @@ export default function NavVendor() {
             <Link href="/vendor" onClick={logout}>
                 <div className="bg-none w-52 px-10 py-4 font-bold">
                     <div className="flex justify-start items-center py-4">
-                        <Image src="/user-icon.png" width={20} height={20}/>
                         <h3 className="ml-2">Logout</h3>
                     </div>
                 </div>
