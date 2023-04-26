@@ -16,7 +16,6 @@ export default function ProductList () {
   let isReady = router.isReady;
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState(null);
-
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -25,16 +24,10 @@ export default function ProductList () {
   }, []);
 
   const getProductDetails = async () => {
-    const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/" , { 
-        headers : {
-          Authorization : "Bearer " + localStorage.getItem('token')
-        }
-      }  
-    );
+    
     const id= response.data.vendor.id
     const prod = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/getProductsByVendor/" + id
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/getProductsByVendor/" + ctx.id
     );
     setProducts(prod.data.content);
   }
@@ -53,7 +46,7 @@ export default function ProductList () {
   
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
+  <Image src="/loader.gif" width={1920} alt="loader" height={1080} className="object-cover object-center w-full h-full"/>
   </div>);
     return (
         <>

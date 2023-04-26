@@ -10,19 +10,19 @@ import {Backdrop, CircularProgress, Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import {UserContext} from "../../context/context";
 
-const Alert = forwardRef(function Alert(props, ref) {
+const Alert = forwardRef(function Alert(props, ref) { //snackbar alert
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+}); 
 export default function LoginForm() {
     const router = useRouter();
     let isReady = router.isReady;
     const [details, setDetails] = useState(null);
     const [designs, setDesigns] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [spinner, setSpinnerState] = useState(false);
-    const phoneRef = useRef();
-    const otpRef = useRef();
-    const ctx = useContext(UserContext);
+    const [spinner, setSpinnerState] = useState(false); //spinner
+    const phoneRef = useRef(); 
+    const otpRef = useRef(); 
+    const ctx = useContext(UserContext); 
     const [showOtp, setShowOtp] = useState(false);
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
@@ -47,9 +47,9 @@ export default function LoginForm() {
                     setPhone(phone);
                 }).then(() => setSpinnerState(false))
                 .catch((err) => {
-                    setOpen(true)
-                    setMessage(err.data);
-                    setSeverity("error");
+                    setOpen(true) //snackbar
+                    setMessage(err.data); //snackbar
+                    setSeverity("error"); //snackbar
                     console.log(err)
                 });
 
@@ -77,17 +77,18 @@ export default function LoginForm() {
                         localStorage.setItem("token", response.data.token);
                         ctx.setIsLoggedIn(true);
                         router.push("/");
-                    } else {
+                    }
+                })
+                .catch((err) => {
                         setOpen(true)
                         setMessage("Invalid OTP");
                         setSeverity("error");
                         setSpinnerState(false);
-                    }
-                })
-                .catch((err) => console.log(err));
+                }
+                );
         } else {
             setOpen(true)
-            setMessage("Invalid Phone Number");
+            setMessage("Invalid OTP");
             setSeverity("error");
         }
     };
@@ -110,6 +111,7 @@ export default function LoginForm() {
             <div className='z-50 h-screen w-screen overflow-hidden'>
                 <Image
                     src='/loader.gif'
+                    alt ='Loading...'
                     width={1920}
                     height={1080}
                     className='object-cover object-center w-full h-full'

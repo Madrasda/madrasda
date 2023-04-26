@@ -7,6 +7,9 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier";
+import {Backdrop, CircularProgress, Snackbar} from "@mui/material";
+//import MuiAlert from "@mui/material/Alert";
+//import {UserContext} from "../../context/context";
 
 export default function VendorProfile(props) {
 
@@ -16,6 +19,7 @@ export default function VendorProfile(props) {
   const { id } = router.query;
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [spinner, setSpinnerState] = useState(false);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -70,6 +74,7 @@ useEffect(() => {
                             lg:mr-96'>
                 <Image
                   className='rounded-3xl'
+                  alt='vendor'
                   src={details.vendor.imgUrl}
                   width={100}
                   height={100}

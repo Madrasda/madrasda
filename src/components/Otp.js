@@ -8,7 +8,7 @@ const Otp = (props) => {
         </h1>
         <div>
             <input
-                type='text'
+                type='numeric'
                 className={'w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'}
                 id='otp'
                 placeholder='Enter OTP'
