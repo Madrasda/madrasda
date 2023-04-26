@@ -89,8 +89,9 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 </div>
               </div>
             </div>
-
-            <div className='w-[200px] h-[200px] rounded-full overflow-hidden'>
+            <div className="relative">
+            <Image className="animate-spin" src="/disc.png" width={400} height={400}/>
+            <div className='w-[190px] h-[190px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
               <Image
                 className='animate-spin object-fill w-full h-full'
                 alt={name}
@@ -98,6 +99,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 width={500}
                 height={500}
               />
+            </div>
             </div>
             <h1
               className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center

@@ -28,14 +28,17 @@ export default function RightsideDisc ({name, id, imgUrl}) {
           <span
             className='bg-none flex flex-col justify-center items-center w-full
                             lg:bg-bg lg:flex-row md:rounded-l-full md:rounded-r-none'>
-            <div className='w-[200px] h-[200px] rounded-full overflow-hidden'>
+          <div className="relative">
+            <Image className="animate-spin" src="/disc.png" width={400} height={400}/>
+            <div className='w-[190px] h-[190px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
               <Image
-                className='animate-spin object-cover w-full h-full'
+                className='animate-spin object-fill w-full h-full'
                 alt={name}
                 src={imgUrl}
                 width={500}
                 height={500}
               />
+            </div>
             </div>
 
             <div className='flex flex-col w-full'>
