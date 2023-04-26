@@ -1,5 +1,6 @@
 import Image from "next/image";
 import CloseConfirm from "./close-confirm-modal";
+import {uuidv4} from "@firebase/util";
 
 export default function Mockup(props){
     return (
@@ -21,7 +22,7 @@ export default function Mockup(props){
                     {
                         props.sizes.map((size) => {
                             return (
-                                <span className="mt-1 text-gray pr-1 text-sm">
+                                <span key={uuidv4()} className="mt-1 text-gray pr-1 text-sm">
                                     {size}
                                 </span>
                             );
@@ -32,7 +33,7 @@ export default function Mockup(props){
                         {
                         props.colors.map((color) => {
                             return (
-                                <span className={`border-black my-1 border-[1px] rounded-[100%] p-2`} style={{ backgroundColor: color }}></span>
+                                <span key={uuidv4()} className={`border-black my-1 border-[1px] rounded-[100%] p-2`} style={{ backgroundColor: color }}></span>
                             );
                         })
                     }
