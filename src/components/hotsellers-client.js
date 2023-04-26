@@ -32,44 +32,45 @@ export default function HotSellers() {
                   </span>
                 </h2>
               </div>
+              <div className='flex flex-wrap justify-center'>
+                {products &&
+                  products.map((product) => {
+                    return (
+                      <Link
+                        key={uuidv4()}
+                        href={`/productDetails/${product.id}`}
+                        className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
+                        <div className='block relative h-48 rounded overflow-hidden'>
+                          <Image
+                            src={product.colors[0].images[0]}
+                            alt='ecommerce'
+                            width={1080}
+                            height={1920}
+                            className='object-contain object-center w-full h-full block'
+                          />
+                        </div>
+                        <div className='mt-4'>
+                          <h2 className='title-font text-base font-medium'>
+                            {product.name}
+                          </h2>
+                          <span className='mt-1 text-black text-lg pr-1'>
+                            ₹{Math.round(product.total)}
+                          </span>
+                          <span className='mt-1 line-through text-gray pr-1'>
+                            ₹{product.total}
+                          </span>
+                          <span className='title-font text-xs font-medium text-[#088240]'>
+                            {product.discount}% OFF
+                          </span>
+                        </div>
+                      </Link>
+                    );
+                  })}
+              </div>
             </div>
           </div>
         )}
-        <div className='flex flex-wrap justify-center'>
-          {products &&
-            products.map((product) => {
-              return (
-                <Link
-                  key={uuidv4()}
-                  href={`/productDetails/${product.id}`}
-                  className='lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
-                  <div className='block relative h-48 rounded overflow-hidden'>
-                    <Image
-                      src={product.colors[0].images[0]}
-                      alt='ecommerce'
-                      width={1080}
-                      height={1920}
-                      className='object-contain object-center w-full h-full block'
-                    />
-                  </div>
-                  <div className='mt-4'>
-                    <h2 className='title-font text-base font-medium'>
-                      {product.name}
-                    </h2>
-                    <span className='mt-1 text-black text-lg pr-1'>
-                      ₹{Math.round(product.total)}
-                    </span>
-                    <span className='mt-1 line-through text-gray pr-1'>
-                      ₹{product.total}
-                    </span>
-                    <span className='title-font text-xs font-medium text-[#088240]'>
-                      {product.discount}% OFF
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-        </div>
+        
       </section>
     );
 }

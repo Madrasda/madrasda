@@ -131,7 +131,7 @@ export default function ProductId() {
                           lg:flex-row-reverse w-full">
                             <img
                                 alt="ecommerce"
-                                className="w-full lg:h-[620px] h-96 object-contain object-center rounded px-2"
+                                className="w-full lg:h-[620px] h-96 object-contain aspect-16/9 object-center rounded px-2"
                                 src={activeImage}
                             />
                             <div className='flex flex-row justify-center items-center
@@ -139,7 +139,7 @@ export default function ProductId() {
                                 {currentColor.images.map((image) => (<img
                                     alt="ecommerce"
                                     key={uuidv4()}
-                                    className="w-24 lg:w-44 aspect-16/9 m-2"
+                                    className="w-24 lg:w-44 aspect-16/9 m-2 object-contain"
                                     src={image}
                                     onClick={() => setActiveImage(image)}
                                 />))}
