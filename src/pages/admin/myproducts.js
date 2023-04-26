@@ -1,19 +1,18 @@
 import Head from "next/head";
-import Link from "next/link";
 import AdminLayout from "@/components/layout-admin";
 import AdminUploadModal from "@/components/adminuploadmodal";
 import axios from "axios";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 import Mockup from "@/components/mockup";
-import { isTokenValid, getRole } from "@/utils/JWTVerifier";
-import { storage } from "../../firebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { v4 } from "uuid";
+import {getRole, isTokenValid} from "@/utils/JWTVerifier";
+import {storage} from "../../firebaseConfig";
+import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import CloseConfirm from "@/components/close-confirm-modal";
+import {uuidv4} from "@firebase/util";
+import {Grow} from "@mui/material";
 
-export default function MyProducts () {
+export default function MyProducts() {
     const router = useRouter();
     const [mockups, setMockups] = useState(null);
     const [pageNo, setPage] = useState(0);
@@ -23,173 +22,182 @@ export default function MyProducts () {
     const [tokenExists, setTokenExists] = useState(false);
     let isReady = router.isReady;
     useEffect(() => {
-      const jwtToken = localStorage.getItem("token")
-      if(jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
+        const jwtToken = localStorage.getItem("token")
+        if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
             router.push("/");
-      if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-          router.push("/vendor");
-      if(jwtToken === undefined || !isTokenValid(jwtToken))
-        router.push("/admin");
-      else
-        setTokenExists(true);
-      getAllColorsAndSizes();
-      getMockups();
+        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
+            router.push("/vendor");
+        if (jwtToken === undefined || !isTokenValid(jwtToken))
+            router.push("/admin");
+        else
+            setTokenExists(true);
+        getAllColorsAndSizes();
+        getMockups();
     }, []);
 
-  const getMockups = async () => {
-    const url = new URLSearchParams({
-        pageNo: pageNo,
-        pageSize: 5
-    })  
-    const response = await axios.get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups?" + url
-    );
-    setMockups(response.data.content);
-    setPageSize(response.data.totalPages);
-  }
+    const getMockups = async () => {
+        const url = new URLSearchParams({
+            pageNo: pageNo,
+            pageSize: 5
+        })
+        const response = await axios.get(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups?" + url
+        );
+        setMockups(response.data.content);
+        setPageSize(response.data.totalPages);
+    }
 
-  const deleteMockup = async (mockupId) => {
-    const response = axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/deleteMockup/" + mockupId, {
-        headers : {
-          Authorization : "Bearer " + localStorage.getItem('token')
-        }
-      }
-    );
-    router.reload();
-  }
+    const deleteMockup = async (mockupId) => {
+        const response = axios.delete(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/deleteMockup/" + mockupId, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token')
+                }
+            }
+        );
+        router.reload();
+    }
 
-  const getAllColorsAndSizes = async () => {
-    axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/colorsAndSizes/getColorsAndSizes"
-    ).then((response) => {
-      setColors(response.data.colors);
-      setSizes(response.data.sizes);
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
+    const getAllColorsAndSizes = async () => {
+        axios.get(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/colorsAndSizes/getColorsAndSizes"
+        ).then((response) => {
+            setColors(response.data.colors);
+            setSizes(response.data.sizes);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
-  const getAvailableSizes = (skuMapping) => {
+    const getAvailableSizes = (skuMapping) => {
         var availableSizes = []
         skuMapping.forEach(sku => {
-            if(!availableSizes.includes(sku.size.size))
+            if (!availableSizes.includes(sku.size.size))
                 availableSizes.push(sku.size.size);
         });
         return availableSizes;
-  }
+    }
 
-  const getAvailableColors = (skuMapping) => {
+    const getAvailableColors = (skuMapping) => {
         var availableColors = []
         skuMapping.forEach(sku => {
-            if(!availableColors.includes(sku.color.hexValue))
+            if (!availableColors.includes(sku.color.hexValue))
                 availableColors.push(sku.color.hexValue);
         });
         return availableColors;
-  }
+    }
 
-  const handleSubmit = (data) => {
-    createMockup(data);
-  }
+    const handleSubmit = (data) => {
+        createMockup(data);
+    }
 
-  const uploadImagesOnline = async (file1, file2) => {
-    const imageRef1 = ref(storage, `mockups/${file1.name + v4()}`);
-    const imageRef2 = ref(storage, `mockups/${file2.name + v4()}`)
-    await uploadBytes(imageRef1, file1);
-    await uploadBytes(imageRef2, file2);
-    const url1 = await getDownloadURL(imageRef1);
-    const url2 = await getDownloadURL(imageRef2);
-    return { url1, url2 };
-  }
+    const uploadImagesOnline = async (file1, file2) => {
+        const imageRef1 = ref(storage, `mockups/${file1.name + v4()}`);
+        const imageRef2 = ref(storage, `mockups/${file2.name + v4()}`)
+        await uploadBytes(imageRef1, file1);
+        await uploadBytes(imageRef2, file2);
+        const url1 = await getDownloadURL(imageRef1);
+        const url2 = await getDownloadURL(imageRef2);
+        return {url1, url2};
+    }
 
-  const createMockup = async (mockup) => {
-    const {url1,url2} = await uploadImagesOnline(mockup.frontImage, mockup.backImage);
-    axios.post(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
-      {
-        ...mockup,
-        frontImage: url1,
-        backImage: url2
-      } 
-    ).then((response) => {
-      getMockups();
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
+    const createMockup = async (mockup) => {
+        const {url1, url2} = await uploadImagesOnline(mockup.frontImage, mockup.backImage);
+        axios.post(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
+            {
+                ...mockup,
+                frontImage: url1,
+                backImage: url2
+            }
+        ).then((response) => {
+            getMockups();
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
 
-  useEffect(()=>{
-    getMockups();
-  }, [pageNo]);
-  return (
-    <>
-        <Head>
-        <meta name="description" content="Generated by create next app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.png" />
-        <title>Madrasda | My Products</title>
-        </Head>
-        
-        <AdminLayout>
-        <section className="body-font overflow-hidden font-algeria
+    useEffect(() => {
+        getMockups();
+    }, [pageNo]);
+    return (
+        <>
+            <Head>
+                <meta name="description" content="Generated by create next app"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <link rel="icon" href="/logo.png"/>
+                <title>Madrasda | My Products</title>
+            </Head>
+
+            <AdminLayout>
+                <section className="body-font overflow-hidden font-algeria
                             md:ml-32">
-        <div className="mt-20 px-5 md:my-10 mx-auto">
-            <h1 className="text-3xl text-primary 
+                    <div className="mt-20 px-5 md:my-10 mx-auto">
+                        <h1 className="text-3xl text-primary
                            md:ml-20">MOCKUPS </h1>
-            
-            <div className="flex flex-wrap justify-start md:ml-20">
-                <div className="lg:w-1/4 md:w-3/4 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">  
-                    <div className="flex flex-col items-center justify-center cursor-pointer">
-                        <AdminUploadModal
-                          colors={colors}
-                          sizes={sizes}
-                          onSubmit={handleSubmit}
-                        />
-                        <p className="font-semibold font-base">Upload Mockup</p>
-                        <p className="font-light text-gray font-sm">Add them to your product list for vendors</p>
-                    </div>
-                </div>
 
-                {   mockups &&
-
-                    mockups.map((m) => {
-                        return (
-                            <div key={uuidv4()} className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
-                              <span className="flex justify-end">
-                                <CloseConfirm mockup={true} delete={(e) => {if(e) deleteMockup(m.id);}}/>
-                              </span>
-                              <Mockup 
-                                key={m.id}
-                                image={m.frontImage}
-                                model={m.model}
-                                name={m.name}
-                                sizes={getAvailableSizes(m.skuMapping)}
-                                colors={getAvailableColors(m.skuMapping)}
-                              />
+                        <div className="flex flex-wrap justify-start md:ml-20">
+                            <div
+                                className="lg:w-1/4 md:w-3/4 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
+                                <div className="flex flex-col items-center justify-center cursor-pointer">
+                                    <AdminUploadModal
+                                        colors={colors}
+                                        sizes={sizes}
+                                        onSubmit={handleSubmit}
+                                    />
+                                    <p className="font-semibold font-base">Upload Mockup</p>
+                                    <p className="font-light text-gray font-sm">Add them to your product list for
+                                        vendors</p>
+                                </div>
                             </div>
-                        )
-                    })
-                }
-                </div>
-                <div className="flex justify-center mt-32">
-                    <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
-                        () => {
-                            setPage(pageNo===0 ? 0 : pageNo-1)
-                        }
-                    }>
-                        Prev
-                    </button>
-                    <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
-                        () => {
-                            setPage(pageNo===pageSize-1 ? pageNo : pageNo+1)
-                        }
-                    }>
-                        Next
-                    </button>
-                </div>
-        </div>
-        </section>
-        </AdminLayout>
-    </>
-  );
+
+                            {mockups &&
+
+                                mockups.map((m, i) => {
+                                    return (
+
+                                            <div key={uuidv4()} className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                              <span key={uuidv4()} className="flex">
+                                <CloseConfirm mockup={true} delete={(e) => {
+                                    if (e) deleteMockup(m.id);
+                                }}/>
+                              </span>
+                                                <Mockup
+                                                    key={m.id}
+                                                    image={m.frontImage}
+                                                    model={m.model}
+                                                    name={m.name}
+                                                    sizes={getAvailableSizes(m.skuMapping)}
+                                                    colors={getAvailableColors(m.skuMapping)}
+                                                />
+                                            </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className="flex justify-center mt-32">
+                            <button
+                                className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l"
+                                onClick={
+                                    () => {
+                                        setPage(pageNo === 0 ? 0 : pageNo - 1)
+                                    }
+                                }>
+                                Prev
+                            </button>
+                            <button
+                                className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r"
+                                onClick={
+                                    () => {
+                                        setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1)
+                                    }
+                                }>
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </AdminLayout>
+        </>
+    );
 }

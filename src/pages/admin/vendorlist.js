@@ -12,6 +12,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import CloseConfirm from "@/components/close-confirm-modal";
+import {uuidv4} from "@firebase/util";
 
 export default function VendorList(props) {
   const router = useRouter();
