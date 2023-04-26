@@ -30,7 +30,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                             lg:bg-bg lg:flex-row md:rounded-l-full md:rounded-r-none'>
             <div className='w-[200px] h-[200px] rounded-full overflow-hidden'>
               <Image
-                className='animate-spin object-fill w-full h-full'
+                className='animate-spin object-cover w-full h-full'
                 alt={name}
                 src={imgUrl}
                 width={500}

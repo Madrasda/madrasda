@@ -82,6 +82,7 @@ export default function Home() {
             );
           }
         })}
+        <span id="hotsellers"></span>
         <HotSellers />
       </ClientLayout>
     </>

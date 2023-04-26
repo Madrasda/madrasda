@@ -82,7 +82,7 @@ export default function NavVendor() {
                         <div className={currentRoute === '/vendor/feedback' || currentRoute === '/vendor/unresolvedqueries' || currentRoute === '/vendor/resolvedqueries' ? "bg-primary w-52 px-8" : "bg-none w-52 px-8" }>
                             <div className="flex justify-start items-center py-4">
                                 <Image src="/feedback-icon.png" width={30} height={30}/>
-                                <h3 className="ml-2">Feedback</h3>
+                                <h3 className="ml-2">Queries</h3>
                             </div>
                         </div>
                     </Link>

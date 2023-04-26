@@ -109,29 +109,9 @@ export default function NavClient({client}) {
                   </Dropdown.Menu>
                 </Dropdown>
 
-                <Dropdown>
-                  <Dropdown.Button
-                    flat
-                    css={{
-                      background: "#1A1A1C",
-                      fontFamily: "$algeria",
-                      fontWeight: "700",
-                      color: "White",
-                    }}>
-                    <span className='font-bold'>Bestsellers</span>
-                  </Dropdown.Button>
-                  <Dropdown.Menu>
-                    {products &&
-                      products.map((item) => (
-                        <Dropdown.Item key={item.id}>
-                          <Link href={`/productDetails/${item.id}`}>
-                            {item.name}
-                          </Link>
-                        </Dropdown.Item>
-                      ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-
+                <Link href="/#hotsellers" scroll={true}>
+                  <button className="text-white font-bold cursor-pointer bg-bg">Bestsellers</button>
+                </Link>
                 <Dropdown>
                   <Dropdown.Button
                     flat

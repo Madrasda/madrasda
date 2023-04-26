@@ -1,5 +1,4 @@
 import Image from "next/image";
-import CloseConfirm from "./close-confirm-modal";
 import {uuidv4} from "@firebase/util";
 
 export default function Mockup(props){

@@ -145,41 +145,40 @@ export default function ProductId() {
                     <div
                       className='flex flex-row justify-center items-center
                             lg:flex-col'>
-                      {currentColor.images.map((image) => (
-                        <img
-                          alt='ecommerce'
-                          key={uuidv4()}
-                          className='w-24 lg:w-44 aspect-16/9 m-2'
-                          src={image}
-                          onClick={() => setActiveImage(image)}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <div className='lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'>
-                    <h2 className='text-sm title-font text-gray-500 tracking-widest'>
-                      {/*{product.theme !== undefined ? product.theme : ""}*/}
-                    </h2>
-                    <h1 className='text-gray-900 text-3xl title-font font-medium mb-1'>
-                      {product.name}
-                    </h1>
-                    <span>
-                      <h1>{product.description}</h1>
-                    </span>
-                    <div className='flex mb-4 items-center'></div>
-                    <div className='flex flex-row items-baseline'>
-                      <span className='title-font font-medium text-2xl text-gray-900 mr-2 flex justify-center'>
-                        ₹{(product.total * (100 - product.discount)) / 100}
-                      </span>
-                      <span
-                        className='title-font line-through font-small text-lg
-                                text-gray-600 mr-2 flex justify-center'>
-                        ₹{product.total}
-                      </span>
-                      <span className='bg-primary rounded-lg mr-2 px-2 py-1 scale-75 text-base text-white flex justify-center'>
-                        {product.discount}% off
-                      </span>
-                    </div>
+                                {currentColor.images.map((image) => (<img
+                                    alt="ecommerce"
+                                    key={uuidv4()}
+                                    className="w-24 lg:w-44 aspect-16/9 m-2"
+                                    src={image}
+                                    onClick={() => setActiveImage(image)}
+                                />))}
+                            </div>
+                        </div>
+                        <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                            <h2 className="text-sm title-font text-gray-500 tracking-widest">
+                                {/*{product.theme !== undefined ? product.theme : ""}*/}
+                            </h2>
+                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+                                {product.name}
+                            </h1>
+                            <span>
+                                <h1>{product.description}</h1>
+                            </span>
+                            <div className="flex mb-4 items-center">
+                            </div>
+                            <div className='flex flex-row items-baseline'>
+              <span className="title-font font-medium text-2xl text-gray-900 mr-2 flex justify-center">
+                ₹{product.total * (100 - product.discount) / 100}
+              </span>
+                                <span className="title-font line-through font-small text-lg
+                                text-gray-600 mr-2 flex justify-center">
+                ₹{product.total}
+              </span>
+                                <span
+                                    className='bg-primary rounded-lg mr-2 px-2 py-1 scale-75 text-base text-white flex justify-center'>
+                {product.discount}% off
+              </span>
+                            </div>
 
                     <div className='mt-6'>Colors</div>
                     <div className='flex items-center mt-3 mb-3'>
