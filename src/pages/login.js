@@ -77,14 +77,17 @@ export default function LoginForm() {
                         localStorage.setItem("token", response.data.token);
                         ctx.setIsLoggedIn(true);
                         router.push("/");
-                    } else {
-                        setOpen(true)
-                        setMessage("Invalid OTP");
-                        setSeverity("error");
-                        setSpinnerState(false);
                     }
+
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                    console.log(err) 
+                    setOpen(true)
+                    setSpinnerState(false)
+                    setMessage("Invalid OTP")
+                    setSeverity("error")}
+                    );
+
         } else {
             setOpen(true)
             setMessage("Invalid Phone Number");

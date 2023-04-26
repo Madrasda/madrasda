@@ -90,7 +90,7 @@ export default function Analytics () {
       {/* -------- STATISTICS -------- */}
         <section className="text-gray-600 body-font">
               <div className="container px-5 py-14 mx-8">
-                  <div className="flex flex-wrap justify-between -m-4 text-center md:ml-2">
+                  <div className="flex flex-wrap justify-around -m-4 text-center">
                   <div className="p-4">
                       <h1 className="title-font font-bold text-xl">Total Products</h1>
                       <h2 className="title-font font-bold text-3xl text-primary">{details.salesAnalysis ? details.salesAnalysis.totalProducts : 0}</h2>

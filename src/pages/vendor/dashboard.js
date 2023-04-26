@@ -101,8 +101,8 @@ export default function Dashboard(props) {
 
               <section className='text-gray-600 body-font'>
                 <div className='container px-5 py-14 mx-auto'>
-                  <div className='flex flex-nowrap -m-4 text-center'>
-                    <div className='p-4 w-1/2 lg:w-1/3'>
+                  <div className='flex flex-wrap md:ml-10 text-center justify-around'>
+                    <div className='p-4'>
                       <h1 className='title-font font-bold text-xl'>
                         Total Products
                       </h1>
@@ -113,8 +113,7 @@ export default function Dashboard(props) {
                       </h2>
                     </div>
                     <div
-                      className='p-4 w-1/2
-                                            lg:w-1/3'>
+                      className='p-4'>
                       <h1 className='title-font font-bold text-xl'>
                         Total Orders
                       </h1>
@@ -125,8 +124,7 @@ export default function Dashboard(props) {
                       </h2>
                     </div>
                     <div
-                      className='p-4 w-full
-                                            lg:w-1/3'>
+                      className='p-4'>
                       <h1 className='title-font font-bold text-xl'>
                         Total Profit Earned
                       </h1>
@@ -138,7 +136,7 @@ export default function Dashboard(props) {
                           : 0}
                       </h2>
                     </div>
-                    <div className='p-4 w-fullg:w-1/3 flex flex-col items-center'>
+                    <div className='p-4 flex flex-col items-center'>
                       <h1 className='title-font font-bold text-xl'>
                         Outstanding Profit
                       </h1>

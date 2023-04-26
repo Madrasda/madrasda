@@ -133,7 +133,7 @@ export default function TemplateList () {
         {   products &&
             products.map((m) => {
                 return (
-                    <div className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                    <div className="lg:w-1/4 md:w-3/4 p-4 w-full lg:h-[700px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                       <span className="w-full ml-5 flex justify-end">
                         <CloseConfirm template={true} delete={(e) => {if(e) deleteTemplate(m.id)}} />
                       </span>
@@ -152,7 +152,7 @@ export default function TemplateList () {
         }
         </div>
         </div>
-        <div className="flex justify-center mt-32">
+        <div className="flex justify-center mt-32 mb-10">
             <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
                 () => {
                     setPage(pageNo===0 ? 0 : pageNo-1)
