@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import PayoutConfirm from "@/components/payout-confirm";
+import {uuidv4} from "@firebase/util";
 
 export default function CustomerDetails() {
   const router = useRouter();
