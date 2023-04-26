@@ -104,6 +104,13 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                           lg:text-white lg:hidden lg:justify-start lg:pt-6'>
               LOKI CINEMATIC UNIVERSE
             </h1>
+            <Link href={`/products/${id}`}>
+              <button
+                className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
+                              lg:hidden'>
+                View More
+              </button>
+            </Link>
           </span>
         </div>
       </>

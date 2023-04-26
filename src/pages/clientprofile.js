@@ -29,6 +29,7 @@ export default function ClientProfile() {
       }
     );
     setDetails(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
@@ -78,36 +79,30 @@ export default function ClientProfile() {
             <h1 className='text-3xl font-bold text-primary md:ml-10 md:mt-4'>
               My Profile
             </h1>
-            <div className='flex items-center mt-4 ml-16'>
-              <h2 className='ml-2 title-font font-medium text-lg'>
-                Phone Number :
+            <div className='flex flex-col md:flex-row md:space-x-5 mt-4 ml-16'>
+              <h2 className='md:ml-2 title-font font-medium text-lg'>
+                Phone Number
               </h2>
               <input
                 type='text'
-                className='bg-white text-black text-lg outline-none focus:ring-primary cursor-default focus:border-[#D9D9D9] block w-96 p-2.5'
+                className='bg-white text-black text-lg outline-none focus:ring-primary cursor-default'
                 placeholder={phone}
                 readOnly
               />
             </div>
 
             {details && (
-              <h1 className='font-algeria font-bold text-lg mt-10 ml-16'>
+              <h1 className='font-algeria font-bold text-xl mt-10 ml-16'>
                 Order History
               </h1>
+            )}
+            {details && details.length === 0 && (
+              <h1 className='ml-16 text-gray text-xl'>No history of orders!</h1>
             )}
             {details &&
               details.map((order) => (
                 <div key={uuidv4()} className='px-3 md:w-7/12 ml-16 mb-4 mt-8'>
-                  <div className='w-full flex items-center bg-off-white rounded-lg'>
-                    {/* <div className='overflow-hidden rounded-lg w-2/12 h-2/12 bg-[#D9D9D9] border border-gray'>
-                      <Image
-                        src='/vikram-tee.png'
-                        alt='ecommerce'
-                        width={1080}
-                        height={1920}
-                        className='object-contain object-center w-full h-full block'
-                      />
-                    </div> */}
+                  <div className='w-full flex flex-col  md:flex-row items-center bg-off-white rounded-lg'>
                     <div className='w-4/5 p-3 ml-4'>
                       <h6 className='font-semibold text-xl text-black'>
                         Order Date :{" "}
@@ -131,7 +126,7 @@ export default function ClientProfile() {
                       </h6>
                     </div>
                     <div className='w-1/5 scale-75'>
-                      <OrderDetailsModal order={order}/>
+                      <OrderDetailsModal order={order} />
                     </div>
                   </div>
                 </div>

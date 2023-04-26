@@ -100,7 +100,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
             </div>
             {/* -------- LARGE SCREEN CONTENT END -------- */}
             {/* -------- VISIBLE ON SMALL SCREENS ONLY -------- */}
-            <Link href='/productlist'>
+            <Link href={`/products/${id}`}>
               <button
                 className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
                               lg:hidden'>

@@ -72,6 +72,7 @@ export default function CreateTemplate(props) {
                             }
                         )
                         img.scaleToHeight(canvasHeight);
+                        img.scaleToWidth(canvasWidth);
                         img.set({
                             lockScalingX: true,
                             lockScalingY: true,
