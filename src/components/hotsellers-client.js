@@ -54,7 +54,7 @@ export default function HotSellers() {
                             {product.name}
                           </h2>
                           <span className='mt-1 text-black text-lg pr-1'>
-                            ₹{Math.round(product.total)}
+                            ₹{(product.total * (100 - product.discount) /100)}
                           </span>
                           <span className='mt-1 line-through text-gray pr-1'>
                             ₹{product.total}

@@ -253,8 +253,8 @@ export default function ProductId() {
                         </div>
                       </div>
                       <button
-                        className='flex w-1/3 text-center text-white bg-[#a5153F]
-                       border-0 p-4 outline-none hover:bg-primary rounded'
+                        className='w-64 text-center text-white bg-[#a5153F]
+                       border-0 px-4 py-3 outline-none hover:bg-primary rounded'
                         onClick={handleAddToCart}>
                         Add to Cart
                       </button>
