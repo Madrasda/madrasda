@@ -52,7 +52,7 @@ export default function Checkout() {
           setSpinner(true);
           axios
               .get(
-                  "http://localhost:8080/api/payment/getShippingCharges/" + text,
+                  "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" + text,
                   {
                     headers: {
                       Authorization: "Bearer " + localStorage.getItem("token"),
@@ -96,7 +96,7 @@ export default function Checkout() {
       }),
     };
     axios
-        .post("http://localhost:8080/api/payment/createOrder", transaction, {
+        .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder", transaction, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
