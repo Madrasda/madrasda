@@ -14,13 +14,8 @@ export default function Queries() {
     const [pageSize, setPageSize] = useState(0);
     const [tokenExists, setTokenExists] = useState(false);
     let isReady = router.isReady;
-    const setResolution = (queryId) => {
-        setQueries(oldSet => [...oldSet.map(query => {
-                    if (query.id === queryId) query.resolve = !query.resolve;
-                    return query;
-                }
-            )]
-        );
+    const setResolution = (id) => {
+        setQueries(old => [...old.filter((curr) => curr.id !== id)]);
 
     }
     const getQueries = async () => {
@@ -76,7 +71,7 @@ export default function Queries() {
 
                         <div className='flex flex-col mt-4 md:ml-20 lg:mr-20'>
                             {queries &&
-                                queries.map((q) => {
+                                queries.map((q, index) => {
                                     return (
                                         <VendorQuery
                                             key={q.id}
@@ -85,6 +80,7 @@ export default function Queries() {
                                             query={q.query}
                                             email={q.email}
                                             setResolution={setResolution}
+                                            i={index}
                                         />
                                     )
                                 })
@@ -92,7 +88,7 @@ export default function Queries() {
                             {
                                 queries && queries.length === 0 &&
                                 <h1 className='text-center text-xl text-gray font-light'>
-                                    No queries to be solved
+                                    No queries to be resolved
                                 </h1>
                             }
                         </div>

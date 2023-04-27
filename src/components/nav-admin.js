@@ -27,18 +27,11 @@ export default function NavAdmin() {
             <Image src='/logo.png' width={90} height={90} priority alt='logo' />
           </div>
 
-          <button onClick={logOut}>
-            <div className='bg-none w-52 px-10 py-2 font-bold'>
-              <div className='flex justify-start items-center py-4'>
-                <Image
-                  src='/user-icon.png'
-                  className='w-auto h-auto'
-                  width={20}
-                  height={20}
-                  alt='logo'
-                />
-                <h3 className='ml-2'>Logout</h3>
-              </div>
+        <Link href="/admin" onClick={logOut}>
+            <div className="bg-none w-52 px-10 py-2 font-bold">
+                <div className="flex justify-start items-center py-4">
+                    <h3 className="ml-2">Logout</h3>
+                </div>
             </div>
           </button>
 
