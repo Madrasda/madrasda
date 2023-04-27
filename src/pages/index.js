@@ -9,7 +9,7 @@ import {useContext, useEffect, useState} from 'react';
 import {UserContext} from "../../context/context";
 import {uuidv4} from '@firebase/util'
 import HotSellers from '@/components/hotsellers-client'
-import { isTokenValid } from "@/utils/JWTVerifier";
+import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 
 export default function Home() {
   const router = useRouter();
@@ -27,11 +27,16 @@ export default function Home() {
   }, [ctx.vendorList]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token && isTokenValid(token)) {
+    const jwtToken = localStorage.getItem("token");
+    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
+    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
+    if (jwtToken && isTokenValid(jwtToken)) {
       setClient(true);
+    } else {
+      setClient(false);
+      router.push("/login");
     }
-  });
+  }, []);
 
   if (loading && isReady)
     return (
@@ -82,7 +87,7 @@ export default function Home() {
             );
           }
         })}
-        <span id="hotsellers"></span>
+        <span id='hotsellers'></span>
         <HotSellers />
       </ClientLayout>
     </>
