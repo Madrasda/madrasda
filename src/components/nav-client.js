@@ -169,7 +169,7 @@ export default function NavisCustomer() {
                                 </Dropdown.Button>
                                 <Dropdown.Menu>
                                     <Dropdown.Item>
-                                        <Link href='/isCustomerprofile'>
+                                        <Link href='/clientprofile'>
                                             <h1 className='text-xs my-auto'>Profile</h1>
                                         </Link>
                                     </Dropdown.Item>
@@ -324,7 +324,7 @@ export default function NavisCustomer() {
                                             </Dropdown.Button>
                                             <Dropdown.Menu>
                                                 <Dropdown.Item>
-                                                    <Link href='/isCustomerprofile'>
+                                                    <Link href='/clientprofile'>
                                                         <h1 className='text-xs my-auto'>Profile</h1>
                                                     </Link>
                                                 </Dropdown.Item>
