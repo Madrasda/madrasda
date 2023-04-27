@@ -28,7 +28,7 @@ export default function Checkout() {
   const router = useRouter();
   const ctx = useContext(UserContext);
   useEffect(() => {
-    if (!isTokenValid(localStorage.getItem("token")) || getRole(localStorage.getItem) !== 'ROLE_CUSTOMER') {
+    if (!isTokenValid(localStorage.getItem("token")) || getRole(localStorage.getItem("token")) !== 'ROLE_CUSTOMER') {
       router.push("/login");
     } else {
       if (ctx.cart.cartItems !== undefined) {
@@ -52,7 +52,7 @@ export default function Checkout() {
           setSpinner(true);
           axios
               .get(
-                  "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" + text,
+                  "http://localhost:8080/api/payment/getShippingCharges/" + text,
                   {
                     headers: {
                       Authorization: "Bearer " + localStorage.getItem("token"),
@@ -96,7 +96,7 @@ export default function Checkout() {
       }),
     };
     axios
-        .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder", transaction, {
+        .post("http://localhost:8080/api/payment/createOrder", transaction, {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
