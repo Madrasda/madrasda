@@ -21,17 +21,7 @@ function PersonBasedProductsPage() {
         }
     }, [gender, pageNo]);
 
-    useEffect(() => {
-    const jwtToken = localStorage.getItem('token');
-    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
-        router.push("/admin");
-    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-        router.push("/vendor");
-    if(jwtToken && isTokenValid(jwtToken))
-        setClient(true);
-    else
-        setClient(false);
-  }, []);
+
 
     return <ProductList productsPage={products} setPageNo={setPageNo} pageNo={pageNo} title={title}/>;
 }

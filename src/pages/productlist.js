@@ -12,7 +12,6 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
 
     const [loading, setLoading] = useState(false);
     const [pageButtons, setPageButtons] = useState([]);
-    const [client, setClient] = useState(false);
 
     const router = useRouter();
     const ctx = useContext(UserContext);
@@ -23,17 +22,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
         setPageNo(page);
     }, [setPageNo])
 
-    useEffect(() => {
-    const jwtToken = localStorage.getItem('token');
-    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
-        router.push("/admin");
-    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-        router.push("/vendor");
-    if(jwtToken && isTokenValid(jwtToken))
-        setClient(true);
-    else
-        setClient(false);
-  }, [])
+
 
     useEffect(() => {
             setLoading(true);
@@ -83,7 +72,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
             </Head>
             {
                 productsPage?.content &&
-                <ClientLayout client={client}>
+                <ClientLayout>
                     <section className="body-font font-algeria">
                         <div className="px-5 py-24 mx-auto">
                             <h1 className="text-3xl text-primary md:ml-10 md:mt-4">{title}</h1>

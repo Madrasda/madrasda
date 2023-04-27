@@ -28,7 +28,7 @@ export default function Checkout() {
   const router = useRouter();
   const ctx = useContext(UserContext);
   useEffect(() => {
-    if (!isTokenValid(localStorage.getItem("token"))) {
+    if (!isTokenValid(localStorage.getItem("token")) || getRole(localStorage.getItem) !== 'ROLE_CUSTOMER') {
       router.push("/login");
     } else {
       if (ctx.cart.cartItems !== undefined) {
@@ -37,6 +37,9 @@ export default function Checkout() {
             0
         );
         setSubtotal(sum);
+      }
+      else{
+
       }
     }
   }, [ctx.cart]);

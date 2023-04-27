@@ -93,17 +93,7 @@ export default function ProductId() {
         }
     }, [isReady]);
 
-    useEffect(() => {
-        const jwtToken = localStorage.getItem('token');
-        if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
-            router.push("/admin");
-        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-            router.push("/vendor");
-        if (jwtToken && isTokenValid(jwtToken))
-            setClient(true);
-        else
-            setClient(false);
-    }, []);
+
 
     if (loading && isReady) return (<div className='z-50 h-screen w-screen overflow-hidden'>
         <Image src="/loader.gif" width={1920} height={1080} alt={"img"}
@@ -126,7 +116,6 @@ export default function ProductId() {
 
         {isReady && (
           <ClientLayout
-            client={client}
             state={open}
             severity={severity}
             message={message}

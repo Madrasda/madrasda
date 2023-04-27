@@ -7,7 +7,7 @@ import { useEffect,useState } from 'react';
 import { isTokenValid, getRole } from '@/utils/JWTVerifier';
 import Image from "next/image";
 
-export default function contact() {
+export default function Contact() {
   const router = useRouter();
   let isReady = router.isReady;
   const [details, setDetails] = useState(null);

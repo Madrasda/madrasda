@@ -105,6 +105,14 @@ export default function NavVendor() {
             <div className="hidden" id="mobile_menu">
 
                 <nav className="text-sm flex flex-col items-center w-full font-bold">
+                    <Link className={"hover:bg-primary"} href="/vendor" onClick={logout}>
+                        <div className="bg-none w-52 px-10 py-2 font-bold">
+                            <div className="flex justify-start items-center py-4 space-x-3">
+                                <Image src={"/user-icon.png"} width={25} height={25} alt={""}/>
+                                <h3 className="ml-2">Logout</h3>
+                            </div>
+                        </div>
+                    </Link>
                     <Link href="/vendor/dashboard" className="w-full">
                         <div className={currentRoute === '/vendor/dashboard' || currentRoute === '/vendor/designgallery' ? "bg-primary w-full px-8" : "bg-none w-full px-8" }>
                             <div className="flex justify-center items-center py-4">
