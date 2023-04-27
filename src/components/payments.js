@@ -2,6 +2,9 @@ import AdminLayout from '@/components/layout-admin'
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
+import {Button} from "@mui/material";
+import {uuidv4} from "@firebase/util";
+import OrderDetailsModal from "@/components/orderdetails-modal";
 
 export default function Payments() {
   const [orders, setOrders] = useState(0);
@@ -14,7 +17,7 @@ export default function Payments() {
       pageSize: 10,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/manageOrders?",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?pageNo=0&&pageSize=10",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
@@ -23,6 +26,7 @@ export default function Payments() {
     );
     setOrders(response.data.content);
   };
+  const viewOrderItems = (order) =>{}
 
   useEffect(() => {
     manageOrders();
@@ -56,44 +60,39 @@ export default function Payments() {
                       Customer Email
                     </th>
                     <th scope='col' className=' px-6 py-4'>
-                      Product
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Shipping Address
+                      Products
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {orders &&
                     orders.map((order) => {
-                      order.orderItems.map((item) => (
-                        <tr className='dark:border-neutral-500'>
+                      const orderDate = new Date(order.orderDate);
+                      return(
+                        <tr key={uuidv4()} className='dark:border-neutral-500'>
                           <td className='whitespace-nowrap px-6 py-6 font-medium'>
-                            {order.id}
+                            {order.orderId}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {order.paymentId}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            {order.orderDate}
+                            {`${orderDate.getUTCDate().toString().padStart(2, '0')}-${(orderDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${orderDate.getUTCFullYear().toString()}`}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            {order.status}
+                            {order.status === null? "Order Placed": "Placed Order"}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {order.shippingAddress.name}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {order.shippingAddress.email}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            {order.shippingAddress.email}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.name}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {order.shippingAddress.addressLine1}
+                          <OrderDetailsModal order={order} />
                           </td>
                         </tr>
-                      ));
+                      );
                     })}
                 </tbody>
               </table>
