@@ -17,7 +17,7 @@ export const getRole = (token) => {
         const decodedToken = jwtDecode(token);
         return decodedToken.role;
     } catch (error) {
-        return false;
+        return error;
     }
 }
 export const getPhone = (token) => {

@@ -16,7 +16,7 @@ export default function CustomerDetails () {
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-        if(jwtToken === undefined || !isTokenValid(jwtToken))
+        if(jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
           router.push("/admin");
         else
           setTokenExists(true);
@@ -30,7 +30,7 @@ export default function CustomerDetails () {
             <title>Madrasda | Service Details</title>
             </Head>
 
-            <AdminLayout>
+            {tokenExists && <AdminLayout>
                 <main className="body-font overflow-y-scroll font-algeria
                                 md:ml-32">
                 <div className="px-5 my-10 mx-auto">
@@ -152,7 +152,7 @@ export default function CustomerDetails () {
                 </div>
                 </div>
                 </main>
-            </AdminLayout>
+            </AdminLayout>}
         </>
     )
 }

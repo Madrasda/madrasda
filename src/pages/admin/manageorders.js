@@ -3,11 +3,12 @@ import SearchVendor from "@/components/search-vendor";
 import Payments from "@/components/payments";
 import AdminLayout from "@/components/layout-admin";
 import axios from "axios";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 
 export default function CustomerDetails() {
+  const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
   const verifyToken = async () => {
     const url = new URLSearchParams({
@@ -25,10 +26,12 @@ export default function CustomerDetails() {
   };
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER") router.push("/");
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
+
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
       router.push("/admin");
+    else{
+      setIsAdmin(true)
+    }
   }, []);
 
   return (
@@ -39,7 +42,7 @@ export default function CustomerDetails() {
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Customer Details</title>
       </Head>
-      <AdminLayout>
+      {isAdmin && <AdminLayout>
         <main className='body-font md:ml-32 overflow-hidden font-algeria'>
           <div className='px-5 my-10 mx-auto'>
             <h1 className='text-3xl text-primary md:ml-20 md:mt-10'>
@@ -50,7 +53,7 @@ export default function CustomerDetails() {
             </div>
           </div>
         </main>
-      </AdminLayout>
+      </AdminLayout>}
     </>
   );
 }

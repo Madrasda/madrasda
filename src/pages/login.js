@@ -75,10 +75,13 @@ export default function LoginForm() {
                 .then((response) => {
                     if (response.status === 200) {
                         localStorage.setItem("token", response.data.token);
-                        ctx.setIsLoggedIn(true);
-                        router.push("/");
+                        ctx.setIsLoggedIn(false);
                     }
-                })
+                }).then(() => {
+                    console.log(ctx)
+                router.push("/");
+
+            })
                 .catch((err) => {
                         setOpen(true)
                         setMessage("Invalid OTP");
@@ -99,12 +102,7 @@ export default function LoginForm() {
         }, 1000);
     }, []);
 
-    useEffect(() => {
-        const jwtToken = localStorage.getItem("token");
-        if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
-        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-        if (jwtToken && isTokenValid(jwtToken)) router.push("/");
-    }, []);
+
 
     if (loading && isReady)
         return (

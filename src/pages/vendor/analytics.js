@@ -7,7 +7,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { isTokenValid } from "@/utils/JWTVerifier"
+import {getRole, isTokenValid} from "@/utils/JWTVerifier"
 
 export default function Analytics () {
   const [tokenExists, setTokenExists] = useState(false);
@@ -25,7 +25,7 @@ export default function Analytics () {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
-    if(jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else{
       setTokenExists(true);
@@ -77,7 +77,7 @@ export default function Analytics () {
         <title>Madrasda | Analytics</title>
       </Head>
       
-      <VendorLayout>
+      {tokenExists && <VendorLayout>
         {
           details &&
           <main className='body-font font-algeria overflow-hidden 
@@ -145,7 +145,7 @@ export default function Analytics () {
 {/* -------- TABLE END ------- */}
         </div>
         </main>}
-      </VendorLayout>
+      </VendorLayout> }
     </>
   )
 }

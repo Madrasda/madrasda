@@ -8,9 +8,10 @@ import MockupModal from "@/components/mockup-modal";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { isTokenValid } from "@/utils/JWTVerifier"
+import {getRole, isTokenValid} from "@/utils/JWTVerifier"
 import MockupModel from "@/components/mockupmodel";
 import CloseConfirm from "@/components/close-confirm-modal";
+import {uuidv4} from "@firebase/util";
 
 export default function TemplateList () {
   const [products, setProducts] = useState(null);
@@ -33,7 +34,7 @@ export default function TemplateList () {
   }, []);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
-    if(jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else{
       setTokenExists(true);
@@ -111,7 +112,7 @@ export default function TemplateList () {
       <title>Madrasda | Create Template</title>
     </Head>
     
-    <VendorLayout>
+    {tokenExists && <VendorLayout>
     <section className="body-font overflow-hidden font-algeria
                         md:ml-36">
       <div className="mt-20 px-5 md:my-10 mx-auto">
@@ -133,7 +134,7 @@ export default function TemplateList () {
         {   products &&
             products.map((m) => {
                 return (
-                    <div className="lg:w-1/4 md:w-3/4 p-4 w-full lg:h-[700px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                    <div key={uuidv4()} className="lg:w-1/4 md:w-3/4 p-4 w-full lg:h-[700px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                       <span className="w-full ml-5 flex justify-end">
                         <CloseConfirm template={true} delete={(e) => {if(e) deleteTemplate(m.id)}} />
                       </span>
@@ -169,7 +170,7 @@ export default function TemplateList () {
             </button>
         </div>
     </section>
-    </VendorLayout>
+    </VendorLayout> }
     </>
   );
 }

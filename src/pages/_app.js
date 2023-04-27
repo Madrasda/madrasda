@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import {UserContext} from "../../context/context";
 import {useEffect, useState} from "react";
-import {isTokenValid} from "@/utils/JWTVerifier";
+import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import axios from "axios";
 import {createTheme} from '@nextui-org/react'
 import {useRouter} from 'next/router';
@@ -24,12 +24,19 @@ export default function App({Component, pageProps}) {
     const [token, setToken] = useState("");
     const [vendorList, setVendorList] = useState([]);
     const router = useRouter();
-    const [isLoggedIn, setIsLoggedIn] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [refresh, setRefresh] = useState(true);
 
     useEffect(() => {
+        setIsLoggedIn((localStorage.getItem("token") !== null))
+        console.log((localStorage.getItem("token")) !== null)
+
+    }, []);
+    useEffect(() => {
+        console.log(isLoggedIn ? "user logged in" : "user logged out");
         const jwtToken = localStorage.getItem("token")
-        if (jwtToken === undefined || isTokenValid(jwtToken)) {
+        console.log(getRole(jwtToken))
+        if (jwtToken !== undefined && isTokenValid(jwtToken) && getRole(jwtToken) === 'ROLE_CUSTOMER' ) {
             setToken(jwtToken);
             axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
                 headers: {
@@ -119,7 +126,7 @@ export default function App({Component, pageProps}) {
             .catch(err => console.log(err));
     }
     const addToCart = async (product) => {
-        if (isTokenValid(token)) {
+        if (isTokenValid(token) && getRole(token) === 'ROLE_CUSTOMER') {
             const cartItem = {
                 "id": product.id,
                 "colors": product.colors,
@@ -145,6 +152,8 @@ export default function App({Component, pageProps}) {
                     console.log(err);
                 }))
         } else {
+            console.log(token);
+            console.log(isTokenValid(token));
             router.push("/login")
         }
 
@@ -162,6 +171,7 @@ export default function App({Component, pageProps}) {
                 cart: cart,
                 vendorList: vendorList,
                 setIsLoggedIn: setIsLoggedIn,
+                isLoggedIn: isLoggedIn,
                 setRefresh: setRefresh,
 
 

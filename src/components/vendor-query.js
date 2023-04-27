@@ -21,16 +21,17 @@ export default function VendorQuery(props) {
         });
 
     }
-
+    console.log(props.i)
     return (
-        <Grow in timeout={600 * props.i % (600 * 5)}>
+
+        <Grow in timeout={600 * (props.i + 1) % (600 * 5)}>
             <Paper className="container mt-8 w-full" elevation={8}>
                 <div className="mx-6 my-6 flex flex-col space-y-4">
                     <div className="flex justify-between items-center">
                         <h1 className="text-xl font-bold text-primary">{props.name}</h1>
                         <h3 className="text-base text-gray">{props.email}</h3>
                     </div>
-                    <div type className="block w-full text-black bg[#D9D9D9]">
+                    <div className="block w-full text-black bg[#D9D9D9]">
                         {props.query}
                     </div>
                     <div className='w-full flex justify-end'>

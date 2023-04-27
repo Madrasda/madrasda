@@ -4,7 +4,7 @@ import Link from 'next/link'
 import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
-import { isTokenValid } from '@/utils/JWTVerifier';
+import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import {Button} from '@mui/material'
 import { useRef } from 'react';
 import {UserContext} from "../../../context/context";
@@ -53,7 +53,7 @@ export default function Vendorlogin() {
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token && isTokenValid(token)) router.push("/vendor/dashboard");
+    if (token && isTokenValid(token) && getRole(token) === 'ROLE_VENDOR') router.push("/vendor/dashboard");
   }, []);
 
   const showLogin = () => {

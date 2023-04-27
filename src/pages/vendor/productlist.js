@@ -5,7 +5,7 @@ import ProductTable from "@/components/product-table";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { isTokenValid } from "@/utils/JWTVerifier";
+import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 
 export default function ProductList() {
   const [tokenExists, setTokenExists] = useState(false);
@@ -41,7 +41,7 @@ export default function ProductList() {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else {
       setTokenExists(true);
@@ -63,7 +63,7 @@ export default function ProductList() {
             <title>Madrasda | Product List</title>
             </Head>
 
-      <VendorLayout>
+      {tokenExists && <VendorLayout>
         <main
           className='body-font font-algeria overflow-hidden
                                  md:ml-36'>
@@ -85,7 +85,7 @@ export default function ProductList() {
             </div>
           </div>
         </main>
-      </VendorLayout>
+      </VendorLayout> }
     </>
   );
 }

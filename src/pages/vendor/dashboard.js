@@ -4,7 +4,7 @@ import LineGraph from "@/components/linegraph";
 import Image from "next/image";
 import WithdrawModal from "@/components/withdraw-modal";
 import Link from "next/link";
-import { isTokenValid } from "@/utils/JWTVerifier";
+import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -59,7 +59,7 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else {
       setTokenExists(true);
@@ -88,7 +88,7 @@ export default function Dashboard(props) {
         <title>Madrasda | Dashboard</title>
       </Head>
       {tokenExists && details && (
-        <VendorLayout>
+          <VendorLayout>
           <main
             className='body-font font-algeria overflow-hidden
                                 md:ml-36'>

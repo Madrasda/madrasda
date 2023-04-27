@@ -40,11 +40,7 @@ export default function Queries() {
 
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-        if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
-            router.push("/");
-        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-            router.push("/vendor");
-        if (jwtToken === undefined || !isTokenValid(jwtToken))
+        if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
             router.push("/admin");
         else
             setTokenExists(true);
@@ -61,7 +57,7 @@ export default function Queries() {
                 <title>Resolved Queries</title>
             </Head>
 
-            <AdminLayout>
+            {tokenExists && <AdminLayout>
                 <main className='md:ml-32 overflow-hidden font-algeria'>
                     <div className="px-5 my-10 mx-auto">
                         <div className="md:ml-20 md:mt-10">
@@ -126,7 +122,7 @@ export default function Queries() {
                         </div>
                     </div>
                 </main>
-            </AdminLayout>
+            </AdminLayout>}
         </>
     )
 }

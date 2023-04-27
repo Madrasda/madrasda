@@ -6,7 +6,7 @@ import Link from 'next/link';
 import axios from "axios";
 import { useEffect,useState } from "react";
 import { useRouter } from "next/router";
-import { isTokenValid } from "@/utils/JWTVerifier";
+import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import {Backdrop, CircularProgress, Snackbar} from "@mui/material";
 //import MuiAlert from "@mui/material/Alert";
 //import {UserContext} from "../../context/context";
@@ -44,7 +44,7 @@ useEffect(() => {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
-    if(jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else
       setTokenExists(true);
@@ -64,7 +64,7 @@ useEffect(() => {
       </Head>
       {!tokenExists && <h1> LOADING... </h1>}
       {tokenExists && details && (
-        <VendorLayout>
+          <VendorLayout>
           <section className='body-font font-algeria overflow-hidden md:ml-56 lg:ml-36'>
             <div className='mt-20 md:px-5 md:my-10 mx-auto lg:ml-20 md:mt-10'>
               <h1 className='text-3xl text-primary'>PROFILE</h1>

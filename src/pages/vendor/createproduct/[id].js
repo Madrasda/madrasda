@@ -229,7 +229,7 @@ export default function CreateTemplate(props) {
           <title>Madrasda | Create Template</title>
         </Head>
 
-        <VendorLayout
+        {tokenExists && <VendorLayout
           message={message}
           severity={severity}
           state={open}
@@ -415,7 +415,7 @@ export default function CreateTemplate(props) {
               </div>
             </div>
           </section>
-        </VendorLayout>
+        </VendorLayout> }
       </>
     );
 }

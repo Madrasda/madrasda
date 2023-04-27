@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import PayoutConfirm from "@/components/payout-confirm";
 import {uuidv4} from "@firebase/util";
+import {Grow} from "@mui/material";
 
 export default function CustomerDetails() {
   const router = useRouter();
@@ -38,14 +39,12 @@ export default function CustomerDetails() {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER") router.push("/");
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
       router.push("/admin");
-    else {
+    else
       setTokenExists(true);
       getAllPayoutRequest();
-    }
+    
   }, []);
 
 
@@ -57,8 +56,8 @@ export default function CustomerDetails() {
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Payments</title>
       </Head>
-
-      <AdminLayout>
+      
+      {tokenExists && <AdminLayout>
         <main
           className='body-font overflow-hidden font-algeria
                                 md:ml-32'>
@@ -72,35 +71,37 @@ export default function CustomerDetails() {
               <h1 className='text-xl md:ml-20 md:mt-10'>No payouts </h1>
             )}
             {payouts &&
-              payouts.map((vendor) => (
-                <div key={uuidv4()}
-               className='flex mt-4 md:ml-20 lg:mr-20'>
-                  <div className='container mt-8 bg-[#D9D9D9] rounded-lg w-full'>
-                    <div className=' ml-8 mb-2 mr-20 mt-4 '>
-                      <Image src={vendor.imgUrl} width={70} height={70} />
-                      <h1 className='text-2xl text-primary font-bold mb-6'>
-                        {vendor.name}
-                      </h1>
-                      <div className='flex mb-2'>
-                        <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
-                          Payout Requested
-                        </h2>
-                        <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
-                          ₹{Number(vendor.payoutAmount).toLocaleString("en-IN")}
-                        </h2>
+              payouts.map((vendor, index) => (
+                <Grow key={uuidv4()} in timeout={(index + 1) * 500 % ((700) * 5)}>
+                  <div key={uuidv4()}
+                       className='flex mt-4 md:ml-20 lg:mr-20'>
+                    <div className='container mt-8 bg-[#D9D9D9] rounded-lg w-full'>
+                      <div className=' ml-8 mb-2 mr-20 mt-4 '>
+                        <Image src={vendor.imgUrl} width={70} height={70} />
+                        <h1 className='text-2xl text-primary font-bold mb-6'>
+                          {vendor.name}
+                        </h1>
+                        <div className='flex mb-2'>
+                          <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                            Payout Requested
+                          </h2>
+                          <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                            ₹{Number(vendor.payoutAmount).toLocaleString("en-IN")}
+                          </h2>
+                        </div>
+                        <PayoutConfirm
+                            payout={(e) => {
+                              if (e) completePayout(vendor.payoutId);
+                            }}
+                        />
                       </div>
-                      <PayoutConfirm
-                        payout={(e) => {
-                          if (e) completePayout(vendor.payoutId);
-                        }}
-                      />
                     </div>
                   </div>
-                </div>
+                </Grow>
               ))}
           </div>
         </main>
-      </AdminLayout>
+      </AdminLayout>}
     </>
   );
 }

@@ -53,7 +53,7 @@ export default function DesignGallery () {
   
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
-    if(jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else
       setTokenExists(true);
@@ -71,7 +71,7 @@ export default function DesignGallery () {
       <title>Madrasda | Design Gallery</title>
     </Head>
     
-    <VendorLayout>
+    {tokenExists && <VendorLayout>
     <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={spinner}
@@ -121,7 +121,7 @@ export default function DesignGallery () {
         <br/>
       </div>
     </section>
-    </VendorLayout>
+    </VendorLayout> }
     </>
   );
 }

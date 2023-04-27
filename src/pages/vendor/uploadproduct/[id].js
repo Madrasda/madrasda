@@ -231,7 +231,7 @@ export default function ViewProd() {
           <title>Madrasda</title>
         </Head>
 
-        <VendorLayout>
+        {tokenExists && <VendorLayout>
           <main
             className='overflow-hidden font-algeria
                     md:ml-36'>
@@ -533,7 +533,7 @@ export default function ViewProd() {
               </div>
             </div>
           </main>
-        </VendorLayout>
+        </VendorLayout> }
       </>
     );
 }

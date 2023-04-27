@@ -6,7 +6,7 @@ import Image from 'next/image'
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { isTokenValid } from "@/utils/JWTVerifier"
+import {getRole, isTokenValid} from "@/utils/JWTVerifier"
 import { Snackbar, Alert } from "@mui/material";
 
 export default function Feedback() {
@@ -63,7 +63,7 @@ export default function Feedback() {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else setTokenExists(true);
   }, []);
@@ -97,8 +97,7 @@ export default function Feedback() {
           {message}
         </Alert>
       </Snackbar>
-      {tokenExists && (
-        <VendorLayout>
+        {tokenExists && <VendorLayout>
           <main className='md:ml-32 overflow-hidden font-algeria'>
             <div className='mt-20 px-5 md:my-10 mx-auto'>
               <div className='md:ml-20 md:mt-10'>
@@ -181,8 +180,7 @@ export default function Feedback() {
               <hr className='h-px md:ml-20 md:mr-12 my-6 bg-black border-1'></hr>
             </div>
           </main>
-        </VendorLayout>
-      )}
+        </VendorLayout> }
     </>
   );
 }

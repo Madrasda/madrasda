@@ -26,17 +26,6 @@ export default function Home() {
     }
   }, [ctx.vendorList]);
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
-    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken && isTokenValid(jwtToken)) {
-      setClient(true);
-    } else {
-      setClient(false);
-      router.push("/login");
-    }
-  }, []);
 
   if (loading && isReady)
     return (
@@ -60,7 +49,7 @@ export default function Home() {
         <title>Madrasda</title>
       </Head>
 
-      <ClientLayout client={client}>
+      <ClientLayout>
         <Carousel />
         <h1 className='font-algeria font-bold text-3xl my-10 px-10'>
           OFFICIAL MERCHANDISE

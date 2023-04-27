@@ -10,7 +10,7 @@ import {storage} from "../../firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import CloseConfirm from "@/components/close-confirm-modal";
 import {uuidv4} from "@firebase/util";
-import {Grow} from "@mui/material";
+import {v4} from "uuid";
 
 export default function MyProducts() {
     const router = useRouter();
@@ -23,11 +23,7 @@ export default function MyProducts() {
     let isReady = router.isReady;
     useEffect(() => {
         const jwtToken = localStorage.getItem("token")
-        if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
-            router.push("/");
-        if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-            router.push("/vendor");
-        if (jwtToken === undefined || !isTokenValid(jwtToken))
+        if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
             router.push("/admin");
         else
             setTokenExists(true);
@@ -128,35 +124,36 @@ export default function MyProducts() {
                 <link rel="icon" href="/logo.png"/>
                 <title>Madrasda | My Products</title>
             </Head>
-
-            <AdminLayout>
-                <section className="body-font overflow-hidden font-algeria
+            {tokenExists &&
+                <AdminLayout>
+                    <section className="body-font overflow-hidden font-algeria
                             md:ml-32">
-                    <div className="mt-20 px-5 md:my-10 mx-auto">
-                        <h1 className="text-3xl text-primary
+                        <div className="mt-20 px-5 md:my-10 mx-auto">
+                            <h1 className="text-3xl text-primary
                            md:ml-20">MOCKUPS </h1>
 
-                        <div className="flex flex-wrap justify-start md:ml-20">
-                            <div
-                                className="lg:w-1/4 md:w-3/4 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
-                                <div className="flex flex-col items-center justify-center cursor-pointer">
-                                    <AdminUploadModal
-                                        colors={colors}
-                                        sizes={sizes}
-                                        onSubmit={handleSubmit}
-                                    />
-                                    <p className="font-semibold font-base">Upload Mockup</p>
-                                    <p className="font-light text-gray font-sm">Add them to your product list for
-                                        vendors</p>
+                            <div className="flex flex-wrap justify-start md:ml-20">
+                                <div
+                                    className="lg:w-1/4 md:w-3/4 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
+                                    <div className="flex flex-col items-center justify-center cursor-pointer">
+                                        <AdminUploadModal
+                                            colors={colors}
+                                            sizes={sizes}
+                                            onSubmit={handleSubmit}
+                                        />
+                                        <p className="font-semibold font-base">Upload Mockup</p>
+                                        <p className="font-light text-gray font-sm">Add them to your product list for
+                                            vendors</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            {mockups &&
+                                {mockups &&
 
-                                mockups.map((m, i) => {
-                                    return (
+                                    mockups.map((m, i) => {
+                                        return (
 
-                                            <div key={uuidv4()} className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
+                                            <div key={uuidv4()}
+                                                 className="lg:w-1/4 md:w-3/4 p-4 w-full h-[650px] md:h-[700px] lg:h-[650px] min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out">
                               <span key={uuidv4()} className="flex">
                                 <CloseConfirm mockup={true} delete={(e) => {
                                     if (e) deleteMockup(m.id);
@@ -171,33 +168,33 @@ export default function MyProducts() {
                                                     colors={getAvailableColors(m.skuMapping)}
                                                 />
                                             </div>
-                                    )
-                                })
-                            }
+                                        )
+                                    })
+                                }
+                            </div>
+                            <div className="flex justify-center mt-32">
+                                <button
+                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l"
+                                    onClick={
+                                        () => {
+                                            setPage(pageNo === 0 ? 0 : pageNo - 1)
+                                        }
+                                    }>
+                                    Prev
+                                </button>
+                                <button
+                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r"
+                                    onClick={
+                                        () => {
+                                            setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1)
+                                        }
+                                    }>
+                                    Next
+                                </button>
+                            </div>
                         </div>
-                        <div className="flex justify-center mt-32">
-                            <button
-                                className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l"
-                                onClick={
-                                    () => {
-                                        setPage(pageNo === 0 ? 0 : pageNo - 1)
-                                    }
-                                }>
-                                Prev
-                            </button>
-                            <button
-                                className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r"
-                                onClick={
-                                    () => {
-                                        setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1)
-                                    }
-                                }>
-                                Next
-                            </button>
-                        </div>
-                    </div>
-                </section>
-            </AdminLayout>
+                    </section>
+                </AdminLayout>}
         </>
     );
 }

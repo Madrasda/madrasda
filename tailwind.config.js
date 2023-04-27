@@ -12,7 +12,7 @@ module.exports = {
     extend: {
       animation: {
         'spin': 'spin 5s linear infinite',
-      }
+      },
     },
     colors: {
       'primary': '#A5153F',
@@ -31,6 +31,7 @@ module.exports = {
       algeria: ['Anuphan', 'cursive'],
       // serif: ['Merriweather', 'serif'],
     },
+
   },
   plugins: []
 

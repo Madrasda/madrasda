@@ -1,12 +1,14 @@
 import NavClient from "./nav-client"
 import Footer from "./footer"
-import {forwardRef, Suspense, useState} from "react"
+import {forwardRef, Suspense, useContext, useState} from "react"
 import {Snackbar} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
+import {getRole} from "@/utils/JWTVerifier";
+import {UserContext} from "../../context/context";
 const Alert = forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-export default function ClientLayout({ children, client, message, severity, state, setState }) {
+export default function ClientLayout({ children, message, severity, state, setState }) {
 
     const handleClose = (event, reason) => {
         console.log(reason);
@@ -18,7 +20,7 @@ export default function ClientLayout({ children, client, message, severity, stat
     };
   return (
     <>
-      <NavClient client={client} />
+      <NavClient />
       <main>{children}</main>
       <Footer />
         <Snackbar className={"mt-14"} open={state} autoHideDuration={1400}

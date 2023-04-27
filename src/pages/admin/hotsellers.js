@@ -31,10 +31,9 @@ export default function Hotsellers() {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER") router.push("/");
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
-      router.push("/vendor");
+    
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
+      router.push("/admin");
     else {
       setTokenExists(true);
       getAllProducts();
@@ -49,7 +48,7 @@ export default function Hotsellers() {
         <title>Madrasda | Hotsellers</title>
       </Head>
 
-      <AdminLayout>
+      {tokenExists && <AdminLayout>
         <main className='body-font overflow-hidden font-algeria md:ml-32'>
           <div className='px-5 my-10 mx-auto'>
             <h1 className='text-3xl text-primary md:ml-20 md:mt-10'>
@@ -92,7 +91,7 @@ export default function Hotsellers() {
             </div>
           </div>
         </main>
-      </AdminLayout>
+      </AdminLayout>}
     </>
   );
 }

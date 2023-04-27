@@ -39,14 +39,11 @@ export default function VendorDetails() {
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
-    if(jwtToken && getRole(jwtToken) === "ROLE_CUSTOMER")
-        router.push("/");
-    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-          router.push("/vendor");
-    if(jwtToken === undefined || !isTokenValid(jwtToken))
-      router.push("/admin");
-    else
-      setTokenExists(true);
+
+      if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
+          router.push("/admin");
+      else
+          setTokenExists(true);
   }, []);
 
   if(loading && isReady)
@@ -63,7 +60,7 @@ export default function VendorDetails() {
             <title>Madrasda | Vendor Details</title>
             </Head>
 
-            <AdminLayout>
+            {tokenExists && <AdminLayout>
                 { details &&
                 <main className="body-font overflow-hidden font-algeria
                                 md:ml-32">
@@ -159,7 +156,7 @@ export default function VendorDetails() {
                 </div>}
                 </div>
                 </main>}
-            </AdminLayout>
+            </AdminLayout>}
         </>
     )
 }

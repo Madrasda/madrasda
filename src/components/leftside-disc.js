@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {uuidv4} from "@firebase/util";
 
 export default function LeftsideDisc ({name, id, imgUrl}) {
     const [products, setProducts] = useState([]);
@@ -54,7 +55,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                   {products &&
                     products.map((prod) => {
                       return (
-                        <div className='lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
+                        <div key={uuidv4()} className='lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
                           <Link href={`/productDetails/${prod.id}`}>
                             <div className='block relative h-36 rounded overflow-hidden'>
                               <Image
@@ -90,7 +91,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
               </div>
             </div>
             <div className="relative">
-            <Image className="animate-spin" src="/disc.png" width={400} height={400}/>
+            <Image key={uuidv4()} className="animate-spin" src="/disc.png" width={400} height={400}/>
             <div className='w-[190px] h-[190px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
               <Image
                 className='animate-spin object-fill w-full h-full'
