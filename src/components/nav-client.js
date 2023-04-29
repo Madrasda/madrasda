@@ -87,10 +87,17 @@ export default function NavisCustomer() {
                                 </Dropdown.Button>
                                 <Dropdown.Menu
                                     aria-label='Static Actions'
+                                    containerCss={{
+                                        borderRadius:"0",
+                                        border: "0"
+                                    }}
                                     css={{
                                         fontFamily: "$algeria",
                                     }}>
-                                    <Dropdown.Item key='men'>
+                                    <Dropdown.Item key='men'
+                                    css={{
+                                        borderRadius:"0",
+                                    }}>
                                         <div
                                             onClick={() => {
                                                 handleGenderProductsClick("Men");
@@ -98,7 +105,10 @@ export default function NavisCustomer() {
                                             Men
                                         </div>
                                     </Dropdown.Item>
-                                    <Dropdown.Item key='women'>
+                                    <Dropdown.Item key='women'
+                                    css={{
+                                        borderRadius:"0",
+                                    }}>
                                         <div
                                             onClick={() => {
                                                 handleGenderProductsClick("Women");
@@ -106,7 +116,10 @@ export default function NavisCustomer() {
                                             Women
                                         </div>
                                     </Dropdown.Item>
-                                    <Dropdown.Item key='kids'>
+                                    <Dropdown.Item key='kids'
+                                    css={{
+                                        borderRadius:"0",
+                                    }}>
                                         <div
                                             onClick={() => {
                                                 handleGenderProductsClick("Kids");

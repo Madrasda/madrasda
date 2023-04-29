@@ -21,7 +21,7 @@ export default function ClientLayout({ children, message, severity, state, setSt
   return (
     <>
       <NavClient />
-      <main>{children}</main>
+      <main className="bg-white">{children}</main>
       <Footer />
         <Snackbar className={"mt-14"} open={state} autoHideDuration={1400}
                   onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>

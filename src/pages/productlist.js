@@ -75,7 +75,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                 <ClientLayout>
                     <section className="body-font font-algeria">
                         <div className="px-5 py-24 mx-auto">
-                            <h1 className="font-cv1 text-[42px] text-primary md:ml-10 md:mt-4">{title}</h1>
+                            <span className="font-bang text-[3rem] bg-primary bg-clip-text text-transparent shadow-2xl md:ml-10 md:mt-4">{title}</span>
                             <div className="flex flex-wrap justify-center">
 
                                 {productsPage.content.map(product =>

@@ -21,7 +21,7 @@ export default function VendorLayout({ children, message, severity, state, setSt
     return (
         <>
             <NavVendor/>
-            <main>{children}</main>
+            <main className="bg-white">{children}</main>
             <Snackbar open={state} autoHideDuration={3000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity={severity}>
                     {message}

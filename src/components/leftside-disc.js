@@ -105,7 +105,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
             <h1
               className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
                           lg:text-white lg:hidden lg:justify-start lg:pt-6'>
-              LOKI CINEMATIC UNIVERSE
+              {name}
             </h1>
             <Link href={`/products/${id}`}>
               <button

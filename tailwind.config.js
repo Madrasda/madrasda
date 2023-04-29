@@ -15,10 +15,10 @@ module.exports = {
       },
     },
     colors: {
-      'primary': '#A5153F',
+      'primary': '#fecc00',
       'accent': '#c51a4c',
       'bg': '#1A1A1C',
-      'white': '#FFFFFF',
+      'white': '#DFDFDF',
       'black': '#000000',
       'gray': '#808080',
       'shadowGrey':'rgba(62,62,62,0.63)' ,
@@ -34,6 +34,7 @@ module.exports = {
       cv1: ['Ceviche One', 'cursive'],
       ga: ['Galindo', 'cursive'],
       jo1: ['Joti One', 'cursive'],
+      bang: ['Bangers', 'cursive'],
     },
 
   },

@@ -46,11 +46,11 @@ export default function Carousel() {
         className='w-full h-full bg-cover duration-500'
       ></div>
 
-      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black text-[#a51535] cursor-pointer'>
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black text-[#fecc00] cursor-pointer'>
         <BsChevronCompactLeft onClick={prevSlide} size={30} />
       </div>
 
-      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black text-[#a51535] cursor-pointer'>
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black text-[#fecc00] cursor-pointer'>
         <BsChevronCompactRight onClick={nextSlide} size={30} />
       </div>
       <div className='flex justify-center -mt-10'>

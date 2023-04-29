@@ -128,7 +128,7 @@ export default function ProductId() {
                           lg:flex-row-reverse w-full'>
                     <img
                       alt='ecommerce'
-                      className='w-full lg:h-[620px] h-96 object-contain object-center rounded px-2'
+                      className='w-full lg:h-[620px] h-48 object-contain object-center rounded px-2'
                       src={activeImage}
                     />
                     <div

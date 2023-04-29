@@ -20,7 +20,9 @@ export default function Document() {
                 <link rel="preconnect" href="https://fonts.googleapis.com"/>
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
                 <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Ceviche+One&family=Galindo&family=Joti+One&display=swap" rel="stylesheet"></link>
-
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+                <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet"></link>
             </Head>
             <body className='font-algeria'>
             <Main/>
