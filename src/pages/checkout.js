@@ -251,6 +251,31 @@ export default function Checkout() {
                             />
                           </div>
                         </div>
+                        
+                        <div className='mb-3 ml-2 mt-1 flex flex-row space-x-2'>
+                        <TextField
+                                className={`block w-full `}
+                                label='Pincode'
+                                error={error}
+                                onChange={handleChange}
+                                helperText={error && "Invalid Pincode"}
+                                value={pincode}
+                                inputProps={{ minLength: 6, maxLength: 6 }}
+                                required
+                            />
+                             <TextField
+                                className='block w-full '
+                                label='State'
+                                required={true}
+                                inputRef={state}
+                            />
+                            <TextField
+                                className='block w-full '
+                                label='City'
+                                required={true}
+                                inputRef={city}
+                            />
+                          </div>
                         <div>
                           <div className='mb-4 ml-2 mt-1 '>
                             <TextField
@@ -286,30 +311,6 @@ export default function Checkout() {
                                 className='href w-full '
                                 label='Address Line 2 (Optional)'
                                 inputRef={addressLine2}
-                            />
-                          </div>
-                          <div className='mb-3 ml-2 mt-1 flex flex-row space-x-2'>
-                            <TextField
-                                className='block w-full '
-                                label='City'
-                                required={true}
-                                inputRef={city}
-                            />
-                            <TextField
-                                className='block w-full '
-                                label='State'
-                                required={true}
-                                inputRef={state}
-                            />
-                            <TextField
-                                className={`block w-full `}
-                                label='Pincode'
-                                error={error}
-                                onChange={handleChange}
-                                helperText={error && "Invalid Pincode"}
-                                value={pincode}
-                                inputProps={{ minLength: 6, maxLength: 6 }}
-                                required
                             />
                           </div>
                         </div>

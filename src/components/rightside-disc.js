@@ -45,8 +45,8 @@ export default function RightsideDisc ({name, id, imgUrl}) {
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
                 <h1
-                  className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center transition-all duration-300 ease-in-out
-                          lg:text-white lg:justify-end lg:pt-6 hover:text-2xl'>
+                  className='font-bb text-2xl text-black flex justify-center px-10 pt-4  font-bold text-center transition-all duration-300 ease-in-out
+                          lg:text-white lg:justify-end lg:pt-6 hover:text-3xl'>
                   {name}
                 </h1>
               </Link>

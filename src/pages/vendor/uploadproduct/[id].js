@@ -257,7 +257,7 @@ export default function ViewProd() {
                   />
                 </div>
                 <h1 className='title-font font-medium text-xl pb-3'>
-                  Audience
+                  category
                 </h1>
                 <div
                   className='mb-6 ml-2 mt-1

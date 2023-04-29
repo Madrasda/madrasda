@@ -27,7 +27,7 @@ export default function HotSellers() {
                 <h2
                   className='font-algeria font-semibold text-xl flex justify-center items-center w-full
                       m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1'>
-                  <span className='bg-white px-8 py-4 rounded-full text-black'>
+                  <span className='bg-white font-jo1 text-2xl px-8 py-4 rounded-full text-black'>
                     HOTSELLERS
                   </span>
                 </h2>
@@ -39,14 +39,16 @@ export default function HotSellers() {
                       <Link
                         key={uuidv4()}
                         href={`/productDetails/${product.id}`}
-                        className='lg:w-1/5 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
-                        <div className='block relative h-48 rounded overflow-hidden'>
+                        className='"lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded
+                        drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)]
+                        duration-200 ease-in-out">'>
+                        <div className='block relative h-fit rounded overflow-hidden'>
                           <Image
                             src={product.colors[0].images[0]}
                             alt='ecommerce'
                             width={1080}
                             height={1920}
-                            className='object-contain object-center w-full h-full block'
+                            className='object-contain object-center w-full  h-[296px] block'
                           />
                         </div>
                         <div className='mt-4'>

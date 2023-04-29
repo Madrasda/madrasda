@@ -51,7 +51,7 @@ export default function Home() {
 
       <ClientLayout>
         <Carousel />
-        <h1 className='font-algeria font-bold text-3xl my-10 px-10'>
+        <h1 className='font-cv1 font-bold text-[50px] my-10 px-10'>
           OFFICIAL MERCHANDISE
         </h1>
 

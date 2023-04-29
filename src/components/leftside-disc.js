@@ -32,8 +32,8 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
                 <h1
-                  className='text-black justify-center px-10 pt-4 text-xl font-bold text-center hidden transition-all duration-300 ease-in-out
-                          lg:text-white lg:flex lg:justify-start lg:pt-6 hover:text-2xl'>
+                  className='font-bb text-black justify-center px-10 pt-4 text-2xl font-bold text-center hidden transition-all duration-300 ease-in-out
+                          lg:text-white lg:flex lg:justify-start lg:pt-6 hover:text-3xl'>
                   {name}
                 </h1>
               </Link>

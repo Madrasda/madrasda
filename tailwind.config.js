@@ -30,6 +30,10 @@ module.exports = {
       // algeria: ['Algeria Sans', 'sans-serif'],
       algeria: ['Anuphan', 'cursive'],
       // serif: ['Merriweather', 'serif'],
+      bb: ['Bubblegum Sans', 'cursive'],
+      cv1: ['Ceviche One', 'cursive'],
+      ga: ['Galindo', 'cursive'],
+      jo1: ['Joti One', 'cursive'],
     },
 
   },

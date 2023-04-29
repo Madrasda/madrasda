@@ -138,7 +138,7 @@ export default function Dashboard(props) {
                     </div>
                     <div className='p-4 flex flex-col items-center'>
                       <h1 className='title-font font-bold text-xl'>
-                        Outstanding Profit
+                        Outstanding Payout
                       </h1>
                       <h2 className='title-font font-bold  text-3xl text-primary'>
                         ₹{Number(details.payoutAmount).toLocaleString("en-IN")}

@@ -16,7 +16,7 @@ const ProductTile = ({id, name, category, total, discount, imageUrl}) => {
                        alt="ecommerce"
                        height={1080}
                        width={1920}
-                       className="object-contain object-center w-full h-full"/>
+                       className="object-contain object-center w-full h-[400px]"/>
             </a>
             <div className="mt-4">
                 <div className='flex flex-row items-center w-full'>
