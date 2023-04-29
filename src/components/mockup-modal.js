@@ -34,7 +34,7 @@ export default function MockupModal({mockups, selectMockup}) {
         <Button auto ghost onPress={handler}
         style={{
           background: "white",
-          border: "white",
+          border: "white", 
         }}
         >
         <Image src="/plus-icon.png" width={40} height={40}/>
