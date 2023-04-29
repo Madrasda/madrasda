@@ -65,299 +65,330 @@ export default function NavisCustomer() {
     }, []);
 
     return (
-        <>
-            <header className='font-algeria bg-bg text-white px-8 fixed z-20 w-full'>
-                <div className='justify-center items-center w-full hidden md:flex'>
-                    <Link href='/'>
-                        <Image src='/logo.png' width={90} height={90}/>
-                    </Link>
-                    <div className='container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center'>
-                        <nav
-                            className='md:mr-auto lg:ml-10 md:py-1 text-sm flex flex-wrap items-center justify-center font-bold'>
-                            <Dropdown>
-                                <Dropdown.Button
-                                    flat
-                                    css={{
-                                        background: "#1A1A1C",
-                                        fontFamily: "$algeria",
-                                        fontWeight: "700",
-                                        color: "White",
-                                    }}>
-                                    Shop
-                                </Dropdown.Button>
-                                <Dropdown.Menu
-                                    aria-label='Static Actions'
-                                    containerCss={{
-                                        borderRadius:"0",
-                                        border: "0"
-                                    }}
-                                    css={{
-                                        fontFamily: "$algeria",
-                                    }}>
-                                    <Dropdown.Item key='men'
-                                    css={{
-                                        borderRadius:"0",
-                                    }}>
-                                        <div
-                                            onClick={() => {
-                                                handleGenderProductsClick("Men");
-                                            }}>
-                                            Men
-                                        </div>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item key='women'
-                                    css={{
-                                        borderRadius:"0",
-                                    }}>
-                                        <div
-                                            onClick={() => {
-                                                handleGenderProductsClick("Women");
-                                            }}>
-                                            Women
-                                        </div>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item key='kids'
-                                    css={{
-                                        borderRadius:"0",
-                                    }}>
-                                        <div
-                                            onClick={() => {
-                                                handleGenderProductsClick("Kids");
-                                            }}>
-                                            Kids
-                                        </div>
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+      <>
+        <header className='font-algeria bg-bg text-white px-8 fixed z-20 w-full'>
+          <div className='justify-center items-center w-full hidden md:flex'>
+            <Link href='/'>
+              <Image src='/logo.png' width={90} height={90} />
+            </Link>
+            <div className='container mx-auto flex flex-wrap p-3 flex-col md:flex-row items-center'>
+              <nav className='md:mr-auto lg:ml-10 md:py-1 text-sm flex flex-wrap items-center justify-center font-bold'>
+                <Dropdown>
+                  <Dropdown.Button
+                    flat
+                    css={{
+                      background: "#1A1A1C",
+                      fontFamily: "$algeria",
+                      fontWeight: "700",
+                      color: "White",
+                      backgroundColor: "inherit",
+                      outline: "none",
+                    }}>
+                    Shop
+                  </Dropdown.Button>
+                  <Dropdown.Menu
+                    aria-label='Static Actions'
+                    containerCss={{
+                      borderRadius: "0",
+                      border: "0",
+                      position: "fixed",
+                      top: "$3xl",
+                      left: "$3xl",
+                    }}
+                    css={{
+                      fontFamily: "$algeria",
+                    }}>
+                    <Dropdown.Item
+                      key='men'
+                      css={{
+                        borderRadius: "0",
+                      }}>
+                      <div
+                        onClick={() => {
+                          handleGenderProductsClick("Men");
+                        }}>
+                        Men
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      key='women'
+                      css={{
+                        borderRadius: "0",
+                      }}>
+                      <div
+                        onClick={() => {
+                          handleGenderProductsClick("Women");
+                        }}>
+                        Women
+                      </div>
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      key='kids'
+                      css={{
+                        borderRadius: "0",
+                      }}>
+                      <div
+                        onClick={() => {
+                          handleGenderProductsClick("Kids");
+                        }}>
+                        Kids
+                      </div>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
 
-                            <Link href="/#hotsellers" scroll={true}>
-                                <button className="text-white font-bold cursor-pointer bg-bg">Bestsellers</button>
-                            </Link>
-                            <Dropdown>
-                                <Dropdown.Button
-                                    flat
-                                    css={{
-                                        background: "#1A1A1C",
-                                        fontFamily: "$algeria",
-                                        fontWeight: "700",
-                                        color: "White",
-                                    }}>
-                                    Vendors
-                                </Dropdown.Button>
-                                <Dropdown.Menu
-                                    aria-label='Static Actions'
-                                    css={{
-                                        fontFamily: "$algeria",
-                                    }}>
-                                    {vendorList.map((vendor) => (
-                                        <Dropdown.Item key={uuidv4()}>
-                                            <div
-                                                key={uuidv4()}
-                                                onClick={() => handleVendorProductsClick(vendor.id)}>
-                                                {vendor.name}
-                                            </div>
-                                        </Dropdown.Item>
-                                    ))}
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </nav>
-                    </div>
-                    <div className='flex flex-row-reverse items-center mr-3 '>
-                        {!isCustomer && (
-                            <Link className={"text-lg"} href='/login'>
-                                <h2 > Login </h2>
-                            </Link>
-                        )}
-                        {isCustomer && (
-                            <Dropdown>
-                                <Dropdown.Button
-                                    flat
-                                    css={{
-                                        background: "#1A1A1C",
-                                        fontFamily: "$algeria",
-                                        fontWeight: "700",
-                                        color: "White",
-                                    }}>
-                                    <Image src='/user-icon.png' width={30} height={30}/>
-                                </Dropdown.Button>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item>
-                                        <Link href='/clientprofile'>
-                                            <h1 className='text-xs my-auto'>Profile</h1>
-                                        </Link>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item>
-                                        <h1 onClick={() => logout()} className='text-xs my-auto'>
-                                            Logout
-                                        </h1>
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        )}
-                        {isCustomer && <CartModal/>}
-                    </div>
-                </div>
-
-                <div className='w-full flex md:hidden'>
-                    <div className='flex flex-col w-full'>
-                        <div className='flex'>
-                            <Link href='/'>
-                                <Image src='/logo.png' width={70} height={70}/>
-                            </Link>
-                            <div className='flex flex-row-reverse w-full items-center justify-start'>
-                                <Image
-                                    src='/burger-icon.png'
-                                    width={30}
-                                    height={30}
-                                    onClick={toggleMenu}
-                                />
-                            </div>
+                <Link href='/#hotsellers' scroll={true}>
+                  <button className='text-white font-bold cursor-pointer bg-bg'>
+                    Bestsellers
+                  </button>
+                </Link>
+                <Dropdown>
+                  <Dropdown.Button
+                    flat
+                    css={{
+                      background: "inherit",
+                      fontFamily: "$algeria",
+                      fontWeight: "700",
+                      color: "White",
+                    }}>
+                    Vendors
+                  </Dropdown.Button>
+                  <Dropdown.Menu
+                    aria-label='Static Actions'
+                    containerCss={{
+                      borderRadius: "0",
+                      border: "0",
+                      position: "fixed",
+                      top: "$3xl",
+                      left: "$6xl",
+                    }}
+                    css={{
+                      fontFamily: "$algeria",
+                    }}>
+                    {vendorList.map((vendor) => (
+                      <Dropdown.Item key={uuidv4()} css={{ borderRadius: "0" }}>
+                        <div
+                          key={uuidv4()}
+                          onClick={() => handleVendorProductsClick(vendor.id)}>
+                          {vendor.name}
                         </div>
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </nav>
+            </div>
+            <div className='flex flex-row-reverse items-center mr-3 '>
+              {!isCustomer && (
+                <Link className={"text-lg"} href='/login'>
+                  <h2> Login </h2>
+                </Link>
+              )}
+              {isCustomer && (
+                <Dropdown>
+                  <Dropdown.Button
+                    flat
+                    css={{
+                      background: "inherit",
+                      fontFamily: "$algeria",
+                      fontWeight: "700",
+                      color: "White",
+                    }}>
+                    <Image src='/user-icon.png' width={30} height={30} />
+                  </Dropdown.Button>
+                  <Dropdown.Menu
+                    containerCss={{
+                      borderRadius: "0",
+                      border: "0",
+                      position: "fixed",
+                      top: "$3xl",
+                      right: "$18",
+                    }}
+                    css={{
+                      fontFamily: "$algeria",
+                    }}>
+                    <Dropdown.Item
+                      css={{ borderRadius: "0" }}>
+                      <Link href='/clientprofile'>
+                        <h1 className='font-algeria my-auto'>
+                          Profile
+                        </h1>
+                      </Link>
+                    </Dropdown.Item>
+                    <Dropdown.Item css={{ borderRadius: "0" }} color='error'>
+                      <h1
+                        onClick={() => logout()}
+                        className='font-algeria my-auto'>
+                        Logout
+                      </h1>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
+              {isCustomer && <CartModal />}
+            </div>
+          </div>
 
-                        <div className='hidden' id='mobile_menu'>
-                            <nav className='flex flex-col items-center justify-center'>
-                                <Dropdown>
-                                    <Dropdown.Button
-                                        flat
-                                        css={{
-                                            background: "#1A1A1C",
-                                            fontFamily: "$algeria",
-                                            fontWeight: "700",
-                                            color: "White",
-                                        }}>
-                                        Shop
-                                    </Dropdown.Button>
-                                    <Dropdown.Menu
-                                        aria-label='Static Actions'
-                                        css={{
-                                            fontFamily: "$algeria",
-                                        }}>
-                                        <Dropdown.Item key='men'>
-                                            <div
-                                                onClick={() => {
-                                                    handleGenderProductsClick("Men");
-                                                }}>
-                                                Men
-                                            </div>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item key='women'>
-                                            <div
-                                                onClick={() => {
-                                                    handleGenderProductsClick("Women");
-                                                }}>
-                                                Women
-                                            </div>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item key='kids'>
-                                            <div
-                                                onClick={() => {
-                                                    handleGenderProductsClick("Kids");
-                                                }}>
-                                                Kids
-                                            </div>
-                                        </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-
-                                <Dropdown>
-                                    <Dropdown.Button
-                                        flat
-                                        css={{
-                                            background: "#1A1A1C",
-                                            fontFamily: "$algeria",
-                                            fontWeight: "700",
-                                            color: "White",
-                                        }}>
-                                        <span className='font-bold'>Bestsellers</span>
-                                    </Dropdown.Button>
-                                    <Dropdown.Menu>
-                                        {products &&
-                                            products.map((item) => (
-                                                <Dropdown.Item key={item.id}>
-                                                    <Link href={`/productDetails/${item.id}`}>
-                                                        {item.name}
-                                                    </Link>
-                                                </Dropdown.Item>
-                                            ))}
-                                    </Dropdown.Menu>
-                                </Dropdown>
-
-                                <Dropdown>
-                                    <Dropdown.Button
-                                        flat
-                                        css={{
-                                            background: "#1A1A1C",
-                                            fontFamily: "$algeria",
-                                            fontWeight: "700",
-                                            color: "White",
-                                        }}>
-                                        Vendors
-                                    </Dropdown.Button>
-                                    <Dropdown.Menu
-                                        aria-label='Static Actions'
-                                        css={{
-                                            fontFamily: "$algeria",
-                                        }}>
-                                        {vendorList.map((vendor) => (
-                                            <Dropdown.Item key={uuidv4()}>
-                                                <div
-                                                    key={uuidv4()}
-                                                    onClick={() =>
-                                                        handleVendorProductsClick(vendor.id)
-                                                    }>
-                                                    {vendor.name}
-                                                </div>
-                                            </Dropdown.Item>
-                                        ))}
-                                    </Dropdown.Menu>
-                                </Dropdown>
-
-                                <div className='flex my-4 justify-around items-center w-full'>
-                                    {!isCustomer && (
-                                        <Link href='/login'>
-                                            <Image
-                                                src='/user-icon.png'
-                                                width={30}
-                                                height={30}
-                                                className='ml-10 cursor-pointer'
-                                            />
-                                        </Link>
-                                    )}
-                                    {isCustomer && (
-                                        <Dropdown>
-                                            <Dropdown.Button
-                                                flat
-                                                css={{
-                                                    background: "#1A1A1C",
-                                                    fontFamily: "$algeria",
-                                                    fontWeight: "700",
-                                                    color: "White",
-                                                }}>
-                                                <Image src='/user-icon.png' width={30} height={30}/>
-                                            </Dropdown.Button>
-                                            <Dropdown.Menu>
-                                                <Dropdown.Item>
-                                                    <Link href='/clientprofile'>
-                                                        <h1 className='text-xs my-auto'>Profile</h1>
-                                                    </Link>
-                                                </Dropdown.Item>
-                                                <Dropdown.Item>
-                                                    <h1
-                                                        onClick={() => logout()}
-                                                        className='text-xs my-auto'>
-                                                        Logout
-                                                    </h1>
-                                                </Dropdown.Item>
-                                            </Dropdown.Menu>
-                                        </Dropdown>
-                                    )}
-                                    <CartModal/>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
+          <div className='w-full flex md:hidden'>
+            <div className='flex flex-col w-full'>
+              <div className='flex'>
+                <Link href='/'>
+                  <Image src='/logo.png' width={70} height={70} />
+                </Link>
+                <div className='flex flex-row-reverse w-full items-center justify-start'>
+                  <Image
+                    src='/burger-icon.png'
+                    width={30}
+                    height={30}
+                    onClick={toggleMenu}
+                  />
                 </div>
-            </header>
-        </>
+              </div>
+
+              <div className='hidden' id='mobile_menu'>
+                <nav className='flex flex-col items-center justify-center'>
+                  <Dropdown>
+                    <Dropdown.Button
+                      flat
+                      css={{
+                        background: "#1A1A1C",
+                        fontFamily: "$algeria",
+                        fontWeight: "700",
+                        color: "White",
+                      }}>
+                      Shop
+                    </Dropdown.Button>
+                    <Dropdown.Menu
+                      aria-label='Static Actions'
+                      css={{
+                        fontFamily: "$algeria",
+                      }}>
+                      <Dropdown.Item key='men'>
+                        <div
+                          onClick={() => {
+                            handleGenderProductsClick("Men");
+                          }}>
+                          Men
+                        </div>
+                      </Dropdown.Item>
+                      <Dropdown.Item key='women'>
+                        <div
+                          onClick={() => {
+                            handleGenderProductsClick("Women");
+                          }}>
+                          Women
+                        </div>
+                      </Dropdown.Item>
+                      <Dropdown.Item key='kids'>
+                        <div
+                          onClick={() => {
+                            handleGenderProductsClick("Kids");
+                          }}>
+                          Kids
+                        </div>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                  <Dropdown>
+                    <Dropdown.Button
+                      flat
+                      css={{
+                        background: "#1A1A1C",
+                        fontFamily: "$algeria",
+                        fontWeight: "700",
+                        color: "White",
+                      }}>
+                      <span className='font-bold'>Bestsellers</span>
+                    </Dropdown.Button>
+                    <Dropdown.Menu>
+                      {products &&
+                        products.map((item) => (
+                          <Dropdown.Item key={item.id}>
+                            <Link href={`/productDetails/${item.id}`}>
+                              {item.name}
+                            </Link>
+                          </Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                  <Dropdown>
+                    <Dropdown.Button
+                      flat
+                      css={{
+                        background: "#1A1A1C",
+                        fontFamily: "$algeria",
+                        fontWeight: "700",
+                        color: "White",
+                      }}>
+                      Vendors
+                    </Dropdown.Button>
+                    <Dropdown.Menu
+                      aria-label='Static Actions'
+                      css={{
+                        fontFamily: "$algeria",
+                      }}>
+                      {vendorList.map((vendor) => (
+                        <Dropdown.Item key={uuidv4()}>
+                          <div
+                            key={uuidv4()}
+                            onClick={() =>
+                              handleVendorProductsClick(vendor.id)
+                            }>
+                            {vendor.name}
+                          </div>
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                  <div className='flex my-4 justify-around items-center w-full'>
+                    {!isCustomer && (
+                      <Link href='/login'>
+                        <Image
+                          src='/user-icon.png'
+                          width={30}
+                          height={30}
+                          className='ml-10 cursor-pointer'
+                        />
+                      </Link>
+                    )}
+                    {isCustomer && (
+                      <Dropdown>
+                        <Dropdown.Button
+                          flat
+                          css={{
+                            background: "#1A1A1C",
+                            fontFamily: "$algeria",
+                            fontWeight: "700",
+                            color: "White",
+                          }}>
+                          <Image src='/user-icon.png' width={30} height={30} />
+                        </Dropdown.Button>
+                        <Dropdown.Menu>
+                          <Dropdown.Item>
+                            <Link href='/clientprofile'>
+                              <h1 className='text-xs my-auto'>Profile</h1>
+                            </Link>
+                          </Dropdown.Item>
+                          <Dropdown.Item>
+                            <h1
+                              onClick={() => logout()}
+                              className='text-xs my-auto'>
+                              Logout
+                            </h1>
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    )}
+                    <CartModal />
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
+      </>
     );
 }
