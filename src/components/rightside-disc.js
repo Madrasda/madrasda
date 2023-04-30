@@ -31,7 +31,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                             lg:bg-bg lg:flex-row md:rounded-l-full md:rounded-r-none'>
           <div className="relative">
             <Image className="animate-spin" src="/disc.png" width={400} height={400}/>
-            <div className='w-[190px] h-[190px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+            <div className='w-[170px] h-[170px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
               <Image
                 className='animate-spin object-fill w-full h-full'
                 alt={name}
