@@ -26,10 +26,8 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
     if (!upload) {
       chooseDesign(selected);
     } else {
-      console.log("upload closed");
       uploadImage(image);
     }
-    console.log("closed");
     setImage(null);
     setVisible(false);
   };
@@ -149,7 +147,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
               )}
               {/* Upload Design */}
               {upload && (
-                <div>
+                <div className='mx-auto'>
                   <Backdrop
                     sx={{
                       color: "#fff",
