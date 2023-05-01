@@ -9,6 +9,7 @@ import ColorOption from "../../components/ColorOption";
 import {uuidv4} from "@firebase/util";
 import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import HotSellers from '@/components/hotsellers-client';
+import {Button} from "@mui/material";
 
 export default function ProductId() {
 
@@ -91,7 +92,7 @@ export default function ProductId() {
                 .then(() => setLoading(false))
                 .catch(err => console.log(err));
         }
-    }, [isReady]);
+    }, [isReady, router]);
 
 
 
@@ -210,7 +211,7 @@ export default function ProductId() {
                               value={size.size}
                               checked={size.id === currentSize.id}
                               onChange={() => setCurrentSize(size)}
-                              className='sr-only'
+                              className='sr-only cursor-pointer'
                             />
                             <label htmlFor={size.id}>{size.size}</label>
                           </button>
@@ -239,7 +240,7 @@ export default function ProductId() {
                       hover:text-primary focus:text-primary md:text-basecursor-default flex items-center text-primary outline-none'
                             value={quantity}
                             ref={qtyRef}
-                            readOnly={true}></input>
+                            readOnly={true} ></input>
 
                           <button
                             className='bg-white text-center border border-gray text-primary hover:text-primary
@@ -252,12 +253,12 @@ export default function ProductId() {
                           </button>
                         </div>
                       </div>
-                      <button
-                        className='w-64 text-center text-white bg-[#a5153F]
-                       border-0 px-4 py-3 outline-none hover:bg-primary rounded'
+                      <Button
+                        className='w-64 text-center text-white px-4 py-3 bg-primary hover:bg-accent'
+                        variant={'contained'}
                         onClick={handleAddToCart}>
                         Add to Cart
-                      </button>
+                      </Button>
                     </div>
                     <br></br>
                   </div>

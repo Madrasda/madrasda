@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import {Button, Modal, Text} from "@nextui-org/react";
+import {Modal, Text} from "@nextui-org/react";
 import {uuidv4} from "@firebase/util";
+import {Button} from "@mui/material";
 
 export default function OrderDetailsModal({order}) {
     const [visible, setVisible] = React.useState(false);
@@ -13,16 +14,13 @@ export default function OrderDetailsModal({order}) {
     };
 
     return (
-      <div>
-        <Button
-          auto
-          onPress={handler}
-          color='error'
-          style={{
-            background: "#A5153F",
-          }}>
+       <>
+       <Button
+          onClick={handler}
+          className={'bg-primary hover:bg-accent text-white font-bold'}>
           Order Details
-        </Button>
+       </Button>
+   <div>
         <Modal
           width='1080px'
           closeButton
@@ -102,5 +100,7 @@ export default function OrderDetailsModal({order}) {
           </Modal.Body>
         </Modal>
       </div>
+       </>
+
     );
 }

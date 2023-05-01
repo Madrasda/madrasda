@@ -19,14 +19,7 @@ const Otp = (props) => {
         <div className='flex justify-center items-center mt-4'>
             <Button
                 variant={"contained"}
-                sx={{
-                    backgroundColor: '#ab1641 !important', // sets the background color to primary
-                    color: 'white', // sets the text color to white
-                    '&:hover': {
-                        backgroundColor: '#c51a4c !important', // sets the background color on hover to accent
-                    },
-                }}
-                className={"w-full"}
+                className={"w-full hover:bg-accent bg-primary text-white"}
                 type={"submit"}
                 onClick={props.onSubmitOtpHandler}
             >

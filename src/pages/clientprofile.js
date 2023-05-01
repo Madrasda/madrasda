@@ -8,6 +8,7 @@ import { isTokenValid, getRole, getPhone } from "@/utils/JWTVerifier";
 import { UserContext } from "context/context";
 import axios from "axios";
 import {uuidv4} from "@firebase/util";
+import {Paper} from "@mui/material";
 
 export default function ClientProfile() {
   const router = useRouter();
@@ -32,12 +33,12 @@ export default function ClientProfile() {
     console.log(response.data);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
@@ -74,7 +75,7 @@ export default function ClientProfile() {
       </Head>
 
       <ClientLayout client={client}>
-        <section className='body-font font-algeria'>
+        <section className='body-font font-algeria bg-off-white'>
           <div className='px-5 py-24 mx-auto'>
             <h1 className='text-3xl font-bold text-primary md:ml-10 md:mt-4'>
               My Profile
@@ -101,9 +102,9 @@ export default function ClientProfile() {
             )}
             {details &&
               details.map((order) => (
-                <div key={uuidv4()} className='px-3 md:w-7/12 ml-16 mb-4 mt-8'>
-                  <div className='w-full flex flex-col  md:flex-row items-center bg-off-white rounded-lg'>
-                    <div className='w-4/5 p-3 ml-4'>
+                <Paper key={uuidv4()} className='px-3 md:w-7/12 ml-16 mb-4 mt-8' elevation={7}>
+                  <div className='w-full flex flex-col  md:flex-row items-center rounded-lg'>
+                    <div className='w-full p-3 ml-4'>
                       <h6 className='font-semibold text-xl text-black'>
                         Order Date :{" "}
                         <span className='font-light'>
@@ -125,11 +126,11 @@ export default function ClientProfile() {
                         </span>
                       </h6>
                     </div>
-                    <div className='w-1/5 scale-75'>
+                    <div className='w-1/3 '>
                       <OrderDetailsModal order={order} />
                     </div>
                   </div>
-                </div>
+                </Paper>
               ))}
           </div>
         </section>

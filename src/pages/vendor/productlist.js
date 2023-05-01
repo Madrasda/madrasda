@@ -77,9 +77,7 @@ export default function ProductList() {
               {products && (
                 <ProductTable
                   products={products}
-                  toggle={(e) => {
-                    if (e) getProductDetails();
-                  }}
+                  setProducts={setProducts}
                 />
               )}
             </div>

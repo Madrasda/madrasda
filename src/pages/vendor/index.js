@@ -176,13 +176,7 @@ export default function Vendorlogin() {
                 <div className='flex justify-center items-center mt-6'>
                   <Button
                     variant={"contained"}
-                    sx={{
-                      backgroundColor: "#A5153F", // sets the background color to primary
-                      color: "white", // sets the text color to white
-                      "&:hover": {
-                        backgroundColor: "#c51a4c", // sets the background color on hover to accent
-                      },
-                    }}
+                    className={"w-full hover:bg-accent bg-primary text-white"}
                     type={"submit"}
                     onClick={vendorlogin}>
                     Login

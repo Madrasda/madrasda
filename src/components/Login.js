@@ -14,7 +14,7 @@ const Login = (props) => {
             <ThemeProvider theme={darkTheme}>
                 <CssBaseline/>
         <h1 className='text-2xl text-white font-medium mt-2 mb-12 text-center'>
-            LOGIN
+            Login
         </h1>
         <div>
                 <TextField
@@ -31,14 +31,7 @@ const Login = (props) => {
         <div className="flex justify-center items-center mt-6 w-full">
             <Button
                 variant={"contained"}
-                sx={{
-                    backgroundColor: '#ab1641 !important', // sets the background color to primary
-                    color: 'white', // sets the text color to white
-                    '&:hover': {
-                        backgroundColor: '#c51a4c !important', // sets the background color on hover to accent
-                    },
-                }}
-                className={"w-full"}
+                className={"w-full hover:bg-accent bg-primary text-white"}
                 type={"submit"}
                 onClick={props.submitPhoneHandler}
             >
