@@ -24,23 +24,23 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
     return (
       <>
         <div
-          className='overflow-hidden mx-auto px-10
-                          lg:my-4 lg:pr-10 lg:px-0'>
+          className='overflow-hidden mx-auto pr-2
+                          my-4 lg:pr-10'>
           <span
-            className='bg-none flex flex-col justify-center items-center w-full
-                             lg:flex-row lg:bg-bg md:rounded-l-non md:rounded-r-full'>
+            className='bg-bg flex flex-row justify-center items-center w-full py-10
+                        rounded-l-none rounded-r-full'>
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
                 <h1
-                  className='font-bb text-black justify-center px-10 pt-4 text-2xl font-bold text-center hidden transition-all duration-300 ease-in-out
-                          lg:text-white lg:flex lg:justify-start lg:pt-6 hover:text-3xl'>
+                  className='font-bb text-2xl text-white flex justify-end pr-10 pt-4 font-bold text-center transition-all duration-300 ease-in-out
+                             lg:justify-end lg:pt-6 hover:text-3xl'>
                   {name}
                 </h1>
               </Link>
               {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
               <div
                 className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            lg:flex'>
+                            md:flex'>
                 <div className='w-full h-full flex items-center justify-end'>
                   <div className='-mr-5 z-10'>
                     <Link href={`/products/${id}`}>
@@ -90,9 +90,21 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 </div>
               </div>
             </div>
+            {/* <h1
+              className='text-white flex justify-end pr-10 pt-4 text-xl font-bold text-center
+              md:hidden lg:justify-start lg:pt-6'>
+              {name}
+            </h1> */}
+            <Link href={`/products/${id}`}>
+              <button
+                className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
+                md:hidden'>
+                View More
+              </button>
+            </Link>
             <div className="relative">
             <Image key={uuidv4()} className="animate-spin" src="/disc.png" width={400} height={400}/>
-            <div className='w-[170px] h-[170px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+            <div className='w-[170px] h-[170px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
               <Image
                 className='animate-spin object-fill w-full h-full'
                 alt={name}
@@ -102,18 +114,6 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
               />
             </div>
             </div>
-            <h1
-              className='text-black flex justify-center px-10 pt-4 text-xl font-bold text-center
-                          lg:text-white lg:hidden lg:justify-start lg:pt-6'>
-              {name}
-            </h1>
-            <Link href={`/products/${id}`}>
-              <button
-                className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
-                              lg:hidden'>
-                View More
-              </button>
-            </Link>
           </span>
         </div>
       </>

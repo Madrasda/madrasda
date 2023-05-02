@@ -24,14 +24,14 @@ export default function RightsideDisc ({name, id, imgUrl}) {
     return (
       <>
         <div
-          className='overflow-hidden mx-auto px-10
-                          lg:my-4 lg:pl-10 lg:px-0'>
+          className='overflow-hidden mx-auto pl-2 
+                     lg:pl-10 my-4'>
           <span
-            className='bg-none flex flex-col justify-center items-center w-full
-                            lg:bg-bg lg:flex-row md:rounded-l-full md:rounded-r-none'>
+            className='bg-bg flex flex-row justify-center items-center w-full py-10
+                        rounded-l-full rounded-r-none'>
           <div className="relative">
             <Image className="animate-spin" src="/disc.png" width={400} height={400}/>
-            <div className='w-[170px] h-[170px] rounded-full overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+            <div className='w-[170px] h-[170px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
               <Image
                 className='animate-spin object-fill w-full h-full'
                 alt={name}
@@ -45,8 +45,8 @@ export default function RightsideDisc ({name, id, imgUrl}) {
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
                 <h1
-                  className='font-bb text-2xl text-black flex justify-center px-10 pt-4  font-bold text-center transition-all duration-300 ease-in-out
-                          lg:text-white lg:justify-end lg:pt-6 hover:text-3xl'>
+                  className='font-bb text-2xl text-white flex justify-end pr-10 pt-4 font-bold text-center transition-all duration-300 ease-in-out
+                             lg:justify-end lg:pt-6 hover:text-3xl'>
                   {name}
                 </h1>
               </Link>
@@ -54,7 +54,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
               {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
               <div
                 className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            lg:flex'>
+                            md:flex'>
                 {products &&
                   products.map((prod) => {
                     return (
@@ -91,7 +91,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                     );
                   })}
 
-                <div className='-ml-5 z-10 relative'>
+                <div className='-ml-5 z-10 relative md:scale-150 lg:scale-100'>
                   <Link href={`/products/${id}`}>
                     <Image
                       src='/prod-comp-showmore-right.png'
@@ -107,7 +107,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
             <Link href={`/products/${id}`}>
               <button
                 className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
-                              lg:hidden'>
+                              md:hidden'>
                 View More
               </button>
             </Link>
