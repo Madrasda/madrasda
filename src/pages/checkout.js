@@ -13,18 +13,19 @@ import CartItem from "@/components/CartItem";
 export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
   const [shippingCharges, setShippingCharges] = useState(-1);
+  const [phone, setPhone] = useState(0);
   const [pincode, setPincode] = useState("");
   const [error, setError] = useState(false);
   const [client, setClient] = useState(false);
   const [spinner, setSpinner] = useState(false);
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
   const email = useRef();
-  const country = useRef();
   const firstName = useRef();
   const lastName = useRef();
   const addressLine1 = useRef();
   const addressLine2 = useRef();
-  const city = useRef();
-  const state = useRef();
 
   const router = useRouter();
   const ctx = useContext(UserContext);
@@ -85,11 +86,12 @@ export default function Checkout() {
         name: firstName.current.value + " " + lastName.current.value,
         addressLine1: addressLine1.current.value,
         addressLine2: addressLine2.current.value,
-        city: city.current.value,
-        state: state.current.value,
+        city: city,
+        state: state,
         postalCode: pincode,
-        country: country.current.value,
+        country: country,
         email: email.current.value,
+        phone: phone,
       },
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
@@ -126,6 +128,24 @@ export default function Checkout() {
     if (jwtToken && isTokenValid(jwtToken)) setClient(true);
     else setClient(false);
   }, []);
+
+  useEffect(() => {
+    if (pincode.length === 6) {
+      axios
+        .get(
+          `https://api.opencagedata.com/geocode/v1/json?key=518b0ac375bb4bb8bb17019ae3e63818&q=${pincode}`
+        )
+        .then((response) => {
+          setCountry(response.data.results[0].components.country);
+          setState(response.data.results[0].components.state.split(" ")[0]);
+          setCity(response.data.results[0].components.state_district);
+        });
+    } else {
+      setState("");
+      setCountry("");
+      setCity("");
+    }
+  }, [pincode]);
 
   return (
     <>
@@ -247,7 +267,7 @@ export default function Checkout() {
                     </h2>
                     <form onSubmit={handleSubmit}>
                       <div className='mb-4'>
-                        <div className='mb-2 ml-2 mt-1 w-full'>
+                        <div className='mb-2 ml-2 mt-1 flex space-x-3'>
                           <TextField
                             label={"Email"}
                             required={true}
@@ -256,6 +276,14 @@ export default function Checkout() {
                             placeholder='example@gmail.com'
                             sx={{ width: "100%" }}
                             inputRef={email}
+                          />
+                          <TextField
+                            label={"Phone Number"}
+                            required={true}
+                            variant='outlined'
+                            type={"text"}
+                            sx={{ width: "100%" }}
+                            onChange={(e) => setPhone(e.target.value)}
                           />
                         </div>
                       </div>
@@ -272,16 +300,16 @@ export default function Checkout() {
                           required
                         />
                         <TextField
-                          className='block w-full '
-                          label='State'
+                          className='w-full '
                           required={true}
-                          inputRef={state}
+                          value={state}
+                          disabled
                         />
                         <TextField
-                          className='block w-full '
-                          label='City'
+                          className='w-full '
                           required={true}
-                          inputRef={city}
+                          value={city}
+                          disabled
                         />
                       </div>
                       <div>
@@ -290,7 +318,8 @@ export default function Checkout() {
                             className='w-full'
                             label='Country/Region'
                             required={true}
-                            inputRef={country}
+                            value={country}
+                            disabled
                           />
                         </div>
                         <div className='mb-4 ml-2 mt-1 flex flex-row space-x-2'>

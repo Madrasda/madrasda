@@ -63,8 +63,11 @@ export default function CartModal() {
       </IconButton>
       <Modal
         scroll='false'
+        width='auto'
         closeButton={false}
-        className={"shadow-lg text-black bg-gray"}
+        className={
+          "shadow-lg text-black bg-gray w-[80%] items-center mx-auto md:w-full md:items-end"
+        }
         aria-labelledby='modal-title'
         open={visible}
         onClose={closeHandler}>
@@ -78,7 +81,7 @@ export default function CartModal() {
         {(ctx.cart.cartItems === undefined ||
           ctx.cart.cartItems.length === 0) && (
           <Modal.Body>
-            <div className='flex flex-col justify-center text-center relative z-10'>
+            <div className='flex flex-col justify-center text-center relative z-10 overflow-y-scroll'>
               <h1 className={"text-center font-quest text-3xl pb-10"}>
                 Your <span className='text-primary'>cart</span> is empty
               </h1>
@@ -98,19 +101,21 @@ export default function CartModal() {
           ctx.cart.cartItems.length !== 0 && (
             <>
               <Modal.Body>
-                <div className='w-full p-5 rounded-lg font-quest'>
-                  <div className='px-3 w-full flex flex-col space-y-4 md:space-y-0 md:space-x-4'>
-                    <div className='w-full bg-white rounded'>
+                <div className='p-5 rounded-lg font-quest'>
+                  <div className='w-full px-3 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8'>
+                    <div className='bg-white md:bg-gray flex flex-col md:border-none rounded md:w-8/12'>
                       {ctx.cart.cartItems.map((item) => (
-                        <CartItem
-                          key={uuidv4()}
-                          id={item.id}
-                          qty={item.quantity}
-                          product={item.product}
-                        />
+                        <div className='border-border border-b-2'>
+                          <CartItem
+                            key={uuidv4()}
+                            id={item.id}
+                            qty={item.quantity}
+                            product={item.product}
+                          />
+                        </div>
                       ))}
                     </div>
-                    <div className='flex flex-col justify-between h-fit w-full p-4 bg-white rounded'>
+                    <div className='flex flex-col justify-between h-fit w-full md:w-4/12 p-4 bg-white rounded'>
                       <div className='flex justify-between items-center'>
                         <div>
                           <span className='text-gray-600'>Subtotal</span>
@@ -144,15 +149,9 @@ export default function CartModal() {
               </Modal.Body>
               <Modal.Footer>
                 <Button
-                  onClick={closeHandler}
-                  color={"error"}
-                  className='font-prompt text-lg'>
-                  Close
-                </Button>
-                <Button
                   onClick={checkoutHandler}
                   variant={"contained"}
-                  className='bg-primary text-white hover:bg-accent font-prompt text-lg'>
+                  className='bg-primary text-white hover:bg-accent font-prompt text-sm px-4 py-2'>
                   Proceed to checkout
                 </Button>
               </Modal.Footer>
