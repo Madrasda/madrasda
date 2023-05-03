@@ -183,15 +183,7 @@ export default function Analytics () {
                       Product Summary
                     </h2>
                     <div className='mt-4 md:ml-20'>
-                      <Table products={details.productLadder} id='tablefunda' />
-                      <Button
-                        onClick={() => {
-                          const table = document.getElementById("tablefunda");
-                          const wb = XLSX.utils.table_to_book(table);
-                          XLSX.writeFile(wb, "products.xlsx");
-                        }}>
-                        <b className='flex justify-end'>Export as Excel</b>
-                      </Button>
+                      <Table products={details.productLadder}/>
                     </div>
                   </div>
                 )}

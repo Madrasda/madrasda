@@ -1,6 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 import { useState } from 'react'
+import {Button} from "@mui/material";
+import { set_cptable } from "xlsx";
+import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
+set_cptable(cptable);
+import XLSX from "xlsx";
 
 export default function Table({products}) {
     
@@ -9,7 +14,7 @@ export default function Table({products}) {
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
-                    <table className="min-w-full text-center text-sm font-medium">
+                    <table className="min-w-full text-center text-sm font-medium" id="tabledfunda">
                     <thead className="border-b text-m font-bold dark:border-neutral-500">
                         <tr>
                         <th scope="col" className=" px-6 py-4">Rank</th>
@@ -39,6 +44,16 @@ export default function Table({products}) {
                     </table>
                 </div>
                 </div>
+                <div className='flex justify-end mr-8'>
+				<Button
+					onClick={() => {
+						const table = document.getElementById("tabledfunda");
+						const wb = XLSX.utils.table_to_book(table);
+						XLSX.writeFile(wb, "productsummary.xlsx");
+					}}>
+					<b>Export as Excel</b>
+				</Button>
+				</div>
             </div>
             </div>
   )
