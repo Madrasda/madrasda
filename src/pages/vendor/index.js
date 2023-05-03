@@ -208,7 +208,7 @@ export default function Vendorlogin() {
                 </h1>
                 <a href='mailto:support@madrasda.com' target='_blank'>
                   <button
-                    className={`bg-[#A5153F] cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
+                    className={`bg-primary cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
                     Mail Us
                   </button>
                 </a>
