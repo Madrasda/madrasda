@@ -127,7 +127,7 @@ export default function TemplateList () {
               mockups={mockups}
             />
             <p className="font-semibold font-base">Create more templates</p>
-            <p className="font-light text-gray font-sm">Add them to your merch and start selling</p>
+            <p className="font-light text-bg font-sm">Add them to your merch and start selling</p>
           </div>
         </div>
 {/*  */}

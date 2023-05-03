@@ -14,14 +14,14 @@ export default function Mockup(props){
                 <div className="mt-4">
                     <h3 className="text-base title-font">{props.name}</h3>
                     <div className="flex">
-                        <h2 className="title-font text-sm text-gray">Model:</h2>
-                        <p className="pl-1 text-gray text-sm">{props.model}</p>
+                        <h2 className="title-font text-sm text-bg">Model:</h2>
+                        <p className="pl-1 text-bg text-sm">{props.model}</p>
                     </div>
                     <span className="flex flex-wrap mt-1 pr-1 text-sm">Available Sizes:</span>
                     {
                         props.sizes.map((size) => {
                             return (
-                                <span key={uuidv4()} className="mt-1 text-gray pr-1 text-sm">
+                                <span key={uuidv4()} className="mt-1 text-bg pr-1 text-sm">
                                     {size}
                                 </span>
                             );
