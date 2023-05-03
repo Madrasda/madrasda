@@ -13,18 +13,18 @@ const CartItem = ({ id, product, qty }) => {
     ctx.customQuantity(id, event.target.value);
   const removeItem = () => ctx.removeItem(id);
   return (
-    <div className='w-full flex flex-col md:flex-row items-center p-7 relative rounded bg-white font-quest'>
-      <div className='overflow-hidden rounded-lg w-56 h-56 md:w-28 md:h-36 border border-gray'>
+    <div className='w-full md:w-auto flex flex-col md:flex-row items-center p-7 relative rounded bg-white font-quest'>
+      <div className='overflow-hidden rounded-lg w-56 h-auto border border-gray'>
         <Image
           src={product.frontImage.imageUrl}
           alt='ecommerce'
           width={1080}
           height={1920}
-          className='object-contain w-auto h-auto'
+          className='object-contain md:object-cover h-auto'
         />
       </div>
       <div className='md:pl-3 md:ml-4 mb-4 text-sm md:text-base relative w-full'>
-        <div className='flex flex-col md:flex-row pt-2'>
+        <div className='flex flex-col pt-2'>
           <h6 className='font-medium text-lg md:text-2xl text-black'>
             {product.name}
           </h6>
@@ -48,7 +48,7 @@ const CartItem = ({ id, product, qty }) => {
           </div>
         </div>
       </div>
-      <div className='md:text-right text-sm md:text-base w-full md:w-auto'>
+      <div className='text-sm md:text-right md:text-base w-full'>
         <span className='font-medium text-black text-xl'>
           ₹{((100 - product.discount) / 100) * product.total * qty}
         </span>

@@ -122,24 +122,28 @@ export default function ProductId() {
             message={message}
             setState={setOpen}>
             <section className='text-black body-font font-quest overflow-hidden'>
-              <div className='px-5 pt-24 mx-auto flex justify-center'>
+              <div className='px-5 pt-12 mx-auto flex justify-center'>
                 <div className='flex justify-start flex-row flex-wrap md:flex-nowrap'>
                   <div
                     className='flex flex-col items-center justify-center
                           lg:flex-row-reverse w-full'>
-                    <img
+                    <Image
                       alt='ecommerce'
-                      className='w-full lg:h-[620px] h-48 object-contain object-center rounded px-2'
+                      className='object-contain object-center rounded px-2 h-[500px] md:h-[900px]'
                       src={activeImage}
+                      width={600}
+                      height={900}
                     />
                     <div
                       className='flex flex-row justify-center items-center
-                            lg:flex-col'>
+                            lg:flex-col md:overflow-y-scroll'>
                       {currentColor.images.map((image) => (
-                        <img
+                        <Image
                           alt='ecommerce'
                           key={uuidv4()}
-                          className='w-24 lg:w-44 aspect-16/9 m-2'
+                          width={500}
+                          height={600}
+                          className='w-24 aspect-16/9 m-2'
                           src={image}
                           onClick={() => setActiveImage(image)}
                         />
@@ -147,9 +151,9 @@ export default function ProductId() {
                     </div>
                   </div>
                   <div
-                    className='mx-auto md:mx-0 lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0'
+                    className='mx-auto md:mx-0 lg:w-1/2 w-full md:py-24 mt-6 lg:mt-0'
                     style={{ padding: "0 5%" }}>
-                    <h1 className='text-gray-900 md:text-3xl title-font font-medium mb-1'>
+                    <h1 className='text-gray-900 text-xl md:text-3xl title-font font-medium mb-1'>
                       {product.name}
                     </h1>
                     <span>
@@ -170,7 +174,7 @@ export default function ProductId() {
                       </span>
                     </div>
 
-                    <div className='mt-6'>Colors</div>
+                    <div className='mt-6 hidden md:block'>Colors</div>
                     <div className='flex items-center mt-3 mb-3'>
                       <div className='flex'>
                         {product.colors.map((color) => (
@@ -188,14 +192,14 @@ export default function ProductId() {
                       </div>
                     </div>
                     <div className='flex items-center'>
-                      <div className='relative'>
+                      <div className='relative grid grid-cols-4  md:grid-cols-6'>
                         {currentColor.sizes.map((size) => (
                           <button
                             key={size.id}
                             onClick={() => {
                               setCurrentSize(size);
                             }}
-                            className={`px-4 py-2 m-3 text-black font-semibold rounded-lg shadow-lg transition-shadow
+                            className={`px-4 py-2 m-3 text-black font-semibold rounded-lg text-xs w-12 shadow-lg col-span-1 transition-shadow
                                             ${
                                               size === currentSize
                                                 ? "bg-primary text-white"
@@ -215,13 +219,9 @@ export default function ProductId() {
                         ))}
                       </div>
                     </div>
-
-                    <br></br>
-
-                    <br></br>
-                    <div className='flex space-x-3'>
+                    <div className='flex space-x-4 mt-12'>
                       <div className='flex items-center space-x-2 h-10 my-auto'>
-                        <div className='flex flex-row h-10 rounded-lg w-1/2 relative bg-transparent'>
+                        <div className='flex flex-row h-10 rounded-lg w-36 relative bg-transparent'>
                           <button
                             className=' bg-white text-center border border-gray text-primary hover:text-primary
                   hover:bg-gray h-full w-20 rounded-l cursor-pointer outline-none'
@@ -231,14 +231,12 @@ export default function ProductId() {
                               -{" "}
                             </span>
                           </button>
-
                           <input
                             className='border border-gray focus:outline-none text-center w-full bg-white font-semibold text-md
                       hover:text-primary focus:text-primary md:text-basecursor-default flex items-center text-primary outline-none'
                             value={quantity}
                             ref={qtyRef}
                             readOnly={true}></input>
-
                           <button
                             className='bg-white text-center border border-gray text-primary hover:text-primary
                           hover:bg-gray h-full w-20 rounded-r cursor-pointer'
@@ -251,7 +249,7 @@ export default function ProductId() {
                         </div>
                       </div>
                       <Button
-                        className='w-64 text-center text-white px-4 py-3 bg-primary hover:bg-accent'
+                        className='w-48 h-10 text-center text-white px-4 py-3 bg-primary hover:bg-accent'
                         variant={"contained"}
                         onClick={handleAddToCart}>
                         Add to Cart
