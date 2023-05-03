@@ -1,15 +1,14 @@
 import Head from 'next/head'
-import Carousel from '@/components/carousel'
-import Image from 'next/image'
-import ClientLayout from '@/components/layout-client'
-import RightsideDisc from '@/components/rightside-disc'
-import LeftsideDisc from '@/components/leftside-disc'
-import {useRouter} from "next/router";
-import {useContext, useEffect, useState} from 'react';
-import {UserContext} from "../../context/context";
-import {uuidv4} from '@firebase/util'
-import HotSellers from '@/components/hotsellers-client'
-import { isTokenValid, getRole } from "@/utils/JWTVerifier";
+import CarouselComponent from "@/components/carousel";
+import Image from "next/image";
+import ClientLayout from "@/components/layout-client";
+import RightsideDisc from "@/components/rightside-disc";
+import LeftsideDisc from "@/components/leftside-disc";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../context/context";
+import { uuidv4 } from "@firebase/util";
+import HotSellers from "@/components/hotsellers-client";
 
 export default function Home() {
   const router = useRouter();
@@ -25,7 +24,6 @@ export default function Home() {
       setLoading(true);
     }
   }, [ctx.vendorList]);
-
 
   if (loading && isReady)
     return (
@@ -50,32 +48,36 @@ export default function Home() {
       </Head>
 
       <ClientLayout>
-        <Carousel />
-        <h1 className='font-cv1 font-bold text-[50px] my-10 px-10'>
+        <CarouselComponent />
+        <h1
+          className='font-raj text-center md:text-left px-3 w-full py-8 font-black tracking-widest text-bg text-3xl md:text-5xl mb-10 md:px-10'
+          id='merchandise'>
           OFFICIAL MERCHANDISE
         </h1>
 
-        {ctx.vendorList.map((vendor, index) => {
-          if (index % 2 === 0) {
-            return (
-              <RightsideDisc
-                key={uuidv4()}
-                id={vendor.id}
-                name={vendor.name}
-                imgUrl={vendor.imgUrl}
-              />
-            );
-          } else {
-            return (
-              <LeftsideDisc
-                key={uuidv4()}
-                id={vendor.id}
-                name={vendor.name}
-                imgUrl={vendor.imgUrl}
-              />
-            );
-          }
-        })}
+        <div className='flex flex-col space-y-3'>
+          {ctx.vendorList.map((vendor, index) => {
+            if (index % 2 === 0) {
+              return (
+                <RightsideDisc
+                  key={uuidv4()}
+                  id={vendor.id}
+                  name={vendor.name}
+                  imgUrl={vendor.imgUrl}
+                />
+              );
+            } else {
+              return (
+                <LeftsideDisc
+                  key={uuidv4()}
+                  id={vendor.id}
+                  name={vendor.name}
+                  imgUrl={vendor.imgUrl}
+                />
+              );
+            }
+          })}
+        </div>
         <span id='hotsellers'></span>
         <HotSellers />
       </ClientLayout>

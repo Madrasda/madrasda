@@ -304,7 +304,7 @@ export default function CreateTemplate(props) {
                 CREATE TEMPLATE
               </h1>
               <div className='px-5 py-10 mx-auto flex justify-center'>
-                <div className='h-fit flex justify-center flex-col xl:flex-row'>
+                <div className='h-fit flex justify-center flex-col xl:w-5/6 xl:flex-row'>
                   <div className='flex flex-col justify-center items-center bg-[#F0F0F0] p-4 w-fit'>
                     {/* POSITION */}
                     <div className='flex mb-8'>

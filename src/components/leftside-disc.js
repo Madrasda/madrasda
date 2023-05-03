@@ -24,16 +24,14 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
     return (
       <>
         <div
-          className='overflow-hidden mx-auto pr-2
+          className='hidden md:block overflow-hidden pr-2
                           my-4 lg:pr-10'>
           <span
-            className='bg-bg flex flex-row justify-center items-center w-full py-10
+            className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-none rounded-r-full'>
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
-                <h1
-                  className='font-bb text-2xl text-white flex justify-end pr-10 pt-4 font-bold text-center transition-all duration-300 ease-in-out
-                             lg:justify-end lg:pt-6 hover:text-3xl'>
+                <h1 className='font-prompt italic font-black text-3xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:text-5xl transition-all ease-in-out duration-500'>
                   {name}
                 </h1>
               </Link>
@@ -42,7 +40,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 className='w-full h-full items-center justify-start px-4 py-2 hidden
                             md:flex'>
                 <div className='w-full h-full flex items-center justify-end'>
-                  <div className='-mr-5 z-10'>
+                  <div className='ml-5 z-10'>
                     <Link href={`/products/${id}`}>
                       <Image
                         src='/prod-comp-showmore-left.png'
@@ -55,7 +53,9 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                   {products &&
                     products.map((prod) => {
                       return (
-                        <div key={uuidv4()} className='lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer bg-off-white m-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
+                        <div
+                          key={uuidv4()}
+                          className='lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer font-quest bg-tertiary m-2 rounded-sm'>
                           <Link href={`/productDetails/${prod.id}`}>
                             <div className='block relative h-36 rounded overflow-hidden'>
                               <Image
@@ -67,21 +67,23 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                               />
                             </div>
                             <div className='mt-4 flex flex-col'>
-                              <h2 className='title-font font-medium'>
+                              <h2 className='text-black title-font text-lg font-medium'>
                                 {prod.name}
                               </h2>
-                              <span className='mt-1 text-black'>
+                              <span className='mt-1 text-black text-xl'>
                                 ₹
                                 {Math.round(
                                   prod.total - prod.total * prod.discount * 0.01
                                 )}
                               </span>
-                              <span className='mt-1 line-through text-gray'>
-                                ₹{prod.total}
-                              </span>
-                              <span className='title-font font-medium text-[#088240]'>
-                                {prod.discount}% OFF
-                              </span>
+                              <div className='flex justify-between'>
+                                <span className='mt-1 line-through text-sm text-black'>
+                                  ₹{prod.total}
+                                </span>
+                                <span className='title-font font-semibold text-sm text-[#088240]'>
+                                  {prod.discount}% off
+                                </span>
+                              </div>
                             </div>
                           </Link>
                         </div>
@@ -90,11 +92,6 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 </div>
               </div>
             </div>
-            {/* <h1
-              className='text-white flex justify-end pr-10 pt-4 text-xl font-bold text-center
-              md:hidden lg:justify-start lg:pt-6'>
-              {name}
-            </h1> */}
             <Link href={`/products/${id}`}>
               <button
                 className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
@@ -102,20 +99,89 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 View More
               </button>
             </Link>
-            <div className="relative">
-            <Image key={uuidv4()} className="animate-spin" src="/disc.png" width={400} height={400}/>
-            <div className='w-[170px] h-[170px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+            <div className='relative'>
               <Image
-                className='animate-spin object-fill w-full h-full'
-                alt={name}
-                src={imgUrl}
+                key={uuidv4()}
+                className='animate-spin'
+                src='/disc.png'
                 width={500}
                 height={500}
               />
-            </div>
+              <div className='w-[220px] h-[220px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+                <Image
+                  className='object-cover w-full h-full animate-spin hover:animate-none'
+                  alt={name}
+                  src={imgUrl}
+                  width={500}
+                  height={500}
+                />
+              </div>
             </div>
           </span>
         </div>
+        <span className='flex flex-col md:hidden bg-bg rounded-t-full rounded-b-3xl w-11/12 mx-auto'>
+          <Link href={`products/${id}`} className='relative'>
+            <Image
+              className='mx-auto animate-spin'
+              src='/disc.png'
+              width={200}
+              height={200}
+            />
+            <div className='w-[100px] h-[100px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+              <Image
+                className='object-cover w-full h-full'
+                alt={name}
+                src={imgUrl}
+                width={200}
+                height={200}
+              />
+            </div>
+          </Link>
+          <h1 className='text-xl text-logo font-quest text-center'>
+            {name}'s Products
+          </h1>
+          <div className='grid grid-cols-2'>
+            {products &&
+              products.map((prod) => {
+                return (
+                  <div
+                    key={uuidv4()}
+                    className='row-span-1 font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                    <Link href={`/productDetails/${prod.id}`}>
+                      <div className='block relative h-36 rounded overflow-hidden'>
+                        <Image
+                          src={prod.colors[0].images[0]}
+                          alt='ecommerce'
+                          width={1080}
+                          height={1920}
+                          className='object-contain object-center w-full h-full block'
+                        />
+                      </div>
+                      <div className='mt-4 flex flex-col'>
+                        <h2 className='text-black title-font text-lg font-medium'>
+                          {prod.name}
+                        </h2>
+                        <span className='mt-1 text-black text-xl'>
+                          ₹
+                          {Math.round(
+                            prod.total - prod.total * prod.discount * 0.01
+                          )}
+                        </span>
+                        <div className='flex justify-between'>
+                          <span className='mt-1 line-through text-sm text-black'>
+                            ₹{prod.total}
+                          </span>
+                          <span className='title-font font-semibold text-sm text-[#088240]'>
+                            {prod.discount}% off
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
+        </span>
       </>
     );
 }

@@ -72,9 +72,9 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
         </Head>
         {productsPage?.content && (
           <ClientLayout>
-            <section className='body-font font-algeria'>
+            <section className='body-font font-quest'>
               <div className='px-5 py-24 mx-auto font-bold'>
-                <span className='font-bang text-5xl bg-clip-text bg-black tracking-wider text-primary md:ml-10 md:mt-4'>
+                <span className='font-quest text-5xl tracking-wide text-shadowGrey md:ml-10 md:mt-4'>
                   {title}
                 </span>
 

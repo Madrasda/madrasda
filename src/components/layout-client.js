@@ -11,24 +11,27 @@ const Alert = forwardRef(function Alert(props, ref) {
 export default function ClientLayout({ children, message, severity, state, setState }) {
 
     const handleClose = (event, reason) => {
-        console.log(reason);
-        if (reason === 'clickaway') {
-            return;
-        }
-
-        setState(false);
+      console.log(reason);
+      if (reason === "clickaway") {
+        return;
+      }
+      setState(false);
     };
-  return (
-    <>
-      <NavClient />
-      <main className="bg-white">{children}</main>
-      <Footer />
-        <Snackbar className={"mt-14"} open={state} autoHideDuration={1400}
-                  onClose={handleClose} anchorOrigin={{vertical: "top", horizontal: "right"}}>
-            <Alert onClose={handleClose} severity={severity}>
-                {message}
-            </Alert>
+    return (
+      <>
+        <NavClient />
+        <main className='bg-home bg-opacity-90 scroll-smooth'>{children}</main>
+        <Footer />
+        <Snackbar
+          className={"mt-14"}
+          open={state}
+          autoHideDuration={1400}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+          <Alert onClose={handleClose} severity={severity}>
+            {message}
+          </Alert>
         </Snackbar>
-    </>
-  )
+      </>
+    );
 }

@@ -22,26 +22,26 @@ export default function HotSellers() {
       <section className='text-black body-font'>
         {products && (
           <div className='p-10 font-algeria'>
-            <div className='border-black border-2 rounded-xl scale-[90%]'>
+            <div className='border-shadowGrey border-[3px] rounded-xl scale-[90%]'>
               <div className='relative'>
                 <h2
-                  className='font-algeria font-semibold text-xl flex justify-center items-center w-full
+                  className='font-raj font-semibold text-xl flex justify-center items-center w-full
                       m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1'>
-                  <span className='bg-white font-jo1 text-2xl px-8 py-4 rounded-full text-black'>
+                  <span className='bg-bg bg-opacity-90 tracking-widest font-raj text-4xl font-bold px-8 py-4 rounded-full text-logo'>
                     HOTSELLERS
                   </span>
                 </h2>
               </div>
-              <div className='flex flex-wrap justify-center'>
+              <div className='flex flex-wrap justify-center py-6'>
                 {products &&
                   products.map((product) => {
                     return (
                       <Link
                         key={uuidv4()}
                         href={`/productDetails/${product.id}`}
-                        className='"lg:w-1/4 md:w-1/4 p-4 w-full h-full cursor-pointer bg-off-white m-5 rounded
+                        className='w-56 p-4 h-full cursor-pointer bg-off-white mx-2 my-5 rounded
                         drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)]
-                        duration-200 ease-in-out">'>
+                        duration-200 ease-in-out'>
                         <div className='block relative h-fit rounded overflow-hidden'>
                           <Image
                             src={product.colors[0].images[0]}
@@ -56,9 +56,9 @@ export default function HotSellers() {
                             {product.name}
                           </h2>
                           <span className='mt-1 text-black text-lg pr-1'>
-                            ₹{(product.total * (100 - product.discount) /100)}
+                            ₹{(product.total * (100 - product.discount)) / 100}
                           </span>
-                          <span className='mt-1 line-through text-gray pr-1'>
+                          <span className='mt-1 line-through text-bg pr-1'>
                             ₹{product.total}
                           </span>
                           <span className='title-font text-xs font-medium text-[#088240]'>
@@ -72,7 +72,6 @@ export default function HotSellers() {
             </div>
           </div>
         )}
-        
       </section>
     );
 }
