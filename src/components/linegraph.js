@@ -7,16 +7,31 @@ ChartJS.register(
 )
 
 export default function LineGraph(props) {
-  const [data, setData]= useState({
-    labels:["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets:[
+  const [data, setData] = useState({
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
       {
-        label:"Your Monthly Sales for the year " + new Date().getFullYear(),
-        data: (props.monthlySales ? props.monthlySales.slice(0, new Date().getMonth() + 1) : [0,0,0,0,0,0,0,0,0]),
-        borderColor:"#A5153F",
-        showLine:true
-      }
-    ]
+        label: "Your Monthly Sales for the year " + new Date().getFullYear(),
+        data: props.monthlySales
+          ? props.monthlySales.slice(0, new Date().getMonth() + 1)
+          : [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        borderColor: "#FFA000",
+        showLine: true,
+      },
+    ],
   });
 
   const maxDataValue = Math.max(...data.datasets[0].data);
