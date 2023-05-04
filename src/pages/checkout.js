@@ -264,7 +264,7 @@ export default function Checkout() {
                     </div>
                   </div>
                   {/* ADDRESS FORM */}
-                  <div className='px-3 md:w-7/12 lg:pr-10'>
+                  <div className='px-3 my-9  md:my-0 md:w-7/12 lg:pr-10'>
                     <h2 className='ml-2 mb-6 title-font font-medium text-xl'>
                       Shipping Details
                     </h2>
