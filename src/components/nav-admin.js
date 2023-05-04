@@ -22,7 +22,7 @@ export default function NavAdmin() {
   return (
       <>
         <header
-            className='bg-bg text-white font-algeria py-8 fixed z-20 h-screen overflow-y-auto no-scrollbar hidden md:block'>
+            className='bg-bg text-white font-raj py-8 fixed z-20 h-screen overflow-y-auto no-scrollbar hidden md:block'>
           <div className='flex flex-col items-center w-full h-full'>
             <div>
               <Image src='/logo.png' width={90} height={90} priority alt='logo'/>
@@ -97,7 +97,7 @@ export default function NavAdmin() {
                           height={30}
                           alt='logo'
                       />
-                      <h3 className='ml-2'>Queries and Feedback</h3>
+                      <h3 className='ml-2'>Queries</h3>
                     </div>
                   </div>
                 </Link>

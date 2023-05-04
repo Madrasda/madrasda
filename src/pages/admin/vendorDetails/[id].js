@@ -62,7 +62,7 @@ export default function VendorDetails() {
 
             {tokenExists && <AdminLayout>
                 { details &&
-                <main className="body-font overflow-hidden font-algeria
+                <main className="body-font overflow-hidden font-quest
                                 md:ml-32">
                 <div className="px-5 my-10 mx-auto">
                 <h1 className="text-3xl text-primary 
@@ -72,7 +72,7 @@ export default function VendorDetails() {
                     <div className="flex space-x-4 items-center">
                         <Image className="rounded-3xl" src={details.vendor.imgUrl} width={100} height={100} />
                         <div className="flex flex-col">
-                            <h2 className="font-bold text-xl">{details.vendor.name}</h2>
+                            <h2 className="font-algeria text-xl">{details.vendor.name}</h2>
                             <h2 className="text-lg">{details.vendor.email}</h2>
                         </div>
                     </div>

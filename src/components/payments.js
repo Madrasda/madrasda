@@ -5,6 +5,11 @@ import axios from "axios";
 import {Button} from "@mui/material";
 import {uuidv4} from "@firebase/util";
 import OrderDetailsModal from "@/components/orderdetails-modal";
+import { set_cptable } from "xlsx";
+import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
+set_cptable(cptable);
+import XLSX from "xlsx";
+
 
 export default function Payments() {
   const [orders, setOrders] = useState(0);
@@ -38,7 +43,7 @@ export default function Payments() {
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='overflow-hidden'>
-              <table className='min-w-full text-center text-sm font-medium'>
+              <table className='min-w-full text-center text-sm font-medium' id='download'>
                 <thead className='border-b text-m font-bold dark:border-neutral-500'>
                   <tr>
                     <th scope='col' className=' px-6 py-4'>
@@ -97,6 +102,16 @@ export default function Payments() {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className='flex justify-end mr-8'>
+            <Button
+					  onClick={() => {
+  						const table = document.getElementById("download");
+						  const wb = XLSX.utils.table_to_book(table);
+						  XLSX.writeFile(wb, "Recentorders.xlsx");
+					  }}>
+					  <b>Export as Excel</b>
+				    </Button>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function LineGraph(props) {
         label:"Your Monthly Sales for the year " + new Date().getFullYear(),
         data: (props.monthlySales ? props.monthlySales.slice(0, new Date().getMonth() + 1) : [0,0,0,0,0,0,0,0,0]),
         borderColor:"#FCC900",
-        backgroundColor:"#8C8A8C",
+        backgroundColor:"#FFFFFF",
         showLine:true
       }
     ]

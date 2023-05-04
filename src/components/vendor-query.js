@@ -29,7 +29,7 @@ export default function VendorQuery(props) {
                 <div className="mx-6 my-6 flex flex-col space-y-4">
                     <div className="flex justify-between items-center">
                         <h1 className="text-xl font-bold text-primary">{props.name}</h1>
-                        <h3 className="text-base text-gray">{props.email}</h3>
+                        <h3 className="text-base text-black">{props.email}</h3>
                     </div>
                     <div className="block w-full text-black bg[#D9D9D9]">
                         {props.query}

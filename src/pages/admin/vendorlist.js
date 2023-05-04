@@ -90,7 +90,7 @@ export default function VendorList(props) {
         {tokenExists && (
           <AdminLayout>
             <section
-              className='body-font overflow-hidden font-algeria
+              className='body-font overflow-hidden font-quest
                         md:ml-32'>
               <div className='mt-20 px-5 md:my-10 mx-auto'>
                 <h1

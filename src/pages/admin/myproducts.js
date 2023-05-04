@@ -126,7 +126,7 @@ export default function MyProducts() {
             </Head>
             {tokenExists &&
                 <AdminLayout>
-                    <section className="body-font overflow-hidden font-algeria
+                    <section className="body-font overflow-hidden font-quest
                             md:ml-32"> 
                         <div className="mt-20 px-5 md:my-10 mx-auto">
                             <h1 className="text-3xl text-primary
@@ -174,7 +174,7 @@ export default function MyProducts() {
                             </div>
                             <div className="flex justify-center mt-32">
                                 <button
-                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l"
+                                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
                                     onClick={
                                         () => {
                                             setPage(pageNo === 0 ? 0 : pageNo - 1)
@@ -183,7 +183,7 @@ export default function MyProducts() {
                                     Prev
                                 </button>
                                 <button
-                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r"
+                                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-6"
                                     onClick={
                                         () => {
                                             setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1)

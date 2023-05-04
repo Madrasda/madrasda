@@ -49,14 +49,14 @@ export default function Hotsellers() {
       </Head>
 
       {tokenExists && <AdminLayout>
-        <main className='body-font overflow-hidden font-algeria md:ml-32'>
+        <main className='body-font overflow-hidden font-quest md:ml-32'>
           <div className='px-5 my-10 mx-auto'>
-            <h1 className='text-3xl text-primary md:ml-20 md:mt-10'>
+            <h1 className='text-3xl md:text-4xl text-primary md:ml-20 md:mt-10'>
               HOTSELLERS
             </h1>
 
             <div className='mt-4 md:ml-20'>
-              <section className="text-gray-600 body-font bg-[url('/templates-bg.png')] bg-no-repeat bg-cover">
+              <section className="text-gray-600 body-font bg-[url('/templates-area.png')] bg-no-repeat bg-cover">
                 <div className='px-5 py-52 lg:mx-32'>
                   <div className='flex flex-wrap lg:flex-nowrap justify-center'>
                     {!products && (

@@ -58,7 +58,7 @@ export default function Queries() {
             </Head>
 
             {tokenExists && <AdminLayout>
-                <main className='md:ml-32 overflow-hidden font-algeria'>
+                <main className='md:ml-32 overflow-hidden font-quest'>
                     <div className="px-5 my-10 mx-auto">
                         <div className="md:ml-20 md:mt-10">
                             <h1 className="body-font text-primary text-3xl">RESOLVED QUERIES</h1>
@@ -94,7 +94,7 @@ export default function Queries() {
                             queries && queries.length !== 0 &&
                             <div className="flex justify-center mt-32">
                                 <button
-                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l"
+                                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
                                     onClick={
                                         () => {
                                             setPage(pageNo === 0 ? 0 : pageNo - 1)
@@ -103,7 +103,7 @@ export default function Queries() {
                                     Prev
                                 </button>
                                 <button
-                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r"
+                                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
                                     onClick={
                                         () => {
                                             setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1)

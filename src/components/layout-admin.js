@@ -5,7 +5,7 @@ export default function AdminLayout({ children }) {
   return (
     <>
       <NavAdmin />
-      <main className="bg-white">{children}</main>
+      <main className="bg-white font-quest">{children}</main>
     </>
   )
 }

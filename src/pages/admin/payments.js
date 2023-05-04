@@ -59,7 +59,7 @@ export default function CustomerDetails() {
       
       {tokenExists && <AdminLayout>
         <main
-          className='body-font overflow-hidden font-algeria
+          className='body-font overflow-hidden font-quest
                                 md:ml-32'>
           <div className='px-5 my-10 mx-auto'>
             <h1
@@ -78,7 +78,7 @@ export default function CustomerDetails() {
                     <div className='container mt-8 bg-[#D9D9D9] rounded-lg w-full'>
                       <div className=' ml-8 mb-2 mr-20 mt-4 '>
                         <Image src={vendor.imgUrl} width={70} height={70} />
-                        <h1 className='text-2xl text-primary font-bold mb-6'>
+                        <h1 className='text-2xl text-primary font-raj mb-6'>
                           {vendor.name}
                         </h1>
                         <div className='flex mb-2'>

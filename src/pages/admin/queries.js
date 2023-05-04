@@ -57,7 +57,7 @@ export default function Queries() {
             </Head>
 
             {tokenExists && <AdminLayout>
-                <main className='md:ml-32 overflow-hidden font-algeria'>
+                <main className='md:ml-32 overflow-hidden font-quest'>
                     <div className="px-5 my-10 mx-auto">
                         <div className="md:ml-20 md:mt-10">
                             <h1 className="body-font text-primary text-3xl">UNRESOLVED QUERIES</h1>
@@ -65,7 +65,7 @@ export default function Queries() {
 
                         <hr className="h-px md:ml-20 md:mr-12 my-6 bg-black border-1"></hr>
 
-                        <div className='flex flex-col mt-4 md:ml-20 lg:mr-20'>
+                        <div className='flex flex-col mt-4 md:ml-20 lg:mr-20 text-black'>
                             {queries &&
                                 queries.map((q, index) => {
                                     return (
@@ -75,6 +75,7 @@ export default function Queries() {
                                             name={q.vendorName}
                                             query={q.query}
                                             email={q.email}
+                                            image={q.image}
                                             setResolution={setResolution}
                                             i={index}
                                         />
@@ -83,7 +84,7 @@ export default function Queries() {
                             }
                             {
                                 queries && queries.length === 0 &&
-                                <h1 className='text-center text-xl text-gray font-light'>
+                                <h1 className='text-center text-xl text-black font-light'>
                                     No queries to be resolved
                                 </h1>
                             }
@@ -92,7 +93,7 @@ export default function Queries() {
                             queries && queries.length !== 0 &&
                             <div className="flex justify-center mt-32">
                                 <button
-                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l"
+                                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
                                     onClick={
                                         () => {
                                             setPage(pageNo === 0 ? 0 : pageNo - 1)
@@ -101,7 +102,7 @@ export default function Queries() {
                                     Prev
                                 </button>
                                 <button
-                                    className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r"
+                                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-6"
                                     onClick={
                                         () => {
                                             setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1)
@@ -113,7 +114,7 @@ export default function Queries() {
                         }
                         <div className='mt-14 flex justify-center'>
                             <Link href="/admin/resolvedqueries">
-                                <button type="button" className="mt-2 text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5
+                                <button type="button" className="mt-2 text-white bg-bg font-medium rounded-full text-sm px-5 py-2.5
           text-center mr-2 mb-2">Resolved Queries
                                 </button>
                             </Link>
