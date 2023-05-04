@@ -77,7 +77,7 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                 <h1 className='font-quest text-3xl text-shadowGrey md:text-5xl md:py-10 tracking-wide mx-10'>
                   {title}
                 </h1>
-                <div className='w-auto md:w-[90%] mx-auto grid grid-cols-2 md:grid-cols-5'>
+                <div className='w-auto md:w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3'>
                   {productsPage.content.map((product) => (
                     <ProductTile
                       key={uuidv4()}

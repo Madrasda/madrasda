@@ -10,7 +10,8 @@ const ProductTile = ({id, name, category, total, discount, imageUrl}) => {
     return (
       <div
         onClick={() => viewProduct(id)}
-        className='col-span-1 p-3 w-[170px] md:w-[300px] md:h-fit cursor-pointer bg-off-white mx-5 my-3 rounded-md border border-border'>
+        className='col-span-1 p-3 w-[170px] md:w-[300px] md:h-fit cursor-pointer bg-off-white mx-5 my-3 rounded-md border border-border
+        shadow-md hover:shadow-shadowGrey hover:shadow-lg transition-shadow'>
         <a className='block relative h-[200px] md:h-fit rounded overflow-hidden'>
           <Image
             src={imageUrl}

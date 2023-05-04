@@ -118,11 +118,11 @@ export default function VendorList(props) {
                       <Grow
                         key={uuidv4()}
                         in
-                        timeout={((index + 1) * 500) % (500 * 5)}>
+                        timeout={((index + 1) * 500) % (250000)}>
                         <div
                           key={uuidv4()}
                           className='lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer
-                                              bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)]
+                                              bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] transition-shadow
                                                hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out'>
                           <span className='w-full ml-5 flex justify-end'>
                             <CloseConfirm
