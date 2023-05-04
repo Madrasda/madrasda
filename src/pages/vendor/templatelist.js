@@ -113,7 +113,7 @@ export default function TemplateList () {
     </Head>
     
     {tokenExists && <VendorLayout>
-    <section className="body-font overflow-hidden font-algeria
+    <section className="body-font overflow-hidden font-raj
                         md:ml-36">
       <div className="mt-20 px-5 md:my-10 mx-auto">
         <h1 className="text-3xl text-primary

@@ -65,7 +65,7 @@ export default function ProductList() {
 
       {tokenExists && <VendorLayout>
         <main
-          className='body-font font-algeria overflow-hidden
+          className='body-font font-raj overflow-hidden
                                  md:ml-36'>
           <div className='mt-20 px-5 md:my-10 mx-auto'>
             <h1

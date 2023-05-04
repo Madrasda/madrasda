@@ -109,7 +109,7 @@ export default function Feedback() {
 			</Head>
 
 			{tokenExists && <VendorLayout>
-				<main className='md:ml-32 overflow-hidden font-algeria'>
+				<main className='md:ml-32 overflow-hidden font-raj'>
 					<div className='mt-20 px-5 md:my-10 mx-auto'>
 						<div className='md:ml-24 md:mt-10'>
 							<h1 className='body-font text-primary text-3xl'>
