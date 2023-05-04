@@ -10,18 +10,41 @@ import {uuidv4} from "@firebase/util";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconButton from "@mui/material/IconButton";
-import {Menu, MenuItem} from "@mui/material";
-import { ArrowDownward, ArrowDropDown } from "@mui/icons-material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Grow,
+  Menu,
+  MenuItem,
+  MenuList,
+  Typography,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  ArrowDownward,
+  ArrowDropDown,
+  Close,
+  ExpandCircleDown,
+  ExpandMore,
+  HighlightOff,
+  LoginOutlined,
+  MenuOpen,
+  UsbRounded,
+  VerifiedUserOutlined,
+} from "@mui/icons-material";
 
 export default function NavisCustomer() {
   const router = useRouter();
   const ctx = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [vendorList, setVendorList] = useState([{}]);
+  const [hamMenu, setHamMenu] = useState(false);
   const [isCustomer, setIsCustomer] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openProfile, setOpenProfile] = useState(false);
   const [openCategory, setOpenCategory] = useState(false);
+  const [openCategoryMobile, setOpenCategoryMobile] = useState(false);
   const [openVendors, setOpenVendors] = useState(false);
 
   useEffect(() => {
@@ -253,7 +276,7 @@ export default function NavisCustomer() {
                 </h1>
                 <div>
                   {vendorList.map((vendor) => (
-                    <MenuItem key={uuidv4()} className='p-0 text-sm'>
+                    <MenuItem key={uuidv4()} className='p-0'>
                       <div
                         key={uuidv4()}
                         onClick={() => handleVendorProductsClick(vendor.id)}
@@ -309,11 +332,11 @@ export default function NavisCustomer() {
                 sx={{ width: "25rem" }}>
                 <MenuItem css={{ borderRadius: "0" }}>
                   <Link href='/clientprofile'>
-                    <h1 className='font-algeria my-auto'>Profile</h1>
+                    <h1 className='font-quest my-auto'>Profile</h1>
                   </Link>
                 </MenuItem>
                 <MenuItem css={{ borderRadius: "0" }} color='error'>
-                  <h1 onClick={() => logout()} className='font-algeria my-auto'>
+                  <h1 onClick={() => logout()} className='font-quest my-auto'>
                     Logout
                   </h1>
                 </MenuItem>
@@ -325,159 +348,121 @@ export default function NavisCustomer() {
 
       <div className='w-full flex md:hidden'>
         <div className='flex flex-col w-full'>
-          <div className='flex'>
+          <div className='flex justify-between items-center py-2 px-4'>
             <Link href='/'>
-              <Image src='/logo.png' width={70} height={70} />
+              <Image src='/logo.png' width={50} height={50} />
             </Link>
-            <div className='flex flex-row-reverse w-full items-center justify-start'>
-              <Image
-                src='/burger-icon.png'
-                width={30}
-                height={30}
-                onClick={toggleMenu}
-              />
+            <div className='flex space-x-8 items-center'>
+              {isCustomer && <CartModal />}
+              {!hamMenu && (
+                <MenuIcon
+                  className='text-white text-4xl'
+                  onClick={() => setHamMenu(!hamMenu)}
+                />
+              )}
+              {hamMenu && (
+                <Close
+                  className='text-white text-4xl'
+                  onClick={() => setHamMenu(!hamMenu)}
+                />
+              )}
             </div>
           </div>
 
-          <div className='hidden' id='mobile_menu'>
-            <nav className='flex flex-col items-center justify-center'>
-              <Dropdown>
-                <Dropdown.Button
-                  flat
-                  css={{
-                    background: "#1A1A1C",
-                    fontFamily: "$algeria",
-                    fontWeight: "700",
-                    color: "White",
-                  }}>
-                  Shop
-                </Dropdown.Button>
-                <Dropdown.Menu
-                  aria-label='Static Actions'
-                  css={{
-                    fontFamily: "$algeria",
-                  }}>
-                  <Dropdown.Item key='men'>
-                    <div
-                      onClick={() => {
-                        handleGenderProductsClick("Men");
+          {hamMenu && (
+            <Grow in timeout={800} exit>
+              <nav className='flex flex-col py-5 font-quest w-full text-white bg-bg'>
+                <Accordion
+                  TransitionProps={{ unmountOnExit: true }}
+                  className='bg-bg text-white'>
+                  <AccordionSummary
+                    expandIcon={<ExpandMore className='text-white' />}
+                    aria-controls='shop-controls'
+                    id='shop-content'>
+                    <Typography>Shop</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails className='flex flex-col space-y-4'>
+                    <Link
+                      href={{
+                        pathname: "/product-gender",
+                        query: { gender: "Men" },
                       }}>
                       Men
-                    </div>
-                  </Dropdown.Item>
-                  <Dropdown.Item key='women'>
-                    <div
-                      onClick={() => {
-                        handleGenderProductsClick("Women");
+                    </Link>
+                    <Link
+                      href={{
+                        pathname: "/product-gender",
+                        query: { gender: "Women" },
                       }}>
                       Women
-                    </div>
-                  </Dropdown.Item>
-                  <Dropdown.Item key='kids'>
-                    <div
-                      onClick={() => {
-                        handleGenderProductsClick("Kids");
+                    </Link>
+                    <Link
+                      href={{
+                        pathname: "/product-gender",
+                        query: { gender: "Kids" },
                       }}>
                       Kids
-                    </div>
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-
-              <Dropdown>
-                <Dropdown.Button
-                  flat
-                  css={{
-                    background: "#1A1A1C",
-                    fontFamily: "$algeria",
-                    fontWeight: "700",
-                    color: "White",
-                  }}>
-                  <span className='font-bold'>Bestsellers</span>
-                </Dropdown.Button>
-                <Dropdown.Menu>
-                  {products &&
-                    products.map((item) => (
-                      <Dropdown.Item key={item.id}>
-                        <Link href={`/productDetails/${item.id}`}>
-                          {item.name}
-                        </Link>
-                      </Dropdown.Item>
-                    ))}
-                </Dropdown.Menu>
-              </Dropdown>
-
-              <Dropdown>
-                <Dropdown.Button
-                  flat
-                  css={{
-                    background: "#1A1A1C",
-                    fontFamily: "$algeria",
-                    fontWeight: "700",
-                    color: "White",
-                  }}>
-                  Vendors
-                </Dropdown.Button>
-                <Dropdown.Menu
-                  aria-label='Static Actions'
-                  css={{
-                    fontFamily: "$algeria",
-                  }}>
-                  {vendorList.map((vendor) => (
-                    <Dropdown.Item key={uuidv4()}>
+                    </Link>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion
+                  TransitionProps={{ unmountOnExit: true }}
+                  className='bg-bg text-white'>
+                  <AccordionSummary
+                    expandIcon={<ExpandMore className='text-white' />}
+                    aria-controls='vendor-controls'
+                    id='vendor-content'>
+                    <Typography>Creators</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails className='flex flex-col space-y-4'>
+                    {vendorList.map((vendor) => (
                       <div
                         key={uuidv4()}
                         onClick={() => handleVendorProductsClick(vendor.id)}>
                         {vendor.name}
                       </div>
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown>
+                    ))}
+                  </AccordionDetails>
+                </Accordion>
 
-              <div className='flex my-4 justify-around items-center w-full'>
                 {!isCustomer && (
-                  <Link href='/login'>
-                    <Image
-                      src='/user-icon.png'
-                      width={30}
-                      height={30}
-                      className='ml-10 cursor-pointer'
-                    />
+                  <Link
+                    className={
+                      "text-lg ml-4 my-2 font-quest flex items-center space-x-4"
+                    }
+                    href='/login'>
+                    <Typography className='font-quest text-lg'>
+                      {" "}
+                      Login{" "}
+                    </Typography>
+                    <LoginOutlined className='text-white' />
                   </Link>
                 )}
-                {isCustomer && (
-                  <Dropdown>
-                    <Dropdown.Button
-                      flat
-                      css={{
-                        background: "#1A1A1C",
-                        fontFamily: "$algeria",
-                        fontWeight: "700",
-                        color: "White",
-                      }}>
-                      <Image src='/user-icon.png' width={30} height={30} />
-                    </Dropdown.Button>
-                    <Dropdown.Menu>
-                      <Dropdown.Item>
-                        <Link href='/clientprofile'>
-                          <h1 className='text-xs my-auto'>Profile</h1>
-                        </Link>
-                      </Dropdown.Item>
-                      <Dropdown.Item>
-                        <h1
-                          onClick={() => logout()}
-                          className='text-xs my-auto'>
-                          Logout
-                        </h1>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                )}
-                <CartModal />
-              </div>
-            </nav>
-          </div>
+                {
+                  <Accordion
+                    TransitionProps={{ unmountOnExit: true }}
+                    className='bg-bg text-white'>
+                    <AccordionSummary
+                      expandIcon={<ExpandMore className='text-white' />}
+                      aria-controls='vendor-controls'
+                      id='vendor-content'>
+                      <Typography>My Profile</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className='flex flex-col space-y-4'>
+                      <Link href='/clientprofile'>
+                        <h1 className='font-quest my-auto'>View Order History</h1>
+                      </Link>
+                      <h1
+                        onClick={() => logout()}
+                        className='font-quest my-auto'>
+                        Logout
+                      </h1>
+                    </AccordionDetails>
+                  </Accordion>
+                }
+              </nav>
+            </Grow>
+          )}
         </div>
       </div>
     </header>
