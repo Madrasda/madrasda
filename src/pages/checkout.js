@@ -91,7 +91,6 @@ export default function Checkout() {
         postalCode: pincode,
         country: country,
         email: email.current.value,
-        phone: phone,
       },
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
@@ -137,8 +136,12 @@ export default function Checkout() {
         )
         .then((response) => {
           setCountry(response.data.results[0].components.country);
-          setState(response.data.results[0].components.state.split(" ")[0]);
-          setCity(response.data.results[0].components.state_district);
+          setState(response.data.results[0].components.state);
+          setCity(
+            response.data.results[0].components.state_district
+              ? response.data.results[0].components.state_district.split(" ")[0]
+              : response.data.results[0].components.town
+          );
         });
     } else {
       setState("");
@@ -261,7 +264,7 @@ export default function Checkout() {
                     </div>
                   </div>
                   {/* ADDRESS FORM */}
-                  <div className='px-3 md:w-7/12 lg:pr-10'>
+                  <div className='px-3 my-9  md:my-0 md:w-7/12 lg:pr-10'>
                     <h2 className='ml-2 mb-6 title-font font-medium text-xl'>
                       Shipping Details
                     </h2>

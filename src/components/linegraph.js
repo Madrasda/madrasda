@@ -7,9 +7,22 @@ ChartJS.register(
 )
 
 export default function LineGraph(props) {
-  const [data, setData]= useState({
-    labels:["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets:[
+  const [data, setData] = useState({
+    labels: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    datasets: [
       {
         label:"Your Monthly Sales for the year " + new Date().getFullYear(),
         data: (props.monthlySales ? props.monthlySales.slice(0, new Date().getMonth() + 1) : [0,0,0,0,0,0,0,0,0]),

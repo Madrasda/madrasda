@@ -5,18 +5,18 @@ import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
 import {getRole, isTokenValid} from '@/utils/JWTVerifier';
-import {Button} from '@mui/material'
-import { useRef } from 'react';
-import {UserContext} from "../../../context/context";
+import { Button, Input, TextField } from "@mui/material";
+import { useRef } from "react";
+import { UserContext } from "../../../context/context";
 import { Snackbar, Alert } from "@mui/material";
 
 export default function Vendorlogin() {
-  const mail = useRef();
-  const password = useRef();
   const router = useRouter();
   const ctx = useContext(UserContext);
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
   let isReady = router.isReady;
 
@@ -35,8 +35,8 @@ export default function Vendorlogin() {
       .post(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginVendor",
         {
-          email: mail.current.value,
-          password: password.current.value,
+          email: mail,
+          password: password,
         }
       )
       .then((response) => {
@@ -53,7 +53,8 @@ export default function Vendorlogin() {
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token && isTokenValid(token) && getRole(token) === 'ROLE_VENDOR') router.push("/vendor/dashboard");
+    if (token && isTokenValid(token) && getRole(token) === "ROLE_VENDOR")
+      router.push("/vendor/dashboard");
   }, []);
 
   const showLogin = () => {
@@ -137,39 +138,48 @@ export default function Vendorlogin() {
               </button>
             </div>
 
-            <div className='flex flex-col px-16 w-full' id='login'>
+            <div className='flex flex-col px-8 w-full' id='login'>
               <div className='flex flex-wrap justify-center'>
                 <div className='w-24'>
                   <img src='/logo.png' alt='LOGO' />
                 </div>
               </div>
-              <form onSubmit={vendorlogin}>
-                <div>
-                  <label htmlFor='email' className='text-white'>
-                    Username
-                  </label>
-                  <input
+              <form onSubmit={vendorlogin} className='py-4 w-full space-y-3'>
+                <div className='text-white'>
+                  <TextField
+                    label='Username'
                     type='email'
-                    className={
-                      "w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
-                    }
+                    InputProps={{
+                      className: "text-primary",
+                    }}
+                    InputLabelProps={{
+                      className: "text-primary",
+                    }}
+                    className={"w-full bg-shadowGrey rounded-md"}
+                    color='warning'
                     id='username'
                     placeholder='example@example.com'
-                    ref={mail}
+                    value={mail}
+                    onChange={(e) => setMail(e.target.value)}
                   />
                 </div>
                 <div>
-                  <label htmlFor='password' className='text-white'>
-                    Password
-                  </label>
-                  <input
+                  <TextField
                     type='password'
-                    className={
-                      "w-full p-2 text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
-                    }
+                    InputProps={{
+                      className: "text-primary",
+                    }}
+                    InputLabelProps={{
+                      className: "text-primary",
+                    }}
+                    variant='outlined'
+                    label='Password'
+                    className={"w-full bg-shadowGrey rounded-md"}
+                    color='warning'
                     id='password'
                     placeholder='**********'
-                    ref={password}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
