@@ -13,7 +13,8 @@ export default function LineGraph(props) {
       {
         label:"Your Monthly Sales for the year " + new Date().getFullYear(),
         data: (props.monthlySales ? props.monthlySales.slice(0, new Date().getMonth() + 1) : [0,0,0,0,0,0,0,0,0]),
-        borderColor:"#A5153F",
+        borderColor:"#FCC900",
+        backgroundColor:"#8C8A8C",
         showLine:true
       }
     ]
@@ -34,8 +35,8 @@ export default function LineGraph(props) {
   };
 
   return (
-    <div className="w-[800px] h-[800px]" >
-      <Line data={data} options={options}>Hello</Line>
+    <div className="w-[380px] md:w-[800px] h-[800px] my-12 md:my-0" >
+      <Line data={data} options={options} />
     </div>
   );
 }

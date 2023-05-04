@@ -21,7 +21,7 @@ export default function Dashboard(props) {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 1500);
   }, []);
   const getVendorDetails = async () => {
     const response = await axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/", {
@@ -90,11 +90,11 @@ export default function Dashboard(props) {
       {tokenExists && details && (
           <VendorLayout>
           <main
-            className='body-font font-algeria overflow-hidden
+            className='body-font font-raj overflow-hidden
                                 md:ml-36'>
-            <div className='mt-20 px-5 md:my-10 mx-auto'>
+            <div className=' flex flex-col mt-20 px-5 md:my-10 mx-auto'>
               <h1
-                className='text-3xl text-primary
+                className='text-5xl text-logo font-semibold tracking-wider
                                md:ml-20 md:mt-10'>
                 DASHBOARD
               </h1>
@@ -160,7 +160,8 @@ export default function Dashboard(props) {
                 </div>
               </section>
 
-              <div className='md:ml-20 flex justify-center items-center'>
+              {/* <div className='hidden md:block'> */}
+                <div className="md:ml-20 flex justify-center items-center">
                 <LineGraph
                   monthlySales={
                     details.salesAnalysis
@@ -168,7 +169,8 @@ export default function Dashboard(props) {
                       : []
                   }
                 />
-              </div>
+                </div>
+              {/* </div> */}
 
               <div
                 className='flex flex-col justify-center items-center -mt-[140%]
@@ -190,11 +192,11 @@ export default function Dashboard(props) {
 
               {designs && (
                 <div
-                  className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-4
+                  className="bg-[url('/templates-area.png')] bg-no-repeat bg-cover mt-4
                                 md:ml-20 md:mt-20">
-                  <div className='flex justify-between items-center px-5 pt-10 md:pl-10'>
+                  <div className='flex flex-wrap justify-between items-center px-5 pt-10 md:pl-10'>
                     <h1
-                      className='text-xl text-white font-semibold
+                      className='text-2xl text-white font-semibold
                                     md:text-3xl'>
                       YOUR DESIGNS
                     </h1>
@@ -262,10 +264,10 @@ export default function Dashboard(props) {
 
               {details.salesAnalysis && (
                 <div
-                  className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-20
+                  className="bg-[url('/templates-area.png')] bg-no-repeat bg-cover mt-20
                                 md:ml-20">
                   <h1
-                    className='pl-5 pt-10 te    xt-xl text-white font-semibold
+                    className='pl-5 pt-10 text-lg text-white font-semibold
                                    md:pl-10 md:text-3xl'>
                     TOP SELLERS THIS WEEK
                   </h1>
@@ -280,7 +282,7 @@ export default function Dashboard(props) {
                         />
                         <div
                           className='py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white
-                             text-xl text-primary font-semibold italic'>
+                             text-xl text-red font-semibold italic'>
                           #2
                         </div>
                       </div>
@@ -295,7 +297,7 @@ export default function Dashboard(props) {
                         />
                         <div
                           className='py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white
-                            text-xl text-primary font-semibold italic'>
+                          text-xl text-red font-semibold italic'>
                           #1
                         </div>
                       </div>
@@ -310,7 +312,7 @@ export default function Dashboard(props) {
                         />
                         <div
                           className='py-4 px-5 z-1 -mt-4 w-fit border-4 border-primary rounded-full bg-white
-                            text-xl text-primary font-semibold italic'>
+                          text-xl text-red font-semibold italic'>
                           #3
                         </div>
                       </div>

@@ -88,7 +88,7 @@ export default function Analytics () {
                   <h1 className='title-font font-medium text-primary text-3xl'>
                     HERE IS YOUR ANALYSIS
                   </h1>
-                  <h2 className='title-font mt-3 font-bold text-2xl'>
+                  <h2 className='title-font text-3xl ml-2 mt-3 font-semibold text-[#545354]'>
                     {details.vendor.name}
                   </h2>
                 </div>
@@ -97,7 +97,7 @@ export default function Analytics () {
                   <div className='container px-5 py-14 mx-8'>
                     <div className='flex flex-wrap justify-around -m-4 text-center'>
                       <div className='p-4'>
-                        <h1 className='title-font font-bold text-xl'>
+                        <h1 className='title-font font-bold text-xl text-[#535253]'>
                           Total Products
                         </h1>
                         <h2 className='title-font font-bold text-3xl text-primary'>
@@ -107,7 +107,7 @@ export default function Analytics () {
                         </h2>
                       </div>
                       <div className='p-4'>
-                        <h1 className='title-font font-bold text-xl'>
+                        <h1 className='title-font font-bold text-xl text-[#535253]'>
                           Total Orders
                         </h1>
                         <h2 className='title-font font-bold text-3xl text-primary'>
@@ -117,7 +117,7 @@ export default function Analytics () {
                         </h2>
                       </div>
                       <div className='p-4'>
-                        <h1 className='title-font font-bold text-xl'>
+                        <h1 className='title-font font-bold text-xl text-[#535253]'>
                           Total Profit Earned
                         </h1>
                         <h2 className='title-font font-bold  text-3xl text-primary'>

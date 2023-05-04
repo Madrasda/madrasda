@@ -154,14 +154,14 @@ export default function TemplateList () {
         </div>
         </div>
         <div className="flex justify-center mt-32 mb-10">
-            <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-l" onClick={
+            <button className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6" onClick={
                 () => {
                     setPage(pageNo===0 ? 0 : pageNo-1)
                 }
             }>
                 Prev
             </button>
-            <button className="bg-[#a51535] hover:bg-[#560b21] text-white font-small py-2 px-4 rounded-r" onClick={
+            <button className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-8" onClick={
                 () => {
                     setPage(pageNo===pageSize-1 ? pageNo : pageNo+1);
                 }

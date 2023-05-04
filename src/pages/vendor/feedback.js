@@ -77,17 +77,17 @@ export default function Feedback() {
 			router.push("/vendor");
 		else setTokenExists(true);
 	}, []);
-	if (loading && isReady)
-		return (
-			<div className='z-50 h-screen w-screen overflow-hidden'>
-				<Image
-					src='/loader.gif'
-					width={1920}
-					height={1080}
-					className='object-cover object-center w-full h-full'
-				/>
-			</div>
-		);
+	// if (loading && isReady)
+	// 	return (
+	// 		<div className='z-50 h-screen w-screen overflow-hidden'>
+	// 			<Image
+	// 				src='/loader.gif'
+	// 				width={1920}
+	// 				height={1080}
+	// 				className='object-cover object-center w-full h-full'
+	// 			/>
+	// 		</div>
+	// 	);
 	return (
 		<>
 			<Snackbar
@@ -111,15 +111,15 @@ export default function Feedback() {
 			{tokenExists && <VendorLayout>
 				<main className='md:ml-32 overflow-hidden font-algeria'>
 					<div className='mt-20 px-5 md:my-10 mx-auto'>
-						<div className='md:ml-20 md:mt-10'>
+						<div className='md:ml-24 md:mt-10'>
 							<h1 className='body-font text-primary text-3xl'>
-								QUERIES AND FEEDBACK
+								QUERIES
 							</h1>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 bg-black border-1'></hr>
+						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
 						<div className='md:ml-24 lg:ml-32'>
-							<h1 className='title-font font-medium text-2xl pb-8'>
+							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>
 								1.Post your Queries:
 							</h1>
 							<form className={'mr-12'}>
@@ -144,13 +144,14 @@ export default function Feedback() {
 							</form>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 bg-black border-1'></hr>
+						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
 
 						<div className='md:ml-24 lg:ml-32'>
-							<h1 className='title-font font-medium text-2xl pb-8'>2.FAQ:</h1>
+							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>2.FAQ:</h1>
 							<Accordion
 								title="What's included in the quoted daily rate?"
 								content='this is content 1'
+								border='border-rounded'
 							/>
 							<Accordion
 								title="What's included in the quoted daily rate?"
@@ -170,18 +171,18 @@ export default function Feedback() {
 							/>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 bg-black border-1'></hr>
+						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
 
-						<div className='md:ml-24 lg:ml-32'>
-							<h1 className='title-font font-medium text-2xl pb-8'>
+						<div className='md:ml-24 lg:ml-32 text-[#2c2c2d]'>
+							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>
 								Admin Contact Details
 							</h1>
-							<h2>Whatsapp 9884944786</h2>
-							<h2>Email</h2>
-							<h2>Phone Number</h2>
+							<h2>Whatsapp: 9884944786</h2>
+							<h2>Email: </h2>
+							<h2>Phone Number: </h2>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 bg-black border-1'></hr>
+						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
 					</div>
 				</main>
 			</VendorLayout>}
