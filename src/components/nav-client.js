@@ -355,16 +355,20 @@ export default function NavisCustomer() {
             <div className='flex space-x-8 items-center'>
               {isCustomer && <CartModal />}
               {!hamMenu && (
-                <MenuIcon
-                  className='text-white text-4xl'
-                  onClick={() => setHamMenu(!hamMenu)}
-                />
+                <IconButton color="primary">
+                  <MenuIcon
+                    className='text-white text-4xl'
+                    onClick={() => setHamMenu(!hamMenu)}
+                  />
+                </IconButton>
               )}
               {hamMenu && (
-                <Close
-                  className='text-white text-4xl'
-                  onClick={() => setHamMenu(!hamMenu)}
-                />
+                <IconButton>
+                  <Close
+                    className='text-white text-4xl'
+                    onClick={() => setHamMenu(!hamMenu)}
+                  />
+                </IconButton>
               )}
             </div>
           </div>
@@ -438,7 +442,7 @@ export default function NavisCustomer() {
                     <LoginOutlined className='text-white' />
                   </Link>
                 )}
-                {
+                { isCustomer &&
                   <Accordion
                     TransitionProps={{ unmountOnExit: true }}
                     className='bg-bg text-white'>
@@ -450,7 +454,9 @@ export default function NavisCustomer() {
                     </AccordionSummary>
                     <AccordionDetails className='flex flex-col space-y-4'>
                       <Link href='/clientprofile'>
-                        <h1 className='font-quest my-auto'>View Order History</h1>
+                        <h1 className='font-quest my-auto'>
+                          View Order History
+                        </h1>
                       </Link>
                       <h1
                         onClick={() => logout()}
