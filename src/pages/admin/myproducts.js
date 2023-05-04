@@ -127,10 +127,10 @@ export default function MyProducts() {
             {tokenExists &&
                 <AdminLayout>
                     <section className="body-font overflow-hidden font-algeria
-                            md:ml-32">
+                            md:ml-32"> 
                         <div className="mt-20 px-5 md:my-10 mx-auto">
                             <h1 className="text-3xl text-primary
-                           md:ml-20">MOCKUPS </h1>
+                           md:ml-20 mx-a">MOCKUPS </h1>
 
                             <div className="flex flex-wrap justify-start md:ml-20">
                                 <div

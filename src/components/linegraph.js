@@ -49,8 +49,8 @@ export default function LineGraph(props) {
   };
 
   return (
-    <div className="w-[800px] h-[800px]" >
-      <Line data={data} options={options}>Hello</Line>
+    <div className="w-[380px] md:w-[800px] h-[800px] my-12 md:my-0" >
+      <Line data={data} options={options} />
     </div>
   );
 }
