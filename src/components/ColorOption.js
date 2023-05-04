@@ -19,10 +19,10 @@ const ColorOption = ({
       className={`flex flex-col justify-center items-center px-2 }]`}>
       <button
         style={{ backgroundColor: hex }}
-        className={`border-[3px] ${
+        className={`border-[2px] ${
           selected ? `border-primary` : `border-gray`
         } rounded-full w-8 h-8 focus:outline-none`}></button>
-      <p className='text-sm'>{color}</p>
+      <p className='text-xs'>{color}</p>
     </div>
   );
 };

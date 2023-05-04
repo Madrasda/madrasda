@@ -6,7 +6,7 @@ import {Button} from "@mui/material";
 import { set_cptable } from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
-import XLSX from 'xlsx';
+import XLSX from "xlsx";
 
 export default function ProductTable({products, setProducts}) {
 	const [message, setMessage] = useState("");
@@ -69,7 +69,7 @@ export default function ProductTable({products, setProducts}) {
 			<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
 				<div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
 					<div className='text-black'>
-						<table className='min-w-full text-center text-sm font-medium' id="tabledfunda">
+						<table className='min-w-full text-center text-sm font-medium' id="tablefunda">
 							<thead className='border-b text-m font-bold dark:border-neutral-500'>
 							<tr>
 								<th scope='col' className=' px-6 py-4'>
@@ -139,16 +139,17 @@ export default function ProductTable({products, setProducts}) {
 						</table>
 					</div>
 				</div>
-        <div  className="flex justify-end mr-8">
-                    <Button onClick={() => {
-                        const table = document.getElementById("tabledfunda");
-                        const wb = XLSX.utils.table_to_book(table);
-                        XLSX.writeFile(wb, "products.xlsx");
-                        }}> 
-                        <b>Export as Excel</b>
-                    </Button>
-        </div>
-			</div>
+				<div className='flex justify-end mr-8'>
+				<Button
+					onClick={() => {
+						const table = document.getElementById("tablefunda");
+						const wb = XLSX.utils.table_to_book(table);
+						XLSX.writeFile(wb, "products.xlsx");
+					}}>
+					<b>Export as Excel</b>
+				</Button>
+				</div>
+		</div>
 		</div>
 	</>);
 }

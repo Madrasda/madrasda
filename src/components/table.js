@@ -5,7 +5,8 @@ import {Button} from "@mui/material";
 import { set_cptable } from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
-import XLSX from 'xlsx';
+import XLSX from "xlsx";
+
 export default function Table({products}) {
     
   return (
@@ -43,15 +44,16 @@ export default function Table({products}) {
                     </table>
                 </div>
                 </div>
-                <div  className="flex justify-end mr-8">
-                    <Button onClick={() => {
-                        const table = document.getElementById("tabledfunda");
-                        const wb = XLSX.utils.table_to_book(table);
-                        XLSX.writeFile(wb, "productsummary.xlsx");
-                        }}> 
-                        <b>Export as Excel</b>
-                    </Button>
-                    </div>
+                <div className='flex justify-end mr-8'>
+				<Button
+					onClick={() => {
+						const table = document.getElementById("tabledfunda");
+						const wb = XLSX.utils.table_to_book(table);
+						XLSX.writeFile(wb, "productsummary.xlsx");
+					}}>
+					<b>Export as Excel</b>
+				</Button>
+				</div>
             </div>
             </div>
   )
