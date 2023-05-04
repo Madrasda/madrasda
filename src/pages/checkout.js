@@ -91,7 +91,6 @@ export default function Checkout() {
         postalCode: pincode,
         country: country,
         email: email.current.value,
-        phone: phone,
       },
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
@@ -137,8 +136,12 @@ export default function Checkout() {
         )
         .then((response) => {
           setCountry(response.data.results[0].components.country);
-          setState(response.data.results[0].components.state.split(" ")[0]);
-          setCity(response.data.results[0].components.state_district);
+          setState(response.data.results[0].components.state);
+          setCity(
+            response.data.results[0].components.state_district
+              ? response.data.results[0].components.state_district.split(" ")[0]
+              : response.data.results[0].components.town
+          );
         });
     } else {
       setState("");

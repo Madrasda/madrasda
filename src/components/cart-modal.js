@@ -100,7 +100,7 @@ export default function CartModal() {
         {ctx.cart.cartItems !== undefined &&
           ctx.cart.cartItems.length !== 0 && (
             <>
-              <Modal.Body>
+              <Modal.Body className='md:w-full'>
                 <div className='p-5 rounded-lg font-quest'>
                   <div className='w-full px-3 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8'>
                     <div className='bg-white md:bg-gray flex flex-col md:border-none rounded md:w-8/12'>
