@@ -20,9 +20,8 @@ export default function LoginForm() {
     const [designs, setDesigns] = useState(null);
     const [loading, setLoading] = useState(false);
     const [spinner, setSpinnerState] = useState(false); //spinner
-    const phoneRef = useRef(); 
-    const otpRef = useRef(); 
-    const ctx = useContext(UserContext); 
+    const phoneRef = useRef();
+    const ctx = useContext(UserContext);
     const [showOtp, setShowOtp] = useState(false);
     const [phone, setPhone] = useState("");
     const [message, setMessage] = useState("");
@@ -30,92 +29,93 @@ export default function LoginForm() {
     const [open, setOpen] = useState(false);
 
     const handleClose = (event, reason) => {
-        console.log(reason);
-        if (reason === 'clickaway') {
-            return;
-        }
+      console.log(reason);
+      if (reason === "clickaway") {
+        return;
+      }
 
-        setOpen(false);
+      setOpen(false);
     };
     const submitPhoneHandler = () => {
-        const phone = phoneRef.current.value;
-        if (/^[0-9]{10}$/.test(phone)) {
-            axios
-                .post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" + phone)
-                .then((response) => {
-                    setShowOtp(true);
-                    setPhone(phone);
-                }).then(() => setSpinnerState(false))
-                .catch((err) => {
-                    setOpen(true) //snackbar
-                    setMessage(err.data); //snackbar
-                    setSeverity("error"); //snackbar
-                    console.log(err)
-                });
+      const phone = phoneRef.current.value;
+      if (/^[0-9]{10}$/.test(phone)) {
+        axios
+          .post(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" +
+              phone
+          )
+          .then((response) => {
+            setShowOtp(true);
+            setPhone(phone);
+          })
+          .then(() => setSpinnerState(false))
+          .catch((err) => {
+            setOpen(true); //snackbar
+            setMessage(err.data); //snackbar
+            setSeverity("error"); //snackbar
+            console.log(err);
+          });
 
-            setSpinnerState(true)
-        } else {
-            setOpen(true)
-            setMessage("Invalid Phone Number");
-            setSeverity("error");
-        }
+        setSpinnerState(true);
+      } else {
+        setOpen(true);
+        setMessage("Invalid Phone Number");
+        setSeverity("error");
+      }
     };
     const onSubmitOtpHandler = (event) => {
-        const otp = otpRef.current.value;
-        if (otp.length === 6) {
-            setSpinnerState(true)
-            axios
-                .post(
-                    "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
-                    "phone=" +
-                    phone +
-                    "&otp=" +
-                    otp
-                )
-                .then((response) => {
-                    if (response.status === 200) {
-                        localStorage.setItem("token", response.data.token);
-                        ctx.setIsLoggedIn(false);
-                    }
-                }).then(() => {
-                    console.log(ctx)
-                router.push("/");
-
-            })
-                .catch((err) => {
-                        setOpen(true)
-                        setMessage("Invalid OTP");
-                        setSeverity("error");
-                        setSpinnerState(false);
-                }
-                );
-        } else {
-            setOpen(true)
+      const otp = event;
+      if (otp.length === 6) {
+        setSpinnerState(true);
+        axios
+          .post(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
+              "phone=" +
+              phone +
+              "&otp=" +
+              otp
+          )
+          .then((response) => {
+            if (response.status === 200) {
+              localStorage.setItem("token", response.data.token);
+              ctx.setIsLoggedIn(false);
+            }
+          })
+          .then(() => {
+            console.log(ctx);
+            router.push("/");
+          })
+          .catch((err) => {
+            setOpen(true);
             setMessage("Invalid OTP");
             setSeverity("error");
-        }
+            setSpinnerState(false);
+          });
+      } else {
+        setOpen(true);
+        setMessage("Invalid OTP");
+        setSeverity("error");
+      }
     };
     useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 1000);
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }, []);
 
-
-
     if (loading && isReady)
-        return (
-            <div className='z-50 h-screen w-screen overflow-hidden'>
-                <Image
-                    src='/loader.gif'
-                    alt ='Loading...'
-                    width={1920}
-                    height={1080}
-                    className='object-cover object-center w-full h-full'
-                />
-            </div>
-        );
+      return (
+        <div className='z-50 h-screen w-screen overflow-hidden'>
+          <Image
+            src='/loader.gif'
+            alt='Loading...'
+            width={1920}
+            height={1080}
+            className='object-cover object-center w-full h-full'
+          />
+        </div>
+      );
 
     return (
       <>
@@ -148,9 +148,7 @@ export default function LoginForm() {
               </div>
             </div>
 
-            {showOtp && (
-              <Otp otpRef={otpRef} onSubmitOtpHandler={onSubmitOtpHandler} />
-            )}
+            {showOtp && <Otp onSubmitOtpHandler={onSubmitOtpHandler} />}
             {!showOtp && (
               <Login
                 phoneRef={phoneRef}
