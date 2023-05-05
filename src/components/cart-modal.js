@@ -80,7 +80,7 @@ export default function CartModal() {
         </Modal.Header>
         {(ctx.cart.cartItems === undefined ||
           ctx.cart.cartItems.length === 0) && (
-          <Modal.Body>
+          <Modal.Body className='w-full'>
             <div className='flex flex-col justify-center text-center relative z-10 overflow-y-scroll'>
               <h1 className={"text-center font-quest text-3xl pb-10"}>
                 Your <span className='text-primary'>cart</span> is empty

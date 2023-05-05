@@ -74,10 +74,10 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
           <ClientLayout>
             <section className='body-font font-quest'>
               <div className='py-24 mx-auto font-bold'>
-                <h1 className='font-quest text-3xl text-shadowGrey md:text-5xl md:py-10 tracking-wide mx-10'>
+                <h1 className='font-quest text-3xl text-primary w-fit md:text-5xl my-9 tracking-wider mx-auto'>
                   {title}
                 </h1>
-                <div className='w-auto md:w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3'>
+                <div className='w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center'>
                   {productsPage.content.map((product) => (
                     <ProductTile
                       key={uuidv4()}

@@ -29,16 +29,8 @@ export default function ClientProfile() {
         },
       }
     );
-    setDetails(response.data);
-    console.log(response.data);
+    setDetails(response.data.reverse());
   };
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  // }, []);
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
@@ -75,7 +67,7 @@ export default function ClientProfile() {
       </Head>
 
       <ClientLayout client={client}>
-        <section className='body-font font-algeria bg-off-white'>
+        <section className='body-font font-quest bg-off-white'>
           <div className='px-5 py-24 mx-auto'>
             <h1 className='text-3xl font-bold text-primary md:ml-10 md:mt-4'>
               My Profile
@@ -93,16 +85,17 @@ export default function ClientProfile() {
             </div>
 
             {details && (
-              <h1 className='font-algeria font-bold text-xl mt-10 ml-16'>
-                Order History
-              </h1>
+              <h1 className='font-bold text-xl mt-10 ml-16'>Order History</h1>
             )}
             {details && details.length === 0 && (
               <h1 className='ml-16 text-gray text-xl'>No history of orders!</h1>
             )}
             {details &&
               details.map((order) => (
-                <Paper key={uuidv4()} className='px-3 md:w-7/12 ml-16 mb-4 mt-8' elevation={7}>
+                <Paper
+                  key={uuidv4()}
+                  className='px-3 md:w-7/12 ml-16 mb-4 mt-8'
+                  elevation={7}>
                   <div className='w-full flex flex-col  md:flex-row items-center rounded-lg'>
                     <div className='w-full p-3 ml-4'>
                       <h6 className='font-semibold text-xl text-black'>
