@@ -69,23 +69,25 @@ export default function ClientProfile() {
       <ClientLayout client={client}>
         <section className='body-font font-quest bg-off-white'>
           <div className='px-5 py-24 mx-auto'>
-            <h1 className='text-3xl font-bold text-primary md:ml-10 md:mt-4'>
+            <h1 className='text-2xl font-bold text-primary md:ml-16 md:text-3xl md:mt-4'>
               My Profile
             </h1>
-            <div className='flex flex-col md:flex-row md:space-x-5 mt-4 ml-16'>
-              <h2 className='md:ml-2 title-font font-medium text-lg'>
+            <div className='flex flex-col md:flex-row md:space-x-5 mt-4 md:ml-16'>
+              <h2 className='md:ml-2 title-font font-medium text-lg md:text-xl'>
                 Phone Number
               </h2>
               <input
                 type='text'
-                className='bg-white text-black text-lg outline-none focus:ring-primary cursor-default'
+                className='bg-tertiary text-black text-lg md:text-xl outline-none focus:ring-primary cursor-default'
                 placeholder={phone}
                 readOnly
               />
             </div>
 
             {details && (
-              <h1 className='font-bold text-xl mt-10 ml-16'>Order History</h1>
+              <h1 className='font-bold text-2xl mt-10 md:ml-16 text-primary'>
+                Order History
+              </h1>
             )}
             {details && details.length === 0 && (
               <h1 className='ml-16 text-gray text-xl'>No history of orders!</h1>
@@ -94,10 +96,9 @@ export default function ClientProfile() {
               details.map((order) => (
                 <Paper
                   key={uuidv4()}
-                  className='px-3 md:w-7/12 ml-16 mb-4 mt-8'
-                  elevation={7}>
-                  <div className='w-full flex flex-col  md:flex-row items-center rounded-lg'>
-                    <div className='w-full p-3 ml-4'>
+                  className='px-3 w-full h-fit md:w-10/12 md:ml-16 mb-4 mt-8 relative'>
+                  <div className='w-full flex flex-col md:flex-row items-center rounded-lg'>
+                    <div className='w-full p-3'>
                       <h6 className='font-semibold text-xl text-black'>
                         Order Date :{" "}
                         <span className='font-light'>
@@ -112,6 +113,14 @@ export default function ClientProfile() {
                           ₹{Number(order.orderTotal).toLocaleString("en-IN")}
                         </span>
                       </h6>
+                      <h6 className='font-semibold text-xl'>
+                        Order Status :{" "}
+                        <span className='font-light text-shadowGrey'>
+                          {order.shipmentActivity && order.shipmentActivity[0]
+                            ? "Order Shipping"
+                            : "Order Confirmed"}
+                        </span>
+                      </h6>
                       <h6 className='font-semibold text-xl text-black'>
                         Order Items :{" "}
                         <span className='font-light'>
@@ -119,8 +128,8 @@ export default function ClientProfile() {
                         </span>
                       </h6>
                     </div>
-                    <div className='w-1/3 '>
-                      <OrderDetailsModal order={order} />
+                    <div className='md:absolute md:bottom-0 md:right-0 p-4'>
+                      <OrderDetailsModal order={order} key={order.id} />
                     </div>
                   </div>
                 </Paper>

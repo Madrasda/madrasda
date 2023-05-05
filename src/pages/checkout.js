@@ -107,11 +107,7 @@ export default function Checkout() {
           },
         }
       )
-      .then(
-        (response) =>
-          // console.log(response.data)
-          (window.location.href = response.data)
-      )
+      .then((response) => (window.location.href = response.data))
       .catch((err) => console.log(err));
 
   };
