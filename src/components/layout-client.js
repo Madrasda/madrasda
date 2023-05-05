@@ -20,7 +20,7 @@ export default function ClientLayout({ children, message, severity, state, setSt
     return (
       <>
         <NavClient />
-        <main className='bg-home bg-opacity-90 scroll-smooth'>{children}</main>
+        <main className='bg-tertiary bg-opacity-90 scroll-smooth'>{children}</main>
         <Footer />
         <Snackbar
           className={"mt-14"}

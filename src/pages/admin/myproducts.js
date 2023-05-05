@@ -142,7 +142,7 @@ export default function MyProducts() {
                                             onSubmit={handleSubmit}
                                         />
                                         <p className="font-semibold font-base">Upload Mockup</p>
-                                        <p className="font-light text-gray font-sm">Add them to your product list for
+                                        <p className="font-light text-bg font-sm">Add them to your product list for
                                             vendors</p>
                                     </div>
                                 </div>

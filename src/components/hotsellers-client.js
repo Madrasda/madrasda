@@ -21,7 +21,7 @@ export default function HotSellers() {
     return (
       <section className='text-black body-font'>
         {products && (
-          <div className='p-10 font-algeria'>
+          <div className='p-10 font-quest'>
             <div className='md:border-shadowGrey md:border-[3px] rounded-xl scale-[90%]'>
               <div className='relative'>
                 <h2

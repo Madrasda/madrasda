@@ -3,28 +3,28 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className='bg-home relative text-gray body-font font-algeria text-sm font-bold'>
-      <div className='w-full h-fit z-30'>
-        <Image
-          src='/actor-label.png'
-          alt='footer-design'
-          className='w-full'
-          width={800}
-          height={800}
-          quality={100}
-        />
+    <footer className='md:mt-20 relative text-gray body-font font-quest text-sm font-bold'>
+      <div className=''> 
+      <div className='flex justify-center flex-wrap items-center w-full  absolute -top-12 lg:-top-32'>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorvadivel.png' width={200} height={100}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actordanush.png' width={200} height={200}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorvijay.png' width={200} height={200}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorajith.png ' width={200} height={200}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorkamal.png' width={200} height={200}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorrajini.png' width={200} height={200}/>
       </div>
 
-      <div className='flex justify-center items-center bg-[#1A191C] mx-auto py-10'>
+      <div className='flex justify-center items-center bg-[#1A191C] mx-auto py-12 md:py-24'>
         <Image src='/logo.png' width={120} height={120} alt='footer logo' />
       </div>
+      </div>
       <div className='flex justify-center pb-16 mx-auto bg-[#1A191C]'>
-        <div className='flex flex-wrap md:text-left text-center order-first'>
-          <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
-            <h2 className='title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3'>
+        <div className='flex flex-col md:flex-row justify-around md:text-left text-center order-first'>
+          <div className='w-fit px-4 mx-auto'>
+            <h2 className='title-font font-medium text-logo cursor-default tracking-widest text-lg mb-3'>
               CUSTOMER SERVICE
             </h2>
-            <nav className='list-none mb-10'>
+            <nav className='list-none mb-10 space-y-2'>
               <li>
                 <Link href='/contact' className='text-white hover:text-gray'>
                   Contact Us
@@ -47,11 +47,11 @@ export default function Footer() {
               </li>
             </nav>
           </div>
-          <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
-            <h2 className='title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3'>
+          <div className='w-fit px-4 mx-auto'>
+            <h2 className='title-font font-medium text-logo cursor-default tracking-widest justify-center text-lg mb-3'>
               COMPANY
             </h2>
-            <nav className='list-none mb-10'>
+            <nav className='list-none mb-10 space-y-2'>
               <li>
                 <Link href='#' className='text-white hover:text-gray'>
                   About Us
@@ -74,13 +74,13 @@ export default function Footer() {
               </li>
             </nav>
           </div>
-          <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
-            <h2 className='title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3'>
+          <div className='w-fit px-4 mx-auto'>
+            <h2 className='title-font font-medium text-logo cursor-default tracking-widest text-lg mb-3'>
               CONNECT WITH US
             </h2>
             <nav
               className='list-none mb-10 flex flex-col items-center justify-center
-                            md:items-start'>
+                            md:items-start space-y-2'>
               <li>
                 <div className='flex items-center justify-start'>
                   <Image
@@ -128,13 +128,13 @@ export default function Footer() {
               </li> */}
             </nav>
           </div>
-          <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
-            <h2 className='title-font font-medium text-primary cursor-default tracking-widest text-sm mb-3'>
+          {/* <div className='lg:w-1/4 md:w-1/2 w-full px-4'>
+            <h2 className='title-font font-medium text-logo cursor-default tracking-widest text-sm mb-3'>
               KEEP UP TO DATE
             </h2>
             <div className='flex justify-center'>
               <div className='w-fit px-2'>
-                {/* <label for="footer-field" className="leading-7 text-sm text-gray">Email</label> */}
+                <label for="footer-field" className="leading-7 text-sm text-gray">Email</label>
                 <input
                   type='text'
                   id='footer-field'
@@ -145,11 +145,11 @@ export default function Footer() {
               </div>
               <button
                 className='flex-shrink-0 flex items-center text text-white bg-primary border-0 py-2 px-2
-               focus:outline-none hover:bg-[#560b21] rounded'>
+               focus:outline-none hover:bg-[#56510b] rounded'>
                 Subscribe
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className='bg-black'>
