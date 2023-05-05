@@ -6,11 +6,11 @@ export default function Footer() {
     <footer className='md:mt-20 relative text-gray body-font font-quest text-sm font-bold'>
       <div className=''> 
       <div className='flex justify-center flex-wrap items-center w-full  absolute -top-12 lg:-top-32'>
-        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorvadivel.png' width={200} height={100}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorkamal.png' width={200} height={200}/>
         <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actordanush.png' width={200} height={200}/>
         <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorvijay.png' width={200} height={200}/>
         <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorajith.png ' width={200} height={200}/>
-        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorkamal.png' width={200} height={200}/>
+        <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorvadivel.png' width={200} height={200}/>
         <Image className='w-[65px] md:w-[100px] lg:w-[170px] xl:w-[200px]' src='/actorrajini.png' width={200} height={200}/>
       </div>
 
