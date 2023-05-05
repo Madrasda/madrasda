@@ -64,21 +64,20 @@ useEffect(() => {
       </Head>
       {!tokenExists && <h1> LOADING... </h1>}
       {tokenExists && details && (
-          <VendorLayout>
+        <VendorLayout>
           <section className='body-font font-algeria overflow-hidden md:ml-56 lg:ml-36'>
-            <div className='mt-20 md:px-5 md:my-10 mx-auto lg:ml-20 md:mt-10'>
+            <div className='mt-20 px-5 md:my-10 mx-auto lg:ml-20 md:mt-10'>
               <h1 className='text-3xl text-primary'>PROFILE</h1>
-              <div
-                className='grid gap-6 mt-10 ml-2 mb-2 
-                            md:grid-row
-                            lg:mr-96'>
-                <Image
-                  className='rounded-3xl'
-                  alt='vendor'
-                  src={details.vendor.imgUrl}
-                  width={100}
-                  height={100}
-                />
+              <div className='grid gap-6 mt-10 ml-2 mb-2 md:grid-row lg:mr-96'>
+                <div className='w-[100px] h-[100px] md:h-[200px] md:w-[200px] overflow-hidden rounded-full'>
+                  <Image
+                    alt='vendor'
+                    className='object-fill object-center w-full h-full'
+                    src={details.vendor.imgUrl}
+                    width={100}
+                    height={100}
+                  />
+                </div>
                 <div>
                   <label
                     for='first_name'
@@ -124,7 +123,9 @@ useEffect(() => {
                   <h1
                     type='text'
                     className='bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5'>
-                    {"+91 " + details.vendor.phone || "+91 xxxxxxxxxx"}
+                    {"+91 " + !details.vendor.phone
+                      ? "+91 xxxxxxxxxx"
+                      : details.vendor.phone}
                   </h1>
                 </div>
               </div>

@@ -332,7 +332,9 @@ export default function NavisCustomer() {
                 sx={{ width: "25rem" }}>
                 <MenuItem css={{ borderRadius: "0" }}>
                   <Link href='/clientprofile'>
-                    <h1 className='font-quest my-auto'>Profile</h1>
+                    <h1 className='font-quest my-auto'>
+                      Profile <span className='font-raj'>&</span> Orders
+                    </h1>
                   </Link>
                 </MenuItem>
                 <MenuItem css={{ borderRadius: "0" }} color='error'>
@@ -355,7 +357,7 @@ export default function NavisCustomer() {
             <div className='flex space-x-8 items-center'>
               {isCustomer && <CartModal />}
               {!hamMenu && (
-                <IconButton color="primary">
+                <IconButton color='primary'>
                   <MenuIcon
                     className='text-white text-4xl'
                     onClick={() => setHamMenu(!hamMenu)}
@@ -442,7 +444,7 @@ export default function NavisCustomer() {
                     <LoginOutlined className='text-white' />
                   </Link>
                 )}
-                { isCustomer &&
+                {isCustomer && (
                   <Accordion
                     TransitionProps={{ unmountOnExit: true }}
                     className='bg-bg text-white'>
@@ -465,7 +467,7 @@ export default function NavisCustomer() {
                       </h1>
                     </AccordionDetails>
                   </Accordion>
-                }
+                )}
               </nav>
             </Grow>
           )}
