@@ -12,6 +12,16 @@ export default function Table({products}) {
   return (
         <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div className='flex justify-end mr-8'>
+                    <Button
+                        onClick={() => {
+                            const table = document.getElementById("tabledfunda");
+                            const wb = XLSX.utils.table_to_book(table);
+                            XLSX.writeFile(wb, "productsummary.xlsx");
+                        }}>
+                        <b>Export as Excel</b>
+                    </Button>
+                </div>
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
                     <table className="min-w-full text-center text-sm font-medium" id="tabledfunda">
@@ -44,16 +54,6 @@ export default function Table({products}) {
                     </table>
                 </div>
                 </div>
-                <div className='flex justify-end mr-8'>
-				<Button
-					onClick={() => {
-						const table = document.getElementById("tabledfunda");
-						const wb = XLSX.utils.table_to_book(table);
-						XLSX.writeFile(wb, "productsummary.xlsx");
-					}}>
-					<b>Export as Excel</b>
-				</Button>
-				</div>
             </div>
             </div>
   )

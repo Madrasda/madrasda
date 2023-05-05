@@ -4,7 +4,13 @@ import { useRouter } from "next/router"
 import {useContext} from "react";
 import {UserContext} from "../../context/context";
 import { Logout } from "@mui/icons-material";
+import { Checkroom } from "@mui/icons-material";
 import { Grow } from "@mui/material";
+import {DashboardCustomize} from '@mui/icons-material';
+import {PermIdentity} from '@mui/icons-material';
+import {Analytics} from '@mui/icons-material';
+import {ViewInAr} from '@mui/icons-material';
+import {QuestionAnswer} from '@mui/icons-material';
 
 export default function NavVendor() {
   const router = useRouter();
@@ -30,19 +36,14 @@ export default function NavVendor() {
           <Link
             href='/vendor/vendorprofile'
             className='flex flex-col items-center py-5 hover:bg-primary text-white w-full'>
-            <Image
-              src='/user-icon.png'
-              width={30}
-              height={30}
-              className='py-2'
-            />
+            <PermIdentity className='text-5xl' />
             <p className='text-sm'>Go to Profile</p>
           </Link>
 
           <Link href='/vendor' onClick={logout}>
-            <div className='bg-none w-52 px-10 py-4 font-bold hover:bg-primary text-white'>
+            <div className='bg-none w-52 px-9 py-4 font-bold hover:bg-primary text-white'>
               <div className='flex justify-start items-center'>
-                <Logout className='text-4xl' />
+                <Logout className='text-2xl' />
                 <h3 className='ml-2'>Logout</h3>
               </div>
             </div>
@@ -59,7 +60,7 @@ export default function NavVendor() {
                       : "bg-none w-52 px-8 hover:bg-primary text-white"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <Image src='/dashboard-icon.png' width={30} height={30} />
+                    <DashboardCustomize className="text-2xl" />
                     <h3 className='ml-2'>Dashboard</h3>
                   </div>
                 </div>
@@ -75,11 +76,7 @@ export default function NavVendor() {
                       : "bg-none w-52 px-8 hover:bg-primary text-white"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <Image
-                      src='/create-template-icon.png'
-                      width={30}
-                      height={30}
-                    />
+                    <Checkroom className='text-2xl' />
                     <h3 className='ml-2'>My Templates</h3>
                   </div>
                 </div>
@@ -93,11 +90,7 @@ export default function NavVendor() {
                       : "bg-none w-52 px-8 hover:bg-primary text-white"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <Image
-                      src='/view-products-icon.png'
-                      width={30}
-                      height={30}
-                    />
+                    <ViewInAr className='text-2xl' />
                     <h3 className='ml-2'>View Products</h3>
                   </div>
                 </div>
@@ -111,7 +104,7 @@ export default function NavVendor() {
                       : "bg-none w-52 px-8 hover:bg-primary text-white"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <Image src='/analytics-icon.png' width={30} height={30} />
+                    <Analytics className='text-2xl' />
                     <h3 className='ml-2'>Analytics</h3>
                   </div>
                 </div>
@@ -127,7 +120,7 @@ export default function NavVendor() {
                       : "bg-none w-52 px-8 hover:bg-primary text-white"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <Image src='/feedback-icon.png' width={30} height={30} />
+                    <QuestionAnswer className='text-2xl' />
                     <h3 className='ml-2'>Queries</h3>
                   </div>
                 </div>

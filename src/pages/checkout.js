@@ -347,7 +347,7 @@ export default function Checkout() {
                       <div className='flex justify-end'>
                         <Button
                           type='submit'
-                          className={`text-white bg-primary hover:bg-accent text-white font-bold py-2 px-4 mr-2 mb-2`}>
+                          className={`text-white bg-primary hover:bg-accent font-bold py-2 px-4 mr-2 mb-2`}>
                           Proceed to Payment
                         </Button>
                       </div>
