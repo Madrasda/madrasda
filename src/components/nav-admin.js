@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import {UserContext} from "../../context/context";
 import {useContext} from "react";
 import customer from "../../public/customerdetails-icon.png";
+import { Dvr, FormatColorFill, Groups3, Logout, MiscellaneousServices, Payments, QuestionAnswer, Whatshot } from "@mui/icons-material";
 
 export default function NavAdmin() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function NavAdmin() {
   return (
       <>
         <header
-            className='bg-bg text-white font-raj py-8 fixed z-20 h-screen overflow-y-auto no-scrollbar hidden md:block'>
+            className='bg-bg text-white font-quest py-8 fixed z-20 h-screen overflow-y-auto no-scrollbar hidden md:block'>
           <div className='flex flex-col items-center w-full h-full'>
             <div>
               <Image src='/logo.png' width={90} height={90} priority alt='logo'/>
@@ -34,7 +35,7 @@ export default function NavAdmin() {
                 <Link className={"hover:bg-primary"} href="/admin" onClick={logOut}>
                   <div className="bg-none w-52 px-10 py-2 font-bold">
                     <div className="flex justify-start items-center py-4 space-x-3">
-                      <Image src={"/user-icon.png"} width={25} height={25} alt={""}/>
+                      <Logout className='text-2xl' />
                       <h3 className="ml-2">Logout</h3>
                     </div>
                   </div>
@@ -49,13 +50,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src='/vendors-icon.png'
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                          alt='logo'
-                      />
+                    <Groups3 className='text-3xl' />
                       <h3 className='ml-2'>My Vendors</h3>
                     </div>
                   </div>
@@ -69,13 +64,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src='/service-details.png'
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                          alt='logo'
-                      />
+                      <MiscellaneousServices className='text-2xl' />
                       <h3 className='ml-2'>Service Details</h3>
                     </div>
                   </div>
@@ -90,13 +79,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src='/comment-dots.png'
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                          alt='logo'
-                      />
+                      <QuestionAnswer className='text-2xl' />
                       <h3 className='ml-2'>Queries</h3>
                     </div>
                   </div>
@@ -110,13 +93,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src='/product-icon.png'
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                          alt='logo'
-                      />
+                    <FormatColorFill className='text-2xl' />
                       <h3 className='ml-2'>Mockups</h3>
                     </div>
                   </div>
@@ -130,12 +107,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src='/payments-icon.png'
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                      />
+                    <Payments className='text-2xl' />
                       <h3 className='ml-2'>Payments</h3>
                     </div>
                   </div>
@@ -149,12 +121,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src='/hot-seller.png'
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                      />
+                    <Whatshot className='text-2xl' />
                       <h3 className='ml-2'>Hot Sellers</h3>
                     </div>
                   </div>
@@ -168,12 +135,7 @@ export default function NavAdmin() {
                             : "bg-none w-52 px-8"
                       }>
                     <div className='flex justify-start items-center py-4'>
-                      <Image
-                          src={customer}
-                          className='w-auto h-auto'
-                          width={30}
-                          height={30}
-                      />
+                    <Dvr className='text-2xl' />
                       <h3 className='ml-2'>Manage Orders</h3>
                     </div>
                   </div>

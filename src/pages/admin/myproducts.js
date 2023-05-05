@@ -141,7 +141,7 @@ export default function MyProducts() {
                                             sizes={sizes}
                                             onSubmit={handleSubmit}
                                         />
-                                        <p className="font-semibold font-base">Upload Mockup</p>
+                                        <p className="font-semibold font-base pt-2">Upload Mockup</p>
                                         <p className="font-light text-bg font-sm">Add them to your product list for
                                             vendors</p>
                                     </div>

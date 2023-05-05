@@ -103,10 +103,10 @@ export default function VendorList(props) {
                     <Link href='#'>
                       <div className='flex flex-col items-center justify-center cursor-pointer'>
                         <AddVendorModal getFormData={handleSubmit} />
-                        <p className='font-semibold text-base text-center'>
+                        <p className='font-semibold text-base text-center pt-2'>
                           Add new vendor
                         </p>
-                        <p className='font-light text-gray text-sm text-center'>
+                        <p className='font-light text-shadowGrey text-sm text-center'>
                           Add new vendors to your list
                         </p>
                       </div>

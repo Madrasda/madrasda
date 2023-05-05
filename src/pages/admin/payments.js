@@ -78,7 +78,7 @@ export default function CustomerDetails() {
                     <div className='container mt-8 bg-[#D9D9D9] rounded-lg w-full'>
                       <div className=' ml-8 mb-2 mr-20 mt-4 '>
                         <Image src={vendor.imgUrl} width={70} height={70} />
-                        <h1 className='text-2xl text-primary font-raj mb-6'>
+                        <h1 className='text-2xl text-primary font-raj mb-6 pt-2'>
                           {vendor.name}
                         </h1>
                         <div className='flex mb-2'>

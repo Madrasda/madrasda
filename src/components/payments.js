@@ -41,6 +41,16 @@ export default function Payments() {
     <>
       <div className='flex flex-col '>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
+          <div className='flex justify-end mr-10'>
+              <Button
+              onClick={() => {
+                const table = document.getElementById("download");
+                const wb = XLSX.utils.table_to_book(table);
+                XLSX.writeFile(wb, "Recentorders.xlsx");
+              }}>
+              <b>Export as Excel</b>
+              </Button>
+            </div>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='overflow-hidden'>
               <table className='min-w-full text-center text-sm font-medium' id='download'>
@@ -102,16 +112,6 @@ export default function Payments() {
                 </tbody>
               </table>
             </div>
-          </div>
-          <div className='flex justify-end mr-8'>
-            <Button
-					  onClick={() => {
-  						const table = document.getElementById("download");
-						  const wb = XLSX.utils.table_to_book(table);
-						  XLSX.writeFile(wb, "Recentorders.xlsx");
-					  }}>
-					  <b>Export as Excel</b>
-				    </Button>
           </div>
         </div>
       </div>
