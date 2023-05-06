@@ -177,16 +177,40 @@ export default function NavisCustomer() {
                       Shop By Men's Products
                     </h1>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Men's Oversized T-Shirts
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 1, title: "Men's Oversized T-Shirts" },
+                        }}>
+                        Men's Oversized T-Shirts
+                      </Link>
                     </MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Men's Round Neck T-Shirts
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 2, title: "Men's Round Neck T-Shirts" },
+                        }}>
+                        Men's Round Neck T-Shirts
+                      </Link>
                     </MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Men's Vests
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 4, title: "Men's Vests" },
+                        }}>
+                        Men's Vests
+                      </Link>
                     </MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Men's Full Sleeve Shirts
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 5, title: "Men's Full Sleeve Shirts" },
+                        }}>
+                        Men's Full Sleeve Shirts
+                      </Link>
                     </MenuItem>
                   </div>
                 </div>
@@ -196,25 +220,57 @@ export default function NavisCustomer() {
                       Shop By Women's Products
                     </h1>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Women's Boyfriend T-Shirts
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 3, title: "Women's Boyfriend T-Shirts" },
+                        }}>
+                        Women's Boyfriend T-Shirts
+                      </Link>
                     </MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Women's Round Neck T-Shirts
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: {
+                            id: 10,
+                            title: "Women's Round Neck T-Shirts",
+                          },
+                        }}>
+                        Women's Round Neck T-Shirts
+                      </Link>
                     </MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Women's Crop Tops
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 7, title: "Women's Crop Tops" },
+                        }}>
+                        Women's Crop Tops
+                      </Link>
                     </MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Women's Crop Top Hoodies
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 8, title: "Women's Crop Top Hoodies" },
+                        }}>
+                        Women's Crop Top Hoodies
+                      </Link>
                     </MenuItem>
                   </div>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Unisex's Products
                     </h1>
-                    <MenuItem className='px-1 text-sm py-2'>Hoodies</MenuItem>
                     <MenuItem className='px-1 text-sm py-2'>
-                      Sweatshirts
+                      <Link
+                        href={{
+                          pathname: "/product-category",
+                          query: { id: 6, title: "Hoodies" },
+                        }}>
+                        Hoodies
+                      </Link>
                     </MenuItem>
                   </div>
                 </div>
