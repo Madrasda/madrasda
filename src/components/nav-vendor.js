@@ -152,14 +152,9 @@ export default function NavVendor() {
                     href='/vendor'
                     onClick={logout}>
                     <div className='bg-none w-52 px-10 py-2 font-bold'>
-                      <div className='flex justify-start items-center py-4 space-x-3'>
-                        <Image
-                          src={"/user-icon.png"}
-                          width={25}
-                          height={25}
-                          alt={""}
-                        />
-                        <h3 className='ml-2'>Logout</h3>
+                      <div className='flex justify-start items-center pl-4 py-4 space-x-3'>
+                        <Logout className='text-2xl' />
+                        <h3 className='ml-4'>Logout</h3>
                       </div>
                     </div>
                   </Link>
@@ -172,11 +167,7 @@ export default function NavVendor() {
                           : "bg-none w-full px-8"
                       }>
                       <div className='flex justify-center items-center py-4'>
-                        <Image
-                          src='/dashboard-icon.png'
-                          width={30}
-                          height={30}
-                        />
+                        <DashboardCustomize className="text-2xl" />
                         <h3 className='ml-2'>Dashboard</h3>
                       </div>
                     </div>
@@ -192,11 +183,7 @@ export default function NavVendor() {
                           : "bg-none w-full px-8"
                       }>
                       <div className='flex justify-center items-center py-4'>
-                        <Image
-                          src='/create-template-icon.png'
-                          width={30}
-                          height={30}
-                        />
+                        <Checkroom className='text-2xl' />
                         <h3 className='ml-2'>My Templates</h3>
                       </div>
                     </div>
@@ -210,11 +197,7 @@ export default function NavVendor() {
                           : "bg-none w-full px-8"
                       }>
                       <div className='flex justify-center items-center py-4'>
-                        <Image
-                          src='/view-products-icon.png'
-                          width={30}
-                          height={30}
-                        />
+                        <ViewInAr className='text-2xl' />
                         <h3 className='ml-2'>View Products</h3>
                       </div>
                     </div>
@@ -228,11 +211,7 @@ export default function NavVendor() {
                           : "bg-none w-full px-8"
                       }>
                       <div className='flex justify-center items-center py-4'>
-                        <Image
-                          src='/analytics-icon.png'
-                          width={30}
-                          height={30}
-                        />
+                        <Analytics className='text-2xl' />
                         <h3 className='ml-2'>Analytics</h3>
                       </div>
                     </div>
@@ -248,12 +227,8 @@ export default function NavVendor() {
                           : "bg-none w-full px-8"
                       }>
                       <div className='flex justify-center items-center py-4'>
-                        <Image
-                          src='/feedback-icon.png'
-                          width={30}
-                          height={30}
-                        />
-                        <h3 className='ml-2'>Feedback</h3>
+                        <QuestionAnswer className='text-2xl' />
+                        <h3 className='ml-2'>Queries</h3>
                       </div>
                     </div>
                   </Link>

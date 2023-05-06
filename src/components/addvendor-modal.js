@@ -23,9 +23,11 @@ export default function AddVendorModal({getFormData}) {
   return (
     <div>
       <Button auto ghost onPress={handler}
+        className='z-0'
         style={{
           background: "white",
           border: "white",
+          z: 0,
         }}
         >
         <Image src="/plus-icon.png" width={40} height={40}/>

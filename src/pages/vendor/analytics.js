@@ -94,7 +94,7 @@ export default function Analytics () {
                 </div>
                 {/* -------- STATISTICS -------- */}
                 <section className='text-gray-600 body-font'>
-                  <div className='container px-5 py-14 mx-8'>
+                  <div className='container md:px-5 md:py-14 md:mx-8'>
                     <div className='flex flex-wrap justify-around -m-4 text-center'>
                       <div className='p-4'>
                         <h1 className='title-font font-bold text-xl text-[#535253]'>
