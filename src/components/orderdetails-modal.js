@@ -4,6 +4,8 @@ import {uuidv4} from "@firebase/util";
 import {Button} from "@mui/material";
 import DomToImage from "dom-to-image";
 import { saveAs } from "file-saver";
+import jsPDF from "jspdf";
+import { Download } from "@mui/icons-material";
 
 export default function OrderDetailsModal({ order }) {
   const [visible, setVisible] = React.useState(false);
@@ -17,11 +19,24 @@ export default function OrderDetailsModal({ order }) {
 
   const downloadInvoice = () => {
     var invoice = document.getElementById(order.id);
-    DomToImage.toBlob(invoice, {
-      quality: 0.95
-    }).then((blob) => {
-      window.saveAs(blob, `my-invoice-${order.id}.png`);
-    });
+    DomToImage.toPng(invoice)
+      .then((dataUrl) => {
+        var pdf = new jsPDF({
+          orientation: "landscape",
+        });
+        pdf.addImage(
+          dataUrl,
+          "PNG",
+          0,
+          0,
+          pdf.internal.pageSize.width,
+          pdf.internal.pageSize.height
+        );
+        pdf.save(`my-invoice-${order.id}.pdf`);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -46,10 +61,10 @@ export default function OrderDetailsModal({ order }) {
           css={{ fontFamily: "$algeria" }}>
           <Modal.Body className='font-quest'>
             <div
-              className='bg-white shadow-lg rounded-lg overflow-hidden w-full mx-auto'
+              className='bg-white shadow-lg overflow-hidden w-full mx-auto'
               id={`${order.id}`}>
               {/* <!-- Order header --> */}
-              <div className='bg-bg text-white rounded-t-lg py-4 px-3 flex justify-between items-center w-full'>
+              <div className='bg-bg text-white py-4 px-3 flex justify-between items-center w-full'>
                 <h1 className='md:text-lg w-fit font-semibold'>#{order.id}</h1>
                 <span className='md:text-lg w-fit'>
                   ₹{Number(order.orderTotal).toLocaleString("en-IN")}
@@ -96,6 +111,10 @@ export default function OrderDetailsModal({ order }) {
                     <p className='font-medium'>{order.shippingAddress.name}</p>
                   </div>
                   <div>
+                    <span className='text-black'>Phone</span>
+                    <p className='font-medium'>{order.shippingAddress.phone}</p>
+                  </div>
+                  <div>
                     <span className='text-black'>Email</span>
                     <p className='font-medium'>{order.shippingAddress.email}</p>
                   </div>
@@ -122,10 +141,10 @@ export default function OrderDetailsModal({ order }) {
             <Button
               variant='outlined'
               className={
-                "text-primary border-primary hover:border-logo hover:text-logo w-56 mx-auto"
+                "text-primary border-primary hover:border-logo hover:text-logo w-56 mx-auto hidden md:block"
               }
               onClick={downloadInvoice}>
-              Download Invoice
+              <Download /> Billing Invoice
             </Button>
           </Modal.Body>
         </Modal>
