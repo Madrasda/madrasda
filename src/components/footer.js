@@ -53,23 +53,23 @@ export default function Footer() {
             </h2>
             <nav className='list-none mb-10 space-y-2'>
               <li>
-                <Link href='#' className='text-white hover:text-gray'>
+                <Link href='/about' className='text-white hover:text-gray'>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href='#' className='text-white hover:text-gray'>
+                <Link href='/terms&conditions' className='text-white hover:text-gray'>
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href='#' className='text-white hover:text-gray'>
-                  Privacy Policy
+                <Link href='/paymentstructure' className='text-white hover:text-gray'>
+                  Payment Structure
                 </Link>
               </li>
               <li>
-                <Link href='#' className='text-white hover:text-gray'>
-                  Blog
+                <Link href='return&refund' className='text-white hover:text-gray'>
+                  Return and Refund
                 </Link>
               </li>
             </nav>
