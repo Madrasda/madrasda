@@ -25,7 +25,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
       <>
         <div
           className='hidden md:block overflow-hidden pl-2 
-                     lg:pl-10 my-4 h-fit'>
+                     lg:pl-10 my-4 h-fit relative'>
           <span
             className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-full rounded-r-none'>
@@ -49,7 +49,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
 
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
-                <h1 className='font-prompt italic font-black text-3xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:text-5xl transition-all ease-in-out duration-500'>
+                <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:text-4xl transition-all ease-in-out duration-500 absolute top-0 right-0'>
                   {name}
                 </h1>
               </Link>

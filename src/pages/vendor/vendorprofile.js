@@ -72,7 +72,7 @@ useEffect(() => {
                 <div className='w-[100px] h-[100px] md:h-[200px] md:w-[200px] overflow-hidden rounded-full'>
                   <Image
                     alt='vendor'
-                    className='object-fill object-center w-full h-full'
+                    className='object-cover object-center w-full h-full md:w-auto'
                     src={details.vendor.imgUrl}
                     width={100}
                     height={100}

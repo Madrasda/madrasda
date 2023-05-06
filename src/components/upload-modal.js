@@ -104,8 +104,18 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           open={spinner}>
           <CircularProgress color='inherit' />
         </Backdrop>
-        <Button auto ghost color='black' onPress={handler}>
-          <Image src='/upload.svg' width={25} height={25} className='mr-4' />{" "}
+        <Button
+          auto
+          ghost
+          color='black'
+          className='font-quest'
+          onPress={handler}>
+          <Image
+            src='/upload.svg'
+            width={25}
+            height={25}
+            className='mr-4 font-quest'
+          />{" "}
           {upload ? "Upload your design" : "Choose design from gallery"}
         </Button>
         <Modal
@@ -114,8 +124,8 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           aria-labelledby='modal-title'
           open={visible}
           onClose={closeHandler}
-          css={{ fontFamily: "$algeria" }}>
-          <Modal.Header css={{ fontFamily: "$algeria" }}>
+          className='font-quest'>
+          <Modal.Header className='font-quest'>
             <Text id='modal-title' size={18}>
               {upload ? "Upload a new Design" : "Select Design"}
             </Text>

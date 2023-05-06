@@ -25,13 +25,13 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
       <>
         <div
           className='hidden md:block overflow-hidden pr-2
-                          my-4 lg:pr-10'>
+                          my-4 lg:pr-10 relative'>
           <span
             className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-none rounded-r-full'>
             <div className='flex flex-col w-full'>
               <Link href={`/products/${id}`}>
-                <h1 className='font-prompt italic font-black text-3xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:text-5xl transition-all ease-in-out duration-500'>
+                <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:text-4xl transition-all ease-in-out duration-500 absolute top-0 left-0'>
                   {name}
                 </h1>
               </Link>

@@ -196,6 +196,7 @@ export default function CreateTemplate(props) {
         availableColors.push({
           id: sku.color.id,
           hexValue: sku.color.hexValue,
+          color: sku.color.color,
         });
       }
     });
@@ -296,7 +297,7 @@ export default function CreateTemplate(props) {
           state={open}
           setState={setOpen}>
           <section
-            className='body-font font-algeria overflow-hidden
+            className='body-font font-quest overflow-hidden
                         md:ml-56
                         lg:ml-36'>
             <div className='mt-20 px-5 md:my-10 mx-auto'>
@@ -445,7 +446,7 @@ export default function CreateTemplate(props) {
                                         backgroundColor: color.hexValue,
                                       }}></button>
                                     <p className='text-[10px] mx-auto'>
-                                      {color.hexValue}
+                                      {color.color}
                                     </p>
                                   </div>
                                 );
@@ -485,7 +486,7 @@ export default function CreateTemplate(props) {
                     {design && (
                       <div className='flex'>
                         <button
-                          className='flex text-white bg-[#a5153F] border-0 py-3 px-10 focus:outline-none hover:bg-primary rounded-full'
+                          className='flex text-white bg-primary border-0 py-3 px-10 focus:outline-none hover:bg-logo rounded-full'
                           onClick={() => saveImage()}>
                           Save Template
                         </button>

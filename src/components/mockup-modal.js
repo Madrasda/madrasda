@@ -32,7 +32,7 @@ export default function MockupModal({mockups, selectMockup}) {
   return (
     <div>
       <Button
-      className="z-0"
+        className='z-0'
         auto
         onPress={handler}
         style={{
@@ -60,9 +60,9 @@ export default function MockupModal({mockups, selectMockup}) {
             <div className='flex justify-around items-center'>
               <Grid.Container gap={1.5} justify='flex-center'>
                 <Grid xs={200}>
-                  <Grid>
+                  <Grid className='flex justify-between items-center w-full'>
                     <Dropdown css={{ fontFamily: "$algeria" }}>
-                      <Dropdown.Button color='error' shadow>
+                      <Dropdown.Button className='bg-primary text-white'>
                         Mockup
                       </Dropdown.Button>
                       <Dropdown.Menu
@@ -100,17 +100,12 @@ export default function MockupModal({mockups, selectMockup}) {
         </Modal.Body>
 
         <Modal.Footer css={{ fontFamily: "$algeria" }}>
-          <Button auto flat color='error' onPress={closeHandler}>
-            Close
-          </Button>
           {mockupDetails && (
             <Link href={`/vendor/createproduct/${mockupDetails.id}`}>
               <Button
                 auto
                 onPress={closeHandler}
-                style={{
-                  background: "#A5153F",
-                }}>
+                className='bg-primary text-white'>
                 Proceed
               </Button>
             </Link>
