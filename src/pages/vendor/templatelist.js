@@ -142,7 +142,7 @@ export default function TemplateList () {
                     return (
                       <div
                         key={uuidv4()}
-                        className='lg:w-1/4 md:w-3/4 px-4 pt-10 pb-4 w-full min-h-fit cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out relative'>
+                        className='lg:w-1/4 md:w-3/4 px-4 pt-10 pb-4 w-full max-h-max cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out relative'>
                         <span className='absolute top-0 right-0 pt-2'>
                           <CloseConfirm
                             template={true}

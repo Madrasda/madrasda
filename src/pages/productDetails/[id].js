@@ -55,20 +55,29 @@ export default function ProductId() {
         }
     };
     const handleAddToCart = async () => {
-        const color = {...currentColor, sizes: [currentSize]};
+        if (
+          localStorage.getItem("token") === null ||
+          !isTokenValid(localStorage.getItem("token"))
+        ) {
+          router.push("/login");
+        } else {
+          const color = { ...currentColor, sizes: [currentSize] };
 
-        const addToCartItem = {
-            id: product.id, colors: [color], quantity: qtyRef.current.value
-        }
-        const status = await ctx.addToCart(addToCartItem);
+          const addToCartItem = {
+            id: product.id,
+            colors: [color],
+            quantity: qtyRef.current.value,
+          };
+          const status = await ctx.addToCart(addToCartItem);
 
-        setOpen(true);
-        if (status === 200) {
+          setOpen(true);
+          if (status === 200) {
             setMessage("Added To Cart!");
             setSeverity("success");
-        } else {
+          } else {
             setMessage("Error Adding To Cart!");
             setSeverity("error");
+          }
         }
     };
     useEffect(() => {

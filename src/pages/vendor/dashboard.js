@@ -29,6 +29,7 @@ export default function Dashboard(props) {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     });
+    console.log(response.data);
     setDetails(response.data);
   };
 

@@ -121,9 +121,9 @@ export default function Vendorlogin() {
         </Alert>
       </Snackbar>
       <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] min-w-screen min-h-screen w-full h-full'>
-        <div className='w-full h-fit bg-cover bg-center flex justify-around bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 m-10'>
+        <div className='w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 m-10'>
           <div className='flex flex-col'>
-            <div className='flex w-full justify-around transition-all ease-in-out duration-300'>
+            <div className='flex w-full transition-all ease-in-out duration-300'>
               <button
                 className='text-base text-white font-medium mt-2 mb-12 text-center bg-primary w-1/2 h-1/2 rounded-2xl flex justify-center items-center'
                 onClick={showLogin}
@@ -138,7 +138,7 @@ export default function Vendorlogin() {
               </button>
             </div>
 
-            <div className='flex flex-col px-8 w-full' id='login'>
+            <div className='flex flex-col w-full' id='login'>
               <div className='flex flex-wrap justify-center'>
                 <div className='w-24'>
                   <img src='/logo.png' alt='LOGO' />
@@ -146,7 +146,7 @@ export default function Vendorlogin() {
               </div>
               <form onSubmit={vendorlogin} className='py-4 w-full space-y-3'>
                 <div className='text-white'>
-                  <TextField
+                  <Input
                     label='Username'
                     type='email'
                     InputProps={{
@@ -155,7 +155,7 @@ export default function Vendorlogin() {
                     InputLabelProps={{
                       className: "text-primary",
                     }}
-                    className={"w-full bg-shadowGrey rounded-md"}
+                    className={"w-full bg-gray px-3 py-1 rounded text-primary"}
                     color='warning'
                     id='username'
                     placeholder='example@example.com'
@@ -164,7 +164,7 @@ export default function Vendorlogin() {
                   />
                 </div>
                 <div>
-                  <TextField
+                  <Input
                     type='password'
                     InputProps={{
                       className: "text-primary",
@@ -174,7 +174,7 @@ export default function Vendorlogin() {
                     }}
                     variant='outlined'
                     label='Password'
-                    className={"w-full bg-shadowGrey rounded-md"}
+                    className={"w-full bg-gray px-3 py-1 rounded text-primary"}
                     color='warning'
                     id='password'
                     placeholder='**********'

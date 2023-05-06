@@ -8,230 +8,231 @@ import {isTokenValid} from "@/utils/JWTVerifier"
 import {storage} from "../../.././firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {uuidv4} from "@firebase/util";
-import {TextField} from '@mui/material'
+import { InputLabel, Menu, MenuItem, Select, TextField } from "@mui/material";
 
 export default function ViewProd() {
+  const [tokenExists, setTokenExists] = useState(false);
+  const router = useRouter();
+  let isReady = router.isReady;
+  const { id } = router.query;
+  const [loading, setLoading] = useState(false);
 
-    const [tokenExists, setTokenExists] = useState(false);
-    const router = useRouter();
-    let isReady = router.isReady;
-    const {id} = router.query;
-    const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
+  const [basePrice, setBasePrice] = useState(0);
+  const [shipping, setShipping] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [audience, setAudience] = useState("Choose you target audience");
+  const [tax, setTax] = useState(0);
+  const [currenId, setCurId] = useState(null);
+  const [publishStatus, setPublishStatus] = useState(true);
+  const [productImages, setProductImages] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [colors, setColors] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [template, setTemplate] = useState(null);
 
-    const [name, setName] = useState("");
-    const [desc, setDesc] = useState("");
-    const [basePrice, setBasePrice] = useState(0);
-    const [shipping, setShipping] = useState(0);
-    const [discount, setDiscount] = useState(0);
-    const [total, setTotal] = useState(0);
-    const [profit, setProfit] = useState(0);
-    const [audience, setAudience] = useState("");
-    const [tax, setTax] = useState(0);
-    const [currenId, setCurId] = useState(null);
-    const [publishStatus, setPublishStatus] = useState(true);
-    const [productImages, setProductImages] = useState([]);
-    const [sizes, setSizes] = useState([]);
-    const [colors, setColors] = useState([]);
-    const [selectedColors, setSelectedColors] = useState([]);
-    const [template, setTemplate] = useState(null);
+  const uploadProduct = async () => {
+    if (!template && productImages.length === 0) return;
 
-    const uploadProduct = async () => {
-        if (!template && productImages.length === 0) return;
+    var colorId = [];
+    if (selectedColors) {
+      selectedColors.forEach((color) => {
+        colorId.push(color.id);
+      });
+    }
 
-        var colorId = [];
-        if (selectedColors) {
-            selectedColors.forEach((color) => {
-                colorId.push(color.id);
-            });
-        }
-
-        const data = {
-            name: name,
-            audience: audience,
-            description: desc,
-            basePrice: Number(basePrice),
-            shipping: Number(shipping),
-            discount: Number(discount),
-            total: Number(total),
-            profit: Number(profit),
-            tax: Number(tax),
-            publishStatus: publishStatus,
-            vendor: {
-                id: template.vendorId,
-            },
-            mockupId: template.mockup.id,
-            colors: colorId,
-        };
-
-        const uploadPromises = productImages.map(async (image) => {
-            const url = await uploadBlob(image.imgUrl);
-            return {color: image.color, imageUrl: url};
-        });
-        const uploadedImages = await Promise.all(uploadPromises);
-        data.productImages = uploadedImages
-
-        if (template.frontDesignPlacement) {
-            data.frontDesignPlacement = JSON.stringify(template.frontDesignPlacement);
-            data.frontDesignUrl = template.frontDesignImage;
-        } else {
-            data.backDesignPlacement = JSON.stringify(template.backDesignPlacement);
-            data.backDesignUrl = template.backDesignImage;
-        }
-
-        if (data.productImages[0].imgUrl !== null) {
-            const response = await axios.post(
-                "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/createProduct",
-                data,
-                {
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("token"),
-                    },
-                }
-            );
-        }
-        const tempResponse = await axios.delete(
-            'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + id,
-            {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token')
-                }
-            }
-        );
-        router.push('/vendor/templatelist');
+    const data = {
+      name: name,
+      audience: audience,
+      description: desc,
+      basePrice: Number(basePrice),
+      shipping: Number(shipping),
+      discount: Number(discount),
+      total: Number(total),
+      profit: Number(profit),
+      tax: Number(tax),
+      publishStatus: publishStatus,
+      vendor: {
+        id: template.vendorId,
+      },
+      mockupId: template.mockup.id,
+      colors: colorId,
     };
 
+    const uploadPromises = productImages.map(async (image) => {
+      const url = await uploadBlob(image.imgUrl);
+      return { color: image.color, imageUrl: url };
+    });
+    const uploadedImages = await Promise.all(uploadPromises);
+    data.productImages = uploadedImages;
 
-    const uploadBlob = async (blobUrl) => {
-        const response = await fetch(blobUrl);
-        const blob = await response.blob();
-        const imageRef = ref(storage, `products/${new Date().getTime()}`);
-        const metadata = {
-            contentType: 'image/jpeg'
-        };
-        await uploadBytes(imageRef, blob, metadata);
-        const url = await getDownloadURL(imageRef);
-        return url;
+    if (template.frontDesignPlacement) {
+      data.frontDesignPlacement = JSON.stringify(template.frontDesignPlacement);
+      data.frontDesignUrl = template.frontDesignImage;
+    } else {
+      data.backDesignPlacement = JSON.stringify(template.backDesignPlacement);
+      data.backDesignUrl = template.backDesignImage;
     }
 
-    useEffect(() => {
-        setProfit(0);
-        setLoading(true);
-    }, []);
-
-    useEffect(() => {
-        if (isReady)
-            getTemplateDetails();
-    }, [isReady]);
-
-    useEffect(() => {
-        setProfit(total - basePrice - (discount * 0.01 * total));
-
-    }, [basePrice, total, discount])
-
-    useEffect(() => {
-        const jwtToken = localStorage.getItem("token")
-        if (jwtToken === undefined || !isTokenValid(jwtToken))
-            router.push("/vendor");
-        else {
-            setTokenExists(true);
+    if (data.productImages[0].imgUrl !== null) {
+      const response = await axios.post(
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/createProduct",
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
         }
-    }, []);
-
-    const getDataUrlFromFile = (file) => {
-        console.log(file);
-        return URL.createObjectURL(file);
-    };
-
-    useEffect(() => {
-        if (productImages.length > 0) {
-        }
-    }, [productImages]);
-
-    const handleRemove = (image) => {
-        if (image)
-            setProductImages(productImages => {
-                const images = productImages.filter(item => item.imgUrl !== image.imgUrl);
-                console.log(images);
-                return images;
-            });
-    }
-
-    const getTemplateDetails = async () => {
-        const response = await axios.get(
-            `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplate/${id}`, {
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem('token')
-                }
-            }
-        );
-        setLoading(false)
-        setTemplate(response.data);
-        setSizes(getAvailableSizes(response.data.mockup.skuMapping));
-        setColors(getAvailableColors(response.data.mockup.skuMapping));
-        setBasePrice(response.data.mockup.basePrice);
-    }
-
-    const handleColorSelection = (selectedColor) => {
-      const index = selectedColors.findIndex(
-        (color) => color.id === selectedColor.id
       );
-      if (index !== -1) {
-        setSelectedColors(
-          selectedColors.filter((color) => color.id !== selectedColor.id)
-        );
-      } else {
-        setSelectedColors([...selectedColors, selectedColor]);
+    }
+    const tempResponse = await axios.delete(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/" +
+        id,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       }
-    };
+    );
+    router.push("/vendor/templatelist");
+  };
 
-    const getAvailableSizes = (skuMapping) => {
-      var availableSizes = [];
-      skuMapping.forEach((sku) => {
-        if (!availableSizes.includes(sku.size.size))
-          availableSizes.push(sku.size.size);
+  const uploadBlob = async (blobUrl) => {
+    const response = await fetch(blobUrl);
+    const blob = await response.blob();
+    const imageRef = ref(storage, `products/${new Date().getTime()}`);
+    const metadata = {
+      contentType: "image/jpeg",
+    };
+    await uploadBytes(imageRef, blob, metadata);
+    const url = await getDownloadURL(imageRef);
+    return url;
+  };
+
+  useEffect(() => {
+    setProfit(0);
+    setLoading(true);
+  }, []);
+
+  useEffect(() => {
+    if (isReady) getTemplateDetails();
+  }, [isReady]);
+
+  useEffect(() => {
+    setProfit(total - basePrice - discount * 0.01 * total);
+  }, [basePrice, total, discount]);
+
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("token");
+    if (jwtToken === undefined || !isTokenValid(jwtToken))
+      router.push("/vendor");
+    else {
+      setTokenExists(true);
+    }
+  }, []);
+
+  const getDataUrlFromFile = (file) => {
+    console.log(file);
+    return URL.createObjectURL(file);
+  };
+
+  useEffect(() => {
+    if (productImages.length > 0) {
+    }
+  }, [productImages]);
+
+  const handleRemove = (image) => {
+    if (image)
+      setProductImages((productImages) => {
+        const images = productImages.filter(
+          (item) => item.imgUrl !== image.imgUrl
+        );
+        console.log(images);
+        return images;
       });
-      return availableSizes;
-    };
+  };
 
-    const getAvailableColors = (skuMapping) => {
-      var availableColors = [];
-      skuMapping.forEach((sku) => {
-        if (
-          availableColors.findIndex((item) => item.id === sku.color.id) === -1
-        ) {
-          availableColors.push({
-            id: sku.color.id,
-            hexValue: sku.color.hexValue,
-            color: sku.color.color,
-          });
-        }
-      });
-      return availableColors;
-    };
+  const getTemplateDetails = async () => {
+    const response = await axios.get(
+      `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplate/${id}`,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+    setLoading(false);
+    setTemplate(response.data);
+    setSizes(getAvailableSizes(response.data.mockup.skuMapping));
+    setColors(getAvailableColors(response.data.mockup.skuMapping));
+    setBasePrice(response.data.mockup.basePrice);
+  };
 
-    if (loading && isReady && template)
-      return (
-        <div className='z-50 h-screen w-screen overflow-hidden'>
-          <Image
-            src='/loader.gif'
-            width={1920}
-            height={1080}
-            className='object-cover object-center w-full h-full'
-          />
-        </div>
+  const handleColorSelection = (selectedColor) => {
+    const index = selectedColors.findIndex(
+      (color) => color.id === selectedColor.id
+    );
+    if (index !== -1) {
+      setSelectedColors(
+        selectedColors.filter((color) => color.id !== selectedColor.id)
       );
+    } else {
+      setSelectedColors([...selectedColors, selectedColor]);
+    }
+  };
 
+  const getAvailableSizes = (skuMapping) => {
+    var availableSizes = [];
+    skuMapping.forEach((sku) => {
+      if (!availableSizes.includes(sku.size.size))
+        availableSizes.push(sku.size.size);
+    });
+    return availableSizes;
+  };
+
+  const getAvailableColors = (skuMapping) => {
+    var availableColors = [];
+    skuMapping.forEach((sku) => {
+      if (
+        availableColors.findIndex((item) => item.id === sku.color.id) === -1
+      ) {
+        availableColors.push({
+          id: sku.color.id,
+          hexValue: sku.color.hexValue,
+          color: sku.color.color,
+        });
+      }
+    });
+    return availableColors;
+  };
+
+  if (loading && isReady && template)
     return (
-      <>
-        <Head>
-          <title>Create Next App</title>
-          <meta name='description' content='Generated by create next app' />
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <link rel='icon' href='/logo.png' />
-          <title>Madrasda</title>
-        </Head>
+      <div className='z-50 h-screen w-screen overflow-hidden'>
+        <Image
+          src='/loader.gif'
+          width={1920}
+          height={1080}
+          className='object-cover object-center w-full h-full'
+        />
+      </div>
+    );
 
-        {tokenExists && <VendorLayout>
+  return (
+    <>
+      <Head>
+        <title>Create Next App</title>
+        <meta name='description' content='Generated by create next app' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/logo.png' />
+        <title>Madrasda</title>
+      </Head>
+
+      {tokenExists && (
+        <VendorLayout>
           <main
             className='overflow-hidden font-algeria
                     md:ml-36'>
@@ -256,19 +257,23 @@ export default function ViewProd() {
                     onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-                <h1 className='title-font font-medium text-xl pb-3'>
-                  category
-                </h1>
-                <div
-                  className='mb-6 ml-2 mt-1
-                            lg:mr-96'>
-                  <input
-                    type='text'
-                    className='bg-white border border-[#D9D9D9] text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                    placeholder='Enter the target of your product'
-                    onChange={(e) => setAudience(e.target.value)}
-                  />
-                </div>
+                <InputLabel
+                  id='category-dropdown'
+                  className='font-medium text-xl pb-3'>
+                  Audience
+                </InputLabel>
+                <Select
+                  value={audience}
+                  id='category-dropdown'
+                  className='mb-3 ml-2 w-1/2 text-black'
+                  onChange={(e) => setAudience(e.target.value)}>
+                    <MenuItem disabled value=''>
+                      Choose you target audience
+                    </MenuItem>
+                  <MenuItem value={"Men"}>Men</MenuItem>
+                  <MenuItem value={"Women"}>Women</MenuItem>
+                  <MenuItem value={"Kids"}>Kids</MenuItem>
+                </Select>
                 <div className='ml-2'>
                   <h2 className='title-font font-medium text-xl mb-6'>
                     Description
@@ -533,7 +538,8 @@ export default function ViewProd() {
               </div>
             </div>
           </main>
-        </VendorLayout> }
-      </>
-    );
+        </VendorLayout>
+      )}
+    </>
+  );
 }
