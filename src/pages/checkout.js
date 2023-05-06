@@ -8,6 +8,7 @@ import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import { uuidv4 } from "@firebase/util";
 import axios from "axios";
 import {Backdrop, Box, Button, CircularProgress, TextField} from "@mui/material";
+import CartItem from "@/components/CartItem";
 
 export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
@@ -29,18 +30,22 @@ export default function Checkout() {
   const router = useRouter();
   const ctx = useContext(UserContext);
   useEffect(() => {
-    if (!isTokenValid(localStorage.getItem("token")) || getRole(localStorage.getItem("token")) !== 'ROLE_CUSTOMER') {
+    if (
+      !isTokenValid(localStorage.getItem("token")) ||
+      getRole(localStorage.getItem("token")) !== "ROLE_CUSTOMER"
+    ) {
       router.push("/login");
     } else {
       if (ctx.cart.cartItems !== undefined) {
         const sum = ctx.cart.cartItems.reduce(
-            (prev, curr) => (prev += curr.quantity * (curr.product.total * (100 - curr.product.discount) / 100)),
-            0
+          (prev, curr) =>
+            (prev +=
+              curr.quantity *
+              ((curr.product.total * (100 - curr.product.discount)) / 100)),
+          0
         );
         setSubtotal(sum);
-      }
-      else{
-
+      } else {
       }
     }
   }, [ctx.cart]);
@@ -52,19 +57,20 @@ export default function Checkout() {
           setError(false);
           setSpinner(true);
           axios
-              .get(
-                  "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" + text,
-                  {
-                    headers: {
-                      Authorization: "Bearer " + localStorage.getItem("token"),
-                    },
-                  }
-              )
-              .then((response) => {
-                setShippingCharges(response.data);
-                setSpinner(false);
-              })
-              .catch((err) => console.log(err));
+            .get(
+              "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
+                text,
+              {
+                headers: {
+                  Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+              }
+            )
+            .then((response) => {
+              setShippingCharges(response.data);
+              setSpinner(false);
+            })
+            .catch((err) => console.log(err));
         } else {
           setError(true);
         }
@@ -109,7 +115,6 @@ export default function Checkout() {
       )
       .then((response) => (window.location.href = response.data))
       .catch((err) => console.log(err));
-
   };
 
   useEffect(() => {
@@ -127,11 +132,16 @@ export default function Checkout() {
           `https://api.opencagedata.com/geocode/v1/json?key=518b0ac375bb4bb8bb17019ae3e63818&q=${pincode}`
         )
         .then((response) => {
-          country.current = response.data.results[0].components.country;
-          state.current = response.data.results[0].components.state;
-          city.current = response.data.results[0].components.state_district
-            ? response.data.results[0].components.state_district.split(" ")[0]
-            : response.data.results[0].components.town;
+          const array = response.data.results;
+          array.forEach((r) => {
+            if (r.components.country === "India") {
+              country.current = r.components.country;
+              state.current = r.components.state;
+              city.current = r.components.state_district
+                ? r.components.state_district.split(" ")[0]
+                : r.components.town;
+            }
+          });
         });
     } else {
       country.current = "";
@@ -186,7 +196,7 @@ export default function Checkout() {
                   <div className='px-3 md:w-5/12'>
                     {ctx.cart.cartItems &&
                       ctx.cart.cartItems.map((item) => (
-                        <CheckoutItem
+                        <CartItem
                           key={uuidv4()}
                           id={item.id}
                           qty={item.quantity}
@@ -236,12 +246,12 @@ export default function Checkout() {
                       <div className='w-full flex items-center'>
                         <div className='flex-grow'>
                           <span className='text-gray-600'>Total</span>
-                          <p className='text-sm text-gray'>
+                          <p className='text-sm text-black'>
                             Including all taxes
                           </p>
                         </div>
                         <div className='pl-3'>
-                          <span className='font-medium text-gray text-sm'>
+                          <span className='font-medium text-black text-sm'>
                             INR
                           </span>{" "}
                           <span className='font-medium text-2xl'>
