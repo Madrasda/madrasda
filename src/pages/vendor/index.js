@@ -5,10 +5,11 @@ import {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import { useRouter } from 'next/router';
 import {getRole, isTokenValid} from '@/utils/JWTVerifier';
-import { Button, Input, TextField } from "@mui/material";
+import { Button, Input, MenuItem, Select } from "@mui/material";
 import { useRef } from "react";
 import { UserContext } from "../../../context/context";
 import { Snackbar, Alert } from "@mui/material";
+import { Label } from "@mui/icons-material";
 
 export default function Vendorlogin() {
   const router = useRouter();
@@ -18,6 +19,13 @@ export default function Vendorlogin() {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
+  //Signup Details
+  const [name, setName] = useState("");
+  const [email, setemail] = useState("");
+  const [infCat, setInfCat] = useState("Category");
+  const [compName, setCompName] = useState("");
+  const [url, setUrl] = useState("");
+  const [gst, setGst] = useState("");
   let isReady = router.isReady;
 
   const handleClose = (event, reason) => {
@@ -27,6 +35,28 @@ export default function Vendorlogin() {
     }
 
     setOpen(false);
+  };
+
+  const vendorSignup = (e) => {
+    e.preventDefault();
+    axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/signupVendor", {
+      name: name,
+      email: email,
+      influencerCategory: infCat,
+      companyName: compName,
+      companyUrl: url,
+      gstin: gst
+    }).then(() => {
+      setOpen(true);
+      setMessage("Successfully Registered Request");
+      setSeverity("success");
+      setName("");
+      setemail("");
+      setInfCat("");
+      setCompName("");
+      setUrl("");
+      setGst("");
+    });
   };
 
   const vendorlogin = (e) => {
@@ -91,6 +121,7 @@ export default function Vendorlogin() {
       setLoading(false);
     }, 1000);
   }, []);
+
   if (loading && isReady)
     return (
       <div className='z-50 h-screen w-screen overflow-hidden'>
@@ -120,9 +151,9 @@ export default function Vendorlogin() {
           {message}
         </Alert>
       </Snackbar>
-      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] min-w-screen min-h-screen w-full h-full'>
+      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] min-w-screen min-h-screen w-full h-full font-quest'>
         <div className='w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 m-10'>
-          <div className='flex flex-col'>
+          <div className='flex flex-col w-2/3'>
             <div className='flex w-full transition-all ease-in-out duration-300'>
               <button
                 className='text-base text-white font-medium mt-2 mb-12 text-center bg-primary w-1/2 h-1/2 rounded-2xl flex justify-center items-center'
@@ -198,30 +229,88 @@ export default function Vendorlogin() {
               </div>
               <br />
             </div>
-            <div className='hidden flex-col px-10 w-full' id='signup'>
+            <div className='hidden flex-col w-full' id='signup'>
               <div className='flex flex-wrap justify-center'>
                 <div className='w-24'>
                   <img src='/logo.png' alt='LOGO' />
                 </div>
               </div>
-              <div className='flex flex-col space-y-8 justify-center items-center mt-6'>
-                <h1 className='text-white text-center text-lg'>
-                  Send us the following details
-                  <span className='text-gray text-sm'>
-                    <h1 className='list-item text-left'>Your Name</h1>
-                    <h1 className='list-item text-left'>Company Name</h1>
-                    <h1 className='list-item text-left'>
-                      Company URL/Social Media Handle
-                    </h1>
-                    <h1 className='list-item text-left'>GST IN</h1>
-                  </span>
+              <div className='w-full space-y-8 justify-center items-center mt-6'>
+                <h1 className='text-white text-center'>
+                  Want to become a vendor? Send your details to us
                 </h1>
-                <a href='mailto:support@madrasda.com' target='_blank'>
-                  <button
-                    className={`bg-primary cursor-pointer py-2 px-5 text-white rounded focus:outline-none `}>
-                    Mail Us
-                  </button>
-                </a>
+                <form
+                  onSubmit={vendorSignup}
+                  className='text-primary w-full flex flex-col space-y-4'>
+                  <Input
+                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    color='warning'
+                    inputProps={{ className: "text-primary text-sm" }}
+                    type='text'
+                    value={name}
+                    required
+                    placeholder='Your Name*'
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <Input
+                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    color='warning'
+                    inputProps={{ className: "text-primary text-sm" }}
+                    type='text'
+                    value={email}
+                    required
+                    placeholder='Your Email*'
+                    onChange={(e) => setemail(e.target.value)}
+                  />
+                  <Select
+                    id='category-vendor'
+                    className='bg-shadowGrey p-0'
+                    inputProps={{
+                      className: "text-primary text-sm",
+                      "aria-label": "Category",
+                    }}
+                    value={infCat}
+                    onChange={(e) => setInfCat(e.target.value)}>
+                    <MenuItem value='Actor'>Actor</MenuItem>
+                    <MenuItem value='Production House'>
+                      Production House
+                    </MenuItem>
+                    <MenuItem value='Influencer'>Influencer</MenuItem>
+                  </Select>
+                  <Input
+                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    color='warning'
+                    inputProps={{ className: "text-primary text-sm" }}
+                    type='text'
+                    value={compName}
+                    placeholder='Company name'
+                    onChange={(e) => setCompName(e.target.value)}
+                  />
+                  <Input
+                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    color='warning'
+                    inputProps={{ className: "text-primary text-sm" }}
+                    type='text'
+                    required
+                    value={url}
+                    placeholder='Company URL/Social Media Handle*'
+                    onChange={(e) => setUrl(e.target.value)}
+                  />
+                  <Input
+                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    color='warning'
+                    inputProps={{ className: "text-primary text-sm" }}
+                    type='text'
+                    value={gst}
+                    placeholder='GSTIN'
+                    onChange={(e) => setGst(e.target.value)}
+                  />
+                  <Button
+                    className='bg-primary text-white mx-auto w-full rounded'
+                    type='submit'>
+                    Request For Signup
+                  </Button>
+                </form>
               </div>
             </div>
           </div>
