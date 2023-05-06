@@ -11,10 +11,11 @@ const darkTheme = createTheme({
 });
 const Login = (props) => {
     return (
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        props.submitPhoneHandler();
-      }}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.submitPhoneHandler();
+        }}>
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
           <h1 className='text-2xl text-white font-medium mt-2 mb-12 text-center'>
@@ -38,8 +39,7 @@ const Login = (props) => {
             <Button
               variant={"contained"}
               className={"w-full hover:bg-accent bg-primary text-white"}
-              type={"submit"}
-              onClick={props.submitPhoneHandler}>
+              type={"submit"}>
               Login
             </Button>
           </div>
