@@ -116,7 +116,7 @@ export default function NavisCustomer() {
               sx={{ background: "inherit", color: "#FFF" }}
               aria-controls={openCategory ? "category-dropdown" : undefined}
               aria-expanded={openCategory ? "true" : undefined}
-              onMouseEnter={(event) => {
+              onClick={(event) => {
                 setOpenCategory(true);
                 setAnchorEl(event.currentTarget);
               }}
@@ -133,13 +133,12 @@ export default function NavisCustomer() {
               style={{ borderRadius: "0" }}
               MenuListProps={{
                 "aria-labelledby": "category-button",
+              }}
+              onClose={() => {
+                setOpenCategory(false);
+                setAnchorEl(null);
               }}>
-              <div
-                className='p-4 flex space-x-8 font-quest'
-                onMouseLeave={() => {
-                  setOpenCategory(false);
-                  setAnchorEl(null);
-                }}>
+              <div className='p-4 flex space-x-8 font-quest'>
                 <div className='flex flex-col space-y-4'>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
@@ -243,7 +242,7 @@ export default function NavisCustomer() {
               sx={{ background: "inherit", color: "#FFF" }}
               aria-controls={openVendors ? "vendors-dropdown" : undefined}
               aria-expanded={openVendors ? "true" : undefined}
-              onMouseEnter={(event) => {
+              onClick={(event) => {
                 setOpenVendors(true);
                 setAnchorEl(event.currentTarget);
               }}
@@ -265,12 +264,7 @@ export default function NavisCustomer() {
               MenuListProps={{
                 "aria-labelledby": "vendors-button",
               }}>
-              <div
-                className='flex flex-col space-y-3 font-quest'
-                onMouseLeave={() => {
-                  setOpenVendors(false);
-                  setAnchorEl(null);
-                }}>
+              <div className='flex flex-col space-y-3 font-quest'>
                 <h1 className='font-semibold pb-2 text-lg p-3'>
                   Shop By Creators
                 </h1>
