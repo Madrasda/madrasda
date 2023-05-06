@@ -9,6 +9,7 @@ import {storage} from "../../.././firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {uuidv4} from "@firebase/util";
 import { InputLabel, Menu, MenuItem, Select, TextField } from "@mui/material";
+import { Check } from "@mui/icons-material";
 
 export default function ViewProd() {
   const [tokenExists, setTokenExists] = useState(false);
@@ -267,9 +268,9 @@ export default function ViewProd() {
                   id='category-dropdown'
                   className='mb-3 ml-2 w-1/2 text-black'
                   onChange={(e) => setAudience(e.target.value)}>
-                    <MenuItem disabled value=''>
-                      Choose you target audience
-                    </MenuItem>
+                  <MenuItem disabled value=''>
+                    Choose you target audience
+                  </MenuItem>
                   <MenuItem value={"Men"}>Men</MenuItem>
                   <MenuItem value={"Women"}>Women</MenuItem>
                   <MenuItem value={"Kids"}>Kids</MenuItem>
@@ -288,7 +289,7 @@ export default function ViewProd() {
                   />
                 </div>
                 {template && (
-                  <div className='mb-6 ml-2'>
+                  <div className='my-6 ml-2'>
                     <h2 className='title-font font-medium text-xl mb-6'>
                       {template.frontDesignPlacement ? "Front" : "Back"} Design
                     </h2>
@@ -334,13 +335,7 @@ export default function ViewProd() {
                             className='flex flex-col my-4 items-center px-2'
                             key={color.id}>
                             <button
-                              className={`border-2 border-gray rounded-full w-10 h-10 focus:outline-none ${
-                                selectedColors.findIndex(
-                                  (item) => item.id === color.id
-                                ) !== -1
-                                  ? "border-primary border-[3px]"
-                                  : ""
-                              }`}
+                              className={`border-2 border-gray rounded-full relative w-10 h-10 focus:outline-none`}
                               onClick={() => {
                                 handleColorSelection({
                                   id: color.id,
@@ -349,7 +344,13 @@ export default function ViewProd() {
                               }}
                               style={{
                                 backgroundColor: color.hexValue,
-                              }}></button>
+                              }}>
+                              {selectedColors.findIndex(
+                                (item) => item.id === color.id
+                              ) !== -1 && (
+                                <Check className='absolute text-[#00FF00] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+                              )}
+                            </button>
                             <p className='text-[10px] mx-auto'>{color.color}</p>
                           </div>
                         );
