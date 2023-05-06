@@ -70,6 +70,19 @@ export default function NavAdmin() {
                   </div>
                 </div>
               </Link>
+              <Link className={"hover:bg-primary"} href='/admin/cancel'>
+                <div
+                  className={
+                    currentRoute === "/admin/cancel"
+                      ? "bg-primary w-52 px-8"
+                      : "bg-none w-52 px-8"
+                  }>
+                  <div className='flex justify-start items-center py-4'>
+                    <MiscellaneousServices className='text-2xl' />
+                    <h3 className='ml-2'>Cancel Requests</h3>
+                  </div>
+                </div>
+              </Link>
 
               <Link className={"hover:bg-primary"} href='/admin/queries'>
                 <div

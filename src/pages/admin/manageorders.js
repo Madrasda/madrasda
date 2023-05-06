@@ -45,7 +45,7 @@ export default function CustomerDetails() {
       {isAdmin && <AdminLayout>
         <main className='body-font md:ml-32 overflow-hidden font-quest'>
           <div className='px-5 my-10 mx-auto'>
-            <h1 className='text-3xl text-primary md:ml-20 md:mt-10'>
+            <h1 className='text-3xl text-primary pt-7 md:pt-0 md:ml-20 md:mt-10'>
               Recent Orders
             </h1>
             <div className='mt-4 md:ml-20'>

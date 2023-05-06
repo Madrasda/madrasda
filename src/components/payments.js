@@ -29,7 +29,8 @@ export default function Payments() {
         },
       }
     );
-    setOrders(response.data.content);
+    setOrders(response.data.content.reverse());
+
   };
   const viewOrderItems = (order) =>{}
 
@@ -41,8 +42,9 @@ export default function Payments() {
     <>
       <div className='flex flex-col '>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
-          <div className='flex justify-end mr-10'>
+          <div className='hidden justify-end mr-10 md:flex'>
               <Button
+              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
               onClick={() => {
                 const table = document.getElementById("download");
                 const wb = XLSX.utils.table_to_book(table);
