@@ -41,7 +41,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                   <Image
                     className='object-cover w-full h-full animate-spin hover:animate-none'
                     alt={name}
-                    src={imgUrl}
+                    src={imgUrl || "/logo.png"}
                     width={500}
                     height={500}
                   />
@@ -126,7 +126,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                 <Image
                   className='object-cover w-full h-full'
                   alt={name}
-                  src={imgUrl}
+                  src={imgUrl || "/logo.png"}
                   width={200}
                   height={200}
                 />
