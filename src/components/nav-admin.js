@@ -4,7 +4,7 @@ import { useRouter } from "next/router"
 import {UserContext} from "../../context/context";
 import {useContext} from "react";
 import customer from "../../public/customerdetails-icon.png";
-import { Dvr, FormatColorFill, Groups3, Logout, MiscellaneousServices, Payments, PersonAdd, QuestionAnswer, Whatshot } from "@mui/icons-material";
+import { CurrencyExchange, Dvr, FormatColorFill, Groups3, Logout, MiscellaneousServices, Payments, PersonAdd, QuestionAnswer, Whatshot } from "@mui/icons-material";
 
 export default function NavAdmin() {
   const router = useRouter();
@@ -78,7 +78,7 @@ export default function NavAdmin() {
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <MiscellaneousServices className='text-2xl' />
+                    <CurrencyExchange className='text-2xl' />
                     <h3 className='ml-2'>Cancel Requests</h3>
                   </div>
                 </div>
@@ -228,6 +228,21 @@ export default function NavAdmin() {
                     <div className='flex justify-center md:justify-start items-center py-4'>
                       <MiscellaneousServices className='text-2xl' />
                       <h3 className='ml-2'>Service Details</h3>
+                    </div>
+                  </div>
+                </Link>
+                <Link className={""} href='/admin/cancel'>
+                  <div
+                    className={
+                      "hover:bg-primary transition-colors duration-500 w-full " +
+                        currentRoute ===
+                      "/admin/cancel"
+                        ? "bg-primary w-full md:w-52 px-8"
+                        : "bg-none w-full md:w-52 px-8"
+                    }>
+                    <div className='flex justify-center md:justify-start items-center py-4'>
+                      <CurrencyExchange className='text-2xl' />
+                      <h3 className='ml-2'>Cancel Requests</h3>
                     </div>
                   </div>
                 </Link>
