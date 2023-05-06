@@ -6,7 +6,7 @@ function VendorListItem(props) {
       <div>
         <div className='block relative h-[200px] rounded overflow-hidden'>
           <Image
-            src={props.image || "/logo.png"}
+            src={props.image || "/CREATOR.png"}
             alt='ecommerce'
             height={200}
             width={200}

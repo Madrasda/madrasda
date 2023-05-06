@@ -73,7 +73,7 @@ useEffect(() => {
                   <Image
                     alt='vendor'
                     className='object-cover object-center w-full h-full md:w-auto'
-                    src={details.vendor.imgUrl || "/logo.png"}
+                    src={details.vendor.imgUrl || "/CREATOR.png"}
                     width={100}
                     height={100}
                   />

@@ -77,7 +77,7 @@ export default function VendorDetails() {
                     <div className='flex space-x-4 items-center'>
                       <Image
                         className='rounded-3xl'
-                        src={details.vendor.imgUrl || "/logo.png"}
+                        src={details.vendor.imgUrl || "/CREATOR.png"}
                         width={100}
                         height={100}
                       />
