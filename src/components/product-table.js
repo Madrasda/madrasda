@@ -44,7 +44,7 @@ export default function ProductTable({products, setProducts}) {
 		setSpinner(false)
 		setOpen(true);
 		setMessage(inSale ? "Product unpublished" : "Product published successfully");
-		setSeverity("success");
+		setSeverity(!inSale ? "success" : "error");
 	};
 
 	return (<>
