@@ -8,7 +8,8 @@ import { isTokenValid, getRole, getPhone } from "@/utils/JWTVerifier";
 import { UserContext } from "context/context";
 import axios from "axios";
 import {uuidv4} from "@firebase/util";
-import {Paper} from "@mui/material";
+import { Button, Paper } from "@mui/material";
+import { InsertEmoticon } from "@mui/icons-material";
 
 export default function ClientProfile() {
   const router = useRouter();
@@ -127,8 +128,30 @@ export default function ClientProfile() {
                           {order.orderItems.length}
                         </span>
                       </h6>
+                      <div className='flex flex-wrap space-x-2'>
+                        {order.orderItems.map((item) => (
+                          // <Image
+                          //   src={item.product.colors[0].images[0].imgUrl}
+                          //   width={50}
+                          //   height={50}
+                          // />
+                          <InsertEmoticon className='text-primary text-5xl' />
+                        ))}
+                      </div>
                     </div>
-                    <div className='md:absolute md:bottom-0 md:right-0 p-4'>
+                    <div className='md:absolute flex space-x-3 md:bottom-0 md:right-0 p-4'>
+                      <Button
+                        color='error'
+                        variant='outlined'
+                        className={
+                          new Date().getTime() -
+                            new Date(order.orderDate).getTime() >
+                          4 * 60 * 60 * 1000
+                            ? "hidden"
+                            : ""
+                        }>
+                        Cancel Order
+                      </Button>
                       <OrderDetailsModal order={order} key={order.id} />
                     </div>
                   </div>
