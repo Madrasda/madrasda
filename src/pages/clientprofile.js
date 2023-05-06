@@ -10,6 +10,7 @@ import axios from "axios";
 import {uuidv4} from "@firebase/util";
 import { Button, Paper } from "@mui/material";
 import { InsertEmoticon } from "@mui/icons-material";
+import CancelOrderModal from "@/components/cancel-order";
 
 export default function ClientProfile() {
   const router = useRouter();
@@ -140,18 +141,7 @@ export default function ClientProfile() {
                       </div>
                     </div>
                     <div className='md:absolute flex space-x-3 md:bottom-0 md:right-0 p-4'>
-                      <Button
-                        color='error'
-                        variant='outlined'
-                        className={
-                          new Date().getTime() -
-                            new Date(order.orderDate).getTime() >
-                          4 * 60 * 60 * 1000
-                            ? "hidden"
-                            : ""
-                        }>
-                        Cancel Order
-                      </Button>
+                      <CancelOrderModal orderDate={order.orderDate} />
                       <OrderDetailsModal order={order} key={order.id} />
                     </div>
                   </div>
