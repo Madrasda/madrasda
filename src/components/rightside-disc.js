@@ -25,7 +25,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
       <>
         {products.length !== 0 && (
           <div
-            className='hidden md:block overflow-hidden pl-2 
+            className='hidden xl:block overflow-hidden pl-2 
                      lg:pl-10 my-4 h-fit relative'>
             <span
               className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
@@ -58,7 +58,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                 {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
                 <div
                   className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            md:flex'>
+                            xl:flex'>
                   {products &&
                     products.map((prod) => {
                       return (
@@ -99,7 +99,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                       );
                     })}
 
-                  <div className='mr-5 z-10 relative md:scale-150 lg:scale-100'>
+                  <div className='mr-5 z-10 relative xl:scale-150 lg:scale-100'>
                     <Link href={`/products/${id}`}>
                       <Image
                         src='/prod-comp-showmore-right.png'
@@ -115,7 +115,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
         )}
         {products.length !== 0 && (
           <>
-          <div className="md:hidden">
+          <div className="xl:hidden">
           <div className="flex justify-between items-center">
             <Link href={`products/${id}`} className='relative'>
               <Image
@@ -139,8 +139,8 @@ export default function RightsideDisc ({name, id, imgUrl}) {
             </h1>
           </div>
           </div>
-          <span className='flex flex-col md:hidden bg-bg w-full mx-auto'>
-            <div className='grid grid-cols-2'>
+          <span className='flex flex-col xl:hidden bg-bg w-full mx-auto'>
+            <div className='grid grid-cols-3 px-3'>
               {products &&
                 products.map((prod) => {
                   return (

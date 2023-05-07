@@ -22,24 +22,24 @@ export default function HotSellers() {
       <section className='text-black body-font'>
         {products && (
           <div className='p-10 font-quest'>
-            <div className='md:border-shadowGrey md:border-[3px] rounded-xl scale-[90%]'>
+            <div className='xl:border-shadowGrey md:border-[3px] rounded-xl scale-[90%]'>
               <div className='relative'>
                 <h2
                   className='font-raj font-semibold text-xl flex justify-center items-center w-full
                       m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1'>
-                  <span className='bg-bg tracking-widest font-raj text-xl md:text-4xl font-bold px-8 py-2 md:py-4 rounded-full text-logo'>
+                  <span className='bg-bg tracking-widest font-raj text-xl md:text-4xl font-bold px-8 py-2 xl:py-4 rounded-full text-logo'>
                     HOTSELLERS
                   </span>
                 </h2>
               </div>
-              <div className='grid grid-cols-2 md:grid-cols-4 justify-items-center mx-auto py-6'>
+              <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center mx-auto py-6'>
                 {products &&
                   products.map((product) => {
                     return (
                       <Link
                         key={uuidv4()}
                         href={`/productDetails/${product.id}`}
-                        className='col-span-1 w-40 md:w-60 p-2 md:p-4 h-fit cursor-pointer bg-off-white mx-auto my-3 md:my-5 rounded
+                        className='col-span-1 w-40 md:w-56 xl:w-60 p-2 xl:p-4 h-fit cursor-pointer bg-off-white mx-auto my-3 md:my-4 xl:my-5 rounded
                         drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)]
                         duration-200 ease-in-out'>
                         <div className='block relative h-fit rounded overflow-hidden'>
@@ -48,7 +48,7 @@ export default function HotSellers() {
                             alt='ecommerce'
                             width={1080}
                             height={1920}
-                            className='object-contain object-center w-full h-[130px] md:h-[296px] block'
+                            className='object-contain object-center w-full h-[130px] xl:h-[296px] block'
                           />
                         </div>
                         <div className='flex flex-col mt-4 font-quest'>

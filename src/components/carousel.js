@@ -34,7 +34,7 @@ export default function CarouselComponent() {
 
 function Item(props) {
   return (
-    <div className='w-full h-fit md:h-[80vh] mx-auto'>
+    <div className='w-full h-fit xl:h-[80vh] mx-auto'>
       <Image
         src={props.item}
         alt='carousel'

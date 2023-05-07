@@ -25,7 +25,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
       <>
         {products.length !== 0 && (
           <div
-            className='hidden md:block overflow-hidden pr-2
+            className='hidden xl:block overflow-hidden pr-2
                           my-4 lg:pr-10 relative'>
             <span
               className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
@@ -39,7 +39,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
                 <div
                   className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            md:flex'>
+                            xl:flex'>
                   <div className='w-full h-full flex items-center justify-end'>
                     <div className='ml-5 z-10'>
                       <Link href={`/products/${id}`}>
@@ -97,7 +97,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
               <Link href={`/products/${id}`}>
                 <button
                   className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
-                md:hidden'>
+                xl:hidden'>
                   View More
                 </button>
               </Link>
@@ -124,7 +124,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
         )}
         {products.length !== 0 && (
           <>
-          <div className="md:hidden">
+          <div className="xl:hidden">
           <div className="flex justify-between items-center">
           <Link href={`products/${id}`} className='relative'>
           <Image
@@ -147,7 +147,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
               {name}'s Products
             </h1>
             </div>
-          <span className='flex flex-col md:hidden bg-bg w-full mx-auto'>
+          <span className='flex flex-col xl:hidden bg-bg w-full mx-auto'>
             {/* <Link href={`products/${id}`} className='relative'>
               <Image
                 className='mx-auto animate-spin'
@@ -168,7 +168,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
             <h1 className='text-xl text-logo font-quest text-center'>
               {name}'s Products
             </h1>*/}
-            <div className='grid grid-cols-2'>
+            <div className='grid grid-cols-3 px-2'>
               {products &&
                 products.map((prod) => {
                   return (
