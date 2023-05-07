@@ -19,7 +19,7 @@ export default function PayoutConfirm(props) {
   return (
     <>
       <Button
-        className='bg-primary hover:bg-logo text-white font-small py-2 px-4 rounded-lg'
+        className='bg-primary hover:bg-logo text-white font-small py-2 px-4 rounded-lg z-0'
         onPress={handler}>
         Complete Payout
       </Button>

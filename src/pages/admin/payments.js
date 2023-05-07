@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import PayoutConfirm from "@/components/payout-confirm";
 import {uuidv4} from "@firebase/util";
-import {Grow} from "@mui/material";
+import { Grow, Paper } from "@mui/material";
 
 export default function CustomerDetails() {
   const router = useRouter();
@@ -31,22 +31,23 @@ export default function CustomerDetails() {
 
   const completePayout = async (id) => {
     const response = await axios.post(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/completePayout/" + id
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/completePayout/" +
+        id
     );
     getAllPayoutRequest();
   };
 
-
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
+    if (
+      jwtToken === undefined ||
+      !isTokenValid(jwtToken) ||
+      getRole(jwtToken) !== "ROLE_ADMIN"
+    )
       router.push("/admin");
-    else
-      setTokenExists(true);
-      getAllPayoutRequest();
-    
+    else setTokenExists(true);
+    getAllPayoutRequest();
   }, []);
-
 
   return (
     <>
@@ -56,52 +57,68 @@ export default function CustomerDetails() {
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Payments</title>
       </Head>
-      
-      {tokenExists && <AdminLayout>
-        <main
-          className='body-font overflow-hidden font-quest
+
+      {tokenExists && (
+        <AdminLayout>
+          <main
+            className='body-font overflow-hidden font-quest
                                 md:ml-32'>
-          <div className='px-5 my-10 mx-auto'>
-            <h1
-              className='text-3xl text-primary 
-                               md:ml-20 md:mt-10'>
-              PAYMENT REQUESTS
-            </h1>
-            {payouts.length === 0 && (
-              <h1 className='text-xl md:ml-20 md:mt-10'>No payouts </h1>
-            )}
-            {payouts &&
-              payouts.map((vendor, index) => (
-                <Grow key={uuidv4()} in timeout={(index + 1) * 500 % ((700) * 5)}>
-                  <div key={uuidv4()}
-                       className='flex mt-4 md:ml-20 lg:mr-20'>
-                    <div className='container mt-8 bg-[#D9D9D9] rounded-lg w-full'>
-                      <div className=' ml-8 mb-2 mr-20 mt-4 '>
-                        <Image src={vendor.imgUrl} width={70} height={70} />
+            <div className='px-5 py-10 md:py-0 mx-auto'>
+              <h1
+                className='text-3xl text-primary 
+                               md:ml-20 mt-10'>
+                PAYMENT REQUESTS
+              </h1>
+              {payouts.length === 0 && (
+                <h1 className='text-xl md:ml-20 md:mt-10'>No payouts </h1>
+              )}
+              {payouts &&
+                payouts.map((vendor, index) => (
+                  <Grow
+                    key={uuidv4()}
+                    in
+                    timeout={((index + 1) * 500) % (700 * 5)}>
+                    <Paper
+                      key={uuidv4()}
+                      className='flex mt-4 md:ml-20 lg:mr-20 bg-gray'>
+                      <div className=' ml-8 mb-2 mr-20 mt-4 w-full'>
+                        <div className='w-[150px] h-[150px] overflow-hidden rounded-full'>
+                          <Image
+                            src={vendor.imgUrl}
+                            width={70}
+                            height={70}
+                            className='object-cover object-center w-full h-full'
+                          />
+                        </div>
                         <h1 className='text-2xl text-primary font-raj mb-6 pt-2'>
                           {vendor.name}
                         </h1>
-                        <div className='flex mb-2'>
-                          <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
-                            Payout Requested
-                          </h2>
-                          <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
-                            ₹{Number(vendor.payoutAmount).toLocaleString("en-IN")}
-                          </h2>
-                        </div>
-                        <PayoutConfirm
+                        <div className='flex flex-col md:flex-row justify-between w-full mb-2'>
+                          <div>
+                            <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                              Payout Requested
+                            </h2>
+                            <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                              ₹
+                              {Number(vendor.payoutAmount).toLocaleString(
+                                "en-IN"
+                              )}
+                            </h2>
+                          </div>
+                          <PayoutConfirm
                             payout={(e) => {
                               if (e) completePayout(vendor.payoutId);
                             }}
-                        />
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </Grow>
-              ))}
-          </div>
-        </main>
-      </AdminLayout>}
+                    </Paper>
+                  </Grow>
+                ))}
+            </div>
+          </main>
+        </AdminLayout>
+      )}
     </>
   );
 }
