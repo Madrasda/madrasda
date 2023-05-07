@@ -124,6 +124,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
         )}
         {products.length !== 0 && (
           <>
+          <div className="md:hidden">
           <div className="flex justify-between items-center">
           <Link href={`products/${id}`} className='relative'>
           <Image
@@ -209,6 +210,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 })}
             </div>
           </span>
+          </div>
           </>
         )}
       </>

@@ -115,7 +115,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
         )}
         {products.length !== 0 && (
           <>
-          
+          <div className="md:hidden">
           <div className="flex justify-between items-center">
             <Link href={`products/${id}`} className='relative'>
               <Image
@@ -137,6 +137,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
             <h1 className='md:text-xl text-bg text-3xl font-raj text-center pr-8'>
               {name}'s Products
             </h1>
+          </div>
           </div>
           <span className='flex flex-col md:hidden bg-bg w-full mx-auto'>
             <div className='grid grid-cols-2'>
