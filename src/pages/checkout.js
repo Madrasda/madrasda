@@ -318,13 +318,13 @@ export default function Checkout() {
                         <TextField
                           className='block w-full '
                           required={true}
-                          disabled
+                          inputRef={state}
                           value={state.current}
                         />
                         <TextField
                           className='block w-full '
                           required={true}
-                          disabled
+                          inputRef={city}
                           value={city.current}
                         />
                       </div>
@@ -333,7 +333,7 @@ export default function Checkout() {
                           <TextField
                             className='w-full'
                             required={true}
-                            disabled
+                            inputRef={country}
                             value={country.current}
                           />
                         </div>
