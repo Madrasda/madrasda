@@ -22,12 +22,14 @@ const Otp = (props) => {
       </h1>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <div>
+        <div className='w-full'>
           <MuiOtpInput
+            display={"flex"}
+            gap={"5px"}
             length={6}
             value={otp}
             className={
-              "w-full text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+              "w-full text-primary rounded-md outline-none text-xs md:text-sm transition duration-150 ease-in-out mb-4"
             }
             onChange={(value) => setOtp(value)}
           />
