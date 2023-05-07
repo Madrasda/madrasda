@@ -46,7 +46,7 @@ useEffect(() => {
           <main
             className='body-font overflow-hidden font-quest
                                 md:ml-32'>
-            <div className='px-5 my-10 mx-auto'>
+            <div className='px-5 pt-24 md:py-0 md:my-10 mx-auto'>
               <h1
                 className='text-3xl text-primary 
                                md:ml-20 md:mt-10'>
@@ -54,30 +54,30 @@ useEffect(() => {
               </h1>
             </div>
             <Grow in timeout={600 % (600 * 5)}>
-              <div className='flex flex-col -mb-5'>
+              <div className='flex flex-col md:-mb-5'>
                 <Paper
-                  className='container bg-gray ml-28 mt-8 py-4 w-5/6 rounded-md'
+                  className='container bg-gray mx-auto md:ml-28 mt-8 py-4 w-5/6 rounded-md'
                   elevation={3}>
-                  <div className=' ml-8 mr-20 mt-4'>
-                    <h1 className='text-2xl text-primary mb-6 py-2'>
+                  <div className='ml-8 mr-20 mt-4'>
+                    <h1 className='md:text-2xl text-primary mb-6 py-2'>
                       Customer Phone: 7001234567
                     </h1>
-                    <div className='flex w-full justify-between mb-2'>
-                      <h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+                    <div className='flex flex-col md:flex-row w-full justify-between mb-2'>
+                      <h2 className='mb-2 md:text-lg font-medium text-black flex items-center'>
                         Order Status : Confirmed
                       </h2>
-                      <h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+                      <h2 className='mb-2 md:text-lg font-medium text-black flex items-center'>
                         Order Date : 69/69/69
                       </h2>
-                      <h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+                      <h2 className='mb-2 md:text-lg font-medium text-black flex items-center'>
                         Order Items : 2 N
                       </h2>
                     </div>
-                    <div className='flex w-full justify-between mb-2'>
-                      <h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+                    <div className='flex flex-col md:flex-row w-full justify-between mb-2'>
+                      <h2 className='mb-2 md:text-lg font-medium text-black flex items-center'>
                         Reason : Wrong Size
                       </h2>
-                      <h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+                      <h2 className='mb-2 md:text-lg font-medium text-black flex items-center'>
                         Order Total : ₹7xx
                       </h2>
                     </div>

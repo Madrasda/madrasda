@@ -66,14 +66,14 @@ export default function VendorDetails() {
               <main
                 className='body-font overflow-hidden font-quest
                                 md:ml-32'>
-                <div className='px-5 my-10 mx-auto'>
+                <div className='px-5 py-24 md:py-0 md:my-10 mx-auto'>
                   <h1
                     className='text-3xl text-primary 
                                md:ml-20 md:mt-30'>
                     MY VENDORS
                   </h1>
 
-                  <div className='md:ml-24 mt-10 flex justify-between items-center'>
+                  <div className='mt-10 w-full flex flex-col md:flex-row justify-between md:justify-around items-center space-y-2 md:space-y-0'>
                     <div className='flex space-x-4 items-center'>
                       <Image
                         className='rounded-3xl'
@@ -81,20 +81,20 @@ export default function VendorDetails() {
                         width={100}
                         height={100}
                       />
-                      <div className='flex flex-col'>
-                        <h2 className='font-algeria text-xl'>
-                          {details.vendor.name}
-                        </h2>
-                        <h2 className='text-lg'>{details.vendor.email}</h2>
-                      </div>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className='flex justify-between md:flex-col w-full md:w-fit'>
+                      <h2 className='font-algeria text-xl'>
+                        {details.vendor.name}
+                      </h2>
+                      <h2 className='text-lg'>{details.vendor.email}</h2>
+                    </div>
+                    <div className='flex justify-between md:flex-col w-full md:w-fit'>
                       <h1 className='text-right text-lg'>Company URL</h1>
                       <h1 className='text-right font-bold text-xl'>
                         {details.vendor.companyUrl}
                       </h1>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className='flex justify-between md:flex-col w-full md:w-fit'>
                       <h1 className='text-right text-lg'>Company Name</h1>
                       <h1 className='text-right font-bold text-xl'>
                         {details.vendor.companyName}
@@ -155,7 +155,7 @@ export default function VendorDetails() {
                     <h1 className='text-primary text-4xl font-semibold'>
                       WOAH!
                     </h1>
-                    <div className='flex text-lg justify-center items-center md:w-1/3'>
+                    <div className='flex text-sm md:text-lg justify-center items-center md:w-1/3'>
                       <h2 className='p-1'>We have sold</h2>
                       <h3 className='text-primary p-1 font-semibold text-2xl'>
                         {details.salesAnalysis
@@ -168,7 +168,7 @@ export default function VendorDetails() {
 
                   {details.productLadder && (
                     <div
-                      className="bg-[url('/templates-bg.png')] bg-no-repeat bg-cover mt-20
+                      className="bg-[url('/templates-area.png')] bg-no-repeat bg-cover mt-20
                                 md:ml-20">
                       <h1
                         className='pl-5 pt-10 te    xt-xl text-white font-semibold

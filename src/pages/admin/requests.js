@@ -104,8 +104,10 @@ export default function Requests() {
             {message}
           </Alert>
         </Snackbar>
-        <div className='md:ml-56 py-4 text-black'>
-          <h1 className='text-4xl text-primary'>Vendor Signup Requests</h1>
+        <div className='md:ml-56 pt-24 px-3 md:py-4 text-black'>
+          <h1 className='text-xl md:text-4xl text-primary'>
+            Vendor Signup Requests
+          </h1>
           <div className='p-7 space-y-4'>
             {requests.length === 0 && (
               <h1 className='text-lg text-shadowGrey'>No new requests</h1>
