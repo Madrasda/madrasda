@@ -162,7 +162,7 @@ export default function VendorDetails() {
                           ? details.salesAnalysis.productsSoldToday
                           : 0}
                       </h3>
-                      <h2 className='p-1'>products today!</h2>
+                      <h2 className='p-1'>products in the last 24 hours!</h2>
                     </div>
                   </div>
 

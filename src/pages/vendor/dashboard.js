@@ -89,7 +89,7 @@ export default function Dashboard(props) {
         <title>Madrasda | Dashboard</title>
       </Head>
       {tokenExists && details && (
-          <VendorLayout>
+        <VendorLayout>
           <main
             className='body-font font-raj overflow-hidden
                                 md:ml-36'>
@@ -113,8 +113,7 @@ export default function Dashboard(props) {
                           : 0}
                       </h2>
                     </div>
-                    <div
-                      className='p-4'>
+                    <div className='p-4'>
                       <h1 className='title-font font-bold text-xl'>
                         Total Orders
                       </h1>
@@ -124,8 +123,7 @@ export default function Dashboard(props) {
                           : 0}
                       </h2>
                     </div>
-                    <div
-                      className='p-4'>
+                    <div className='p-4'>
                       <h1 className='title-font font-bold text-xl'>
                         Total Profit Earned
                       </h1>
@@ -162,7 +160,7 @@ export default function Dashboard(props) {
               </section>
 
               {/* <div className='hidden md:block'> */}
-                <div className="md:ml-20 flex justify-center items-center">
+              <div className='md:ml-20 flex justify-center items-center'>
                 <LineGraph
                   monthlySales={
                     details.salesAnalysis
@@ -170,7 +168,7 @@ export default function Dashboard(props) {
                       : []
                   }
                 />
-                </div>
+              </div>
               {/* </div> */}
 
               <div
@@ -187,7 +185,7 @@ export default function Dashboard(props) {
                       ? details.salesAnalysis.productsSoldToday
                       : 0}
                   </h3>
-                  <h2 className='p-1'>products today!</h2>
+                  <h2 className='p-1'>products sold in the last 24 hours!</h2>
                 </div>
               </div>
 
