@@ -114,15 +114,17 @@ export default function RightsideDisc ({name, id, imgUrl}) {
           </div>
         )}
         {products.length !== 0 && (
-          <span className='flex flex-col md:hidden bg-bg rounded-t-full rounded-b-3xl w-11/12 mx-auto'>
+          <>
+          
+          <div className="flex justify-between items-center">
             <Link href={`products/${id}`} className='relative'>
               <Image
                 className='mx-auto animate-spin'
                 src='/disc.png'
-                width={200}
-                height={200}
+                width={190}
+                height={190}
               />
-              <div className='w-[100px] h-[100px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+              <div className='w-[160px] h-[160px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
                 <Image
                   className='object-cover w-full h-full'
                   alt={name}
@@ -132,9 +134,11 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                 />
               </div>
             </Link>
-            <h1 className='text-xl text-logo font-quest text-center'>
+            <h1 className='md:text-xl text-bg text-3xl font-raj text-center pr-8'>
               {name}'s Products
             </h1>
+          </div>
+          <span className='flex flex-col md:hidden bg-bg w-full mx-auto'>
             <div className='grid grid-cols-2'>
               {products &&
                 products.map((prod) => {
@@ -177,6 +181,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                 })}
             </div>
           </span>
+          </>
         )}
       </>
     );
