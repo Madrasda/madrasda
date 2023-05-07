@@ -128,7 +128,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
           <div className="flex justify-between items-center">
           <Link href={`products/${id}`} className='relative'>
           <Image
-            className='mx-auto animate-spin'
+            className='mx-auto md:mx-2 animate-spin'
             src='/disc.png'
             width={190}
             height={190}
@@ -168,7 +168,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
             <h1 className='text-xl text-logo font-quest text-center'>
               {name}'s Products
             </h1>*/}
-            <div className='grid grid-cols-3 px-2'>
+            <div className='grid grid-cols-3 md:grid-cols-4 px-2'>
               {products &&
                 products.map((prod) => {
                   return (
@@ -186,10 +186,10 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                           />
                         </div>
                         <div className='mt-4 flex flex-col'>
-                          <h2 className='text-black title-font text-lg font-medium'>
+                          <h2 className='text-black title-font text-[15px] md:text-[20px] xl:text-lg font-medium'>
                             {prod.name}
                           </h2>
-                          <span className='mt-1 text-black text-xl'>
+                          <span className='mt-1 text-black text-[14px] md:text-xl'>
                             ₹
                             {Math.round(
                               prod.total - prod.total * prod.discount * 0.01
