@@ -171,10 +171,10 @@ export default function NavAdmin() {
           </div>
         </div>
       </header>
-      <header className='bg-bg text-white font-algeria px-8 overflow-y-auto no-scrollbar w-full fixed z-20'>
+      <header className='bg-bg text-white font-algeria overflow-y-auto no-scrollbar w-full fixed z-20'>
         <div className='w-full flex md:hidden'>
           <div className='flex flex-col w-full'>
-            <div className='flex'>
+            <div className='flex px-4'>
               <Link href='/'>
                 <Image src='/logo.png' width={70} height={70} />
               </Link>
@@ -187,20 +187,22 @@ export default function NavAdmin() {
                 />
               </div>
             </div>
-            <div className='hidden' id='mobile_menu'>
+            <div className='hidden w-full' id='mobile_menu'>
               <nav className='text-sm flex flex-col items-center w-full font-bold'>
                 <Link
-                  className={"hover:bg-primary"}
+                  className={"hover:bg-primary w-full"}
                   href='/admin'
                   onClick={logOut}>
                   <div className='bg-none px-10 py-2 font-bold'>
-                    <div className='flex justify-start items-center py-4 space-x-3'>
+                    <div className='flex justify-center items-center py-4 space-x-3'>
                       <Logout className='text-2xl' />
                       <h3 className='ml-2'>Logout</h3>
                     </div>
                   </div>
                 </Link>
-                <Link className={"hover:bg-primary"} href='/admin/vendorlist'>
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/vendorlist'>
                   <div
                     className={
                       currentRoute === "/admin/vendorlist" ||
@@ -209,14 +211,14 @@ export default function NavAdmin() {
                         ? "bg-primary w-full md:w-52 px-8"
                         : "bg-none w-full md:w-52 px-8"
                     }>
-                    <div className='flex md:justify-start items-center py-4 w-full'>
+                    <div className='flex justify-center items-center py-4 w-full'>
                       <Groups3 className='text-3xl' />
                       <h3 className='ml-2'>Manage Creators</h3>
                     </div>
                   </div>
                 </Link>
 
-                <Link className={""} href='/admin/servicedetails'>
+                <Link className={"w-full"} href='/admin/servicedetails'>
                   <div
                     className={
                       "hover:bg-primary transition-colors duration-500 w-full " +
@@ -231,7 +233,7 @@ export default function NavAdmin() {
                     </div>
                   </div>
                 </Link>
-                <Link className={""} href='/admin/cancel'>
+                <Link className={"w-full"} href='/admin/cancel'>
                   <div
                     className={
                       "hover:bg-primary transition-colors duration-500 w-full " +
@@ -247,7 +249,9 @@ export default function NavAdmin() {
                   </div>
                 </Link>
 
-                <Link className={"hover:bg-primary"} href='/admin/queries'>
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/queries'>
                   <div
                     className={
                       currentRoute === "/admin/queries" ||
@@ -258,6 +262,22 @@ export default function NavAdmin() {
                     <div className='flex justify-center md:justify-start items-center py-4'>
                       <QuestionAnswer className='text-2xl' />
                       <h3 className='ml-2'>Queries</h3>
+                    </div>
+                  </div>
+                </Link>
+
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/requests'>
+                  <div
+                    className={
+                      currentRoute === "/admin/requests"
+                        ? "bg-primary px-8 w-full"
+                        : "bg-none px-8 w-full"
+                    }>
+                    <div className='flex justify-center items-center py-4'>
+                      <PersonAdd className='text-2xl' />
+                      <h3 className='ml-2'>Signup Requests</h3>
                     </div>
                   </div>
                 </Link>
@@ -278,7 +298,9 @@ export default function NavAdmin() {
                   </div>
                 </Link>
 
-                <Link className={"hover:bg-primary"} href='/admin/payments'>
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/payments'>
                   <div
                     className={
                       currentRoute === "/admin/payments"
@@ -292,20 +314,24 @@ export default function NavAdmin() {
                   </div>
                 </Link>
 
-                <Link className={"hover:bg-primary"} href='/admin/manageorders'>
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/manageorders'>
                   <div
                     className={
                       currentRoute === "/admin/manageorders"
-                        ? "bg-primary w-52 px-8"
-                        : "bg-none w-52 px-8"
+                        ? "bg-primary w-full px-8"
+                        : "bg-none w-full px-8"
                     }>
-                    <div className='flex justify-start items-center py-4'>
+                    <div className='flex justify-center items-center py-4'>
                       <Dvr className='text-2xl' />
                       <h3 className='ml-2'>Recent Orders</h3>
                     </div>
                   </div>
                 </Link>
-                <Link className={"hover:bg-primary"} href='/admin/hotsellers'>
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/hotsellers'>
                   <div
                     className={
                       currentRoute === "/admin/hotsellers"
