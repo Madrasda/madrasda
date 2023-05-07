@@ -58,10 +58,10 @@ export default function Payments() {
               <table className='min-w-full text-center text-sm font-medium' id='download'>
                 <thead className='border-b text-m font-bold dark:border-neutral-500'>
                   <tr>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope='col' className=' px-6 pl-0'>
                       Order Id
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope='col' className=' px-6 pl-2'>
                       Payment Id
                     </th>
                     <th scope='col' className=' px-6 py-4'>
@@ -87,10 +87,10 @@ export default function Payments() {
                       const orderDate = new Date(order.orderDate);
                       return(
                         <tr key={uuidv4()} className='dark:border-neutral-500'>
-                          <td className='whitespace-nowrap px-6 py-6 font-medium'>
+                          <td className='whitespace-nowrap px-6 pl-0 font-medium'>
                             {order.orderId}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-6 pl-2'>
                             {order.paymentId}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>

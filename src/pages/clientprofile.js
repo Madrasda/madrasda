@@ -131,12 +131,12 @@ export default function ClientProfile() {
                       </h6>
                       <div className='flex flex-wrap space-x-2'>
                         {order.orderItems.map((item) => (
-                          // <Image
-                          //   src={item.product.colors[0].images[0].imgUrl}
-                          //   width={50}
-                          //   height={50}
-                          // />
-                          <InsertEmoticon className='text-primary text-5xl' />
+                          <Image
+                            src={item.product.colors[0].images[0].imgUrl}
+                            width={50}
+                            height={50}
+                          />
+                          // <InsertEmoticon className='text-primary text-5xl' />
                         ))}
                       </div>
                     </div>

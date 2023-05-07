@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Modal, Text} from "@nextui-org/react";
 import {uuidv4} from "@firebase/util";
 import {Button} from "@mui/material";
@@ -6,17 +6,42 @@ import DomToImage from "dom-to-image";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
 import { Download } from "@mui/icons-material";
-
+import { isTokenValid, getRole, getPhone } from "@/utils/JWTVerifier";
+import axios from "axios";
 export default function OrderDetailsModal({ order }) {
   const [visible, setVisible] = React.useState(false);
   const [prodTotal, setProdTotal] = useState(0);
+  const [phone, setPhone] = useState(0);
+  const [details, setDetails] = useState([]);
   const handler = () => setVisible(true);
 
   const closeHandler = () => {
     setVisible(false);
     console.log("closed");
   };
-
+  const getOrderHistory = async () => {
+    const response = await axios.get(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllOrdersById/",
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+    setDetails(response.data.reverse());
+  };
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("token");
+    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
+    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
+    if (jwtToken && isTokenValid(jwtToken)) {
+      setPhone(getPhone(jwtToken));
+      getOrderHistory();
+    } else {
+      setClient(false);
+      router.push("/login");
+    }
+  }, []);
   const downloadInvoice = () => {
     var invoice = document.getElementById(order.id);
     DomToImage.toPng(invoice)
@@ -71,7 +96,17 @@ export default function OrderDetailsModal({ order }) {
                 </span>
               </div>
               {/* <!-- Order details --> */}
+              {/* <div className='flex flex-wrap space-x-2'>
+                        {order.orderItems.map((item) => (
+                          <Image
+                            src={item.product.colors[0].images[0].imgUrl}
+                            width={50}
+                            height={50}
+                          />
+                        ))}
+                      </div> */}
               <div className='p-2 md:p-6'>
+              
                 {order.orderItems.map((item) => (
                   <div
                     key={uuidv4()}

@@ -37,7 +37,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                   width={500}
                   height={500}
                 />
-                <div className='w-[220px] h-[220px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+                <div className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
                   <Image
                     className='object-cover w-full h-full animate-spin hover:animate-none'
                     alt={name}
@@ -116,15 +116,16 @@ export default function RightsideDisc ({name, id, imgUrl}) {
         {products.length !== 0 && (
           <>
           <div className="xl:hidden">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mt-10">
+            <div className='absolute mt-10'>
             <Link href={`products/${id}`} className='relative'>
               <Image
                 className='mx-2 animate-spin'
                 src='/disc.png'
-                width={190}
-                height={190}
+                width={170}
+                height={170}
               />
-              <div className='w-[160px] h-[160px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+              <div className='w-[140px] h-[140px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
                 <Image
                   className='object-cover w-full h-full'
                   alt={name}
@@ -134,13 +135,15 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                 />
               </div>
             </Link>
-            <h1 className='md:text-xl text-bg text-3xl font-raj text-center pr-8'>
+            </div>
+            <h1 className='md:text-xl text-2xl font-raj text-right w-full text-bg pr-8'>
               {name}'s Products
             </h1>
           </div>
           </div>
-          <span className='flex flex-col xl:hidden bg-bg w-full mx-auto'>
-            <div className='grid grid-cols-3 md:grid-cols-4 md:px-2'>
+          <span className='flex flex-col xl:hidden bg-bg w-full mx-auto pt-20'>
+            <div className='grid grid-cols-2 md:grid-cols-4 md:px-2'>
+              {/* flex flex-row overflow-hidden  */}
               {products &&
                 products.map((prod) => {
                   return (

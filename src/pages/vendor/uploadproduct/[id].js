@@ -25,6 +25,7 @@ export default function ViewProd() {
   const [discount, setDiscount] = useState(0);
   const [total, setTotal] = useState(0);
   const [profit, setProfit] = useState(0);
+  const [SellingPrice, setSellingPrice] = useState(0);
   const [audience, setAudience] = useState("Choose you target audience");
   const [tax, setTax] = useState(0);
   const [currenId, setCurId] = useState(null);
@@ -117,6 +118,10 @@ export default function ViewProd() {
     setProfit(0);
     setLoading(true);
   }, []);
+  useEffect(() => {
+    setSellingPrice(0);
+    setLoading(true);
+  }, []);
 
   useEffect(() => {
     if (isReady) getTemplateDetails();
@@ -125,6 +130,9 @@ export default function ViewProd() {
   useEffect(() => {
     setProfit(total - basePrice - discount * 0.01 * total);
   }, [basePrice, total, discount]);
+  useEffect(() => {
+    setSellingPrice(profit+basePrice);
+  }, [basePrice, profit]);
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
@@ -523,6 +531,16 @@ export default function ViewProd() {
                       readOnly
                       error={profit < 0}
                       color={profit > 0 ? "success" : ""}
+                      focused
+                    />
+                  </div>
+                  <div>
+                  <TextField
+                      type='numeric'
+                      label={"Selling Price (₹)"}
+                      className='text-2xl w-72'
+                      value={SellingPrice}
+                      readOnly
                       focused
                     />
                   </div>

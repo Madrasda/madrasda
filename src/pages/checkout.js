@@ -181,7 +181,7 @@ export default function Checkout() {
               </div>
               <div className='mb-5 md:ml-20 text-gray-400'>
                 <a
-                  href='./index.js'
+                  href='./'
                   className='focus:outline-none hover:underline text-gray-500'>
                   Home
                 </a>{" "}
@@ -231,16 +231,6 @@ export default function Checkout() {
                           </span>
                         </div>
                       </div>
-                      <div className='w-full flex my-3 items-center'>
-                        <div className='flex-grow'>
-                          <span className='text-black'>Taxes</span>
-                        </div>
-                        <div className='pl-3'>
-                          <span className='font-medium'>
-                            ₹{(subTotal * 5) / 100}
-                          </span>
-                        </div>
-                      </div>
                     </div>
                     <div className='mb-6 pb-6 border-b border-gray md:border-none text-gray-800 text-xl'>
                       <div className='w-full flex items-center'>
@@ -256,7 +246,7 @@ export default function Checkout() {
                           </span>{" "}
                           <span className='font-medium text-2xl'>
                             ₹
-                            {subTotal * (105.0 / 100.0) +
+                            {subTotal +
                               (shippingCharges === -1 ? 0 : shippingCharges)}
                           </span>
                         </div>

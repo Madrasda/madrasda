@@ -66,7 +66,7 @@ export default function CartModal() {
         width='auto'
         closeButton={false}
         className={
-          "shadow-lg text-black bg-gray w-[80%] items-center mx-auto md:w-full md:items-end"
+          "shadow-lg text-black bg-gray w-[80%] items-center mx-auto md:w-fit md:items-end"
         }
         aria-labelledby='modal-title'
         open={visible}

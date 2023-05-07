@@ -109,7 +109,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                   width={500}
                   height={500}
                 />
-                <div className='w-[220px] h-[220px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+                <div className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
                   <Image
                     className='object-cover w-full h-full animate-spin hover:animate-none'
                     alt={name}
@@ -125,29 +125,31 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
         {products.length !== 0 && (
           <>
           <div className="xl:hidden">
-          <div className="flex justify-between items-center">
-          <Link href={`products/${id}`} className='relative'>
-          <Image
-            className='mx-auto md:mx-2 animate-spin'
-            src='/disc.png'
-            width={190}
-            height={190}
-          />
-          <div className='w-[160px] h-[160px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
-            <Image
-              className='object-cover w-full h-full'
-              alt={name}
-              src={imgUrl || "/logo.png"}
-              width={200}
-              height={200}
-            />
-          </div>
-        </Link>
-        <h1 className='md:text-xl text-bg text-3xl font-raj text-center pr-8'>
+          <div className="flex justify-between items-center  mt-10">
+            <div className='absolute mt-10'>
+            <Link href={`products/${id}`} className='relative'>
+              <Image
+                className='mx-auto md:mx-2 animate-spin'
+                src='/disc.png'
+                width={170}
+                height={170}
+              />
+              <div className='w-[140px] h-[140px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+                <Image
+                  className='object-cover w-full h-full'
+                  alt={name}
+                  src={imgUrl || "/logo.png"}
+                  width={200}
+                  height={200}
+                />
+              </div>
+            </Link>
+            </div>
+            <h1 className='md:text-xl text-bg text-2xl font-raj text-right w-full pr-8'>
               {name}'s Products
             </h1>
-            </div>
-          <span className='flex flex-col xl:hidden bg-bg w-full mx-auto'>
+          </div>
+          <span className='flex flex-col xl:hidden bg-bg w-full mx-auto pt-24'>
             {/* <Link href={`products/${id}`} className='relative'>
               <Image
                 className='mx-auto animate-spin'
@@ -168,7 +170,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
             <h1 className='text-xl text-logo font-quest text-center'>
               {name}'s Products
             </h1>*/}
-            <div className='grid grid-cols-3 md:grid-cols-4 px-2'>
+            <div className='grid grid-cols-2 md:grid-cols-4 px-2'>
               {products &&
                 products.map((prod) => {
                   return (

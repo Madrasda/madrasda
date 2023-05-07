@@ -51,7 +51,7 @@ export default function Home() {
       <ClientLayout>
         <CarouselComponent />
         <h1
-          className='font-raj text-center md:text-left px-3 w-full py-8 font-black tracking-widest text-bg text-3xl md:text-5xl md:mb-10 md:px-10'
+          className='font-raj text-center md:text-left px-3 w-full py-0 md:py-8 font-black tracking-widest text-bg text-3xl md:text-5xl md:mb-10 md:px-10'
           id='merchandise'>
           OFFICIAL MERCHANDISE
         </h1>

@@ -103,7 +103,7 @@ export default function NavisCustomer() {
   }, []);
 
   return (
-    <header className='font-quest bg-bg text-off-white px-8 z-20 w-full fixed '>
+    <header className='font-quest bg-bg text-off-white md:px-8 z-20 w-full fixed '>
       <div className='justify-center items-center w-full hidden md:flex'>
         <Link href='/'>
           <Image src='/logo.png' width={90} height={90} />
@@ -144,74 +144,72 @@ export default function NavisCustomer() {
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Categories
                     </h1>
-                    <MenuItem className='px-1 text-sm py-2'>
+                    
                       <Link
                         href={{
                           pathname: "/product-gender",
                           query: { gender: "Men" },
                         }}>
-                        Men
+                          <MenuItem className='px-1 text-sm py-2'>Men</MenuItem>
                       </Link>
-                    </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
+                    
                       <Link
                         href={{
                           pathname: "/product-gender",
                           query: { gender: "Women" },
                         }}>
-                        Women
+                        <MenuItem className='px-1 text-sm py-2'>Women</MenuItem>
                       </Link>
-                    </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
                       <Link
                         href={{
                           pathname: "/product-gender",
                           query: { gender: "Kids" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Kids
-                      </Link>
                     </MenuItem>
+                      </Link>
                   </div>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Men's Products
                     </h1>
-                    <MenuItem className='px-1 text-sm py-2'>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 1, title: "Men's Oversized T-Shirts" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Men's Oversized T-Shirts
-                      </Link>
                     </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
+                      </Link>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 2, title: "Men's Round Neck T-Shirts" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Men's Round Neck T-Shirts
+                      </MenuItem>
                       </Link>
-                    </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 4, title: "Men's Vests" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Men's Vests
-                      </Link>
                     </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
+                      </Link>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 5, title: "Men's Full Sleeve Shirts" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Men's Full Sleeve Shirts
-                      </Link>
                     </MenuItem>
+                      </Link>
                   </div>
                 </div>
                 <div className='flex flex-col space-y-4'>
@@ -219,16 +217,15 @@ export default function NavisCustomer() {
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Women's Products
                     </h1>
-                    <MenuItem className='px-1 text-sm py-2'>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 3, title: "Women's Boyfriend T-Shirts" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Women's Boyfriend T-Shirts
-                      </Link>
                     </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
+                      </Link>
                       <Link
                         href={{
                           pathname: "/product-category",
@@ -237,41 +234,38 @@ export default function NavisCustomer() {
                             title: "Women's Round Neck T-Shirts",
                           },
                         }}>
+                      <MenuItem className='px-1 text-sm py-2'>
                         Women's Round Neck T-Shirts
-                      </Link>
                     </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
+                      </Link>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 7, title: "Women's Crop Tops" },
                         }}>
+                          <MenuItem className='px-1 text-sm py-2'>
                         Women's Crop Tops
-                      </Link>
                     </MenuItem>
-                    <MenuItem className='px-1 text-sm py-2'>
+                      </Link>
                       <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 8, title: "Women's Crop Top Hoodies" },
                         }}>
-                        Women's Crop Top Hoodies
+                        <MenuItem className='px-1 text-sm py-2'>Women's Crop Top Hoodies</MenuItem>
                       </Link>
-                    </MenuItem>
                   </div>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Unisex's Products
                     </h1>
-                    <MenuItem className='px-1 text-sm py-2'>
-                      <Link
+                    <Link
                         href={{
                           pathname: "/product-category",
                           query: { id: 6, title: "Hoodies" },
                         }}>
-                        Hoodies
-                      </Link>
-                    </MenuItem>
+                    <MenuItem className='px-1 text-sm py-2'>Hoodies</MenuItem>
+                    </Link>
                   </div>
                 </div>
                 <div className='flex flex-col space-y-4'>
@@ -281,11 +275,9 @@ export default function NavisCustomer() {
                     </h1>
                     {products &&
                       products.map((item) => (
-                        <MenuItem className='px-1 text-sm py-2'>
                           <Link href={`/productDetails/${item.id}`}>
-                            {item.name}
+                            <MenuItem className='px-1 text-sm py-2'>{item.name}</MenuItem>
                           </Link>
-                        </MenuItem>
                       ))}
                   </div>
                 </div>
@@ -352,6 +344,12 @@ export default function NavisCustomer() {
             <Link className={"text-lg"} href='/login'>
               <h2> Login </h2>
             </Link>
+            
+          )}
+          {!isCustomer && (
+            <Link  className={"text-lg text-logo "} href='/vendor'>
+            <h2> Join as Creator</h2>
+            </Link>  
           )}
           {isCustomer && (
             <>
@@ -400,11 +398,11 @@ export default function NavisCustomer() {
 
       <div className='w-full flex md:hidden'>
         <div className='flex flex-col w-full'>
-          <div className='flex justify-between items-center py-2 px-4'>
+          <div className='flex justify-between items-center py-2 px-0'>
             <Link href='/'>
               <Image src='/logo.png' width={50} height={50} />
             </Link>
-            <div className='flex space-x-8 items-center'>
+            <div className='flex space-x-4 items-center'>
               {isCustomer && <CartModal />}
               {!hamMenu && (
                 <IconButton color='primary'>
@@ -494,6 +492,18 @@ export default function NavisCustomer() {
                     <LoginOutlined className='text-white' />
                   </Link>
                 )}
+                {!isCustomer && (
+                  <Link
+                  className={
+                    "text-lg ml-4 my-2 font-quest flex items-center space-x-4"
+                  }
+                  href='/vendor'>
+                  <Typography className='font-quest text-logo text-lg'>
+                    {" "}
+                    Join as Creator{" "}
+                  </Typography>
+                </Link>
+                )}
                 {isCustomer && (
                   <Accordion
                     TransitionProps={{ unmountOnExit: true }}
@@ -518,6 +528,7 @@ export default function NavisCustomer() {
                     </AccordionDetails>
                   </Accordion>
                 )}
+                
               </nav>
             </Grow>
           )}
