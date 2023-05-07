@@ -63,7 +63,7 @@ export default function Mockup(props) {
             </div>
           </div>
         </Link>
-        {!spinner && (
+        {!spinner && props.download && (
           <Button
             variant='outlined'
             className={
@@ -73,7 +73,9 @@ export default function Mockup(props) {
             <Download /> Image
           </Button>
         )}
-        {spinner && <CircularProgress size='30px' color="warning" />}
+        {spinner && props.download && (
+          <CircularProgress size='30px' color='warning' />
+        )}
       </div>
     </>
   );

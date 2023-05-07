@@ -153,6 +153,7 @@ export default function TemplateList () {
                         </span>
                         <div>
                           <Mockup
+                            download={true}
                             id={m.id}
                             key={m.id}
                             image={m.frontDesignImage || m.backDesignImage}
