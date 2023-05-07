@@ -104,7 +104,7 @@ export default function Checkout() {
       }),
     };
     axios
-      .post(
+      .post( //https://a318-2405-201-e02d-f06e-75e2-2f9-690e-eea9.ngrok-free.app
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder",
         transaction,
         {
@@ -137,8 +137,8 @@ export default function Checkout() {
             if (r.components.country === "India") {
               country.current = r.components.country;
               state.current = r.components.state;
-              city.current = r.components.state_district
-                ? r.components.state_district.split(" ")[0]
+              city.current = r.components.city
+                ? r.components.city
                 : r.components.town;
             }
           });

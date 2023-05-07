@@ -28,7 +28,7 @@ export default function VendorProfile(props) {
   }, []);
   const getVendorDetails = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/" , { 
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/" , {
         headers : {
           Authorization : "Bearer " + localStorage.getItem('token')
         }

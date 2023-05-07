@@ -88,7 +88,7 @@ export default function TemplateList () {
 
   const deleteTemplate = async (tempId) => {
       const response = await axios.delete(
-        'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + tempId, 
+        'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + tempId,
         {
           headers : {
             Authorization : 'Bearer ' + localStorage.getItem('token')
