@@ -9,6 +9,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/context";
 import { uuidv4 } from "@firebase/util";
 import HotSellers from "@/components/hotsellers-client";
+import Footer from '@/components/footer';
 
 export default function Home() {
   const router = useRouter();
@@ -80,6 +81,7 @@ export default function Home() {
         </div>
         <span id='hotsellers'></span>
         <HotSellers />
+        <Footer />
       </ClientLayout>
     </>
   );
