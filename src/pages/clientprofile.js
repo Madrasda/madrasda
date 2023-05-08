@@ -83,10 +83,10 @@ export default function ClientProfile() {
 
        <ClientLayout client={client}>
          <Snackbar open={state} autoHideDuration={3000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity={severity}>
-                    {message}
-                </Alert>
-            </Snackbar>
+           <Alert onClose={handleClose} severity={severity}>
+             {message}
+           </Alert>
+         </Snackbar>
          <section className='body-font font-quest bg-off-white'>
            <div className='px-5 py-24 mx-auto'>
              <h1 className='text-2xl font-bold text-primary md:ml-16 md:text-3xl md:mt-4'>
@@ -116,52 +116,45 @@ export default function ClientProfile() {
                 details.map((order) => (
                    <Paper
                       key={uuidv4()}
-                      className='px-3 w-full h-fit md:w-10/12 md:ml-16 mb-4 mt-8 relative'>
-                     <div className='w-full flex flex-col md:flex-row items-center rounded-lg'>
-                       <div className='w-full p-3'>
-                         <h6 className='font-semibold text-xl text-black'>
-                           Order Date :{" "}
-                           <span className='font-light'>
-                          {order.orderDate
-                             .toString()
-                             .substring(0, order.orderDate.indexOf("T"))}
-                        </span>
-                         </h6>
-                         <h6 className='font-semibold text-xl text-black'>
-                           Order Total :{" "}
-                           <span className='font-light'>
-                          ₹{Number(order.orderTotal).toLocaleString("en-IN")}
-                        </span>
-                         </h6>
-                         <h6 className='font-semibold text-xl'>
-                           Order Status :{" "}
-                           <span className='font-light text-shadowGrey'>
-                          {order.shipmentActivity && order.shipmentActivity[0]
-                             ? "Order Shipping"
-                             : "Order Confirmed"}
-                        </span>
-                         </h6>
-                         <h6 className='font-semibold text-xl text-black'>
-                           Order Items :{" "}
-                           <span className='font-light'>
-                          {order.orderItems.length}
-                        </span>
-                         </h6>
-                         <div className='flex flex-wrap space-x-2'>
-                           {order.orderItems.map((item) => (
-                              // <Image
-                              //   src={item.product.colors[0].images[0].imgUrl}
-                              //   width={50}
-                              //   height={50}
-                              // />
-                              <InsertEmoticon key={uuidv4()} className='text-primary text-5xl'/>
-                           ))}
-                         </div>
+                      className='px-3 w-full items-center h-fit md:w-10/12 md:ml-16 mb-4 mt-8 relative'>
+                     <div className='w-full flex flex-col md:flex-row items-center py-3'>
+                       <div className='flex flex-wrap m-2 space-x-2 md:w-1/5 sm:w-full'>
+                         {order.orderItems.slice(0, 2).map((item) => {
+                           return (
+                              <Image
+                                 key={uuidv4()}
+                                 src={item.product.colors[0].images[0]}
+                                 width={75}
+                                 height={75}
+                                 alt={"product image"}
+                              />
+                           )
+                         })}
                        </div>
-                       <div className='md:absolute flex space-x-3 md:bottom-0 md:right-0 p-4'>
+                       <div className='w-full p-3 pl-0 '>
+                         {!order.cancelled && <h6 className='font-semibold text-3xl mt-2'>
+                           <span className='font-light text-black'>
+                             {(order.shipmentActivity && order.shipmentActivity[0])
+                                ? "Your order is being shipped"
+                                : "Your order is cooking!"}
+                        </span>
+                         </h6>}
+
+
+                         <h6 className='font-semibold text-3xl mt-2'>
+                           <span className='font-light text-red'>
+                          {order.cancelled && "Order Cancelled!"}
+                        </span>
+                         </h6>
+
+
+
+                       </div>
+                       <div className='md:absolute items-center flex space-x-3  md:right-0 p-4'>
                          <CancelOrderModal orderDate={order.orderDate} transactionId={order.id}
                                            cancelRequested={order.cancelRequested} cancelled={order.cancelled}
-                                          setMessage={setMessage} setSeverity={setSeverity} setOpenSnackbar={setState}/>
+                                           setMessage={setMessage} setSeverity={setSeverity}
+                                           setOpenSnackbar={setState}/>
                          <OrderDetailsModal order={order} key={order.id}/>
                        </div>
                      </div>
