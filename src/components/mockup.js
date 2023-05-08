@@ -22,7 +22,7 @@ export default function Mockup(props) {
   return (
     <>
       <div className='relative pb-12 h-full'>
-        <Link href={`/vendor/uploadproduct/${props.id}`}>
+        {/* <Link href={`/vendor/uploadproduct/${props.id}`}> */}
           <a className='block relative h-fit rounded overflow-hidden'>
             <Image
               src={props.image}
@@ -62,7 +62,7 @@ export default function Mockup(props) {
               })}
             </div>
           </div>
-        </Link>
+        {/* </Link> */}
         {!spinner && props.download && (
           <Button
             variant='outlined'

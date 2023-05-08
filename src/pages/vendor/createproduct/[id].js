@@ -474,11 +474,11 @@ export default function CreateTemplate(props) {
                       <div>
                         <div className='flex justify-between text-xl'>
                           <h1>Height</h1>
-                          <h1>{designHeight} Inches</h1>
+                          <h1>{designHeight * 0.3937} Inches</h1>
                         </div>
                         <div className='flex justify-between text-xl'>
                           <h1>Width</h1>
-                          <h1>{designWidth} Inches</h1>
+                          <h1>{designWidth * 0.3937} Inches</h1>
                         </div>
                       </div>
                     )}

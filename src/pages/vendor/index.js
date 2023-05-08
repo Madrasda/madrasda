@@ -283,7 +283,7 @@ export default function Vendorlogin() {
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
                     value={compName}
-                    placeholder='Company name'
+                    placeholder='Display name'
                     onChange={(e) => setCompName(e.target.value)}
                   />
                   <Input
