@@ -80,7 +80,7 @@ export default function AdminCancelOrdersPage() {
 				<main
 					className='body-font overflow-hidden font-quest
                                 md:ml-32'>
-					<div className='px-5 my-10 mx-auto'>
+					<div className='mt-20 px-5 md:my-10 mx-auto'>
 						<h1
 							className='text-3xl text-primary
                                md:ml-20 md:mt-10'>
