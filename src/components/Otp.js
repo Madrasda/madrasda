@@ -22,20 +22,7 @@ const Otp = (props) => {
       </h1>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <div className='w-full hidden md:block'>
-          <MuiOtpInput
-            display={"flex"}
-            gap={"5px"}
-            length={6}
-            value={otp}
-            className={
-              "w-full text-primary rounded-md outline-none text-xs md:text-sm transition duration-150 ease-in-out mb-4"
-            }
-            onChange={(value) => setOtp(value)}
-          />
-        </div>
-        <div className='w-full block md:hidden'>
-        <div className='w-full block md:hidden'>
+        <div className='w-full'>
         <TextField
 						variant={'filled'}
 						type='numeric'
@@ -48,7 +35,6 @@ const Otp = (props) => {
 						onChange={(e) => setOtp(e.target.value)}
 						required={true}
 					/>
-        </div>
         </div>
         <div className='flex justify-center items-center mt-4'>
           <Button
