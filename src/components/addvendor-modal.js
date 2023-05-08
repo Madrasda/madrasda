@@ -45,7 +45,7 @@ export default function AddVendorModal({ getFormData }) {
         css={{ fontFamily: "$algeria" }}>
         <Modal.Header>
           <Text id='modal-title' size={18} className='text-primary font-quest'>
-            Add Vendor
+            Add Creator
           </Text>
         </Modal.Header>
 

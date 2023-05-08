@@ -176,6 +176,8 @@ export default function MyProducts() {
                                               colors={getAvailableColors(
                                                 m.skuMapping
                                               )}
+                                              basePrice={m.basePrice}
+                                              
                                             />
                                           </div>
                                         );

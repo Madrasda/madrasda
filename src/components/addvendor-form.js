@@ -30,7 +30,7 @@ export default function AddVendorForm({onSubmit}) {
   return (
     <form onSubmit={handleSubmit}>
       <h2 className='ml-2  title-font font-medium text-sm'>
-        Vendor Display Name :
+        Display Name :
       </h2>
       <div className='mb-2 ml-2 '>
         <input
@@ -40,7 +40,7 @@ export default function AddVendorForm({onSubmit}) {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      <h2 className='ml-2  title-font font-medium text-sm'>Vendor Email :</h2>
+      <h2 className='ml-2  title-font font-medium text-sm'>Creator Email :</h2>
       <div className='mb-2 ml-2 '>
         <input
           type='text'
@@ -49,7 +49,7 @@ export default function AddVendorForm({onSubmit}) {
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <h2 className='ml-2  title-font font-medium text-sm'>Company Name :</h2>
+      <h2 className='ml-2  title-font font-medium text-sm'>Creator Name :</h2>
       <div className='mb-2 ml-2 '>
         <input
           type='text'
@@ -58,7 +58,7 @@ export default function AddVendorForm({onSubmit}) {
           onChange={(e) => setCompanyName(e.target.value)}
         />
       </div>
-      <h2 className='ml-2  title-font font-medium text-sm'>Company URL :</h2>
+      <h2 className='ml-2  title-font font-medium text-sm'>Company/Creator URL :</h2>
       <div className='mb-2 ml-2'>
         <input
           type='text'

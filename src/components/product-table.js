@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {Alert, Backdrop, CircularProgress, Snackbar} from "@mui/material";
 import {uuidv4} from "@firebase/util";
 import {Button} from "@mui/material";
@@ -8,7 +9,7 @@ import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
 import XLSX from "xlsx";
 
-export default function ProductTable({products, setProducts}) {
+export default function ProductTable({products, setProducts,}) {
 	const [message, setMessage] = useState("");
 	const [severity, setSeverity] = useState("");
 	const [open, setOpen] = useState(false);

@@ -16,6 +16,7 @@ export default function AdminUploadModal(props) {
     const [category, setCategory] = useState(null);
     const [prodType, setProdType] = useState(null);
     const [info, setInfo] = useState(null);
+    const [base, setBase] = useState(null);
     const [frontImg, setFrontImg] = useState(null);
     const [backImg, setBackImg] = useState(null);
 
@@ -82,6 +83,7 @@ export default function AdminUploadModal(props) {
             category: category,
             model: model,
             addtionalInformation: info,
+            basePrice: base, 
             skuMapping: generateSkuMapping(skuName, skuModel, selectedColors, selectedColorNames, selectedSizes, selectedSizeNames)
           }
         );
@@ -223,6 +225,12 @@ export default function AdminUploadModal(props) {
               <div className="mb-2 ml-2 ">
                   <textarea type="text" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5 h-24" placeholder="eg : This is a limited edition" onChange={
                     (e) => setInfo(e.target.value)
+                  } />
+              </div>
+              <h2 className="ml-2 mt-4 title-font font-medium mb-2">Base Price</h2>
+              <div className="mb-2 ml-2 ">
+                  <textarea type="text" className="bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5" placeholder="eg : 500" onChange={
+                    (e) => setBase(e.target.value)
                   } />
               </div>
           </div>

@@ -9,7 +9,6 @@ import jsPDF from "jspdf";
 import { Download } from "@mui/icons-material";
 import { isTokenValid, getRole, getPhone } from "@/utils/JWTVerifier";
 import axios from "axios";
-import { Route } from "react-router";
 export default function OrderDetailsModal({ order }) {
   const [visible, setVisible] = React.useState(false);
   const [prodTotal, setProdTotal] = useState(0);
@@ -35,7 +34,10 @@ export default function OrderDetailsModal({ order }) {
   };
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
-    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
+    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN"){
+      setPhone(getPhone(jwtToken));
+      getOrderHistory();
+    }
     if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
     if (jwtToken && isTokenValid(jwtToken)) {
       setPhone(getPhone(jwtToken));
@@ -98,18 +100,7 @@ export default function OrderDetailsModal({ order }) {
                   ₹{Number(order.orderTotal).toLocaleString("en-IN")}
                 </span>
               </div>
-              {/* <!-- Order details --> */}
-              {/* <div className='flex flex-wrap space-x-2'>
-                        {order.orderItems.map((item) => (
-                          <Image
-                            src={item.product.colors[0].images[0].imgUrl}
-                            width={50}
-                            height={50}
-                          />
-                        ))}
-                      </div> */}
-              <div className='p-2 md:p-6'>
-              
+              <div className='p-2 md:p-4'>
                 {order.orderItems.map((item) => (
                   <div
                     key={uuidv4()}

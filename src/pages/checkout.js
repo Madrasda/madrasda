@@ -14,6 +14,7 @@ export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
   const [shippingCharges, setShippingCharges] = useState(-1);
   const [pincode, setPincode] = useState("");
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState(false);
   const [client, setClient] = useState(false);
   const [spinner, setSpinner] = useState(false);
@@ -25,8 +26,6 @@ export default function Checkout() {
   const addressLine2 = useRef();
   const city = useRef("");
   const state = useRef("");
-  const phone = useRef();
-
   const router = useRouter();
   const ctx = useContext(UserContext);
   useEffect(() => {
@@ -77,6 +76,17 @@ export default function Checkout() {
       }, 300);
       return text;
     });
+  };
+  const handlePhoneChange = (event) => {
+    const inputPhone = event.target.value;
+    const phoneRegex = /^\+91\d{10}$/; // regex pattern to match the phone number
+    if (phoneRegex.test(inputPhone)) {
+      setPhone(inputPhone);
+      setError(false);
+    } else {
+      setPhone(inputPhone);
+      setError(true);
+    }
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -273,12 +283,15 @@ export default function Checkout() {
                           <TextField
                             label={"Phone"}
                             required={true}
+                            error={error}
                             variant={"outlined"}
                             type={"numeric"}
                             placeholder={"+91xxxxxxxxxx"}
                             className={"w-auto"}
-                            inputRef={phone}
-                          />
+                            helperText={error && "Invalid Phone"}
+                            value={phone}
+                            onChange={handlePhoneChange}
+                        />
                         </div>
                       </div>
                       <div className='mb-4 ml-2 mt-1 flex flex-row space-x-2'>
@@ -307,12 +320,14 @@ export default function Checkout() {
                         />
                         <TextField
                           className='block w-full '
+                          label='State'
                           required={true}
                           inputRef={state}
                           value={state.current}
                         />
                         <TextField
-                          className='block w-full '
+                          className='block w-full'
+                          label='City'
                           required={true}
                           inputRef={city}
                           value={city.current}
@@ -322,6 +337,7 @@ export default function Checkout() {
                         <div className='mb-4 ml-2 mt-1 '>
                           <TextField
                             className='w-full'
+                            label='Country'
                             required={true}
                             inputRef={country}
                             value={country.current}

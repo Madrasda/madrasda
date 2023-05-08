@@ -22,8 +22,8 @@ export default function CreateTemplate(props) {
   const { id, audience, email } = router.query;
   const isReady = router.isReady;
   const [details, setDetails] = useState(null);
-  const canvasWidth = 350;
-  const canvasHeight = 600;
+  const canvasWidth = 360;
+  const canvasHeight = 480
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
@@ -472,13 +472,13 @@ export default function CreateTemplate(props) {
                     </div>
                     {design && design != {} && (
                       <div>
-                        <div className='flex justify-between text-xl'>
-                          <h1>Height</h1>
-                          <h1>{designHeight * 0.3937} Inches</h1>
+                        <div className='flex flex-row text-xl'>
+                          <h1 className='mr-2'>Height:</h1>
+                          <h1>{(designHeight * 0.3937).toFixed(2)} Inches</h1>
                         </div>
-                        <div className='flex justify-between text-xl'>
-                          <h1>Width</h1>
-                          <h1>{designWidth * 0.3937} Inches</h1>
+                        <div className='flex flex-row  text-xl'>
+                          <h1 className='mr-2'>Width:</h1>
+                          <h1>{(designWidth * 0.3937).toFixed(2)} Inches</h1>
                         </div>
                       </div>
                     )}

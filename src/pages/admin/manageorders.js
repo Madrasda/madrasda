@@ -21,14 +21,14 @@ export default function CustomerDetails() {
       })
       .catch((err) => {
         localStorage.removeItem("token");
-        router.push("/admin");
       });
   };
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
-    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN'){
       router.push("/admin");
+  }
     else{
       setIsAdmin(true)
     }

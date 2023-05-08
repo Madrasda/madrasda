@@ -70,7 +70,7 @@ export default function VendorDetails() {
                   <h1
                     className='text-3xl text-primary 
                                md:ml-20 md:mt-30'>
-                    MY VENDORS
+                    Creators
                   </h1>
 
                   <div className='mt-10 w-full flex flex-col md:flex-row justify-between md:justify-around items-center space-y-2 md:space-y-0'>

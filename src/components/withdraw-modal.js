@@ -22,7 +22,7 @@ export default function WithdrawModal({ request, profit, withdraw }) {
         color='error'
         css={{ fontFamily: "$algeria" }}
         style={{
-          background: "#A5153F",
+          background: "#FFA000",
         }}>
         Withdraw
       </Button>
