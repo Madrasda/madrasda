@@ -4,16 +4,19 @@ import {uuidv4} from "@firebase/util";
 import {Button} from "@mui/material";
 import DomToImage from "dom-to-image";
 import { saveAs } from "file-saver";
+import { useRouter } from "next/router";
 import jsPDF from "jspdf";
 import { Download } from "@mui/icons-material";
 import { isTokenValid, getRole, getPhone } from "@/utils/JWTVerifier";
 import axios from "axios";
+import { Route } from "react-router";
 export default function OrderDetailsModal({ order }) {
   const [visible, setVisible] = React.useState(false);
   const [prodTotal, setProdTotal] = useState(0);
   const [phone, setPhone] = useState(0);
   const [details, setDetails] = useState([]);
   const handler = () => setVisible(true);
+  const router = useRouter();
 
   const closeHandler = () => {
     setVisible(false);
