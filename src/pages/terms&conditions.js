@@ -11,7 +11,7 @@ export default function TandS() {
         <title>Madrasda</title>
       </Head>
       <ClientLayout>
-        <main className='p-8 md:pt-20 w-1/2 mx-auto'>
+        <main className='p-8 md:pt-20 w-full md:w-1/2 mx-auto'>
           <div className='font-quest text-base text-black flex flex-wrap justify-start items-center text-justify px-3 py-8 w-full'>
             <p className='text-3xl font-bold text-left'>Terms and Conditions for a Marketplace Where Content Creators Sell
             Their Merchandise</p>

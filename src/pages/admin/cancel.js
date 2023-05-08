@@ -78,8 +78,8 @@ export default function AdminCancelOrdersPage() {
 					</Alert>
 				</Snackbar>
 				<main
-					className='body-font overflow-hidden font-quest
-                                md:ml-32'>
+					className='body-font overflow-hidden font-quest mt-10
+                                md:ml-32 md:mt-0'>
 					<div className='px-5 my-10 mx-auto'>
 						<h1
 							className='text-3xl text-primary
