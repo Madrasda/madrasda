@@ -35,7 +35,20 @@ const Otp = (props) => {
           />
         </div>
         <div className='w-full block md:hidden'>
-
+        <div className='w-full block md:hidden'>
+        <TextField
+						variant={'filled'}
+						type='numeric'
+						color='warning'
+						className={
+							"w-full text-primary rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4"
+						}
+						id='otp'
+						placeholder='Enter OTP'
+						onChange={(e) => setOtp(e.target.value)}
+						required={true}
+					/>
+        </div>
         </div>
         <div className='flex justify-center items-center mt-4'>
           <Button
