@@ -87,12 +87,12 @@ export default function AdminCancelOrdersPage() {
 							CANCEL REQUESTS
 						</h1>
 					</div>
-					<div className='flex flex-col mb-5'>
+					<div className='flex flex-col justify-center mb-5 w-full px-4 md:ml-28'>
 						{
 							cancelOrders.length !== 0 &&
 							cancelOrders.map((request, index) =>
 								<Grow key={uuidv4()} in timeout={(index * 600) % (600 * 5)}>
-									<Paper className="container  ml-28 mt-8 w-5/6 rounded-md" elevation={5}>
+									<Paper className="container mt-8 w-full md:w-5/6 rounded-md" elevation={5}>
 										<div className=' ml-8 mr-20 mt-4'>
 											<h1 className='text-2xl text-primary mb-6 pt-2'>
 												Customer Number: {request.transaction.shippingAddress.phone}
@@ -105,8 +105,8 @@ export default function AdminCancelOrdersPage() {
 													Order Items : {request.transaction.orderItems.length} N
 												</h2>
 											</div>
-											<div className='flex w-full justify-between mb-2'>
-												<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+											<div className='flex w-full flex-col lg:flex-row lg:justify-between mb-2'>
+												<h2 className='mb-2 text-lg font-medium text-black flex flex-wrap items-center'>
 													Reason : {request.reason}
 												</h2>
 												<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
@@ -125,7 +125,7 @@ export default function AdminCancelOrdersPage() {
 					</div>
 					{
 						// queries && queries.length !== 0 &&
-						<div className="flex justify-center mt-32">
+						<div className="flex justify-center mt-32 mb-8">
 							<button
 								className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
 								onClick={
