@@ -26,7 +26,7 @@ export default function HotSellers() {
               <div className='relative'>
                 <h2
                   className='font-raj font-semibold text-xl flex justify-center items-center w-full
-                      m-0 absolute top-[50%] left-0 right-0 bottom-0 -z-1'>
+                      m-0 absolute top-1.5 md:top-[50%] left-0 right-0 bottom-0 -z-1'>
                   <span className='bg-bg tracking-widest font-raj text-xl md:text-4xl font-bold px-8 py-2 xl:py-4 rounded-full text-logo'>
                     HOTSELLERS
                   </span>
