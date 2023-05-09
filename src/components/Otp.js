@@ -39,7 +39,7 @@ const Otp = (props) => {
         <div className='flex justify-center items-center mt-4'>
           <Button
             variant={"contained"}
-            className={"w-full hover:bg-accent bg-primary text-white"}
+            className={"w-full "}
             type={"submit"}>
             Submit
           </Button>

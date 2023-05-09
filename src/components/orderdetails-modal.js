@@ -73,10 +73,8 @@ export default function OrderDetailsModal({ order }) {
     <>
       <Button
         onClick={handler}
-        variant={'containedil'}
-        className={
-          "text-white bg-primary hover:bg-accent"
-        }>
+        variant={'contained'}
+        >
         View Billing Info
       </Button>
       <div>

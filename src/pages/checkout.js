@@ -19,13 +19,14 @@ export default function Checkout() {
   const [client, setClient] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const email = useRef();
-  const country = useRef("");
+  const [country,setCountry] = useState("");
   const firstName = useRef();
   const lastName = useRef();
   const addressLine1 = useRef();
   const addressLine2 = useRef();
-  const city = useRef("");
-  const state = useRef("");
+  const phoneRef = useRef();
+  const [city,setCity] = useState("");
+  const [state,setState] = useState("");
   const router = useRouter();
   const ctx = useContext(UserContext);
   useEffect(() => {
@@ -96,12 +97,12 @@ export default function Checkout() {
         name: firstName.current.value + " " + lastName.current.value,
         addressLine1: addressLine1.current.value,
         addressLine2: addressLine2.current.value,
-        city: city.current,
-        state: state.current,
+        city: city,
+        state: state,
         postalCode: pincode,
-        country: country.current,
+        country: country,
         email: email.current.value,
-        phone: phone.current.value,
+        phone: phoneRef.current.value,
       },
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
@@ -145,18 +146,12 @@ export default function Checkout() {
           const array = response.data.results;
           array.forEach((r) => {
             if (r.components.country === "India") {
-              country.current = r.components.country;
-              state.current = r.components.state;
-              city.current = r.components.city
-                ? r.components.city
-                : r.components.town;
+              setCountry(r.components.country);
+              setState(r.components.state);
+              if(r.components.city) setCity(r.components.city)
             }
           });
         });
-    } else {
-      country.current = "";
-      state.current = "";
-      city.current = "";
     }
   }, [pincode]);
 
@@ -290,6 +285,7 @@ export default function Checkout() {
                             className={"w-auto"}
                             helperText={error && "Invalid Phone"}
                             value={phone}
+                            inputRef={phoneRef}
                             onChange={handlePhoneChange}
                         />
                         </div>
@@ -322,15 +318,15 @@ export default function Checkout() {
                           className='block w-full '
                           label='State'
                           required={true}
-                          inputRef={state}
-                          value={state.current}
+                          onChange={(e) => setState(e.target.value)}
+                          value={state}
                         />
                         <TextField
                           className='block w-full'
                           label='City'
                           required={true}
-                          inputRef={city}
-                          value={city.current}
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
                         />
                       </div>
                       <div>
@@ -339,8 +335,8 @@ export default function Checkout() {
                             className='w-full'
                             label='Country'
                             required={true}
-                            inputRef={country}
-                            value={country.current}
+                            onChange={(e) => setCountry(e.target.value)}
+                            value={country}
                           />
                         </div>
 
@@ -363,7 +359,7 @@ export default function Checkout() {
                       <div className='flex justify-end'>
                         <Button
                           type='submit'
-                          className={`text-white bg-primary hover:bg-accent font-bold py-2 px-4 mr-2 mb-2`}>
+                          className={`font-bold py-2 px-4 mr-2 mb-2`}>
                           Proceed to Payment
                         </Button>
                       </div>

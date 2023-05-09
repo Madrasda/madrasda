@@ -136,7 +136,7 @@ export default function Feedback() {
 									onChange={(e) => setInputValue(e.target.value)}
 								/>
 								<Button
-									className={'bg-primary hover:bg-accent text-center text-white'}
+									className={'text-center '}
 									variant={'contained'}
 									onClick={handleSubmit}>
 									Post Query

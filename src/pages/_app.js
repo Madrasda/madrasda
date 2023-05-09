@@ -1,23 +1,13 @@
-import '@/styles/globals.css'
 import {UserContext} from "../../context/context";
 import {useEffect, useState} from "react";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import axios from "axios";
-import {createTheme} from '@mui/material'
 import {useRouter} from 'next/router';
-/*
-
-const theme = createTheme({
-	palette: {
-		primary: {
-			main: 'var(--bg-primary)'
-		},
-		secondary: {
-			main: 'var(--bg-accent)'
-		}
-	},
-})
-*/
+import {ThemeProvider} from "@mui/material/styles";
+import {theme} from 'theme';
+import {StyledEngineProvider} from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import '@/styles/globals.css';
 
 function Loading() {
 	const router = useRouter();
@@ -165,27 +155,30 @@ export default function App({Component, pageProps}) {
 	}
 
 	return (<>
+			<ThemeProvider theme={theme}>
+				<Loading/>
 
-			<Loading/>
-			<UserContext.Provider value={{
-				decrementQty: decrementQty,
-				incrementQty: incrementQty,
-				customQuantity: customQuantity,
-				removeItem: removeItem,
-				addToCart: addToCart,
-				cart: cart,
-				vendorList: vendorList,
-				setIsLoggedIn: setIsLoggedIn,
-				isLoggedIn: isLoggedIn,
-				setRefresh: setRefresh,
+				<UserContext.Provider value={{
+					decrementQty: decrementQty,
+					incrementQty: incrementQty,
+					customQuantity: customQuantity,
+					removeItem: removeItem,
+					addToCart: addToCart,
+					cart: cart,
+					vendorList: vendorList,
+					setIsLoggedIn: setIsLoggedIn,
+					isLoggedIn: isLoggedIn,
+					setRefresh: setRefresh,
+				}}>
 
+					<ThemeProvider theme={theme}>
+						<CssBaseline/>
+						<Component {...pageProps} />
+					</ThemeProvider>
+				</UserContext.Provider>
+			</ThemeProvider>
 
-			}}>
-
-				<Component {...pageProps} id="page"/>
-
-			</UserContext.Provider>
 		</>
 
-	)
+	);
 }

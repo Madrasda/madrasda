@@ -105,7 +105,7 @@ export default function CartModal() {
                   <div className='w-full px-3 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8'>
                     <div className='bg-white md:bg-gray flex flex-col md:border-none rounded md:w-8/12'>
                       {ctx.cart.cartItems.map((item) => (
-                        <div className='border-border border-b-2'>
+                        <div key={uuidv4()} className='border-border border-b-2'>
                           <CartItem
                             key={uuidv4()}
                             id={item.id}
@@ -151,7 +151,8 @@ export default function CartModal() {
                 <Button
                   onClick={checkoutHandler}
                   variant={"contained"}
-                  className='bg-primary text-white hover:bg-accent font-prompt text-sm px-4 py-2'>
+                  color={'primary'}
+                  className='text-white font-prompt text-sm px-4 py-2'>
                   Proceed to checkout
                 </Button>
               </Modal.Footer>

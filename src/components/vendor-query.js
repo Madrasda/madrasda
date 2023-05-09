@@ -36,7 +36,7 @@ export default function VendorQuery(props) {
                     </div>
                     <div className={ (spinner ? "mr-7" : "") + ' w-full flex justify-end '}>
                         {spinner && <CircularProgress color={"primary"}/>}
-                        {!spinner && <Button type="button" className="mt-2 text-white bg-primary hover:bg-accent font-medium rounded-full text-sm px-5 py-2.5
+                        {!spinner && <Button type="button" variant={'contained'} className="mt-2 text-white font-medium rounded-full text-sm px-5 py-2.5
                     text-center mr-2 mb-2" onClick={resolveQuery}>
                             {
                                 props.resolve ? "Mark as Unresolved" : "Mark as Resolved"

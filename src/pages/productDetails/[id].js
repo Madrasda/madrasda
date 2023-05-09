@@ -258,7 +258,7 @@ export default function ProductId() {
                         </div>
                       </div>
                       <Button
-                        className='w-48 h-10 text-center text-white px-4 py-3 bg-primary hover:bg-accent'
+                        className='w-48 h-10 text-center text-white px-4 py-3 '
                         variant={"contained"}
                         onClick={handleAddToCart}>
                         Add to Cart

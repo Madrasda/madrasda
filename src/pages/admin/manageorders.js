@@ -15,7 +15,7 @@ export default function CustomerDetails() {
       token: localStorage.getItem("token"),
     });
     axios
-      .get("http://localhost:8080/api/auth/?" + url)
+      .get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/?" + url)
       .then((response) => {
         console.log("refreshed");
       })
