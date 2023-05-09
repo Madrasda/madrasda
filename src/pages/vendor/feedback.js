@@ -135,12 +135,13 @@ export default function Feedback() {
 									error={error}
 									onChange={(e) => setInputValue(e.target.value)}
 								/>
+								<div className='pt-4'>
 								<Button
-									className={'text-center '}
 									variant={'contained'}
 									onClick={handleSubmit}>
 									Post Query
 								</Button>
+								</div>
 							</form>
 						</div>
 

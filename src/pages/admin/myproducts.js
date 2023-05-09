@@ -4,7 +4,7 @@ import AdminUploadModal from "@/components/adminuploadmodal";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import Mockup from "@/components/mockup";
+import AdminMockup from "@/components/AdminMockup";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import {storage} from "../../firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
@@ -164,7 +164,7 @@ export default function MyProducts() {
                                                 }}
                                               />
                                             </span>
-                                            <Mockup
+                                            <AdminMockup
                                               donwload={false}
                                               key={m.id}
                                               image={m.frontImage}
