@@ -129,12 +129,12 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
             <div className='absolute mt-10'>
             <Link href={`products/${id}`} className='relative'>
               <Image
-                className='mx-auto md:mx-2 animate-spin'
+                className='mx-auto md:mx-2 md:animate-spin'
                 src='/disc.png'
                 width={170}
                 height={170}
               />
-              <div className='w-[140px] h-[140px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+              <div className='w-[140px] h-[140px] overflow-hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
                 <Image
                   className='object-cover w-full h-full'
                   alt={name}
