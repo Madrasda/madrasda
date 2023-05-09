@@ -145,9 +145,14 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
               </div>
             </Link>
             </div>
-            <h1 className='md:text-xl text-bg text-2xl font-raj text-right w-full pr-8'>
-              {name}'s Products
+            <div className="flex flex-col w-full">
+            <h1 className='md:text-2xl w-full text-primary text-xl font-raj text-right float-right pr-8'>
+              {name}'s 
             </h1>
+            <h1 className="md:text-2xl w-full text-bg text-xl font-raj text-right float-right pr-8">
+              Products
+            </h1>
+            </div>
           </div>
           <span className='flex flex-col xl:hidden bg-bg w-full mx-auto pt-24'>
             {/* <Link href={`products/${id}`} className='relative'>

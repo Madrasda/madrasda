@@ -136,9 +136,14 @@ export default function RightsideDisc ({name, id, imgUrl}) {
               </div>
             </Link>
             </div>
-            <h1 className='md:text-xl text-2xl font-raj text-right w-full text-bg pr-8'>
-              {name}'s Products
+            <div className="flex flex-col w-full">
+            <h1 className='md:text-2xl text-xl font-raj text-right w-full text-primary pr-8'>
+              {name}'s
             </h1>
+            <h1 className='md:text-2xl text-xl font-raj text-right w-full text-bg pr-8'>
+              Products
+            </h1>
+            </div>
           </div>
           </div>
           <span className='flex flex-col xl:hidden bg-bg w-full mx-auto pt-20'>
