@@ -1,19 +1,29 @@
 import React, {useState} from "react";
 import Image from "next/image";
-import Link from "next/link";
-import {Alert, Backdrop, CircularProgress, Snackbar} from "@mui/material";
+import {
+	Alert,
+	Backdrop,
+	Button,
+	CircularProgress,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	DialogTitle,
+	Snackbar
+} from "@mui/material";
 import {uuidv4} from "@firebase/util";
-import {Button} from "@mui/material";
-import { set_cptable } from "xlsx";
+import XLSX, {set_cptable} from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
+
 set_cptable(cptable);
-import XLSX from "xlsx";
 
 export default function ProductTable({products, setProducts, path}) {
 	const [message, setMessage] = useState("");
 	const [severity, setSeverity] = useState("");
 	const [open, setOpen] = useState(false);
 	const [spinner, setSpinner] = useState(false);
+	const [visible, setVisible] = useState(false);
 
 	const handleClose = (event, reason) => {
 		console.log(reason);
@@ -22,6 +32,8 @@ export default function ProductTable({products, setProducts, path}) {
 		}
 		setOpen(false);
 	};
+	const closeModal = () => setVisible(false);
+	const openModal = () => setVisible(true);
 
 	const getAvailableColors = (colors) => {
 		var Available = [];
@@ -38,37 +50,51 @@ export default function ProductTable({products, setProducts, path}) {
 				Authorization: "Bearer " + localStorage.getItem("token"),
 			},
 		});
-		setProducts(old => [...old.map(p => {
-			if (p.id === id) p.publishStatus = !p.publishStatus;
-			return p;
-		})])
 		setSpinner(false)
-		setOpen(true);
-		setMessage(inSale ? "Product unpublished" : "Product published successfully");
-		setSeverity(!inSale ? "success" : "error");
+		console.log(response);
+		if (response.status === 200) {
+
+			setProducts(old => [...old.map(p => {
+				if (p.id === id) p.publishStatus = !p.publishStatus;
+				return p;
+			})])
+			setOpen(true);
+			setSeverity(!inSale ? "success" : "error");
+			setMessage(inSale ? "Product unpublished" : "Product published successfully");
+		} else if (response.status === 409) {
+			setVisible(true);
+		} else {
+			setSpinner(false);
+			setOpen(true);
+			setMessage(response.data.message);
+			setSeverity("error");
+		}
 	};
-	const banProduct = async (id, inSale) => {
+	const banProduct = async (id, ban) => {
 		setSpinner(true)
 		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" + id, {
 			method: "PUT", headers: {
 				Authorization: "Bearer " + localStorage.getItem("token"),
 			},
 		});
-		setProducts(old => [...old.map(p => {
-			if (p.id === id) p.adminBan = !p.adminBan;
-			return p;
-		})])
-		setSpinner(false)
-		setOpen(true);
-		setMessage(inSale ? "Product Banned successfully": "Product Ban Lifted Successfully");
-		setSeverity(!inSale ? "success" : "error");
+		if (response.status === 200) {
+			setProducts(old => [...old.map(p => {
+				if (p.id === id) p.adminBan = !p.adminBan;
+				return p;
+			})])
+			setSpinner(false)
+			setOpen(true);
+			setMessage(!ban ? "Product Banned" : "Product Unbanned");
+			setSeverity("success");
+		}
+
 	};
 
 	return (<>
 		<Snackbar
 			className={"mt-7"}
 			open={open}
-			autoHideDuration={1400}
+			autoHideDuration={1800}
 			onClose={handleClose}
 			anchorOrigin={{vertical: "top", horizontal: "right"}}>
 			<Alert variant='filled' onClose={handleClose} severity={severity}>
@@ -81,19 +107,43 @@ export default function ProductTable({products, setProducts, path}) {
 		>
 			<CircularProgress className={'text-accent'}/>
 		</Backdrop>
-
+		<Dialog
+			open={visible}
+			onClose={closeModal}
+			aria-labelledby="alert-dialog-title"
+			aria-describedby="alert-dialog-description"
+		>
+			<DialogTitle id="alert-dialog-title">
+				{"Product Banned!"}
+			</DialogTitle>
+			<DialogContent>
+				<DialogContentText id="alert-dialog-description">
+					This product has been banned by the Madrasda Team for violating our policies. If you think this is a
+					mistake email us at&nbsp;
+					<u>
+						 support@madrasda.com
+					</u>
+					.
+				</DialogContentText>
+			</DialogContent>
+			<DialogActions>
+				<Button onClick={closeModal} autoFocus>
+					Close
+				</Button>
+			</DialogActions>
+		</Dialog>
 		<div className='flex flex-col'>
 			<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
 				<div className='flex justify-end mr-8'>
 					<Button className="bg-accent text-white hidden md:block"
-						onClick={() => {
-							const table = document.getElementById("tablefunda");
-							const wb = XLSX.utils.table_to_book(table);
-							XLSX.writeFile(wb, "products.xlsx");
-						}}>
+					        onClick={() => {
+						        const table = document.getElementById("tablefunda");
+						        const wb = XLSX.utils.table_to_book(table);
+						        XLSX.writeFile(wb, "products.xlsx");
+					        }}>
 						<b>Export as Excel</b>
 					</Button>
-					</div>
+				</div>
 				<div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
 					<div className='text-black'>
 						<table className='min-w-full text-center text-sm font-medium' id="tablefunda">
@@ -118,7 +168,7 @@ export default function ProductTable({products, setProducts, path}) {
 									Available Colours
 								</th>
 								<th scope='col' className=' px-6 py-4'>
-									In Sale
+									{path.includes('admin') ? 'Banned' : 'In Sale'}
 								</th>
 							</tr>
 							</thead>
@@ -152,14 +202,14 @@ export default function ProductTable({products, setProducts, path}) {
 									<td className='whitespace-nowrap px-6 py-6 flex justify-center'>
 										<button
 											onClick={() => {
-												if(path.includes('admin')){
-													banProduct(item.id, item.publishStatus)
-												}else{
-												togglePublishStatus(item.id, item.publishStatus)
-											}
+												if (path.includes('admin')) {
+													banProduct(item.id, item.adminBan)
+												} else {
+													togglePublishStatus(item.id, item.publishStatus)
+												}
 											}}>
 											<Image
-												src={(path.includes('admin')?item.adminBan: item.publishStatus)? "/green-tick.png" : "/red-cross.png"}
+												src={(path.includes('admin') ? item.adminBan : item.publishStatus) ? "/green-tick.png" : "/red-cross.png"}
 												alt='publish-status'
 												width={20}
 												height={20}
@@ -173,7 +223,7 @@ export default function ProductTable({products, setProducts, path}) {
 						</table>
 					</div>
 				</div>
-		</div>
+			</div>
 		</div>
 	</>);
 }

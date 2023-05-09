@@ -45,7 +45,7 @@ export default function App({Component, pageProps}) {
 					console.log(err);
 				})
 		}
-		axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors")
+		axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getAllVendors")
 			.then(response => setVendorList(response.data))
 			.catch(err => console.log(err));
 
