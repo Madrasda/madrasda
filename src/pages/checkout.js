@@ -358,8 +358,12 @@ export default function Checkout() {
                       </div>
                       <div className='flex justify-end'>
                         <Button
+                          css={{ fontFamily: "$algeria" }}
+                          style={{
+                            background: "#FFA000",
+                          }}
                           type='submit'
-                          className={`font-bold py-2 px-4 mr-2 mb-2`}>
+                          className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
                           Proceed to Payment
                         </Button>
                       </div>

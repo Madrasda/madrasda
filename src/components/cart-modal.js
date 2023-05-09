@@ -149,6 +149,10 @@ export default function CartModal() {
               </Modal.Body>
               <Modal.Footer>
                 <Button
+                  css={{ fontFamily: "$algeria" }}
+                  style={{
+                    background: "#FFA000",
+                  }}
                   onClick={checkoutHandler}
                   variant={"contained"}
                   color={'primary'}

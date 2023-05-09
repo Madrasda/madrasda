@@ -9,7 +9,7 @@ import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
 import XLSX from "xlsx";
 
-export default function ProductTable({products, setProducts,}) {
+export default function ProductTable({products, setProducts, path}) {
 	const [message, setMessage] = useState("");
 	const [severity, setSeverity] = useState("");
 	const [open, setOpen] = useState(false);
@@ -45,6 +45,22 @@ export default function ProductTable({products, setProducts,}) {
 		setSpinner(false)
 		setOpen(true);
 		setMessage(inSale ? "Product unpublished" : "Product published successfully");
+		setSeverity(!inSale ? "success" : "error");
+	};
+	const banProduct = async (id, inSale) => {
+		setSpinner(true)
+		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" + id, {
+			method: "PUT", headers: {
+				Authorization: "Bearer " + localStorage.getItem("token"),
+			},
+		});
+		setProducts(old => [...old.map(p => {
+			if (p.id === id) p.adminBan = !p.adminBan;
+			return p;
+		})])
+		setSpinner(false)
+		setOpen(true);
+		setMessage(inSale ? "Product Banned successfully": "Product Ban Lifted Successfully");
 		setSeverity(!inSale ? "success" : "error");
 	};
 
@@ -133,10 +149,15 @@ export default function ProductTable({products, setProducts,}) {
 									</td>
 									<td className='whitespace-nowrap px-6 py-6 flex justify-center'>
 										<button
-											onClick={() => togglePublishStatus(item.id, item.publishStatus)
-											}>
+											onClick={() => {
+												if(path.includes('admin')){
+													banProduct(item.id, item.publishStatus)
+												}else{
+												togglePublishStatus(item.id, item.publishStatus)
+											}
+											}}>
 											<Image
-												src={item.publishStatus ? "/green-tick.png" : "/red-cross.png"}
+												src={(path.includes('admin')?item.adminBan: item.publishStatus)? "/green-tick.png" : "/red-cross.png"}
 												alt='publish-status'
 												width={20}
 												height={20}

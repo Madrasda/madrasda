@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { Button, TextField } from "@mui/material";
+// import {Button} from "@nextui-org/react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -38,8 +39,11 @@ const Otp = (props) => {
         </div>
         <div className='flex justify-center items-center mt-4'>
           <Button
-            variant={"contained"}
-            className={"w-full "}
+            className="text-white w-full"
+            css={{ fontFamily: "$algeria" }}
+            style={{
+              background: "#FFA000",
+            }}
             type={"submit"}>
             Submit
           </Button>

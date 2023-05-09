@@ -1,5 +1,5 @@
-import { Button, TextField, TextareaAutosize } from "@mui/material";
-import { css, Modal } from "@nextui-org/react";
+import { Button,TextField, TextareaAutosize } from "@mui/material";
+import { css, Modal, Text } from "@nextui-org/react";
 import Image from "next/image";
 import {useRef, useState} from "react";
 import axios from "axios";
@@ -43,6 +43,10 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
       <Button
         color='error'
         variant='outlined'
+        css={{ fontFamily: "$algeria" }}
+        style={{
+          background: "#f44336",
+        }}
         onClick={() => setVisible(true)}
         className={
           cancelled || new Date().getTime() - new Date(orderDate).getTime() >

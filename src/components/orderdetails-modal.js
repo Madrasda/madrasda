@@ -72,6 +72,10 @@ export default function OrderDetailsModal({ order }) {
   return (
     <>
       <Button
+        css={{ fontFamily: "$algeria" }}
+        style={{
+          background: "#FFA000",
+        }}
         onClick={handler}
         variant={'contained'}
         >

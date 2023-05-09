@@ -62,7 +62,10 @@ export default function MockupModal({mockups, selectMockup}) {
                 <Grid xs={200}>
                   <Grid className='flex justify-between items-center w-full'>
                     <Dropdown css={{ fontFamily: "$algeria" }}>
-                      <Dropdown.Button className='bg-primary text-white'>
+                      <Dropdown.Button css={{ fontFamily: "$algeria" }}
+                  style={{
+                    background: "#FFA000",
+                  }}>
                         Mockup
                       </Dropdown.Button>
                       <Dropdown.Menu
@@ -105,7 +108,10 @@ export default function MockupModal({mockups, selectMockup}) {
               <Button
                 auto
                 onPress={closeHandler}
-                className='bg-primary text-white'>
+                css={{ fontFamily: "$algeria" }}
+                  style={{
+                    background: "#FFA000",
+                  }}>
                 Proceed
               </Button>
             </Link>

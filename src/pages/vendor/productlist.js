@@ -78,6 +78,7 @@ export default function ProductList() {
                 <ProductTable
                   products={products}
                   setProducts={setProducts}
+                  path={'vendor'}
                 />
               )}
             </div>

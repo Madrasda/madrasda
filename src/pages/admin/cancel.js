@@ -113,11 +113,16 @@ export default function AdminCancelOrdersPage() {
 													Order Total : ₹{request.transaction.orderTotal}
 												</h2>
 											</div>
-											<Button
+											<button
+												className='bg-[#ffa200] text-white font-small py-2 mb-3 px-5 rounded mr-6'
+												// css={{ fontFamily: "$algeria" }}
+												// style={{
+												//   background: "#FFA000",
+												// }}
 												onClick={() => processCancelRequest(request.transaction.id)}
-												className='bg-primary hover:bg-logo text-white font-small mb-3 py-2 px-4 rounded-lg'>
+												>
 												Cancel Order
-											</Button>
+											</button>
 										</div>
 									</Paper>
 								</Grow>

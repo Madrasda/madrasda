@@ -123,7 +123,7 @@ export default function VendorList(props) {
                         <div
                           key={uuidv4()}
                           className='lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer
-                                              bg-off-white m-5 rounded shadow-xl shadow transition-shadows
+                                              bg-off-white m-5 rounded shadow-xl transition-shadows
                                                hover:shadow-shadowGrey '>
                           <span className='w-full ml-5 flex justify-end'>
                             <CloseConfirm

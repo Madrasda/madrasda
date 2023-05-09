@@ -222,7 +222,7 @@ export default function Vendorlogin() {
 								<div className='flex justify-center items-center mt-6'>
 									<Button
 										variant={"contained"}
-										className={"w-full "}
+										className={"w-full bg-primary"}
 										type={"submit"}
 										onClick={vendorlogin}>
 										Login
@@ -311,8 +311,9 @@ export default function Vendorlogin() {
 										onChange={(e) => setGst(e.target.value)}
 									/>
 									<Button
-										className='bg-primary text-white mx-auto w-full rounded'
-										type='submit'>
+										variant={"contained"}
+										className={"w-full bg-primary"}
+										type={"submit"}>
 										Request For Signup
 									</Button>
 								</form>

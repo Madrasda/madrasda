@@ -259,6 +259,10 @@ export default function ProductId() {
                       </div>
                       <Button
                         className='w-48 h-10 text-center text-white px-4 py-3 '
+                        css={{ fontFamily: "$algeria" }}
+                        style={{
+                          background: "#FFA000",
+                        }}
                         variant={"contained"}
                         onClick={handleAddToCart}>
                         Add to Cart

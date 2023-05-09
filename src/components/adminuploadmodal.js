@@ -157,7 +157,7 @@ export default function AdminUploadModal(props) {
                     return (
                       <div className='flex flex-col justify-center items-center px-2' key={color.id}>
                         <button
-                          className={`border-2 border-gray rounded-full w-7 h-7 focus:outline-none ${
+                          className={`border-2 border-bg rounded-full w-7 h-7 focus:outline-none ${
                             selectedColors.findIndex((selectedColor) => selectedColor === color.id) !== -1
                               ? 'border-primary border-[3px]'
                               : ''
@@ -181,7 +181,7 @@ export default function AdminUploadModal(props) {
                       return (
                         <button
                           key={size.id}
-                          className={`w-10 text-xs justify-center mr-5 text-gray transition-colors duration-150 border rounded-lg focus:shadow-outline 
+                          className={`w-10 text-xs justify-center mr-5 text-bg transition-colors duration-150 border border-bg rounded-lg focus:shadow-outline 
                                       ${selected ? 'bg-primary text-white border-primary' : 'border-gray hover:bg-primary hover:text-white hover:border-primary'}`}
                           onClick={() => handleSizeSelection(size.id, size.size)}
                         >

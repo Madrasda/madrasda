@@ -40,7 +40,10 @@ const Login = (props) => {
                <Button
                   variant={"contained"}
                   className={"w-full"}
-                  color={'primary'}
+                  css={{ fontFamily: "$algeria" }}
+                  style={{
+                    background: "#FFA000",
+                  }}
                   type={"submit"}>
                   Login
                </Button>

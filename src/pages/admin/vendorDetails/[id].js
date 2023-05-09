@@ -1,6 +1,7 @@
 import Head from "next/head";
 import LineGraph from "@/components/linegraph";
 import Image from "next/image";
+import Link from "next/link";
 import AdminLayout from "@/components/layout-admin";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
@@ -128,9 +129,11 @@ export default function VendorDetails() {
 									<h1 className='title-font font-bold text-xl'>
 										Total Products
 									</h1>
-									<h2 className='title-font font-bold text-3xl text-primary'>
+									<Link href={`/admin/vendorproducts/${id}`}>
+									<h2 className='title-font font-bold text-3xl text-primary cursor-pointer'>
 										{details.salesAnalysis ? details.salesAnalysis.totalProducts : 0}
 									</h2>
+									</Link>
 								</div>
 								<div className='p-4 w-1/2 md:w-1/3'>
 									<h1 className='title-font font-bold text-xl'>
