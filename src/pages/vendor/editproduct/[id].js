@@ -90,16 +90,7 @@ export default function ViewProd() {
         }
       );
     }
-    const tempResponse = await axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/" +
-        id,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    );
-    router.push("/vendor/templatelist");
+    router.push("/vendor/productlist");
   };
 
   const uploadBlob = async (blobUrl) => {
@@ -166,7 +157,7 @@ export default function ViewProd() {
 
   const getTemplateDetails = async () => {
     const response = await axios.get(
-      `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplate/${id}`,
+      `http://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductDetails/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),

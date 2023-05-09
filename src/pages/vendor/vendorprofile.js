@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import {Backdrop, Button, CircularProgress, InputAdornment, Snackbar, TextField} from "@mui/material";
 import {EditOutlined} from '@mui/icons-material';
-
+import Link from 'next/link'
 import MuiAlert from "@mui/material/Alert";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "@/firebaseConfig";
@@ -240,7 +240,9 @@ export default function VendorProfile(props) {
 										Update Profile
 
 									</Button>
-									{/*<ChangePasswordModal />*/}
+									<Link href="/vendor/changepassword">
+									<Button type="submit" className={"text-white bg-primary font-medium  text-sm px-5 py-2.5 text-center mr-2 mb-2"}>Change Password</Button>
+									</Link>
 								</form>
 							</div>
 						</div>

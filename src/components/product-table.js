@@ -129,7 +129,9 @@ export default function ProductTable({products, setProducts, path}) {
 										{index + 1}
 									</td>
 									<td className='whitespace-nowrap px-6 py-6'>
+									<Link href={`/vendor/editproduct/${item.id}`}>
 										{item.name}
+									</Link>
 									</td>
 									<td className='whitespace-nowrap px-6 py-6'>
 										{item.profit}
