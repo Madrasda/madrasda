@@ -23,7 +23,7 @@ export default function CreateTemplate(props) {
   const isReady = router.isReady;
   const [details, setDetails] = useState(null);
   const canvasWidth = 380;
-  const canvasHeight = 460;
+  const canvasHeight = 434;
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
