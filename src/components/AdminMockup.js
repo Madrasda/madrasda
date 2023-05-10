@@ -22,49 +22,48 @@ export default function AdminMockup(props) {
   return (
     <>
       <div className='relative pb-12 h-full'>
-        
-          <a className='block relative h-fit rounded overflow-hidden'>
-            <Image
-              src={props.image}
-              alt='ecommerce'
-              height={1080}
-              width={1920}
-              className='object-contain object-center w-full h-full'
-            />
-          </a>
-          <div className='mt-4'>
-            <h3 className='text-base title-font'>{props.name}</h3>
-            <div className='flex'>
-              <h2 className='title-font text-sm text-bg'>Model:</h2>
-              <p className='pl-1 text-bg text-sm'>{props.model}</p>
-            </div>
+        <a className='block relative h-fit rounded overflow-hidden'>
+          <Image
+            src={props.image || "/logo.png"}
+            alt='ecommerce'
+            height={1080}
+            width={1920}
+            className='object-contain object-center w-full h-full'
+          />
+        </a>
+        <div className='mt-4'>
+          <h3 className='text-base title-font'>{props.name}</h3>
+          <div className='flex'>
+            <h2 className='title-font text-sm text-bg'>Model:</h2>
+            <p className='pl-1 text-bg text-sm'>{props.model}</p>
+          </div>
 
-            <h3 className='text-sm title-font'>Base Price: {props.basePrice}</h3>
-            <span className='flex flex-wrap mt-1 pr-1 text-sm'>
-              Available Sizes:
-            </span>
-            {props.sizes.map((size) => {
+          <h3 className='text-sm title-font'>Base Price: {props.basePrice}</h3>
+          <span className='flex flex-wrap mt-1 pr-1 text-sm'>
+            Available Sizes:
+          </span>
+          {props.sizes.map((size) => {
+            return (
+              <span key={uuidv4()} className='mt-1 text-bg pr-1 text-sm'>
+                {size}
+              </span>
+            );
+          })}
+          <span className='flex flex-wrap mt-1 overflow-auto text-sm'>
+            Available Colours:
+          </span>
+          <div className='flex flex-wrap space-x-1'>
+            {props.colors.map((color) => {
               return (
-                <span key={uuidv4()} className='mt-1 text-bg pr-1 text-sm'>
-                  {size}
-                </span>
-              );
-            })}
-            <span className='flex flex-wrap mt-1 overflow-auto text-sm'>
-              Available Colours:
-            </span>
-            <div className='flex flex-wrap space-x-1'>
-              {props.colors.map((color) => {
-                return (
-                  <span
+                <span
                   key={uuidv4()}
                   className={`border-black my-1 border-[1px] rounded-[100%] p-2`}
-                    style={{ backgroundColor: color }}></span>
-                );
-              })}
-            </div>
+                  style={{ backgroundColor: color }}></span>
+              );
+            })}
           </div>
-        
+        </div>
+
         {!spinner && props.download && (
           <Button
             variant='outlined'
