@@ -15,6 +15,7 @@ import {
 import {uuidv4} from "@firebase/util";
 import XLSX, {set_cptable} from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
+import Link from "next/link";
 
 set_cptable(cptable);
 
@@ -121,7 +122,7 @@ export default function ProductTable({products, setProducts, path}) {
 					This product has been banned by the Madrasda Team for violating our policies. If you think this is a
 					mistake email us at&nbsp;
 					<u>
-						 support@madrasda.com
+						support@madrasda.com
 					</u>
 					.
 				</DialogContentText>
@@ -179,9 +180,9 @@ export default function ProductTable({products, setProducts, path}) {
 										{index + 1}
 									</td>
 									<td className='whitespace-nowrap px-6 py-6'>
-									<Link href={`/vendor/editproduct/${item.id}`}>
-										{item.name}
-									</Link>
+										<Link href={`/vendor/editproduct/${item.id}`}>
+											{item.name}
+										</Link>
 									</td>
 									<td className='whitespace-nowrap px-6 py-6'>
 										{item.profit}

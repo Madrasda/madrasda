@@ -145,7 +145,7 @@ export default function App({Component, pageProps}) {
 				})
 				.catch((err) => {
 					console.log(err);
-				}))
+				}));
 		} else {
 			console.log(token);
 			console.log(isTokenValid(token));

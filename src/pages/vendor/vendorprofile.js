@@ -11,7 +11,6 @@ import MuiAlert from "@mui/material/Alert";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "@/firebaseConfig";
 import {v4} from "uuid";
-import ChangePasswordModal from "@/components/ChangePassword-Modal";
 
 const Alert = forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -139,20 +138,20 @@ export default function VendorProfile(props) {
 											/>
 
 										</div>
-											<label htmlFor="upload" className="cursor-pointer">
-												<div
-													className="absolute bg-bg bg-opacity-50 top-0 left-0 w-full h-full flex items-center
+										<label htmlFor="upload" className="cursor-pointer">
+											<div
+												className="absolute bg-bg bg-opacity-50 top-0 left-0 w-full h-full flex items-center
 												justify-center opacity-0 hover:opacity-100 transition duration-300 ease-in-out">
 
-													<div className="bg-gray bg-opacity-50 text-white rounded-full p-4">
+												<div className="bg-gray bg-opacity-50 text-white rounded-full p-4">
 
-														<span className="text-lg">Edit Profile Picture</span>
-														<span className="sr-only">Upload Image</span>
-														<input type="file" id="upload" className="hidden"
-														       onChange={handleUploadImage}/>
-													</div>
+													<span className="text-lg">Edit Profile Picture</span>
+													<span className="sr-only">Upload Image</span>
+													<input type="file" id="upload" className="hidden"
+													       onChange={handleUploadImage}/>
 												</div>
-											</label>
+											</div>
+										</label>
 									</div>
 
 									<div>
@@ -217,9 +216,13 @@ export default function VendorProfile(props) {
 											variant="outlined"
 											fullWidth
 											margin="normal"
+											maxLength={13}
 											inputMode={'numeric'}
 											InputProps={{
 												startAdornment: <InputAdornment position="start">+91 </InputAdornment>,
+											}}
+											inputProps={{
+												maxLength:13
 											}}
 											InputLabelProps={{shrink: true}}
 											onChange={(e) => setDetails((oldDetails) => ({
