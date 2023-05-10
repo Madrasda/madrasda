@@ -124,9 +124,7 @@ export default function Checkout() {
 	};
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		console.log(validPhone);
-		console.log(validPincode);
-		return;
+
 		const transaction = {
 			billingIsShipping: true,
 			shippingAddress: {
