@@ -91,140 +91,156 @@ export default function ProductTable({products, setProducts, path}) {
 
 	};
 
-	return (<>
-		<Snackbar
-			className={"mt-7"}
-			open={open}
-			autoHideDuration={1800}
-			onClose={handleClose}
-			anchorOrigin={{vertical: "top", horizontal: "right"}}>
-			<Alert variant='filled' onClose={handleClose} severity={severity}>
-				{message}
-			</Alert>
-		</Snackbar>
-		<Backdrop
-			sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
-			open={spinner}
-		>
-			<CircularProgress className={'text-accent'}/>
-		</Backdrop>
-		<Dialog
-			open={visible}
-			onClose={closeModal}
-			aria-labelledby="alert-dialog-title"
-			aria-describedby="alert-dialog-description"
-		>
-			<DialogTitle id="alert-dialog-title">
-				{"Product Banned!"}
-			</DialogTitle>
-			<DialogContent>
-				<DialogContentText id="alert-dialog-description">
-					This product has been banned by the Madrasda Team for violating our policies. If you think this is a
-					mistake email us at&nbsp;
-					<u>
-						support@madrasda.com
-					</u>
-					.
-				</DialogContentText>
-			</DialogContent>
-			<DialogActions>
-				<Button onClick={closeModal} autoFocus>
-					Close
-				</Button>
-			</DialogActions>
-		</Dialog>
-		<div className='flex flex-col'>
-			<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
-				<div className='flex justify-end mr-8'>
-					<Button className="bg-accent text-white hidden md:block"
-					        onClick={() => {
-						        const table = document.getElementById("tablefunda");
-						        const wb = XLSX.utils.table_to_book(table);
-						        XLSX.writeFile(wb, "products.xlsx");
-					        }}>
-						<b>Export as Excel</b>
-					</Button>
-				</div>
-				<div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
-					<div className='text-black'>
-						<table className='min-w-full text-center text-sm font-medium' id="tablefunda">
-							<thead className='border-b text-m font-bold dark:border-neutral-500'>
-							<tr>
-								<th scope='col' className=' px-6 py-4'>
-									S.No
-								</th>
-								<th scope='col' className=' px-6 py-4'>
-									Product
-								</th>
-								<th scope='col' className=' px-6 py-4'>
-									Profit
-								</th>
-								<th scope='col' className=' px-6 py-4'>
-									Discount
-								</th>
-								<th scope='col' className=' px-6 py-4'>
-									Total Price
-								</th>
-								<th scope='col' className=' px-6 py-4'>
-									Available Colours
-								</th>
-								<th scope='col' className=' px-6 py-4'>
-									{path.includes('admin') ? 'Banned' : 'In Sale'}
-								</th>
-							</tr>
-							</thead>
-							<tbody>
-							{products.map((item, index) => {
-								return (<tr key={uuidv4()} className='border-b dark:border-neutral-500'>
-									<td className='whitespace-nowrap px-6 py-6 font-medium'>
-										{index + 1}
-									</td>
-									<td className='whitespace-nowrap px-6 py-6'>
-										<Link href={`/vendor/editproduct/${item.id}`}>
-											{item.name}
-										</Link>
-									</td>
-									<td className='whitespace-nowrap px-6 py-6'>
-										{item.profit}
-									</td>
-									<td className='whitespace-nowrap px-6 py-6'>
-										{item.discount}
-									</td>
-									<td className='whitespace-nowrap px-6 py-6'>
-										{item.total}
-									</td>
-									<td>
-										<div className='flex flex-wrap justify-center space-x-2'>
-											{getAvailableColors(item.colors).map((i) => (<div key={uuidv4()}
-											                                                  style={{backgroundColor: i}}
-											                                                  className='border-gray border-[2px] rounded-full h-4 w-4'></div>))}
-										</div>
-									</td>
-									<td className='whitespace-nowrap px-6 py-6 flex justify-center'>
-										<button
-											onClick={() => {
-												if (path.includes('admin')) {
-													banProduct(item.id, item.adminBan)
-												} else {
-													togglePublishStatus(item.id, item.publishStatus)
-												}
-											}}>
-											<Image
-												src={(path.includes('admin') ? item.adminBan : item.publishStatus) ? "/green-tick.png" : "/red-cross.png"}
-												alt='publish-status'
-												width={20}
-												height={20}
-											/>
-										</button>
-
-									</td>
-								</tr>);
-							})}
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</>);
+	return (
+    <>
+      <Snackbar
+        className={"mt-7"}
+        open={open}
+        autoHideDuration={1800}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}>
+        <Alert variant='filled' onClose={handleClose} severity={severity}>
+          {message}
+        </Alert>
+      </Snackbar>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={spinner}>
+        <CircularProgress className={"text-accent"} />
+      </Backdrop>
+      <Dialog
+        open={visible}
+        onClose={closeModal}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'>
+        <DialogTitle id='alert-dialog-title'>{"Product Banned!"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            This product has been banned by the Madrasda Team for violating our
+            policies. If you think this is a mistake email us at&nbsp;
+            <u>support@madrasda.com</u>.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeModal} autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <div className='flex flex-col'>
+        <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
+          <div className='flex justify-end mr-8'>
+            <Button
+              className='bg-accent text-white hidden md:block hover:bg-primary'
+              variant='contained'
+              onClick={() => {
+                const table = document.getElementById("tablefunda");
+                const wb = XLSX.utils.table_to_book(table);
+                XLSX.writeFile(wb, "products.xlsx");
+              }}>
+              <b>Export as Excel</b>
+            </Button>
+          </div>
+          <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
+            <div className='text-black'>
+              <table
+                className='min-w-full text-center text-sm font-medium'
+                id='tablefunda'>
+                <thead className='border-b text-m font-bold dark:border-neutral-500'>
+                  <tr>
+                    <th scope='col' className=' px-6 py-4'>
+                      S.No
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Product
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Profit
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Discount
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Total Price
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Available Colours
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      {path.includes("admin") ? "Banned" : "In Sale"}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {products.map((item, index) => {
+                    return (
+                      <tr
+                        key={uuidv4()}
+                        className='border-b dark:border-neutral-500'>
+                        <td className='whitespace-nowrap px-6 py-6 font-medium'>
+                          {index + 1}
+                        </td>
+                        <td className='whitespace-nowrap px-6 py-6'>
+                          <Link href={`/vendor/editproduct/${item.id}`}>
+                            {item.name}
+                          </Link>
+                        </td>
+                        <td className='whitespace-nowrap px-6 py-6'>
+                          {item.profit}
+                        </td>
+                        <td className='whitespace-nowrap px-6 py-6'>
+                          {item.discount}
+                        </td>
+                        <td className='whitespace-nowrap px-6 py-6'>
+                          {item.total}
+                        </td>
+                        <td>
+                          <div className='flex flex-wrap justify-center space-x-2'>
+                            {getAvailableColors(item.colors).map((i) => (
+                              <div
+                                key={uuidv4()}
+                                style={{ backgroundColor: i }}
+                                className='border-gray border-[2px] rounded-full h-4 w-4'></div>
+                            ))}
+                          </div>
+                        </td>
+                        <td className='whitespace-nowrap px-6 py-6 flex justify-center'>
+                          <button
+                            onClick={() => {
+                              if (path.includes("admin")) {
+                                banProduct(item.id, item.adminBan);
+                              } else {
+                                togglePublishStatus(
+                                  item.id,
+                                  item.publishStatus
+                                );
+                              }
+                            }}>
+                            <Image
+                              src={
+                                (
+                                  path.includes("admin")
+                                    ? item.adminBan
+                                    : item.publishStatus
+                                )
+                                  ? "/green-tick.png"
+                                  : "/red-cross.png"
+                              }
+                              alt='publish-status'
+                              width={20}
+                              height={20}
+                            />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
