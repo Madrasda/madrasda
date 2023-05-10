@@ -124,17 +124,17 @@ export default function MyProducts() {
     const uploadedImages = await Promise.all(uploadPromises);
     mockup.images = uploadedImages;
     console.log(mockup);
-    // axios
-    //   .post(
-    //     "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
-    //     mockup
-    //   )
-    //   .then((response) => {
-    //     getMockups();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .post(
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
+        mockup
+      )
+      .then((response) => {
+        getMockups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {

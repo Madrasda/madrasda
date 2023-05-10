@@ -39,13 +39,13 @@ export default function AdminMockup(props) {
   return (
     <>
       <div className='relative h-full'>
-        <a className='block relative w-fit rounded overflow-hidden'>
+        <a className='block relative w-full rounded overflow-hidden'>
           <Image
             src={display || "/logo.png"}
             alt='ecommerce'
             height={1080}
             width={1920}
-            className='object-contain object-center w-full h-full'
+            className='object-cover object-center w-96 h-full'
           />
         </a>
         <div className='mt-4'>

@@ -212,7 +212,7 @@ export default function AdminUploadModal(props) {
                             handleColorSelection({
                               id: color.id,
                               hexValue: color.hexValue,
-                              color : color.color
+                              color: color.color,
                             });
                           }}
                           style={{
@@ -233,12 +233,12 @@ export default function AdminUploadModal(props) {
             {/* Color Wise Image Upload */}
             <h1>Select Your Color Wise Product Images</h1>
             <div className='items-center mt-3 mb-3'>
-              <div className='flex flex-wrap'>
+              <div className='grid grid-cols-3'>
                 {selectedColors &&
                   selectedColors.map((color) => {
                     return (
                       <div
-                        className='my-4 space-x-5 items-center px-2'
+                        className='my-4 col-span-1 flex flex-col justify-center items-center'
                         key={color.id}>
                         <button
                           className={`border-2 border-gray rounded-full w-10 h-10 focus:outline-none ${
@@ -252,7 +252,7 @@ export default function AdminUploadModal(props) {
                           style={{
                             backgroundColor: color.hexValue,
                           }}></button>
-                        <p className='text-[10px] mx-auto'>{color.color}</p>
+                        <p className='text-[10px] w-full text-center'>{color.color}</p>
                       </div>
                     );
                   })}
