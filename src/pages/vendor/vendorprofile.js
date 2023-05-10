@@ -234,6 +234,8 @@ export default function VendorProfile(props) {
 											}))}
 										/>
 									</div>
+									<div className='flex flex-row'>
+									<div className=" text-center ">
 									<Button
 										variant={"contained"}
 										endIcon={<EditOutlined/>}
@@ -243,9 +245,17 @@ export default function VendorProfile(props) {
 										Update Profile
 
 									</Button>
+									</div>
+									<div className="text-center ml-8 ">
 									<Link href="/vendor/changepassword">
-									<Button type="submit" className={"text-white bg-primary font-medium  text-sm px-5 py-2.5 text-center mr-2 mb-2"}>Change Password</Button>
+									<Button css={{ fontFamily: "$algeria" }}
+											style={{
+												background: "#FFA000",
+												color: 'white'
+											}}>Change Password</Button>
 									</Link>
+									</div>
+									</div>
 								</form>
 							</div>
 						</div>

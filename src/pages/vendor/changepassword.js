@@ -73,7 +73,12 @@ export default function VendorProfile() {
                 
                 <div className=" mt-14 flex justify-center ">
   
-                  <Button type="submit" className={"text-white bg-primary font-medium  text-sm px-5 py-2.5 text-center mr-2 mb-2"}
+                  <Button css={{ fontFamily: "$algeria" }}
+                          style={{
+                            background: "#FFA000",
+                            color: 'white'
+                          }}
+                          type={'submit'} className={"text-white bg-primary font-medium  text-sm px-5 py-2.5 text-center mr-2 mb-2"}
                           onClick={changePassword}>Change Password</Button>
                 
                 </div>
