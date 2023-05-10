@@ -1,4 +1,4 @@
-import { Button,TextField, TextareaAutosize } from "@mui/material";
+import { Button, TextField, TextareaAutosize } from "@mui/material";
 import { css, Modal, Text } from "@nextui-org/react";
 import Image from "next/image";
 import {useRef, useState} from "react";
@@ -42,10 +42,11 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
     <>
       <Button
         color='error'
-        variant='outlined'
+        variant={'contained'}
         css={{ fontFamily: "$algeria" }}
         style={{
           background: "#f44336",
+          text: "white"
         }}
         onClick={() => setVisible(true)}
         className={
@@ -70,10 +71,17 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
           <TextField inputRef={reasonRef} className='rounded p-3' />
         </Modal.Body>
         <Modal.Footer css={{ fontFamily: "$algeria" }}>
-          <Button color='success' variant={'contained'} onClick={requestCancelOrder}>
+          <Button style={{
+              background: "#388e3c"
+            }}
+         variant={'contained'} onClick={requestCancelOrder}>
             Proceed
           </Button>
-          <Button color='error' onClick={closeHandler}>
+          <Button style={{
+              background: "#d32f2f"
+            }}
+            variant={'contained'}
+             onClick={closeHandler}>
             Cancel
           </Button>
         </Modal.Footer>

@@ -394,39 +394,41 @@ export default function Checkout() {
 													/>
 												</div>
 
-												<div className='mb-4 ml-2 mt-1 '>
-													<TextField
-														className='href w-full '
-														label='Address Line 1'
-														required={true}
-														inputRef={addressLine1}
-													/>
-												</div>
-												<div className='mb-6 ml-2 mt-1 '>
-													<TextField
-														className='href w-full '
-														label='Address Line 2 (Optional)'
-														inputRef={addressLine2}
-													/>
-												</div>
-											</div>
-											<div className='flex justify-end'>
-												<Button
-													type='submit'
-													variant={'contained'}
-													disabled={!validPhone || !validPincode}
-													className={`font-bold bg-primary text-white py-2 px-4 mr-2 mb-2`}>
-													Proceed to Payment
-												</Button>
-											</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</main>
-			</ClientLayout>
-		</>
-	);
+                        <div className='mb-4 ml-2 mt-1 '>
+                          <TextField
+                            className='href w-full '
+                            label='Address Line 1'
+                            required={true}
+                            inputRef={addressLine1}
+                          />
+                        </div>
+                        <div className='mb-6 ml-2 mt-1 '>
+                          <TextField
+                            className='href w-full '
+                            label='Address Line 2 (Optional)'
+                            inputRef={addressLine2}
+                          />
+                        </div>
+                      </div>
+                      <div className='flex justify-end'>
+                        <Button /*{className='bg-primary text-white mx-auto w-full ' type='submit'}*/ 
+                          css={{ fontFamily: "$algeria" }}
+                          style={{
+                            background: "#FFA000",
+                          }}
+                          type={'submit'}
+                          className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
+                          Proceed to Payment
+                        </Button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </ClientLayout>
+    </>
+  );
 }
