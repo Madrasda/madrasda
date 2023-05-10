@@ -4,9 +4,11 @@ import Head from 'next/head'
 import Image from "next/image";
 import Link from 'next/link';
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier"
+import { Password } from '@mui/icons-material';
+import { Button, TextField } from '@mui/material';
 
 
 export default function VendorProfile() {
@@ -14,16 +16,29 @@ export default function VendorProfile() {
   const router = useRouter();
   let isReady = router.isReady;
   const [loading, setLoading] = useState(false);
+  const newPasswordRef = useRef();
+	const confirmPasswordRef = useRef();
+	const changePassword = (e) => {
+		if (newPasswordRef.current.value === confirmPasswordRef.current.value) {
+			axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/updatePassword?" + confirmPasswordRef.current.value , {}, {
+				headers: {
+					"Authorization": "Bearer " + localStorage.getItem("token")
+				},
+        params: {
+          newPassword: newPasswordRef.current.value,
+        }
+			}).then(response => {
+				localStorage.removeItem("token");
+				router.push("/vendor")
+			});
+		}
+	}
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
     setLoading(false);
       }, 1000);
   }, []);
-  if(loading && isReady)
-  return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080}/>
-  </div>);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token")
     if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
@@ -52,25 +67,15 @@ export default function VendorProfile() {
         <div className="grid gap-6 mt-10 ml-2 mb-2 
                             md:grid-row
                             lg:mr-96">
-                <div className="flex flex-row">
-                    <label for="first_name" className="block mb-2 text-lg font-medium w-full text-black">Enter Old Password</label>
-                    <input type="text" className="bg-black-50 border-b border-gray text-black text-sm block w-full p-2.5" placeholder="********" required>
-                    </input>
-                </div>
-                <div className="flex flex-row">
-                    <label for="last_name" className="block mb-2 text-lg font-medium w-full text-black">Enter New Password</label>
-                    <input type="text" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5" placeholder="********" required>
-                    </input>
-                </div>
-                <div className="flex flex-row">
-                    <label for="company" className="block mb-2 text-lg font-medium w-full text-black">Re-enter New Password</label>
-                    <input type="text" className="bg-black-50 border-b  border-gray  text-black text-sm block w-full p-2.5" placeholder="********" required>
-                    </input>
-                </div>
+                
+                <TextField label={'New Password'} inputRef={newPasswordRef} className='rounded p-3 mb-3'/>
+					      <TextField label={'Re-type New Password'} inputRef={confirmPasswordRef} className='rounded p-3'/>
+                
                 <div className=" mt-14 flex justify-center ">
-                <Link href ="/vendor/vendorprofile">
-                  <button type="button" className="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Change Password</button>
-                </Link>
+  
+                  <Button type="submit" className={"text-white bg-primary font-medium  text-sm px-5 py-2.5 text-center mr-2 mb-2"}
+                          onClick={changePassword}>Change Password</Button>
+                
                 </div>
             </div>
       </div>
