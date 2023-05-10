@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { uuidv4 } from "@firebase/util";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
 
-export default function UploadModal({ chooseDesign, upload, setMessage, setOpen, setSeverity, setDesigns }) {
+export default function UploadModal({ chooseDesign, upload, setMessage, setOpen, setSeverity, setDesigns, refreshDesigns, gallery}) {
   const [visible, setVisible] = React.useState(false);
   const [selected, setSelected] = useState({});
   const [image, setImage] = useState(null);
@@ -69,8 +69,18 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           setSeverity("success");
           setSpinner(false);
           getDesigns();
-          setDesigns();
+          if(gallery){
+            refreshDesigns();
+            return
+          }
+          setDesigns({
+            imgUrl: file,
+            designType: designType,
+            theme: theme,
+            additionalInformation: info,
+          });
         }
+        return response.status;
       })
       .catch((err) => {
         setSpinner(false);

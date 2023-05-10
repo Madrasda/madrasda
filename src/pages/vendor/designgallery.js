@@ -109,7 +109,8 @@ export default function DesignGallery() {
                   setMessage={setMessage}
                   setOpen={setOpen}
                   setSeverity={setSeverity}
-                  setDesigns={getDesigns()}
+                  gallery = {true}
+                  refreshDesigns={getDesigns}
                 />
               </div>
               <div className='flex flex-wrap justify-start md:ml-20'>
