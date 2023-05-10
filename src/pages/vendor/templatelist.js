@@ -13,7 +13,7 @@ import MockupModel from "@/components/mockupmodel";
 import CloseConfirm from "@/components/close-confirm-modal";
 import {uuidv4} from "@firebase/util";
 
-export default function TemplateList () {
+export default function TemplateList() {
   const [products, setProducts] = useState(null);
   const [pageNo, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(0);
@@ -29,80 +29,96 @@ export default function TemplateList () {
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
-    setLoading(false);
-      }, 1000);
+      setLoading(false);
+    }, 1000);
   }, []);
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token")
-    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
+    const jwtToken = localStorage.getItem("token");
+    if (
+      jwtToken === undefined ||
+      !isTokenValid(jwtToken) ||
+      getRole(jwtToken) !== "ROLE_VENDOR"
+    )
       router.push("/vendor");
-    else{
+    else {
       setTokenExists(true);
       getAllMockups();
       getVendorProducts();
     }
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     getVendorProducts();
   }, [pageNo]);
 
   const getVendorProducts = async () => {
     const url = new URLSearchParams({
       pageNo: pageNo,
-      pageSize : 5
+      pageSize: 5,
     });
-    const response = await axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplates?" + url , {
-      headers : {
-        Authorization : "Bearer " + localStorage.getItem('token') 
+    const response = await axios.get(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplates?" +
+        url,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
       }
-    });
+    );
     setProducts(response.data.content);
     setPageSize(response.data.totalPages);
-  }
+  };
 
   const getAllMockups = async () => {
     const response = await axios.get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups"
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups"
     );
     setMockups(response.data.content);
-  }
+  };
 
   const getAvailableSizes = (skuMapping) => {
-        var availableSizes = []
-        skuMapping.forEach(sku => {
-            if(!availableSizes.includes(sku.size.size))
-                availableSizes.push(sku.size.size);
-        });
-        return availableSizes;
-  }
+    var availableSizes = [];
+    skuMapping.forEach((sku) => {
+      if (!availableSizes.includes(sku.size.size))
+        availableSizes.push(sku.size.size);
+    });
+    return availableSizes;
+  };
 
   const getAvailableColors = (skuMapping) => {
-        var availableColors = []
-        skuMapping.forEach(sku => {
-            if(!availableColors.includes(sku.color.hexValue))
-                availableColors.push(sku.color.hexValue);
-        });
-        return availableColors;
-  }
+    var availableColors = [];
+    skuMapping.forEach((sku) => {
+      if (!availableColors.includes(sku.color.hexValue))
+        availableColors.push(sku.color.hexValue);
+    });
+    return availableColors;
+  };
 
   const deleteTemplate = async (tempId) => {
-      const response = await axios.delete(
-        'https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/' + tempId,
-        {
-          headers : {
-            Authorization : 'Bearer ' + localStorage.getItem('token')
-          }
-        }
-      );
-      getVendorProducts();
-  }
+    const response = await axios.delete(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/" +
+        tempId,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+    getVendorProducts();
+  };
 
-  if(loading && isReady)
-  return (<div className='z-50 h-screen w-screen overflow-hidden'>
-  <Image src="/loader.gif" width={1920} height={1080} className="object-cover object-center w-full h-full"/>
-  </div>);
-  
+  if (loading && isReady)
+    return (
+      <div className='z-50 h-screen w-screen overflow-hidden'>
+        <Image
+          src='/loader.gif'
+          width={1920}
+          height={1080}
+          className='object-cover object-center w-full h-full'
+        />
+      </div>
+    );
+
   return (
     <>
       <Head>

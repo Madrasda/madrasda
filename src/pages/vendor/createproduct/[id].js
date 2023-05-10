@@ -10,8 +10,12 @@ import { isTokenValid } from "@/utils/JWTVerifier";
 import { storage } from "../../.././firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { async } from '@firebase/util';
+import { Check, CheckBox, Download, SelectAll } from "@mui/icons-material";
+import { saveAs } from "file-saver";
+import Backdrop, { Button, CircularProgress } from "@mui/material";
 
 export default function CreateTemplate(props) {
+  const [spinner, setSpinnerState] = useState(false);
   const [design, setDesign] = useState(null);
   const [tokenExists, setTokenExists] = useState(false);
   const [template, setTemplateImage] = useState(null);
@@ -224,25 +228,20 @@ export default function CreateTemplate(props) {
 
   const saveImage = async () => {
     setMode(false);
-    details.images.forEach( async (image) => {
-      console.log(image.image);
-      // setCurImg(image.image);
-      // const data = await DomToImage.toJpeg(
-      // document.getElementById("mockup-image"),
-      // {
-      //   quality: 0.95,
-      // }
-      // );
-      // console.log(data);
-    })
-    // const byteCharacters = atob(data.split(",")[1]);
-    // const byteNumbers = new Array(byteCharacters.length);
-    // for (let i = 0; i < byteCharacters.length; i++) {
-    //   byteNumbers[i] = byteCharacters.charCodeAt(i);
-    // }
-    // const byteArray = new Uint8Array(byteNumbers);
-    // const blob = new Blob([byteArray], { type: "image/jpeg" });
-    // uploadBlob(blob);
+    const data = await DomToImage.toJpeg(
+      document.getElementById("mockup-image"),
+      {
+        quality: 0.95,
+      }
+    );
+    const byteCharacters = atob(data.split(",")[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "image/jpeg" });
+    uploadBlob(blob);
   };
 
   const uploadBlob = async (blob) => {
@@ -302,6 +301,20 @@ export default function CreateTemplate(props) {
         setSeverity("error");
         console.log(err);
       });
+  };
+
+  const downloadImage = async () => {
+    setSpinnerState(true);
+    setMode(false);
+    const data = await DomToImage.toBlob(
+      document.getElementById("mockup-image"),
+      {
+        quality: 0.95,
+      }
+    );
+    window.saveAs(data, `my-template-${id + new Date().getTime()}.png`);
+    setSpinnerState(false);
+    setMode(true);
   };
 
   return (
@@ -396,7 +409,7 @@ export default function CreateTemplate(props) {
                     {/* FABRIC JS CANVAS*/}
                     {details && (
                       <div
-                        className='mockup-image relative h-full'
+                        className='mockup-image relative h-full bg-tertiary'
                         id='mockup-image'>
                         <img
                           src={curImg || "/logo.png"}
@@ -433,32 +446,47 @@ export default function CreateTemplate(props) {
                     <h1>{design && design.name}</h1>
 
                     <div className='mt-6'>Available Colors</div>
-                    <div className='flex justify-start items-center mt-3 mb-3'>
+                    <div className='flex justify-start items-center my-3'>
                       <div className='relative'>
-                        <div className='grid grid-cols-4 space-x-2'>
+                        <div className='flex flex-col'>
                           {details &&
                             getAvailableColors(details.skuMapping).map(
                               (color) => {
                                 return (
                                   <div
-                                    className='flex flex-col justify-center items-center px-2'
+                                    className='flex justify-between items-center px-2 space-x-3'
                                     key={color.id}>
                                     <button
-                                      className={`border-2 border-gray rounded-full w-8 h-8 focus:outline-non`}
+                                      className={`border-2 border-gray rounded-full w-8 h-8 relative focus:outline-non`}
                                       style={{
                                         backgroundColor: color.hexValue,
                                       }}
-                                      onClick={() =>
-                                        setCurId(color.id)
-                                      }></button>
-                                    <p className='text-[10px] mx-auto'>
-                                      {color.color}
-                                    </p>
+                                      onClick={() => setCurId(color.id)}>
+                                      {curId === color.id && (
+                                        <Check className='absolute text-[#00FF00] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' />
+                                      )}
+                                    </button>
+                                    <p className='text-[10px]'>{color.color}</p>
                                   </div>
                                 );
                               }
                             )}
                         </div>
+                        {!spinner && (
+                          <div className='w-full mt-3'>
+                            <Button
+                              variant='outlined'
+                              className={
+                                "text-primary w-full bottom-0 p-2 absolute border-primary hover:border-logo hover:text-logo text-xs mx-auto"
+                              }
+                              onClick={downloadImage}>
+                              <Download /> Image
+                            </Button>
+                          </div>
+                        )}
+                        {spinner && (
+                          <CircularProgress size='30px' color='warning' />
+                        )}
                       </div>
                     </div>
                     <div className='mt-6'>Available Sizes</div>

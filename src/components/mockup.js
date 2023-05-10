@@ -21,7 +21,7 @@ export default function Mockup(props) {
   };
   return (
     <>
-      <div className='relative pb-12 h-full'>
+      <div className='relative h-full'>
         <Link href={`/vendor/uploadproduct/${props.id}`}>
           <a className='block relative h-fit rounded overflow-hidden'>
             <Image
@@ -39,7 +39,9 @@ export default function Mockup(props) {
               <p className='pl-1 text-bg text-sm'>{props.model}</p>
             </div>
 
-            <h3 className='text-sm title-font'>Base Price: {props.basePrice}</h3>
+            <h3 className='text-sm title-font'>
+              Base Price: {props.basePrice}
+            </h3>
             <span className='flex flex-wrap mt-1 pr-1 text-sm'>
               Available Sizes:
             </span>
@@ -57,27 +59,14 @@ export default function Mockup(props) {
               {props.colors.map((color) => {
                 return (
                   <span
-                  key={uuidv4()}
-                  className={`border-black my-1 border-[1px] rounded-[100%] p-2`}
+                    key={uuidv4()}
+                    className={`border-black my-1 border-[1px] rounded-[100%] p-2`}
                     style={{ backgroundColor: color }}></span>
                 );
               })}
             </div>
           </div>
         </Link>
-        {!spinner && props.download && (
-          <Button
-            variant='outlined'
-            className={
-              "text-primary w-full bottom-0 p-2 absolute border-primary hover:border-logo hover:text-logo text-xs mx-auto"
-            }
-            onClick={downloadImage}>
-            <Download /> Image
-          </Button>
-        )}
-        {spinner && props.download && (
-          <CircularProgress size='30px' color='warning' />
-        )}
       </div>
     </>
   );
