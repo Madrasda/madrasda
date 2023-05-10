@@ -58,7 +58,7 @@ export default function MyProducts() {
         },
       }
     );
-    router.reload();
+    getMockups();
   };
 
   const getAllColorsAndSizes = async () => {
@@ -87,8 +87,15 @@ export default function MyProducts() {
   const getAvailableColors = (skuMapping) => {
     var availableColors = [];
     skuMapping.forEach((sku) => {
-      if (!availableColors.includes(sku.color.hexValue))
-        availableColors.push(sku.color.hexValue);
+      if (
+        availableColors.findIndex((item) => item.id === sku.color.id) === -1
+      ) {
+        availableColors.push({
+          id: sku.color.id,
+          hexValue: sku.color.hexValue,
+          color: sku.color.color,
+        });
+      }
     });
     return availableColors;
   };
@@ -116,13 +123,18 @@ export default function MyProducts() {
     });
     const uploadedImages = await Promise.all(uploadPromises);
     mockup.images = uploadedImages;
-    axios.post(
-        "http://localhost:8080/api/mockup/addMockup", mockup
-    ).then((response) => {
-        getMockups();
-    }).catch((err) => {
-        console.log(err);
-    })
+    console.log(mockup);
+    // axios
+    //   .post(
+    //     "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
+    //     mockup
+    //   )
+    //   .then((response) => {
+    //     getMockups();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   useEffect(() => {
@@ -171,7 +183,7 @@ export default function MyProducts() {
                     return (
                       <div
                         key={uuidv4()}
-                        className='lg:w-1/4 md:w-3/4 p-4 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out'>
+                        className='lg:w-1/4 md:w-3/4 p-4 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out border border-border'>
                         <span key={uuidv4()} className='flex'>
                           <CloseConfirm
                             mockup={true}
@@ -183,7 +195,7 @@ export default function MyProducts() {
                         <AdminMockup
                           donwload={false}
                           key={m.id}
-                          image={m.frontImage || m.backImage || m.images[0]}
+                          image={m.images}
                           model={m.model}
                           name={m.name}
                           sizes={getAvailableSizes(m.skuMapping)}

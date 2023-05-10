@@ -5,10 +5,12 @@ import { Download } from "@mui/icons-material";
 import { saveAs } from "file-saver";
 import Backdrop from "@mui/material";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AdminMockup(props) {
   const [spinner, setSpinnerState] = useState(false);
+  const [display, setDispay] = useState(null);
+  const [cur, setCur] = useState(0);
 
   const downloadImage = () => {
     setSpinnerState(true);
@@ -19,12 +21,27 @@ export default function AdminMockup(props) {
         setSpinnerState(false);
       });
   };
+
+  useEffect(() => {
+    setCur(props.image[0].colorId);
+    setDispay(props.image[0].image);
+  }, []);
+
+  useEffect(() => {
+    props.image.forEach((image) => {
+      if (image.colorId === cur) {
+        setDispay(image.image);
+        return;
+      }
+    });
+  }, [cur]);
+
   return (
     <>
-      <div className='relative pb-12 h-full'>
-        <a className='block relative h-fit rounded overflow-hidden'>
+      <div className='relative h-full'>
+        <a className='block relative w-fit rounded overflow-hidden'>
           <Image
-            src={props.image || "/logo.png"}
+            src={display || "/logo.png"}
             alt='ecommerce'
             height={1080}
             width={1920}
@@ -58,7 +75,8 @@ export default function AdminMockup(props) {
                 <span
                   key={uuidv4()}
                   className={`border-black my-1 border-[1px] rounded-[100%] p-2`}
-                  style={{ backgroundColor: color }}></span>
+                  style={{ backgroundColor: color.hexValue }}
+                  onClick={() => setCur(color.id)}></span>
               );
             })}
           </div>

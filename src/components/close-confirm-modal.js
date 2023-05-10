@@ -8,7 +8,6 @@ export default function CloseConfirm (props) {
   
     const closeHandler = () => {
       setVisible(false);
-      console.log("closed");
     };
 
     const deleteTrue = () => {
