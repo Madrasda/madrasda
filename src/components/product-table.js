@@ -48,7 +48,7 @@ export default function ProductTable({products, setProducts, path}) {
 		setSpinner(true)
 		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/togglePublishState/" + id, {
 			method: "PUT", headers: {
-				Authorization: "Bearer " + localStorage.getItem("token"),
+				Authorization: "Bearer " + localStorage.getItem("token_admin"),
 			},
 		});
 		setSpinner(false)
@@ -75,7 +75,7 @@ export default function ProductTable({products, setProducts, path}) {
 		setSpinner(true)
 		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" + id, {
 			method: "PUT", headers: {
-				Authorization: "Bearer " + localStorage.getItem("token"),
+				Authorization: "Bearer " + localStorage.getItem("token_admin"),
 			},
 		});
 		if (response.status === 200) {
@@ -136,7 +136,11 @@ export default function ProductTable({products, setProducts, path}) {
 		<div className='flex flex-col'>
 			<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
 				<div className='flex justify-end mr-8'>
-					<Button className="bg-accent text-white hidden md:block"
+					<Button css={{ fontFamily: "$algeria" }}
+                          style={{
+                            background: "#FFA000",
+                            color: 'white'
+                          }}
 					        onClick={() => {
 						        const table = document.getElementById("tablefunda");
 						        const wb = XLSX.utils.table_to_book(table);

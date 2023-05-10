@@ -25,7 +25,7 @@ export default function ProductList() {
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/",
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token_vendor"),
         },
       }
     );
@@ -39,7 +39,7 @@ export default function ProductList() {
   };
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_vendor");
 
     if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");

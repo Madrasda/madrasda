@@ -12,7 +12,7 @@ export default function CustomerDetails() {
   const router = useRouter();
   const verifyToken = async () => {
     const url = new URLSearchParams({
-      token: localStorage.getItem("token"),
+      token: localStorage.getItem("token_admin"),
     });
     axios
       .get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/?" + url)
@@ -20,11 +20,11 @@ export default function CustomerDetails() {
         console.log("refreshed");
       })
       .catch((err) => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("token_admin");
       });
   };
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_admin");
 
     if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN'){
       router.push("/admin");

@@ -37,7 +37,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs",
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token_vendor"),
           },
         }
       )
@@ -57,7 +57,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
         },
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token_vendor"),
           },
         }
       )

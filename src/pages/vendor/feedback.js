@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
-import Accordion from '@/components/accordian'
 import Image from 'next/image'
 import {forwardRef, useEffect, useState} from "react";
 import {useRouter} from "next/router";
@@ -8,6 +7,13 @@ import {getRole, isTokenValid} from "@/utils/JWTVerifier"
 import {Button, Snackbar, TextField} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import CssBaseline from "@mui/material/CssBaseline";
+
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 const Alert = forwardRef(function Alert(props, ref) { //snackbar alert
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -44,7 +50,7 @@ export default function Feedback() {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
-						Authorization: "Bearer " + localStorage.getItem("token"),
+						Authorization: "Bearer " + localStorage.getItem("token_vendor"),
 					},
 					body: JSON.stringify({query: inputValue, resolution: false}),
 				}
@@ -72,7 +78,7 @@ export default function Feedback() {
 	};
 
 	useEffect(() => {
-		const jwtToken = localStorage.getItem("token");
+		const jwtToken = localStorage.getItem("token_vendor");
 		if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
 			router.push("/vendor");
 		else setTokenExists(true);
@@ -149,29 +155,107 @@ export default function Feedback() {
 
 						<div className='md:ml-24 lg:ml-32'>
 							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>2.FAQ:</h1>
-							<Accordion
-								title="What's included in the quoted daily rate?"
-								content='this is content 1'
-								border='border-rounded'
-							/>
-							<Accordion
-								title="What's included in the quoted daily rate?"
-								content='this is content 1'
-							/>
-							<Accordion
-								title="What's included in the quoted daily rate?"
-								content='this is content 1'
-							/>
-							<Accordion
-								title="What's included in the quoted daily rate?"
-								content='this is content 1'
-							/>
-							<Accordion
-								title="What's included in the quoted daily rate?"
-								content='this is content 1'
-							/>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>FAQ 1</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>FAQ 2</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>FAQ 3</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>FAQ 4</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								</Typography>
+								</AccordionDetails>
+							</Accordion>				
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>FAQ 5</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
 						</div>
-
 						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
 
 						<div className='md:ml-24 lg:ml-32 text-[#2c2c2d]'>

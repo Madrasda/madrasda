@@ -17,7 +17,7 @@ export default function NavVendor() {
   const currentRoute = router.pathname;
   const ctx = useContext(UserContext);
   const logout = async () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token_client");
     ctx.setIsLoggedIn(false);
     router.push("/vendor");
   };

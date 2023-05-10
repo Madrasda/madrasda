@@ -38,7 +38,7 @@ export default function Adminlogin() {
 				}
 			)
 			.then((response) => {
-				localStorage.setItem("token", response.data.token);
+				localStorage.setItem("token_admin", response.data.token);
 				ctx.setIsLoggedIn(true);
 				router.push("/admin/vendorlist");
 			})
@@ -50,7 +50,7 @@ export default function Adminlogin() {
 	};
 
 	useEffect(() => {
-		const token = localStorage.getItem("token");
+		const token = localStorage.getItem("token_admin");
 		if (token && isTokenValid(token) && getRole(token) === 'ROLE_ADMIN') router.push("/admin/vendorlist");
 		setLoading(false);
 	}, []);

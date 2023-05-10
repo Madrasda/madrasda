@@ -85,7 +85,7 @@ export default function ViewProd() {
         data,
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token_vendor"),
           },
         }
       );
@@ -95,7 +95,7 @@ export default function ViewProd() {
         id,
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token_vendor"),
         },
       }
     );
@@ -135,7 +135,7 @@ export default function ViewProd() {
   }, [basePrice, profit]);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_vendor");
     if (jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
     else {
@@ -169,7 +169,7 @@ export default function ViewProd() {
       `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplate/${id}`,
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token_vendor"),
         },
       }
     );

@@ -22,7 +22,7 @@ export default function MyProducts() {
     const [tokenExists, setTokenExists] = useState(false);
     let isReady = router.isReady;
     useEffect(() => {
-        const jwtToken = localStorage.getItem("token")
+        const jwtToken = localStorage.getItem("token_admin")
         if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
             router.push("/admin");
         else

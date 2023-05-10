@@ -15,7 +15,7 @@ const ChangePasswordModal = () => {
 		if (newPasswordRef.current.value !== confirmPasswordRef.current.value) {
 			axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/?newPassword=" + confirmPasswordRef.current.value , {}, {
 				headers: {
-					"Authorization": "Bearer " + localStorage.getItem("token")
+					"Authorization": "Bearer " + localStorage.getItem("token_vendor")
 				}
 			});
 		}

@@ -77,7 +77,7 @@ export default function LoginForm() {
           )
           .then((response) => {
             if (response.status === 200) {
-              localStorage.setItem("token", response.data.token);
+              localStorage.setItem("token_client", response.data.token);
               ctx.setIsLoggedIn(false);
             }
           })

@@ -39,7 +39,7 @@ export default function Queries() {
 
 
     useEffect(() => {
-        const jwtToken = localStorage.getItem("token")
+        const jwtToken = localStorage.getItem("token_admin")
         if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
             router.push("/admin");
         else

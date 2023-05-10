@@ -40,7 +40,7 @@ export default function ClientProfile() {
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllOrdersById/",
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token_client"),
         },
       }
     );
@@ -48,7 +48,7 @@ export default function ClientProfile() {
   };
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_client");
     if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
     if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
     if (jwtToken && isTokenValid(jwtToken)) {

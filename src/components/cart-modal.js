@@ -33,7 +33,7 @@ export default function CartModal() {
   };
   const ctx = useContext(UserContext);
   useEffect(() => {
-    if (visible && !isTokenValid(localStorage.getItem("token"))) {
+    if (visible && !isTokenValid(localStorage.getItem("token_client"))) {
       router.push("/login");
     } else {
       if (ctx.cart.cartItems !== undefined) {

@@ -52,7 +52,7 @@ export default function CreateTemplate(props) {
     [];
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_vendor");
     if (jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
     else setTokenExists(true);
@@ -264,7 +264,7 @@ export default function CreateTemplate(props) {
         data,
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + localStorage.getItem("token_vendor"),
           },
         }
       )

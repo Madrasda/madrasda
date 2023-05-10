@@ -22,13 +22,13 @@ export default function VendorProfile() {
 		if (newPasswordRef.current.value === confirmPasswordRef.current.value) {
 			axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/updatePassword?" + confirmPasswordRef.current.value , {}, {
 				headers: {
-					"Authorization": "Bearer " + localStorage.getItem("token")
+					"Authorization": "Bearer " + localStorage.getItem("token_vendor")
 				},
         params: {
           newPassword: newPasswordRef.current.value,
         }
 			}).then(response => {
-				localStorage.removeItem("token");
+				localStorage.removeItem("token_vendor");
 				router.push("/vendor")
 			});
 		}
@@ -40,7 +40,7 @@ export default function VendorProfile() {
       }, 1000);
   }, []);
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token")
+    const jwtToken = localStorage.getItem("token_vendor")
     if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else

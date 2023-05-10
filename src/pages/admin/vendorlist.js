@@ -61,7 +61,7 @@ export default function VendorList(props) {
         const response = await axios.delete(
             "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendor/" + vendorId, {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem('token')
+                    Authorization: "Bearer " + localStorage.getItem('token_admin')
                 }
             }
         );
@@ -70,7 +70,7 @@ export default function VendorList(props) {
 
 
     useEffect(() => {
-        const jwtToken = localStorage.getItem("token")
+        const jwtToken = localStorage.getItem("token_admin")
         if (jwtToken && getRole(jwtToken) !== "ROLE_ADMIN")
             router.push("/admin")
         else {

@@ -21,7 +21,7 @@ export default function ViewProd () {
   }, []);
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token")
+    const jwtToken = localStorage.getItem("token_vendor")
     if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
       router.push("/vendor");
     else
