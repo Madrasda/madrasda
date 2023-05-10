@@ -236,11 +236,15 @@ export default function VendorProfile(props) {
 									</div>
 									<div className='flex flex-row'>
 									<div className=" text-center ">
-									<Button
+									<Button css={{ fontFamily: "$algeria" }}
+											style={{
+											background: "#388e3c",
+											color: 'white'
+											}}
 										variant={"contained"}
 										endIcon={<EditOutlined/>}
 										type={'submit'}
-										color={'success'}
+										
 									>
 										Update Profile
 
