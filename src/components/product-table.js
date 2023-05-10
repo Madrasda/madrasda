@@ -48,7 +48,7 @@ export default function ProductTable({products, setProducts, path}) {
 		setSpinner(true)
 		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/togglePublishState/" + id, {
 			method: "PUT", headers: {
-				Authorization: "Bearer " + localStorage.getItem("token"),
+				Authorization: "Bearer " + localStorage.getItem("token_admin"),
 			},
 		});
 		setSpinner(false)
@@ -75,7 +75,7 @@ export default function ProductTable({products, setProducts, path}) {
 		setSpinner(true)
 		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" + id, {
 			method: "PUT", headers: {
-				Authorization: "Bearer " + localStorage.getItem("token"),
+				Authorization: "Bearer " + localStorage.getItem("token_admin"),
 			},
 		});
 		if (response.status === 200) {

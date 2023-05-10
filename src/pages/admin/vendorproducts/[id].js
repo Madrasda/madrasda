@@ -31,7 +31,7 @@ export default function ProductList() {
   };
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_admin");
     console.log(router);
     if (
       jwtToken === undefined ||

@@ -35,7 +35,7 @@ export default function AdminCancelOrdersPage() {
 			.then(data => setCancelOrders(data.content))
 	}, []);
 	useEffect(() => {
-		const jwtToken = localStorage.getItem("token");
+		const jwtToken = localStorage.getItem("token_admin");
 		if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN')
 			router.push("/admin");
 		else
@@ -44,7 +44,7 @@ export default function AdminCancelOrdersPage() {
 	}, []);
 	function processCancelRequest(id) {
 		axios.delete("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/cancelOrder/" + id,
-			{headers:{Authorization: "Bearer " + localStorage.getItem("token")}})
+			{headers:{Authorization: "Bearer " + localStorage.getItem("token_admin")}})
 			.then(response => {
 				if(response.status === 200){
 					setMessage("Order Cancelled Successfully");

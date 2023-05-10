@@ -51,8 +51,8 @@ export default function Checkout() {
 
 	useEffect(() => {
 		if (
-			!isTokenValid(localStorage.getItem("token")) ||
-			getRole(localStorage.getItem("token")) !== "ROLE_CUSTOMER"
+			!isTokenValid(localStorage.getItem("token_client")) ||
+			getRole(localStorage.getItem("token_client")) !== "ROLE_CUSTOMER"
 		) {
 			router.push("/login");
 		} else {
@@ -82,7 +82,7 @@ export default function Checkout() {
 							text,
 							{
 								headers: {
-									Authorization: "Bearer " + localStorage.getItem("token"),
+									Authorization: "Bearer " + localStorage.getItem("token_client"),
 								},
 							}
 						)
@@ -154,7 +154,7 @@ export default function Checkout() {
 				transaction,
 				{
 					headers: {
-						Authorization: "Bearer " + localStorage.getItem("token"),
+						Authorization: "Bearer " + localStorage.getItem("token_client"),
 					},
 				}
 			)
@@ -163,7 +163,7 @@ export default function Checkout() {
 	};
 
 	useEffect(() => {
-		const jwtToken = localStorage.getItem("token");
+		const jwtToken = localStorage.getItem("token_client");
 		if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
 		if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
 		if (jwtToken && isTokenValid(jwtToken)) setClient(true);

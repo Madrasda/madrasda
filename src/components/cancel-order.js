@@ -17,7 +17,7 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
       },
       "reason": reasonRef.current.value
     }, {
-      headers: {Authorization: "Bearer " + localStorage.getItem("token")}
+      headers: {Authorization: "Bearer " + localStorage.getItem("token_client")}
     })
        .then((response) => {
          if(response.status === 200) {

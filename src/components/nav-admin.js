@@ -11,7 +11,7 @@ export default function NavAdmin() {
   const currentRoute = router.pathname;
   const ctx = useContext(UserContext);
   const logOut = async () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token_admin");
     ctx.setIsLoggedIn(false);
     router.push("/admin");
   };

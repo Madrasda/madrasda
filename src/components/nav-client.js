@@ -87,7 +87,7 @@ export default function NavisCustomer() {
     );
   };
   const logout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("token_client");
     ctx.setIsLoggedIn(false);
     router.push("/login");
   };

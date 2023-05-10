@@ -22,7 +22,7 @@ export default function CustomerDetails() {
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getPayoutRequestedVendors",
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token_admin"),
         },
       }
     );
@@ -38,7 +38,7 @@ export default function CustomerDetails() {
   };
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_admin");
     if (
       jwtToken === undefined ||
       !isTokenValid(jwtToken) ||

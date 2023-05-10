@@ -68,7 +68,7 @@ export default function Vendorlogin() {
 			)
 			.then((response) => {
 				ctx.setIsLoggedIn(true);
-				localStorage.setItem("token", response.data.token);
+				localStorage.setItem("token_vendor", response.data.token);
 				router.push("/vendor/dashboard");
 			})
 			.catch((err) => {
@@ -85,7 +85,7 @@ export default function Vendorlogin() {
 			});
 	};
 	useEffect(() => {
-		const token = localStorage.getItem("token");
+		const token = localStorage.getItem("token_vendor");
 		if (token && isTokenValid(token) && getRole(token) === "ROLE_VENDOR")
 			router.push("/vendor/dashboard");
 	}, []);

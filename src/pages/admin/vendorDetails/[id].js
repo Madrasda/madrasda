@@ -39,7 +39,7 @@ export default function VendorDetails() {
 	}, [isReady]);
 
 	useEffect(() => {
-		const jwtToken = localStorage.getItem("token")
+		const jwtToken = localStorage.getItem("token_admin")
 
 		if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN') router.push("/admin"); else setTokenExists(true);
 	}, []);
@@ -72,7 +72,7 @@ export default function VendorDetails() {
 							<Button variant={'contained'} color={details.vendor.status ? 'error' : 'success'}
 							        onClick={() => {
 								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleVendor/" + id, {}, {
-									        headers: {Authorization: localStorage.getItem("token")}
+									        headers: {Authorization: localStorage.getItem("token_admin")}
 								        }).then((response) => {
 									        setDetails(old => {
 										        return {...old, vendor: {...old.vendor, status: !old.vendor.status}}
@@ -82,7 +82,7 @@ export default function VendorDetails() {
 							<Button variant={'contained'} color={'error'} disabled={!details.vendor.imgUrl}
 							        onClick={() => {
 								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendorPicture/" + id, {}, {
-									        headers: {Authorization: localStorage.getItem("token")}
+									        headers: {Authorization: localStorage.getItem("token_admin")}
 								        }).then((response) => {
 									        setDetails(old => {
 										        return {...old, vendor: {...old.vendor, imgUrl: null}}

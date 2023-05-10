@@ -62,18 +62,17 @@ export default function VendorList(props) {
       });
   };
 
-  const deleteVendor = async (vendorId) => {
-    const response = await axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendor/" +
-        vendorId,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    );
-    getVendors();
-  };
+    const deleteVendor = async (vendorId) => {
+        const response = await axios.delete(
+            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendor/" + vendorId, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem('token_admin')
+                }
+            }
+        );
+        getVendors();
+    }
+
 
   useEffect(() => {
     const jwtToken = localStorage.getItem("token");
