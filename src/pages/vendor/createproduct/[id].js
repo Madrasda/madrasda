@@ -9,15 +9,18 @@ import { useRouter } from "next/router";
 import { isTokenValid } from "@/utils/JWTVerifier";
 import { storage } from "../../.././firebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { async } from '@firebase/util';
 
 export default function CreateTemplate(props) {
   const [design, setDesign] = useState(null);
   const [tokenExists, setTokenExists] = useState(false);
   const [template, setTemplateImage] = useState(null);
+  const [curId, setCurId] = useState(1);
   const [canvas, setCanvas] = useState(null);
   const [position, setPosition] = useState("Custom");
   const [mode, setMode] = useState(true);
   const [front, setFront] = useState(true);
+  const [curImg, setCurImg] = useState(null);
   const router = useRouter();
   const { id, audience, email } = router.query;
   const isReady = router.isReady;
@@ -55,7 +58,9 @@ export default function CreateTemplate(props) {
     const jwtToken = localStorage.getItem("token");
     if (jwtToken === undefined || !isTokenValid(jwtToken))
       router.push("/vendor");
-    else setTokenExists(true);
+    else {
+      setTokenExists(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -71,11 +76,11 @@ export default function CreateTemplate(props) {
           fabric.Image.fromURL(url, (designImg) => {
             designImg.scaleToHeight(250);
             designImg.scaleToWidth(200);
-            const heightInches = fabric.util.parseUnit(designImg.getScaledHeight() + 'px').value / 40;
-            const widthInches = fabric.util.parseUnit(designImg.getScaledWidth() + 'px').value / 40;
 
-            designHeightRef.current = Math.round(heightInches * 0.24 * 0.39 * 100) / 100;
-            designWidthRef.current = Math.round(widthInches * 0.24 * 0.39 * 100) / 100;
+            designHeightRef.current =
+              Math.round(designImg.getScaledHeight() * 0.24 * 0.39 * 100) / 100;
+            designWidthRef.current =
+              Math.round(designImg.getScaledWidth() * 0.24 * 0.39 * 100) / 100;
             setDesignHeight(designHeightRef.current);
             setDesignWidth(designWidthRef.current);
             if (position === "Custom") {
@@ -171,12 +176,25 @@ export default function CreateTemplate(props) {
     canvas.renderAll();
   }, [canvas, details, front, design, position]);
 
+  useEffect(() => {
+    if (details !== null) {
+      details.images.forEach((image) => {
+        if (image.colorId === curId) {
+          setCurImg(image.image);
+          return;
+        }
+      });
+    }
+  }, [curId]);
+
   const getMockupDetails = async () => {
     const response = await axios.get(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" +
         id
     );
     setDetails(response.data);
+    setCurId(response.data.images[0].colorId);
+    setCurImg(response.data.images[0].image);
   };
 
   const getAvailableSizes = (skuMapping) => {
@@ -206,21 +224,25 @@ export default function CreateTemplate(props) {
 
   const saveImage = async () => {
     setMode(false);
-    const data = await DomToImage.toJpeg(
-      document.getElementById("mockup-image"),
-      {
-        quality: 0.95,
-      }
-    );
-    // console.log(data);
-    const byteCharacters = atob(data.split(",")[1]);
-    const byteNumbers = new Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    const byteArray = new Uint8Array(byteNumbers);
-    const blob = new Blob([byteArray], { type: "image/jpeg" });
-    uploadBlob(blob);
+    details.images.forEach( async (image) => {
+      console.log(image.image);
+      // setCurImg(image.image);
+      // const data = await DomToImage.toJpeg(
+      // document.getElementById("mockup-image"),
+      // {
+      //   quality: 0.95,
+      // }
+      // );
+      // console.log(data);
+    })
+    // const byteCharacters = atob(data.split(",")[1]);
+    // const byteNumbers = new Array(byteCharacters.length);
+    // for (let i = 0; i < byteCharacters.length; i++) {
+    //   byteNumbers[i] = byteCharacters.charCodeAt(i);
+    // }
+    // const byteArray = new Uint8Array(byteNumbers);
+    // const blob = new Blob([byteArray], { type: "image/jpeg" });
+    // uploadBlob(blob);
   };
 
   const uploadBlob = async (blob) => {
@@ -244,8 +266,8 @@ export default function CreateTemplate(props) {
       data.frontDesignImage = image;
       data.frontDesignPlacement = JSON.stringify({
         position: position,
-        height: designHeight,
-        width: designWidth,
+        height: designHeight * 0.3937,
+        width: designWidth * 0.3937,
       });
     } else {
       data.backDesign = {
@@ -377,7 +399,7 @@ export default function CreateTemplate(props) {
                         className='mockup-image relative h-full'
                         id='mockup-image'>
                         <img
-                          src={front ? details.frontImage : details.backImage}
+                          src={curImg || "/logo.png"}
                           alt='mockup-image'
                           className='w-full h-full'
                         />
@@ -410,26 +432,6 @@ export default function CreateTemplate(props) {
 
                     <h1>{design && design.name}</h1>
 
-                    <div className='mt-6'>
-                      <p className='mb-2'>Select Side for Design</p>
-                      <div className='flex flex-row'>
-                        <button
-                          className={`text-sm rounded-full border-2 border-bg px-7 py-2 mr-2 ${
-                            front ? "bg-primary text-white" : ""
-                          }`}
-                          onClick={() => setFront(true)}>
-                          Front
-                        </button>
-                        <button
-                          className={`text-sm rounded-full border-2 border-bg px-7 py-2 mr-2 ${
-                            !front ? "bg-primary text-white" : ""
-                          }`}
-                          onClick={() => setFront(false)}>
-                          Back
-                        </button>
-                      </div>
-                    </div>
-
                     <div className='mt-6'>Available Colors</div>
                     <div className='flex justify-start items-center mt-3 mb-3'>
                       <div className='relative'>
@@ -445,7 +447,10 @@ export default function CreateTemplate(props) {
                                       className={`border-2 border-gray rounded-full w-8 h-8 focus:outline-non`}
                                       style={{
                                         backgroundColor: color.hexValue,
-                                      }}></button>
+                                      }}
+                                      onClick={() =>
+                                        setCurId(color.id)
+                                      }></button>
                                     <p className='text-[10px] mx-auto'>
                                       {color.color}
                                     </p>
