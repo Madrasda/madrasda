@@ -22,8 +22,8 @@ export default function CreateTemplate(props) {
   const { id, audience, email } = router.query;
   const isReady = router.isReady;
   const [details, setDetails] = useState(null);
-  const canvasWidth = 360;
-  const canvasHeight = 480
+  const canvasWidth = 380;
+  const canvasHeight = 460;
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
@@ -71,10 +71,11 @@ export default function CreateTemplate(props) {
           fabric.Image.fromURL(url, (designImg) => {
             designImg.scaleToHeight(250);
             designImg.scaleToWidth(200);
-            designHeightRef.current =
-              Math.round(designImg.getScaledHeight() * 0.24 * 0.39 * 100) / 100;
-            designWidthRef.current =
-              Math.round(designImg.getScaledWidth() * 0.24 * 0.39 * 100) / 100;
+            const heightInches = fabric.util.parseUnit(designImg.getScaledHeight() + 'px').value / 40;
+            const widthInches = fabric.util.parseUnit(designImg.getScaledWidth() + 'px').value / 40;
+
+            designHeightRef.current = Math.round(heightInches * 0.24 * 0.39 * 100) / 100;
+            designWidthRef.current = Math.round(widthInches * 0.24 * 0.39 * 100) / 100;
             setDesignHeight(designHeightRef.current);
             setDesignWidth(designWidthRef.current);
             if (position === "Custom") {

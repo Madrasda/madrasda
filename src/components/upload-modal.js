@@ -250,7 +250,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
                 auto
                 onPress={closeHandler}
                 style={{
-                  background: "#A5153F",
+                  background: "#FFA000",
                 }}>
                 Upload
               </Button>
