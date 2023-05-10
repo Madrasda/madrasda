@@ -29,18 +29,17 @@ export default function DesignGallery() {
 
     setOpen(false);
   };
-  const getDesigns = async () => {
+  const getDesigns = () => {
     setSpinner(true);
-    axios
-      .get(
+    axios.get(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs",
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
         }
-      )
-      .then((response) => {
+      ).then((response) => {
+        console.log(response);
         setSpinner(false);
         setDesigns(response.data);
       })

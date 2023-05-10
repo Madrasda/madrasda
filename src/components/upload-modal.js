@@ -41,7 +41,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           },
         }
       )
-      .then((response) => setDesign(response.data));
+      .then((response) => setDesigns(response.data));
   };
 
   const uploadDesign = (file) => {
@@ -52,7 +52,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
         {
           imgUrl: file,
           designType: designType,
-          themee: theme,
+          theme: theme,
           additionalInformation: info,
         },
         {
@@ -68,7 +68,6 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           setMessage("Design Uploaded Successfully!");
           setSeverity("success");
           setSpinner(false);
-          setDesigns(response.data);
           getDesigns();
         }
       })
