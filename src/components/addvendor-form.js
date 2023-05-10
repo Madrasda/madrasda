@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from 'react'
-import { Button } from "@nextui-org/react";
+import { Button } from "@mui/material";
 
 export default function AddVendorForm({onSubmit}) {
   const [name, setName] = useState(null);
@@ -86,12 +86,16 @@ export default function AddVendorForm({onSubmit}) {
         />
       </div>
       <div className="flex justify-center">
-        <Button
-          auto
-          type='submit'
-          className='bg-primary text-white hover:bg-logo'>
-          Add Vendor
-        </Button>
+      <Button /*{className='bg-primary text-white mx-auto w-full ' type='submit'}*/ 
+        css={{ fontFamily: "$algeria" }}
+        style={{
+          background: "#FFA000",
+          color: "white"
+        }}
+        type={'submit'}
+        className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
+        Add vendor
+      </Button>
       </div>
     </form>
   );
