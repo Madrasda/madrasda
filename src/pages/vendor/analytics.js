@@ -55,7 +55,7 @@ export default function Analytics () {
       const response = await axios.get(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/" , {
           headers : {
-            Authorization : "Bearer " + localStorage.getItem('token')
+            Authorization : "Bearer " + localStorage.getItem('token_vendor')
           }
         }  
       );

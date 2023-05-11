@@ -66,7 +66,7 @@ export default function VendorProfile(props) {
 		const response = await axios.get(
 			"https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/", {
 				headers: {
-					Authorization: "Bearer " + localStorage.getItem('token')
+					Authorization: "Bearer " + localStorage.getItem('token_vendor')
 				}
 			}
 		);
@@ -94,7 +94,7 @@ export default function VendorProfile(props) {
 		e.preventDefault();
 		const response = await axios.put('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/updateVendorDetails', details.vendor, {
 			headers: {
-				"Authorization": 'Bearer ' + localStorage.getItem('token')
+				"Authorization": 'Bearer ' + localStorage.getItem('token_vendor')
 			}
 		})
 		setMessage(response.status === 200 ? 'Profile Update successfully' : 'Error updating profile')

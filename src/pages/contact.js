@@ -22,17 +22,6 @@ export default function Contact() {
       }, 1000);
   }, []);
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem('token');
-    if(jwtToken && getRole(jwtToken) === "ROLE_ADMIN")
-        router.push("/admin");
-    if(jwtToken && getRole(jwtToken) === "ROLE_VENDOR")
-        router.push("/vendor");
-    if(jwtToken && isTokenValid(jwtToken))
-        setClient(true);
-    else
-        setClient(false);
-  }, [])
 
   if(loading && isReady)
   return (<div className='z-50 h-screen w-screen overflow-hidden'>
@@ -47,7 +36,7 @@ export default function Contact() {
             <title>Contact Us</title>
         </Head>
         <div className="bg-[url(https://cdn.discordapp.com/attachments/981618787491127306/1088401159821213717/bg.png)]">
-        <ClientLayout client={client}>
+        <ClientLayout>
         <section className="text-gray-600 body-font relative">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-col text-center w-full mb-12">
