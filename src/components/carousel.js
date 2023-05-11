@@ -5,24 +5,24 @@ import Carousel from "react-material-ui-carousel";
 export default function CarouselComponent() {
   const slides = [
     {
-      url: "https://cdn.discordapp.com/attachments/981618787491127306/1078748875063570532/c1.png",
+      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106152542242603058/cqq.png",
     },
     {
-      url: "https://cdn.discordapp.com/attachments/750752324712136828/1078909357984591872/pexels-photo-1884581.png",
+      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
     },
     {
-      url: "https://cdn.discordapp.com/attachments/750752324712136828/1078910045556842496/pexels-photo-996329.png",
+      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
     },
     {
-      url: "https://cdn.discordapp.com/attachments/750752324712136828/1078910290470637638/pexels-photo-3755706.png",
+      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
     },
     {
-      url: "https://cdn.discordapp.com/attachments/750752324712136828/1078910557727502346/pexels-photo-3839432.png",
+      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
     },
   ];
 
   return (
-    <div className='h-fit w-full'>
+    <div className='h-full w-full object-contain'>
       <Carousel>
         {slides.map((slide, index) => (
           <Item key={index} item={slide.url} />
@@ -34,13 +34,13 @@ export default function CarouselComponent() {
 
 function Item(props) {
   return (
-    <div className='w-full h-fit xl:h-[80vh] mx-auto'>
+    <div className='w-full h-full xl:h-[80vh] mx-auto mt-16'>
       <Image
         src={props.item}
         alt='carousel'
-        height={900}
-        width={900}
-        className='object-contain object-center w-full h-fit'
+        height={1080}
+        width={1920}
+        className='object-contain object-center w-full h-full'
       />
     </div>
   );
