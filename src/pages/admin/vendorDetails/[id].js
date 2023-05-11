@@ -62,14 +62,13 @@ export default function VendorDetails() {
                                 md:ml-32'>
 				<div className='px-5 py-24 md:py-0 md:my-10 mx-auto'>
 					<div className={'flex justify-between items-center'}>
+					<div className="flex flex-row items-center">
 						<h1
 							className='text-3xl text-primary
-                               md:ml-20 md:mt-30'>
-							Creators
+                               md:ml-20 md:mt-30 md:mr-2'>
+							Vendor: <span className="font-bold">{details.vendor.name}</span>
 						</h1>
-						<div className={'flex flex-wrap flex-col space-y-4'}>
-
-							<Button variant={'contained'} color={details.vendor.status ? 'error' : 'success'}
+						<Button   sx={{ width: 5, height: 20, }} variant={'contained'} size={'small'} color={details.vendor.status ? 'error' : 'success'}
 							        onClick={() => {
 								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleVendor/" + id, {}, {
 									        headers: {Authorization: localStorage.getItem("token_admin")}
@@ -78,7 +77,10 @@ export default function VendorDetails() {
 										        return {...old, vendor: {...old.vendor, status: !old.vendor.status}}
 									        })
 								        });
-							        }}>{(details.vendor.status ? 'Disable' : 'Enable') + ' Account'}</Button>
+							        }}>{(details.vendor.status ? 'Disable' : 'Enable')}</Button>
+						
+						</div>
+						<div className={'flex flex-wrap flex-col space-y-4'}>
 							<Button variant={'contained'} color={'error'} disabled={!details.vendor.imgUrl}
 							        onClick={() => {
 								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendorPicture/" + id, {}, {
