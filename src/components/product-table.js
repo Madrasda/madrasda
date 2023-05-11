@@ -232,7 +232,7 @@ export default function ProductTable({products, setProducts, path}) {
 				                  </button>
 			                  </td>
 			                  <td>
-				                  <Button variant={'contained'} color={'info'} sx={{backgroundImage: "bg-info"}} className={'font-bold'}
+				                  <Button variant={'contained'} color={'info'} sx={{background: "bg-info"}} className={'font-bold'}
 				                          onClick={() => router.push(`/vendor/editproduct/${item.id}`)}>
 					                  EDIT
 				                  </Button>

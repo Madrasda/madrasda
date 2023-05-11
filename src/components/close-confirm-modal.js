@@ -40,7 +40,7 @@ export default function CloseConfirm(props) {
 				</Button>
 			}
 			{props.disabled !== undefined && <MuiButton variant={'contained'} onClick={handler}
-			                                            sx={{backgroundImage: props.disabled ? 'bg-success' : 'bg-error'}}
+			                                            sx={{background: props.disabled ? 'bg-success' : 'bg-error'}}
 			                                            color={props.disabled ? 'success' : 'error'}>{(props.disabled ? 'Enable' : 'Disable') + " Mockup"}</MuiButton>}
 			<Modal
 				width='400px'
