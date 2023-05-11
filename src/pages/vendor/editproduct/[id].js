@@ -68,7 +68,7 @@ export default function ViewProd() {
 			},
 			mockupId: template.mockupId,
 			colors: Array.from(colorId),
-			productImages: productImages
+			productImages: productImages,
 		};
 		const uploadPromises = productImages.map(async (image) => {
 			const url = await uploadBlob(image.imageUrl);
@@ -78,16 +78,16 @@ export default function ViewProd() {
 		data.productImages = uploadedImages;
 
 		if (template.frontDesignPlacement) {
-			data.frontDesignPlacement = JSON.stringify(template.frontDesignPlacement);
-			data.frontDesignUrl = template.frontDesignImage;
+			data.frontDesignPlacement = (template.frontDesignPlacement);
+			data.frontDesignUrl = template.frontDesignUrl;
 		} else {
-			data.backDesignPlacement = JSON.stringify(template.backDesignPlacement);
-			data.backDesignUrl = template.backDesignImage;
+			data.backDesignPlacement = template.backDesignPlacement;
+			data.backDesignUrl = template.backDesignUrl;
 		}
 
 		if (data.productImages[0].imageUrl !== null) {
-			const response = await axios.post(
-				"https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/createProduct",
+			const response = await axios.put(
+				"https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/updateProduct",
 				data,
 				{
 					headers: {
@@ -108,7 +108,7 @@ export default function ViewProd() {
 		const blob = await response.blob();
 		const imageRef = ref(storage, `products/${new Date().getTime()}`);
 		const metadata = {
-			contentType: "image/jpeg",
+			contentType: "image/*",
 		};
 		await uploadBytes(imageRef, blob, metadata);
 		const url = await getDownloadURL(imageRef);
@@ -176,7 +176,8 @@ export default function ViewProd() {
 			backDesignUrl: templateData.backDesignUrl,
 			backDesignPlacement: templateData.backDesignPlacement,
 			mockupId: templateData.mockupId,
-			vendorId: templateData.vendor.id
+			vendorId: templateData.vendor.id,
+			skuMapping: templateData.skuMapping
 		});
 		const mockupResponse = await axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" + templateData.mockupId)
 		setSizes(getAvailableSizes(mockupResponse.data.skuMapping));
