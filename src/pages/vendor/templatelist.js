@@ -70,10 +70,20 @@ export default function TemplateList() {
   };
 
   const getAllMockups = async () => {
+    const params = new URLSearchParams({
+      pageSize: 10000,
+    });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups"
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups?" +
+        params,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token_vendor"),
+        },
+      }
     );
     setMockups(response.data.content);
+    console.log(response.data.content);
   };
 
   const getAvailableSizes = (skuMapping) => {

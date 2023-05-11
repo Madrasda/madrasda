@@ -5,24 +5,15 @@ import Carousel from "react-material-ui-carousel";
 export default function CarouselComponent() {
   const slides = [
     {
-      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106152542242603058/cqq.png",
+      url: "https://firebasestorage.googleapis.com/v0/b/madrasda.appspot.com/o/carousel%2FMadras%20da%20banner-(2).jpg?alt=media&token=c172ee02-5dd4-4695-8a2a-47473af68b40",
     },
     {
-      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
-    },
-    {
-      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
-    },
-    {
-      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
-    },
-    {
-      url: "https://cdn.discordapp.com/attachments/1096314743742009376/1106164997278679100/d26b4fd9-d4b2-41b7-b07c-bdf2efa7b71a.png",
+      url: "https://firebasestorage.googleapis.com/v0/b/madrasda.appspot.com/o/carousel%2FMadras%20da%20banner-(1).jpg?alt=media&token=83ff6f9a-a98b-4d46-a68c-28e02f8ef363",
     },
   ];
 
   return (
-    <div className='h-full w-full object-contain'>
+    <div className='h-full w-full'>
       <Carousel>
         {slides.map((slide, index) => (
           <Item key={index} item={slide.url} />
@@ -34,13 +25,13 @@ export default function CarouselComponent() {
 
 function Item(props) {
   return (
-    <div className='w-full h-full xl:h-[80vh] mx-auto mt-16'>
+    <div className='bg-bg h-[30vh] lg:h-[80vh] w-full flex justify-center items-center mt-12 md:mt-[70px] lg:mt-20 lg:pb-10'>
       <Image
         src={props.item}
         alt='carousel'
         height={1080}
         width={1920}
-        className='object-contain object-center w-full h-full'
+        className='object-contain object-center w-full h-full md:w-fit'
       />
     </div>
   );

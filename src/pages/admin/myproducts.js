@@ -159,40 +159,48 @@ export default function MyProducts() {
 								{mockups && mockups.map((m, i) => {
 
 									const delay = i * 80 + "ms";
-									return (<Grow key={uuidv4()} in timeout={600} style={{transitionDelay: delay}}>
-
-											<div
-												key={uuidv4()}
-												className='lg:w-1/4 md:w-3/4 p-4 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out border border-border'>
-                        <div key={uuidv4()} className='flex justify-center'>
+									return (
+                    <Grow
+                      key={uuidv4()}
+                      in
+                      timeout={600}
+                      style={{ transitionDelay: delay }}>
+                      <div
+                        key={uuidv4()}
+                        className='lg:w-1/4 md:w-3/4 p-4 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out border border-border'>
+                        <div
+                          key={uuidv4()}
+                          className='flex justify-center mb-4'>
                           <CloseConfirm
-	                          mockup={true}
-	                          delete={(e) => {
-		                          if (e) deleteMockup(m.id);
-	                          }}
-	                          disabled={m.disabled}
-	                          toggleMockup={() => {
-		                          setMockups(old => [...old.map(mockup => {
-			                          if (mockup.id === m.id) mockup.disabled = !mockup.disabled
-			                          return mockup;
-		                          })])
-	                          }}
+                            mockup={true}
+                            delete={(e) => {
+                              if (e) deleteMockup(m.id);
+                            }}
+                            disabled={m.disabled}
+                            toggleMockup={() => {
+                              setMockups((old) => [
+                                ...old.map((mockup) => {
+                                  if (mockup.id === m.id)
+                                    mockup.disabled = !mockup.disabled;
+                                  return mockup;
+                                }),
+                              ]);
+                            }}
                           />
                         </div>
-												<AdminMockup
-													donwload={false}
-													key={m.id}
-													image={m.images}
-													model={m.model}
-													name={m.name}
-													sizes={getAvailableSizes(m.skuMapping)}
-													colors={getAvailableColors(m.skuMapping)}
-													basePrice={m.basePrice}
-												/>
-											</div>
-										</Grow>
-
-									);
+                        <AdminMockup
+                          donwload={false}
+                          key={m.id}
+                          image={m.images}
+                          model={m.model}
+                          name={m.name}
+                          sizes={getAvailableSizes(m.skuMapping)}
+                          colors={getAvailableColors(m.skuMapping)}
+                          basePrice={m.basePrice}
+                        />
+                      </div>
+                    </Grow>
+                  );
 								})}
 							</div>
 							)
