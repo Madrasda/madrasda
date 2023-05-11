@@ -76,7 +76,7 @@ export default function NavVendor() {
                   }>
                   <div className='flex justify-start items-center py-4'>
                     <Checkroom className='text-2xl' />
-                    <h3 className='ml-2'>My Templates</h3>
+                    <h3 className='ml-2'>Create Templates</h3>
                   </div>
                 </div>
               </Link>
