@@ -16,6 +16,7 @@ import {uuidv4} from "@firebase/util";
 import XLSX, {set_cptable} from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 set_cptable(cptable);
 
@@ -25,7 +26,7 @@ export default function ProductTable({products, setProducts, path}) {
 	const [open, setOpen] = useState(false);
 	const [spinner, setSpinner] = useState(false);
 	const [visible, setVisible] = useState(false);
-
+	const router = useRouter();
 	const handleClose = (event, reason) => {
 		console.log(reason);
 		if (reason === "clickaway") {
@@ -172,67 +173,72 @@ export default function ProductTable({products, setProducts, path}) {
                 </thead>
                 <tbody>
                   {products.map((item, index) => {
-                    return (
-                      <tr
-                        key={uuidv4()}
-                        className='border-b dark:border-neutral-500'>
-                        <td className='whitespace-nowrap px-6 py-6 font-medium'>
-                          {index + 1}
-                        </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
-                          <Link href={`/vendor/editproduct/${item.id}`}>
-                            {item.name}
-                          </Link>
-                        </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
-                          {item.profit}
-                        </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
-                          {item.discount}
-                        </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
-                          {item.total}
-                        </td>
-                        <td>
-                          <div className='flex flex-wrap justify-center space-x-2'>
-                            {getAvailableColors(item.colors).map((i) => (
-                              <div
-                                key={uuidv4()}
-                                style={{ backgroundColor: i }}
-                                className='border-gray border-[2px] rounded-full h-4 w-4'></div>
-                            ))}
-                          </div>
-                        </td>
-                        <td className='whitespace-nowrap px-6 py-6 flex justify-center'>
-                          <button
-                            onClick={() => {
-                              if (path.includes("admin")) {
-                                banProduct(item.id, item.adminBan);
-                              } else {
-                                togglePublishStatus(
-                                  item.id,
-                                  item.publishStatus
-                                );
-                              }
-                            }}>
-                            <Image
-                              src={
-                                (
-                                  path.includes("admin")
-                                    ? item.adminBan
-                                    : item.publishStatus
-                                )
-                                  ? "/green-tick.png"
-                                  : "/red-cross.png"
-                              }
-                              alt='publish-status'
-                              width={20}
-                              height={20}
-                            />
-                          </button>
-                        </td>
-                      </tr>
-                    );
+	                  return (
+		                  <tr
+			                  key={uuidv4()}
+			                  className='border-b dark:border-neutral-500'>
+			                  <td className='whitespace-nowrap px-6 py-6 font-medium'>
+				                  {index + 1}
+			                  </td>
+			                  <td className='whitespace-nowrap px-6 py-6'>
+				                  {item.name}
+
+			                  </td>
+			                  <td className='whitespace-nowrap px-6 py-6'>
+				                  {item.profit}
+			                  </td>
+			                  <td className='whitespace-nowrap px-6 py-6'>
+				                  {item.discount}
+			                  </td>
+			                  <td className='whitespace-nowrap px-6 py-6'>
+				                  {item.total}
+			                  </td>
+			                  <td>
+				                  <div className='flex flex-wrap justify-center space-x-2'>
+					                  {getAvailableColors(item.colors).map((i) => (
+						                  <div
+							                  key={uuidv4()}
+							                  style={{backgroundColor: i}}
+							                  className='border-gray border-[2px] rounded-full h-4 w-4'></div>
+					                  ))}
+				                  </div>
+			                  </td>
+			                  <td className='whitespace-nowrap px-6 py-6 flex justify-center'>
+				                  <button
+					                  onClick={() => {
+						                  if (path.includes("admin")) {
+							                  banProduct(item.id, item.adminBan);
+						                  } else {
+							                  togglePublishStatus(
+								                  item.id,
+								                  item.publishStatus
+							                  );
+						                  }
+					                  }}>
+					                  <Image
+						                  src={
+							                  (
+								                  path.includes("admin")
+									                  ? item.adminBan
+									                  : item.publishStatus
+							                  )
+								                  ? "/green-tick.png"
+								                  : "/red-cross.png"
+						                  }
+						                  alt='publish-status'
+						                  width={20}
+						                  height={20}
+					                  />
+				                  </button>
+			                  </td>
+			                  <td>
+				                  <Button variant={'contained'} color={'info'} className={'font-bold'}
+				                          onClick={() => router.push(`/vendor/editproduct/${item.id}`)}>
+					                  EDIT
+				                  </Button>
+			                  </td>
+		                  </tr>
+	                  );
                   })}
                 </tbody>
               </table>

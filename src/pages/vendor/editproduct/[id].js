@@ -560,7 +560,11 @@ export default function ViewProd() {
 											placeholder='%'
 											value={discount}
 											required
-											onChange={(e) => setDiscount(e.target.value)}
+											onChange={(e) => {
+												const inputValue = Number(e.target.value);
+												if (/^\d+$/.test(inputValue))
+													setDiscount(inputValue)
+											}}
 										/>
 									</div>
 
