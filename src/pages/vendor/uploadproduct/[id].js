@@ -10,6 +10,7 @@ import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {uuidv4} from "@firebase/util";
 import { InputLabel, Menu, MenuItem, Select, TextField } from "@mui/material";
 import { Check } from "@mui/icons-material";
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function ViewProd() {
   const [tokenExists, setTokenExists] = useState(false);
@@ -544,6 +545,7 @@ export default function ViewProd() {
                   </div>
                 </div>
                 <h1 className='ml-2 text-lg mt-4 font-bold'>NOTE: Kindly email the design in high quality with a resolution of 3000 x 3000 to admin at backend@madrasda.com</h1>
+                <h1 className='ml-2 text-lg mt-4 items-center'><InfoIcon/> Click on View Products to enable this product for sale after uploading the product</h1>
               </div>
               
               <div className=' mt-14 flex justify-center '>

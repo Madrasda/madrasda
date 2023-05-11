@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {uuidv4} from "@firebase/util";
+import InfoIcon from '@mui/icons-material/Info';
 import { Button, CircularProgress } from "@mui/material";
 import { Download } from "@mui/icons-material";
 import { saveAs } from "file-saver";
@@ -22,6 +23,10 @@ export default function Mockup(props) {
   return (
     <>
       <div className='relative h-full'>
+      <div className="flex flex-row items-center">
+      <InfoIcon/>
+      <h1 className="text-sm font-medium"> Click on the Template to add product info and upload it for sale. </h1>
+      </div>
         <Link href={`/vendor/uploadproduct/${props.id}`}>
           <a className='block relative h-fit rounded overflow-hidden'>
             <Image
