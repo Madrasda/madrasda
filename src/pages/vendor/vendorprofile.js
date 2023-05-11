@@ -222,43 +222,46 @@ export default function VendorProfile(props) {
 												startAdornment: <InputAdornment position="start">+91 </InputAdornment>,
 											}}
 											inputProps={{
-												maxLength:13
+												maxLength: 13
 											}}
 											InputLabelProps={{shrink: true}}
-											onChange={(e) => setDetails((oldDetails) => ({
-												...oldDetails,
-												vendor: {
-													...oldDetails.vendor,
-													phone: e.target.value
-												}
-											}))}
+											onChange={(e) => {
+												const inputValue = Number(e.target.value);
+												if (/^\d+$/.test(inputValue))
+													setDetails((oldDetails) => ({
+														...oldDetails,
+														vendor: {
+															...oldDetails.vendor,
+															phone: inputValue
+														}
+													}))}}
 										/>
 									</div>
 									<div className='flex flex-row'>
-									<div className=" text-center ">
-									<Button css={{ fontFamily: "$algeria" }}
-											style={{
-											background: "#388e3c",
-											color: 'white'
-											}}
-										variant={"contained"}
-										endIcon={<EditOutlined/>}
-										type={'submit'}
-										
-									>
-										Update Profile
+										<div className=" text-center ">
+											<Button css={{fontFamily: "$algeria"}}
+											        style={{
+												        background: "#388e3c",
+												        color: 'white'
+											        }}
+											        variant={"contained"}
+											        endIcon={<EditOutlined/>}
+											        type={'submit'}
 
-									</Button>
-									</div>
-									<div className="text-center ml-8 ">
-									<Link href="/vendor/changepassword">
-									<Button css={{ fontFamily: "$algeria" }}
-											style={{
-												background: "#FFA000",
-												color: 'white'
-											}}>Change Password</Button>
-									</Link>
-									</div>
+											>
+												Update Profile
+
+											</Button>
+										</div>
+										<div className="text-center ml-8 ">
+											<Link href="/vendor/changepassword">
+												<Button css={{fontFamily: "$algeria"}}
+												        style={{
+													        background: "#FFA000",
+													        color: 'white'
+												        }}>Change Password</Button>
+											</Link>
+										</div>
 									</div>
 								</form>
 							</div>
