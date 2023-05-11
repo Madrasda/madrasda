@@ -144,8 +144,8 @@ export default function ProductId() {
                       height={900}
                     />
                     <div
-                      className='flex flex-row justify-center items-center
-                            lg:flex-col md:overflow-y-scroll'>
+                      className='flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
+                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2'>
                       {currentColor.images.map((image) => (
                         <Image
                           alt='ecommerce'
@@ -159,9 +159,7 @@ export default function ProductId() {
                       ))}
                     </div>
                   </div>
-                  <div
-                    className='mx-auto md:mx-0 lg:w-1/2 w-full md:py-24 mt-6 lg:mt-0'
-                    style={{ padding: "0 5%" }}>
+                  <div className='mx-auto md:mx-0 lg:w-1/2 w-full md:py-24 mt-6 lg:mt-0'>
                     <h1 className='text-gray-900 text-xl md:text-3xl title-font font-medium mb-1'>
                       {product.name}
                     </h1>

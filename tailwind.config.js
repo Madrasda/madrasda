@@ -24,6 +24,9 @@ module.exports = {
 			"off-white": "#F7F7F7",
 			red: "#ff2c2c",
 			invalidValue: "rgba(255,171,171,0.51)",
+			success: "#4caf50",
+			error: '#f44336',
+			info: '#2196f3'
 		},
 		fontFamily: {
 			// algeria: ['Algeria Sans', 'sans-serif'],

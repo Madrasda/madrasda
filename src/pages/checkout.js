@@ -43,7 +43,8 @@ export default function Checkout() {
 	const ctx = useContext(UserContext);
 	const closeModal = () => {
 		setVisible(false);
-		setValidPincode(false);
+		setValidPincode(false)
+		setShippingCharges(-1);
 		setSpinner(false);
 		setError(true);
 	}
@@ -416,6 +417,7 @@ export default function Checkout() {
                           style={{
                             background: "#FFA000",
                           }}
+                          disabled={!validPhone || !validPincode }
                           type={'submit'}
                           className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
                           Proceed to Payment

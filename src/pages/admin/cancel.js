@@ -30,9 +30,14 @@ export default function AdminCancelOrdersPage() {
 		setState(false);
 	};
 	useEffect(() => {
-		axios.get('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllCancelRequests')
+		axios.get('https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllCancelRequests',
+			{headers:{Authorization: "Bearer " + localStorage.getItem("token_admin")}})
+
 			.then(response => response.data)
-			.then(data => setCancelOrders(data.content))
+			.then(data => {
+				setCancelOrders(data.content);
+				console.log(data);
+			})
 	}, []);
 	useEffect(() => {
 		const jwtToken = localStorage.getItem("token_admin");
@@ -92,7 +97,7 @@ export default function AdminCancelOrdersPage() {
 							cancelOrders.length !== 0 &&
 							cancelOrders.map((request, index) => {
 								const delay = index * 80 + "ms";
-									(<Grow key={uuidv4()} timeout={600} style={{transitionDelay: delay}}>
+									return (<Grow key={uuidv4()} in timeout={600} style={{transitionDelay: delay}}>
 										<Paper className="container mt-8 w-full md:w-5/6 rounded-md" elevation={5}>
 											<div className=' ml-8 mr-20 mt-4'>
 												<h1 className='text-2xl text-primary mb-6 pt-2'>
