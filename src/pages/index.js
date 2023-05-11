@@ -81,7 +81,9 @@ export default function Home() {
         </div>
         <span id='hotsellers'></span>
         <HotSellers />
-        <Footer />
+        <div className='mt-36 md:mt-48'>
+          <Footer />
+        </div>
       </ClientLayout>
     </>
   );
