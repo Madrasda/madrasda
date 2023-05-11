@@ -23,13 +23,11 @@ export default function App({Component, pageProps}) {
 	const [refresh, setRefresh] = useState(true);
 
 	useEffect(() => {
-		setIsLoggedIn((localStorage.getItem("token") !== null))
-		console.log((localStorage.getItem("token")) !== null)
+		setIsLoggedIn((localStorage.getItem("token_client") !== null))
 
 	}, []);
 	useEffect(() => {
-		console.log(isLoggedIn ? "user logged in" : "user logged out");
-		const jwtToken = localStorage.getItem("token")
+		const jwtToken = localStorage.getItem("token_client")
 		console.log(getRole(jwtToken))
 		if (jwtToken !== undefined && isTokenValid(jwtToken) && getRole(jwtToken) === 'ROLE_CUSTOMER') {
 			setToken(jwtToken);

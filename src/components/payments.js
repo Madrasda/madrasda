@@ -25,7 +25,7 @@ export default function Payments() {
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?pageNo=0&&pageSize=50",
       {
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + localStorage.getItem("token_client"),
         },
       }
     );

@@ -144,7 +144,6 @@ export default function ViewProd() {
   }, []);
 
   const getDataUrlFromFile = (file) => {
-    console.log(file);
     return URL.createObjectURL(file);
   };
 
@@ -159,7 +158,6 @@ export default function ViewProd() {
         const images = productImages.filter(
           (item) => item.imgUrl !== image.imgUrl
         );
-        console.log(images);
         return images;
       });
   };
@@ -423,7 +421,7 @@ export default function ViewProd() {
                         <input
                           id='dropzone-file'
                           type='file'
-                          accept='image/jpeg'
+                          accept='image/*'
                           className='hidden'
                           onChange={(e) => {
                             if (

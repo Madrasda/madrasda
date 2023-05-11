@@ -75,7 +75,7 @@ export default function VendorList(props) {
 
 
   useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    const jwtToken = localStorage.getItem("token_admin");
     if (jwtToken && getRole(jwtToken) !== "ROLE_ADMIN") router.push("/admin");
     else {
       setTokenExists(true);

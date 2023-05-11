@@ -72,7 +72,7 @@ export default function AddVendorForm({onSubmit}) {
         <input
           type='text'
           className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-          placeholder='33XXXXXXXXXXXTN1X'
+          placeholder='33XXXXXXXXXXXTN1X' maxLength={15}
           onChange={(e) => setGst(e.target.value)}
         />
       </div>

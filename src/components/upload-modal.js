@@ -199,7 +199,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
                       id='design-image'
                       type='file'
                       className='hidden'
-                      accept='images/jpeg'
+                      accept='image/*'
                       onChange={(e) => setImage(e.target.files[0])}
                     />
                   </label>

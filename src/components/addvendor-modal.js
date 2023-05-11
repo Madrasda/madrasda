@@ -75,7 +75,7 @@ export default function AddVendorModal({ getFormData }) {
               onChange={(e) => {
                 setImage(e.target.files[0]);
               }}
-              accept='image/jpeg'
+              accept='image/*'
             />
             {image && <h1>{image.name}</h1>}
           </label>

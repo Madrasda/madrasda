@@ -17,7 +17,7 @@ export default function NavVendor() {
   const currentRoute = router.pathname;
   const ctx = useContext(UserContext);
   const logout = async () => {
-    localStorage.removeItem("token_client");
+    localStorage.removeItem("token_vendor");
     ctx.setIsLoggedIn(false);
     router.push("/vendor");
   };
@@ -40,14 +40,13 @@ export default function NavVendor() {
             <p className='text-sm'>Go to Profile</p>
           </Link>
 
-          <Link href='/vendor' onClick={logout}>
-            <div className='bg-none w-52 px-9 py-4 font-bold hover:bg-primary text-white'>
+            <div className='bg-none cursor-pointer w-52 px-9 py-4 font-bold hover:bg-primary text-white'
+                 onClick={logout}>
               <div className='flex justify-start items-center'>
                 <Logout className='text-2xl' />
                 <h3 className='ml-2'>Logout</h3>
               </div>
             </div>
-          </Link>
 
           <div className='container flex flex-wrap flex-col h-full'>
             <nav className='text-sm flex flex-col items-start h-full font-bold'>

@@ -56,8 +56,8 @@ export default function ProductId() {
     };
     const handleAddToCart = async () => {
         if (
-          localStorage.getItem("token") === null ||
-          !isTokenValid(localStorage.getItem("token"))
+          localStorage.getItem("token_client") === null ||
+          !isTokenValid(localStorage.getItem("token_client"))
         ) {
           router.push("/login");
         } else {
