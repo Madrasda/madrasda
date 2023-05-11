@@ -22,7 +22,7 @@ export default function MyProducts() {
 	const [tokenExists, setTokenExists] = useState(false);
 	let isReady = router.isReady;
 	useEffect(() => {
-		const jwtToken = localStorage.getItem("token_admin");
+		const jwtToken = localStorage.getItem("token");
 		if (
 			jwtToken === undefined ||
 			!isTokenValid(jwtToken) ||
@@ -54,7 +54,7 @@ export default function MyProducts() {
 			mockupId,
 			{
 				headers: {
-					Authorization: "Bearer " + localStorage.getItem("token_admin"),
+					Authorization: "Bearer " + localStorage.getItem("token"),
 				},
 			}
 		);
