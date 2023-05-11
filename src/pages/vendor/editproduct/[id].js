@@ -70,7 +70,6 @@ export default function ViewProd() {
 			colors: Array.from(colorId),
 			productImages: productImages,
 		};
-		console.log(data);
 		const uploadPromises = productImages.map(async (image) => {
 			const url = await uploadBlob(image.imageUrl);
 			return {color: image.color, imageUrl: url};
