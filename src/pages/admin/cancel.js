@@ -90,42 +90,45 @@ export default function AdminCancelOrdersPage() {
 					<div className='flex flex-col justify-center mb-5 w-full px-4 md:ml-28'>
 						{
 							cancelOrders.length !== 0 &&
-							cancelOrders.map((request, index) =>
-								<Grow key={uuidv4()} in timeout={(index * 600) % (600 * 5)}>
-									<Paper className="container mt-8 w-full md:w-5/6 rounded-md" elevation={5}>
-										<div className=' ml-8 mr-20 mt-4'>
-											<h1 className='text-2xl text-primary mb-6 pt-2'>
-												Customer Number: {request.transaction.shippingAddress.phone}
-											</h1>
-											<div className='flex w-full justify-between mb-2'>
-												<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
-													Order Date : {new Date(request.transaction.orderDate).toLocaleDateString("en-GB")}
-												</h2>
-												<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
-													Order Items : {request.transaction.orderItems.length} N
-												</h2>
-											</div>
-											<div className='flex w-full flex-col lg:flex-row lg:justify-between mb-2'>
-												<h2 className='mb-2 text-lg font-medium text-black flex flex-wrap items-center'>
-													Reason : {request.reason}
-												</h2>
-												<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
-													Order Total : ₹{request.transaction.orderTotal}
-												</h2>
-											</div>
-											<button
-												className='bg-[#ffa200] text-white font-small py-2 mb-3 px-5 rounded mr-6'
-												// css={{ fontFamily: "$algeria" }}
-												// style={{
-												//   background: "#FFA000",
-												// }}
-												onClick={() => processCancelRequest(request.transaction.id)}
+							cancelOrders.map((request, index) => {
+								const delay = index * 80 + "ms";
+									(<Grow key={uuidv4()} timeout={600} style={{transitionDelay: delay}}>
+										<Paper className="container mt-8 w-full md:w-5/6 rounded-md" elevation={5}>
+											<div className=' ml-8 mr-20 mt-4'>
+												<h1 className='text-2xl text-primary mb-6 pt-2'>
+													Customer Number: {request.transaction.shippingAddress.phone}
+												</h1>
+												<div className='flex w-full justify-between mb-2'>
+													<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+														Order Date
+														: {new Date(request.transaction.orderDate).toLocaleDateString("en-GB")}
+													</h2>
+													<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+														Order Items : {request.transaction.orderItems.length} N
+													</h2>
+												</div>
+												<div className='flex w-full flex-col lg:flex-row lg:justify-between mb-2'>
+													<h2 className='mb-2 text-lg font-medium text-black flex flex-wrap items-center'>
+														Reason : {request.reason}
+													</h2>
+													<h2 className='mb-2 text-lg font-medium text-black flex items-center'>
+														Order Total : ₹{request.transaction.orderTotal}
+													</h2>
+												</div>
+												<button
+													className='bg-[#ffa200] text-white font-small py-2 mb-3 px-5 rounded mr-6'
+													// css={{ fontFamily: "$algeria" }}
+													// style={{
+													//   background: "#FFA000",
+													// }}
+													onClick={() => processCancelRequest(request.transaction.id)}
 												>
-												Cancel Order
-											</button>
-										</div>
-									</Paper>
-								</Grow>
+													Cancel Order
+												</button>
+											</div>
+										</Paper>
+									</Grow>)
+								}
 							)}
 					</div>
 					{

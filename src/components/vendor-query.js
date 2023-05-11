@@ -21,10 +21,10 @@ export default function VendorQuery(props) {
         });
 
     }
-    console.log(props.i)
+    const delay = props.i * 80 + "ms";
     return (
 
-        <Grow in timeout={600 * (props.i + 1) % (600 * 5)}>
+        <Grow in timeout={600} style={{transitionDelay: delay}}>
             <Paper className="container mt-8 w-full" elevation={8}>
                 <div className="mx-6 my-6 flex flex-col space-y-4">
                     <div className="flex justify-between items-center">

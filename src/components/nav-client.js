@@ -49,8 +49,8 @@ export default function NavisCustomer() {
 
   useEffect(() => {
     if (
-      isTokenValid(localStorage.token) &&
-      getRole(localStorage.token) === "ROLE_CUSTOMER"
+      isTokenValid(localStorage.token_client) &&
+      getRole(localStorage.token_client) === "ROLE_CUSTOMER"
     )
       setIsCustomer(true);
     ctx.setIsLoggedIn(true);
@@ -318,10 +318,10 @@ export default function NavisCustomer() {
                 </h1>
                 <div>
                   {vendorList.map((vendor) => (
-                    <MenuItem key={uuidv4()} className='p-0'>
+                    <MenuItem key={uuidv4()} className='p-0' onClick={() => handleVendorProductsClick(vendor.id)}>
                       <div
                         key={uuidv4()}
-                        onClick={() => handleVendorProductsClick(vendor.id)}
+
                         className={"px-3 py-3"}>
                         {vendor.name}
                       </div>
@@ -348,7 +348,7 @@ export default function NavisCustomer() {
           )}
           {!isCustomer && (
             <Link  className={"text-lg text-logo "} href='/vendor'>
-            <h2> Join as Creator</h2>
+            <h2> Become a Creator</h2>
             </Link>  
           )}
           {isCustomer && (
@@ -500,7 +500,7 @@ export default function NavisCustomer() {
                   href='/vendor'>
                   <Typography className='font-quest text-logo text-lg'>
                     {" "}
-                    Join as Creator{" "}
+                    Become a Creator{" "}
                   </Typography>
                 </Link>
                 )}

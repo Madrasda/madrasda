@@ -73,48 +73,52 @@ export default function CustomerDetails() {
                 <h1 className='text-xl md:ml-20 md:mt-10'>No payouts </h1>
               )}
               {payouts &&
-                payouts.map((vendor, index) => (
-                  <Grow
-                    key={uuidv4()}
-                    in
-                    timeout={((index + 1) * 500) % (700 * 5)}>
-                    <Paper
-                      key={uuidv4()}
-                      className='flex mt-4 md:ml-20 lg:mr-20 bg-gray'>
-                      <div className=' ml-8 mb-2 mr-20 mt-4 w-full'>
-                        <div className='w-[150px] h-[150px] overflow-hidden rounded-full'>
-                          <Image
-                            src={vendor.imgUrl}
-                            width={70}
-                            height={70}
-                            className='object-cover object-center w-full h-full'
-                          />
-                        </div>
-                        <h1 className='text-2xl text-primary font-raj mb-6 pt-2'>
-                          {vendor.name}
-                        </h1>
-                        <div className='flex flex-col md:flex-row justify-between w-full mb-2'>
-                          <div>
-                            <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
-                              Payout Requested
-                            </h2>
-                            <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
-                              ₹
-                              {Number(vendor.payoutAmount).toLocaleString(
-                                "en-IN"
-                              )}
-                            </h2>
-                          </div>
-                          <PayoutConfirm
-                            payout={(e) => {
-                              if (e) completePayout(vendor.payoutId);
-                            }}
-                          />
-                        </div>
-                      </div>
-                    </Paper>
-                  </Grow>
-                ))}
+                payouts.map((vendor, index) => {
+                const delay = index * 80 + "ms";
+                  return (
+                     <Grow
+                        key={uuidv4()}
+                        in
+                        timeout={600}
+                     style={{transitionDelay:delay}}>
+                       <Paper
+                          key={uuidv4()}
+                          className='flex mt-4 md:ml-20 lg:mr-20 bg-gray'>
+                         <div className=' ml-8 mb-2 mr-20 mt-4 w-full'>
+                           <div className='w-[150px] h-[150px] overflow-hidden rounded-full'>
+                             <Image
+                                src={vendor.imgUrl}
+                                width={70}
+                                height={70}
+                                className='object-cover object-center w-full h-full'
+                             />
+                           </div>
+                           <h1 className='text-2xl text-primary font-raj mb-6 pt-2'>
+                             {vendor.name}
+                           </h1>
+                           <div className='flex flex-col md:flex-row justify-between w-full mb-2'>
+                             <div>
+                               <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                                 Payout Requested
+                               </h2>
+                               <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                                 ₹
+                                 {Number(vendor.payoutAmount).toLocaleString(
+                                    "en-IN"
+                                 )}
+                               </h2>
+                             </div>
+                             <PayoutConfirm
+                                payout={(e) => {
+                                  if (e) completePayout(vendor.payoutId);
+                                }}
+                             />
+                           </div>
+                         </div>
+                       </Paper>
+                     </Grow>
+                  );
+                })}
             </div>
           </main>
         </AdminLayout>
