@@ -16,6 +16,7 @@ const nextConfig = {
       "imagizer.imageshack.com",
       "logos-world.net",
     ],
+    minimumCacheTTL: 3208
   },
   eslint: {
     ignoreDuringBuilds: true,

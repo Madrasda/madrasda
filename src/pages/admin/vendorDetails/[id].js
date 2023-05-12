@@ -68,19 +68,19 @@ export default function VendorDetails() {
                                md:ml-20 md:mt-30 md:mr-2'>
 							Vendor: <span className="font-bold">{details.vendor.name}</span>
 						</h1>
-						<Button   sx={{ width: 5, height: 20, }} variant={'contained'} size={'small'} color={details.vendor.status ? 'error' : 'success'}
-							        onClick={() => {
-								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleVendor/" + id, {}, {
-									        headers: {Authorization: localStorage.getItem("token_admin")}
-								        }).then((response) => {
-									        setDetails(old => {
-										        return {...old, vendor: {...old.vendor, status: !old.vendor.status}}
-									        })
-								        });
-							        }}>{(details.vendor.status ? 'Disable' : 'Enable')}</Button>
 						
 						</div>
 						<div className={'flex flex-wrap flex-col space-y-4'}>
+							<Button   variant={'contained'} color={details.vendor.status ? 'error' : 'success'} className={'bg-error'}
+							          onClick={() => {
+								          axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleVendor/" + id, {}, {
+									          headers: {Authorization: localStorage.getItem("token_admin")}
+								          }).then((response) => {
+									          setDetails(old => {
+										          return {...old, vendor: {...old.vendor, status: !old.vendor.status}}
+									          })
+								          });
+							          }}>{(details.vendor.status ? 'Disable' : 'Enable')} Account</Button>
 							<Button variant={'contained'} color={'error'} disabled={!details.vendor.imgUrl}
 							        onClick={() => {
 								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendorPicture/" + id, {}, {

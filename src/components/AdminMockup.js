@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export default function AdminMockup(props) {
   const [spinner, setSpinnerState] = useState(false);
-  const [display, setDispay] = useState(null);
+  const [display, setDisplay] = useState(null);
   const [cur, setCur] = useState(0);
 
   const downloadImage = () => {
@@ -24,17 +24,13 @@ export default function AdminMockup(props) {
 
   useEffect(() => {
     setCur(props.image[0].colorId);
-    setDispay(props.image[0].image);
+    setDisplay(props.image[0].image);
   }, []);
 
   useEffect(() => {
-    props.image.forEach((image) => {
-      if (image.colorId === cur) {
-        setDispay(image.image);
-        return;
-      }
-    });
-  }, [cur]);
+    const dispImage = props.image.find((item) => item.colorId === cur);
+      setDisplay(dispImage? dispImage.image: '/logo.png');
+    }, [cur, props.image]);
 
   return (
     <>
@@ -45,6 +41,8 @@ export default function AdminMockup(props) {
             alt='ecommerce'
             height={1080}
             width={1920}
+            priority={true}
+            loading={'eager'}
             className='object-cover object-center w-96 h-full'
           />
         </a>
