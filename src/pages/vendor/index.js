@@ -7,6 +7,9 @@ import {useRouter} from 'next/router';
 import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import {Alert, Button, Input, MenuItem, Select, Snackbar} from "@mui/material";
 import {UserContext} from "../../../context/context";
+import ReturnRefundModal from '@/components/return&refund-modal';
+import TermsConditionsModal from '@/components/terms&conditions-modal';
+import PaymentStructureModal from '@/components/paymentstructure-modal';
 
 export default function Vendorlogin() {
 	const router = useRouter();
@@ -19,6 +22,7 @@ export default function Vendorlogin() {
 	//Signup Details
 	const [name, setName] = useState("");
 	const [email, setemail] = useState("");
+	const [phNo, setPhNo] = useState("");
 	const [infCat, setInfCat] = useState("Category");
 	const [compName, setCompName] = useState("");
 	const [url, setUrl] = useState("");
@@ -267,6 +271,16 @@ export default function Vendorlogin() {
 										placeholder='Your Email*'
 										onChange={(e) => setemail(e.target.value)}
 									/>
+									<Input
+										className='bg-shadowGrey mx-auto p-3 w-full'
+										color='warning'
+										inputProps={{className: "text-primary text-sm"}}
+										type='text'
+										value={phNo}
+										required
+										placeholder='Your Phone Number*'
+										onChange={(e) => setPhNo(e.target.value)}
+									/>
 									<Select
 										id='category-vendor'
 										className='bg-shadowGrey p-0'
@@ -310,6 +324,11 @@ export default function Vendorlogin() {
 										placeholder='GSTIN'
 										onChange={(e) => setGst(e.target.value)}
 									/>
+									<div className='flex flex-col justify-center items-center'>
+									<ReturnRefundModal /> <br />
+									<TermsConditionsModal /> <br />
+									<PaymentStructureModal />
+									</div>
 									<Button
 										variant={"contained"}
 										className={"w-full bg-primary"}

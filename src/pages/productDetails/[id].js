@@ -10,6 +10,7 @@ import {uuidv4} from "@firebase/util";
 import {getRole, isTokenValid} from '@/utils/JWTVerifier';
 import HotSellers from '@/components/hotsellers-client';
 import {Button} from "@mui/material";
+import SizeChartModal from '@/components/sizechart-modal';
 
 export default function ProductId() {
 
@@ -197,6 +198,9 @@ export default function ProductId() {
                           />
                         ))}
                       </div>
+                    </div>
+                    <div className='underline w-full flex justify-end cursor-pointer'>
+                      <SizeChartModal />
                     </div>
                     <div className='flex items-center'>
                       <div className='relative grid grid-cols-4  md:grid-cols-6'>
