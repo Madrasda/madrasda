@@ -121,6 +121,10 @@ export default function Requests() {
                       <h1>{vendor.name}</h1>
                     </span>
                     <span className='flex space-x-4'>
+                      <h1 className='font-bold'>Phone</h1>
+                      <h1>{vendor.phone}</h1>
+                    </span>
+                    <span className='flex space-x-4'>
                       <h1 className='font-bold'>E-Mail</h1>
                       <h1>{vendor.email}</h1>
                     </span>
@@ -136,10 +140,11 @@ export default function Requests() {
                       <h1 className='font-bold'>URL</h1>
                       <h1>{vendor.companyUrl}</h1>
                     </span>
-                    <span className='flex space-x-4'>
+                    { vendor.gstin && 
+                      <span className='flex space-x-4'>
                       <h1 className='font-bold'>GSTIN</h1>
                       <h1>{vendor.gstin}</h1>
-                    </span>
+                    </span>}
                   </div>
                   <div className='flex justify-end space-x-4'>
                     <Button
