@@ -26,7 +26,7 @@ export default function CreateTemplate(props) {
   const [front, setFront] = useState(true);
   const [curImg, setCurImg] = useState(null);
   const router = useRouter();
-  const { id, audience, email } = router.query;
+  const { id } = router.query;
   const isReady = router.isReady;
   const [details, setDetails] = useState(null);
   const canvasWidth = 380;

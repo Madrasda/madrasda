@@ -11,6 +11,7 @@ import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import CloseConfirm from "@/components/close-confirm-modal";
 import {uuidv4} from "@firebase/util";
 import {Grow} from "@mui/material";
+import Link from "next/link";
 
 export default function MyProducts() {
 	const router = useRouter();
@@ -188,16 +189,18 @@ export default function MyProducts() {
                             }}
                           />
                         </div>
-                        <AdminMockup
-                          donwload={false}
-                          key={m.id}
-                          image={m.images}
-                          model={m.model}
-                          name={m.name}
-                          sizes={getAvailableSizes(m.skuMapping)}
-                          colors={getAvailableColors(m.skuMapping)}
-                          basePrice={m.basePrice}
-                        />
+                        <Link href={`/admin/editmockup/${m.id}`}>
+                          <AdminMockup
+                            donwload={false}
+                            key={m.id}
+                            image={m.images}
+                            model={m.model}
+                            name={m.name}
+                            sizes={getAvailableSizes(m.skuMapping)}
+                            colors={getAvailableColors(m.skuMapping)}
+                            basePrice={m.basePrice}
+                          />
+                        </Link>
                       </div>
                     </Grow>
                   );
