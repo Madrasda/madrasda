@@ -83,7 +83,7 @@ export default function LoginForm() {
           })
           .then(() => {
             console.log(ctx);
-            router.push("/");
+            router.back();
           })
           .catch((err) => {
             setOpen(true);

@@ -40,24 +40,30 @@ export default function Vendorlogin() {
 
 	const vendorSignup = (e) => {
 		e.preventDefault();
-		axios.post("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/signupVendor", {
-			name: name,
-			email: email,
-			influencerCategory: infCat,
-			companyName: compName,
-			companyUrl: url,
-			gstin: gst
-		}).then(() => {
-			setOpen(true);
-			setMessage("Register Request Successfully Sent");
-			setSeverity("success");
-			setName("");
-			setemail("");
-			setInfCat("");
-			setCompName("");
-			setUrl("");
-			setGst("");
-		});
+		axios
+      .post(
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/signupVendor",
+        {
+          name: name,
+          email: email,
+          phone: phNo,
+          influencerCategory: infCat,
+          companyName: compName,
+          companyUrl: url,
+          gstin: gst,
+        }
+      )
+      .then(() => {
+        setOpen(true);
+        setMessage("Register Request Successfully Sent");
+        setSeverity("success");
+        setName("");
+        setemail("");
+        setInfCat("");
+        setCompName("");
+        setUrl("");
+        setGst("");
+      });
 	};
 
 	const vendorlogin = (e) => {

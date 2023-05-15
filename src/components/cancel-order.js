@@ -42,20 +42,21 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
     <>
       <Button
         color='error'
-        variant={'contained'}
+        variant={"contained"}
         css={{ fontFamily: "$algeria" }}
         style={{
           background: "#f44336",
-          text: "white"
+          text: "white",
         }}
         onClick={() => setVisible(true)}
         className={
-          cancelled || new Date().getTime() - new Date(orderDate).getTime() >
-          4 * 60 * 60 * 1000
+          cancelled ||
+          new Date().getTime() - new Date(orderDate).getTime() > 60000
             ? "hidden"
-            : ""}
-      disabled={requested}>
-        {!requested? "Cancel Order": "Cancel Order Requested"}
+            : ""
+        }
+        disabled={requested}>
+        {!requested ? "Cancel Order" : "Cancel Order Requested"}
       </Button>
       <Modal
         width='400px'
@@ -71,17 +72,20 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
           <TextField inputRef={reasonRef} className='rounded p-3' />
         </Modal.Body>
         <Modal.Footer css={{ fontFamily: "$algeria" }}>
-          <Button style={{
-              background: "#388e3c"
+          <Button
+            style={{
+              background: "#388e3c",
             }}
-         variant={'contained'} onClick={requestCancelOrder}>
+            variant={"contained"}
+            onClick={requestCancelOrder}>
             Proceed
           </Button>
-          <Button style={{
-              background: "#d32f2f"
+          <Button
+            style={{
+              background: "#d32f2f",
             }}
-            variant={'contained'}
-             onClick={closeHandler}>
+            variant={"contained"}
+            onClick={closeHandler}>
             Cancel
           </Button>
         </Modal.Footer>

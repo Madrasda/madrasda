@@ -271,6 +271,9 @@ export default function ProductId() {
                       </Button>
                     </div>
                     <br></br>
+                    <span>
+                      <h1>{product.mockupDescription}</h1>
+                    </span>
                   </div>
                 </div>
               </div>
