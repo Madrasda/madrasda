@@ -44,7 +44,8 @@ export default function ClientProfile() {
         },
       }
     );
-    setDetails(response.data.reverse());
+    console.log(response.data);
+    setDetails(response.data);
   };
 
   useEffect(() => {

@@ -26,11 +26,10 @@ export default function CustomerDetails() {
   useEffect(() => {
     const jwtToken = localStorage.getItem("token_admin");
 
-    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_ADMIN'){
+    if (jwtToken === undefined || !isTokenValid(jwtToken)) {
       router.push("/admin");
-  }
-    else{
-      setIsAdmin(true)
+    } else {
+      setIsAdmin(true);
     }
   }, []);
 

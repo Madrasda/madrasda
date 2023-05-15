@@ -21,32 +21,6 @@ export default function OrderDetailsModal({ order }) {
     setVisible(false);
     console.log("closed");
   };
-  const getOrderHistory = async () => {
-    const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllOrdersById/",
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token_client"),
-        },
-      }
-    );
-    setDetails(response.data.reverse());
-  };
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token_client");
-    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN"){
-      setPhone(getPhone(jwtToken));
-      getOrderHistory();
-    }
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken && isTokenValid(jwtToken)) {
-      setPhone(getPhone(jwtToken));
-      getOrderHistory();
-    } else {
-      setClient(false);
-      router.push("/login");
-    }
-  }, []);
   const downloadInvoice = () => {
     var invoice = document.getElementById(order.id);
     DomToImage.toPng(invoice)

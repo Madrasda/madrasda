@@ -46,6 +46,7 @@ export default function NavisCustomer() {
   const [openCategory, setOpenCategory] = useState(false);
   const [openCategoryMobile, setOpenCategoryMobile] = useState(false);
   const [openVendors, setOpenVendors] = useState(false);
+  const [mockups, setMockups] = useState([]);
 
   useEffect(() => {
     if (
@@ -61,6 +62,15 @@ export default function NavisCustomer() {
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers"
     );
     setProducts(response.data);
+  };
+  const getAllMockups = async () => {
+    axios
+      .get(
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups"
+      )
+      .then((res) => {
+        setMockups(res.data.content);
+      });
   };
 
   const toggleMenu = () => {
@@ -94,6 +104,7 @@ export default function NavisCustomer() {
 
   useEffect(() => {
     getBestSellers();
+    getAllMockups();
     axios
       .get(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
@@ -144,72 +155,53 @@ export default function NavisCustomer() {
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Categories
                     </h1>
-                    
-                      <Link
-                        href={{
-                          pathname: "/product-gender",
-                          query: { gender: "Men" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>Men</MenuItem>
-                      </Link>
-                    
-                      <Link
-                        href={{
-                          pathname: "/product-gender",
-                          query: { gender: "Women" },
-                        }}>
-                        <MenuItem className='px-1 text-sm py-2'>Women</MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-gender",
-                          query: { gender: "Kids" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Kids
-                    </MenuItem>
-                      </Link>
+
+                    <Link
+                      href={{
+                        pathname: "/product-gender",
+                        query: { gender: "Men" },
+                      }}>
+                      <MenuItem className='px-1 text-sm py-2'>Men</MenuItem>
+                    </Link>
+
+                    <Link
+                      href={{
+                        pathname: "/product-gender",
+                        query: { gender: "Women" },
+                      }}>
+                      <MenuItem className='px-1 text-sm py-2'>Women</MenuItem>
+                    </Link>
+                    <Link
+                      href={{
+                        pathname: "/product-gender",
+                        query: { gender: "Kids" },
+                      }}>
+                      <MenuItem className='px-1 text-sm py-2'>Kids</MenuItem>
+                    </Link>
                   </div>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Men's Products
                     </h1>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 1, title: "Men's Oversized T-Shirts" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Men's Oversized T-Shirts
-                    </MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 2, title: "Men's Round Neck T-Shirts" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Men's Round Neck T-Shirts
-                      </MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 4, title: "Men's Vests" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Men's Vests
-                    </MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 5, title: "Men's Full Sleeve Shirts" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Men's Full Sleeve Shirts
-                    </MenuItem>
-                      </Link>
+                    {mockups &&
+                      mockups.map((item) => {
+                        if (item.model === "Men") {
+                          return (
+                            <Link
+                              href={{
+                                pathname: "/product-category",
+                                query: {
+                                  id: item.id,
+                                  title: item.name,
+                                },
+                              }}>
+                              <MenuItem className='px-1 text-sm py-2'>
+                                {item.name}
+                              </MenuItem>
+                            </Link>
+                          );
+                        }
+                      })}
                   </div>
                 </div>
                 <div className='flex flex-col space-y-4'>
@@ -217,55 +209,49 @@ export default function NavisCustomer() {
                     <h1 className='font-semibold pb-2 text-lg'>
                       Shop By Women's Products
                     </h1>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 3, title: "Women's Boyfriend T-Shirts" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Women's Boyfriend T-Shirts
-                    </MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: {
-                            id: 10,
-                            title: "Women's Round Neck T-Shirts",
-                          },
-                        }}>
-                      <MenuItem className='px-1 text-sm py-2'>
-                        Women's Round Neck T-Shirts
-                    </MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 7, title: "Women's Crop Tops" },
-                        }}>
-                          <MenuItem className='px-1 text-sm py-2'>
-                        Women's Crop Tops
-                    </MenuItem>
-                      </Link>
-                      <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 8, title: "Women's Crop Top Hoodies" },
-                        }}>
-                        <MenuItem className='px-1 text-sm py-2'>Women's Crop Top Hoodies</MenuItem>
-                      </Link>
+                    {mockups &&
+                      mockups.map((item) => {
+                        if (item.model === "Women") {
+                          return (
+                            <Link
+                              href={{
+                                pathname: "/product-category",
+                                query: {
+                                  id: item.id,
+                                  title: item.name,
+                                },
+                              }}>
+                              <MenuItem className='px-1 text-sm py-2'>
+                                {item.name}
+                              </MenuItem>
+                            </Link>
+                          );
+                        }
+                      })}
                   </div>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
-                      Shop By Unisex's Products
+                      Shop By Kid's Products
                     </h1>
-                    <Link
-                        href={{
-                          pathname: "/product-category",
-                          query: { id: 6, title: "Hoodies" },
-                        }}>
-                    <MenuItem className='px-1 text-sm py-2'>Hoodies</MenuItem>
-                    </Link>
+                    {mockups &&
+                      mockups.map((item) => {
+                        if (item.model === "Kids") {
+                          return (
+                            <Link
+                              href={{
+                                pathname: "/product-category",
+                                query: {
+                                  id: item.id,
+                                  title: item.name,
+                                },
+                              }}>
+                              <MenuItem className='px-1 text-sm py-2'>
+                                {item.name}
+                              </MenuItem>
+                            </Link>
+                          );
+                        }
+                      })}
                   </div>
                 </div>
                 <div className='flex flex-col space-y-4'>
@@ -275,9 +261,11 @@ export default function NavisCustomer() {
                     </h1>
                     {products &&
                       products.map((item) => (
-                          <Link href={`/productDetails/${item.id}`}>
-                            <MenuItem className='px-1 text-sm py-2'>{item.name}</MenuItem>
-                          </Link>
+                        <Link href={`/productDetails/${item.id}`}>
+                          <MenuItem className='px-1 text-sm py-2'>
+                            {item.name}
+                          </MenuItem>
+                        </Link>
                       ))}
                   </div>
                 </div>
@@ -318,11 +306,11 @@ export default function NavisCustomer() {
                 </h1>
                 <div>
                   {vendorList.map((vendor) => (
-                    <MenuItem key={uuidv4()} className='p-0' onClick={() => handleVendorProductsClick(vendor.id)}>
-                      <div
-                        key={uuidv4()}
-
-                        className={"px-3 py-3"}>
+                    <MenuItem
+                      key={uuidv4()}
+                      className='p-0'
+                      onClick={() => handleVendorProductsClick(vendor.id)}>
+                      <div key={uuidv4()} className={"px-3 py-3"}>
                         {vendor.name}
                       </div>
                     </MenuItem>
@@ -344,12 +332,11 @@ export default function NavisCustomer() {
             <Link className={"text-lg"} href='/login'>
               <h2> Login </h2>
             </Link>
-            
           )}
           {!isCustomer && (
-            <Link  className={"text-lg text-logo "} href='/vendor'>
-            <h2> Become a Creator</h2>
-            </Link>  
+            <Link className={"text-lg text-logo "} href='/vendor'>
+              <h2> Become a Creator</h2>
+            </Link>
           )}
           {isCustomer && (
             <>
@@ -494,15 +481,15 @@ export default function NavisCustomer() {
                 )}
                 {!isCustomer && (
                   <Link
-                  className={
-                    "text-lg ml-4 my-2 font-quest flex items-center space-x-4"
-                  }
-                  href='/vendor'>
-                  <Typography className='font-quest text-logo text-lg'>
-                    {" "}
-                    Become a Creator{" "}
-                  </Typography>
-                </Link>
+                    className={
+                      "text-lg ml-4 my-2 font-quest flex items-center space-x-4"
+                    }
+                    href='/vendor'>
+                    <Typography className='font-quest text-logo text-lg'>
+                      {" "}
+                      Become a Creator{" "}
+                    </Typography>
+                  </Link>
                 )}
                 {isCustomer && (
                   <Accordion
@@ -528,7 +515,6 @@ export default function NavisCustomer() {
                     </AccordionDetails>
                   </Accordion>
                 )}
-                
               </nav>
             </Grow>
           )}
