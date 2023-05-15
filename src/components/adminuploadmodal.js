@@ -252,7 +252,9 @@ export default function AdminUploadModal(props) {
                           style={{
                             backgroundColor: color.hexValue,
                           }}></button>
-                        <p className='text-[10px] w-full text-center'>{color.color}</p>
+                        <p className='text-[10px] w-full text-center'>
+                          {color.color}
+                        </p>
                       </div>
                     );
                   })}
@@ -424,7 +426,7 @@ export default function AdminUploadModal(props) {
               <input
                 type='number'
                 className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                placeholder='Height in inches'
+                placeholder='Height in cm'
                 onChange={(e) => setHeight(e.target.value)}
               />
             </div>
@@ -433,7 +435,7 @@ export default function AdminUploadModal(props) {
               <input
                 type='number'
                 className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                placeholder='Breadth in inches'
+                placeholder='Breadth in cm'
                 onChange={(e) => setBreadth(e.target.value)}
               />
             </div>
@@ -442,7 +444,7 @@ export default function AdminUploadModal(props) {
               <input
                 type='number'
                 className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                placeholder='Length in inches'
+                placeholder='Length in cm'
                 onChange={(e) => setLength(e.target.value)}
               />
             </div>
@@ -451,7 +453,7 @@ export default function AdminUploadModal(props) {
               <input
                 type='number'
                 className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                placeholder='Weight in inches'
+                placeholder='Weight in kg'
                 onChange={(e) => setWeight(e.target.value)}
               />
             </div>
