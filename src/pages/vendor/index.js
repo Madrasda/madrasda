@@ -62,6 +62,7 @@ export default function Vendorlogin() {
         setemail("");
         setInfCat("");
         setCompName("");
+        setPhNo("");
         setUrl("");
         setGst("");
       });

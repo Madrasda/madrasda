@@ -32,22 +32,31 @@ export default function Requests() {
   };
 
   const createVendor = async (id) => {
-    const response = await axios.post(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/approveSignup/" +
-        id,
-      {
-        password: "password",
-      },
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token_admin"),
+    axios
+      .post(
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/approveSignup/" +
+          id,
+        {
+          password: "password",
         },
-      }
-    );
-    setMessage("Added New Vendor");
-    setOpen(true);
-    setSeverity("success");
-    getRequests();
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token_admin"),
+          },
+        }
+      )
+      .then(() => {
+        setMessage("Added New Vendor");
+        setOpen(true);
+        setSeverity("success");
+        getRequests();
+      })
+      .catch(() => {
+        setMessage("Account already exists");
+        setOpen(true);
+        setSeverity("error");
+      });
+    
   };
 
   const deleteRequest = async (id) => {
