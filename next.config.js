@@ -16,7 +16,15 @@ const nextConfig = {
       "imagizer.imageshack.com",
       "logos-world.net",
     ],
-    minimumCacheTTL: 3208
+    minimumCacheTTL: 3208,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+        port: '',
+      },
+    ],
+
   },
   eslint: {
     ignoreDuringBuilds: true,

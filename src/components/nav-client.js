@@ -107,7 +107,7 @@ export default function NavisCustomer() {
     getAllMockups();
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getVendors"
       )
       .then((response) => setVendorList(response.data))
       .catch((err) => console.log(err));

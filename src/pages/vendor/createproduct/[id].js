@@ -38,6 +38,14 @@ export default function CreateTemplate(props) {
   const [designWidth, setDesignWidth] = useState(0);
   const designHeightRef = useRef(0);
   const designWidthRef = useRef(0);
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("token_vendor");
+    if (jwtToken === undefined || !isTokenValid(jwtToken))
+      router.push("/vendor");
+    else {
+      setTokenExists(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (isReady) getMockupDetails();
@@ -58,14 +66,6 @@ export default function CreateTemplate(props) {
   }),
     [];
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token_vendor");
-    if (jwtToken === undefined || !isTokenValid(jwtToken))
-      router.push("/vendor");
-    else {
-      setTokenExists(true);
-    }
-  }, []);
 
   useEffect(() => {
     if (!canvas) {
@@ -73,76 +73,78 @@ export default function CreateTemplate(props) {
     }
     canvas.clear();
     if (design !== null) {
+      console.log(design);
       fetch(design.imgUrl)
-        .then((result) => result.blob())
-        .then((blob) => {
-          const url = URL.createObjectURL(blob);
-          fabric.Image.fromURL(url, (designImg) => {
-            designImg.scaleToHeight(250);
-            designImg.scaleToWidth(200);
+         .then((result) => result.blob())
+         .then((blob) => {
+           const url = URL.createObjectURL(blob);
+           fabric.Image.fromURL(url, (designImg) => {
+             designImg.scaleToHeight(250);
+             designImg.scaleToWidth(200);
 
-            designHeightRef.current =
-              Math.round(designImg.getScaledHeight() * 0.24 * 0.39 * 100) / 100;
-            designWidthRef.current =
-              Math.round(designImg.getScaledWidth() * 0.24 * 0.39 * 100) / 100;
-            setDesignHeight(designHeightRef.current);
-            setDesignWidth(designWidthRef.current);
-            if (position === "Custom") {
-              designImg.set({
-                left: (canvasWidth - designImg.getScaledWidth()) / 2,
-                top: (canvasHeight - designImg.getScaledHeight()) / 2,
-              });
-            } else {
-              designImg.set({
-                lockScalingX: true,
-                lockScalingY: true,
-                lockMovementX: true,
-                lockMovementY: true,
-              });
-              if (position === "Center") {
-                designImg.set({
-                  left: (canvasWidth - designImg.getScaledWidth()) / 2,
-                  top: (canvasHeight - designImg.getScaledHeight()) / 2,
-                });
-              } else if (position === "Top Left Corner") {
-                designImg.set({
-                  left: 0,
-                  top: 0,
-                });
-              } else if (position === "Bottom Left Corner") {
-                designImg.set({
-                  left: 0,
-                  top: canvasHeight - designImg.getScaledHeight(),
-                });
-              } else if (position === "Top Right Corner") {
-                designImg.set({
-                  left: canvasWidth - designImg.getScaledWidth(),
-                  top: 0,
-                });
-              } else {
-                designImg.set({
-                  left: canvasWidth - designImg.getScaledWidth(),
-                  top: canvasHeight - designImg.getScaledHeight(),
-                });
-              }
-            }
-            designImg.on("scaling", (event) => {
-              const originalWidth = event.transform.target.width;
-              const originalHeight = event.transform.target.height;
-              const scaledWidth = originalWidth * event.transform.target.scaleX;
-              const scaledHeight =
-                originalHeight * event.transform.target.scaleY;
-              designHeightRef.current =
-                Math.round(scaledHeight * 0.24 * 0.39 * 100) / 100;
-              designWidthRef.current =
-                Math.round(scaledWidth * 0.24 * 0.39 * 100) / 100;
-              setDesignHeight(designHeightRef.current);
-              setDesignWidth(designWidthRef.current);
-            });
-            canvas.add(designImg);
-          });
-        });
+             designHeightRef.current =
+                Math.round(designImg.getScaledHeight() * 0.24 * 0.39 * 100) / 100;
+             designWidthRef.current =
+                Math.round(designImg.getScaledWidth() * 0.24 * 0.39 * 100) / 100;
+             setDesignHeight(designHeightRef.current);
+             setDesignWidth(designWidthRef.current);
+             if (position === "Custom") {
+               designImg.set({
+                 left: (canvasWidth - designImg.getScaledWidth()) / 2,
+                 top: (canvasHeight - designImg.getScaledHeight()) / 2,
+               });
+             } else {
+               designImg.set({
+                 lockScalingX: true,
+                 lockScalingY: true,
+                 lockMovementX: true,
+                 lockMovementY: true,
+               });
+               if (position === "Center") {
+                 designImg.set({
+                   left: (canvasWidth - designImg.getScaledWidth()) / 2,
+                   top: (canvasHeight - designImg.getScaledHeight()) / 2,
+                 });
+               } else if (position === "Top Left Corner") {
+                 designImg.set({
+                   left: 0,
+                   top: 0,
+                 });
+               } else if (position === "Bottom Left Corner") {
+                 designImg.set({
+                   left: 0,
+                   top: canvasHeight - designImg.getScaledHeight(),
+                 });
+               } else if (position === "Top Right Corner") {
+                 designImg.set({
+                   left: canvasWidth - designImg.getScaledWidth(),
+                   top: 0,
+                 });
+               } else {
+                 designImg.set({
+                   left: canvasWidth - designImg.getScaledWidth(),
+                   top: canvasHeight - designImg.getScaledHeight(),
+                 });
+               }
+             }
+             designImg.on("scaling", (event) => {
+               const originalWidth = event.transform.target.width;
+               const originalHeight = event.transform.target.height;
+               const scaledWidth = originalWidth * event.transform.target.scaleX;
+               const scaledHeight =
+                  originalHeight * event.transform.target.scaleY;
+               designHeightRef.current =
+                  Math.round(scaledHeight * 0.24 * 0.39 * 100) / 100;
+               designWidthRef.current =
+                  Math.round(scaledWidth * 0.24 * 0.39 * 100) / 100;
+               setDesignHeight(designHeightRef.current);
+               setDesignWidth(designWidthRef.current);
+             });
+             canvas.add(designImg);
+           });
+         });
     }
+    canvas.on("")
     canvas.on("object:moving", function (event) {
       var designImg = event.target;
 
