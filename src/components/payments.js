@@ -9,7 +9,7 @@ import { set_cptable } from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
 import XLSX from "xlsx";
-
+import { JsonToExcel } from "react-json-to-excel";
 
 export default function Payments() {
   const [orders, setOrders] = useState(0);
@@ -30,9 +30,8 @@ export default function Payments() {
       }
     );
     setOrders(response.data.content.reverse());
-
   };
-  const viewOrderItems = (order) =>{}
+  const viewOrderItems = (order) => {};
 
   useEffect(() => {
     manageOrders();
@@ -43,19 +42,19 @@ export default function Payments() {
       <div className='flex flex-col '>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='hidden justify-end mr-10 md:flex'>
-              <Button
-              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
-              onClick={() => {
-                const table = document.getElementById("download");
-                const wb = XLSX.utils.table_to_book(table);
-                XLSX.writeFile(wb, "Recentorders.xlsx");
-              }}>
-              <b>Export as Excel</b>
-              </Button>
-            </div>
+            <JsonToExcel
+              title='Download as excel'
+              data={orders}
+              fileName={`cutomer-orders-${new Date().toLocaleTimeString()}-${new Date()
+                .getUTCDay()
+                .toString()}`}
+            />
+          </div>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='overflow-hidden'>
-              <table className='min-w-full text-center text-sm font-medium' id='download'>
+              <table
+                className='min-w-full text-center text-sm font-medium'
+                id='download'>
                 <thead className='border-b text-m font-bold dark:border-neutral-500'>
                   <tr>
                     <th scope='col' className=' px-6 pl-0'>
@@ -85,7 +84,7 @@ export default function Payments() {
                   {orders &&
                     orders.map((order) => {
                       const orderDate = new Date(order.orderDate);
-                      return(
+                      return (
                         <tr key={uuidv4()} className='dark:border-neutral-500'>
                           <td className='whitespace-nowrap px-6 pl-0 font-medium'>
                             {order.orderId}
@@ -94,10 +93,19 @@ export default function Payments() {
                             {order.paymentId}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            {`${orderDate.getUTCDate().toString().padStart(2, '0')}-${(orderDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${orderDate.getUTCFullYear().toString()}`}
+                            {`${orderDate
+                              .getUTCDate()
+                              .toString()
+                              .padStart(2, "0")}-${(orderDate.getUTCMonth() + 1)
+                              .toString()
+                              .padStart(2, "0")}-${orderDate
+                              .getUTCFullYear()
+                              .toString()}`}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            {order.status === null? "Order Placed": "Placed Order"}
+                            {order.status === null
+                              ? "Order Placed"
+                              : "Placed Order"}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {order.shippingAddress.name}
@@ -106,7 +114,7 @@ export default function Payments() {
                             {order.shippingAddress.email}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                          <OrderDetailsModal order={order} />
+                            <OrderDetailsModal order={order} />
                           </td>
                         </tr>
                       );
