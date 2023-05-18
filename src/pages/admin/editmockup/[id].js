@@ -90,7 +90,7 @@ export default function EditMockup() {
 
   const updateMockup = async () => {
     setSpinnerState(true);
-    const response = await axios
+    axios
       .put(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/upDateMockup/" +
           id,
