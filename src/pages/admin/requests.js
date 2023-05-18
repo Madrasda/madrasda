@@ -34,7 +34,7 @@ export default function Requests() {
   const createVendor = async (id) => {
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/approveSignup/" +
+        "http://localhost:8080/api/admin/approveSignup/" +
           id,
         {
           password: "password",
@@ -51,7 +51,8 @@ export default function Requests() {
         setSeverity("success");
         getRequests();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err)
         setMessage("Account already exists");
         setOpen(true);
         setSeverity("error");

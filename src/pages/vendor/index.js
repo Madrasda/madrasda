@@ -323,7 +323,7 @@ export default function Vendorlogin() {
                   <Input
                     className='bg-shadowGrey mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm" }}
+                    inputProps={{ className: "text-primary text-sm", maxLength: 15 }}
                     type='text'
                     value={gst}
                     placeholder='GSTIN'
