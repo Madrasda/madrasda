@@ -131,13 +131,15 @@ export default function ProductTable({products, setProducts, path}) {
       <div className='flex flex-col'>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='flex justify-end mr-8'>
-            <JsonToExcel
-              title='Download as excel'
-              data={products}
-              fileName={`my-products-${new Date().toLocaleTimeString()}-${new Date()
-                .getUTCDay()
-                .toString()}`}
-            />
+            <Button
+              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
+              onClick={() => {
+                const table = document.getElementById("tablefunda");
+                const wb = XLSX.utils.table_to_book(table);
+                XLSX.writeFile(wb, "Myproducts.xlsx");
+              }}>
+              <b>Export as Excel</b>
+            </Button>
           </div>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='text-black'>
