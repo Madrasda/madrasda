@@ -188,6 +188,7 @@ export default function NavisCustomer() {
                         if (item.model === "Men") {
                           return (
                             <Link
+                               key={uuidv4()}
                               href={{
                                 pathname: "/product-category",
                                 query: {
@@ -207,13 +208,14 @@ export default function NavisCustomer() {
                 <div className='flex flex-col space-y-4'>
                   <div>
                     <h1 className='font-semibold pb-2 text-lg'>
-                      Shop By Women's Products
+                      Shop By Women&apos;s Products
                     </h1>
                     {mockups &&
                       mockups.map((item) => {
                         if (item.model === "Women") {
                           return (
                             <Link
+                               key={uuidv4()}
                               href={{
                                 pathname: "/product-category",
                                 query: {

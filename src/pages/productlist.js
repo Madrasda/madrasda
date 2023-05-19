@@ -78,17 +78,20 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                   {title}
                 </h1>
                 <div className='w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center'>
-                  {productsPage.content.map((product) => (
-                    <ProductTile
-                      key={uuidv4()}
-                      id={product.id}
-                      name={product.name}
-                      category={product.category}
-                      total={product.total}
-                      discount={product.discount}
-                      imageUrl={product.colors[0].images[0]}
-                    />
-                  ))}
+                  {productsPage.content.map((product) => {
+                     if(product.colors.length === 0) return;
+                     return (
+                        <ProductTile
+                           key={uuidv4()}
+                           id={product.id}
+                           name={product.name}
+                           category={product.category}
+                           total={product.total}
+                           discount={product.discount}
+                           imageUrl={product.colors[0].images[0]}
+                        />
+                     )
+                  })}
                 </div>
                 <br />
                 <div className='flex justify-center mt-8'>
