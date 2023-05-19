@@ -42,13 +42,15 @@ export default function Payments() {
       <div className='flex flex-col '>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='hidden justify-end mr-10 md:flex'>
-            <JsonToExcel
-              title='Download as excel'
-              data={orders}
-              fileName={`cutomer-orders-${new Date().toLocaleTimeString()}-${new Date()
-                .getUTCDay()
-                .toString()}`}
-            />
+            <Button
+              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
+              onClick={() => {
+                const table = document.getElementById("download");
+                const wb = XLSX.utils.table_to_book(table);
+                XLSX.writeFile(wb, "Recentorders.xlsx");
+              }}>
+              <b>Export as Excel</b>
+            </Button>
           </div>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='overflow-hidden'>
@@ -76,7 +78,10 @@ export default function Payments() {
                       Customer Email
                     </th>
                     <th scope='col' className=' px-6 py-4'>
-                      Products
+                      Product Name
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Quantity
                     </th>
                   </tr>
                 </thead>
@@ -84,7 +89,7 @@ export default function Payments() {
                   {orders &&
                     orders.map((order) => {
                       const orderDate = new Date(order.orderDate);
-                      return (
+                      return order.orderItems.map((item) => (
                         <tr key={uuidv4()} className='dark:border-neutral-500'>
                           <td className='whitespace-nowrap px-6 pl-0 font-medium'>
                             {order.orderId}
@@ -114,10 +119,13 @@ export default function Payments() {
                             {order.shippingAddress.email}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            <OrderDetailsModal order={order} />
+                            {item.product.name}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.quantity}
                           </td>
                         </tr>
-                      );
+                      ));
                     })}
                 </tbody>
               </table>

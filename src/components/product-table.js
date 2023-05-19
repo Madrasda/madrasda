@@ -18,81 +18,100 @@ import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import { JsonToExcel } from "react-json-to-excel";
+import { Edit } from "@mui/icons-material";
 
 set_cptable(cptable);
 
-export default function ProductTable({products, setProducts, path}) {
-	const [message, setMessage] = useState("");
-	const [severity, setSeverity] = useState("");
-	const [open, setOpen] = useState(false);
-	const [spinner, setSpinner] = useState(false);
-	const [visible, setVisible] = useState(false);
-	const router = useRouter();
-	const handleClose = (event, reason) => {
-		console.log(reason);
-		if (reason === "clickaway") {
-			return;
-		}
-		setOpen(false);
-	};
-	const closeModal = () => setVisible(false);
-	const openModal = () => setVisible(true);
+export default function ProductTable({ products, setProducts, path }) {
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState("");
+  const [open, setOpen] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const router = useRouter();
+  const handleClose = (event, reason) => {
+    console.log(reason);
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  const closeModal = () => setVisible(false);
+  const openModal = () => setVisible(true);
 
-	const getAvailableColors = (colors) => {
-		var Available = [];
-		colors.forEach((item) => {
-			if (Available.indexOf(item.hexValue) === -1) Available.push(item.hexValue);
-		});
-		return Available;
-	};
+  const getAvailableColors = (colors) => {
+    var Available = [];
+    colors.forEach((item) => {
+      if (Available.indexOf(i => i.hexValue===item.hexValue) === -1)
+        Available.push({
+          color: item.color,
+          hexValue: item.hexValue,
+        });
+    });
+    return Available;
+  };
 
-	const togglePublishStatus = async (id, inSale) => {
-		setSpinner(true)
-		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/togglePublishState/" + id, {
-			method: "PUT", headers: {
-				Authorization: "Bearer " + localStorage.getItem("token_vendor"),
-			},
-		});
-		setSpinner(false)
-		if (response.status === 200) {
+  const togglePublishStatus = async (id, inSale) => {
+    setSpinner(true);
+    const response = await fetch(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/togglePublishState/" +
+        id,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token_vendor"),
+        },
+      }
+    );
+    setSpinner(false);
+    if (response.status === 200) {
+      setProducts((old) => [
+        ...old.map((p) => {
+          if (p.id === id) p.publishStatus = !p.publishStatus;
+          return p;
+        }),
+      ]);
+      setOpen(true);
+      setSeverity(!inSale ? "success" : "error");
+      setMessage(
+        inSale ? "Product unpublished" : "Product published successfully"
+      );
+    } else if (response.status === 409) {
+      setVisible(true);
+    } else {
+      setSpinner(false);
+      setOpen(true);
+      setMessage(response.data.message);
+      setSeverity("error");
+    }
+  };
+  const banProduct = async (id, ban) => {
+    setSpinner(true);
+    const response = await fetch(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" +
+        id,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token_admin"),
+        },
+      }
+    );
+    if (response.status === 200) {
+      setProducts((old) => [
+        ...old.map((p) => {
+          if (p.id === id) p.adminBan = !p.adminBan;
+          return p;
+        }),
+      ]);
+      setSpinner(false);
+      setOpen(true);
+      setMessage(!ban ? "Product Banned" : "Product Unbanned");
+      setSeverity("success");
+    }
+  };
 
-			setProducts(old => [...old.map(p => {
-				if (p.id === id) p.publishStatus = !p.publishStatus;
-				return p;
-			})])
-			setOpen(true);
-			setSeverity(!inSale ? "success" : "error");
-			setMessage(inSale ? "Product unpublished" : "Product published successfully");
-		} else if (response.status === 409) {
-			setVisible(true);
-		} else {
-			setSpinner(false);
-			setOpen(true);
-			setMessage(response.data.message);
-			setSeverity("error");
-		}
-	};
-	const banProduct = async (id, ban) => {
-		setSpinner(true)
-		const response = await fetch("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" + id, {
-			method: "PUT", headers: {
-				Authorization: "Bearer " + localStorage.getItem("token_admin"),
-			},
-		});
-		if (response.status === 200) {
-			setProducts(old => [...old.map(p => {
-				if (p.id === id) p.adminBan = !p.adminBan;
-				return p;
-			})])
-			setSpinner(false)
-			setOpen(true);
-			setMessage(!ban ? "Product Banned" : "Product Unbanned");
-			setSeverity("success");
-		}
-
-	};
-
-	return (
+  return (
     <>
       <Snackbar
         className={"mt-7"}
@@ -131,13 +150,15 @@ export default function ProductTable({products, setProducts, path}) {
       <div className='flex flex-col'>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='flex justify-end mr-8'>
-            <JsonToExcel
-              title='Download as excel'
-              data={products}
-              fileName={`my-products-${new Date().toLocaleTimeString()}-${new Date()
-                .getUTCDay()
-                .toString()}`}
-            />
+            <Button
+              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
+              onClick={() => {
+                const table = document.getElementById("tablefunda");
+                const wb = XLSX.utils.table_to_book(table);
+                XLSX.writeFile(wb, "Myproducts.xlsx");
+              }}>
+              <b>Export as Excel</b>
+            </Button>
           </div>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='text-black'>
@@ -191,12 +212,15 @@ export default function ProductTable({products, setProducts, path}) {
                           {item.total}
                         </td>
                         <td>
-                          <div className='flex flex-wrap justify-center space-x-2'>
+                          <div className='flex flex-wrap justify-center items-center space-x-1'>
                             {getAvailableColors(item.colors).map((i) => (
-                              <div
-                                key={uuidv4()}
-                                style={{ backgroundColor: i }}
-                                className='border-gray border-[2px] rounded-full h-4 w-4'></div>
+                              <div className="flex flex-col items-center">
+                                <div
+                                  key={uuidv4()}
+                                  style={{ backgroundColor: i.hexValue }}
+                                  className='border-gray border-[2px] rounded-full h-6 w-6'></div>
+                                <h1>-{i.color}-</h1>
+                              </div>
                             ))}
                           </div>
                         </td>
@@ -212,20 +236,22 @@ export default function ProductTable({products, setProducts, path}) {
                                 );
                               }
                             }}>
-                            <Image
-                              src={
-                                (
-                                  path.includes("admin")
-                                    ? item.adminBan
-                                    : item.publishStatus
-                                )
-                                  ? "/green-tick.png"
-                                  : "/red-cross.png"
-                              }
-                              alt='publish-status'
-                              width={20}
-                              height={20}
-                            />
+                            {(
+                              path.includes("admin")
+                                ? item.adminBan
+                                : item.publishStatus
+                            ) ? (
+                              <Button
+                                className='bg-success font-bold'
+                                variant='contained'
+                                color='success'>
+                                Enabled
+                              </Button>
+                            ) : (
+                              <Button variant='contained' color='error'>
+                                Disabled
+                              </Button>
+                            )}
                           </button>
                         </td>
                         <td>
@@ -236,7 +262,7 @@ export default function ProductTable({products, setProducts, path}) {
                             onClick={() =>
                               router.push(`/vendor/editproduct/${item.id}`)
                             }>
-                            EDIT
+                            <Edit />
                           </Button>
                         </td>
                       </tr>
