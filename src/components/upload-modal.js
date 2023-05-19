@@ -69,11 +69,12 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           setSeverity("success");
           setSpinner(false);
           getDesigns();
-          if(gallery){
+          if (gallery) {
             refreshDesigns();
-            return
+            return;
           }
           setDesigns({
+            id: response.data.id,
             imgUrl: file,
             designType: designType,
             theme: theme,
@@ -203,39 +204,6 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
                       onChange={(e) => setImage(e.target.files[0])}
                     />
                   </label>
-                  <h2 className='ml-2 mt-4 title-font font-medium mb-2'>
-                    Design Type
-                  </h2>
-                  <div className='mb-2 ml-2 '>
-                    <input
-                      type='text'
-                      className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                      placeholder='eg : Print'
-                      onChange={(e) => setDesignType(e.target.value)}
-                    />
-                  </div>
-                  <h2 className='ml-2 mt-4 title-font font-medium mb-2'>
-                    Theme
-                  </h2>
-                  <div className='mb-2 ml-2 '>
-                    <input
-                      type='text'
-                      className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                      placeholder='eg : Vikram'
-                      onChange={(e) => setTheme(e.target.value)}
-                    />
-                  </div>
-                  <h2 className='ml-2 mt-4 title-font font-medium mb-2'>
-                    Additional Info
-                  </h2>
-                  <div className='mb-2 ml-2 '>
-                    <input
-                      type='text'
-                      className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
-                      placeholder='eg : Any additional information'
-                      onChange={(e) => setInfo(e.target.value)}
-                    />
-                  </div>
                 </div>
               )}
             </div>

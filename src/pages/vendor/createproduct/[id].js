@@ -260,27 +260,15 @@ export default function CreateTemplate(props) {
         id: id,
       },
     };
-    if (front) {
-      data.frontDesign = {
-        id: design.id,
-      };
-      data.frontDesignImage = image;
-      data.frontDesignPlacement = JSON.stringify({
-        position: position,
-        height: designHeight * 0.3937,
-        width: designWidth * 0.3937,
-      });
-    } else {
-      data.backDesign = {
-        id: design.id,
-      };
-      data.backDesignImage = image;
-      data.backDesignPlacement = JSON.stringify({
-        position: position,
-        height: designHeight,
-        width: designWidth,
-      });
-    }
+    data.frontDesign = {
+      id: design.id,
+    };
+    data.frontDesignImage = image;
+    data.frontDesignPlacement = JSON.stringify({
+      position: position,
+      height: designHeight * 0.3937,
+      width: designWidth * 0.3937,
+    });
     const response = axios
       .post(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/saveTemplate",
@@ -298,10 +286,10 @@ export default function CreateTemplate(props) {
         router.push("/vendor/templatelist");
       })
       .catch((err) => {
+        console.log(err);
         setMessage("Error saving template!");
         setOpen(true);
         setSeverity("error");
-        console.log(err);
       });
   };
 
