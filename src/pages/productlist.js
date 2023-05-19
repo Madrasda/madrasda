@@ -77,6 +77,11 @@ export default function ProductList({productsPage, setPageNo, pageNo, title}) {
                 <h1 className='font-quest text-3xl text-primary w-fit md:text-5xl my-9 tracking-wider mx-auto'>
                   {title}
                 </h1>
+                {productsPage.content.length === 0 && (
+                  <h1 className='text-center text-xl font-light'>
+                    Products are cooking!
+                  </h1>
+                )}
                 <div className='w-[90%] mx-auto grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center'>
                   {productsPage.content.map((product) => (
                     <ProductTile
