@@ -8,7 +8,7 @@ import {isTokenValid} from "@/utils/JWTVerifier"
 import {storage} from "../../.././firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {uuidv4} from "@firebase/util";
-import { InputLabel, Menu, MenuItem, Select, TextField } from "@mui/material";
+import { Backdrop, CircularProgress, InputLabel, Menu, MenuItem, Select, TextField } from "@mui/material";
 import { Check } from "@mui/icons-material";
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -36,10 +36,11 @@ export default function ViewProd() {
   const [colors, setColors] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [template, setTemplate] = useState(null);
+  const [spinner, setSpinnerState] = useState(false); //spinner
 
   const uploadProduct = async () => {
     if (!template && productImages.length === 0) return;
-
+    setSpinnerState(false);
     var colorId = [];
     if (selectedColors) {
       selectedColors.forEach((color) => {
@@ -100,6 +101,7 @@ export default function ViewProd() {
         },
       }
     );
+    setSpinnerState(true);
     router.push("/vendor/templatelist");
   };
 
@@ -132,7 +134,7 @@ export default function ViewProd() {
     setProfit(total - basePrice - discount * 0.01 * total);
   }, [basePrice, total, discount]);
   useEffect(() => {
-    setSellingPrice(profit+basePrice);
+    setSellingPrice(profit + basePrice);
   }, [basePrice, profit]);
 
   useEffect(() => {
@@ -238,7 +240,11 @@ export default function ViewProd() {
         <link rel='icon' href='/logo.png' />
         <title>Madrasda</title>
       </Head>
-
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={spinner}>
+        <CircularProgress color='inherit' />
+      </Backdrop>
       {tokenExists && (
         <VendorLayout>
           <main
@@ -534,7 +540,7 @@ export default function ViewProd() {
                     />
                   </div>
                   <div>
-                  <TextField
+                    <TextField
                       type='numeric'
                       label={"Selling Price (₹)"}
                       className='text-2xl w-72'
@@ -544,10 +550,16 @@ export default function ViewProd() {
                     />
                   </div>
                 </div>
-                <h1 className='ml-2 text-lg mt-4 font-bold'>NOTE: Kindly email the design in high quality with a resolution of 3000 x 3000 to admin at backend@madrasda.com</h1>
-                <h1 className='ml-2 text-lg mt-4 items-center'><InfoIcon/> Click on View Products to enable this product for sale after uploading the product</h1>
+                <h1 className='ml-2 text-lg mt-4 font-bold'>
+                  NOTE: Kindly email the design in high quality with a
+                  resolution of 3000 x 3000 to admin at backend@madrasda.com
+                </h1>
+                <h1 className='ml-2 text-lg mt-4 items-center'>
+                  <InfoIcon /> Click on View Products to enable this product for
+                  sale after uploading the product
+                </h1>
               </div>
-              
+
               <div className=' mt-14 flex justify-center '>
                 <button
                   type='button'
