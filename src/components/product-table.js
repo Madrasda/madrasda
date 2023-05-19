@@ -214,20 +214,22 @@ export default function ProductTable({products, setProducts, path}) {
                                 );
                               }
                             }}>
-                            <Image
-                              src={
+                            {
+                              
                                 (
                                   path.includes("admin")
                                     ? item.adminBan
                                     : item.publishStatus
                                 )
-                                  ? "/green-tick.png"
-                                  : "/red-cross.png"
-                              }
-                              alt='publish-status'
-                              width={20}
-                              height={20}
-                            />
+                                  ? <Button
+                                      className="bg-success font-bold"
+                                      variant="contained" color="success">
+                                      Enabled
+                                    </Button>
+                                  : <Button variant="contained" color="error">
+                                      Disabled
+                                    </Button>
+                            }
                           </button>
                         </td>
                         <td>
