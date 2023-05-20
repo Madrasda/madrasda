@@ -114,7 +114,7 @@ export default function ClientProfile() {
               <h1 className='ml-16 text-gray text-xl'>No history of orders!</h1>
             )}
             {details &&
-              details.map((order) => (
+              details.reverse().map((order) => (
                 <Paper
                   key={uuidv4()}
                   className='px-3 w-full items-center h-fit md:w-10/12 md:ml-16 mb-4 mt-8 relative'>

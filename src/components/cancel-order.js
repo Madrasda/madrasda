@@ -10,6 +10,14 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
    const [orderCancelled, setOrderCancelled] = useState(cancelled);
   const reasonRef = useRef();
   const handler = () => setVisible(true);
+
+
+   console.log(transactionId + " " + "bg-error " +
+   (!requested && !(cancelled ||
+      new Date().getTime() - new Date(orderDate).getTime() > 60000))
+      ? "hidden"
+      : "")
+
   const requestCancelOrder = () => {
     axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/cancelOrder", {
       "transaction": {
@@ -48,10 +56,10 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
 
         onClick={() => setVisible(true)}
         className={
-          cancelled && !requested &&
-          new Date().getTime() - new Date(orderDate).getTime() > 60000
-            ? "hidden"
-            : ""
+           'bg-error ' +
+           ((requested || (new Date().getTime() - new Date(orderDate).getTime() <= 30000 && !cancelled))
+              ? ""
+              : "hidden")
         }
         disabled={requested}>
         {!requested ? "Cancel Order" : "Cancel Order Requested"}
