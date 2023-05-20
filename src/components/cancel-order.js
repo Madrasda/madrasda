@@ -25,6 +25,7 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
            setMessage("Cancel order requested successfully")
            setSeverity("success");
            setOpenSnackbar(true);
+            setRequested(true);
          }
        })
        .catch(err => {
@@ -44,13 +45,10 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
         color='error'
         variant={"contained"}
         css={{ fontFamily: "$algeria" }}
-        style={{
-          background: "#f44336",
-          text: "white",
-        }}
+
         onClick={() => setVisible(true)}
         className={
-          cancelled ||
+          cancelled && !requested &&
           new Date().getTime() - new Date(orderDate).getTime() > 60000
             ? "hidden"
             : ""

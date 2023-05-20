@@ -191,6 +191,8 @@ export default function EditMockup() {
 	};
 
 	const uploadMockup = async (data) => {
+
+
 		const response = await axios
 			.put(
 				"https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/updateMockup",
@@ -242,7 +244,8 @@ export default function EditMockup() {
 			hsn: hsn,
 			basePrice: base,
 			images: details.images,
-			skuMapping: details.skuMapping
+			skuMapping: details.skuMapping,
+			disabled: details.disabled
 		};
 		setSpinnerState(true);
 		if (skuModel || skuName || mockupImages.length !== 0) {

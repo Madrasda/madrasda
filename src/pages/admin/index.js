@@ -7,6 +7,13 @@ import {UserContext} from "../../../context/context";
 import {Alert, Button, Snackbar} from "@mui/material";
 
 export default function Adminlogin() {
+	useEffect(() => {
+		const token = localStorage.getItem("token_admin");
+		if (token && isTokenValid(token) && getRole(token) === 'ROLE_ADMIN') router.push("/admin/vendorlist");
+		setLoading(false);
+	}, []);
+
+
 	const [mail, setEmail] = useState();
 	const [password, setPassword] = useState();
 	const [message, setMessage] = useState("");
@@ -48,12 +55,6 @@ export default function Adminlogin() {
 				setSeverity("error");
 			});
 	};
-
-	useEffect(() => {
-		const token = localStorage.getItem("token_admin");
-		if (token && isTokenValid(token) && getRole(token) === 'ROLE_ADMIN') router.push("/admin/vendorlist");
-		setLoading(false);
-	}, []);
 
 
 	return (

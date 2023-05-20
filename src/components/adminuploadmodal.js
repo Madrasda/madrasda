@@ -123,7 +123,6 @@ export default function AdminUploadModal(props) {
      breadth &&
      weight &&
      length &&
-     hsn &&
      tax
    ) {
      props.onSubmit({

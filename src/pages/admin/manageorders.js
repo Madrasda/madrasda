@@ -10,19 +10,7 @@ import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 export default function CustomerDetails() {
   const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
-  const verifyToken = async () => {
-    const url = new URLSearchParams({
-      token: localStorage.getItem("token_admin"),
-    });
-    axios
-      .get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/?" + url)
-      .then((response) => {
-        console.log("refreshed");
-      })
-      .catch((err) => {
-        localStorage.removeItem("token_admin");
-      });
-  };
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token_admin");
 
