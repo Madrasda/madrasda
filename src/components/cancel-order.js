@@ -54,12 +54,10 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
         css={{ fontFamily: "$algeria" }}
 
         onClick={() => setVisible(true)}
-        className={
-           'bg-error ' +
-           ((requested || (new Date().getTime() -new Date(orderDate).getTime()  <= 300000 && !cancelled))
+        className={'bg-error'}
+        sx={{display: ((requested || (new Date().getTime() - new Date(orderDate).getTime()  <= 300000 && !cancelled))
               ? ""
-              : "hidden")
-        }
+              : "none")}}
         disabled={requested}>
         {!requested ? "Cancel Order" : "Cancel Order Requested"}
       </Button>
