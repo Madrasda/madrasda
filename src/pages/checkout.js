@@ -51,63 +51,65 @@ export default function Checkout() {
 	const openModal = () => setVisible(true);
 
 	useEffect(() => {
-		if (
-			!isTokenValid(localStorage.getItem("token_client")) ||
-			getRole(localStorage.getItem("token_client")) !== "ROLE_CUSTOMER"
-		) {
-			router.push("/login");
-		} else {
-			if (ctx.cart.cartItems !== undefined) {
-				const sum = ctx.cart.cartItems.reduce(
-					(prev, curr) =>
-						(prev +=
-							curr.quantity *
-							((curr.product.total * (100 - curr.product.discount)) / 100)),
-					0
-				);
-				setSubtotal(sum);
-			} else {
-			}
-		}
-	}, [ctx.cart]);
-	const handleChange = (event) => {
-		const text = event.target.value;
-		setPincode((oldText) => {
-			setTimeout(() => {
-				if (text.length === 6) {
-					setError(false);
-					setSpinner(true);
-					axios
-						.get(
-							"https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
-							text,
-							{
-								headers: {
-									Authorization: "Bearer " + localStorage.getItem("token_client"),
-								},
-							}
-						)
-						.then((response) => {
-							setShippingCharges(response.data);
-							setSpinner(false);
-							setValidPincode(true);
-						})
-						.catch((err) => {
-							setValidPincode(false);
-							if (err.response.status === 409) {
-								setVisible(true)
-							}
-						});
-
-				} else {
-					setError(true);
-					setValidPincode(false);
-				}
-
-			}, 300);
-			return text;
-		});
-	};
+    if (
+      !isTokenValid(localStorage.getItem("token_client")) ||
+      getRole(localStorage.getItem("token_client")) !== "ROLE_CUSTOMER"
+    ) {
+      router.push("/login");
+    } else {
+      if (ctx.cart.cartItems !== undefined) {
+        const sum = ctx.cart.cartItems.reduce(
+          (prev, curr) =>
+            (prev +=
+              curr.quantity *
+              ((curr.product.total * (100 - curr.product.discount)) / 100)),
+          0
+        );
+        setSubtotal(sum);
+      } else {
+        router.push("/");
+      }
+    }
+  }, [ctx.cart]);
+  
+  const handleChange = (event) => {
+    const text = event.target.value;
+    setPincode((oldText) => {
+      setTimeout(() => {
+        if (text.length === 6) {
+          setError(false);
+          setSpinner(true);
+          axios
+            .get(
+              "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
+                text,
+              {
+                headers: {
+                  Authorization:
+                    "Bearer " + localStorage.getItem("token_client"),
+                },
+              }
+            )
+            .then((response) => {
+              console.log(response.data);
+              setShippingCharges(response.data);
+              setSpinner(false);
+              setValidPincode(true);
+            })
+            .catch((err) => {
+              setValidPincode(false);
+              if (err.response.status === 409) {
+                setVisible(true);
+              }
+            });
+        } else {
+          setError(true);
+          setValidPincode(false);
+        }
+      }, 300);
+      return text;
+    });
+  };
 	const handlePhoneChange = (event) => {
     const inputPhone = event.target.value;
     const phoneRegex = /^[0-9]{10,}$/;
