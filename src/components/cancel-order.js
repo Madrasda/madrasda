@@ -11,12 +11,11 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
   const reasonRef = useRef();
   const handler = () => setVisible(true);
 
-
+   console.log(new Date());
    console.log(transactionId + " " + "bg-error " +
-   (!requested && !(cancelled ||
-      new Date().getTime() - new Date(orderDate).getTime() > 60000))
-      ? "hidden"
-      : "")
+      ((requested || (new Date().getTime() - new Date(orderDate).getTime()  <= 300000 && !cancelled))
+         ? ""
+         : "hidden"))
 
   const requestCancelOrder = () => {
     axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/cancelOrder", {
@@ -57,7 +56,7 @@ export default function CancelOrderModal({ transactionId, orderDate, setMessage,
         onClick={() => setVisible(true)}
         className={
            'bg-error ' +
-           ((requested || (new Date().getTime() - new Date(orderDate).getTime() <= 30000 && !cancelled))
+           ((requested || (new Date().getTime() -new Date(orderDate).getTime()  <= 300000 && !cancelled))
               ? ""
               : "hidden")
         }
