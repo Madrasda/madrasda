@@ -72,7 +72,7 @@ export default function EditMockup() {
 	}
 	const getMockupDetails = async () => {
 		const response = await axios.get(
-			"http://localhost:8080/api/mockup/getMockup/" +
+			"https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" +
 			id
 		);
 		setDetails(response.data);
