@@ -342,8 +342,8 @@ export default function Checkout() {
                             helperText={error && "Invalid Phone"}
                             inputProps={{
                               type: "numeric",
-                              maxLength: 13,
-                              inputMode: "tel",
+                              maxLength: 10,
+                              inputMode: "numeric",
                             }}
                             value={phone}
                             inputRef={phoneRef}
