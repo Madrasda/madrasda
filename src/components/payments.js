@@ -31,7 +31,6 @@ export default function Payments() {
     );
     setOrders(response.data.content.reverse());
   };
-  const viewOrderItems = (order) => {};
 
   useEffect(() => {
     manageOrders();
@@ -83,6 +82,30 @@ export default function Payments() {
                     <th scope='col' className=' px-6 py-4'>
                       Quantity
                     </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Color
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Size
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      SKU
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Mockup Name
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Mockup Model
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Product Type
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Design URL
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Design Info
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -123,6 +146,32 @@ export default function Payments() {
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {item.quantity}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.colors[0].color}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.colors[0].sizes[0].size}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.sku}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.productMockup.name}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.productMockup.model}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.productMockup.productType}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            <a href={item.product.frontDesignUrl} target='_blank'>
+                              Link to Design
+                            </a>
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.frontDesignPlacement}
                           </td>
                         </tr>
                       ));
