@@ -189,10 +189,11 @@ export default function MyProducts() {
                             }}
                           />
                         </div>
-                        <Link href={`/admin/editmockup/${m.id}`}>
+                        <div>
                           <AdminMockup
                             donwload={false}
                             key={m.id}
+							id={m.id}
                             image={m.images}
                             model={m.model}
                             name={m.name}
@@ -200,7 +201,7 @@ export default function MyProducts() {
                             colors={getAvailableColors(m.skuMapping)}
                             basePrice={m.basePrice}
                           />
-                        </Link>
+                        </div>
                       </div>
                     </Grow>
                   );
