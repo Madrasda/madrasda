@@ -139,7 +139,7 @@ export default function MyProducts() {
 								MOCKUPS{" "}
 							</h1>
 
-							<div className='flex flex-wrap justify-start md:ml-20'>
+							<div className='flex flex-wrap justify-around md:ml-20'>
 								<div
 									className='lg:w-1/4 md:w-3/4 p-4 w-full h-96 flex items-center justify-center m-5 rounded duration-200 ease-in-out'>
 									<div className='flex flex-col items-center justify-center cursor-pointer'>

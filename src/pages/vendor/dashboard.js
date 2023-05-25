@@ -92,7 +92,7 @@ export default function Dashboard(props) {
         <VendorLayout>
           <main
             className='body-font font-raj overflow-hidden
-                                md:ml-36'>
+                                md:ml-32'>
             <div className=' flex flex-col mt-20 px-5 md:my-10 mx-auto'>
               <h1
                 className='text-5xl text-logo font-semibold tracking-wider
