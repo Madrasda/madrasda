@@ -191,24 +191,24 @@ export default function Dashboard(props) {
 
               {designs && (
                 <div
-                  className="bg-[url('/templates-area.png')] bg-no-repeat bg-cover mt-4
-                                md:ml-20 md:mt-20">
-                  <div className='flex flex-wrap justify-between items-center px-5 pt-10 md:pl-10'>
+                  className="mt-4
+                             md:ml-20 md:mt-20">
+                  <div className='flex flex-col flex-wrap justify-center items-center px-5 pt-10 md:pl-10'>
                     <h1
-                      className='text-2xl text-white font-semibold
+                      className='text-2xl text-primary font-semibold
                                     md:text-3xl'>
-                      YOUR DESIGNS
+                      ADD YOUR DESIGNS
                     </h1>
                     <Link href={`/vendor/designgallery`}>
                       <Image
                         src='/add-template-icon.png'
                         width={90}
                         height={90}
-                        className='cursor-pointer'
+                        className='cursor-pointer m-2'
                       />
                     </Link>
                   </div>
-                  <div className='flex flex-wrap justify-between items-center py-10'>
+                  {/* <div className='flex flex-wrap justify-between items-center py-10'>
                     {designs[0] && (
                       <Image
                         className='w-1/3 p-2 lg:w-1/5 md:p-none md:mx-8'
@@ -257,7 +257,7 @@ export default function Dashboard(props) {
                         height={233.33}
                       />
                     )}
-                  </div>
+                  </div> */}
                 </div>
               )}
 
