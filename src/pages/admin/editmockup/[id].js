@@ -317,7 +317,10 @@ export default function EditMockup() {
             {!edit && (
               <Button
                 variant='contained'
-                className='bg-primary'
+                style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                 sx={{marginBottom : '20px'}}
                 onClick={() => setEdit(true)}>
                 <Edit /> Edit Mockup
