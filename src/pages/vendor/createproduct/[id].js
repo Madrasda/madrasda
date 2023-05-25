@@ -29,8 +29,8 @@ export default function CreateTemplate(props) {
   const { id } = router.query;
   const isReady = router.isReady;
   const [details, setDetails] = useState(null);
-  const canvasWidth = 380;
-  const canvasHeight = 434;
+  const [canvasWidth,setCanvasWidth]=useState(0);
+  const [canvasHeight,setCanvasHeight]=useState(0);
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
@@ -201,6 +201,8 @@ export default function CreateTemplate(props) {
     setDetails(response.data);
     setCurId(response.data.images[0].colorId);
     setCurImg(response.data.images[0].image);
+    setCanvasHeight(response.data.canvasHeight*27);
+    setCanvasWidth(response.data.canvasWidth*27);
   };
 
   const getAvailableSizes = (skuMapping) => {
