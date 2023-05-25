@@ -27,6 +27,17 @@ export default function ClientProfile() {
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [state, setState] = useState(false);
+  useEffect(() => {
+    const jwtToken = localStorage.getItem("token_client");
+    if (jwtToken && isTokenValid(jwtToken)) {
+      setClient(true);
+      setPhone(getPhone(jwtToken));
+      getOrderHistory();
+    } else {
+      setClient(false);
+      router.push("/login");
+    }
+  }, [])
   const handleClose = (event, reason) => {
     console.log(reason);
     if (reason === 'clickaway') {
@@ -44,23 +55,10 @@ export default function ClientProfile() {
         },
       }
     );
-    console.log(response.data);
-    setDetails(response.data);
+    setDetails(response.data.reverse());
   };
+;
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token_client");
-    if (jwtToken && getRole(jwtToken) === "ROLE_ADMIN") router.push("/admin");
-    if (jwtToken && getRole(jwtToken) === "ROLE_VENDOR") router.push("/vendor");
-    if (jwtToken && isTokenValid(jwtToken)) {
-      setClient(true);
-      setPhone(getPhone(jwtToken));
-      getOrderHistory();
-    } else {
-      setClient(false);
-      router.push("/login");
-    }
-  }, []);
 
   if (loading && isReady)
     return (
@@ -114,7 +112,7 @@ export default function ClientProfile() {
               <h1 className='ml-16 text-gray text-xl'>No history of orders!</h1>
             )}
             {details &&
-              details.reverse().map((order) => (
+              details.map((order) => (
                 <Paper
                   key={uuidv4()}
                   className='px-3 w-full items-center h-fit md:w-10/12 md:ml-16 mb-4 mt-8 relative'>
@@ -158,6 +156,7 @@ export default function ClientProfile() {
                         setMessage={setMessage}
                         setSeverity={setSeverity}
                         setOpenSnackbar={setState}
+                        setDetails={setDetails}
                       />
                       <OrderDetailsModal order={order} key={order.id} />
                     </div>
