@@ -332,9 +332,9 @@ export default function Vendorlogin() {
                     placeholder='GSTIN'
                     onChange={(e) => setGst(e.target.value)}
                   />
-                  <div className='flex flex-col justify-center items-center'>
-                    <ReturnRefundModal /> <br />
-                    <TermsConditionsModal /> <br />
+                  <div className='flex flex-row justify-center items-center'>
+                    <ReturnRefundModal />
+                    <TermsConditionsModal />
                     <PaymentStructureModal />
                   </div>
 				  <div className='flex justify-center space-x-2 items-center'>
