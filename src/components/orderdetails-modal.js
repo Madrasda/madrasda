@@ -48,7 +48,7 @@ export default function OrderDetailsModal({ order }) {
       <Button
         css={{ fontFamily: "$algeria" }}
         style={{
-          background: "#FFA000",
+          background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
         }}
         onClick={handler}
         variant={'contained'}
@@ -144,10 +144,12 @@ export default function OrderDetailsModal({ order }) {
               </div>
             </div>
             <Button
-              variant='outlined'
-              className={
-                "text-primary border-primary hover:border-logo hover:text-logo w-56 mx-auto hidden md:block"
-              }
+              css={{ fontFamily: "$algeria" }}
+              style={{
+                background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                color:"white",
+              }}
+              variant={'outlined'}
               onClick={downloadInvoice}>
               <Download /> Billing Invoice
             </Button>

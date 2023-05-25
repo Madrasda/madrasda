@@ -263,7 +263,8 @@ export default function ProductId() {
                         className='w-48 h-10 text-center text-white px-4 py-3 '
                         css={{ fontFamily: "$algeria" }}
                         style={{
-                          background: "#FFA000",
+                          background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                          color:"white",
                         }}
                         variant={"contained"}
                         onClick={handleAddToCart}>

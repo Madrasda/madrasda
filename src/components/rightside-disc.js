@@ -26,7 +26,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
          {products.length !== 0 && (
             <div
                className='hidden xl:block overflow-hidden pl-2
-                     lg:pl-10 my-4 h-fit relative'>
+                     lg:pl-10 mb-2 h-fit relative'>
             <span
                className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-full rounded-r-none'>
@@ -103,7 +103,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                         );
                      })}
 
-                    <div className='mr-5 z-10 relative xl:scale-150 lg:scale-100'>
+                    <div className='mr-5 z-10 relative '>
                     <Link href={`/products/${id}`}>
                       <Image
                          src='/prod-comp-showmore-right.png'

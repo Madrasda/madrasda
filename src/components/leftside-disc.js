@@ -26,7 +26,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
         {products.length !== 0 && (
           <div
             className='hidden xl:block overflow-hidden pr-2
-                          my-4 lg:pr-10 relative'>
+            mb-2 lg:pr-10 relative'>
             <span
               className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-none rounded-r-full'>
