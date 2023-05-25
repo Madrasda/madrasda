@@ -42,7 +42,8 @@ const Otp = (props) => {
             className="text-white w-full"
             css={{ fontFamily: "$algeria" }}
             style={{
-              background: "#FFA000",
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
             }}
             type={"submit"}>
             Submit

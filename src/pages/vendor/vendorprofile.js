@@ -241,7 +241,7 @@ export default function VendorProfile(props) {
 										<div className=" text-center ">
 											<Button css={{fontFamily: "$algeria"}}
 											        style={{
-												        background: "#388e3c",
+												        background: "linear-gradient(45deg,  #0f8302, #14a405, #17c70b)",
 												        color: 'white'
 											        }}
 											        variant={"contained"}

@@ -231,7 +231,10 @@ export default function Vendorlogin() {
                 <div className='flex justify-center items-center mt-6'>
                   <Button
                     variant={"contained"}
-                    className={"w-full bg-primary"}
+                    style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                     type={"submit"}
                     onClick={vendorlogin}>
                     Login
@@ -341,6 +344,10 @@ export default function Vendorlogin() {
                   {agree && (
                     <Button
                       variant={"contained"}
+                      style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                       className={"w-full bg-primary"}
                       type={"submit"}>
                       Request For Signup

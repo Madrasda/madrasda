@@ -75,9 +75,9 @@ export default function VendorProfile() {
   
                   <Button css={{ fontFamily: "$algeria" }}
                           style={{
-                            background: "#FFA000",
-                            color: 'white'
-                          }}
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                           type={'submit'} className={"text-white bg-primary font-medium  text-sm px-5 py-2.5 text-center mr-2 mb-2"}
                           onClick={changePassword}>Change Password</Button>
                 
