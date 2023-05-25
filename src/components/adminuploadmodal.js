@@ -130,7 +130,7 @@ export default function AdminUploadModal(props) {
        productType: prodType,
        category: category,
        model: model,
-       addtionalInformation: info,
+       additionalInformation: info,
        basePrice: base,
        skuMapping: generateSkuMapping(
          skuName,

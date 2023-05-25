@@ -35,17 +35,19 @@ export default function AdminMockup(props) {
   return (
     <>
       <div className='relative h-full'>
-        <a className='block relative w-full rounded overflow-hidden'>
+        <Link
+          href={`/admin/editmockup/${props.id}`}
+          className='block relative w-full rounded overflow-hidden'>
           <Image
             src={display || "/logo.png"}
             alt='ecommerce'
             height={1080}
             width={1920}
             priority={true}
-            loading={'eager'}
+            loading={"eager"}
             className='object-cover object-center w-96 h-full'
           />
-        </a>
+        </Link>
         <div className='mt-4'>
           <h3 className='text-base title-font'>{props.name}</h3>
           <div className='flex'>

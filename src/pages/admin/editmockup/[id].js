@@ -314,6 +314,15 @@ export default function EditMockup() {
       <AdminLayout>
         {details && (
           <section className='md:mx-40 py-12 px-16'>
+            {!edit && (
+              <Button
+                variant='contained'
+                className='bg-primary'
+                sx={{marginBottom : '20px'}}
+                onClick={() => setEdit(true)}>
+                <Edit /> Edit Mockup
+              </Button>
+            )}
             <h1 className='text-4xl'>{details.name}</h1>
             <span className='flex flex-wrap mt-1 pr-1 text-sm'>
               Available Sizes:
@@ -348,7 +357,7 @@ export default function EditMockup() {
                         onClick={() => toggleAvailability(color.id)}
                       />
                       <p className={"w-20 text-center"}>{color.color}</p>
-					  {!color.status && <h1 className="text-red">DISABLED</h1>}
+                      {!color.status && <h1 className='text-red'>DISABLED</h1>}
                     </span>
                   );
                 })}
@@ -707,14 +716,6 @@ export default function EditMockup() {
                   </div>
                 </form>
               </div>
-            )}
-            {!edit && (
-              <Button
-                variant='contained'
-                className='bg-primary'
-                onClick={() => setEdit(true)}>
-                <Edit /> Edit Mockup
-              </Button>
             )}
             {edit && (
               <div className='space-x-4'>
