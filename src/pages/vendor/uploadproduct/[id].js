@@ -76,7 +76,7 @@ export default function ViewProd() {
     if (template.frontDesignPlacement) {
       data.frontDesignPlacement = JSON.stringify(template.frontDesignPlacement);
       data.frontDesignUrl = template.frontDesignImage;
-      data.backDesignUrl = template.backDesignImage;
+      data.backDesignUrl = template.backDesignPlacement;
     } else {
       data.backDesignPlacement = JSON.stringify(template.backDesignPlacement);
     }
