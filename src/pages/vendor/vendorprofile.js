@@ -119,7 +119,7 @@ export default function VendorProfile(props) {
 							{message}
 						</Alert>
 					</Snackbar>
-					<section className='body-font font-algeria overflow-hidden md:ml-56 lg:ml-36'>
+					<section className='body-font font-algeria overflow-hidden md:ml-56 lg:ml-32'>
 						<div className='mt-20 px-5 md:my-10 mx-auto lg:ml-20 md:mt-10'>
 							<h1 className='text-3xl text-primary'>PROFILE</h1>
 							<div className='grid gap-6 mt-10 ml-2 mb-2 md:grid-row lg:mr-96'>

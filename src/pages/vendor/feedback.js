@@ -123,7 +123,7 @@ export default function Feedback() {
 							</h1>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
+						<hr className='h-px md:ml-20 my-6 border-shadowGrey border-1'></hr>
 						<div className='md:ml-24 lg:ml-32'>
 							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>
 								1.Post your Queries:
@@ -156,7 +156,7 @@ export default function Feedback() {
 							</form>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
+						<hr className='h-px md:ml-20 my-6 border-shadowGrey border-1'></hr>
 
 						<div className='md:ml-24 lg:ml-32'>
 							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>2.FAQ:</h1>
@@ -261,7 +261,7 @@ export default function Feedback() {
 								</AccordionDetails>
 							</Accordion>
 						</div>
-						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
+						<hr className='h-px md:ml-20 my-6 border-shadowGrey border-1'></hr>
 
 						<div className='md:ml-24 lg:ml-32 text-[#2c2c2d]'>
 							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>
@@ -272,7 +272,7 @@ export default function Feedback() {
 							<h2>Phone Number: </h2>
 						</div>
 
-						<hr className='h-px md:ml-20 md:mr-12 my-6 border-shadowGrey border-1'></hr>
+						<hr className='h-px md:ml-20 my-6 border-shadowGrey border-1'></hr>
 					</div>
 				</main>
 			</VendorLayout>}
