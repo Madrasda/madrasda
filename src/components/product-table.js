@@ -151,7 +151,11 @@ export default function ProductTable({ products, setProducts, path }) {
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='flex justify-end mr-8'>
             <Button
-              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
+              css={{ fontFamily: "$algeria" }}
+              style={{
+                background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              }}
+              variant={'contained'}
               onClick={() => {
                 const table = document.getElementById("tablefunda");
                 const wb = XLSX.utils.table_to_book(table);
