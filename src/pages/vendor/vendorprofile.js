@@ -216,13 +216,13 @@ export default function VendorProfile(props) {
 											variant="outlined"
 											fullWidth
 											margin="normal"
-											maxLength={13}
+											maxLength={10}
 											inputMode={'numeric'}
 											InputProps={{
 												startAdornment: <InputAdornment position="start">+91 </InputAdornment>,
 											}}
 											inputProps={{
-												maxLength: 13
+												maxLength: 10
 											}}
 											InputLabelProps={{shrink: true}}
 											onChange={(e) => {
@@ -247,9 +247,8 @@ export default function VendorProfile(props) {
 											        variant={"contained"}
 											        endIcon={<EditOutlined/>}
 											        type={'submit'}
-
 											>
-												Update Profile
+												Save Changes
 
 											</Button>
 										</div>
@@ -257,8 +256,8 @@ export default function VendorProfile(props) {
 											<Link href="/vendor/changepassword">
 												<Button css={{fontFamily: "$algeria"}}
 												        style={{
-													        background: "#FFA000",
-													        color: 'white'
+													        background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+													        color: 'white',
 												        }}>Change Password</Button>
 											</Link>
 										</div>

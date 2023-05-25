@@ -424,10 +424,8 @@ export default function Checkout() {
                           css={{ fontFamily: "$algeria" }}
                           style={{
                             background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-                            color: white,
+                            color: "white",
                           }}
-                          
-                          onClick={handler}
                           variant={'contained'}
                           disabled={!validPhone || !validPincode}
                           type={"submit"}

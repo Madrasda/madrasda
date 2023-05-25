@@ -143,6 +143,11 @@ export default function Feedback() {
 								/>
 								<div className='pt-4'>
 								<Button
+								css={{ fontFamily: "$algeria" }}
+								style={{
+								background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+								color:"white",
+								}}
 									variant={'contained'}
 									onClick={handleSubmit}>
 									Post Query
