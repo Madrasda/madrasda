@@ -201,8 +201,8 @@ export default function CreateTemplate(props) {
     setDetails(response.data);
     setCurId(response.data.images[0].colorId);
     setCurImg(response.data.images[0].image);
-    setCanvasHeight(response.data.canvasHeight*27);
-    setCanvasWidth(response.data.canvasWidth*27);
+    setCanvasHeight(response.data.canvasHeight*28);
+    setCanvasWidth(response.data.canvasWidth*28);
   };
 
   const getAvailableSizes = (skuMapping) => {
