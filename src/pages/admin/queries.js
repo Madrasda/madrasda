@@ -66,7 +66,7 @@ export default function Queries() {
                   </h1>
                 </div>
 
-                <hr className='h-px md:ml-20 md:mr-12 my-6 bg-black border-1'></hr>
+                <hr className='h-px md:ml-20 my-6 bg-black border-1'></hr>
 
                 <div className='flex flex-col mt-4 md:ml-20 lg:mr-20 text-black'>
                   {queries &&
