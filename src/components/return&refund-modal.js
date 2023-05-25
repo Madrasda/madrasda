@@ -4,7 +4,10 @@ export default function ReturnRefundModal() {
   const { setVisible, bindings } = useModal();
   return (
     <div>
-      <Button auto css={{backgroundColor: "#FFA000"}} onPress={() => setVisible(true)}>
+      <Button auto style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }} onPress={() => setVisible(true)}>
         Return and Refund Policy
       </Button>
       <Modal

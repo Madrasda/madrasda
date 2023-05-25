@@ -4,7 +4,10 @@ export default function TermsConditionsModal() {
   const { setVisible, bindings } = useModal();
   return (
     <div>
-      <Button auto css={{backgroundColor: "#FFA000"}} onPress={() => setVisible(true)}>
+      <Button auto style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }} onPress={() => setVisible(true)}>
         Terms and Conditions
       </Button>
       <Modal
@@ -172,7 +175,10 @@ export default function TermsConditionsModal() {
           <Button auto flat color="error" onPress={() => setVisible(false)}>
             Close
           </Button>
-          <Button auto css={{backgroundColor: "#FFA000"}} onPress={() => setVisible(false)}>
+          <Button auto style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }} onPress={() => setVisible(false)}>
             Agree
           </Button>
         </Modal.Footer>

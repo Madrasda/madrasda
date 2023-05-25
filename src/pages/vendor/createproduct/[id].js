@@ -469,6 +469,10 @@ export default function CreateTemplate(props) {
                           <div className='w-full mt-3'>
                             <Button
                               variant='outlined'
+                              style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                               className={
                                 "text-primary w-full bottom-0 p-2 absolute border-primary hover:border-logo hover:text-logo text-xs mx-auto"
                               }

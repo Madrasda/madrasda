@@ -317,7 +317,10 @@ export default function EditMockup() {
             {!edit && (
               <Button
                 variant='contained'
-                className='bg-primary'
+                style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                 sx={{marginBottom : '20px'}}
                 onClick={() => setEdit(true)}>
                 <Edit /> Edit Mockup
@@ -721,13 +724,19 @@ export default function EditMockup() {
               <div className='space-x-4'>
                 <Button
                   variant='contained'
-                  className='bg-primary'
+                  style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                   onClick={updateMockup}>
                   <Upload /> Save Mockup
                 </Button>
                 <Button
                   variant='contained'
-                  className='bg-red hover:bg-error'
+                  style={{
+					background:"linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
+					color:"white",
+				}}
                   onClick={() => setEdit(false)}>
                   Cancel
                 </Button>
