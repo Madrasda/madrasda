@@ -76,9 +76,9 @@ export default function ViewProd() {
     if (template.frontDesignPlacement) {
       data.frontDesignPlacement = JSON.stringify(template.frontDesignPlacement);
       data.frontDesignUrl = template.frontDesignImage;
+      data.backDesignUrl = template.backDesignImage;
     } else {
       data.backDesignPlacement = JSON.stringify(template.backDesignPlacement);
-      data.backDesignUrl = template.backDesignImage;
     }
 
     if (data.productImages[0].imgUrl !== null) {
@@ -304,17 +304,27 @@ export default function ViewProd() {
                 {template && (
                   <div className='my-6 ml-2'>
                     <h2 className='title-font font-medium text-xl mb-6'>
-                      {template.frontDesignPlacement ? "Front" : "Back"} Design
+                      Product Design
                     </h2>
                     <div className='flex flec col ml-12 '>
                       {template && (
                         <img
                           className='w-36 rounded-lg'
-                          src={
-                            template.frontDesignImage ||
-                            template.backDesignImage
-                          }
-                          alt='picture'></img>
+                          src={template.frontDesignImage}
+                          alt='picture'
+                        />
+                      )}
+                    </div>
+                    <h2 className='title-font font-medium text-xl mb-6'>
+                      Design
+                    </h2>
+                    <div className='flex flec col ml-12 '>
+                      {template && (
+                        <img
+                          className='w-36 rounded-lg'
+                          src={template.backDesignPlacement}
+                          alt='picture'
+                        />
                       )}
                     </div>
                     <h2 className='title-font font-medium text-xl mb-6'>

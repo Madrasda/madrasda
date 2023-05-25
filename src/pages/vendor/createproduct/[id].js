@@ -269,6 +269,7 @@ export default function CreateTemplate(props) {
       height: designHeight * 0.3937,
       width: designWidth * 0.3937,
     });
+    data.backDesignPlacement = design.imgUrl;
     const response = axios
       .post(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/saveTemplate",
