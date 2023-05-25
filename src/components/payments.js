@@ -101,6 +101,9 @@ export default function Payments() {
                       Product Type
                     </th>
                     <th scope='col' className=' px-6 py-4'>
+                      Product Design URL
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
                       Design URL
                     </th>
                     <th scope='col' className=' px-6 py-4'>
@@ -166,8 +169,17 @@ export default function Payments() {
                             {item.product.productMockup.productType}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            <a href={item.product.frontDesignUrl} target='_blank'>
-                              Link to Design
+                            <a
+                              href={item.product.frontDesignUrl}
+                              target='_blank'>
+                              View Product Design
+                            </a>
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            <a
+                              href={item.product.backDesignPlacement}
+                              target='_blank'>
+                              View Design
                             </a>
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
