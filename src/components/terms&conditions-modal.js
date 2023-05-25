@@ -4,12 +4,9 @@ export default function TermsConditionsModal() {
   const { setVisible, bindings } = useModal();
   return (
     <div>
-      <Button auto style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
-            }} onPress={() => setVisible(true)}>
+      <h1 className="text-logo cursor-pointer text-xs" onClick={() => setVisible(true)}>
         Terms and Conditions
-      </Button>
+      </h1>
       <Modal
         scroll
         width="600px"
@@ -172,7 +169,10 @@ export default function TermsConditionsModal() {
           </Text>
         </Modal.Body>
         <Modal.Footer>
-          <Button auto flat color="error" onPress={() => setVisible(false)}>
+          <Button auto flat style={{
+					background:"linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
+					color:"white",
+				}} onPress={() => setVisible(false)}>
             Close
           </Button>
           <Button auto style={{
