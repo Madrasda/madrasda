@@ -42,11 +42,11 @@ export default function Payments() {
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='overflow-hidden'>
               <table
-                className='min-w-full text-center text-sm font-medium'
+                className='min-w-full text-center text-sm font-medium bg-bg bg-opacity-10 rounded-xl'
                 id='download'>
-                <thead className='border-b text-m font-bold dark:border-neutral-500'>
+                <thead className='border-b border-shadowGrey text-m font-bold '>
                   <tr>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope='col' className=' px-6 py-4 '>
                       S.No
                     </th>
                     <th scope='col' className=' px-6 pl-0'>
@@ -57,6 +57,9 @@ export default function Payments() {
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Product Name
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Vendor ID
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       SKU
@@ -82,7 +85,6 @@ export default function Payments() {
                     <th scope='col' className=' px-6 py-4'>
                       Size
                     </th>
-                    
                     <th scope='col' className=' px-6 py-4'>
                       Mockup Name
                     </th>
@@ -108,7 +110,7 @@ export default function Payments() {
                     orders.map((order, index) => {
                       const orderDate = new Date(order.orderDate);
                       return order.orderItems.map((item) => (
-                        <tr key={uuidv4()} className='dark:border-neutral-500'>
+                        <tr key={uuidv4()} className='border-b border-shadowGrey'>
                           <td className='whitespace-nowrap px-6 py-6 font-medium'>
                             {index + 1}
                           </td>
@@ -120,6 +122,9 @@ export default function Payments() {
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {item.product.name}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.vendorId}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {item.sku}

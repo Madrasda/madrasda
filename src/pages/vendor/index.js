@@ -261,7 +261,7 @@ export default function Vendorlogin() {
                   onSubmit={vendorSignup}
                   className='text-primary w-full flex flex-col space-y-4'>
                   <Input
-                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -271,7 +271,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setName(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -281,7 +281,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setemail(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -292,7 +292,7 @@ export default function Vendorlogin() {
                   />
                   <Select
                     id='category-vendor'
-                    className='bg-shadowGrey p-0'
+                    className='bg-shadowGrey rounded-lg p-0'
                     inputProps={{
                       className: "text-primary text-sm",
                       "aria-label": "Category",
@@ -303,10 +303,14 @@ export default function Vendorlogin() {
                     <MenuItem value='Production House'>
                       Production House
                     </MenuItem>
-                    <MenuItem value='Influencer'>Influencer</MenuItem>
+                    <MenuItem value='YouTuber'>YouTuber</MenuItem>
+                    <MenuItem value='Independent Artist'>Independent Artist</MenuItem>
+                    <MenuItem value='Music Director'>Music Director</MenuItem>
+                    <MenuItem value='Singer'>Singer</MenuItem>
+                    <MenuItem value='Stand-up Comedian'>Stand-up Comedian</MenuItem>
                   </Select>
                   <Input
-                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -315,7 +319,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setCompName(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -325,7 +329,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setUrl(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey mx-auto p-3 w-full'
+                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{
                       className: "text-primary text-sm",

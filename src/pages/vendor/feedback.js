@@ -171,12 +171,11 @@ export default function Feedback() {
 									color: 'black'
 								}}
 								>
-								<Typography>FAQ 1</Typography>
+								<Typography>What is a Vendor Dashboard?</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								A Vendor Dashboard is an online platform where vendors can manage their business operations, track sales, and access various tools and features to enhance their selling experience.
 								</Typography>
 								</AccordionDetails>
 							</Accordion>
@@ -191,12 +190,11 @@ export default function Feedback() {
 									color: 'black'
 								}}
 								>
-								<Typography>FAQ 2</Typography>
+								<Typography>How do I access the Vendor Dashboard?</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								To access the Vendor Dashboard, you need to log in to your vendor account on the platform's website. Once logged in, you can access the dashboard.
 								</Typography>
 								</AccordionDetails>
 							</Accordion>
@@ -211,12 +209,11 @@ export default function Feedback() {
 									color: 'black'
 								}}
 								>
-								<Typography>FAQ 3</Typography>
+								<Typography>What can I do with the Vendor Dashboard?</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								The Vendor Dashboard offers a range of features and functionalities to help vendors manage their business. Some common tasks you can perform include adding and updating products, managing inventory, processing orders, tracking sales and revenue, and accessing analytics and reports.
 								</Typography>
 								</AccordionDetails>
 							</Accordion>
@@ -231,12 +228,11 @@ export default function Feedback() {
 									color: 'black'
 								}}
 								>
-								<Typography>FAQ 4</Typography>
+								<Typography>Can I customize the Vendor Dashboard to suit my preferences?</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								The level of customization available in the Vendor Dashboard is limited.
 								</Typography>
 								</AccordionDetails>
 							</Accordion>				
@@ -251,13 +247,287 @@ export default function Feedback() {
 									color: 'black'
 								}}
 								>
-								<Typography>FAQ 5</Typography>
+								<Typography>How can I add and manage my products on the Vendor Dashboard?</Typography>
 								</AccordionSummary>
 								<AccordionDetails>
 								<Typography>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-									malesuada lacus ex, sit amet blandit leo lobortis eget.
+								Typically, you can add and manage products by navigating to the "create templates" section of the Vendor Dashboard. From there, you can create new product listings, provide product details, upload images, set prices, and update product information as needed.
 								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>How can I process orders through the Vendor Dashboard</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								When a customer places an order, it routes to Madras Da Admin and the fulfilment is taken care by Madras da Team.
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>Can I track my sales and revenue through the Vendor Dashboard?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Yes, the Vendor Dashboard typically provides tools to track your sales and revenue. You can usually access reports or analytics that show information such as total sales, revenue over a specific period, top-selling products, customer insights, and more. This data can help you make informed business decisions and evaluate your performance.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>How can I communicate with customers using the Vendor Dashboard?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Communicating to the customer is restricted to vendors								
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>Can I integrate third-party services or tools with the Vendor Dashboard?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								No, Integrating third-party I not possible.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>Is there any customer support available for using the Vendor Dashboard?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Yes, platforms often provide customer support channels for vendors. If you have questions, encounter technical issues, or need assistance with using the Vendor Dashboard, you can usually reach out to the platform's support team via email, or a dedicated support portal. They will guide you and address any concerns you may have.
+								<br></br>support@madrasda.com 
+								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>How does the Commission Process work for the two cycles in a month?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								The Commission Process for our platform operates in two cycles each month. This means that earnings from your sales are processed and paid out twice within the same month.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>When are the commission cycles scheduled in a month?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								The commission cycles are typically scheduled on specific dates within the month for E.G 1-15th sales will be paid before 20th of each month and 16-30th sales will be paid before 5th of every month.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>What happens during the first commission cycle of the month?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								During the first commission cycle, the platform calculates and processes the earnings you have accumulated up until a predetermined date, usually around the middle of the month. These earnings will be prepared for payment.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>When can I expect to receive the payment for the first commission cycle?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Payment for the first commission cycle is usually processed shortly after the cycle ends, which could be within a few days or up to a week. including payment processing times and any additional verification processes.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>How are earnings from the second commission cycle of the month handled?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								The second commission cycle accounts for earnings generated after the cut-off date of the first cycle, up until the end of the month. These earnings will be calculated separately and prepared for payment.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>When will I receive the payment for the second commission cycle?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Payment for the second commission cycle is typically processed shortly after the cycle ends, which is usually at the end of the month. Similar to the first cycle, the exact timing may vary based on payment processing and verification procedures.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>Are there any payment thresholds or minimum amounts required to receive a payout?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								The platform may have specific payment thresholds or minimum amounts that need to be reached before a payout is initiated. This helps ensure that the payment processing is efficient and cost-effective. Check the platform's documentation or terms to find information about any such requirements.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>How are the commission payments delivered?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Commission payments are typically delivered through the chosen pay out method on the platform. This may include options such as direct bank transfers, electronic payment systems or other supported payment gateways. 								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>Can I track my commission earnings and payment status on the platform?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								Yes, platforms provide a dashboard or section where you can track your commission earnings and payment status. This allows you to monitor your earnings, view pending payments, and track the progress of your commission cycles.								</Typography>
+								</AccordionDetails>
+							</Accordion>
+							<Accordion>
+								<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls="panel1a-content"
+								id="panel1a-header"
+								css={{ fontFamily: "$algeria" }}
+								style={{
+									background: "#EAEAEA",
+									color: 'black'
+								}}
+								>
+								<Typography>What should I do if I have any questions or issues regarding the commission process?</Typography>
+								</AccordionSummary>
+								<AccordionDetails>
+								<Typography>
+								If you have any questions or encounter issues related to the commission process, it's best to reach out to the support team. They can provide you with specific information, address any concerns, and assist you in resolving any problems you may have.
+								</Typography>								
 								</AccordionDetails>
 							</Accordion>
 						</div>
