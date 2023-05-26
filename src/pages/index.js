@@ -19,9 +19,10 @@ export default function Home() {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
-    if (ctx.vendorList !== undefined && ctx.vendorList.length !== 0)
+    if (ctx.vendorList !== undefined && ctx.vendorList.length !== 0) {
+      console.log(ctx.vendorList);
       setLoading(false);
-    else {
+    } else {
       setLoading(true);
     }
   }, [ctx.vendorList]);
