@@ -64,7 +64,7 @@ export default function Home() {
                 <RightsideDisc
                   key={uuidv4()}
                   id={vendor.id}
-                  name={vendor.name}
+                  name={vendor.companyName}
                   imgUrl={vendor.imgUrl}
                 />
               );
@@ -73,7 +73,7 @@ export default function Home() {
                 <LeftsideDisc
                   key={uuidv4()}
                   id={vendor.id}
-                  name={vendor.name}
+                  name={vendor.companyName}
                   imgUrl={vendor.imgUrl}
                 />
               );
