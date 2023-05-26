@@ -232,9 +232,10 @@ export default function Vendorlogin() {
                   <Button
                     variant={"contained"}
                     style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
-            }}
+                      background:
+                        "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                      color: "white",
+                    }}
                     type={"submit"}
                     onClick={vendorlogin}>
                     Login
@@ -326,28 +327,32 @@ export default function Vendorlogin() {
                   <Input
                     className='bg-shadowGrey mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm", maxLength: 15 }}
+                    inputProps={{
+                      className: "text-primary text-sm",
+                      maxLength: 15,
+                    }}
                     type='text'
                     value={gst}
                     placeholder='GSTIN'
                     onChange={(e) => setGst(e.target.value)}
                   />
-                  <div className='flex flex-row justify-center items-center'>
+                  <div className='flex flex-col space-y-2'>
                     <ReturnRefundModal />
                     <TermsConditionsModal />
                     <PaymentStructureModal />
                   </div>
-				  <div className='flex justify-center space-x-2 items-center'>
-					<input type='radio' onChange={() => setAgree(true)} />
-					<h1>I agree to the terms and condition</h1>
-				  </div>
+                  <div className='flex justify-center space-x-2 items-center'>
+                    <input type='radio' onChange={() => setAgree(true)} />
+                    <h1>I agree to the above mentioned</h1>
+                  </div>
                   {agree && (
                     <Button
                       variant={"contained"}
                       style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
-            }}
+                        background:
+                          "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                        color: "white",
+                      }}
                       className={"w-full bg-primary"}
                       type={"submit"}>
                       Request For Signup
