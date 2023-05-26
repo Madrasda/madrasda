@@ -41,7 +41,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                   className='w-full h-full items-center justify-start px-4 py-2 hidden
                             xl:flex'>
                   <div className='w-full h-full flex items-center justify-end'>
-                    {products.length == 4 && (
+                    {products.length === 4 && (
                       <div className='ml-5 z-10'>
                         <Link href={`/products/${id}`}>
                           <Image
