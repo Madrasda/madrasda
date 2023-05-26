@@ -271,7 +271,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setName(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -281,7 +281,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setemail(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -292,7 +292,7 @@ export default function Vendorlogin() {
                   />
                   <Select
                     id='category-vendor'
-                    className='bg-shadowGrey rounded-lg p-0'
+                    className='bg-white rounded-lg p-0'
                     inputProps={{
                       className: "text-primary text-sm",
                       "aria-label": "Category",
@@ -310,7 +310,7 @@ export default function Vendorlogin() {
                     <MenuItem value='Stand-up Comedian'>Stand-up Comedian</MenuItem>
                   </Select>
                   <Input
-                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -319,7 +319,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setCompName(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{ className: "text-primary text-sm" }}
                     type='text'
@@ -329,7 +329,7 @@ export default function Vendorlogin() {
                     onChange={(e) => setUrl(e.target.value)}
                   />
                   <Input
-                    className='bg-shadowGrey rounded-lg mx-auto p-3 w-full'
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{
                       className: "text-primary text-sm",

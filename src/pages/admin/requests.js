@@ -126,32 +126,32 @@ export default function Requests() {
                 <Paper className='px-2 py-5' elevation={3} key={uuidv4()}>
                   <div className='flex flex-col w-1/3 p-3 text-lg'>
                     <span className='flex space-x-4'>
-                      <h1 className='font-bold'>Name</h1>
+                      <h1 className='font-bold'>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.name}</h1>
                     </span>
                     <span className='flex space-x-4'>
-                      <h1 className='font-bold'>Phone</h1>
+                      <h1 className='font-bold'>Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.phone}</h1>
                     </span>
                     <span className='flex space-x-4'>
-                      <h1 className='font-bold'>E-Mail</h1>
+                      <h1 className='font-bold'>E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.email}</h1>
                     </span>
                     <span className='flex space-x-4'>
-                      <h1 className='font-bold'>Category</h1>
+                      <h1 className='font-bold'>Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.influencerCategory}</h1>
                     </span>
                     <span className='flex space-x-4'>
-                      <h1 className='font-bold'>Company Name</h1>
+                      <h1 className='font-bold'>Company Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.companyName}</h1>
                     </span>
                     <span className='flex space-x-4'>
-                      <h1 className='font-bold'>URL</h1>
+                      <h1 className='font-bold'>URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.companyUrl}</h1>
                     </span>
                     { vendor.gstin && 
                       <span className='flex space-x-4'>
-                      <h1 className='font-bold'>GSTIN</h1>
+                      <h1 className='font-bold'>GSTIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</h1>
                       <h1>{vendor.gstin}</h1>
                     </span>}
                   </div>
