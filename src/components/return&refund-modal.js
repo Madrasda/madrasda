@@ -4,9 +4,9 @@ export default function ReturnRefundModal() {
   const { setVisible, bindings } = useModal();
   return (
     <div>
-      <Button auto css={{backgroundColor: "#FFA000"}} onPress={() => setVisible(true)}>
-        Return and Refund Policy
-      </Button>
+      <h1 className="text-logo cursor-pointer text-xs" onClick={() => setVisible(true)}>
+        Return & Refund Policy
+      </h1>
       <Modal
         scroll
         width="600px"
@@ -114,10 +114,16 @@ export default function ReturnRefundModal() {
           </Text>
         </Modal.Body>
         <Modal.Footer>
-          <Button auto flat color="error" onPress={() => setVisible(false)}>
+          <Button auto flat style={{
+					background:"linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
+					color:"white",
+				}} onPress={() => setVisible(false)}>
             Close
           </Button>
-          <Button auto css={{backgroundColor: "#FFA000"}} onPress={() => setVisible(false)}>
+          <Button auto style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }} onPress={() => setVisible(false)}>
             Agree
           </Button>
         </Modal.Footer>

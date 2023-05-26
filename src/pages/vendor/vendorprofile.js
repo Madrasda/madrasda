@@ -119,7 +119,7 @@ export default function VendorProfile(props) {
 							{message}
 						</Alert>
 					</Snackbar>
-					<section className='body-font font-algeria overflow-hidden md:ml-56 lg:ml-36'>
+					<section className='body-font font-algeria overflow-hidden md:ml-56 lg:ml-32'>
 						<div className='mt-20 px-5 md:my-10 mx-auto lg:ml-20 md:mt-10'>
 							<h1 className='text-3xl text-primary'>PROFILE</h1>
 							<div className='grid gap-6 mt-10 ml-2 mb-2 md:grid-row lg:mr-96'>
@@ -216,13 +216,13 @@ export default function VendorProfile(props) {
 											variant="outlined"
 											fullWidth
 											margin="normal"
-											maxLength={13}
+											maxLength={10}
 											inputMode={'numeric'}
 											InputProps={{
 												startAdornment: <InputAdornment position="start">+91 </InputAdornment>,
 											}}
 											inputProps={{
-												maxLength: 13
+												maxLength: 10
 											}}
 											InputLabelProps={{shrink: true}}
 											onChange={(e) => {
@@ -241,15 +241,14 @@ export default function VendorProfile(props) {
 										<div className=" text-center ">
 											<Button css={{fontFamily: "$algeria"}}
 											        style={{
-												        background: "#388e3c",
+												        background: "linear-gradient(45deg,  #0f8302, #14a405, #17c70b)",
 												        color: 'white'
 											        }}
 											        variant={"contained"}
 											        endIcon={<EditOutlined/>}
 											        type={'submit'}
-
 											>
-												Update Profile
+												Save Changes
 
 											</Button>
 										</div>
@@ -257,8 +256,8 @@ export default function VendorProfile(props) {
 											<Link href="/vendor/changepassword">
 												<Button css={{fontFamily: "$algeria"}}
 												        style={{
-													        background: "#FFA000",
-													        color: 'white'
+													        background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+													        color: 'white',
 												        }}>Change Password</Button>
 											</Link>
 										</div>

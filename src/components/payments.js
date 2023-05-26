@@ -2,14 +2,13 @@ import AdminLayout from '@/components/layout-admin'
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
-import {Button} from "@mui/material";
 import {uuidv4} from "@firebase/util";
 import OrderDetailsModal from "@/components/orderdetails-modal";
-import { set_cptable } from "xlsx";
-import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
-set_cptable(cptable);
-import XLSX from "xlsx";
-import { JsonToExcel } from "react-json-to-excel";
+// import { set_cptable } from "xlsx";
+// import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
+// set_cptable(cptable);
+// import XLSX from "xlsx";
+// import { JsonToExcel } from "react-json-to-excel";
 
 export default function Payments() {
   const [orders, setOrders] = useState(0);
@@ -40,17 +39,6 @@ export default function Payments() {
     <>
       <div className='flex flex-col '>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
-          <div className='hidden justify-end mr-10 md:flex'>
-            <Button
-              className='bg-logo hover:bg-[#d5a806] text-white font-bold py-2 px-4'
-              onClick={() => {
-                const table = document.getElementById("download");
-                const wb = XLSX.utils.table_to_book(table);
-                XLSX.writeFile(wb, "Recentorders.xlsx");
-              }}>
-              <b>Export as Excel</b>
-            </Button>
-          </div>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='overflow-hidden'>
               <table
@@ -58,8 +46,26 @@ export default function Payments() {
                 id='download'>
                 <thead className='border-b text-m font-bold dark:border-neutral-500'>
                   <tr>
+                    <th scope='col' className=' px-6 py-4'>
+                      S.No
+                    </th>
                     <th scope='col' className=' px-6 pl-0'>
                       Order Id
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Customer Name
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Product Name
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      SKU
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Customer Email
+                    </th> 
+                    <th scope='col' className=' px-6 py-4'>
+                      Quantity
                     </th>
                     <th scope='col' className=' px-6 pl-2'>
                       Payment Id
@@ -71,26 +77,12 @@ export default function Payments() {
                       Order Status
                     </th>
                     <th scope='col' className=' px-6 py-4'>
-                      Customer Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Customer Email
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Product Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Quantity
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
                       Color
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Size
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      SKU
-                    </th>
+                    
                     <th scope='col' className=' px-6 py-4'>
                       Mockup Name
                     </th>
@@ -113,12 +105,30 @@ export default function Payments() {
                 </thead>
                 <tbody>
                   {orders &&
-                    orders.map((order) => {
+                    orders.map((order, index) => {
                       const orderDate = new Date(order.orderDate);
                       return order.orderItems.map((item) => (
                         <tr key={uuidv4()} className='dark:border-neutral-500'>
+                          <td className='whitespace-nowrap px-6 py-6 font-medium'>
+                            {index + 1}
+                          </td>
                           <td className='whitespace-nowrap px-6 pl-0 font-medium'>
                             {order.orderId}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {order.shippingAddress.name}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.product.name}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.sku}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {order.shippingAddress.email}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {item.quantity}
                           </td>
                           <td className='whitespace-nowrap px-6 pl-2'>
                             {order.paymentId}
@@ -139,25 +149,10 @@ export default function Payments() {
                               : "Placed Order"}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
-                            {order.shippingAddress.name}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {order.shippingAddress.email}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.name}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.quantity}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
                             {item.product.colors[0].color}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {item.product.colors[0].sizes[0].size}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.sku}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {item.product.productMockup.name}

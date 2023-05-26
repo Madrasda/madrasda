@@ -67,8 +67,8 @@ export default function Hotsellers() {
                     {products &&
                       products.map((product) => {
                         return (
-                          <div key={uuidv4()} className='lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
-                            <div className='block relative h-48 rounded overflow-hidden'>
+                          <div key={uuidv4()} className='lg:w-1/4 md:w-1/2 p-4 h-96 w-full cursor-pointer bg-off-white mx-4 my-2 rounded drop-shadow-[8px_8px_10px_rgba(0,0,0,0.3)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.4)] duration-300 ease-in-out'>
+                            <div className='block relative h-full rounded overflow-hidden'>
                               <Image
                                 src={product.colors[0].images[0]}
                                 alt='ecommerce'
@@ -77,8 +77,8 @@ export default function Hotsellers() {
                                 className='object-contain object-center w-full h-full block'
                               />
                             </div>
-                            <div className='mt-4'>
-                              <h2 className='title-font text-base font-medium'>
+                            <div className='mt-4 text-white text-center'>
+                              <h2 className='title-font text-lg font-medium'>
                                 {product.name}
                               </h2>
                             </div>

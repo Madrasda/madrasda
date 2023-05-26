@@ -423,8 +423,10 @@ export default function Checkout() {
                         <Button /*{className='bg-primary text-white mx-auto w-full ' type='submit'}*/
                           css={{ fontFamily: "$algeria" }}
                           style={{
-                            background: "#FFA000",
+                            background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                            color: "white",
                           }}
+                          variant={'contained'}
                           disabled={!validPhone || !validPincode}
                           type={"submit"}
                           className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>

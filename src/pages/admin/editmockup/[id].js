@@ -9,7 +9,7 @@ import {uuidv4} from "@firebase/util";
 import {Check, Edit, Upload} from "@mui/icons-material";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "@/firebaseConfig";
-
+import {TextField} from "@mui/material";
 export default function EditMockup() {
 	const router = useRouter();
 	const {id} = router.query;
@@ -27,6 +27,8 @@ export default function EditMockup() {
 	const [breadth, setBreadth] = useState(null);
 	const [length, setLength] = useState(null);
 	const [weight, setWeight] = useState(null);
+  const [canvasHeight, setCanvasHeight] = useState(0);
+  const [canvasWidth, setCanvasWidth] = useState(0);
 	const [tax, setTax] = useState(null);
 	const [hsn, setHsn] = useState(null);
 	const [base, setBase] = useState(null);
@@ -94,6 +96,8 @@ export default function EditMockup() {
 			setBase(details.basePrice);
 			setSkuMapping(details.skuMapping);
 			setAvailableColors(getAvailableColors(details.skuMapping));
+      setCanvasHeight(details.canvasHeight);
+      setCanvasWidth(details.canvasWidth);
 		}
 	}, [details]);
 
@@ -236,6 +240,8 @@ export default function EditMockup() {
 			category: category,
 			model: model,
 			additionalInformation: info,
+      canvasHeight: canvasHeight,
+      canvasWidth: canvasWidth,
 			height: height,
 			breadth: breadth,
 			length: length,
@@ -317,7 +323,10 @@ export default function EditMockup() {
             {!edit && (
               <Button
                 variant='contained'
-                className='bg-primary'
+                style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                 sx={{marginBottom : '20px'}}
                 onClick={() => setEdit(true)}>
                 <Edit /> Edit Mockup
@@ -371,7 +380,6 @@ export default function EditMockup() {
                   height={100}
                   width={100}
                   src={color.image}
-                  style={{ width: "auto" }}
                 />
               ))}
             </div>
@@ -380,6 +388,14 @@ export default function EditMockup() {
                 <div className='flex space-x-2 items-center'>
                   <h1 className='font-semibold text-lg'>Name</h1>
                   <h1>{details.name}</h1>
+                </div>
+                <div className='flex space-x-2 items-center'>
+                  <h1 className='font-semibold text-lg'>Canvas Height</h1>
+                  <h1>{details.canvasHeight} inches</h1>
+                </div>
+                <div className='flex space-x-2 items-center'>
+                  <h1 className='font-semibold text-lg'>Canvas Width</h1>
+                  <h1>{details.canvasWidth} inches</h1>
                 </div>
                 <div className='flex space-x-2 items-center'>
                   <h1 className='font-semibold text-lg'>Product Type</h1>
@@ -433,6 +449,30 @@ export default function EditMockup() {
             )}
             {edit && (
               <div>
+                <h1 className='title-font font-medium text-xl pb-3'>Canvas Height (in inches)</h1>
+                <div
+                  className='mb-6 ml-2 mt-1
+                            lg:mr-96'>
+                  <TextField
+                    type='text'
+                    className='text-lg rounded-lg block w-full p-2.5'
+                    placeholder='Enter the title of your product'
+                    value={canvasHeight}
+                    onChange={(e) => setCanvasHeight(e.target.value)}
+                  />
+                </div>
+                <h1 className='title-font font-medium text-xl pb-3'>Canvas Width (in inches)</h1>
+                <div
+                  className='mb-6 ml-2 mt-1
+                            lg:mr-96'>
+                  <TextField
+                    type='text'
+                    className='text-lg rounded-lg block w-full p-2.5'
+                    placeholder='Enter the title of your product'
+                    value={canvasWidth}
+                    onChange={(e) => setCanvasWidth(e.target.value)}
+                  />
+                </div>
                 <h2 className='ml-2 mt-4 title-font font-medium mb-2'>
                   SKU Name
                 </h2>
@@ -721,13 +761,19 @@ export default function EditMockup() {
               <div className='space-x-4'>
                 <Button
                   variant='contained'
-                  className='bg-primary'
+                  style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                   onClick={updateMockup}>
                   <Upload /> Save Mockup
                 </Button>
                 <Button
                   variant='contained'
-                  className='bg-red hover:bg-error'
+                  style={{
+					background:"linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
+					color:"white",
+				}}
                   onClick={() => setEdit(false)}>
                   Cancel
                 </Button>

@@ -27,6 +27,8 @@ export default function AdminUploadModal(props) {
   const [weight, setWeight] = useState(null);
   const [tax, setTax] = useState(null);
   const [hsn, setHsn] = useState(null);
+  const [canvasHeight, setCanvasHeight] = useState(null);
+  const [canvasWidth, setCanvasWidth] = useState(null);
 
   const getColorCode = (colorName) => {
     const words = colorName.split(" ");
@@ -123,7 +125,9 @@ export default function AdminUploadModal(props) {
      breadth &&
      weight &&
      length &&
-     tax
+     tax &&
+     canvasHeight &&
+     canvasWidth
    ) {
      props.onSubmit({
        name: name,
@@ -147,6 +151,8 @@ export default function AdminUploadModal(props) {
        weight: weight,
        tax: tax,
        hsn: hsn,
+       canvasHeight: canvasHeight,
+       canvasWidth: canvasWidth
      });
    }
     setVisible(false);
@@ -195,6 +201,36 @@ export default function AdminUploadModal(props) {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
+
+            <div className="flex">
+            <div className="w-1/2">
+              <h2 className='ml-2 mt-2 title-font font-medium mb-2'>
+                Design Canvas Width
+              </h2>
+              <div className='mb-2 ml-2 '>
+                <input
+                  type='text'
+                  className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
+                  placeholder='Width (Inches)'
+                  onChange={(e) => setCanvasWidth(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="w-1/2">
+              <h2 className='ml-2 mt-2 title-font font-medium mb-2'>
+                Design Canvas Height
+              </h2>
+              <div className='mb-2 ml-2 '>
+                <input
+                  type='text'
+                  className='bg-white border border-[#D9D9D9] text-black text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
+                  placeholder='Height (Inches)'
+                  onChange={(e) => setCanvasHeight(e.target.value)}
+                />
+              </div>
+            </div>
+            </div>
+
             <div className='mt-6 ml-2'>Available Colors</div>
             {/* Colors */}
             <div className='flex items-center ml-2 mt-3 mb-3'>

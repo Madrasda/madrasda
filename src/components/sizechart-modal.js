@@ -620,7 +620,10 @@ export default function SizeChartModal() {
         <Modal.Footer>
           <Button
             auto
-            css={{ backgroundColor: "#FFA000" }}
+            style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
             onPress={() => setVisible(false)}>
             Close
           </Button>

@@ -57,7 +57,7 @@ export default function Home() {
           OFFICIAL MERCHANDISE
         </h1>
 
-        <div className='flex flex-col space-y-3'>
+        <div className='flex flex-col'>
           {ctx.vendorList.map((vendor, index) => {
             if (index % 2 === 0) {
               return (

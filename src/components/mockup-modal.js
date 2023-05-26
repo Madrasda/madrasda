@@ -109,9 +109,10 @@ export default function MockupModal({mockups, selectMockup}) {
                 auto
                 onPress={closeHandler}
                 css={{ fontFamily: "$algeria" }}
-                  style={{
-                    background: "#FFA000",
-                  }}>
+                style={{
+                  background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                  color:"white",
+                }}>
                 Proceed
               </Button>
             </Link>

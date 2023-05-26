@@ -82,7 +82,7 @@ export default function Analytics () {
           {details && (
             <main
               className='body-font font-raj overflow-hidden 
-                       md:ml-36'>
+                       md:ml-32'>
               <div className='mt-20 px-5 md:my-10 mx-auto'>
                 <div className='md:ml-20 md:mt-10'>
                   <h1 className='title-font font-medium text-primary text-3xl'>

@@ -231,7 +231,10 @@ export default function Vendorlogin() {
                 <div className='flex justify-center items-center mt-6'>
                   <Button
                     variant={"contained"}
-                    className={"w-full bg-primary"}
+                    style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                     type={"submit"}
                     onClick={vendorlogin}>
                     Login
@@ -329,9 +332,9 @@ export default function Vendorlogin() {
                     placeholder='GSTIN'
                     onChange={(e) => setGst(e.target.value)}
                   />
-                  <div className='flex flex-col justify-center items-center'>
-                    <ReturnRefundModal /> <br />
-                    <TermsConditionsModal /> <br />
+                  <div className='flex flex-row justify-center items-center'>
+                    <ReturnRefundModal />
+                    <TermsConditionsModal />
                     <PaymentStructureModal />
                   </div>
 				  <div className='flex justify-center space-x-2 items-center'>
@@ -341,6 +344,10 @@ export default function Vendorlogin() {
                   {agree && (
                     <Button
                       variant={"contained"}
+                      style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                       className={"w-full bg-primary"}
                       type={"submit"}>
                       Request For Signup

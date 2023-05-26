@@ -132,11 +132,11 @@ export default function ProductId() {
             message={message}
             setState={setOpen}>
             <section className='text-black body-font font-quest overflow-hidden'>
-              <div className='px-5 pt-12 mx-auto flex justify-center'>
+              <div className='px-20 pt-12 mx-auto flex justify-center'>
                 <div className='flex justify-start flex-row flex-wrap md:flex-nowrap'>
                   <div
                     className='flex flex-col items-center justify-center
-                          lg:flex-row-reverse w-full'>
+                          lg:flex-row-reverse w-fit'>
                     <Image
                       alt='ecommerce'
                       className='object-contain object-center rounded px-2 h-[500px] md:h-[900px]'
@@ -263,7 +263,8 @@ export default function ProductId() {
                         className='w-48 h-10 text-center text-white px-4 py-3 '
                         css={{ fontFamily: "$algeria" }}
                         style={{
-                          background: "#FFA000",
+                          background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                          color:"white",
                         }}
                         variant={"contained"}
                         onClick={handleAddToCart}>
@@ -271,7 +272,7 @@ export default function ProductId() {
                       </Button>
                     </div>
                     <br></br>
-                    <span>
+                    <span className='text-justify'>
                       <h1>{product.mockupDescription}</h1>
                     </span>
                   </div>
