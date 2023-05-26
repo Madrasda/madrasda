@@ -319,15 +319,19 @@ export default function EditMockup() {
       </Snackbar>
       <AdminLayout>
         {details && (
-          <section className='md:mx-40 py-12 px-16'>
+          <section className='md:mx-40 py-12 pl-24 relative'>
             {!edit && (
               <Button
                 variant='contained'
                 style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
-            }}
-                sx={{marginBottom : '20px'}}
+                  background:
+                    "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                  color: "white",
+                  position: "absolute",
+                  right: "0",
+                  top: "0",
+                }}
+                sx={{ marginTop: "20px" }}
                 onClick={() => setEdit(true)}>
                 <Edit /> Edit Mockup
               </Button>
@@ -449,7 +453,9 @@ export default function EditMockup() {
             )}
             {edit && (
               <div>
-                <h1 className='title-font font-medium text-xl pb-3'>Canvas Height (in inches)</h1>
+                <h1 className='title-font font-medium text-xl pb-3'>
+                  Canvas Height (in inches)
+                </h1>
                 <div
                   className='mb-6 ml-2 mt-1
                             lg:mr-96'>
@@ -461,7 +467,9 @@ export default function EditMockup() {
                     onChange={(e) => setCanvasHeight(e.target.value)}
                   />
                 </div>
-                <h1 className='title-font font-medium text-xl pb-3'>Canvas Width (in inches)</h1>
+                <h1 className='title-font font-medium text-xl pb-3'>
+                  Canvas Width (in inches)
+                </h1>
                 <div
                   className='mb-6 ml-2 mt-1
                             lg:mr-96'>
@@ -762,18 +770,20 @@ export default function EditMockup() {
                 <Button
                   variant='contained'
                   style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
-            }}
+                    background:
+                      "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                    color: "white",
+                  }}
                   onClick={updateMockup}>
                   <Upload /> Save Mockup
                 </Button>
                 <Button
                   variant='contained'
                   style={{
-					background:"linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
-					color:"white",
-				}}
+                    background:
+                      "linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
+                    color: "white",
+                  }}
                   onClick={() => setEdit(false)}>
                   Cancel
                 </Button>
