@@ -83,9 +83,9 @@ export default function CreateTemplate(props) {
              designImg.scaleToWidth(200);
 
              designHeightRef.current =
-                Math.round(designImg.getScaledHeight() * 0.24 * 0.39 * 100) / 100;
+                Math.round(designImg.getScaledHeight() * 0.28 * 0.41 * 100) / 100;
              designWidthRef.current =
-                Math.round(designImg.getScaledWidth() * 0.24 * 0.39 * 100) / 100;
+                Math.round(designImg.getScaledWidth() * 0.28 * 0.41 * 100) / 100;
              setDesignHeight(designHeightRef.current);
              setDesignWidth(designWidthRef.current);
              if (position === "Custom") {
@@ -134,9 +134,9 @@ export default function CreateTemplate(props) {
                const scaledHeight =
                   originalHeight * event.transform.target.scaleY;
                designHeightRef.current =
-                  Math.round(scaledHeight * 0.24 * 0.39 * 100) / 100;
+                  Math.round(scaledHeight * 0.28 * 0.41 * 100) / 100;
                designWidthRef.current =
-                  Math.round(scaledWidth * 0.24 * 0.39 * 100) / 100;
+                  Math.round(scaledWidth * 0.28 * 0.41 * 100) / 100;
                setDesignHeight(designHeightRef.current);
                setDesignWidth(designWidthRef.current);
              });
@@ -201,8 +201,8 @@ export default function CreateTemplate(props) {
     setDetails(response.data);
     setCurId(response.data.images[0].colorId);
     setCurImg(response.data.images[0].image);
-    setCanvasHeight(response.data.canvasHeight*28);
-    setCanvasWidth(response.data.canvasWidth*28);
+    setCanvasHeight(response.data.canvasHeight*22);
+    setCanvasWidth(response.data.canvasWidth*22);
   };
 
   const getAvailableSizes = (skuMapping) => {
