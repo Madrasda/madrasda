@@ -64,7 +64,10 @@ export default function CancelOrderModal({
 				color='error'
 				variant={"contained"}
 				onClick={() => setVisible(true)}
-				className={'bg-error'}
+				style={{
+					background:"linear-gradient(112deg, #FF3366 10%, #EE4B2B 90%)",
+					color:"white",
+				}}
 				sx={{
 					display: ((requested || (new Date().getTime() - new Date(orderDate).getTime() <= 300000 && !cancelled)) ? "" : "none"),
 					fontFamily: "$algeria"

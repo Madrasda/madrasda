@@ -22,8 +22,9 @@ export default function WithdrawModal({ request, profit, withdraw }) {
         color='error'
         css={{ fontFamily: "$algeria" }}
         style={{
-          background: "#FFA000",
-        }}>
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}>
         Withdraw
       </Button>
       <Modal

@@ -85,9 +85,10 @@ export default function AdminMockup(props) {
         {!spinner && props.download && (
           <Button
             variant='outlined'
-            className={
-              "text-primary w-full bottom-0 p-2 absolute border-primary hover:border-logo hover:text-logo text-xs mx-auto"
-            }
+            style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
             onClick={downloadImage}>
             <Download /> Image
           </Button>

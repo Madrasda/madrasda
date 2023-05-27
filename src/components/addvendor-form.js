@@ -99,9 +99,9 @@ export default function AddVendorForm({onSubmit}) {
         <Button /*{className='bg-primary text-white mx-auto w-full ' type='submit'}*/
           css={{ fontFamily: "$algeria" }}
           style={{
-            background: "#FFA000",
-            color: "white",
-          }}
+					background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+					color:"white",
+				}}
           type={"submit"}
           className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
           Add vendor

@@ -142,7 +142,7 @@ export default function TemplateList() {
         <VendorLayout>
           <section
             className='body-font overflow-hidden font-quest
-                        md:ml-36'>
+                        md:ml-32'>
             <div className='mt-20 px-5 md:my-10 mx-auto'>
               <h1
                 className='text-3xl text-primary

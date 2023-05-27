@@ -124,8 +124,10 @@ export default function Adminlogin() {
 							<div className='flex justify-center w-full items-center mt-3'>
 								<Button
 									variant={"contained"}
-									color={'primary'}
-									className={"w-full bg-primary"}
+									style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
 									type={"submit"}>
 									Login
 								</Button>

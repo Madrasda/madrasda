@@ -19,9 +19,10 @@ export default function Home() {
   const [client, setClient] = useState(false);
 
   useEffect(() => {
-    if (ctx.vendorList !== undefined && ctx.vendorList.length !== 0)
+    if (ctx.vendorList !== undefined && ctx.vendorList.length !== 0) {
+      console.log(ctx.vendorList);
       setLoading(false);
-    else {
+    } else {
       setLoading(true);
     }
   }, [ctx.vendorList]);
@@ -56,14 +57,14 @@ export default function Home() {
           OFFICIAL MERCHANDISE
         </h1>
 
-        <div className='flex flex-col space-y-3'>
+        <div className='flex flex-col'>
           {ctx.vendorList.map((vendor, index) => {
             if (index % 2 === 0) {
               return (
                 <RightsideDisc
                   key={uuidv4()}
                   id={vendor.id}
-                  name={vendor.name}
+                  name={vendor.companyName}
                   imgUrl={vendor.imgUrl}
                 />
               );
@@ -72,7 +73,7 @@ export default function Home() {
                 <LeftsideDisc
                   key={uuidv4()}
                   id={vendor.id}
-                  name={vendor.name}
+                  name={vendor.companyName}
                   imgUrl={vendor.imgUrl}
                 />
               );

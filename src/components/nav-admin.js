@@ -57,61 +57,6 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/servicedetails'>
-                <div
-                  className={
-                    currentRoute === "/admin/servicedetails"
-                      ? "bg-primary w-52 px-8"
-                      : "bg-none w-52 px-8"
-                  }>
-                  <div className='flex justify-start items-center py-4'>
-                    <MiscellaneousServices className='text-2xl' />
-                    <h3 className='ml-2'>Service Details</h3>
-                  </div>
-                </div>
-              </Link>
-              <Link className={"hover:bg-primary"} href='/admin/cancel'>
-                <div
-                  className={
-                    currentRoute === "/admin/cancel"
-                      ? "bg-primary w-52 px-8"
-                      : "bg-none w-52 px-8"
-                  }>
-                  <div className='flex justify-start items-center py-4'>
-                    <CurrencyExchange className='text-2xl' />
-                    <h3 className='ml-2'>Cancel Requests</h3>
-                  </div>
-                </div>
-              </Link>
-
-              <Link className={"hover:bg-primary"} href='/admin/queries'>
-                <div
-                  className={
-                    currentRoute === "/admin/queries" ||
-                    currentRoute === "/admin/resolvedqueries"
-                      ? "bg-primary w-52 px-8"
-                      : "bg-none w-52 px-8"
-                  }>
-                  <div className='flex justify-start items-center py-4'>
-                    <QuestionAnswer className='text-2xl' />
-                    <h3 className='ml-2'>Queries</h3>
-                  </div>
-                </div>
-              </Link>
-              <Link className={"hover:bg-primary"} href='/admin/requests'>
-                <div
-                  className={
-                    currentRoute === "/admin/requests"
-                      ? "bg-primary w-52 px-8"
-                      : "bg-none w-52 px-8"
-                  }>
-                  <div className='flex justify-start items-center py-4'>
-                    <PersonAdd className='text-2xl' />
-                    <h3 className='ml-2'>Signup Requests</h3>
-                  </div>
-                </div>
-              </Link>
-
               <Link className={"hover:bg-primary"} href='/admin/myproducts'>
                 <div
                   className={
@@ -126,6 +71,34 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
+              <Link className={"hover:bg-primary"} href='/admin/requests'>
+                <div
+                  className={
+                    currentRoute === "/admin/requests"
+                      ? "bg-primary w-52 px-8"
+                      : "bg-none w-52 px-8"
+                  }>
+                  <div className='flex justify-start items-center py-4'>
+                    <PersonAdd className='text-2xl' />
+                    <h3 className='ml-2'>Signup Requests</h3>
+                  </div>
+                </div>
+              </Link>
+
+              <Link className={"hover:bg-primary"} href='/admin/cancel'>
+                <div
+                  className={
+                    currentRoute === "/admin/cancel"
+                      ? "bg-primary w-52 px-8"
+                      : "bg-none w-52 px-8"
+                  }>
+                  <div className='flex justify-start items-center py-4'>
+                    <CurrencyExchange className='text-2xl' />
+                    <h3 className='ml-2'>Cancel Requests</h3>
+                  </div>
+                </div>
+              </Link>
+
               <Link className={"hover:bg-primary"} href='/admin/payments'>
                 <div
                   className={
@@ -135,7 +108,36 @@ export default function NavAdmin() {
                   }>
                   <div className='flex justify-start items-center py-4'>
                     <Payments className='text-2xl' />
-                    <h3 className='ml-2'>Payments</h3>
+                    <h3 className='ml-2'>Vendor Payout</h3>
+                  </div>
+                </div>
+              </Link>
+
+              <Link className={"hover:bg-primary"} href='/admin/manageorders'>
+                <div
+                  className={
+                    currentRoute === "/admin/manageorders"
+                      ? "bg-primary w-52 px-8"
+                      : "bg-none w-52 px-8"
+                  }>
+                  <div className='flex justify-start items-center py-4'>
+                    <Dvr className='text-2xl' />
+                    <h3 className='ml-2'>Recent Orders</h3>
+                  </div>
+                </div>
+              </Link>
+
+              <Link className={"hover:bg-primary"} href='/admin/queries'>
+                <div
+                  className={
+                    currentRoute === "/admin/queries" ||
+                    currentRoute === "/admin/resolvedqueries"
+                      ? "bg-primary w-52 px-8"
+                      : "bg-none w-52 px-8"
+                  }>
+                  <div className='flex justify-start items-center py-4'>
+                    <QuestionAnswer className='text-2xl' />
+                    <h3 className='ml-2'>Vendor Queries</h3>
                   </div>
                 </div>
               </Link>
@@ -154,19 +156,20 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/manageorders'>
+              <Link className={"hover:bg-primary"} href='/admin/servicedetails'>
                 <div
                   className={
-                    currentRoute === "/admin/manageorders"
+                    currentRoute === "/admin/servicedetails"
                       ? "bg-primary w-52 px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
-                    <Dvr className='text-2xl' />
-                    <h3 className='ml-2'>Recent Orders</h3>
+                    <MiscellaneousServices className='text-2xl' />
+                    <h3 className='ml-2'>Service Details</h3>
                   </div>
                 </div>
               </Link>
+              
             </nav>
           </div>
         </div>
@@ -218,50 +221,18 @@ export default function NavAdmin() {
                   </div>
                 </Link>
 
-                <Link className={"w-full"} href='/admin/servicedetails'>
-                  <div
-                    className={
-                      "hover:bg-primary transition-colors duration-500 w-full " +
-                        currentRoute ===
-                      "/admin/servicedetails"
-                        ? "bg-primary w-full md:w-52 px-8"
-                        : "bg-none w-full md:w-52 px-8"
-                    }>
-                    <div className='flex justify-center md:justify-start items-center py-4'>
-                      <MiscellaneousServices className='text-2xl' />
-                      <h3 className='ml-2'>Service Details</h3>
-                    </div>
-                  </div>
-                </Link>
-                <Link className={"w-full"} href='/admin/cancel'>
-                  <div
-                    className={
-                      "hover:bg-primary transition-colors duration-500 w-full " +
-                        currentRoute ===
-                      "/admin/cancel"
-                        ? "bg-primary w-full md:w-52 px-8"
-                        : "bg-none w-full md:w-52 px-8"
-                    }>
-                    <div className='flex justify-center md:justify-start items-center py-4'>
-                      <CurrencyExchange className='text-2xl' />
-                      <h3 className='ml-2'>Cancel Requests</h3>
-                    </div>
-                  </div>
-                </Link>
-
                 <Link
                   className={"hover:bg-primary w-full"}
-                  href='/admin/queries'>
+                  href='/admin/myproducts'>
                   <div
                     className={
-                      currentRoute === "/admin/queries" ||
-                      currentRoute === "/admin/resolvedqueries"
+                      currentRoute === "/admin/myproducts"
                         ? "bg-primary w-full md:w-52 px-8"
                         : "bg-none w-full md:w-52 px-8"
                     }>
                     <div className='flex justify-center md:justify-start items-center py-4'>
-                      <QuestionAnswer className='text-2xl' />
-                      <h3 className='ml-2'>Queries</h3>
+                      <FormatColorFill className='text-2xl' />
+                      <h3 className='ml-2'>Mockups</h3>
                     </div>
                   </div>
                 </Link>
@@ -282,18 +253,18 @@ export default function NavAdmin() {
                   </div>
                 </Link>
 
-                <Link
-                  className={"hover:bg-primary w-full"}
-                  href='/admin/myproducts'>
+                <Link className={"w-full"} href='/admin/cancel'>
                   <div
                     className={
-                      currentRoute === "/admin/myproducts"
+                      "hover:bg-primary transition-colors duration-500 w-full " +
+                        currentRoute ===
+                      "/admin/cancel"
                         ? "bg-primary w-full md:w-52 px-8"
                         : "bg-none w-full md:w-52 px-8"
                     }>
                     <div className='flex justify-center md:justify-start items-center py-4'>
-                      <FormatColorFill className='text-2xl' />
-                      <h3 className='ml-2'>Mockups</h3>
+                      <CurrencyExchange className='text-2xl' />
+                      <h3 className='ml-2'>Cancel Requests</h3>
                     </div>
                   </div>
                 </Link>
@@ -309,7 +280,7 @@ export default function NavAdmin() {
                     }>
                     <div className='flex justify-center md:justify-start items-center py-4'>
                       <Payments className='text-2xl' />
-                      <h3 className='ml-2'>Payments</h3>
+                      <h3 className='ml-2'>Vendor Payout</h3>
                     </div>
                   </div>
                 </Link>
@@ -329,6 +300,24 @@ export default function NavAdmin() {
                     </div>
                   </div>
                 </Link>
+
+                <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/queries'>
+                  <div
+                    className={
+                      currentRoute === "/admin/queries" ||
+                      currentRoute === "/admin/resolvedqueries"
+                        ? "bg-primary w-full md:w-52 px-8"
+                        : "bg-none w-full md:w-52 px-8"
+                    }>
+                    <div className='flex justify-center md:justify-start items-center py-4'>
+                      <QuestionAnswer className='text-2xl' />
+                      <h3 className='ml-2'>Vendor Queries</h3>
+                    </div>
+                  </div>
+                </Link>
+
                 <Link
                   className={"hover:bg-primary w-full"}
                   href='/admin/hotsellers'>
@@ -344,6 +333,23 @@ export default function NavAdmin() {
                     </div>
                   </div>
                 </Link>
+
+                <Link className={"w-full"} href='/admin/servicedetails'>
+                  <div
+                    className={
+                      "hover:bg-primary transition-colors duration-500 w-full " +
+                        currentRoute ===
+                      "/admin/servicedetails"
+                        ? "bg-primary w-full md:w-52 px-8"
+                        : "bg-none w-full md:w-52 px-8"
+                    }>
+                    <div className='flex justify-center md:justify-start items-center py-4'>
+                      <MiscellaneousServices className='text-2xl' />
+                      <h3 className='ml-2'>Service Details</h3>
+                    </div>
+                  </div>
+                </Link>
+                
               </nav>
             </div>
           </div>

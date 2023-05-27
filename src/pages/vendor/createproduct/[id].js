@@ -29,8 +29,8 @@ export default function CreateTemplate(props) {
   const { id } = router.query;
   const isReady = router.isReady;
   const [details, setDetails] = useState(null);
-  const canvasWidth = 380;
-  const canvasHeight = 434;
+  const [canvasWidth,setCanvasWidth]=useState(0);
+  const [canvasHeight,setCanvasHeight]=useState(0);
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
@@ -83,9 +83,9 @@ export default function CreateTemplate(props) {
              designImg.scaleToWidth(200);
 
              designHeightRef.current =
-                Math.round(designImg.getScaledHeight() * 0.24 * 0.39 * 100) / 100;
+                Math.round(designImg.getScaledHeight() * 0.28 * 0.41 * 100) / 100;
              designWidthRef.current =
-                Math.round(designImg.getScaledWidth() * 0.24 * 0.39 * 100) / 100;
+                Math.round(designImg.getScaledWidth() * 0.28 * 0.41 * 100) / 100;
              setDesignHeight(designHeightRef.current);
              setDesignWidth(designWidthRef.current);
              if (position === "Custom") {
@@ -134,9 +134,9 @@ export default function CreateTemplate(props) {
                const scaledHeight =
                   originalHeight * event.transform.target.scaleY;
                designHeightRef.current =
-                  Math.round(scaledHeight * 0.24 * 0.39 * 100) / 100;
+                  Math.round(scaledHeight * 0.28 * 0.41 * 100) / 100;
                designWidthRef.current =
-                  Math.round(scaledWidth * 0.24 * 0.39 * 100) / 100;
+                  Math.round(scaledWidth * 0.28 * 0.41 * 100) / 100;
                setDesignHeight(designHeightRef.current);
                setDesignWidth(designWidthRef.current);
              });
@@ -201,6 +201,8 @@ export default function CreateTemplate(props) {
     setDetails(response.data);
     setCurId(response.data.images[0].colorId);
     setCurImg(response.data.images[0].image);
+    setCanvasHeight(response.data.canvasHeight*22);
+    setCanvasWidth(response.data.canvasWidth*22);
   };
 
   const getAvailableSizes = (skuMapping) => {
@@ -269,6 +271,7 @@ export default function CreateTemplate(props) {
       height: designHeight * 0.3937,
       width: designWidth * 0.3937,
     });
+    data.backDesignPlacement = design.imgUrl;
     const response = axios
       .post(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/saveTemplate",
@@ -466,6 +469,10 @@ export default function CreateTemplate(props) {
                           <div className='w-full mt-3'>
                             <Button
                               variant='outlined'
+                              style={{
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
                               className={
                                 "text-primary w-full bottom-0 p-2 absolute border-primary hover:border-logo hover:text-logo text-xs mx-auto"
                               }

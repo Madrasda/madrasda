@@ -15,8 +15,9 @@ export default function MangeOrderModal() {
     <div>
       <Button auto onPress={handler} color="error"
       style={{
-        background: "#A5153F",
-      }}
+              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color:"white",
+            }}
       css={{fontFamily: '$algeria'}}>
         View Details 
       </Button>
