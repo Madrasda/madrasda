@@ -1,3 +1,5 @@
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
 import VendorLayout from '@/components/layout-vendor'
@@ -8,7 +10,7 @@ import {isTokenValid} from "@/utils/JWTVerifier"
 import {storage} from "../../.././firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {uuidv4} from "@firebase/util";
-import { Backdrop, CircularProgress, InputLabel, Menu, MenuItem, Select, TextField } from "@mui/material";
+import {Backdrop, CircularProgress, InputAdornment, InputLabel, Menu, MenuItem, Select, TextField} from "@mui/material";
 import { Check } from "@mui/icons-material";
 import InfoIcon from '@mui/icons-material/Info';
 
@@ -134,7 +136,7 @@ export default function ViewProd() {
     setProfit(total - basePrice - discount * 0.01 * total);
   }, [basePrice, total, discount]);
   useEffect(() => {
-    setSellingPrice(profit + basePrice);
+    setSellingPrice((profit + basePrice) * 105 /100);
   }, [basePrice, profit]);
 
   useEffect(() => {
@@ -529,6 +531,9 @@ export default function ViewProd() {
 
                   <div>
                     <TextField
+                       inputProps={{
+                         startAdornment: <InputAdornment position="start"><ArrowDropUpIcon /></InputAdornment>,
+                       }}
                       type='numeric'
                       label={"Profit Earned (₹)"}
                       className='text-2xl w-72'
@@ -542,7 +547,7 @@ export default function ViewProd() {
                   <div>
                     <TextField
                       type='numeric'
-                      label={"Selling Price (₹)"}
+                      label={"Selling Price (₹) Incl. Taxes"}
                       className='text-2xl w-72'
                       value={SellingPrice}
                       readOnly

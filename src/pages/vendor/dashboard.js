@@ -177,8 +177,8 @@ export default function Dashboard(props) {
                                 lg:-mt-80'>
                 <h1 className='text-primary text-4xl font-semibold'>WOAH!</h1>
                 <div
-                  className='flex text-lg justify-center items-center w-full
-                                    lg:w-1/3'>
+                  className='flex text-lg justify-center items-center lg:w-full
+                                    sm:w-1/3'>
                   <h2 className='p-1'>We have sold</h2>
                   <h3 className='text-primary p-1 font-semibold text-2xl'>
                     {details.salesAnalysis
