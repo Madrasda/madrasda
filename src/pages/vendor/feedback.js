@@ -7,6 +7,7 @@ import {getRole, isTokenValid} from "@/utils/JWTVerifier"
 import {Button, Snackbar, TextField} from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import CssBaseline from "@mui/material/CssBaseline";
+import Link from 'next/link';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -537,9 +538,8 @@ export default function Feedback() {
 							<h1 className='title-font font-medium text-2xl pb-8 text-[#535253]'>
 								Admin Contact Details
 							</h1>
-							<h2>Whatsapp: 9884944786</h2>
-							<h2>Email: </h2>
-							<h2>Phone Number: </h2>
+							<h2>Email: <Link href='mailto:Support@madrasda.com'>Support@madrasda.com</Link></h2>
+							<h2>Phone Number: 9345354341</h2>
 						</div>
 
 						<hr className='h-px md:ml-20 my-6 border-shadowGrey border-1'></hr>

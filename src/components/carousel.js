@@ -3,35 +3,74 @@ import Image from "next/image";
 import Carousel from "react-material-ui-carousel";
 
 export default function CarouselComponent() {
-  const slides = [
+  const desktopSlides = [
     {
-      url: "https://firebasestorage.googleapis.com/v0/b/madrasda.appspot.com/o/carousel%2FMadras%20da%20banner-(2).jpg?alt=media&token=c172ee02-5dd4-4695-8a2a-47473af68b40",
+      url: "/banner 1 desktop.jpg",
     },
     {
-      url: "https://firebasestorage.googleapis.com/v0/b/madrasda.appspot.com/o/carousel%2FMadras%20da%20banner-(1).jpg?alt=media&token=83ff6f9a-a98b-4d46-a68c-28e02f8ef363",
+      url: "/banner 2 desktop.jpg",
+    },
+    {
+      url: "/banner 3 desktop.jpg",
+    },
+  ];
+
+  const mobileSlides = [
+    {
+      url: "/banner 1 mobile.jpg",
+    },
+    {
+      url: "/banner 2 mobile.jpg",
+    },
+    {
+      url: "/banner 3 mobile.jpg",
     },
   ];
 
   return (
-    <div className='h-full w-full'>
+    <>
+    <div className='h-full w-full hidden lg:block'>
       <Carousel>
-        {slides.map((slide, index) => (
-          <Item key={index} item={slide.url} />
+        {desktopSlides.map((slide, index) => (
+          <DesktopCarousel key={index} item={slide.url} />
         ))}
       </Carousel>
     </div>
+
+    <div className='h-full w-full lg:hidden'>
+     <Carousel>
+       {mobileSlides.map((slide, index) => (
+         <MobileCarousel key={index} item={slide.url} />
+       ))}
+     </Carousel>
+   </div>
+   </>
   );
 }
 
-function Item(props) {
+function DesktopCarousel(props) {
   return (
-    <div className='bg-bg h-[30vh] lg:h-[80vh] w-full flex justify-center items-center mt-12 md:mt-[70px] lg:mt-20 lg:pb-10'>
+    <div className='bg-bg h-[80vh] w-full flex justify-center items-center mt-20 pb-10'>
       <Image
         src={props.item}
         alt='carousel'
         height={1080}
         width={1920}
-        className='object-contain object-center w-full h-full md:w-fit'
+        className='object-contain object-center w-full h-full'
+      />
+    </div>
+  );
+}
+
+function MobileCarousel(props) {
+  return (
+    <div className='bg-bg h-[37vh] md:h-[64vh] w-full flex justify-center items-center mt-12'>
+      <Image
+        src={props.item}
+        alt='carousel'
+        height={1080}
+        width={1920}
+        className='object-contain object-center w-full h-full'
       />
     </div>
   );

@@ -126,7 +126,7 @@ export default function Footer() {
                     className='p-1'
                   />
                   <Link
-                    href='mailto:support@madrasda.com'
+                    href='mailto:Contactus@madrasda.com'
                     className='text-white hover:text-gray'>
                     Mail to support
                   </Link>
