@@ -181,6 +181,8 @@ export default function ViewProd() {
     setSizes(getAvailableSizes(response.data.mockup.skuMapping));
     setColors(getAvailableColors(response.data.mockup.skuMapping));
     setBasePrice(response.data.mockup.basePrice);
+    setTax(response.data.mockup.tax)
+
   };
 
   const handleColorSelection = (selectedColor) => {
@@ -506,62 +508,71 @@ export default function ViewProd() {
                   Payment Details
                 </h1>
                 <div
-                  className='grid gap-3 ml-2 mb-2 md:grid-cols-2 '
-                  style={{ width: "40rem" }}>
+                    className='grid gap-3 ml-2 mb-2 md:grid-cols-2 '
+                    style={{ width: "40rem" }}>
                   <div>
                     <TextField
-                      type='numeric'
-                      className={"text-2xl w-72"}
-                      label={"Maximum retail Price (₹)"}
-                      placeholder='₹'
-                      required
-                      onChange={(e) => setTotal(e.target.value)}
+                        type='numeric'
+                        className={"text-2xl w-72"}
+                        label={"Maximum retail Price (₹)"}
+                        placeholder='₹'
+                        required
+                        onChange={(e) => setTotal(e.target.value)}
                     />
                   </div>
                   <div>
                     <TextField
-                      type='numeric'
-                      className='text-2xl w-72 text-bold text-black'
-                      placeholder='₹'
-                      disabled
-                      value={basePrice}
-                      label={"Base Price (₹)"}
+                        type='numeric'
+                        className='text-2xl w-72 text-bold text-black'
+                        placeholder='₹'
+                        readOnly
+                        value={basePrice}
+                        label={"Base Price (₹)"}
                     />
                   </div>
                   <div>
                     <TextField
-                      type='numeric'
-                      className='text-2xl w-72'
-                      label={"Discount / Offer %"}
-                      placeholder='%'
-                      required
-                      onChange={(e) => setDiscount(e.target.value)}
+                        type='numeric'
+                        className='text-2xl w-72'
+                        label={"Discount / Offer %"}
+                        placeholder='%'
+                        required
+                        onChange={(e) => setDiscount(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                        type='numeric'
+                        label={"Taxes (%)"}
+                        className='text-2xl w-72'
+                        value={tax}
+                        readOnly
                     />
                   </div>
 
                   <div>
                     <TextField
-                       inputProps={{
-                         startAdornment: <InputAdornment position="start"><ArrowDropUpIcon /></InputAdornment>,
-                       }}
-                      type='numeric'
-                      label={"Profit Earned (₹)"}
-                      className='text-2xl w-72'
-                      value={profit}
-                      readOnly
-                      error={profit < 0}
-                      color={profit > 0 ? "success" : ""}
-                      focused
+                        type='numeric'
+                        label={"Selling Price (₹) Incl. Taxes"}
+                        className='text-2xl w-72'
+                        value={SellingPrice}
+                        readOnly
+                        focused
                     />
                   </div>
                   <div>
                     <TextField
-                      type='numeric'
-                      label={"Selling Price (₹) Incl. Taxes"}
-                      className='text-2xl w-72'
-                      value={SellingPrice}
-                      readOnly
-                      focused
+                        inputProps={{
+                          startAdornment: <InputAdornment position="start"><ArrowDropUpIcon /></InputAdornment>,
+                        }}
+                        type='numeric'
+                        label={"Profit Earned (₹)"}
+                        className='text-2xl w-72'
+                        value={profit}
+                        readOnly
+                        error={profit < 0}
+                        color={profit > 0 ? "success" : ""}
+                        focused
                     />
                   </div>
                 </div>

@@ -9,9 +9,10 @@ import {isTokenValid} from "@/utils/JWTVerifier"
 import {storage} from "../../.././firebaseConfig";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {uuidv4} from "@firebase/util";
-import {InputLabel, MenuItem, Select, Snackbar, TextField} from "@mui/material";
+import {InputAdornment, InputLabel, MenuItem, Select, Snackbar, TextField} from "@mui/material";
 import {Check} from "@mui/icons-material";
 import MuiAlert from "@mui/material/Alert";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const Alert = forwardRef(function Alert(props, ref) { //snackbar alert
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -518,73 +519,75 @@ export default function ViewProd() {
                 <h1 className='title-font font-medium text-2xl pb-8'>
                   Payment Details
                 </h1>
-                <div
-                  className='grid gap-3 ml-2 mb-2 md:grid-cols-2 '
-                  style={{ width: "40rem" }}>
-                  <div>
-                    <TextField
-                      type='numeric'
-                      className={"text-2xl w-72"}
-                      label={"Maximum retail Price (₹)"}
-                      placeholder='₹'
-                      required
-                      value={total}
-                      onChange={(e) => {
-                        const inputValue = Number(e.target.value);
-                        if (/^\d+$/.test(inputValue)) {
-                          setTotal(inputValue);
-                        }
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                      type='numeric'
-                      className='text-2xl w-72 text-bold text-black'
-                      placeholder='₹'
-                      disabled
-                      value={basePrice}
-                      label={"Base Price (₹)"}
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                      type='numeric'
-                      className='text-2xl w-72'
-                      label={"Discount / Offer %"}
-                      placeholder='%'
-                      value={discount}
-                      required
-                      onChange={(e) => {
-                        const inputValue = Number(e.target.value);
-                        if (/^\d+$/.test(inputValue)) setDiscount(inputValue);
-                      }}
-                    />
-                  </div>
+	              <div
+		              className='grid gap-3 ml-2 mb-2 md:grid-cols-2 '
+		              style={{ width: "40rem" }}>
+		              <div>
+			              <TextField
+				              type='numeric'
+				              className={"text-2xl w-72"}
+				              label={"Maximum retail Price (₹)"}
+				              placeholder='₹'
+				              required
+				              onChange={(e) => setTotal(e.target.value)}
+			              />
+		              </div>
+		              <div>
+			              <TextField
+				              type='numeric'
+				              className='text-2xl w-72 text-bold text-black'
+				              placeholder='₹'
+				              readOnly
+				              value={basePrice}
+				              label={"Base Price (₹)"}
+			              />
+		              </div>
+		              <div>
+			              <TextField
+				              type='numeric'
+				              className='text-2xl w-72'
+				              label={"Discount / Offer %"}
+				              placeholder='%'
+				              required
+				              onChange={(e) => setDiscount(e.target.value)}
+			              />
+		              </div>
+		              <div>
+			              <TextField
+				              type='numeric'
+				              label={"Taxes (%)"}
+				              className='text-2xl w-72'
+				              value={tax}
+				              readOnly
+			              />
+		              </div>
 
-                  <div>
-                    <TextField
-                      type='numeric'
-                      label={"Profit Earned (₹)"}
-                      className='text-2xl w-72'
-                      value={profit}
-                      readOnly
-                      error={profit < 0}
-                      color={profit > 0 ? "success" : ""}
-                      focused
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                      type='numeric'
-                      label={"Selling Price (₹)"}
-                      className='text-2xl w-72'
-                      value={SellingPrice}
-                      readOnly
-                      focused
-                    />
-                  </div>
-                </div>
+		              <div>
+			              <TextField
+				              type='numeric'
+				              label={"Selling Price (₹) Incl. Taxes"}
+				              className='text-2xl w-72'
+				              value={SellingPrice}
+				              readOnly
+				              focused
+			              />
+		              </div>
+		              <div>
+			              <TextField
+				              inputProps={{
+					              startAdornment: <InputAdornment position="start"><ArrowDropUpIcon /></InputAdornment>,
+				              }}
+				              type='numeric'
+				              label={"Profit Earned (₹)"}
+				              className='text-2xl w-72'
+				              value={profit}
+				              readOnly
+				              error={profit < 0}
+				              color={profit > 0 ? "success" : ""}
+				              focused
+			              />
+		              </div>
+	              </div>
                 <h1 className='ml-2 text-lg mt-4 font-bold'>
                   NOTE: Kindly email the design in high quality with a
                   resolution of 3000 x 3000 to admin at backend@madrasda.com
