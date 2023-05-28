@@ -319,8 +319,8 @@ export default function Checkout() {
                           </span>{" "}
                           <span className='font-medium text-2xl'>
                             ₹
-                            {subTotal * (105 / 100) +
-                              (shippingCharges === -1 ? 0 : shippingCharges)}
+                            {Math.round((subTotal * (105 / 100) +
+                              (shippingCharges === -1 ? 0 : shippingCharges)) * 100) / 100}
                           </span>
                         </div>
                       </div>

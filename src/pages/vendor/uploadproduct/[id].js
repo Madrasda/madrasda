@@ -133,10 +133,10 @@ export default function ViewProd() {
   }, [isReady]);
 
   useEffect(() => {
-    setProfit(total - basePrice - discount * 0.01 * total);
+    setProfit(Math.round((total - basePrice - discount * 0.01 * total) * 100) / 100);
   }, [basePrice, total, discount]);
   useEffect(() => {
-    setSellingPrice((profit + basePrice) * 105 /100);
+    setSellingPrice(Math.round((profit + basePrice) * 100) / 100);
   }, [basePrice, profit]);
 
   useEffect(() => {
@@ -471,7 +471,7 @@ export default function ViewProd() {
                         <div key={uuidv4()} className='relative'>
                           <button
                             className='w-20 text-sm justify-center shadow-md  shadow-gray hover:shadow-gray
-                                                    transition-colors duration-150 shadow-grey transition-shadow
+                                                    transition-colors duration-150 shadow-grey 
                                                     p-3 rounded-lg hover:shadow-lg bg-primary text-white'>
                             {item}
                           </button>

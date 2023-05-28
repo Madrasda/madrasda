@@ -124,7 +124,7 @@ export default function ViewProd() {
 		setProfit(total * (100 - discount) / 100 - basePrice);
 	}, [basePrice, total, discount]);
 	useEffect(() => {
-		setSellingPrice(profit + basePrice);
+		setSellingPrice(Math.round((profit + basePrice) * 100) / 100);
 	}, [basePrice, profit]);
 
 	useEffect(() => {
