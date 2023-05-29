@@ -165,8 +165,8 @@ export default function Vendorlogin() {
           {message}
         </Alert>
       </Snackbar>
-      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] min-w-screen min-h-screen w-full h-full font-quest'>
-        <div className='w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 m-10'>
+      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/929970884549173278/1112753200085356614/socialmedia.jpg)] min-w-screen min-h-screen w-full h-full font-quest'>
+        <div className='w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/90 rounded-3xl drop-shadow-2xl py-8 m-10'>
           <div className='flex flex-col w-2/3'>
             <div className='flex w-full transition-all ease-in-out duration-300'>
               <button
@@ -195,12 +195,12 @@ export default function Vendorlogin() {
                     label='Username'
                     type='email'
                     InputProps={{
-                      className: "text-primary",
+                      // className: "text-primary",
                     }}
                     InputLabelProps={{
-                      className: "text-primary",
+                      // className: "text-primary",
                     }}
-                    className={"w-full bg-gray px-3 py-1 rounded text-primary"}
+                    className={"w-full bg-gray px-3 py-1 rounded"}
                     color='warning'
                     id='username'
                     placeholder='example@example.com'
@@ -212,14 +212,14 @@ export default function Vendorlogin() {
                   <Input
                     type='password'
                     InputProps={{
-                      className: "text-primary",
+                      // className: "text-primary",
                     }}
                     InputLabelProps={{
-                      className: "text-primary",
+                      // className: "text-primary",
                     }}
                     variant='outlined'
                     label='Password'
-                    className={"w-full bg-gray px-3 py-1 rounded text-primary"}
+                    className={"w-full bg-gray px-3 py-1 rounded"}
                     color='warning'
                     id='password'
                     placeholder='**********'
@@ -259,11 +259,11 @@ export default function Vendorlogin() {
                 </h1>
                 <form
                   onSubmit={vendorSignup}
-                  className='text-primary w-full flex flex-col space-y-4'>
+                  className='w-full flex flex-col space-y-4'>
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm" }}
+                    inputProps={{ className: " text-sm" }}
                     type='text'
                     value={name}
                     required
@@ -273,7 +273,7 @@ export default function Vendorlogin() {
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm" }}
+                    inputProps={{ className: " text-sm" }}
                     type='text'
                     value={email}
                     required
@@ -283,7 +283,7 @@ export default function Vendorlogin() {
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm" }}
+                    inputProps={{ className: " text-sm" }}
                     type='text'
                     value={phNo}
                     required
@@ -294,7 +294,7 @@ export default function Vendorlogin() {
                     id='category-vendor'
                     className='bg-white rounded-lg p-0'
                     inputProps={{
-                      className: "text-primary text-sm",
+                      className: " text-sm",
                       "aria-label": "Category",
                     }}
                     value={infCat}
@@ -312,7 +312,7 @@ export default function Vendorlogin() {
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm" }}
+                    inputProps={{ className: " text-sm" }}
                     type='text'
                     value={compName}
                     placeholder='Display name'
@@ -321,7 +321,7 @@ export default function Vendorlogin() {
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
-                    inputProps={{ className: "text-primary text-sm" }}
+                    inputProps={{ className: " text-sm" }}
                     type='text'
                     required
                     value={url}
@@ -332,7 +332,7 @@ export default function Vendorlogin() {
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
                     inputProps={{
-                      className: "text-primary text-sm",
+                      className: " text-sm",
                       maxLength: 15,
                     }}
                     type='text'
@@ -345,9 +345,9 @@ export default function Vendorlogin() {
                     <TermsConditionsModal />
                     <PaymentStructureModal />
                   </div>
-                  <div className='flex justify-center space-x-2 items-center'>
+                  <div className='text-white flex justify-center space-x-2 items-center'>
                     <input type='radio' onChange={() => setAgree(true)} />
-                    <h1>I agree to the above mentioned</h1>
+                    <h2>I agree to the above mentioned T&C*</h2>
                   </div>
                   {agree && (
                     <Button
