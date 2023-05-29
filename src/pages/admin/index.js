@@ -77,7 +77,7 @@ export default function Adminlogin() {
 			</Snackbar>
 			{!loading &&
 				<div
-					className='bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/812329575953858620/1078262102269104199/Login.png)] w-screen h-screen'>
+					className='bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/929970884549173278/1112753200085356614/socialmedia.jpg)] w-screen h-screen'>
 					<div
 						className='w-full bg-cover bg-center flex-center flex-row bg-transparent max-w-md m-auto backdrop-blur-md bg-black/60 rounded-3xl drop-shadow-2xl py-8 px-16'>
 						<div className='flex flex-wrap justify-center'>
