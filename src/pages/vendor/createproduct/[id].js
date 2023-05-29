@@ -403,7 +403,8 @@ export default function CreateTemplate(props) {
                     {details && (
                       <div
                         className='mockup-image relative h-full bg-tertiary'
-                        id='mockup-image'>
+                        id='mockup-image'
+                      >
                         <img
                           src={curImg || "/logo.png"}
                           alt='mockup-image'
@@ -411,10 +412,15 @@ export default function CreateTemplate(props) {
                         />
                         <div
                           className={`canvas-container ${
-                            mode && `border border-red`
-                          } absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-${canvasWidth} h-${canvasHeight}`}></div>
+                            mode && 'border border-red'
+                          } absolute top-1/2 left-1/2 transform -translate-x-1/2 ${
+                            details.name === 'Crop Top Hoodies' ? '-translate-y-72' : '-translate-y-1/2'
+                          } w-${canvasWidth} h-${canvasHeight}`}
+                        ></div>
                       </div>
                     )}
+
+
                   </div>
                   <div className='w-full xl:w-1/3 xl:ml-6 mt-6 lg:py-6 lg:mt-0 flex flex-col text-center xl:text-left justify-center xl:justify-start items-center'>
                     <h1 className='text-gray-900 text-3xl title-font font-medium mb-1'>
