@@ -32,7 +32,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                         rounded-l-none rounded-r-full'>
               <div className='flex flex-col w-full'>
                 <Link href={`/products/${id}`}>
-                  <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:text-4xl transition-all ease-in-out duration-500 absolute top-0 left-0'>
+                  <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
                     {name}
                   </h1>
                 </Link>
@@ -57,7 +57,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                         return (
                           <div
                             key={uuidv4()}
-                            className='lg:w-[20%] md:w-1/2 p-4 w-full cursor-pointer font-quest bg-tertiary m-2 rounded-sm'>
+                            className='lg:w-[20%] md:w-1/2 p-4 w-full h-[300px] cursor-pointer font-quest bg-tertiary m-2 rounded-sm'>
                             <Link href={`/productDetails/${prod.id}`}>
                               <div className='block relative h-36 rounded overflow-hidden'>
                                 <Image
@@ -79,7 +79,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                                       prod.total * prod.discount * 0.01
                                   )}
                                 </span>
-                                <div className='flex justify-between'>
+                                <div className='flex items-end justify-between'>
                                   <span className='mt-1 line-through text-sm text-black'>
                                     ₹{prod.total}
                                   </span>

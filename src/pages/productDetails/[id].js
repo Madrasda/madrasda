@@ -212,7 +212,7 @@ export default function ProductId() {
 
                   <div className="mt-6 hidden md:block">Colors</div>
                   <div className="flex items-center mt-3 mb-3">
-                    <div className="flex">
+                    <div className="flex items-start">
                       {product.colors.map((color) => (
                         <ColorOption
                           key={color.id}

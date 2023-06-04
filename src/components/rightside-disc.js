@@ -50,7 +50,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
 
              <div className='flex flex-col w-full'>
                <Link href={`/products/${id}`}>
-                 <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:text-4xl transition-all ease-in-out duration-500 absolute top-0 right-0'>
+                 <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 right-0'>
                    {name}
                  </h1>
                </Link>
@@ -66,7 +66,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                      return (
                        <div
                          key={uuidv4()}
-                         className='w-56 font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                         className='w-56 h-[300px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
                          <Link href={`/productDetails/${prod.id}`}>
                            <div className='block relative h-36 rounded overflow-hidden'>
                              <Image
@@ -87,7 +87,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                                  prod.total - prod.total * prod.discount * 0.01
                                )}
                              </span>
-                             <div className='flex justify-between'>
+                             <div className='flex items-end justify-between'>
                                <span className='mt-1 line-through text-sm text-black'>
                                  ₹{prod.total}
                                </span>

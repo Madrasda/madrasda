@@ -16,13 +16,13 @@ const ColorOption = ({
   return (
     <div
       onClick={onClickHandler}
-      className={`flex flex-col justify-center items-center px-2 }]`}>
+      className={`flex flex-col justify-center items-center px-2`}>
       <button
         style={{ backgroundColor: hex }}
         className={`border-[2px] ${
           selected ? `border-primary` : `border-gray`
         } rounded-full w-8 h-8 focus:outline-none`}></button>
-      <p className='text-xs'>{color}</p>
+      <p className='text-xs text-center'>{color}</p>
     </div>
   );
 };
