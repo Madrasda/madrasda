@@ -300,14 +300,6 @@ export default function Checkout() {
                           </span>
                         </div>
                       </div>
-                      <div className="w-full flex mt-3 items-center">
-                        <div className="flex-grow">
-                          <span className="text-black">Taxes</span>
-                        </div>
-                        <div className="pl-3">
-                          <span className="font-medium">5%</span>
-                        </div>
-                      </div>
                     </div>
                     <div className="mb-6 pb-6 border-b border-gray md:border-none text-gray-800 text-xl">
                       <div className="w-full flex items-center">
@@ -324,7 +316,7 @@ export default function Checkout() {
                           <span className="font-medium text-2xl">
                             ₹
                             {Math.round(
-                              (subTotal * (105 / 100) +
+                              (subTotal +
                                 (shippingCharges === -1
                                   ? 0
                                   : shippingCharges)) *

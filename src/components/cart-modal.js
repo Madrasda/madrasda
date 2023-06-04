@@ -138,7 +138,7 @@ export default function CartModal() {
                         <div className="w-1/2">
                           <span className="text-gray-600">Total</span>
                           <p className="text-xs text-black">
-                            Excluding taxes and charges
+                            Including taxes and charges
                           </p>
                         </div>
                         <div className="w-1/2 text-right">
