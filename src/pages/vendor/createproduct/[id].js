@@ -510,7 +510,7 @@ export default function CreateTemplate(props) {
                       </div>
                     </div>
                     <div className="mt-6">Available Sizes</div>
-                    <div className="flex flex-wrap justify-center items-center mt-3 mb-3 ml-2">
+                    <div className="flex flex-wrap justify-center items-center p-3 mt-3 mb-3 ml-2">
                       <div className="relative">
                         {details &&
                           getAvailableSizes(details.skuMapping).map((size) => {

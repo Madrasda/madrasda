@@ -132,7 +132,7 @@ export default function VendorList(props) {
                        md:ml-20 m-5'>
                 Manage Creators
               </h1>
-              <div className='flex flex-wrap justify-between md:ml-20'>
+              <div className='flex flex-wrap justify-items-start space-x-12 md:ml-20'>
                 <div className='lg:w-1/6 md:w-3/4 p-4 w-full lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out'>
                   <Link href='#'>
                     <div className='flex flex-col items-center justify-center cursor-pointer'>
@@ -156,19 +156,19 @@ export default function VendorList(props) {
                         in
                         style={{ transitionDelay: delay }}
                         timeout={500}>
-                        <div
-                          key={uuidv4()}
-                          className='lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer
-                                              bg-off-white m-5 rounded shadow-xl transition-shadow
+	                      <Link href={`/admin/vendorDetails/${vendor.id}`}
+	                            key={uuidv4()}
+	                            className='lg:w-1/6 md:w-3/4 p-4 pb-0 min-h-fit h-80 w-full cursor-pointer
+                                              bg-off-white m-5 rounded shadow-xl transition-all duration-100
                                                hover:shadow-shadowGrey border border-border'>
-                          <Link href={`/admin/vendorDetails/${vendor.id}`}>
+                        <div>
                             <VendorListItem
                               key={vendor.id}
                               vendorName={vendor.name}
                               image={vendor.imgUrl}
                             />
-                          </Link>
                         </div>
+                          </Link>
                       </Grow>
                     );
                   })}

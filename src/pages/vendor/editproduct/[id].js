@@ -129,14 +129,16 @@ export default function ViewProd() {
   }, [isReady]);
 
   useEffect(() => {
-    setProfit((total * (100 - discount)) / 100 - basePrice);
-  }, [basePrice, total, discount]);
-  useEffect(() => {
-    setSellingPrice(
-      Math.round((((profit + basePrice) * 105) / 100) * 100) / 100
-    );
-  }, [basePrice, profit]);
+    const calculatedProfit = Math.round((total - basePrice - (discount * 0.01 * total)));
+    setProfit(calculatedProfit);
 
+    if(total === 0) {
+      setSellingPrice(basePrice);
+      return;
+    }
+    const calculatedSellingPrice = Math.round(total * (100 - discount) / 100 * (tax + 100) / 100);
+    setSellingPrice(calculatedSellingPrice);
+  }, [basePrice, total, discount]);
   useEffect(() => {
     const jwtToken = localStorage.getItem("token_vendor");
     if (jwtToken === undefined || !isTokenValid(jwtToken))
