@@ -148,7 +148,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                 </div>
                 <div className='flex flex-col w-full'>
                   <h1 className='md:text-2xl w-full text-primary text-xl font-raj text-right float-right pr-8'>
-                    {name}'s
+                    {name}
                   </h1>
                   <h1 className='md:text-2xl w-full text-bg text-xl font-raj text-right float-right pr-8'>
                     Products

@@ -142,7 +142,7 @@ export default function RightsideDisc ({name, id, imgUrl}) {
                </div>
                <div className='flex flex-col w-full'>
                  <h1 className='md:text-2xl text-xl font-raj text-right w-full text-primary pr-8'>
-                   {name}'s
+                   {name}
                  </h1>
                  <h1 className='md:text-2xl text-xl font-raj text-right w-full text-bg pr-8'>
                    Products

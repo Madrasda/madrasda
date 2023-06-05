@@ -14,7 +14,11 @@ function VendorProductsPage() {
     const [title, setTitle] = useState("")
     const [vendorList, setVendorList] = useState([]);
     const setPageData = (vendors) => {
-        setTitle((vendors.find((vendor) => vendor.id === parseInt(router.query.vendorId))).name + "'s Products");
+        setTitle(
+          vendors.find(
+            (vendor) => vendor.id === parseInt(router.query.vendorId)
+          ).name + " Products"
+        );
         axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo + "&pageSize=20")
             .then(response => setVendorProducts(response.data))
             .catch(err => console.log(err));

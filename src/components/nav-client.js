@@ -78,7 +78,6 @@ export default function NavisCustomer() {
     menu.classList.toggle("hidden");
   };
   const handleVendorProductsClick = (id) => {
-    console.log(id);
     router.push("/products/[vendorId]", "/products/" + id);
   };
 
