@@ -72,7 +72,6 @@ export default function CreateTemplate(props) {
     }
     canvas.clear();
     if (design !== null) {
-      console.log(design);
       fetch(design.imgUrl)
         .then((result) => result.blob())
         .then((blob) => {
@@ -143,7 +142,6 @@ export default function CreateTemplate(props) {
           });
         });
     }
-    canvas.on("");
     canvas.on("object:moving", function (event) {
       var designImg = event.target;
 
@@ -409,7 +407,7 @@ export default function CreateTemplate(props) {
                     {/* FABRIC JS CANVAS*/}
                     {details && (
                       <div
-                        className="mockup-image relative h-full bg-tertiary"
+                        className="mockup-image relative min-h-[90vh] bg-tertiary"
                         id="mockup-image"
                       >
                         <img
