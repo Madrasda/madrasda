@@ -3,23 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {uuidv4} from "@firebase/util";
-export default function RightsideDisc ({name, id, imgUrl}) {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-      getVendorProducts();
-    }, []);
-
-    const getVendorProducts = async () => {
-      const params = new URLSearchParams({
-        pageNo : 0,
-        pageSize: 4
-      })
-      const response = await axios.get(
-        `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/${id}?` + params
-      );
-      setProducts(response.data.content);
-    }
+export default function RightsideDisc ({name, id, imgUrl, products}) {
 
    return (
      <>
