@@ -129,7 +129,7 @@ export default function CartModal() {
                         </div>
                         <div>
                           <span className="font-medium text-2xl">
-                            ₹{Math.round(subTotal)}
+                            ₹{Math.ceil(subTotal)}
                           </span>
                         </div>
                       </div>
@@ -146,7 +146,7 @@ export default function CartModal() {
                             INR
                           </span>{" "}
                           <span className="font-medium text-2xl">
-                            ₹{Math.round(subTotal)}
+                            ₹{Math.ceil(subTotal)}
                           </span>
                         </div>
                       </div>

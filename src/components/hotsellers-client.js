@@ -59,7 +59,7 @@ export default function HotSellers() {
                         </h2>
                         <span className="text-black text-lg">
                           ₹
-                          {Math.round(
+                          {Math.ceil(
                             (product.total * (100 - product.discount)) / 100
                           )}
                         </span>

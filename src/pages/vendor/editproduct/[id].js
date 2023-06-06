@@ -136,7 +136,7 @@ export default function ViewProd() {
       setSellingPrice(basePrice);
       return;
     }
-    const calculatedSellingPrice = Math.round(total * (100 - discount) / 100 * (tax + 100) / 100);
+    const calculatedSellingPrice = Math.ceil(total * (100 - discount) / 100 * (tax + 100) / 100);
     setSellingPrice(calculatedSellingPrice);
   }, [basePrice, total, discount]);
   useEffect(() => {

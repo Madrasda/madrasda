@@ -5,8 +5,10 @@ import {UserContext} from "../../context/context";
 import {useContext} from "react";
 import customer from "../../public/customerdetails-icon.png";
 import { CurrencyExchange, Dvr, FormatColorFill, Groups3, Logout, MiscellaneousServices, Payments, PersonAdd, QuestionAnswer, Whatshot } from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
+import Badge from "@mui/material/Badge";
 
-export default function NavAdmin() {
+export default function NavAdmin({vendorPayoutCount, signupRequestCount}) {
   const router = useRouter();
   const currentRoute = router.pathname;
   const ctx = useContext(UserContext);
@@ -41,13 +43,13 @@ export default function NavAdmin() {
                   </div>
                 </div>
               </Link>
-              <Link className={"hover:bg-primary"} href='/admin/vendorlist'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/vendorlist'>
                 <div
                   className={
                     currentRoute === "/admin/vendorlist" ||
                     currentRoute === "/admin/vendordetails" ||
                     currentRoute === "/admin/vendorlist/*"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -57,11 +59,11 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/myproducts'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/myproducts'>
                 <div
                   className={
                     currentRoute === "/admin/myproducts"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -71,25 +73,35 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/requests'>
+              <Link
+                  className={"hover:bg-primary w-full"}
+                  href='/admin/requests'>
                 <div
-                  className={
-                    currentRoute === "/admin/requests"
-                      ? "bg-primary w-52 px-8"
-                      : "bg-none w-52 px-8"
-                  }>
-                  <div className='flex justify-start items-center py-4'>
+                    className={
+                      currentRoute === "/admin/requests"
+                          ? "bg-primary pl-8 pr-4 w-full"
+                          : "bg-none pl-8 pr-4 w-full"
+                    }>
+                  <div className={`flex ml-auto ${currentRoute !== "/admin/requests"? 'justify-evenly space-x-2': 'justify-start'} 
+                                    items-center py-4`}>
                     <PersonAdd className='text-2xl' />
                     <h3 className='ml-2'>Signup Requests</h3>
+                    {
+                        currentRoute !== "/admin/requests" &&
+                        <div className="bg-error rounded-full w-6 h-6 m-0 flex items-center justify-center text-white">
+                          {signupRequestCount}
+                        </div>
+                    }
                   </div>
+
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/cancel'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/cancel'>
                 <div
                   className={
                     currentRoute === "/admin/cancel"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -99,25 +111,30 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/payments'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/payments'>
                 <div
                   className={
                     currentRoute === "/admin/payments"
-                      ? "bg-primary w-52 px-8"
-                      : "bg-none w-52 px-8"
+                      ? "bg-primary w-full pl-8 pr-4"
+                      : "bg-none w-52 pl-8 pr-4"
                   }>
-                  <div className='flex justify-start items-center py-4'>
+                  <div className={`flex ml-auto ${currentRoute !== "/admin/payments"? 'justify-evenly space-x-2': 'justify-start'} items-center py-4`}>
                     <Payments className='text-2xl' />
-                    <h3 className='ml-2'>Vendor Payout</h3>
+                    <h3 className='ml-2'>Vendor Payout </h3>
+                    {
+                      currentRoute !== "/admin/payments" &&
+                      <div className="bg-error rounded-full w-6 h-6 m-0 flex items-center justify-center text-white">
+                        {vendorPayoutCount}
+                      </div>}
                   </div>
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/manageorders'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/manageorders'>
                 <div
                   className={
                     currentRoute === "/admin/manageorders"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -127,12 +144,12 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/queries'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/queries'>
                 <div
                   className={
                     currentRoute === "/admin/queries" ||
                     currentRoute === "/admin/resolvedqueries"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -142,11 +159,11 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/hotsellers'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/hotsellers'>
                 <div
                   className={
                     currentRoute === "/admin/hotsellers"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -156,11 +173,11 @@ export default function NavAdmin() {
                 </div>
               </Link>
 
-              <Link className={"hover:bg-primary"} href='/admin/servicedetails'>
+              <Link className={"hover:bg-primary w-full"} href='/admin/servicedetails'>
                 <div
                   className={
                     currentRoute === "/admin/servicedetails"
-                      ? "bg-primary w-52 px-8"
+                      ? "bg-primary w-full px-8"
                       : "bg-none w-52 px-8"
                   }>
                   <div className='flex justify-start items-center py-4'>
@@ -169,7 +186,7 @@ export default function NavAdmin() {
                   </div>
                 </div>
               </Link>
-              
+
             </nav>
           </div>
         </div>
@@ -243,13 +260,21 @@ export default function NavAdmin() {
                   <div
                     className={
                       currentRoute === "/admin/requests"
-                        ? "bg-primary px-8 w-full"
-                        : "bg-none px-8 w-full"
+                        ? "bg-primary pl-8 pr-4 w-full"
+                        : "bg-none pl-8 pr-4 w-full"
                     }>
-                    <div className='flex justify-center items-center py-4'>
+                    <div className={`flex ml-auto ${currentRoute !== "/admin/requests"? 'justify-evenly space-x-2': 'justify-start'} 
+                                    items-center py-4`}>
                       <PersonAdd className='text-2xl' />
                       <h3 className='ml-2'>Signup Requests</h3>
+                      {
+                        currentRoute !== "/admin/requests" &&
+                          <div className="bg-error rounded-full w-6 h-6 m-0 flex items-center justify-center text-white">
+                            {signupRequestCount}
+                          </div>
+                      }
                     </div>
+
                   </div>
                 </Link>
 
@@ -349,7 +374,7 @@ export default function NavAdmin() {
                     </div>
                   </div>
                 </Link>
-                
+
               </nav>
             </div>
           </div>

@@ -54,14 +54,14 @@ export default function ViewProd() {
 	const [severity, setSeverity] = useState(""); // success , error
 	const [open, setOpen] = useState(false); // same as spinner
 	useEffect(() => {
-		const calculatedProfit = Math.round((total - basePrice - (discount * 0.01 * total)));
+		const calculatedProfit = Math.ceil((total - basePrice - (discount * 0.01 * total)));
 		setProfit(calculatedProfit);
 
 		if(total === 0) {
 			setSellingPrice(basePrice);
 			return;
 		}
-		const calculatedSellingPrice = Math.round(total * (100 - discount) / 100 * (tax + 100) / 100);
+		const calculatedSellingPrice = Math.ceil(total * (100 - discount) / 100 * (tax + 100) / 100);
 		setSellingPrice(calculatedSellingPrice);
 	}, [basePrice, total, discount]);
 	const handleClose = (event, reason) => {

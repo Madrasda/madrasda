@@ -278,7 +278,7 @@ export default function Checkout() {
                         </div>
                         <div className="pl-3">
                           <span className="font-medium">
-                            ₹{Math.round(subTotal)}
+                            ₹{Math.ceil(subTotal)}
                           </span>
                         </div>
                       </div>
@@ -315,13 +315,13 @@ export default function Checkout() {
                           </span>{" "}
                           <span className="font-medium text-2xl">
                             ₹
-                            {Math.round(
+                            {Math.ceil((
                               (subTotal +
                                 (shippingCharges === -1
                                   ? 0
                                   : shippingCharges)) *
-                                100
-                            ) / 100}
+                                105
+                            )/ 100) }
                           </span>
                         </div>
                       </div>

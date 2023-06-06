@@ -66,7 +66,7 @@ export default function VendorDetails() {
 						<h1
 							className='text-3xl text-primary
                                md:ml-20 md:mt-30 md:mr-2'>
-							Vendor: <span className="font-bold">{details.vendor.name}</span>
+							<span className="font-bold">{details.vendor.name}</span>
 						</h1>
 						
 						</div>
@@ -164,8 +164,8 @@ export default function VendorDetails() {
 					</div>
 
 					<div
-						className='flex flex-col justify-center items-center -mt-[140%]
-                                md:-mt-80 md:ml-20'>
+						className='flex flex-col justify-center items-center mt-12
+                                md:ml-20'>
 						<h1 className='text-primary text-4xl font-semibold'>
 							WOAH!
 						</h1>

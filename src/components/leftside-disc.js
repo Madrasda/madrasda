@@ -74,7 +74,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                                 </h2>
                                 <span className='mt-1 text-black text-xl'>
                                   ₹
-                                  {Math.round(
+                                  {Math.ceil(
                                     prod.total -
                                       prod.total * prod.discount * 0.01
                                   )}
@@ -179,7 +179,7 @@ export default function LeftsideDisc ({name, id, imgUrl}) {
                               </h2>
                               <span className='mt-1 text-black text-[14px] md:text-xl'>
                                 ₹
-                                {Math.round(
+                                {Math.ceil(
                                   prod.total - prod.total * prod.discount * 0.01
                                 )}
                               </span>

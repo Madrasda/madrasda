@@ -1,6 +1,4 @@
 import Head from "next/head";
-import SearchVendor from "@/components/search-vendor";
-import Payments from "@/components/payments";
 import AdminLayout from "@/components/layout-admin";
 import axios from "axios";
 import Image from "next/image";
