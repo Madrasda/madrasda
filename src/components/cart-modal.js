@@ -39,10 +39,10 @@ export default function CartModal() {
       if (ctx.cart.cartItems !== undefined) {
         const sum = ctx.cart.cartItems.reduce(
           (prev, curr) =>
-            (prev +=
+            (prev += Math.ceil(
               curr.quantity *
-              ((curr.product.total * (100 - curr.product.discount)) / 100)),
-          0
+              ((curr.product.total * (100 - curr.product.discount)) / 100))),
+          0.0
         );
         setSubtotal(sum);
       }
@@ -146,7 +146,7 @@ export default function CartModal() {
                             INR
                           </span>{" "}
                           <span className="font-medium text-2xl">
-                            ₹{Math.ceil(subTotal)}
+                            ₹{Math.ceil(subTotal * 105 / 100)}
                           </span>
                         </div>
                       </div>

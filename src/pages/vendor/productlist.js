@@ -14,6 +14,16 @@ export default function ProductList() {
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState(null);
   useEffect(() => {
+    const jwtToken = localStorage.getItem("token_vendor");
+
+    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
+      router.push("/vendor");
+    else {
+      setTokenExists(true);
+      getProductDetails();
+    }
+  }, []);
+  useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -38,16 +48,7 @@ export default function ProductList() {
     console.log(prod.data.content);
   };
 
-  useEffect(() => {
-    const jwtToken = localStorage.getItem("token_vendor");
 
-    if (jwtToken === undefined || !isTokenValid(jwtToken) || getRole(jwtToken) !== 'ROLE_VENDOR')
-      router.push("/vendor");
-    else {
-      setTokenExists(true);
-      getProductDetails();
-    }
-  }, []);
 
   
   if(loading && isReady)

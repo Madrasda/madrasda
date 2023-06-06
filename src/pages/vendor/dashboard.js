@@ -29,7 +29,10 @@ export default function Dashboard(props) {
         Authorization: "Bearer " + localStorage.getItem("token_vendor"),
       },
     });
-    console.log(response.data);
+    if(response.status !== 200) {
+      localStorage.removeItem("token_vendor")
+      router.push("/vendor")
+    }
     setDetails(response.data);
   };
 
@@ -172,9 +175,9 @@ export default function Dashboard(props) {
               {/* </div> */}
 
               <div
-                className='flex flex-col justify-center items-center -mt-[140%]
-                                md:-mt-[75%] md:ml-20
-                                lg:-mt-80'>
+                className='flex flex-col justify-center items-center
+                                md:mt-[75%] md:ml-20
+                                lg:mt-12'>
                 <h1 className='text-primary text-4xl font-semibold'>WOAH!</h1>
                 <div
                   className='flex text-lg justify-center items-center lg:w-full
@@ -197,7 +200,7 @@ export default function Dashboard(props) {
                     <h1
                       className='text-2xl text-primary font-semibold
                                     md:text-3xl'>
-                      ADD YOUR DESIGNS
+                      ADD A DESIGNS
                     </h1>
                     <Link href={`/vendor/designgallery`}>
                       <Image

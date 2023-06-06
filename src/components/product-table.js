@@ -216,18 +216,25 @@ export default function ProductTable({ products, setProducts, path }) {
                           {item.total}
                         </td>
                         <td>
-                          <div className='flex flex-wrap justify-center items-center space-x-1'>
-                            {getAvailableColors(item.colors).map((i) => (
-                              <div className="flex flex-col items-center">
-                                <div
-                                  key={uuidv4()}
-                                  style={{ backgroundColor: i.hexValue }}
-                                  className='border-gray border-[2px] rounded-full h-6 w-6'></div>
-                                <h1>-{i.color}-</h1>
-                              </div>
+                          <div className="flex flex-wrap justify-center items-center space-x-1">
+                            {getAvailableColors(item.colors).slice(0, 3).map((i) => (
+                                <div key={uuidv4()} className="flex flex-col items-center">
+                                  <div
+                                      key={uuidv4()}
+                                      style={{ backgroundColor: i.hexValue }}
+                                      className={`${(i.hexValue === '#fff' ||
+                                      i.hexValue === '#ffffff')? 'border-shadowGrey border-[2px]': ''}  rounded-full h-6 w-6`}
+                                  ></div>
+                                </div>
                             ))}
+                            {item.colors.length > 3 && (
+                                <div className="flex items-center">
+                                  <p className="mr-1">{`. . . ${item.colors.length - 3}+`}</p>
+                                </div>
+                            )}
                           </div>
                         </td>
+
                         <td className='whitespace-nowrap px-6 py-6 flex justify-center'>
                           <button
                             onClick={() => {

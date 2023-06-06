@@ -12,7 +12,13 @@ import TermsConditionsModal from '@/components/terms&conditions-modal';
 import PaymentStructureModal from '@/components/paymentstructure-modal';
 
 export default function Vendorlogin() {
-	const router = useRouter();
+  useEffect(() => {
+    const token = localStorage.getItem("token_vendor");
+    if (token && isTokenValid(token) && getRole(token) === "ROLE_VENDOR")
+      router.push("/vendor/dashboard");
+  }, []);
+
+  const router = useRouter();
 	const ctx = useContext(UserContext);
 	const [message, setMessage] = useState("");
 	const [severity, setSeverity] = useState("");
@@ -95,11 +101,6 @@ export default function Vendorlogin() {
         }
       });
   };
-  useEffect(() => {
-    const token = localStorage.getItem("token_vendor");
-    if (token && isTokenValid(token) && getRole(token) === "ROLE_VENDOR")
-      router.push("/vendor/dashboard");
-  }, []);
 
   const showLogin = () => {
     var login_element = document.getElementById("login");

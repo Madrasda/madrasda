@@ -560,6 +560,7 @@ export default function ViewProd() {
                       label={"Maximum retail Price (₹)"}
                       placeholder="₹"
                       required
+                      value={total}
                       onChange={(e) => setTotal(e.target.value)}
                     />
                   </div>
@@ -580,6 +581,7 @@ export default function ViewProd() {
                       label={"Discount / Offer %"}
                       placeholder="%"
                       required
+                      value={discount}
                       onChange={(e) => setDiscount(e.target.value)}
                     />
                   </div>
