@@ -235,24 +235,26 @@ export default function MyProducts() {
                   })}
               </div>
               )
-              <div className="flex justify-center mt-32">
-                <button
-                  className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
-                  onClick={() => {
-                    setPage(pageNo === 0 ? 0 : pageNo - 1);
-                  }}
-                >
-                  Prev
-                </button>
-                <button
-                  className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-6"
-                  onClick={() => {
-                    setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1);
-                  }}
-                >
-                  Next
-                </button>
-              </div>
+              {pageSize > 10 && (
+                <div className="flex justify-center mt-32">
+                  <button
+                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6"
+                    onClick={() => {
+                      setPage(pageNo === 0 ? 0 : pageNo - 1);
+                    }}
+                  >
+                    Prev
+                  </button>
+                  <button
+                    className="bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-6"
+                    onClick={() => {
+                      setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1);
+                    }}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
           </section>
         </AdminLayout>
