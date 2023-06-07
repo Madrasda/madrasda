@@ -91,7 +91,6 @@ export default function Checkout() {
               }
             )
             .then((response) => {
-              console.log(response.data);
               setShippingCharges(response.data);
               setSpinner(false);
               setValidPincode(true);
@@ -117,7 +116,6 @@ export default function Checkout() {
       setPhone(inputPhone);
       setError(false);
       setValidPhone((old) => {
-        console.log(old);
         return true;
       });
     } else {
@@ -315,13 +313,14 @@ export default function Checkout() {
                           </span>{" "}
                           <span className="font-medium text-2xl">
                             ₹
-                            {Math.ceil((
-                              (subTotal +
+                            {Math.ceil(
+                              ((subTotal +
                                 (shippingCharges === -1
                                   ? 0
                                   : shippingCharges)) *
-                                105
-                            )/ 100) }
+                                105) /
+                                100
+                            )}
                           </span>
                         </div>
                       </div>
