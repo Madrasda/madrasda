@@ -8,8 +8,12 @@ export default function HotSellers() {
   const [products, setProducts] = useState([]);
 
   const getAllProducts = async () => {
+    const param = new URLSearchParams({
+      pageSize: 8,
+    });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers"
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers?" +
+        param
     );
     setProducts(response.data);
   };
@@ -35,43 +39,44 @@ export default function HotSellers() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center mx-auto py-6">
               {products &&
-                products.map((product) => {
-                  return (
-                    <Link
-                      key={uuidv4()}
-                      href={`/productDetails/${product.id}`}
-                      className="col-span-1 w-40 md:w-56 xl:w-60 p-2 xl:p-4 h-fit cursor-pointer bg-off-white mx-auto my-3 md:my-4 xl:my-5 rounded
+                products.map((product, index) => {
+                  if(index < 8){
+                    return (
+                      <Link
+                        key={uuidv4()}
+                        href={`/productDetails/${product.id}`}
+                        className='col-span-1 w-40 md:w-56 xl:w-60 p-2 xl:p-4 h-fit cursor-pointer bg-off-white mx-auto my-3 md:my-4 xl:my-5 rounded
                         drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)]
-                        duration-200 ease-in-out"
-                    >
-                      <div className="block relative h-fit rounded overflow-hidden">
-                        <Image
-                          src={product.colors[0].images[0]}
-                          alt="ecommerce"
-                          width={1080}
-                          height={1920}
-                          className="object-contain object-center w-full h-[130px] xl:h-[296px] block"
-                        />
-                      </div>
-                      <div className="flex flex-col mt-4 font-quest">
-                        <h2 className="title-font text-base md:text-xl font-medium">
-                          {product.name}
-                        </h2>
-                        <span className="text-black text-lg">
-                          ₹
-                          {Math.ceil(
-                            (product.total * (100 - product.discount)) / 100
-                          )}
-                        </span>
-                        <span className="line-through text-bg">
-                          ₹{product.total}
-                        </span>
-                        <span className="title-font text-xs font-medium text-[#088240]">
-                          {product.discount}% OFF
-                        </span>
-                      </div>
-                    </Link>
-                  );
+                        duration-200 ease-in-out'>
+                        <div className='block relative h-fit rounded overflow-hidden'>
+                          <Image
+                            src={product.colors[0].images[0]}
+                            alt='ecommerce'
+                            width={1080}
+                            height={1920}
+                            className='object-contain object-center w-full h-[130px] xl:h-[296px] block'
+                          />
+                        </div>
+                        <div className='flex flex-col mt-4 font-quest'>
+                          <h2 className='title-font text-base md:text-xl font-medium'>
+                            {product.name}
+                          </h2>
+                          <span className='text-black text-lg'>
+                            ₹
+                            {Math.ceil(
+                              (product.total * (100 - product.discount)) / 100
+                            )}
+                          </span>
+                          <span className='line-through text-bg'>
+                            ₹{product.total}
+                          </span>
+                          <span className='title-font text-xs font-medium text-[#088240]'>
+                            {product.discount}% OFF
+                          </span>
+                        </div>
+                      </Link>
+                    );
+                  }
                 })}
             </div>
           </div>
