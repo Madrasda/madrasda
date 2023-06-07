@@ -140,7 +140,7 @@ export default function Analytics () {
                 </h2>
                 <div
                   className='flex justify-center items-center
-                          md:ml-20 '>
+                          md:ml-20 mb-20'>
                   <LineGraph
                     monthlySales={
                       details.salesAnalysis
@@ -156,8 +156,7 @@ export default function Analytics () {
                   <div>
                     <h2
                       className='text-primary font-semibold text-2xl
-                          md:ml-20 md:-mt-[80%]
-                          lg:-mt-72'>
+                          md:ml-20'>
                       Product Contribution
                     </h2>
                     <div
@@ -183,7 +182,7 @@ export default function Analytics () {
                       Product Summary
                     </h2>
                     <div className='mt-4 md:ml-20'>
-                      <Table products={details.productLadder}/>
+                      <Table products={details.productLadder} />
                     </div>
                   </div>
                 )}

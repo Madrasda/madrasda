@@ -64,7 +64,7 @@ export default function Table({ products }) {
                         {item.profitAmount}
                       </td>
                       <td className='whitespace-nowrap px-6 py-6'>
-                        {item.returnsContribution}'%'
+                        {item.returnsContribution}%
                       </td>
                       <td className='whitespace-nowrap px-6 py-6'>
                         {item.stocksSold}
