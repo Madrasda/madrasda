@@ -47,7 +47,6 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               >
                 {products &&
                   products.map((prod) => {
-                    console.log(prod.colors.length);
                     if (prod.colors.length === 0) return null;
                     return (
                       <div
@@ -142,7 +141,6 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               {/* flex flex-row overflow-hidden  */}
               {products &&
                 products.map((prod) => {
-                  console.log(prod.colors.length);
                   if (prod.colors.length === 0) return null;
                   return (
                     <div
