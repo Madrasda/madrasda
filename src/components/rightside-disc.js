@@ -51,33 +51,32 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                     return (
                       <div
                         key={uuidv4()}
-                        className="w-56 h-[300px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm"
-                      >
+                        className='w-56 h-[350px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
                         <Link href={`/productDetails/${prod.id}`}>
-                          <div className="block relative h-36 rounded overflow-hidden">
+                          <div className='block relative h-52 rounded overflow-hidden'>
                             <Image
                               src={prod.colors[0].images[0]}
-                              alt="ecommerce"
+                              alt='ecommerce'
                               width={1080}
                               height={1920}
-                              className="object-contain object-center w-full h-full block"
+                              className='object-contain object-center w-full h-full block'
                             />
                           </div>
-                          <div className="mt-4 flex flex-col">
-                            <h2 className="text-black title-font text-lg font-medium">
+                          <div className='mt-4 flex flex-col'>
+                            <h2 className='text-black title-font text-xs font-black'>
                               {prod.name}
                             </h2>
-                            <span className="mt-1 text-black text-xl">
+                            <span className='mt-1 text-black text-xl'>
                               ₹
                               {Math.ceil(
                                 prod.total - prod.total * prod.discount * 0.01
                               )}
                             </span>
-                            <div className="flex items-end justify-between">
-                              <span className="mt-1 line-through text-sm text-black">
+                            <div className='flex items-end justify-between'>
+                              <span className='mt-1 line-through text-sm text-black'>
                                 ₹{prod.total}
                               </span>
-                              <span className="title-font font-semibold text-sm text-[#088240]">
+                              <span className='title-font font-semibold text-sm text-[#088240]'>
                                 {prod.discount}% off
                               </span>
                             </div>
