@@ -62,7 +62,9 @@ export default function Checkout() {
           (prev, curr) =>
             (prev +=
               curr.quantity *
-              ((curr.product.total * (100 - curr.product.discount)) / 100)),
+              Math.ceil(
+                (curr.product.total * (100 - curr.product.discount)) / 100
+              )),
           0
         );
         setSubtotal(sum);
@@ -139,6 +141,7 @@ export default function Checkout() {
         email: email.current.value,
         phone: phoneRef.current.value,
       },
+      orderTotal : Math.ceil(subTotal),
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
           product: {
@@ -152,7 +155,7 @@ export default function Checkout() {
     axios
       .post(
         //https://spring-madrasda-2f6mra4vwa-em.a.run.app
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder",
+        "http://localhost:8080/api/payment/createOrder",
         transaction,
         {
           headers: {
