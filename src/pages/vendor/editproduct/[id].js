@@ -129,14 +129,16 @@ export default function ViewProd() {
   }, [isReady]);
 
   useEffect(() => {
-    const calculatedProfit = Math.round((total - basePrice - (discount * 0.01 * total)));
+    const calculatedProfit = Math.ceil(
+      ((100 - tax) / 100) * SellingPrice - basePrice
+    );
     setProfit(calculatedProfit);
 
-    if(total === 0) {
+    if (total === 0) {
       setSellingPrice(basePrice);
       return;
     }
-    const calculatedSellingPrice = Math.ceil(total * (100 - discount) / 100 * (tax + 100) / 100);
+    const calculatedSellingPrice = Math.ceil((total * (100 - discount)) / 100);
     setSellingPrice(calculatedSellingPrice);
   }, [basePrice, total, discount]);
   useEffect(() => {
