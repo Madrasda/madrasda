@@ -51,50 +51,46 @@ export default function CartModal() {
 
   return (
     <div>
-      <IconButton aria-label="cart" onClick={handler}>
+      <IconButton aria-label='cart' onClick={handler}>
         <StyledBadge
           badgeContent={
             ctx.cart.cartItems !== undefined ? ctx.cart.cartItems.length : 0
-          }
-        >
+          }>
           <ShoppingCartIcon
             sx={{ color: "#FFF", height: "33px", width: "33px" }}
           />
         </StyledBadge>
       </IconButton>
       <Modal
-        scroll="false"
-        width="auto"
+        scroll='false'
+        width='auto'
         closeButton={false}
         className={
           "shadow-lg text-black bg-gray w-[80%] items-center mx-auto md:w-fit md:items-end"
         }
-        aria-labelledby="modal-title"
+        aria-labelledby='modal-title'
         open={visible}
-        onClose={closeHandler}
-      >
+        onClose={closeHandler}>
         <Modal.Header>
           <IconButton
-            className="absolute top-0 right-0 p-2 text-black"
-            onClick={closeHandler}
-          >
+            className='absolute top-0 right-0 p-2 text-black'
+            onClick={closeHandler}>
             <Close />
           </IconButton>
         </Modal.Header>
         {(ctx.cart.cartItems === undefined ||
           ctx.cart.cartItems.length === 0) && (
-          <Modal.Body className="w-full">
-            <div className="flex flex-col justify-center text-center relative z-10 overflow-y-scroll">
+          <Modal.Body className='w-full'>
+            <div className='flex flex-col justify-center text-center relative z-10 overflow-y-scroll'>
               <h1 className={"text-center font-quest text-3xl pb-10"}>
-                Your <span className="text-primary">cart</span> is empty
+                Your <span className='text-primary'>cart</span> is empty
               </h1>
-              <div className="flex flex-col space-y-3">
-                <AddShoppingCart className="text-8xl text-primary mx-auto" />
+              <div className='flex flex-col space-y-3'>
+                <AddShoppingCart className='text-8xl text-primary mx-auto' />
                 <Link
-                  href="/#merchandise"
-                  className="font-quest text-lg"
-                  onClick={closeHandler}
-                >
+                  href='/#merchandise'
+                  className='font-quest text-lg'
+                  onClick={closeHandler}>
                   Shop For More Products
                 </Link>
               </div>
@@ -104,15 +100,14 @@ export default function CartModal() {
         {ctx.cart.cartItems !== undefined &&
           ctx.cart.cartItems.length !== 0 && (
             <>
-              <Modal.Body className="md:w-full">
-                <div className="p-5 rounded-lg font-quest">
-                  <div className="w-full px-3 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
-                    <div className="bg-white md:bg-gray flex flex-col md:border-none rounded md:w-8/12">
+              <Modal.Body className='md:w-full'>
+                <div className='p-5 rounded-lg font-quest'>
+                  <div className='w-full px-3 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8'>
+                    <div className='bg-white md:bg-gray flex flex-col md:border-none rounded md:w-8/12'>
                       {ctx.cart.cartItems.map((item) => (
                         <div
                           key={uuidv4()}
-                          className="border-border border-b-2"
-                        >
+                          className='border-border border-b-2'>
                           <CartItem
                             key={uuidv4()}
                             id={item.id}
@@ -122,31 +117,31 @@ export default function CartModal() {
                         </div>
                       ))}
                     </div>
-                    <div className="flex flex-col justify-between h-fit w-full md:w-4/12 p-4 bg-white rounded">
-                      <div className="flex justify-between items-center">
+                    <div className='flex flex-col justify-between h-fit w-full md:w-4/12 p-4 bg-white rounded'>
+                      <div className='flex justify-between items-center'>
                         <div>
-                          <span className="text-gray-600">Subtotal</span>
+                          <span className='text-gray-600'>Subtotal</span>
                         </div>
                         <div>
-                          <span className="font-medium text-2xl">
+                          <span className='font-medium text-2xl'>
                             ₹{Math.ceil(subTotal)}
                           </span>
                         </div>
                       </div>
-                      <hr className="h-px my-6 border-[#D9D9D9] border-1 "></hr>
-                      <div className="flex justify-between items-center">
-                        <div className="w-1/2">
-                          <span className="text-gray-600">Total</span>
-                          <p className="text-xs text-black">
+                      <hr className='h-px my-6 border-[#D9D9D9] border-1 '></hr>
+                      <div className='flex justify-between items-center'>
+                        <div className='w-1/2'>
+                          <span className='text-gray-600'>Total</span>
+                          <p className='text-xs text-black'>
                             Including taxes and charges
                           </p>
                         </div>
-                        <div className="w-1/2 text-right">
-                          <span className="font-medium text-black text-sm">
+                        <div className='w-1/2 text-right'>
+                          <span className='font-medium text-black text-sm'>
                             INR
                           </span>{" "}
-                          <span className="font-medium text-2xl">
-                            ₹{Math.ceil(subTotal * 105 / 100)}
+                          <span className='font-medium text-2xl'>
+                            ₹{Math.ceil(subTotal)}
                           </span>
                         </div>
                       </div>
@@ -165,8 +160,7 @@ export default function CartModal() {
                   onClick={checkoutHandler}
                   variant={"contained"}
                   color={"primary"}
-                  className="text-white font-prompt text-sm px-4 py-2"
-                >
+                  className='text-white font-prompt text-sm px-4 py-2'>
                   Proceed to checkout
                 </Button>
               </Modal.Footer>
