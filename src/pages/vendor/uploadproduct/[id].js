@@ -65,7 +65,7 @@ export default function ViewProd() {
     }
     const calculatedSellingPrice = Math.ceil((total * (100 - discount)) / 100);
     setSellingPrice(calculatedSellingPrice);
-  }, [basePrice, total, discount]);
+  }, [basePrice, total, discount, SellingPrice]);
 	
 	const handleClose = (event, reason) => {
 		console.log(reason);
