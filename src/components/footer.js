@@ -69,6 +69,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/contact" className="text-white hover:text-gray">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
                 <Link
                   href="/paymentstructure"
                   className="text-white hover:text-gray"
@@ -143,12 +148,6 @@ export default function Footer() {
                     alt="mail logo"
                     className="p-1"
                   />
-                  <Link
-                    href="mailto:Contactus@madrasda.com"
-                    className="text-white hover:text-gray"
-                  >
-                    Mail to support
-                  </Link>
                 </div>
               </li>
               {/* <li>
