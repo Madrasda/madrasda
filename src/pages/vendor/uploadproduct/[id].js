@@ -27,50 +27,52 @@ const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function ViewProd() {
-	const [tokenExists, setTokenExists] = useState(false);
-	const router = useRouter();
-	let isReady = router.isReady;
-	const {id} = router.query;
-	const [loading, setLoading] = useState(false);
-	const [name, setName] = useState("");
-	const [desc, setDesc] = useState("");
-	const [basePrice, setBasePrice] = useState(0);
-	const [shipping, setShipping] = useState(0);
-	const [discount, setDiscount] = useState(0);
-	const [total, setTotal] = useState(0);
-	const [profit, setProfit] = useState(0);
-	const [SellingPrice, setSellingPrice] = useState(basePrice);
-	const [audience, setAudience] = useState("Choose you target audience");
-	const [tax, setTax] = useState(0);
-	const [currenId, setCurId] = useState(null);
-	const [publishStatus, setPublishStatus] = useState(true);
-	const [productImages, setProductImages] = useState([]);
-	const [sizes, setSizes] = useState([]);
-	const [colors, setColors] = useState([]);
-	const [selectedColors, setSelectedColors] = useState([]);
-	const [template, setTemplate] = useState(null);
-	const [spinner, setSpinnerState] = useState(false); //spinner
-	const [message, setMessage] = useState("");
-	const [severity, setSeverity] = useState(""); // success , error
-	const [open, setOpen] = useState(false); // same as spinner
-	useEffect(() => {
+  const [tokenExists, setTokenExists] = useState(false);
+  const router = useRouter();
+  let isReady = router.isReady;
+  const { id } = router.query;
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
+  const [basePrice, setBasePrice] = useState(0);
+  const [shipping, setShipping] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [profit, setProfit] = useState(0);
+  const [SellingPrice, setSellingPrice] = useState(basePrice);
+  const [audience, setAudience] = useState("Choose you target audience");
+  const [tax, setTax] = useState(0);
+  const [currenId, setCurId] = useState(null);
+  const [publishStatus, setPublishStatus] = useState(true);
+  const [productImages, setProductImages] = useState([]);
+  const [sizes, setSizes] = useState([]);
+  const [colors, setColors] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [template, setTemplate] = useState(null);
+  const [spinner, setSpinnerState] = useState(false); //spinner
+  const [message, setMessage] = useState("");
+  const [severity, setSeverity] = useState(""); // success , error
+  const [open, setOpen] = useState(false); // same as spinner
+  useEffect(() => {
     const calculatedProfit = Math.ceil(
       ((100 - tax) / 100) * SellingPrice - basePrice
     );
     setProfit(calculatedProfit);
 
-		if(total === 0) {
-			setSellingPrice(basePrice);
-			return;
-		}
-		const calculatedSellingPrice = Math.ceil(total * (100 - discount) / 100 * (tax + 100) / 100);
-		setSellingPrice(calculatedSellingPrice);
-	}, [basePrice, total, discount]);
-	const handleClose = (event, reason) => {
-		console.log(reason);
-		if (reason === "clickaway") {
-			return;
-		}
+    if (total === 0) {
+      setSellingPrice(basePrice);
+      return;
+    }
+    const calculatedSellingPrice = Math.ceil(
+      (((total * (100 - discount)) / 100) * (tax + 100)) / 100
+    );
+    setSellingPrice(calculatedSellingPrice);
+  }, [basePrice, total, discount]);
+  const handleClose = (event, reason) => {
+    console.log(reason);
+    if (reason === "clickaway") {
+      return;
+    }
 
     setOpen(false);
   };
@@ -625,7 +627,7 @@ export default function ViewProd() {
                         ),
                       }}
                       type="numeric"
-                      label={"Profit Earned (₹)"}
+                      label={"Profit Earned*(₹)"}
                       className="text-2xl w-72"
                       value={profit}
                       readOnly
@@ -638,6 +640,11 @@ export default function ViewProd() {
                 <h1 className="ml-2 text-lg mt-4 font-bold">
                   NOTE: Kindly email the design in high quality with a
                   resolution of 3000 x 3000 to admin at backend@madrasda.com
+                </h1>
+                <span>*Profit Earned does not include shipping charges.</span>
+                <h1 className="ml-2 text-lg mt-4 items-center">
+                  <InfoIcon /> Shipping charges varies with the location of
+                  customer address
                 </h1>
                 <h1 className="ml-2 text-lg mt-4 items-center">
                   <InfoIcon /> Click on View Products to enable this product for
