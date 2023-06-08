@@ -23,8 +23,7 @@ export default function WithdrawModal({ request, profit, withdraw }) {
         style={{
           background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
           color: "white",
-        }}
-      >
+        }}>
         Withdraw
       </Button>
       <Modal
@@ -49,15 +48,14 @@ export default function WithdrawModal({ request, profit, withdraw }) {
           <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
-          {Number(profit) !== 0 && (
+          {Number(profit) > 0 && (
             <Button
               auto
               onPress={withdrawHandler}
               style={{
-                background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-                color: "white",
-              }}
-            >
+                background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                color:"white",
+              }}>
               Request
             </Button>
           )}

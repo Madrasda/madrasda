@@ -10,7 +10,7 @@ export default function WithdrawForm({ profit }) {
             {Number(profit).toLocaleString("en-IN")}?
           </div>
         )}
-        {Number(profit) === 0 && (
+        {Number(profit) <= 0 && (
           <div className='bg-white text-black text-sm rounded-lg block w-full p-2.5'>
             You have no profits to withdraw from!
           </div>
