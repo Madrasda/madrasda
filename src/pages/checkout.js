@@ -57,19 +57,21 @@ export default function Checkout() {
     ) {
       router.push("/login");
     } else {
-      if (ctx.cart.cartItems !== undefined) {
-        const sum = ctx.cart.cartItems.reduce(
-          (prev, curr) =>
-            (prev +=
-              curr.quantity *
-              Math.ceil(
-                (curr.product.total * (100 - curr.product.discount)) / 100
-              )),
-          0
-        );
-        setSubtotal(sum);
-      } else {
-        router.push("/");
+      if (ctx.cart.cartItems) {
+        if (ctx.cart.cartItems.length === 0) {
+          router.push("/");
+        } else {
+          const sum = ctx.cart.cartItems.reduce(
+            (prev, curr) =>
+              (prev +=
+                curr.quantity *
+                Math.ceil(
+                  (curr.product.total * (100 - curr.product.discount)) / 100
+                )),
+            0
+          );
+          setSubtotal(sum);
+        }
       }
     }
   }, [ctx.cart]);
