@@ -137,9 +137,6 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                 <h1 className="md:text-2xl w-full text-primary text-lg font-raj text-right float-right pr-4">
                   {name}
                 </h1>
-                <h1 className="md:text-2xl w-full text-bg text-lg font-raj text-right float-right pr-4">
-                  Products
-                </h1>
               </div>
             </div>
             <span className="flex flex-col xl:hidden bg-bg w-full mx-auto pt-24">
