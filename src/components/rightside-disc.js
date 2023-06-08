@@ -130,9 +130,6 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                 <h1 className="md:text-2xl text-lg font-raj text-right w-full text-primary pr-4">
                   {name}
                 </h1>
-                <h1 className="md:text-2xl text-lg font-raj text-right w-full text-bg pr-4">
-                  Products
-                </h1>
               </div>
             </div>
           </div>
