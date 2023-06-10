@@ -8,7 +8,6 @@ export default function PayoutConfirm(props) {
 
   const closeHandler = () => {
     setVisible(false);
-    console.log("closed");
   };
 
   const deleteTrue = () => {
@@ -19,21 +18,24 @@ export default function PayoutConfirm(props) {
   return (
     <>
       <Button
-        className='bg-primary hover:bg-logo text-white font-small py-2 px-4 rounded-lg z-0'
-        onPress={handler}>
+        className="bg-primary hover:bg-logo text-white font-small py-2 px-4 rounded-lg z-0"
+        onPress={handler}
+      >
         Complete Payout
       </Button>
       <Modal
-        width='400px'
+        width="400px"
         preventClose
         open={visible}
-        aria-labelledby='modal-title'
-        css={{ fontFamily: "$algeria" }}>
+        aria-labelledby="modal-title"
+        css={{ fontFamily: "$algeria" }}
+      >
         <Modal.Header
           css={{
             fontFamily: "$algeria",
             fontSize: "$lg",
-          }}>
+          }}
+        >
           Confirm
         </Modal.Header>
         <Modal.Body css={{ fontFamily: "$algeria" }}>
@@ -42,10 +44,10 @@ export default function PayoutConfirm(props) {
           </h1>
         </Modal.Body>
         <Modal.Footer css={{ fontFamily: "$algeria" }}>
-          <Button auto flat color='success' onPress={deleteTrue}>
+          <Button auto flat color="success" onPress={deleteTrue}>
             Yes
           </Button>
-          <Button auto flat color='error' onPress={closeHandler}>
+          <Button auto flat color="error" onPress={closeHandler}>
             Cancel
           </Button>
         </Modal.Footer>

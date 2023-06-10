@@ -1,28 +1,27 @@
-import {Button, Modal} from "@nextui-org/react";
+import { Button, Modal } from "@nextui-org/react";
 import Image from "next/image";
-import {useState} from "react";
-import {Button as MuiButton} from "@mui/material";
+import { useState } from "react";
+import { Button as MuiButton } from "@mui/material";
 
 export default function CloseConfirm(props) {
-	const [visible, setVisible] = useState(false);
-	const handler = () => {
-		console.log("modal clicked")
-		setVisible(true);
-	};
+  const [visible, setVisible] = useState(false);
+  const handler = () => {
+    setVisible(true);
+  };
 
-	const closeHandler = () => {
-		setVisible(false);
-	};
+  const closeHandler = () => {
+    setVisible(false);
+  };
 
-	const deleteTrue = () => {
-		if (props.disabled !== undefined) {
-			props.toggleMockup();
-		}
-		closeHandler();
-		props.delete(true);
-	};
+  const deleteTrue = () => {
+    if (props.disabled !== undefined) {
+      props.toggleMockup();
+    }
+    closeHandler();
+    props.delete(true);
+  };
 
-	return (
+  return (
     <>
       {props.disabled === undefined && (
         <Button
@@ -34,8 +33,9 @@ export default function CloseConfirm(props) {
             border: "transparent",
             width: "auto",
             height: "auto",
-          }}>
-          <Image src='/close.png' width={30} height={30} />
+          }}
+        >
+          <Image src="/close.png" width={30} height={30} />
         </Button>
       )}
       {props.disabled !== undefined && (
@@ -43,21 +43,24 @@ export default function CloseConfirm(props) {
           variant={"contained"}
           onClick={handler}
           className={props.disabled ? "bg-success" : "bg-error"}
-          color={props.disabled ? "success" : "error"}>
+          color={props.disabled ? "success" : "error"}
+        >
           {(props.disabled ? "Enable" : "Disable") + " Mockup"}
         </MuiButton>
       )}
       <Modal
-        width='400px'
+        width="400px"
         preventClose
         open={visible}
-        aria-labelledby='modal-title'
-        css={{ fontFamily: "$algeria" }}>
+        aria-labelledby="modal-title"
+        css={{ fontFamily: "$algeria" }}
+      >
         <Modal.Header
           css={{
             fontFamily: "$algeria",
             fontSize: "$lg",
-          }}>
+          }}
+        >
           Confirm
         </Modal.Header>
         <Modal.Body css={{ fontFamily: "$algeria" }}>
@@ -85,10 +88,10 @@ export default function CloseConfirm(props) {
           )}
         </Modal.Body>
         <Modal.Footer css={{ fontFamily: "$algeria" }}>
-          <Button auto flat color='success' onPress={deleteTrue}>
+          <Button auto flat color="success" onPress={deleteTrue}>
             Yes
           </Button>
-          <Button auto flat color='error' onPress={closeHandler}>
+          <Button auto flat color="error" onPress={closeHandler}>
             Cancel
           </Button>
         </Modal.Footer>

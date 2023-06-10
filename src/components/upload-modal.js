@@ -9,7 +9,16 @@ import { useRouter } from "next/router";
 import { uuidv4 } from "@firebase/util";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
 
-export default function UploadModal({ chooseDesign, upload, setMessage, setOpen, setSeverity, setDesigns, refreshDesigns, gallery}) {
+export default function UploadModal({
+  chooseDesign,
+  upload,
+  setMessage,
+  setOpen,
+  setSeverity,
+  setDesigns,
+  refreshDesigns,
+  gallery,
+}) {
   const [visible, setVisible] = React.useState(false);
   const [selected, setSelected] = useState({});
   const [image, setImage] = useState(null);
@@ -22,7 +31,6 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
   const router = useRouter();
 
   const closeHandler = () => {
-    console.log(selected);
     if (!upload) {
       chooseDesign(selected);
     } else {
@@ -112,41 +120,44 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
       <div>
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={spinner}>
-          <CircularProgress color='inherit' />
+          open={spinner}
+        >
+          <CircularProgress color="inherit" />
         </Backdrop>
         <Button
           auto
           ghost
-          color='black'
-          className='font-quest'
-          onPress={handler}>
+          color="black"
+          className="font-quest"
+          onPress={handler}
+        >
           <Image
-            src='/upload.svg'
+            src="/upload.svg"
             width={25}
             height={25}
-            className='mr-4 font-quest'
+            className="mr-4 font-quest"
           />{" "}
           {upload ? "Upload your design" : "Choose design from gallery"}
         </Button>
         <Modal
           closeButton
           preventClose
-          aria-labelledby='modal-title'
+          aria-labelledby="modal-title"
           open={visible}
           onClose={closeHandler}
-          className='font-quest'>
-          <Modal.Header className='font-quest'>
-            <Text id='modal-title' size={18}>
+          className="font-quest"
+        >
+          <Modal.Header className="font-quest">
+            <Text id="modal-title" size={18}>
               {upload ? "Upload a new Design" : "Select Design"}
             </Text>
           </Modal.Header>
 
           <Modal.Body css={{ fontFamily: "$algeria" }}>
-            <div className='bg-[#D9D9D9] m-3 p-5 rounded-lg'>
+            <div className="bg-[#D9D9D9] m-3 p-5 rounded-lg">
               {/* Choose Designs */}
               {!upload && (
-                <div className='flex justify-around items-center flex-wrap'>
+                <div className="flex justify-around items-center flex-wrap">
                   {designs &&
                     designs.map((d) => {
                       return (
@@ -155,7 +166,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
                           src={d.imgUrl}
                           width={100}
                           height={40}
-                          className='p-2'
+                          className="p-2"
                           alt={"Imgaes"}
                           onClick={() => {
                             setSelected(d);
@@ -168,39 +179,41 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
               )}
               {/* Upload Design */}
               {upload && (
-                <div className='mx-auto'>
+                <div className="mx-auto">
                   <Backdrop
                     sx={{
                       color: "#fff",
                       zIndex: (theme) => theme.zIndex.drawer + 1,
                     }}
-                    open={spinner}>
-                    <CircularProgress color='inherit' />
+                    open={spinner}
+                  >
+                    <CircularProgress color="inherit" />
                   </Backdrop>
-                  <h1 className='mb-2'>Add your new design</h1>
+                  <h1 className="mb-2">Add your new design</h1>
                   <label
-                    for='design-image'
-                    className='flex flex-col items-center justify-center w-full h-fit border-2 border-[#D9D9D9] rounded-lg cursor-pointer bg-white'>
-                    <div className='flex flex-row items-center justify-center py-6 px-4 '>
+                    for="design-image"
+                    className="flex flex-col items-center justify-center w-full h-fit border-2 border-[#D9D9D9] rounded-lg cursor-pointer bg-white"
+                  >
+                    <div className="flex flex-row items-center justify-center py-6 px-4 ">
                       <Image
-                        src='/upload.svg'
-                        alt='upload-icon'
+                        src="/upload.svg"
+                        alt="upload-icon"
                         width={50}
                         height={50}
-                        className='mr-4'
+                        className="mr-4"
                       />
-                      <p className='text-xs text-black flex flex-col justify-center'>
+                      <p className="text-xs text-black flex flex-col justify-center">
                         {!image && "Click to"}
-                        <span className='font-semibold flex justify-center'>
+                        <span className="font-semibold flex justify-center">
                           {image ? image.name : "Upload Mockup"}
                         </span>
                       </p>
                     </div>
                     <input
-                      id='design-image'
-                      type='file'
-                      className='hidden'
-                      accept='image/*'
+                      id="design-image"
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
                       onChange={(e) => setImage(e.target.files[0])}
                     />
                   </label>
@@ -210,7 +223,7 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
           </Modal.Body>
 
           <Modal.Footer css={{ fontFamily: "$algeria" }}>
-            <Button auto flat color='error' onPress={closeHandler}>
+            <Button auto flat color="error" onPress={closeHandler}>
               Close
             </Button>
             {upload && (
@@ -219,7 +232,8 @@ export default function UploadModal({ chooseDesign, upload, setMessage, setOpen,
                 onPress={closeHandler}
                 style={{
                   background: "#FFA000",
-                }}>
+                }}
+              >
                 Upload
               </Button>
             )}

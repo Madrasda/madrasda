@@ -1,22 +1,22 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
-	Alert,
-	Backdrop,
-	Button,
-	CircularProgress,
-	Dialog,
-	DialogActions,
-	DialogContent,
-	DialogContentText,
-	DialogTitle,
-	Snackbar
+  Alert,
+  Backdrop,
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Snackbar,
 } from "@mui/material";
-import {uuidv4} from "@firebase/util";
-import XLSX, {set_cptable} from "xlsx";
-import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
+import { uuidv4 } from "@firebase/util";
+import XLSX, { set_cptable } from "xlsx";
+import * as cptable from "xlsx/dist/cpexcel.full.mjs";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { JsonToExcel } from "react-json-to-excel";
 import { Edit } from "@mui/icons-material";
 
@@ -30,7 +30,6 @@ export default function ProductTable({ products, setProducts, path }) {
   const [visible, setVisible] = useState(false);
   const router = useRouter();
   const handleClose = (event, reason) => {
-    console.log(reason);
     if (reason === "clickaway") {
       return;
     }
@@ -42,7 +41,7 @@ export default function ProductTable({ products, setProducts, path }) {
   const getAvailableColors = (colors) => {
     var Available = [];
     colors.forEach((item) => {
-      if (Available.indexOf(i => i.hexValue===item.hexValue) === -1)
+      if (Available.indexOf((i) => i.hexValue === item.hexValue) === -1)
         Available.push({
           color: item.color,
           hexValue: item.hexValue,
@@ -118,24 +117,27 @@ export default function ProductTable({ products, setProducts, path }) {
         open={open}
         autoHideDuration={1800}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}>
-        <Alert variant='filled' onClose={handleClose} severity={severity}>
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert variant="filled" onClose={handleClose} severity={severity}>
           {message}
         </Alert>
       </Snackbar>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={spinner}>
+        open={spinner}
+      >
         <CircularProgress className={"text-accent"} />
       </Backdrop>
       <Dialog
         open={visible}
         onClose={closeModal}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'>
-        <DialogTitle id='alert-dialog-title'>{"Product Banned!"}</DialogTitle>
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Product Banned!"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
+          <DialogContentText id="alert-dialog-description">
             This product has been banned by the Madrasda Team for violating our
             policies. If you think this is a mistake email us at&nbsp;
             <u>support@madrasda.com</u>.
@@ -147,49 +149,51 @@ export default function ProductTable({ products, setProducts, path }) {
           </Button>
         </DialogActions>
       </Dialog>
-      <div className='flex flex-col'>
-        <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
-          <div className='flex justify-end mr-8'>
+      <div className="flex flex-col">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="flex justify-end mr-8">
             <Button
               css={{ fontFamily: "$algeria" }}
               style={{
                 background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
               }}
-              variant={'contained'}
+              variant={"contained"}
               onClick={() => {
                 const table = document.getElementById("tablefunda");
                 const wb = XLSX.utils.table_to_book(table);
                 XLSX.writeFile(wb, "Myproducts.xlsx");
-              }}>
+              }}
+            >
               <b>Export as Excel</b>
             </Button>
           </div>
-          <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
-            <div className='text-black'>
+          <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="text-black">
               <table
-                className='min-w-full text-center text-sm font-medium'
-                id='tablefunda'>
-                <thead className='border-b text-m font-bold dark:border-neutral-500'>
+                className="min-w-full text-center text-sm font-medium"
+                id="tablefunda"
+              >
+                <thead className="border-b text-m font-bold dark:border-neutral-500">
                   <tr>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       S.No
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       Product
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       Profit
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       Discount
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       Total Price
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       Available Colours
                     </th>
-                    <th scope='col' className=' px-6 py-4'>
+                    <th scope="col" className=" px-6 py-4">
                       {path.includes("admin") ? "Banned" : "In Sale"}
                     </th>
                   </tr>
@@ -199,43 +203,55 @@ export default function ProductTable({ products, setProducts, path }) {
                     return (
                       <tr
                         key={uuidv4()}
-                        className='border-b dark:border-neutral-500'>
-                        <td className='whitespace-nowrap px-6 py-6 font-medium'>
+                        className="border-b dark:border-neutral-500"
+                      >
+                        <td className="whitespace-nowrap px-6 py-6 font-medium">
                           {index + 1}
                         </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
+                        <td className="whitespace-nowrap px-6 py-6">
                           {item.name}
                         </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
+                        <td className="whitespace-nowrap px-6 py-6">
                           {item.profit}
                         </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
+                        <td className="whitespace-nowrap px-6 py-6">
                           {item.discount}
                         </td>
-                        <td className='whitespace-nowrap px-6 py-6'>
+                        <td className="whitespace-nowrap px-6 py-6">
                           {item.total}
                         </td>
                         <td>
                           <div className="flex flex-wrap justify-center items-center space-x-1">
-                            {getAvailableColors(item.colors).slice(0, 3).map((i) => (
-                                <div key={uuidv4()} className="flex flex-col items-center">
+                            {getAvailableColors(item.colors)
+                              .slice(0, 3)
+                              .map((i) => (
+                                <div
+                                  key={uuidv4()}
+                                  className="flex flex-col items-center"
+                                >
                                   <div
-                                      key={uuidv4()}
-                                      style={{ backgroundColor: i.hexValue }}
-                                      className={`${(i.hexValue === '#fff' ||
-                                      i.hexValue === '#ffffff')? 'border-shadowGrey border-[2px]': ''}  rounded-full h-6 w-6`}
+                                    key={uuidv4()}
+                                    style={{ backgroundColor: i.hexValue }}
+                                    className={`${
+                                      i.hexValue === "#fff" ||
+                                      i.hexValue === "#ffffff"
+                                        ? "border-shadowGrey border-[2px]"
+                                        : ""
+                                    }  rounded-full h-6 w-6`}
                                   ></div>
                                 </div>
-                            ))}
+                              ))}
                             {item.colors.length > 3 && (
-                                <div className="flex items-center">
-                                  <p className="mr-1">{`. . . ${item.colors.length - 3}+`}</p>
-                                </div>
+                              <div className="flex items-center">
+                                <p className="mr-1">{`. . . ${
+                                  item.colors.length - 3
+                                }+`}</p>
+                              </div>
                             )}
                           </div>
                         </td>
 
-                        <td className='whitespace-nowrap px-6 py-6 flex justify-center'>
+                        <td className="whitespace-nowrap px-6 py-6 flex justify-center">
                           <button
                             onClick={() => {
                               if (path.includes("admin")) {
@@ -246,20 +262,22 @@ export default function ProductTable({ products, setProducts, path }) {
                                   item.publishStatus
                                 );
                               }
-                            }}>
+                            }}
+                          >
                             {(
                               path.includes("admin")
                                 ? item.adminBan
                                 : item.publishStatus
                             ) ? (
                               <Button
-                                className='bg-success font-bold'
-                                variant='contained'
-                                color='success'>
+                                className="bg-success font-bold"
+                                variant="contained"
+                                color="success"
+                              >
                                 Enabled
                               </Button>
                             ) : (
-                              <Button variant='contained' color='error'>
+                              <Button variant="contained" color="error">
                                 Disabled
                               </Button>
                             )}
@@ -272,7 +290,8 @@ export default function ProductTable({ products, setProducts, path }) {
                             className={" bg-info font-bold"}
                             onClick={() =>
                               router.push(`/vendor/editproduct/${item.id}`)
-                            }>
+                            }
+                          >
                             <Edit />
                           </Button>
                         </td>

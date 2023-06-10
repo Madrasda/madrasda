@@ -8,7 +8,6 @@ export default function WithdrawModal({ request, profit, withdraw }) {
   const handler = () => setVisible(true);
   const closeHandler = () => {
     setVisible(false);
-    console.log("closed");
   };
   const withdrawHandler = () => {
     withdraw(true);
@@ -19,23 +18,24 @@ export default function WithdrawModal({ request, profit, withdraw }) {
       <Button
         auto
         onPress={handler}
-        color='error'
+        color="error"
         css={{ fontFamily: "$algeria" }}
         style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
-            }}>
+          background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+          color: "white",
+        }}>
         Withdraw
       </Button>
       <Modal
         closeButton
         preventClose
-        aria-labelledby='modal-title'
+        aria-labelledby="modal-title"
         open={visible}
         onClose={closeHandler}
-        css={{ fontFamily: "$algeria" }}>
+        css={{ fontFamily: "$algeria" }}
+      >
         <Modal.Header css={{ fontFamily: "$algeria" }}>
-          <Text id='modal-title' size={18} className='font-bold'>
+          <Text id="modal-title" size={18} className="font-bold">
             Withdraw Request
           </Text>
         </Modal.Header>
@@ -45,10 +45,10 @@ export default function WithdrawModal({ request, profit, withdraw }) {
         </Modal.Body>
 
         <Modal.Footer css={{ fontFamily: "$algeria" }}>
-          <Button auto flat color='error' onPress={closeHandler}>
+          <Button auto flat color="error" onPress={closeHandler}>
             Close
           </Button>
-          {Number(profit) !== 0 && (
+          {Number(profit) > 0 && (
             <Button
               auto
               onPress={withdrawHandler}
