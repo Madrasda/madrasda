@@ -5,6 +5,11 @@ export default function Document() {
 	return (
 		<Html lang='en'>
 			<Head>
+				<title>Madrasda - Creators Marketplace</title>
+				<meta
+				name="description"
+				content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+				/>
 				<link rel='preconnect' href='https://fonts.googleapis.com'/>
 				<link
 					rel='preconnect'
