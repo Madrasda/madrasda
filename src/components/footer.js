@@ -139,17 +139,6 @@ export default function Footer() {
                   </Link>
                 </div>
               </li>
-              <li>
-                <div className="flex items-center">
-                  <Image
-                    src="/mail-logo.png"
-                    width={25}
-                    height={25}
-                    alt="mail logo"
-                    className="p-1"
-                  />
-                </div>
-              </li>
               {/* <li>
                 <a className="text-white hover:text-gray">Fourth Link</a>
               </li> */}
