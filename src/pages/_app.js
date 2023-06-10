@@ -5,9 +5,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "theme";
+import SEO from "next-seo.config";
 import { StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import "@/styles/globals.css";
+import { DefaultSeo } from "next-seo";
 
 function Loading() {
   const router = useRouter();
@@ -215,6 +217,7 @@ export default function App({ Component, pageProps }) {
         >
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            <DefaultSeo {...SEO} />
             <Component {...pageProps} />
           </ThemeProvider>
         </UserContext.Provider>
