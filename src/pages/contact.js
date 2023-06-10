@@ -5,6 +5,7 @@ export default function ContactUs() {
   return (
     <>
       <Head>
+      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda</title>
@@ -30,7 +31,15 @@ export default function ContactUs() {
               </div>
               <div className='flex'>
                 <div className='text-xl font-bold'>Phone Number:</div>
-                <div className='font-bold ml-5 mb-60'>9345354341</div>
+                <div className='font-bold ml-5 mb-10'>9345354341</div>
+              </div>
+              <div className='flex'>
+                <div className='text-xl font-bold'>Address:</div>
+                <div className='font-bold ml-5 mb-60'>No-33, Jai nagar, 
+                                                      3rd street, 
+                                                      Valasaravakkam, 
+                                                      Chennai - 600087.
+                </div>
               </div>
               <div className='ml-60 flex items-center justify-center'>
                 Thank you
