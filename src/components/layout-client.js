@@ -1,4 +1,5 @@
 import NavClient from "./nav-client";
+import Head from "next/head";
 import Footer from "./footer";
 import { forwardRef, Suspense, useContext, useState } from "react";
 import { Snackbar } from "@mui/material";
