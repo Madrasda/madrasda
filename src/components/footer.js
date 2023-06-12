@@ -3,138 +3,145 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="md:mt-20 relative text-gray body-font font-quest text-sm font-bold">
-      <div className="">
-        <div className="flex justify-center flex-wrap items-center w-full  absolute -top-8 md:-top-12 lg:-top-32">
+    <footer className='md:mt-20 relative text-gray body-font font-quest text-sm font-bold'>
+      <div className=''>
+        <div className='flex justify-center flex-wrap items-center w-full  absolute -top-8 md:-top-12 lg:-top-32'>
           <Image
-            className="w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]"
-            src="/actorkamal.png"
+            className='w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]'
+            src='/actorkamal.png'
             width={200}
             height={200}
           />
           <Image
-            className="w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]"
-            src="/actordanush.png"
+            className='w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]'
+            src='/actordanush.png'
             width={200}
             height={200}
           />
           <Image
-            className="w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]"
-            src="/actorvijay.png"
+            className='w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]'
+            src='/actorvijay.png'
             width={200}
             height={200}
           />
           <Image
-            className="w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]"
-            src="/actorajith.png "
+            className='w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]'
+            src='/actorajith.png '
             width={200}
             height={200}
           />
           <Image
-            className="w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]"
-            src="/actorvadivel.png"
+            className='w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]'
+            src='/actorvadivel.png'
             width={200}
             height={200}
           />
           <Image
-            className="w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]"
-            src="/actorrajini.png"
+            className='w-[55px] md:w-[100px] lg:w-[170px] xl:w-[200px]'
+            src='/actorrajini.png'
             width={200}
             height={200}
           />
         </div>
 
-        <div className="flex justify-center items-center bg-[#1A191C] mx-auto py-12 md:py-24">
-          <Image src="/logo.png" width={120} height={120} alt="footer logo" />
+        <div className='flex justify-center items-center bg-[#1A191C] mx-auto py-12 md:py-24'>
+          <Image src='/logo.png' width={120} height={120} alt='footer logo' />
         </div>
       </div>
-      <div className="flex justify-center pb-16 mx-auto bg-[#1A191C]">
-        <div className="flex flex-col md:flex-row justify-around md:text-left text-center order-first">
-          <div className="w-fit px-4 mx-auto">
-            <h2 className="title-font font-medium text-logo cursor-default tracking-widest justify-center text-lg mb-3">
+      <div className='flex justify-center pb-16 mx-auto bg-[#1A191C]'>
+        <div className='flex flex-col md:flex-row justify-around md:text-left text-center order-first'>
+          <div className='w-fit px-4 mx-auto'>
+            <h2 className='title-font font-medium text-logo cursor-default tracking-widest justify-center text-lg mb-3'>
               COMPANY
             </h2>
-            <nav className="list-none mb-10 space-y-2">
+            <nav className='list-none mb-10 space-y-2'>
               <li>
-                <Link href="/about" className="text-white hover:text-gray">
+                <Link href='/about' className='text-white hover:text-gray'>
                   About Us
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/terms&conditions"
-                  className="text-white hover:text-gray"
-                >
+                  href='/terms&conditions'
+                  className='text-white hover:text-gray'>
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-white hover:text-gray">
+                <Link href='/contact' className='text-white hover:text-gray'>
                   Contact Us
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/paymentstructure"
-                  className="text-white hover:text-gray"
-                >
+                  href='/paymentstructure'
+                  className='text-white hover:text-gray'>
                   Payment Structure
                 </Link>
               </li>
               <li>
                 <Link
-                  href="return&refund"
-                  className="text-white hover:text-gray"
-                >
+                  href='return&refund'
+                  className='text-white hover:text-gray'>
                   Return and Refund
                 </Link>
               </li>
               <li>
                 <Link
-                  href="privacypolicy"
-                  className="text-white hover:text-gray"
-                >
+                  href='cancel-policy'
+                  className='text-white hover:text-gray'>
+                  Cancellation Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='shipping-policy'
+                  className='text-white hover:text-gray'>
+                  Shipping Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='privacypolicy'
+                  className='text-white hover:text-gray'>
                   Privacy policy
                 </Link>
               </li>
             </nav>
           </div>
-          <div className="w-fit px-4 mx-auto">
-            <h2 className="title-font font-medium text-logo cursor-default tracking-widest text-lg mb-3">
+          <div className='w-fit px-4 mx-auto'>
+            <h2 className='title-font font-medium text-logo cursor-default tracking-widest text-lg mb-3'>
               CONNECT WITH US
             </h2>
             <nav
-              className="list-none mb-10 flex flex-col items-center justify-center
-                            md:items-start space-y-2"
-            >
+              className='list-none mb-10 flex flex-col items-center justify-center
+                            md:items-start space-y-2'>
               <li>
-                <div className="flex items-center justify-start">
+                <div className='flex items-center justify-start'>
                   <Image
-                    src="/facebook-logo.png"
+                    src='/facebook-logo.png'
                     width={24}
                     height={24}
-                    alt="facebook logo"
+                    alt='facebook logo'
                   />
                   <Link
-                    href="https://www.facebook.com/profile.php?id=100093296386138&mibextid=LQQJ4d"
-                    className="text-white hover:text-gray"
-                  >
+                    href='https://www.facebook.com/profile.php?id=100093296386138&mibextid=LQQJ4d'
+                    className='text-white hover:text-gray'>
                     Facebook
                   </Link>
                 </div>
               </li>
               <li>
-                <div className="flex items-center">
+                <div className='flex items-center'>
                   <Image
-                    src="/instagram-logo.png"
+                    src='/instagram-logo.png'
                     width={25}
                     height={25}
-                    alt="facebook logo"
+                    alt='facebook logo'
                   />
                   <Link
-                    href="https://instagram.com/madrasda_offical?igshid=OGQ5ZDc2ODk2ZA=="
-                    className="text-white hover:text-gray"
-                  >
+                    href='https://instagram.com/madrasda_offical?igshid=OGQ5ZDc2ODk2ZA=='
+                    className='text-white hover:text-gray'>
                     Instagram
                   </Link>
                 </div>
@@ -168,9 +175,9 @@ export default function Footer() {
           </div> */}
         </div>
       </div>
-      <div className="bg-black">
-        <div className="container flex items-center justify-center px-5 py-6 mx-auto">
-          <p className="text-xs text-center text-white mt-4 tracking-[0.15rem]">
+      <div className='bg-black'>
+        <div className='container flex items-center justify-center px-5 py-6 mx-auto'>
+          <p className='text-xs text-center text-white mt-4 tracking-[0.15rem]'>
             Copyright © 2023 Madrasda Pvt Ltd, All Rights Reserved.
           </p>
         </div>
