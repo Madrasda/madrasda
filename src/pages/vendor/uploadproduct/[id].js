@@ -59,9 +59,9 @@ export default function ViewProd() {
       return;
     }
     const calculatedSellingPrice = Math.ceil(
-      (((total * (100 - discount)) / 100) * (tax + 100) / 100)
+      (((total * (100 - discount)) / 100))
     );
-    const calculatedProfit = Math.ceil(calculatedSellingPrice - basePrice);
+    const calculatedProfit = Math.ceil(calculatedSellingPrice * (100 - tax) / 100 - basePrice);
     setProfit(calculatedProfit);
     setSellingPrice(calculatedSellingPrice);
   }, [basePrice, total, discount, SellingPrice, tax]);
