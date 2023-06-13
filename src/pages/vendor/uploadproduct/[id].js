@@ -67,7 +67,7 @@ export default function ViewProd() {
       (((total * (100 - discount)) / 100) * (tax + 100)) / 100
     );
     setSellingPrice(calculatedSellingPrice);
-  }, [basePrice, total, discount]);
+  }, [basePrice, total, discount, SellingPrice]);
   const handleClose = (event, reason) => {
     console.log(reason);
     if (reason === "clickaway") {
