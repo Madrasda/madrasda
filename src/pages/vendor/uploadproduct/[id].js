@@ -54,20 +54,17 @@ export default function ViewProd() {
   const [severity, setSeverity] = useState(""); // success , error
   const [open, setOpen] = useState(false); // same as spinner
   useEffect(() => {
-    const calculatedProfit = Math.ceil(
-      ((100 - tax) / 100) * SellingPrice - basePrice
-    );
-    setProfit(calculatedProfit);
-
     if (total === 0) {
       setSellingPrice(basePrice);
       return;
     }
     const calculatedSellingPrice = Math.ceil(
-      (((total * (100 - discount)) / 100) * (tax + 100)) / 100
+      (((total * (100 - discount)) / 100) * (tax + 100) / 100)
     );
+    const calculatedProfit = Math.ceil(calculatedSellingPrice - basePrice);
+    setProfit(calculatedProfit);
     setSellingPrice(calculatedSellingPrice);
-  }, [basePrice, total, discount, SellingPrice]);
+  }, [basePrice, total, discount, SellingPrice, tax]);
   const handleClose = (event, reason) => {
     console.log(reason);
     if (reason === "clickaway") {
@@ -478,7 +475,7 @@ export default function ViewProd() {
                         <input
                           id='dropzone-file'
                           type='file'
-                          accept='image/*'
+                          accept='image/jpeg, image/jpg, image/png'
                           className='hidden'
                           onChange={(e) => {
                             if (
