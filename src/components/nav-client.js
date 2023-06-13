@@ -77,8 +77,15 @@ export default function NavisCustomer() {
     const menu = document.getElementById("mobile_menu");
     menu.classList.toggle("hidden");
   };
-  const handleVendorProductsClick = (id) => {
-    router.push("/products/[vendorId]", "/products/" + id);
+  const handleVendorProductsClick = (id, name) => {
+    // router.push("/products/[vendorId]", "/products/" + id);
+    router.push(
+      {
+        pathname : "/products/[vendorId]",
+        query : {vendorId : id}
+      },
+      "/creators/" + name
+    )
   };
 
   const handleCategoryProductsClick = (event) => {
@@ -310,7 +317,7 @@ export default function NavisCustomer() {
                     <MenuItem
                       key={uuidv4()}
                       className='p-0'
-                      onClick={() => handleVendorProductsClick(vendor.id)}>
+                      onClick={() => handleVendorProductsClick(vendor.id, vendor.name)}>
                       <div key={uuidv4()} className={"px-3 py-3"}>
                         {vendor.name}
                       </div>
