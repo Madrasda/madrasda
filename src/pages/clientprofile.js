@@ -47,7 +47,7 @@ export default function ClientProfile() {
   };
   const getOrderHistory = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllOrdersById/",
+      "http://localhost:8080/api/transaction/getAllOrdersById/",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_client"),
@@ -131,9 +131,9 @@ export default function ClientProfile() {
                       {!order.cancelled && (
                         <h6 className="font-semibold text-3xl mt-2">
                           <span className="font-light text-black">
-                            {order.shipmentActivity && order.shipmentActivity[0]
-                              ? "Your order is being shipped"
-                              : "Your order is cooking!"}
+                            {order.status === 'NEW'
+                              ? "Your order is cooking!"
+                              : order.status === 'IN TRANSIT'? 'Shipping': order.status}
                           </span>
                         </h6>
                       )}
