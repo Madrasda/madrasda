@@ -43,12 +43,11 @@ export default function ProductList({
                 value={i}
                 className={`px-3 py-2 leading-tight border border-primary
                                             ${
-                                              pageNo === i
+                                              pageNo === i - 1
                                                 ? "bg-primary text-white"
                                                 : "text-primary bg-white hover:bg-primary hover:text-white"
                                             }`}
-                onClick={handlePageChange}
-              >
+                onClick={handlePageChange}>
                 {i}
               </button>
             </li>
