@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Script from "next/script";
 import CarouselComponent from "@/components/carousel";
 import Image from "next/image";
 import ClientLayout from "@/components/layout-client";
@@ -73,6 +74,19 @@ export default function Home() {
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Official merchandise | Indian content creators</title>
       </Head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-P9LL7RBT1S"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-P9LL7RBT1S');
+        `}
+      </Script>
 
       <ClientLayout>
         <CarouselComponent />
