@@ -75,12 +75,19 @@ export default function Checkout() {
       }
     }
   }, [ctx.cart]);
+  useEffect(() => {
+    setTimeout(() => {
+      if(subTotal <= 500)
+        handleChange({target: {value: pincode}})
+    }, 1000)
 
+  }, [subTotal])
   const handleChange = (event) => {
     const text = event.target.value;
     setPincode((oldText) => {
       setTimeout(() => {
         if (text.length === 6) {
+
           setError(false);
           setSpinner(true);
           axios
@@ -157,6 +164,7 @@ export default function Checkout() {
     axios
       .post(
         //https://spring-madrasda-2f6mra4vwa-em.a.run.app
+          //http://localhost:8080
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder",
         transaction,
         {
