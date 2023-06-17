@@ -72,7 +72,7 @@ export default function OrderDetailsModal({ order }) {
             >
               {/* <!-- Order header --> */}
               <div className="bg-bg text-white py-4 px-3 flex justify-between items-center w-full">
-                <h1 className="md:text-lg w-fit font-semibold">#{order.id}</h1>
+                <h1 className="md:text-lg w-fit font-semibold">#{order.orderId}</h1>
                 <span className="md:text-lg w-fit">
                   ₹{Number(order.orderTotal).toLocaleString("en-IN")}
                 </span>
