@@ -168,61 +168,61 @@ export default function SizeChartModal() {
             <tbody>
               <tr>
                 <td>XS</td>
-                <td>36</td>
+                <td>34</td>
                 <td>22.5</td>
                 <td>5.5</td>
               </tr>
               <tr>
                 <td>S</td>
-                <td>38</td>
+                <td>36</td>
                 <td>23</td>
                 <td>6</td>
               </tr>
               <tr>
                 <td>M</td>
-                <td>40</td>
+                <td>38</td>
                 <td>23.5</td>
                 <td>6.5</td>
               </tr>
               <tr>
                 <td>L</td>
-                <td>42</td>
+                <td>40</td>
                 <td>24</td>
                 <td>7</td>
               </tr>
               <tr>
                 <td>XL</td>
-                <td>44</td>
+                <td>42</td>
                 <td>24.5</td>
                 <td>7.5</td>
               </tr>
               <tr>
                 <td>2XL</td>
-                <td>46</td>
+                <td>44</td>
                 <td>25</td>
                 <td>8</td>
               </tr>
               <tr>
                 <td>3XL</td>
-                <td>48</td>
+                <td>46</td>
                 <td>25.5</td>
                 <td>8.5</td>
               </tr>
               <tr>
                 <td>4XL</td>
-                <td>50</td>
+                <td>48</td>
                 <td>26</td>
                 <td>9</td>
               </tr>
               <tr>
                 <td>5XL</td>
-                <td>52</td>
+                <td>50</td>
                 <td>26.5</td>
                 <td>9.5</td>
               </tr>
               <tr>
                 <td>6XL</td>
-                <td>54</td>
+                <td>52</td>
                 <td>27</td>
                 <td>9.5</td>
               </tr>

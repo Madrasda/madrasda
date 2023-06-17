@@ -89,7 +89,6 @@ export default function Document() {
           name='description'
           content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda. Support your favorite creators"
         />
-        <title>Madrasda | Official merchandise | Indian content creators</title>
 				<meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
 				/>
       </Head>
