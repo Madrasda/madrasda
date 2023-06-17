@@ -50,7 +50,7 @@ export default function CancelOrderModal({
 			})
 			.catch(err => {
 				setVisible(false);
-				setMessage(err.data);
+				setMessage("Order Cannot be cancelled");
 				setSeverity("error");
 				setOpenSnackbar(true);
 			})
