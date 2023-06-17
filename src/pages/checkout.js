@@ -23,6 +23,7 @@ export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
   const [shippingCharges, setShippingCharges] = useState(-1);
   const [quantityState, changeState] = useState(1);
+  const [previousTimeoutId, setPreviousTimeoutId] = useState();
   const [pincode, setPincode] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState(false);
@@ -71,7 +72,14 @@ export default function Checkout() {
                 )),
             0
           );
-          setSubtotal(sum);
+          const timeoutId = setTimeout(() => {
+            if(sum < 500)
+              handleChange({target: {value: pincode}})
+            else setShippingCharges(0);
+          }, 1000)
+          setSubtotal(Math.ceil(sum));
+          clearTimeout(previousTimeoutId);
+          setPreviousTimeoutId(timeoutId);
         }
       }
     }
@@ -98,7 +106,6 @@ export default function Checkout() {
       })
       .catch((err) => {
         if (err.response.status === 400) {
-          alert("No delivery available");
           setSpinner(false);
           setShippingCharges(-100);
         }
@@ -167,6 +174,7 @@ export default function Checkout() {
     axios
       .post(
         //https://spring-madrasda-2f6mra4vwa-em.a.run.app
+          //http://localhost:8080
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder",
         transaction,
         {
@@ -317,7 +325,7 @@ export default function Checkout() {
                                 {shippingCharges === -1 &&
                                   "Enter a valid Pincode"}
                                 {shippingCharges === -100 &&
-                                  "Quantity is too high"}
+                                  "Too many items"}
                               </h4>
                             ) : shippingCharges === 0 ? (
                               "FREE"
@@ -342,8 +350,8 @@ export default function Checkout() {
                           </span>{" "}
                           <span className='font-medium text-2xl'>
                             ₹
-                            {subTotal +
-                              ((shippingCharges === -1 || shippingCharges === -100) ? 0 : shippingCharges)}
+                            {Math.ceil(subTotal +
+                              ((shippingCharges < 0) ? 0 : shippingCharges))}
                           </span>
                         </div>
                       </div>
