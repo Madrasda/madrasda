@@ -15,9 +15,16 @@ function PersonBasedProductsPage() {
     useEffect(() => {
         if (router.isReady) {
             setTitle(gender + "'s Products");
-            axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/products/" + gender + "?pageNo=" + pageNo)
-                .then(response => setProducts(response.data))
-                .catch(err => console.log(err));
+            axios
+              .get(
+                "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/products/" +
+                  gender +
+                  "?pageNo=" +
+                  pageNo +
+                  "&pageSize=12"
+              )
+              .then((response) => setProducts(response.data))
+              .catch((err) => console.log(err));
         }
     }, [gender, pageNo]);
 

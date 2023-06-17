@@ -177,7 +177,7 @@ export default function Payments() {
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             <a
-                              href={item.product.backDesignPlacement}
+                              href={item.product.backDesignUrl}
                               target='_blank'>
                               View Design
                             </a>

@@ -22,6 +22,8 @@ import CartItem from "@/components/CartItem";
 export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
   const [shippingCharges, setShippingCharges] = useState(-1);
+  const [quantityState, changeState] = useState(1);
+  const [previousTimeoutId, setPreviousTimeoutId] = useState();
   const [pincode, setPincode] = useState("");
   const [phone, setPhone] = useState("");
   const [error, setError] = useState(false);
@@ -70,49 +72,56 @@ export default function Checkout() {
                 )),
             0
           );
-          setSubtotal(sum);
+          const timeoutId = setTimeout(() => {
+            if(sum < 500)
+              handleChange({target: {value: pincode}})
+            else setShippingCharges(0);
+          }, 1000)
+          setSubtotal(Math.ceil(sum));
+          clearTimeout(previousTimeoutId);
+          setPreviousTimeoutId(timeoutId);
         }
       }
     }
   }, [ctx.cart]);
-  useEffect(() => {
-    setTimeout(() => {
-      if(subTotal <= 500)
-        handleChange({target: {value: pincode}})
 
-    }, 1000)
+  const getShippingCharges = (text) => {
+    setError(false);
+    setSpinner(true);
+    axios
+      .get(
+        // spring-madrasda-2f6mra4vwa-em.a.run.app
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
+          text,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token_client"),
+          },
+        }
+      )
+      .then((response) => {
+        setShippingCharges(response.data);
+        setSpinner(false);
+        setValidPincode(true);
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          setSpinner(false);
+          setShippingCharges(-100);
+        }
+        setValidPincode(false);
+        if (err.response.status === 409) {
+          setVisible(true);
+        }
+      });
+  };
 
-  }, [subTotal])
   const handleChange = (event) => {
     const text = event.target.value;
     setPincode((oldText) => {
       setTimeout(() => {
         if (text.length === 6) {
-
-          setError(false);
-          setSpinner(true);
-          axios
-            .get(
-              "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
-                text,
-              {
-                headers: {
-                  Authorization:
-                    "Bearer " + localStorage.getItem("token_client"),
-                },
-              }
-            )
-            .then((response) => {
-              setShippingCharges(response.data);
-              setSpinner(false);
-              setValidPincode(true);
-            })
-            .catch((err) => {
-              setValidPincode(false);
-              if (err.response.status === 409) {
-                setVisible(true);
-              }
-            });
+          getShippingCharges(text);
         } else {
           setError(true);
           setValidPincode(false);
@@ -151,7 +160,7 @@ export default function Checkout() {
         email: email.current.value,
         phone: phoneRef.current.value,
       },
-      orderTotal : Math.ceil(subTotal),
+      orderTotal: Math.ceil(subTotal),
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
           product: {
@@ -175,7 +184,13 @@ export default function Checkout() {
         }
       )
       .then((response) => (window.location.href = response.data))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 400) {
+          alert("No delivery available");
+          setShippingCharges(-100);
+        }
+      });
   };
 
   useEffect(() => {
@@ -201,14 +216,19 @@ export default function Checkout() {
               if (r.components.city) setCity(r.components.city);
             }
           });
-        });
+        })
+        .catch((err) => console.log(err));
+      getShippingCharges(pincode);
     }
-  }, [pincode]);
+  }, [pincode, quantityState]);
 
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Checkout</title>
@@ -276,6 +296,9 @@ export default function Checkout() {
                           id={item.id}
                           qty={item.quantity}
                           product={item.product}
+                          callback={() => {
+                            changeState(uuidv4());
+                          }}
                         />
                       ))}
                     <hr className='h-px my-6 border-[#D9D9D9] border-1 '></hr>
@@ -296,9 +319,13 @@ export default function Checkout() {
                         </div>
                         <div className='pl-3'>
                           <span className='font-medium'>
-                            {shippingCharges === -1 ? (
+                            {shippingCharges === -1 ||
+                            shippingCharges === -100 ? (
                               <h4 className={"text-red"}>
-                                Enter a valid Pincode
+                                {shippingCharges === -1 &&
+                                  "Enter a valid Pincode"}
+                                {shippingCharges === -100 &&
+                                  "Too many items"}
                               </h4>
                             ) : shippingCharges === 0 ? (
                               "FREE"
@@ -323,10 +350,8 @@ export default function Checkout() {
                           </span>{" "}
                           <span className='font-medium text-2xl'>
                             ₹
-                            {Math.ceil(
-                              subTotal +
-                                (shippingCharges === -1 ? 0 : shippingCharges)
-                            )}
+                            {Math.ceil(subTotal +
+                              ((shippingCharges < 0) ? 0 : shippingCharges))}
                           </span>
                         </div>
                       </div>
