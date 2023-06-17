@@ -50,7 +50,7 @@ export default function CancelOrderModal({
 			})
 			.catch(err => {
 				setVisible(false);
-				setMessage(err.data);
+				setMessage(err.response.data);
 				setSeverity("error");
 				setOpenSnackbar(true);
 			})
@@ -69,7 +69,7 @@ export default function CancelOrderModal({
 					color:"white",
 				}}
 				sx={{
-					display: ((requested || (new Date().getTime() - new Date(orderDate).getTime() <= 300000 && !cancelled)) ? "" : "none"),
+					display: ((requested || (new Date().getTime() - new Date(orderDate).getTime() <= 285000  && !cancelled)) ? "" : "none"),
 					fontFamily: "$algeria"
 				}}
 				disabled={requested}>
