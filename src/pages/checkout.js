@@ -83,7 +83,8 @@ export default function Checkout() {
     axios
       .get(
         // spring-madrasda-2f6mra4vwa-em.a.run.app
-        "http://localhost:8080/api/payment/getShippingCharges/" + text,
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
+          text,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token_client"),
@@ -106,7 +107,7 @@ export default function Checkout() {
           setVisible(true);
         }
       });
-  }
+  };
 
   const handleChange = (event) => {
     const text = event.target.value;
@@ -152,7 +153,7 @@ export default function Checkout() {
         email: email.current.value,
         phone: phoneRef.current.value,
       },
-      orderTotal : Math.ceil(subTotal),
+      orderTotal: Math.ceil(subTotal),
       orderItems: ctx.cart.cartItems.map((item) => {
         return {
           product: {
@@ -166,7 +167,7 @@ export default function Checkout() {
     axios
       .post(
         //https://spring-madrasda-2f6mra4vwa-em.a.run.app
-        "http://localhost:8080/api/payment/createOrder",
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder",
         transaction,
         {
           headers: {
@@ -175,7 +176,13 @@ export default function Checkout() {
         }
       )
       .then((response) => (window.location.href = response.data))
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 400) {
+          alert("No delivery available");
+          setShippingCharges(-100);
+        }
+      });
   };
 
   useEffect(() => {
