@@ -41,7 +41,10 @@ export default function CartModal() {
           (prev, curr) =>
             (prev += Math.ceil(
               curr.quantity *
-              ((curr.product.total * (100 - curr.product.discount)) / 100))),
+                Math.ceil(
+                  (curr.product.total * (100 - curr.product.discount)) / 100
+                )
+            )),
           0.0
         );
         setSubtotal(sum);
