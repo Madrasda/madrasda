@@ -79,6 +79,7 @@ export default function Checkout() {
     setTimeout(() => {
       if(subTotal <= 500)
         handleChange({target: {value: pincode}})
+
     }, 1000)
 
   }, [subTotal])
