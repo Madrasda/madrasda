@@ -82,7 +82,7 @@ export default function Hotsellers() {
                                   />
                                 </div>
                                 <div className='mt-6 text-white text-center'>
-                                  <h2 className='title-font text-lg font-medium'>
+                                  <h2 className='title-font text-sm font-medium'>
                                     {product.name}
                                   </h2>
                                 </div>

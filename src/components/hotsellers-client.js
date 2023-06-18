@@ -45,7 +45,7 @@ export default function HotSellers() {
                       <Link
                         key={uuidv4()}
                         href={`/productDetails/${product.id}`}
-                        className='col-span-1 w-40 md:w-56 xl:w-60 p-2 xl:p-4 h-[470px] cursor-pointer bg-off-white mx-auto my-3 md:my-4 xl:my-5 rounded
+                        className='col-span-1 w-40 md:w-56 xl:w-60 p-2 xl:p-4 h-fit md:h-[470px] cursor-pointer bg-off-white mx-auto my-3 md:my-4 xl:my-5 rounded
                         drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)]
                         duration-200 ease-in-out'>
                         <div className='block relative h-[fit] rounded overflow-hidden'>
@@ -58,7 +58,7 @@ export default function HotSellers() {
                           />
                         </div>
                         <div className='flex flex-col mt-4 font-quest'>
-                          <h2 className='title-font text-base md:text-xl font-medium'>
+                          <h2 className='title-font text-base text-sm font-medium'>
                             {product.name}
                           </h2>
                           <span className='text-black text-lg'>
