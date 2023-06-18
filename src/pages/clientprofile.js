@@ -71,7 +71,10 @@ export default function ClientProfile() {
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Profile</title>
@@ -129,11 +132,18 @@ export default function ClientProfile() {
                     </div>
                     <div className='w-full p-3 pl-0 '>
                       {!order.cancelled && (
-                        <h6 className="font-semibold text-3xl mt-2">
-                          <span className="font-light text-black">
-                            {order.status === 'NEW'
-                              ? "Your order is cooking!"
-                              : order.status === 'IN TRANSIT'? 'Shipping': order.status}
+                        <h6 className='font-semibold text-3xl mt-2'>
+                          <span
+                            className={`${
+                              order.status === "DELIVERED"
+                                ? "text-[#3aca3a] font-black tracking-widest"
+                                : "text-black font-light"
+                            }`}>
+                            {order.status === "NEW"
+                              ? "ORDER IS COOKING!"
+                              : order.status === "IN TRANSIT"
+                              ? "SHIPPING IN PROGRESS"
+                              : order.status}
                           </span>
                         </h6>
                       )}

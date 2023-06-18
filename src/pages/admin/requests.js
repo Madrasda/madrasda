@@ -123,47 +123,47 @@ export default function Requests() {
             {requests &&
               requests.map((vendor) => (
                 <Paper className="px-2 py-5" elevation={3} key={uuidv4()}>
-                  <div className="flex flex-col w-1/3 p-3 text-lg">
-                    <span className="flex space-x-4">
+                  <div className="flex flex-col w-1/2 p-3 text-lg">
+                    <span className="flex flex-col space-x-4 justify-between">
                       <h1 className="font-bold">
-                        Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        Name:
                       </h1>
                       <h1>{vendor.name}</h1>
                     </span>
-                    <span className="flex space-x-4">
+                    <span className="flex flex-col space-x-4 justify-between">
                       <h1 className="font-bold">
-                        Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        Phone:
                       </h1>
                       <h1>{vendor.phone}</h1>
                     </span>
-                    <span className="flex space-x-4">
+                    <span className="flex flex-col space-x-4 justify-between">
                       <h1 className="font-bold">
-                        E-mail&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        E-mail:
                       </h1>
                       <h1>{vendor.email}</h1>
                     </span>
-                    <span className="flex space-x-4">
+                    <span className="flex flex-col space-x-4 justify-between">
                       <h1 className="font-bold">
-                        Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        Category:
                       </h1>
                       <h1>{vendor.influencerCategory}</h1>
                     </span>
-                    <span className="flex space-x-4">
+                    <span className="flex flex-col space-x-4 justify-between">
                       <h1 className="font-bold">
-                        Company Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        Company Name:
                       </h1>
                       <h1>{vendor.companyName}</h1>
                     </span>
-                    <span className="flex space-x-4">
+                    <span className="flex flex-col space-x-4 justify-between">
                       <h1 className="font-bold">
-                        URL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                        URL:
                       </h1>
                       <h1>{vendor.companyUrl}</h1>
                     </span>
                     {vendor.gstin && (
-                      <span className="flex space-x-4">
+                      <span className="flex flex-col space-x-4 justify-between">
                         <h1 className="font-bold">
-                          GSTIN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                          GSTIN:
                         </h1>
                         <h1>{vendor.gstin}</h1>
                       </span>
