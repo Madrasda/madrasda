@@ -121,13 +121,13 @@ export default function ProductId() {
 
   if (loading && isReady)
     return (
-      <div className="z-50 h-screen w-screen overflow-hidden">
+      <div className='z-50 h-screen w-screen overflow-hidden'>
         <Image
-          src="/loader.gif"
+          src='/loader.gif'
           width={1920}
           height={1080}
           alt={"img"}
-          className="object-cover object-center w-full h-full"
+          className='object-cover object-center w-full h-full'
         />
       </div>
     );
@@ -140,9 +140,12 @@ export default function ProductId() {
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.png" />
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/logo.png' />
         <title>Madrasda | View Product</title>
       </Head>
 
@@ -151,68 +154,68 @@ export default function ProductId() {
           state={open}
           severity={severity}
           message={message}
-          setState={setOpen}
-        >
-          <section className="text-black body-font font-quest overflow-hidden">
-            <div className="px-20 pt-12 mx-auto flex justify-center">
-              <div className="flex justify-start flex-row flex-wrap md:flex-nowrap">
+          setState={setOpen}>
+          <section className='text-black body-font font-quest overflow-hidden'>
+            <div className='px-20 pt-12 mx-auto flex justify-center'>
+              <div className='flex justify-start flex-row flex-wrap md:flex-nowrap'>
                 <div
-                  className="flex flex-col items-center justify-center
-                          lg:flex-row-reverse w-fit"
-                >
+                  className='flex flex-col items-center justify-center
+                          lg:flex-row-reverse w-fit'>
                   <Image
-                    alt="ecommerce"
-                    className="object-contain object-center rounded px-2 h-[500px] md:h-[900px]"
+                    alt='ecommerce'
+                    className='object-contain object-center rounded px-2 h-[500px] md:h-[900px]'
                     src={activeImage}
                     width={600}
                     height={900}
                   />
                   <div
-                    className="flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
-                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2"
-                  >
+                    className='flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
+                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2'>
                     {currentColor.images.map((image) => (
                       <Image
-                        alt="ecommerce"
+                        alt='ecommerce'
                         key={uuidv4()}
                         width={500}
                         height={600}
-                        className="w-24 aspect-16/9 m-2"
+                        className='w-24 aspect-16/9 m-2'
                         src={image}
                         onClick={() => setActiveImage(image)}
                       />
                     ))}
                   </div>
                 </div>
-                <div className="mx-auto md:mx-0 lg:w-1/2 w-full md:py-24 mt-6 lg:mt-0">
-                  <h1 className="text-gray-900 text-xl md:text-3xl title-font font-medium mb-1">
+                <div className='mx-auto md:mx-0 lg:w-1/2 w-full md:py-24 mt-6 lg:mt-0'>
+                  <h1 className='text-gray-900 text-xl md:text-3xl title-font font-medium mb-1'>
                     {product.name}
                   </h1>
                   <span>
                     <h1>{product.description}</h1>
                   </span>
-                  <div className="flex mb-4 items-center"></div>
-                  <div className="flex flex-row items-baseline">
-                    <span className="title-font font-medium text-2xl text-gray-900 mr-2 flex justify-center">
+                  <div className='flex mb-4 items-center'></div>
+                  <div className='flex flex-row items-baseline'>
+                    <span className='title-font font-medium text-2xl text-gray-900 mr-2 flex justify-center'>
                       ₹
                       {Math.round(
                         (product.total * (100 - product.discount)) / 100
                       )}
                     </span>
-                    <span
-                      className="title-font line-through font-small text-lg
-                                text-gray-600 mr-2 flex justify-center"
-                    >
-                      ₹{product.total}
-                    </span>
-                    <span className="bg-primary rounded-lg mr-2 px-2 py-1 scale-75 text-base text-white flex justify-center">
-                      {product.discount}% off
-                    </span>
+                    {product && product.discount > 0 && (
+                      <>
+                        <span
+                          className='title-font line-through font-small text-lg
+                                text-gray-600 mr-2 flex justify-center'>
+                          ₹{product.total}
+                        </span>
+                        <span className='bg-primary rounded-lg mr-2 px-2 py-1 scale-75 text-base text-white flex justify-center'>
+                          {product.discount}% off
+                        </span>
+                      </>
+                    )}
                   </div>
 
-                  <div className="mt-6 hidden md:block">Colors</div>
-                  <div className="flex items-center mt-3 mb-3">
-                    <div className="flex items-start">
+                  <div className='mt-6 hidden md:block'>Colors</div>
+                  <div className='flex items-center mt-3 mb-3'>
+                    <div className='flex items-start'>
                       {product.colors.map((color) => (
                         <ColorOption
                           key={color.id}
@@ -227,11 +230,11 @@ export default function ProductId() {
                       ))}
                     </div>
                   </div>
-                  <div className="underline w-full flex justify-end cursor-pointer">
+                  <div className='underline w-full flex justify-end cursor-pointer'>
                     <SizeChartModal />
                   </div>
-                  <div className="flex items-center">
-                    <div className="relative grid grid-cols-4  md:grid-cols-6">
+                  <div className='flex items-center'>
+                    <div className='relative grid grid-cols-4  md:grid-cols-6'>
                       {currentColor.sizes.map((size) => (
                         <button
                           key={size.id}
@@ -243,50 +246,46 @@ export default function ProductId() {
                                               size === currentSize
                                                 ? "bg-primary text-white"
                                                 : "bg-white hover:bg-off-white hover:shadow-gray"
-                                            } `}
-                        >
+                                            } `}>
                           <input
-                            type="radio"
+                            type='radio'
                             id={size.id}
-                            name="size"
+                            name='size'
                             value={size.size}
                             checked={size.id === currentSize.id}
                             onChange={() => setCurrentSize(size)}
-                            className="sr-only cursor-pointer"
+                            className='sr-only cursor-pointer'
                           />
                           <label htmlFor={size.id}>{size.size}</label>
                         </button>
                       ))}
                     </div>
                   </div>
-                  <div className="flex space-x-4 mt-12">
-                    <div className="flex items-center space-x-2 h-10 my-auto">
-                      <div className="flex flex-row h-10 rounded-lg w-36 relative bg-transparent">
+                  <div className='flex space-x-4 mt-12'>
+                    <div className='flex items-center space-x-2 h-10 my-auto'>
+                      <div className='flex flex-row h-10 rounded-lg w-36 relative bg-transparent'>
                         <button
-                          className=" bg-white text-center border border-gray text-primary hover:text-primary
-                  hover:bg-gray h-full w-20 rounded-l cursor-pointer outline-none"
-                          onClick={handleDecrement}
-                        >
-                          <span className="m-auto text-2xl font-thin"> - </span>
+                          className=' bg-white text-center border border-gray text-primary hover:text-primary
+                  hover:bg-gray h-full w-20 rounded-l cursor-pointer outline-none'
+                          onClick={handleDecrement}>
+                          <span className='m-auto text-2xl font-thin'> - </span>
                         </button>
                         <input
-                          className="border border-gray focus:outline-none text-center w-full bg-white font-semibold text-md
-                      hover:text-primary focus:text-primary md:text-basecursor-default flex items-center text-primary outline-none"
+                          className='border border-gray focus:outline-none text-center w-full bg-white font-semibold text-md
+                      hover:text-primary focus:text-primary md:text-basecursor-default flex items-center text-primary outline-none'
                           value={quantity}
                           ref={qtyRef}
-                          readOnly={true}
-                        ></input>
+                          readOnly={true}></input>
                         <button
-                          className="bg-white text-center border border-gray text-primary hover:text-primary
-                          hover:bg-gray h-full w-20 rounded-r cursor-pointer"
-                          onClick={handleIncrement}
-                        >
-                          <span className="m-auto text-2xl font-thin"> + </span>
+                          className='bg-white text-center border border-gray text-primary hover:text-primary
+                          hover:bg-gray h-full w-20 rounded-r cursor-pointer'
+                          onClick={handleIncrement}>
+                          <span className='m-auto text-2xl font-thin'> + </span>
                         </button>
                       </div>
                     </div>
                     <Button
-                      className="w-48 h-10 text-center text-white px-4 py-3 "
+                      className='w-48 h-10 text-center text-white px-4 py-3 '
                       css={{ fontFamily: "$algeria" }}
                       style={{
                         background:
@@ -294,13 +293,12 @@ export default function ProductId() {
                         color: "white",
                       }}
                       variant={"contained"}
-                      onClick={handleAddToCart}
-                    >
+                      onClick={handleAddToCart}>
                       Add to Cart
                     </Button>
                   </div>
                   <br></br>
-                  <span className="text-justify">
+                  <span className='text-justify'>
                     <h1>{product.mockupDescription}</h1>
                   </span>
                 </div>

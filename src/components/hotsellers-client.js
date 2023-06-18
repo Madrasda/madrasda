@@ -67,12 +67,16 @@ export default function HotSellers() {
                               (product.total * (100 - product.discount)) / 100
                             )}
                           </span>
-                          <span className='line-through text-bg'>
-                            ₹{product.total}
-                          </span>
-                          <span className='title-font text-xs font-medium text-[#088240]'>
-                            {product.discount}% OFF
-                          </span>
+                          {product && product.discount > 0 && (
+                            <>
+                              <span className='line-through text-bg'>
+                                ₹{product.total}
+                              </span>
+                              <span className='title-font text-xs font-medium text-[#088240]'>
+                                {product.discount}% OFF
+                              </span>
+                            </>
+                          )}
                         </div>
                       </Link>
                     );

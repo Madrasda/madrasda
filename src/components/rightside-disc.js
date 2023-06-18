@@ -75,14 +75,16 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                                 prod.total - prod.total * prod.discount * 0.01
                               )}
                             </span>
-                            <div className='flex items-end justify-between'>
-                              <span className='mt-1 line-through text-sm text-black'>
-                                ₹{prod.total}
-                              </span>
-                              <span className='title-font font-semibold text-sm text-[#088240]'>
-                                {prod.discount}% off
-                              </span>
-                            </div>
+                            {prod.discount > 0 && (
+                              <div className='flex items-end justify-between'>
+                                <span className='mt-1 line-through text-sm text-black'>
+                                  ₹{prod.total}
+                                </span>
+                                <span className='title-font font-semibold text-sm text-[#088240]'>
+                                  {prod.discount}% off
+                                </span>
+                              </div>
+                            )}
                           </div>
                         </Link>
                       </div>
@@ -178,14 +180,16 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                               prod.total - prod.total * prod.discount * 0.01
                             )}
                           </span>
-                          <div className='flex justify-between'>
-                            <span className='mt-1 line-through text-sm text-black'>
-                              ₹{prod.total}
-                            </span>
-                            <span className='title-font font-semibold text-sm text-[#088240]'>
-                              {prod.discount}% off
-                            </span>
-                          </div>
+                          {prod.discount > 0 && (
+                            <div className='flex justify-between'>
+                              <span className='mt-1 line-through text-sm text-black'>
+                                ₹{prod.total}
+                              </span>
+                              <span className='title-font font-semibold text-sm text-[#088240]'>
+                                {prod.discount}% off
+                              </span>
+                            </div>
+                          )}
                         </div>
                       </Link>
                     </div>
