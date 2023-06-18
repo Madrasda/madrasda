@@ -33,11 +33,12 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
 
             <div className='flex flex-col w-full'>
               <Link
-                href={{
-                  pathname: "/products/[vendorId]",
-                  query: { vendorId: id },
-                }}
-                as={"creators/" + name}>
+                // href={{
+                //   pathname: "/products/[vendorId]",
+                //   query: { vendorId: id },
+                // }}
+                // as={"creators/" + name}
+                href={`/products/${id}`}>
                 <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 right-0'>
                   {name}
                 </h1>
@@ -91,11 +92,12 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                 {products.length === 4 && (
                   <div className='mr-5 z-10 relative '>
                     <Link
-                      href={{
-                        pathname: "/products/[vendorId]",
-                        query: { vendorId: id },
-                      }}
-                      as={"creators/" + name}>
+                      // href={{
+                      //   pathname: "/products/[vendorId]",
+                      //   query: { vendorId: id },
+                      // }}
+                      // as={"creators/" + name}
+                      href={`/products/${id}`}>
                       <Image
                         src='/prod-comp-showmore-right.png'
                         width={50}
@@ -115,11 +117,13 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
             <div className='flex justify-between items-center mt-10'>
               <div className='absolute mt-10'>
                 <Link
-                  href={{
-                    pathname: "/products/[vendorId]",
-                    query: { vendorId: id },
-                  }}
-                  as={"creators/" + name} className="relative">
+                  // href={{
+                  //   pathname: "/products/[vendorId]",
+                  //   query: { vendorId: id },
+                  // }}
+                  // as={"creators/" + name}
+                  href={`/products/${id}`}
+                  className='relative'>
                   <Image
                     className='mx-auto md:mx-2 md:animate-spin hidden xl:block'
                     src='/disc.png'
