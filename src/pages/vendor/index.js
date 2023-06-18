@@ -8,7 +8,9 @@ import { getRole, isTokenValid } from "@/utils/JWTVerifier";
 import {
   Alert,
   Button,
+  FormControl,
   Input,
+  InputLabel,
   MenuItem,
   Select,
   Snackbar,
@@ -52,6 +54,11 @@ export default function Vendorlogin() {
   };
 
   const vendorSignup = (e) => {
+    if(gst.length < 10){
+      setOpen(true);
+      setSeverity("error");
+      setMessage("Enter a proper details");
+    }
     e.preventDefault();
     axios
       .post(
@@ -145,21 +152,24 @@ export default function Vendorlogin() {
 
   if (loading && isReady)
     return (
-      <div className="z-50 h-screen w-screen overflow-hidden">
+      <div className='z-50 h-screen w-screen overflow-hidden'>
         <Image
-          src="/loader.gif"
+          src='/loader.gif'
           width={1920}
           height={1080}
-          className="object-cover object-center w-full h-full"
+          className='object-cover object-center w-full h-full'
         />
       </div>
     );
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/logo.png" />
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/logo.png' />
         <title>Madrasda | Login</title>
       </Head>
       <Snackbar
@@ -167,43 +177,40 @@ export default function Vendorlogin() {
         open={open}
         autoHideDuration={1400}
         onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}>
         <Alert onClose={handleClose} severity={severity}>
           {message}
         </Alert>
       </Snackbar>
-      <div className="bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/929970884549173278/1112753200085356614/socialmedia.jpg)] min-w-screen min-h-screen w-full h-full font-quest">
-        <div className="w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/90 rounded-3xl drop-shadow-2xl py-8 m-10">
-          <div className="flex flex-col w-2/3">
-            <div className="flex w-full transition-all ease-in-out duration-300">
+      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/929970884549173278/1112753200085356614/socialmedia.jpg)] min-w-screen min-h-screen w-full h-full font-quest'>
+        <div className='w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/90 rounded-3xl drop-shadow-2xl py-8 m-10'>
+          <div className='flex flex-col w-2/3'>
+            <div className='flex w-full transition-all ease-in-out duration-300'>
               <button
-                className="text-base text-white font-medium mt-2 mb-12 text-center bg-primary w-1/2 h-1/2 rounded-2xl flex justify-center items-center"
+                className='text-base text-white font-medium mt-2 mb-12 text-center bg-primary w-1/2 h-1/2 rounded-2xl flex justify-center items-center'
                 onClick={showLogin}
-                id="login_button"
-              >
+                id='login_button'>
                 LOGIN
               </button>
               <button
-                className="text-base text-white font-medium mt-2 mb-12 text-center w-1/2 h-1/2 rounded-2xl flex justify-center items-center"
+                className='text-base text-white font-medium mt-2 mb-12 text-center w-1/2 h-1/2 rounded-2xl flex justify-center items-center'
                 onClick={showSignup}
-                id="signup_button"
-              >
+                id='signup_button'>
                 SIGN UP
               </button>
             </div>
 
-            <div className="flex flex-col w-full" id="login">
-              <div className="flex flex-wrap justify-center">
-                <div className="w-24">
-                  <img src="/logo.png" alt="LOGO" />
+            <div className='flex flex-col w-full' id='login'>
+              <div className='flex flex-wrap justify-center'>
+                <div className='w-24'>
+                  <img src='/logo.png' alt='LOGO' />
                 </div>
               </div>
-              <form onSubmit={vendorlogin} className="py-4 w-full space-y-3">
-                <div className="text-white">
+              <form onSubmit={vendorlogin} className='py-4 w-full space-y-3'>
+                <div className='text-white'>
                   <Input
-                    label="Username"
-                    type="email"
+                    label='Username'
+                    type='email'
                     InputProps={
                       {
                         // className: "text-primary",
@@ -215,16 +222,16 @@ export default function Vendorlogin() {
                       }
                     }
                     className={"w-full bg-gray px-3 py-1 rounded"}
-                    color="warning"
-                    id="username"
-                    placeholder="example@example.com"
+                    color='warning'
+                    id='username'
+                    placeholder='example@example.com'
                     value={mail}
                     onChange={(e) => setMail(e.target.value)}
                   />
                 </div>
                 <div>
                   <Input
-                    type="password"
+                    type='password'
                     InputProps={
                       {
                         // className: "text-primary",
@@ -235,18 +242,18 @@ export default function Vendorlogin() {
                         // className: "text-primary",
                       }
                     }
-                    variant="outlined"
-                    label="Password"
+                    variant='outlined'
+                    label='Password'
                     className={"w-full bg-gray px-3 py-1 rounded"}
-                    color="warning"
-                    id="password"
-                    placeholder="**********"
+                    color='warning'
+                    id='password'
+                    placeholder='**********'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
-                <div className="flex justify-center items-center mt-6">
+                <div className='flex justify-center items-center mt-6'>
                   <Button
                     variant={"contained"}
                     style={{
@@ -255,123 +262,125 @@ export default function Vendorlogin() {
                       color: "white",
                     }}
                     type={"submit"}
-                    onClick={vendorlogin}
-                  >
+                    onClick={vendorlogin}>
                     Login
                   </Button>
                 </div>
               </form>
-              <div className="w-100 underline text-white text-sm text-center mt-3">
-                <Link href="/login">Go Back</Link>
+              <div className='w-100 underline text-white text-sm text-center mt-3'>
+                <Link href='/login'>Go Back</Link>
               </div>
               <br />
             </div>
-            <div className="hidden flex-col w-full" id="signup">
-              <div className="flex flex-wrap justify-center">
-                <div className="w-24">
-                  <img src="/logo.png" alt="LOGO" />
+            <div className='hidden flex-col w-full' id='signup'>
+              <div className='flex flex-wrap justify-center'>
+                <div className='w-24'>
+                  <img src='/logo.png' alt='LOGO' />
                 </div>
               </div>
-              <div className="w-full space-y-8 justify-center items-center mt-6">
-                <h1 className="text-white text-center">
+              <div className='w-full space-y-8 justify-center items-center mt-6'>
+                <h1 className='text-white text-center'>
                   Want to become a vendor? Send your details to us
                 </h1>
                 <form
                   onSubmit={vendorSignup}
-                  className="w-full flex flex-col space-y-4"
-                >
+                  className='w-full flex flex-col space-y-4'>
                   <Input
-                    className="bg-white rounded-lg mx-auto p-3 w-full"
-                    color="warning"
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
+                    color='warning'
                     inputProps={{ className: " text-sm" }}
-                    type="text"
+                    type='text'
                     value={name}
                     required
-                    placeholder="Your Name*"
+                    placeholder='Your Name*'
                     onChange={(e) => setName(e.target.value)}
                   />
                   <Input
-                    className="bg-white rounded-lg mx-auto p-3 w-full"
-                    color="warning"
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
+                    color='warning'
                     inputProps={{ className: " text-sm" }}
-                    type="text"
+                    type='email'
                     value={email}
                     required
-                    placeholder="Your Email*"
+                    placeholder='Your Email*'
                     onChange={(e) => setemail(e.target.value)}
                   />
+                  {phNo!=="" && phNo.length !== 10 && <h1 className="text-red">Please enter valid number</h1>}
                   <Input
-                    className="bg-white rounded-lg mx-auto p-3 w-full"
-                    color="warning"
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
+                    color='warning'
                     inputProps={{ className: " text-sm" }}
-                    type="text"
+                    type='text'
                     value={phNo}
                     required
-                    placeholder="Your Phone Number*"
+                    placeholder='Your Phone Number*'
                     onChange={(e) => setPhNo(e.target.value)}
                   />
-                  <Select
-                    id="category-vendor"
-                    className="bg-white rounded-lg p-0"
-                    inputProps={{
-                      className: " text-sm",
-                      "aria-label": "Category",
-                    }}
-                    value={infCat}
-                    onChange={(e) => setInfCat(e.target.value)}
-                  >
-                    <MenuItem value="Actor">Actor</MenuItem>
-                    <MenuItem value="Production House">
-                      Production House
-                    </MenuItem>
-                    <MenuItem value="YouTuber">YouTuber</MenuItem>
-                    <MenuItem value="Independent Artist">
-                      Independent Artist
-                    </MenuItem>
-                    <MenuItem value="Music Director">Music Director</MenuItem>
-                    <MenuItem value="Singer">Singer</MenuItem>
-                    <MenuItem value="Stand-up Comedian">
-                      Stand-up Comedian
-                    </MenuItem>
-                  </Select>
+                  {/* <FormControl fullWidth> */}
+                    <InputLabel id='category-vendor-label' className="text-gray">Category</InputLabel>
+                    <Select
+                      labelId='category-vendor-label'
+                      id='category-vendor'
+                      required
+                      className='bg-white rounded-lg p-0'
+                      inputProps={{
+                        className: "text-sm",
+                      }}
+                      value={infCat}
+                      onChange={(e) => setInfCat(e.target.value)}>
+                      <MenuItem value='Actor'>Actor</MenuItem>
+                      <MenuItem value='Production House'>
+                        Production House
+                      </MenuItem>
+                      <MenuItem value='YouTuber'>YouTuber</MenuItem>
+                      <MenuItem value='Independent Artist'>
+                        Independent Artist
+                      </MenuItem>
+                      <MenuItem value='Music Director'>Music Director</MenuItem>
+                      <MenuItem value='Singer'>Singer</MenuItem>
+                      <MenuItem value='Stand-up Comedian'>
+                        Stand-up Comedian
+                      </MenuItem>
+                    </Select>
+                  {/* </FormControl> */}
                   <Input
-                    className="bg-white rounded-lg mx-auto p-3 w-full"
-                    color="warning"
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
+                    color='warning'
                     inputProps={{ className: " text-sm" }}
-                    type="text"
+                    type='text'
                     value={compName}
-                    placeholder="Display name"
+                    placeholder='Display name'
                     onChange={(e) => setCompName(e.target.value)}
                   />
                   <Input
-                    className="bg-white rounded-lg mx-auto p-3 w-full"
-                    color="warning"
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
+                    color='warning'
                     inputProps={{ className: " text-sm" }}
-                    type="text"
+                    type='text'
                     required
                     value={url}
-                    placeholder="Company URL/Social Media Handle*"
+                    placeholder='Company URL/Social Media Handle*'
                     onChange={(e) => setUrl(e.target.value)}
                   />
                   <Input
-                    className="bg-white rounded-lg mx-auto p-3 w-full"
-                    color="warning"
+                    className='bg-white rounded-lg mx-auto p-3 w-full'
+                    color='warning'
                     inputProps={{
                       className: " text-sm",
                       maxLength: 15,
                     }}
-                    type="text"
+                    type='text'
                     value={gst}
-                    placeholder="GSTIN"
+                    placeholder='GSTIN'
                     onChange={(e) => setGst(e.target.value)}
                   />
-                  <div className="flex flex-col space-y-2">
+                  <div className='flex flex-col space-y-2'>
                     <ReturnRefundModal />
                     <TermsConditionsModal />
                     <PaymentStructureModal />
                   </div>
-                  <div className="text-white flex justify-center space-x-2 items-center">
-                    <input type="radio" onChange={() => setAgree(true)} />
+                  <div className='text-white flex justify-center space-x-2 items-center'>
+                    <input type='radio' onChange={() => setAgree(true)} />
                     <h2>I agree to the above mentioned T&C*</h2>
                   </div>
                   {agree && (
@@ -383,8 +392,7 @@ export default function Vendorlogin() {
                         color: "white",
                       }}
                       className={"w-full bg-primary"}
-                      type={"submit"}
-                    >
+                      type={"submit"}>
                       Request For Signup
                     </Button>
                   )}
