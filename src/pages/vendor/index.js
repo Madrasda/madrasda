@@ -305,7 +305,9 @@ export default function Vendorlogin() {
                     placeholder='Your Email*'
                     onChange={(e) => setemail(e.target.value)}
                   />
-                  {phNo!=="" && phNo.length !== 10 && <h1 className="text-red">Please enter valid number</h1>}
+                  {phNo !== "" && phNo.length !== 10 && (
+                    <h1 className='text-red'>Please enter valid number</h1>
+                  )}
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
                     color='warning'
@@ -317,31 +319,33 @@ export default function Vendorlogin() {
                     onChange={(e) => setPhNo(e.target.value)}
                   />
                   {/* <FormControl fullWidth> */}
-                    <InputLabel id='category-vendor-label' className="text-gray">Category</InputLabel>
-                    <Select
-                      labelId='category-vendor-label'
-                      id='category-vendor'
-                      required
-                      className='bg-white rounded-lg p-0'
-                      inputProps={{
-                        className: "text-sm",
-                      }}
-                      value={infCat}
-                      onChange={(e) => setInfCat(e.target.value)}>
-                      <MenuItem value='Actor'>Actor</MenuItem>
-                      <MenuItem value='Production House'>
-                        Production House
-                      </MenuItem>
-                      <MenuItem value='YouTuber'>YouTuber</MenuItem>
-                      <MenuItem value='Independent Artist'>
-                        Independent Artist
-                      </MenuItem>
-                      <MenuItem value='Music Director'>Music Director</MenuItem>
-                      <MenuItem value='Singer'>Singer</MenuItem>
-                      <MenuItem value='Stand-up Comedian'>
-                        Stand-up Comedian
-                      </MenuItem>
-                    </Select>
+                  <InputLabel id='category-vendor-label' sx={{color:'white'}}>
+                    Category
+                  </InputLabel>
+                  <Select
+                    labelId='category-vendor-label'
+                    id='category-vendor'
+                    required
+                    className='bg-white rounded-lg p-0'
+                    inputProps={{
+                      className: "text-sm",
+                    }}
+                    value={infCat}
+                    onChange={(e) => setInfCat(e.target.value)}>
+                    <MenuItem value='Actor'>Actor</MenuItem>
+                    <MenuItem value='Production House'>
+                      Production House
+                    </MenuItem>
+                    <MenuItem value='YouTuber'>YouTuber</MenuItem>
+                    <MenuItem value='Independent Artist'>
+                      Independent Artist
+                    </MenuItem>
+                    <MenuItem value='Music Director'>Music Director</MenuItem>
+                    <MenuItem value='Singer'>Singer</MenuItem>
+                    <MenuItem value='Stand-up Comedian'>
+                      Stand-up Comedian
+                    </MenuItem>
+                  </Select>
                   {/* </FormControl> */}
                   <Input
                     className='bg-white rounded-lg mx-auto p-3 w-full'
