@@ -181,7 +181,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                             />
                           </div>
                           <div className='mt-4 flex flex-col'>
-                            <h2 className='text-black title-font text-[15px] md:text-[20px] xl:text-lg font-medium'>
+                            <h2 className='text-black title-font text-[15px] md:text-base xl:text-lg font-medium'>
                               {prod.name}
                             </h2>
                             <span className='mt-1 text-black text-[14px] md:text-xl'>
