@@ -45,7 +45,7 @@ export default function AdminMockup(props) {
             width={1920}
             priority={true}
             loading={"eager"}
-            className='object-cover object-center w-96 h-full'
+            className='object-fill h-[300px]'
           />
         </Link>
         <div className='mt-4'>
@@ -86,8 +86,8 @@ export default function AdminMockup(props) {
           <Button
             variant='outlined'
             style={{
-              background:"linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              color:"white",
+              background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+              color: "white",
             }}
             onClick={downloadImage}>
             <Download /> Image

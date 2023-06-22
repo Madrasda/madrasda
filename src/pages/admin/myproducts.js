@@ -189,16 +189,13 @@ export default function MyProducts() {
                         key={uuidv4()}
                         in
                         timeout={600}
-                        style={{ transitionDelay: delay }}
-                      >
+                        style={{ transitionDelay: delay }}>
                         <div
                           key={uuidv4()}
-                          className="lg:w-1/4 md:w-3/4 p-4 w-full cursor-pointer bg-off-white m-5 rounded drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)] duration-200 ease-in-out border border-border"
-                        >
+                          className='lg:w-1/4 md:w-3/4 p-4 w-full cursor-pointer m-5 rounded hover:shadow-2xl duration-200 ease-in-out bg-white'>
                           <div
                             key={uuidv4()}
-                            className="flex justify-center mb-4"
-                          >
+                            className='flex justify-center mb-4'>
                             <CloseConfirm
                               mockup={true}
                               delete={(e) => {
