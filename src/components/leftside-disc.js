@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { uuidv4 } from "@firebase/util";
 
 export default function LeftsideDisc({ name, id, imgUrl, products }) {
@@ -16,12 +14,13 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                         rounded-l-none rounded-r-full'>
             <div className='flex flex-col w-full'>
               <Link
-                // href={{
-                //   pathname: "/products/[vendorId]",
-                //   query: { vendorId: id },
-                // }}
-                // as={"creators/" + name}
-                href={`/products/${id}`}>
+                href={{
+                  pathname: "/products/[vendorId]",
+                  query: { vendorId: id },
+                }}
+                as={"creators/" + name}
+                // href={`/products/${id}`}
+              >
                 <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
                   {name}
                 </h1>
@@ -34,12 +33,13 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                   {products.length === 4 && (
                     <div className='ml-5 z-10'>
                       <Link
-                        // href={{
-                        //   pathname: "/products/[vendorId]",
-                        //   query: { vendorId: id },
-                        // }}
-                        // as={"creators/" + name}
-                        href={`/products/${id}`}>
+                        href={{
+                          pathname: "/products/[vendorId]",
+                          query: { vendorId: id },
+                        }}
+                        as={"creators/" + name}
+                        // href={`/products/${id}`}
+                      >
                         <Image
                           src='/prod-comp-showmore-left.png'
                           width={50}
@@ -93,12 +93,13 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
               </div>
             </div>
             <Link
-              // href={{
-              //   pathname: "/products/[vendorId]",
-              //   query: { vendorId: id },
-              // }}
-              // as={"creators/" + name}
-              href={`/products/${id}`}>
+              href={{
+                pathname: "/products/[vendorId]",
+                query: { vendorId: id },
+              }}
+              as={"creators/" + name}
+              // href={`/products/${id}`}
+            >
               <button
                 className='bg-primary text-white flex justify-center items-center rounded-lg text-sm px-4 py-2 my-4 hover:bg-[#e62c61] transition-all duration-150 ease-in-out
                 xl:hidden'>
@@ -132,12 +133,12 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
             <div className='flex justify-between items-center  mt-10'>
               <div className='absolute mt-10'>
                 <Link
-                  // href={{
-                  //   pathname: "/products/[vendorId]",
-                  //   query: { vendorId: id },
-                  // }}
-                  // as={"creators/" + name}
-                  href={`/products/${id}`}
+                  href={{
+                    pathname: "/products/[vendorId]",
+                    query: { vendorId: id },
+                  }}
+                  as={"creators/" + name}
+                  // href={`/products/${id}`}
                   className='relative'>
                   <Image
                     className='mx-auto md:mx-2 md:animate-spin hidden xl:block'

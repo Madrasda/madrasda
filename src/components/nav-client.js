@@ -78,14 +78,14 @@ export default function NavisCustomer() {
     menu.classList.toggle("hidden");
   };
   const handleVendorProductsClick = (id, name) => {
-    router.push("/products/[vendorId]", "/products/" + id);
-    // router.push(
-    //   {
-    //     pathname : "/products/[vendorId]",
-    //     query : {vendorId : id}
-    //   },
-    //   "/creators/" + name
-    // )
+    // router.push("/products/[vendorId]", "/products/" + id);
+    router.push(
+      {
+        pathname : "/products/[vendorId]",
+        query : {vendorId : id}
+      },
+      "/creators/" + name
+    )
   };
 
   const handleCategoryProductsClick = (event) => {
