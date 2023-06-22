@@ -71,6 +71,12 @@ export default function EditMockup() {
       getAllColorsAndSizes();
     }
   }, [isReady]);
+
+  useEffect(() => {
+    if(selectedColors.length === 0)
+      setCurId(null);
+  }, [selectedColors]);
+
   const toggleAvailability = (colorId) => {
     axios
       .put(
@@ -435,7 +441,7 @@ export default function EditMockup() {
                   <h1 className='font-semibold text-lg'>
                     Additional Information
                   </h1>
-                  <h1 className='text-right'>
+                  <h1 className='text-right text-sm max-w-md'>
                     {details.additionalInformation}
                   </h1>
                 </div>
@@ -591,7 +597,7 @@ export default function EditMockup() {
                         );
                       })}
                   </div>
-                  {currenId && (
+                  {currenId && selectedColors.length > 0 && (
                     <div className='ml-2'>
                       <label
                         htmlFor='dropzone-file'
@@ -660,7 +666,7 @@ export default function EditMockup() {
                     </div>
                   )}
                 </div>
-                <form className="w-2/3" >
+                <form className='w-2/3'>
                   <div className='flex flex-col'>
                     <div className='flex space-x-2 items-center justify-between'>
                       <h1 className='font-semibold text-lg'>Name</h1>
