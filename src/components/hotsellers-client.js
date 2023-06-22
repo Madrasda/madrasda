@@ -23,29 +23,28 @@ export default function HotSellers() {
   }, []);
 
   return (
-    <section className="text-black body-font">
+    <section className='text-black body-font'>
       {products && (
-        <div className="p-0 md:p-10 font-quest">
-          <div className="xl:border-shadowGrey md:border-[3px] rounded-xl scale-[90%]">
-            <div className="relative">
+        <div className='p-0 md:p-10 font-quest'>
+          <div className='xl:border-shadowGrey md:border-[3px] rounded-xl scale-[90%] w-full'>
+            <div className='relative'>
               <h2
-                className="font-raj font-semibold text-xl flex justify-center items-center w-full
-                      m-0 absolute top-1.5 md:top-[50%] left-0 right-0 bottom-0 -z-1"
-              >
-                <span className="bg-bg tracking-widest font-raj text-xl md:text-4xl font-bold px-8 py-2 xl:py-4 rounded-full text-logo">
+                className='font-raj font-semibold text-xl flex justify-center items-center w-full
+                      m-0 absolute top-1.5 md:top-[50%] left-0 right-0 bottom-0 -z-1'>
+                <span className='bg-bg tracking-widest font-raj text-xl md:text-4xl font-bold px-8 py-2 xl:py-4 rounded-full text-logo'>
                   HOTSELLERS
                 </span>
               </h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center mx-auto py-12">
+            <div className='flex items-center flex-wrap justify-center py-12 w-full'>
               {products &&
                 products.map((product, index) => {
-                  if(index < 8){
+                  if (index < 8) {
                     return (
                       <Link
                         key={uuidv4()}
                         href={`/productDetails/${product.id}`}
-                        className='col-span-1 w-44 md:w-48 lg:w-56 xl:w-72 p-2 xl:p-4 h-fit lg:h-[300px] xl:h-[460px] cursor-pointer bg-off-white mx-auto my-3 md:my-4 xl:my-5 rounded
+                        className='mx-2 w-44 md:w-48 lg:w-56 xl:w-72 p-2 xl:p-4 h-fit lg:h-[300px] xl:h-[460px] cursor-pointer bg-off-white my-3 md:my-4 xl:my-5 rounded
                         drop-shadow-[4px_4px_10px_rgba(0,0,0,0.2)] hover:drop-shadow-[8px_8px_4px_rgba(0,0,0,0.3)]
                         duration-200 ease-in-out'>
                         <div className='block relative h-[fit] rounded overflow-hidden'>
