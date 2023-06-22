@@ -31,5 +31,3 @@ yarn-error.log*
 # vercel
 .vercel
 src/pages/vendor/feedback.js
-package.json
-package-lock.json
