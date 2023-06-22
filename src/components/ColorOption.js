@@ -16,7 +16,7 @@ const ColorOption = ({
   return (
     <div
       onClick={onClickHandler}
-      className={`flex flex-col justify-center items-center px-2`}>
+      className={`flex flex-col justify-center items-center px-2 max-w-[80px]`}>
       <button
         style={{ backgroundColor: hex }}
         className={`border-[2px] ${

@@ -160,7 +160,7 @@ export default function ProductId() {
               <div className='flex justify-start flex-row flex-wrap md:flex-nowrap'>
                 <div
                   className='flex flex-col items-center justify-center
-                          lg:flex-row-reverse w-fit'>
+                          lg:flex-row-reverse w-fit py-11 px-4'>
                   <Image
                     alt='ecommerce'
                     className='object-contain object-center rounded px-2 h-[500px] md:h-[900px]'
