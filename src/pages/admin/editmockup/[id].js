@@ -413,65 +413,65 @@ export default function EditMockup() {
             </div>
             {!edit && (
               <div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Name</h1>
-                  <h1>{details.name}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Name :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.name}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Canvas Height</h1>
-                  <h1>{details.canvasHeight} inches</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Canvas Height :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.canvasHeight} inches</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Canvas Width</h1>
-                  <h1>{details.canvasWidth} inches</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Canvas Width :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.canvasWidth} inches</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Product Type</h1>
-                  <h1>{details.productType}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Product Type :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.productType}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Category</h1>
-                  <h1>{details.category}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Category :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.category}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Model</h1>
-                  <h1>{details.model}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Model :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.model}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
+                <div className='flex space-x-2 flex-col'>
                   <h1 className='font-semibold text-lg'>
-                    Additional Information
+                    Additional Information :
                   </h1>
-                  <h1 className='text-right text-sm max-w-md'>
+                  <h1 className='border rounded-lg  px-4 py-4 text-md max-w-md'>
                     {details.additionalInformation}
                   </h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Height</h1>
-                  <h1>{details.height}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Height :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.height}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Breadth</h1>
-                  <h1>{details.breadth}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Breadth :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.breadth}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Length</h1>
-                  <h1>{details.length}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Length :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.length}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Weight</h1>
-                  <h1>{details.weight}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Weight :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.weight}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Tax</h1>
-                  <h1>{details.tax}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Tax :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.tax}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>HSN</h1>
-                  <h1>{details.hsn}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>HSN :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.hsn}</h1>
                 </div>
-                <div className='flex space-x-2 items-center justify-between'>
-                  <h1 className='font-semibold text-lg'>Base Price</h1>
-                  <h1>{details.basePrice}</h1>
+                <div className='flex space-x-2  flex-col max-w-md'>
+                  <h1 className='font-semibold text-lg'>Base Price :</h1>
+                  <h1 className='font-base text-lg py-2 '>{details.basePrice}</h1>
                 </div>
               </div>
             )}
