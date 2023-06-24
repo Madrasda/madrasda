@@ -3,6 +3,10 @@ import Image from "next/image";
 import { uuidv4 } from "@firebase/util";
 
 export default function LeftsideDisc({ name, id, imgUrl, products }) {
+
+  const getRandomIndex = (index) => {
+    return Math.floor(Math.random() * index);
+  };
   return (
     <>
       {products.length !== 0 && (
@@ -57,11 +61,17 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                           <Link href={`/productDetails/${prod.id}`}>
                             <div className='block relative h-48 rounded overflow-hidden'>
                               <Image
-                                src={prod.colors[0].images[0]}
+                                src={
+                                  prod.colors[
+                                    getRandomIndex(prod.colors.length)
+                                  ].images[0]
+                                }
                                 alt='ecommerce'
                                 width={1080}
                                 height={1920}
                                 className='object-contain object-center w-full h-full block'
+                                priority={true}
+                                loading='eager'
                               />
                             </div>
                             <div className='mt-4 flex flex-col'>
