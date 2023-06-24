@@ -194,7 +194,9 @@ export default function ProductId() {
                         key={uuidv4()}
                         width={500}
                         height={600}
-                        className='w-24 aspect-16/9 m-2'
+                        className={`w-24 aspect-16/9 m-2 ${
+                          imageLoaded ? "opacity-100" : "opacity-100"
+                        }`}
                         src={image}
                         onClick={() => {
                           setImageLoaded(false);

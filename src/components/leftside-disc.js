@@ -114,7 +114,13 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                 width={500}
                 height={500}
               />
-              <div className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
+              <Link
+                href={{
+                  pathname: "/products/[vendorId]",
+                  query: { vendorId: id },
+                }}
+                as={"creators/" + name}
+                className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full cursor-pointer'>
                 <Image
                   className='object-cover w-full h-full animate-spin hover:animate-none'
                   alt={name}
@@ -122,7 +128,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                   width={500}
                   height={500}
                 />
-              </div>
+              </Link>
             </div>
           </span>
         </div>
