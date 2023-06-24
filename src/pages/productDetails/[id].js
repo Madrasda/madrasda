@@ -195,7 +195,7 @@ export default function ProductId() {
                         width={500}
                         height={600}
                         className={`w-24 aspect-16/9 m-2 ${
-                          imageLoaded ? "opacity-100" : "opacity-100"
+                          imageLoaded ? "opacity-100" : "opacity-0"
                         }`}
                         src={image}
                         onClick={() => {
