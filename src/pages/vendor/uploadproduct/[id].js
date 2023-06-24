@@ -53,6 +53,7 @@ export default function ViewProd() {
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState(""); // success , error
   const [open, setOpen] = useState(false); // same as spinner
+
   useEffect(() => {
     if (total === 0) {
       setSellingPrice(basePrice);
@@ -65,6 +66,13 @@ export default function ViewProd() {
     setProfit(calculatedProfit);
     setSellingPrice(calculatedSellingPrice);
   }, [basePrice, total, discount, SellingPrice, tax]);
+
+  useEffect(() => {
+    if(selectedColors.length <= 0){
+      setCurId(null);
+    }
+  }, [selectedColors])
+
   const handleClose = (event, reason) => {
     console.log(reason);
     if (reason === "clickaway") {
@@ -261,7 +269,10 @@ export default function ViewProd() {
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda</title>
@@ -447,7 +458,7 @@ export default function ViewProd() {
                 </div>
 
                 <div>
-                  {currenId && (
+                  {currenId && selectedColors.length > 0 && (
                     <div className='ml-2'>
                       <label
                         htmlFor='dropzone-file'
@@ -478,17 +489,24 @@ export default function ViewProd() {
                           accept='image/jpeg, image/jpg, image/png'
                           className='hidden'
                           onChange={(e) => {
-                            if (
-                              e.target.files[0] !== null &&
-                              e.target.files[0] !== undefined
-                            )
-                              setProductImages((productImages) => [
-                                ...productImages,
-                                {
-                                  color: currenId,
-                                  imgUrl: getDataUrlFromFile(e.target.files[0]),
-                                },
-                              ]);
+                            const file = e.target.files[0];
+                            if (file) {
+                              const fileSize = file.size / 1024; 
+                              const maxSizeKB = 600; 
+                              if (fileSize <= maxSizeKB) {
+                                setProductImages((productImages) => [
+                                  ...productImages,
+                                  {
+                                    color: currenId,
+                                    imgUrl: getDataUrlFromFile(file),
+                                  },
+                                ]);
+                              } else {
+                                alert(
+                                  "Please upload an image less than 600KB."
+                                );
+                              }
+                            }
                           }}
                         />
                       </label>
@@ -602,9 +620,9 @@ export default function ViewProd() {
                           </InputAdornment>
                         ),
                       }}
-                      type="numeric"
+                      type='numeric'
                       label={"Profit Earned (₹)"}
-                      className="text-2xl w-72"
+                      className='text-2xl w-72'
                       value={profit}
                       readOnly
                       error={profit < 0}
@@ -618,7 +636,8 @@ export default function ViewProd() {
                   resolution of 3000 x 3000 to admin at backend@madrasda.com
                 </h1>
                 <h1 className='ml-2 text-sm mt-4 font-bold'>
-                  NOTE: Vendor profit is not final, shipping charges may be subtracted from it 
+                  NOTE: Vendor profit is not final, shipping charges may be
+                  subtracted from it
                 </h1>
                 <h1 className='ml-2 text-lg mt-4 items-center'>
                   <InfoIcon /> Click on View Products to enable this product for

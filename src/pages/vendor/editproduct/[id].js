@@ -134,6 +134,12 @@ export default function ViewProd() {
   }, [isReady]);
 
   useEffect(() => {
+    if (selectedColors <= 0) {
+      setCurId(null);
+    }
+  }, [selectedColors]);
+
+  useEffect(() => {
     const calculatedProfit = Math.ceil(
       ((100 - tax) / 100) * SellingPrice - basePrice
     );
@@ -254,12 +260,12 @@ export default function ViewProd() {
 
   if (loading && isReady && template)
     return (
-      <div className="z-50 h-screen w-screen overflow-hidden">
+      <div className='z-50 h-screen w-screen overflow-hidden'>
         <Image
-          src="/loader.gif"
+          src='/loader.gif'
           width={1920}
           height={1080}
-          className="object-cover object-center w-full h-full"
+          className='object-cover object-center w-full h-full'
         />
       </div>
     );
@@ -267,7 +273,10 @@ export default function ViewProd() {
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda</title>
@@ -275,9 +284,9 @@ export default function ViewProd() {
 
       {tokenExists && (
         <VendorLayout>
-            <Backdrop open={spinner} sx={{zIndex: '50'}}>
-              <CircularProgress color='warning' />
-            </Backdrop>
+          <Backdrop open={spinner} sx={{ zIndex: "50" }}>
+            <CircularProgress color='warning' />
+          </Backdrop>
           <Snackbar
             className={"mt-14"}
             open={open}
@@ -407,36 +416,8 @@ export default function ViewProd() {
                   </div>
                 </div>
 
-                {/*<h1>Select Your Color Wise Product Images</h1>
-                <div className='items-center mt-3 mb-3'>
-                  <div className='flex flex-wrap'>
-                    {selectedColors &&
-                      selectedColors.map((color) => {
-                        return (
-                          <div
-                            className='my-4 space-x-5 items-center px-2'
-                            key={color.id}>
-                            <button
-                              className={`border-2 border-gray rounded-full w-10 h-10 focus:outline-none ${
-                                currenId === color.id
-                                  ? "border-primary border-[3px]"
-                                  : ""
-                              }`}
-                              onClick={() => {
-
-                              }}
-                              style={{
-                                backgroundColor: color.hexValue,
-                              }}></button>
-                            <p className='text-[10px] mx-auto'>{color.color}</p>
-                          </div>
-                        );
-                      })}
-                  </div>
-                </div>*/}
-
                 <div>
-                  {currenId && (
+                  {currenId && selectedColors.length > 0 && (
                     <div className='ml-2'>
                       <label
                         htmlFor='dropzone-file'
@@ -464,27 +445,27 @@ export default function ViewProd() {
                         <input
                           id='dropzone-file'
                           type='file'
-                          accept='image/*'
+                          accept='image/jpeg, image/jpg, image/png'
                           className='hidden'
-                          ref={inputFileRef}
                           onChange={(e) => {
-                            if (
-                              e.target.files[0] !== null &&
-                              e.target.files[0] !== undefined
-                            )
-                              setProductImages((images) => {
-                                const image = [
-                                  ...images,
+                            const file = e.target.files[0];
+                            if (file) {
+                              const fileSize = file.size / 1024;
+                              const maxSizeKB = 600;
+                              if (fileSize <= maxSizeKB) {
+                                setProductImages((productImages) => [
+                                  ...productImages,
                                   {
                                     color: currenId,
-                                    imageUrl: getDataUrlFromFile(
-                                      e.target.files[0]
-                                    ),
+                                    imgUrl: getDataUrlFromFile(file),
                                   },
-                                ];
-                                inputFileRef.current.value = "";
-                                return image;
-                              });
+                                ]);
+                              } else {
+                                alert(
+                                  "Please upload an image less than 600KB."
+                                );
+                              }
+                            }
                           }}
                         />
                       </label>
