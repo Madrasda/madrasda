@@ -18,7 +18,7 @@ export default function ProductId() {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [client, setClient] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false); //using for fallback
   const [activeImage, setActiveImage] = useState();
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
@@ -177,7 +177,7 @@ export default function ProductId() {
                     />
                   }
                   {!imageLoaded && (
-                    <div className='rounded px-2 w-[200px] md:w-[500px] h-[500px] md:h-[700px] bg-shadowGrey animate-pulse' />
+                    <div className='rounded px-2 w-[320px] md:w-[500px] h-[500px] md:h-[700px] bg-shadowGrey animate-pulse' />
                   )}
                   <div
                     className={`flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
