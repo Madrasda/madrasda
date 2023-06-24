@@ -35,7 +35,7 @@ export default function Home() {
         ctx.vendorList.map(async (vendor) => {
           const params = new URLSearchParams({
             pageNo: 0,
-            pageSize: 4,
+            pageSize: 5,
           });
           const response = await axios.get(
             `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/${vendor.id}?` +

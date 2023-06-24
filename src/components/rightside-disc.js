@@ -106,7 +106,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                     );
                   })}
 
-                {products.length === 4 && (
+                {products.length >= 4 && (
                   <div className='mr-5 z-10 relative '>
                     <Link
                       href={{
