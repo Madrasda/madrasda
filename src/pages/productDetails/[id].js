@@ -18,9 +18,8 @@ export default function ProductId() {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [client, setClient] = useState(false);
-  const [activeImage, setActiveImage] = useState(
-    "https://www.futurelifenow-online.com/wp-content/uploads/2022/12/loading-gif.gif"
-  );
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [activeImage, setActiveImage] = useState();
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
@@ -133,6 +132,7 @@ export default function ProductId() {
     );
 
   const handleSetColor = (color) => {
+    setImageLoaded(false);
     setCurrentColor(color);
     setCurrentSize(color.sizes[0]);
     setActiveImage(color.images[0]);
@@ -161,25 +161,45 @@ export default function ProductId() {
                 <div
                   className='flex flex-col items-center justify-center
                           lg:flex-row-reverse w-fit py-11 px-4'>
-                  <Image
-                    alt='ecommerce'
-                    className='object-contain object-center rounded px-2 h-[500px] md:h-[900px]'
-                    src={activeImage}
-                    width={600}
-                    height={900}
-                  />
+                  {
+                    <Image
+                      onLoadCapture={() => {
+                        setImageLoaded(true);
+                      }}
+                      loading='eager'
+                      alt='ecommerce'
+                      className={`object-contain object-center rounded px-2 h-[500px] md:h-[900px] ${
+                        imageLoaded ? "" : "hidden"
+                      }`}
+                      src={activeImage}
+                      width={600}
+                      height={900}
+                    />
+                  }
+                  {!imageLoaded && (
+                    <div className='rounded px-2 w-[200px] md:w-[500px] h-[500px] md:h-[700px] bg-shadowGrey animate-pulse' />
+                  )}
                   <div
-                    className='flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
-                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2'>
+                    className={`flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
+                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2 ${
+                              imageLoaded
+                                ? ""
+                                : "bg-shadowGrey animate-pulse mr-5"
+                            }`}>
                     {currentColor.images.map((image) => (
                       <Image
+                        loading='eager'
                         alt='ecommerce'
+                        priority={true}
                         key={uuidv4()}
                         width={500}
                         height={600}
                         className='w-24 aspect-16/9 m-2'
                         src={image}
-                        onClick={() => setActiveImage(image)}
+                        onClick={() => {
+                          setImageLoaded(false);
+                          setActiveImage(image);
+                        }}
                       />
                     ))}
                   </div>
