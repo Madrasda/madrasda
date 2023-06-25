@@ -45,7 +45,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                 as={"creators/" + name}
                 // href={`/products/${id}`}
               >
-                <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
+                <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-4 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
                   {name}
                 </h1>
               </Link>
@@ -54,8 +54,8 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                 className='w-full h-full items-center justify-start px-4 py-2 hidden
                             xl:flex'>
                 <div className='w-full h-full flex items-center justify-end'>
-                  {products.length >= 4 && (
-                    <div className='ml-5 z-10'>
+                  {products.length >= 5 && (
+                    <div className='z-10'>
                       <Link
                         href={{
                           pathname: "/products/[vendorId]",
@@ -78,7 +78,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                         return (
                           <div
                             key={uuidv4()}
-                            className='w-56 h-[350px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                            className='w-56 h-[320px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
                             <Link href={`/productDetails/${prod.id}`}>
                               <div className='block relative h-48 rounded overflow-hidden'>
                                 <Image

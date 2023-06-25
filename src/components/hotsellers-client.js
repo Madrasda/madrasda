@@ -23,10 +23,10 @@ export default function HotSellers() {
   }, []);
 
   return (
-    <section className='text-black body-font'>
+    <section className='text-black body-font flex justify-center items-center'>
       {products && (
-        <div className='p-0 md:p-10 font-quest'>
-          <div className='xl:border-shadowGrey md:border-[3px] rounded-xl scale-[90%] w-full'>
+        <div className='pt-8 md:items-center font-quest'>
+          <div className='xl:border-shadowGrey md:border-[3px] rounded-xl scale-[90%] w-fit'>
             <div className='relative'>
               <h2
                 className='font-raj font-semibold text-xl flex justify-center items-center w-full
@@ -56,7 +56,7 @@ export default function HotSellers() {
                           />
                         </div>
                         <div className='flex flex-col mt-4 font-quest'>
-                          <h2 className='title-font text-base font-medium'>
+                          <h2 className='title-font text-base font-bold'>
                             {product.name}
                           </h2>
                           <span className='text-black text-lg'>

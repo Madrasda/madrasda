@@ -84,9 +84,9 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                       return (
                         <div
                           key={uuidv4()}
-                          className='w-56 h-[350px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                          className='w-56 h-[320px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
                           <Link href={`/productDetails/${prod.id}`}>
-                            <div className='block relative h-52 rounded overflow-hidden'>
+                            <div className='block relative h-48 rounded overflow-hidden'>
                               <Image
                                 src={
                                   prod.colors[
@@ -138,7 +138,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                     }
                   })}
 
-                {products.length >= 4 && (
+                {products.length >= 5 && (
                   <div className='mr-5 z-10 relative '>
                     <Link
                       href={{
