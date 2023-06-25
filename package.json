@@ -39,6 +39,7 @@
     "react-icons": "^4.8.0",
     "react-json-to-excel": "^1.0.7",
     "react-material-ui-carousel": "^3.4.2",
+    "react-responsive": "^9.0.2",
     "react-router": "^6.9.0",
     "uuid": "^9.0.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"

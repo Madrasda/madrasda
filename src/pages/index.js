@@ -35,7 +35,7 @@ export default function Home() {
         ctx.vendorList.map(async (vendor) => {
           const params = new URLSearchParams({
             pageNo: 0,
-            pageSize: 5,
+            pageSize: 10,
           });
           const response = await axios.get(
             `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/${vendor.id}?` +
@@ -55,12 +55,12 @@ export default function Home() {
 
   if (loading && isReady)
     return (
-      <div className="z-50 h-screen w-screen overflow-hidden">
+      <div className='z-50 h-screen w-screen overflow-hidden'>
         <Image
-          src="/loader.gif"
+          src='/loader.gif'
           width={1920}
           height={1080}
-          className="object-cover object-center w-full h-full"
+          className='object-cover object-center w-full h-full'
           alt={"Image"}
         />
       </div>
@@ -69,16 +69,19 @@ export default function Home() {
   return (
     <>
       <Head>
-        <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Official merchandise | Indian content creators</title>
       </Head>
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=G-P9LL7RBT1S"
-        strategy="afterInteractive"
+        src='https://www.googletagmanager.com/gtag/js?id=G-P9LL7RBT1S'
+        strategy='afterInteractive'
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script id='google-analytics' strategy='afterInteractive'>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
@@ -98,7 +101,7 @@ export default function Home() {
 
         <div className='flex flex-col'>
           {vendorData.map((vendor, index) => {
-            if (index % 2 === 0) {
+            if (index % 2 !== 0) {
               return (
                 <RightsideDisc
                   key={uuidv4()}

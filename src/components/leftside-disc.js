@@ -1,8 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import { uuidv4 } from "@firebase/util";
+import { useMediaQuery } from "react-responsive";
+import { useEffect, useState } from "react";
 
 export default function LeftsideDisc({ name, id, imgUrl, products }) {
+  const smallScreen = useMediaQuery({ maxWidth: 599 });
+  const mediumScreen = useMediaQuery({ minWidth: 600, maxWidth: 1280 });
+  const largeScreen = useMediaQuery({ minWidth: 1280, maxWidth: 1600 });
+  const extraLargeScreen = useMediaQuery({ minWidth: 1600 });
+  const [items, setItems] = useState("");
+
+  useEffect(() => {
+    if (extraLargeScreen) {
+      setItems(7);
+    } else if (largeScreen) {
+      setItems(5);
+    } else if (mediumScreen) {
+      setItems(8);
+    } else if (smallScreen) {
+      setItems(10);
+    }
+  }, []);
 
   const getRandomIndex = (index) => {
     return Math.floor(Math.random() * index);
@@ -53,51 +72,54 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                     </div>
                   )}
                   {products &&
-                    products.map((prod) => {
-                      return (
-                        <div
-                          key={uuidv4()}
-                          className='w-56 h-[350px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
-                          <Link href={`/productDetails/${prod.id}`}>
-                            <div className='block relative h-48 rounded overflow-hidden'>
-                              <Image
-                                src={
-                                  prod.colors[
-                                    getRandomIndex(prod.colors.length)
-                                  ].images[0]
-                                }
-                                alt='ecommerce'
-                                width={1080}
-                                height={1920}
-                                className='object-contain object-center w-full h-full block'
-                                priority={true}
-                                loading='eager'
-                              />
-                            </div>
-                            <div className='mt-4 flex flex-col'>
-                              <h2 className='text-black title-font text-xs font-black'>
-                                {prod.name}
-                              </h2>
-                              <span className='mt-1 text-black text-xl'>
-                                ₹
-                                {Math.ceil(
-                                  prod.total - prod.total * prod.discount * 0.01
+                    products.map((prod, index) => {
+                      if (index < items) {
+                        return (
+                          <div
+                            key={uuidv4()}
+                            className='w-56 h-[350px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                            <Link href={`/productDetails/${prod.id}`}>
+                              <div className='block relative h-48 rounded overflow-hidden'>
+                                <Image
+                                  src={
+                                    prod.colors[
+                                      getRandomIndex(prod.colors.length)
+                                    ].images[0]
+                                  }
+                                  alt='ecommerce'
+                                  width={1080}
+                                  height={1920}
+                                  className='object-contain object-center w-full h-full block'
+                                  priority={true}
+                                  loading='eager'
+                                />
+                              </div>
+                              <div className='mt-4 flex flex-col'>
+                                <h2 className='text-black title-font text-xs font-black'>
+                                  {prod.name}
+                                </h2>
+                                <span className='mt-1 text-black text-xl'>
+                                  ₹
+                                  {Math.ceil(
+                                    prod.total -
+                                      prod.total * prod.discount * 0.01
+                                  )}
+                                </span>
+                                {prod.discount > 0 && (
+                                  <div className='flex items-end justify-between'>
+                                    <span className='mt-1 line-through text-sm text-black'>
+                                      ₹{prod.total}
+                                    </span>
+                                    <span className='title-font font-semibold text-sm text-[#088240]'>
+                                      {prod.discount}% off
+                                    </span>
+                                  </div>
                                 )}
-                              </span>
-                              {prod.discount > 0 && (
-                                <div className='flex items-end justify-between'>
-                                  <span className='mt-1 line-through text-sm text-black'>
-                                    ₹{prod.total}
-                                  </span>
-                                  <span className='title-font font-semibold text-sm text-[#088240]'>
-                                    {prod.discount}% off
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                          </Link>
-                        </div>
-                      );
+                              </div>
+                            </Link>
+                          </div>
+                        );
+                      }
                     })}
                 </div>
               </div>
@@ -182,45 +204,47 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
             <span className='flex flex-col xl:hidden bg-bg w-full mx-auto pt-24'>
               <div className='grid grid-cols-2 md:grid-cols-4 px-2'>
                 {products &&
-                  products.map((prod) => {
-                    return (
-                      <div
-                        key={uuidv4()}
-                        className='row-span-1 font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
-                        <Link href={`/productDetails/${prod.id}`}>
-                          <div className='block relative h-36 rounded overflow-hidden'>
-                            <Image
-                              src={prod.colors[0].images[0]}
-                              alt='ecommerce'
-                              width={1080}
-                              height={1920}
-                              className='object-contain object-center w-full h-full block'
-                            />
-                          </div>
-                          <div className='mt-4 flex flex-col'>
-                            <h2 className='text-black title-font text-[15px] md:text-base xl:text-lg font-medium'>
-                              {prod.name}
-                            </h2>
-                            <span className='mt-1 text-black text-[14px] md:text-xl'>
-                              ₹
-                              {Math.ceil(
-                                prod.total - prod.total * prod.discount * 0.01
+                  products.map((prod, index) => {
+                    if (index < items) {
+                      return (
+                        <div
+                          key={uuidv4()}
+                          className='row-span-1 font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                          <Link href={`/productDetails/${prod.id}`}>
+                            <div className='block relative h-36 rounded overflow-hidden'>
+                              <Image
+                                src={prod.colors[0].images[0]}
+                                alt='ecommerce'
+                                width={1080}
+                                height={1920}
+                                className='object-contain object-center w-full h-full block'
+                              />
+                            </div>
+                            <div className='mt-4 flex flex-col'>
+                              <h2 className='text-black title-font text-[15px] md:text-base xl:text-lg font-medium'>
+                                {prod.name}
+                              </h2>
+                              <span className='mt-1 text-black text-[14px] md:text-xl'>
+                                ₹
+                                {Math.ceil(
+                                  prod.total - prod.total * prod.discount * 0.01
+                                )}
+                              </span>
+                              {prod.discount > 0 && (
+                                <div className='flex justify-between'>
+                                  <span className='mt-1 line-through text-sm text-black'>
+                                    ₹{prod.total}
+                                  </span>
+                                  <span className='title-font font-semibold text-sm text-[#088240]'>
+                                    {prod.discount}% off
+                                  </span>
+                                </div>
                               )}
-                            </span>
-                            {prod.discount > 0 && (
-                              <div className='flex justify-between'>
-                                <span className='mt-1 line-through text-sm text-black'>
-                                  ₹{prod.total}
-                                </span>
-                                <span className='title-font font-semibold text-sm text-[#088240]'>
-                                  {prod.discount}% off
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                        </Link>
-                      </div>
-                    );
+                            </div>
+                          </Link>
+                        </div>
+                      );
+                    }
                   })}
               </div>
             </span>
