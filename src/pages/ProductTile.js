@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 const ProductTile = ({ id, name, category, total, discount, imageUrl }) => {
+  const [imageLoading, setLoading] = useState(true);
   const router = useRouter();
   function viewProduct(id) {
     router.push("/productDetails/" + id);
@@ -18,8 +20,20 @@ const ProductTile = ({ id, name, category, total, discount, imageUrl }) => {
           alt='ecommerce'
           height={1080}
           width={1920}
-          className='object-contain object-center w-fit h-[200px] md:h-[300px] mx-auto'
+          className={`object-contain object-center w-fit h-[200px] md:h-[300px] mx-auto ${
+            imageLoading ? "hidden" : "block"
+          }`}
+          priority={true}
+          onLoadCapture={() => setLoading(false)}
         />
+        {imageLoading && (
+          <Image
+            src='/product-loading.gif'
+            className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+            width={50}
+            height={50}
+          />
+        )}
       </a>
       <div className='mt-4'>
         <div className='flex flex-row items-center w-full'>
