@@ -177,15 +177,18 @@ export default function ProductId() {
                     />
                   }
                   {!imageLoaded && (
-                    <div className='rounded px-2 w-[320px] md:w-[500px] h-[500px] md:h-[700px] bg-shadowGrey animate-pulse' />
+                    <div className='rounded px-2 w-[320px] md:w-[500px] h-[500px] md:h-[700px] relative'>
+                      <Image
+                        src='/product-loading.gif'
+                        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                        width={100}
+                        height={100}
+                      />
+                    </div>
                   )}
                   <div
-                    className={`flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
-                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2 ${
-                              imageLoaded
-                                ? ""
-                                : "bg-shadowGrey animate-pulse mr-5"
-                            }`}>
+                    className={`mt-4 relative md:mt-0 flex flex-row justify-center items-center overflow-x-scroll md:overflow-x-hidden
+                            lg:flex-col md:h-96 md:overflow-y-scroll border border-border rounded p-2`}>
                     {currentColor.images.map((image) => (
                       <Image
                         loading='eager'
@@ -204,6 +207,14 @@ export default function ProductId() {
                         }}
                       />
                     ))}
+                    {!imageLoaded && (
+                      <Image
+                        src='/product-loading.gif'
+                        className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                        width={50}
+                        height={50}
+                      />
+                    )}
                   </div>
                 </div>
                 <div className='mx-auto md:mx-0 lg:w-1/2 w-full md:py-24 mt-6 lg:mt-0'>
