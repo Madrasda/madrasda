@@ -9,6 +9,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
   const largeScreen = useMediaQuery({ minWidth: 1280, maxWidth: 1600 });
   const extraLargeScreen = useMediaQuery({ minWidth: 1600 });
   const [items, setItems] = useState("");
+  const [imageLoading, setLoading] = useState(true);
 
   useEffect(() => {
     if (extraLargeScreen) {
@@ -95,10 +96,20 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                                 alt='ecommerce'
                                 width={1080}
                                 height={1920}
-                                className='object-contain object-center w-full h-full block'
-                                loading='eager'
+                                className={`object-contain object-center w-full h-full ${
+                                  imageLoading ? "hidden" : "block"
+                                }`}
                                 priority={true}
+                                onLoadCapture={() => setLoading(false)}
                               />
+                              {imageLoading && (
+                                <Image
+                                  src='/product-loading.gif'
+                                  className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                                  width={50}
+                                  height={50}
+                                />
+                              )}
                             </div>
                             <div className='mt-4 flex flex-col'>
                               <h2 className='text-black title-font text-xs font-black'>
@@ -200,12 +211,27 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                         <Link href={`/productDetails/${prod.id}`}>
                           <div className='block relative h-36 rounded overflow-hidden'>
                             <Image
-                              src={prod.colors[0].images[0]}
+                              src={
+                                prod.colors[getRandomIndex(prod.colors.length)]
+                                  .images[0]
+                              }
                               alt='ecommerce'
                               width={1080}
                               height={1920}
-                              className='object-contain object-center w-full h-full block'
+                              className={`object-contain object-center w-full h-full ${
+                                imageLoading ? "hidden" : "block"
+                              }`}
+                              priority={true}
+                              onLoadCapture={() => setLoading(false)}
                             />
+                            {imageLoading && (
+                              <Image
+                                src='/product-loading.gif'
+                                className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                                width={50}
+                                height={50}
+                              />
+                            )}
                           </div>
                           <div className='mt-4 flex flex-col'>
                             <h2 className='text-black title-font text-[15px] md:text-base xl:text-lg font-medium'>
