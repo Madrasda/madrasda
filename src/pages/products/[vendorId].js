@@ -17,7 +17,7 @@ function VendorProductsPage() {
         setTitle(
           vendors.find(
             (vendor) => vendor.id === parseInt(router.query.vendorId)
-          ).name + " Products"
+          ).name
         );
         axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductsByVendor/" + vendorId + "?pageNo=" + pageNo + "&pageSize=20")
             .then(response => setVendorProducts(response.data))

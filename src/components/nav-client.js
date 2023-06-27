@@ -107,6 +107,24 @@ export default function NavisCustomer() {
     ctx.setIsLoggedIn(false);
     router.push("/login");
   };
+  function handleClick(event) {
+    setOpenCategory(true);
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose() {
+    setOpenCategory(false);
+    setAnchorEl(null);
+  }
+  function handleClick1(event) {
+    setOpenVendors(true);
+    setAnchorEl(event.currentTarget);
+  }
+
+  function handleClose1() {
+    setOpenVendors(false);
+    setAnchorEl(null);
+  }
 
   useEffect(() => {
     getBestSellers();
@@ -131,12 +149,10 @@ export default function NavisCustomer() {
               id={"category-button"}
               variant={"text"}
               sx={{ background: "inherit", color: "#FFF" }}
-              aria-controls={openCategory ? "category-dropdown" : undefined}
-              aria-expanded={openCategory ? "true" : undefined}
-              onClick={(event) => {
-                setOpenCategory(true);
-                setAnchorEl(event.currentTarget);
-              }}
+              aria-owns={anchorEl ? "simple-menu" : undefined}
+              aria-haspopup="true"
+              onClick={handleClick}
+              onMouseOver={handleClick}
               className='text-[1.2rem] cursor-pointer'>
               Shop
               <IconButton>
@@ -147,14 +163,9 @@ export default function NavisCustomer() {
               id={"category-dropdown"}
               anchorEl={anchorEl}
               open={openCategory}
-              style={{ borderRadius: "0" }}
-              MenuListProps={{
-                "aria-labelledby": "category-button",
-              }}
-              onClose={() => {
-                setOpenCategory(false);
-                setAnchorEl(null);
-              }}>
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}
+              getContentAnchorEl={null}>
               <div className='p-4 flex space-x-8 font-quest'>
                 <div className='flex flex-col space-y-4'>
                   <div>
@@ -284,12 +295,10 @@ export default function NavisCustomer() {
               id={"vendors-button"}
               variant={"text"}
               sx={{ background: "inherit", color: "#FFF" }}
-              aria-controls={openVendors ? "vendors-dropdown" : undefined}
-              aria-expanded={openVendors ? "true" : undefined}
-              onClick={(event) => {
-                setOpenVendors(true);
-                setAnchorEl(event.currentTarget);
-              }}
+              aria-owns={anchorEl ? "simple-menu" : undefined}
+              aria-haspopup="true"
+              onClick={handleClick1}
+              onMouseOver={handleClick1}
               className='text-[1.2rem] cursor-pointer'>
               Creators
               <IconButton>
@@ -300,14 +309,9 @@ export default function NavisCustomer() {
               id={"vendors-dropdown"}
               anchorEl={anchorEl}
               open={openVendors}
-              style={{ borderRadius: "0" }}
-              onClose={() => {
-                setOpenVendors(false);
-                setAnchorEl(null);
-              }}
-              MenuListProps={{
-                "aria-labelledby": "vendors-button",
-              }}>
+              onClose={handleClose1}
+              MenuListProps={{ onMouseLeave: handleClose1 }}
+              getContentAnchorEl={null}>
               <div className='flex flex-col space-y-3 font-quest'>
                 <h1 className='font-semibold pb-2 text-lg p-3'>
                   Shop By Creators
