@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import CartModal from "./cart-modal"
 import axios from "axios";
-import {Dropdown} from "@nextui-org/react";
+// import {Dropdown} from "@nextui-org/react";
 import {useRouter} from "next/router";
 import {UserContext} from "../../context/context";
 import {useContext, useEffect, useState} from "react";
@@ -17,21 +17,21 @@ import {
   Grow,
   Menu,
   MenuItem,
-  MenuList,
+  // MenuList,
   Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
-  ArrowDownward,
+  // ArrowDownward,
   ArrowDropDown,
   Close,
-  ExpandCircleDown,
+  // ExpandCircleDown,
   ExpandMore,
-  HighlightOff,
+  // HighlightOff,
   LoginOutlined,
-  MenuOpen,
-  UsbRounded,
-  VerifiedUserOutlined,
+  // MenuOpen,
+  // UsbRounded,
+  // VerifiedUserOutlined,
 } from "@mui/icons-material";
 
 export default function NavisCustomer() {
@@ -81,10 +81,10 @@ export default function NavisCustomer() {
     // router.push("/products/[vendorId]", "/products/" + id);
     router.push(
       {
-        pathname : "/products/[vendorId]",
+        pathname : "/creators/[vendorId]",
         query : {vendorId : id}
       },
-      "/creators/" + name
+      // "/creators/" + name
     )
   };
 
