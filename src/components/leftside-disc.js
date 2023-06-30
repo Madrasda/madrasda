@@ -39,11 +39,10 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
             <div className='flex flex-col w-full'>
               <Link
                 href={{
-                  pathname: "/products/[vendorId]",
+                  pathname: "/creators/[vendorId]",
                   query: { vendorId: id },
                 }}
-                as={"creators/" + name}
-                // href={`/products/${id}`}
+                // href={`/creators/${name}`}
               >
                 <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-4 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
                   {name}
@@ -58,10 +57,10 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                     <div className='z-10'>
                       <Link
                         href={{
-                          pathname: "/products/[vendorId]",
+                          pathname: "/creators/[vendorId]",
                           query: { vendorId: id },
                         }}
-                        as={"creators/" + name}
+                        // as={"creators/" + name}
                         // href={`/products/${id}`}
                       >
                         <Image
@@ -137,10 +136,10 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
             </div>
             <Link
               href={{
-                pathname: "/products/[vendorId]",
+                pathname: "/creators/[vendorId]",
                 query: { vendorId: id },
               }}
-              as={"creators/" + name}
+              // as={"creators/" + name}
               // href={`/products/${id}`}
             >
               <button
@@ -159,10 +158,10 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
               />
               <Link
                 href={{
-                  pathname: "/products/[vendorId]",
+                  pathname: "/creators/[vendorId]",
                   query: { vendorId: id },
                 }}
-                as={"creators/" + name}
+                // as={"creators/" + name}
                 className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full cursor-pointer'>
                 <Image
                   className='object-cover w-full h-full animate-spin hover:animate-none'
@@ -183,10 +182,10 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
               <div className='absolute mt-10'>
                 <Link
                   href={{
-                    pathname: "/products/[vendorId]",
+                    pathname: "/creators/[vendorId]",
                     query: { vendorId: id },
                   }}
-                  as={"creators/" + name}
+                  // as={"creators/" + name}
                   // href={`/products/${id}`}
                   className='relative'>
                   <Image
