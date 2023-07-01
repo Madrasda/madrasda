@@ -471,7 +471,7 @@ export default function NavisCustomer() {
                     {vendorList.map((vendor) => (
                       <div
                         key={uuidv4()}
-                        onClick={() => handleVendorProductsClick(vendor.id)}>
+                        onClick={() => handleVendorProductsClick(vendor.id, vendor.name)}>
                         {vendor.name}
                       </div>
                     ))}
