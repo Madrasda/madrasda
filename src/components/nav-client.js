@@ -81,11 +81,11 @@ export default function NavisCustomer() {
     // router.push("/products/[vendorId]", "/products/" + id);
     router.push(
       {
-        pathname : "/creators/[vendorId]",
-        query : {vendorId : id}
-      },
+        pathname: `/creators`,
+        query: { name: name, id: id },
+      }
       // "/creators/" + name
-    )
+    );
   };
 
   const handleCategoryProductsClick = (event) => {
