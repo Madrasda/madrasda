@@ -45,8 +45,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               />
               <Link
                 href={{
-                  pathname: "/creators/[vendorId]",
-                  query: { vendorId: id },
+                  pathname: "/creators",
+                  query: { name: name, id: id },
                 }}
                 // as={"creators/" + name}
                 className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
@@ -63,8 +63,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
             <div className='flex flex-col w-full'>
               <Link
                 href={{
-                  pathname: "/creators/[vendorId]",
-                  query: { vendorId: id },
+                  pathname: "/creators",
+                  query: { name: name, id: id },
                 }}
                 // as={"creators/" + name}
                 // href={`/products/${id}`}
@@ -142,8 +142,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                   <div className='mr-5 z-10 relative '>
                     <Link
                       href={{
-                        pathname: "/creators/[vendorId]",
-                        query: { vendorId: id },
+                        pathname: "/creators",
+                        query: { name: name, id: id },
                       }}
                       // as={"creators/" + name}
                       // href={`/products/${id}`}
@@ -169,8 +169,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               <div className='absolute mt-10'>
                 <Link
                   href={{
-                    pathname: "/creators/[vendorId]",
-                    query: { vendorId: id },
+                    pathname: "/creators",
+                    query: { name: name, id: id },
                   }}
                   // as={"creators/" + name}
                   // href={`/products/${id}`}
