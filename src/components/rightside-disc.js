@@ -10,6 +10,13 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
   const extraLargeScreen = useMediaQuery({ minWidth: 1600 });
   const [items, setItems] = useState("");
   const [imageLoading, setLoading] = useState(true);
+  const slugify = str =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
   useEffect(() => {
     if (extraLargeScreen) {
@@ -45,8 +52,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               />
               <Link
                 href={{
-                  pathname: "/creators",
-                  query: { name: name, id: id },
+                  pathname: `/creators/${slugify(name)}`,
+                //  query: { name: name, id: id },
                 }}
                 // as={"creators/" + name}
                 className='w-[250px] h-[250px] overflow-hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-cover objects-center rounded-full'>
@@ -63,8 +70,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
             <div className='flex flex-col w-full'>
               <Link
                 href={{
-                  pathname: "/creators",
-                  query: { name: name, id: id },
+                  pathname: `/creators/${slugify(name)}`,
+                //  query: { name: name, id: id },
                 }}
                 // as={"creators/" + name}
                 // href={`/products/${id}`}
@@ -142,8 +149,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                   <div className='mr-5 z-10 relative '>
                     <Link
                       href={{
-                        pathname: "/creators",
-                        query: { name: name, id: id },
+                        pathname: `/creators/${slugify(name)}`,
+                      //  query: { name: name, id: id },
                       }}
                       // as={"creators/" + name}
                       // href={`/products/${id}`}
@@ -169,8 +176,8 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               <div className='absolute mt-10'>
                 <Link
                   href={{
-                    pathname: "/creators",
-                    query: { name: name, id: id },
+                    pathname: `/creators/${slugify(name)}`,
+                  //  query: { name: name, id: id },
                   }}
                   // as={"creators/" + name}
                   // href={`/products/${id}`}

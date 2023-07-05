@@ -47,6 +47,13 @@ export default function NavisCustomer() {
   const [openCategoryMobile, setOpenCategoryMobile] = useState(false);
   const [openVendors, setOpenVendors] = useState(false);
   const [mockups, setMockups] = useState([]);
+  const slugify = str =>
+  str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
   useEffect(() => {
     if (
@@ -81,8 +88,8 @@ export default function NavisCustomer() {
     // router.push("/products/[vendorId]", "/products/" + id);
     router.push(
       {
-        pathname: `/creators`,
-        query: { name: name, id: id },
+        pathname: `/creators/${slugify(name)}`,
+      //  query: { name: name, id: id },
       }
       // "/creators/" + name
     );
@@ -321,7 +328,7 @@ export default function NavisCustomer() {
                     <MenuItem
                       key={uuidv4()}
                       className='p-0'
-                      onClick={() => handleVendorProductsClick(vendor.id, vendor.name)}>
+                      onClick={() => handleVendorProductsClick(vendor.id, vendor.companyName)}>
                       <div key={uuidv4()} className={"px-3 py-3"}>
                         {vendor.name}
                       </div>
