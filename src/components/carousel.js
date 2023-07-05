@@ -1,29 +1,29 @@
-import { Paper, Button } from "@mui/material";
+// import { Paper, Button } from "@mui/material";
 import Image from "next/image";
 import Carousel from "react-material-ui-carousel";
 
 export default function CarouselComponent() {
   const desktopSlides = [
     {
-      url: "/banner 1 desktop.jpg",
+      url: "/banner 1 desktop.webp",
     },
     {
-      url: "/banner 2 desktop.jpg",
+      url: "/banner 2 desktop.webp",
     },
     {
-      url: "/banner 3 desktop.jpg",
+      url: "/banner 3 desktop.webp",
     },
   ];
 
   const mobileSlides = [
     {
-      url: "/banner 1 mobile.jpg",
+      url: "/banner 1 mobile.webp",
     },
     {
-      url: "/banner 2 mobile.jpg",
+      url: "/banner 2 mobile.webp",
     },
     {
-      url: "/banner 3 mobile.jpg",
+      url: "/banner 3 mobile.webp",
     },
   ];
 
