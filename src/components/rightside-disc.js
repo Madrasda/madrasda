@@ -15,7 +15,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
     if (extraLargeScreen) {
       setItems(7);
     } else if (largeScreen) {
-      setItems(5);
+      setItems(4);
     } else if (mediumScreen) {
       setItems(8);
     } else if (smallScreen) {
