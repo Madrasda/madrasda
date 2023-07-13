@@ -21,9 +21,9 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
 
   useEffect(() => {
     if (extraLargeScreen) {
-      setItems(7);
+      setItems(5);
     } else if (largeScreen) {
-      setItems(4);
+      setItems(3);
     } else if (mediumScreen) {
       setItems(8);
     } else if (smallScreen) {
@@ -83,8 +83,8 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                       if (index < items) {
                         return (
                           <div
-                            key={uuidv4()}
-                            className='w-56 h-[320px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
+                            key={index}
+                            className='w-64 h-[360px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded'>
                             <Link href={`/productDetails/${prod.id}`}>
                               <div className='block relative h-48 rounded overflow-hidden'>
                                 <Image
@@ -112,7 +112,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                                 )}
                               </div>
                               <div className='mt-4 flex flex-col'>
-                                <h2 className='text-black title-font text-xs font-black'>
+                                <h2 className='text-black title-font text-xs md:text-base font-black'>
                                   {prod.name}
                                 </h2>
                                 <span className='mt-1 text-black text-xl'>

@@ -145,7 +145,7 @@ export default function NavisCustomer() {
   }, []);
 
   return (
-    <header className='font-quest bg-bg text-off-white md:px-8 z-20 w-full fixed '>
+    <header className='font-quest bg-bg text-off-white md:px-8 z-20 w-full top-0 left-0 fixed '>
       <div className='justify-center items-center w-full hidden md:flex'>
         <Link href='/'>
           <Image src='/logo.png' width={90} height={90} />

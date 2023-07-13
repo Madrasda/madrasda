@@ -1,11 +1,10 @@
 import NavClient from "./nav-client";
 import Head from "next/head";
-import Footer from "./footer";
-import { forwardRef, Suspense, useContext, useState } from "react";
+import { forwardRef} from "react";
 import { Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
-import { getRole } from "@/utils/JWTVerifier";
-import { UserContext } from "../../context/context";
+// import { getRole } from "@/utils/JWTVerifier";
+// import { UserContext } from "../../context/context";
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });

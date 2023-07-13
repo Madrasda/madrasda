@@ -1,6 +1,11 @@
 // import { Paper, Button } from "@mui/material";
 import Image from "next/image";
-import Carousel from "react-material-ui-carousel";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay"
 
 export default function CarouselComponent() {
   const desktopSlides = [
@@ -29,49 +34,76 @@ export default function CarouselComponent() {
 
   return (
     <>
-    <div className='h-full w-full hidden lg:block'>
-      <Carousel>
+      <div className='h-full hidden lg:block'>
+        {/* <Carousel>
         {desktopSlides.map((slide, index) => (
           <DesktopCarousel key={index} item={slide.url} />
         ))}
-      </Carousel>
-    </div>
+      </Carousel> */}
+        <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView="auto"
+          loop={true}
+          navigation={true}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2000,
+            pauseOnMouseEnter: true,
+            disableOnInteraction: true,
+          }}
+          className="mt-16"
+        >
+          {
+            desktopSlides.map((slide, index) => {
+              return (
+                <SwiperSlide key={index}>
+                <Image
+                  src={slide.url}
+                  alt='carousel'
+                  height={1080}
+                  width={1920}
+                  className='object-contain object-center w-full h-full'
+                />
+                </SwiperSlide>
+              )
+            })
+          }
+        </Swiper>
+      </div>
 
-    <div className='h-full w-full lg:hidden'>
-     <Carousel>
-       {mobileSlides.map((slide, index) => (
-         <MobileCarousel key={index} item={slide.url} />
-       ))}
-     </Carousel>
-   </div>
-   </>
-  );
-}
-
-function DesktopCarousel(props) {
-  return (
-    <div className='bg-bg h-[80vh] w-full flex justify-center items-center mt-20 pb-10'>
-      <Image
-        src={props.item}
-        alt='carousel'
-        height={1080}
-        width={1920}
-        className='object-contain object-center w-full h-full'
-      />
-    </div>
-  );
-}
-
-function MobileCarousel(props) {
-  return (
-    <div className='bg-bg h-[37vh] md:h-[64vh] w-full flex justify-center items-center mt-12'>
-      <Image
-        src={props.item}
-        alt='carousel'
-        height={1080}
-        width={1920}
-        className='object-contain object-center w-full h-full'
-      />
-    </div>
+      <div className='h-full w-full lg:hidden'>
+      <Swiper
+          modules={[Navigation, Pagination, Autoplay]}
+          spaceBetween={30}
+          slidesPerView="auto"
+          loop={true}
+          navigation={true}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2000,
+            pauseOnMouseEnter: true,
+            disableOnInteraction: true,
+          }}
+          className="mt-24 mb-12"
+        >
+          {
+            mobileSlides.map((slide, index) => {
+              return (
+                <SwiperSlide key={index}>
+                <Image
+                  src={slide.url}
+                  alt='carousel'
+                  height={1080}
+                  width={1920}
+                  className='object-contain object-center w-full h-full'
+                />
+                </SwiperSlide>
+              )
+            })
+          }
+        </Swiper>
+      </div>
+    </>
   );
 }

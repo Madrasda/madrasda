@@ -18,17 +18,17 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-  useEffect(() => {
-    if (extraLargeScreen) {
-      setItems(7);
-    } else if (largeScreen) {
-      setItems(4);
-    } else if (mediumScreen) {
-      setItems(8);
-    } else if (smallScreen) {
-      setItems(10);
-    }
-  }, []);
+    useEffect(() => {
+      if (extraLargeScreen) {
+        setItems(5);
+      } else if (largeScreen) {
+        setItems(3);
+      } else if (mediumScreen) {
+        setItems(8);
+      } else if (smallScreen) {
+        setItems(10);
+      }
+    }, []);
 
   const getRandomIndex = (index) => {
     return Math.floor(Math.random() * index);
@@ -90,57 +90,58 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                     if (index < items) {
                       return (
                         <div
-                          key={uuidv4()}
-                          className='w-56 h-[320px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded-sm'>
-                          <Link href={`/productDetails/${prod.id}`}>
-                            <div className='block relative h-48 rounded overflow-hidden'>
-                              <Image
-                                src={
-                                  prod.colors[
-                                    getRandomIndex(prod.colors.length)
-                                  ].images[0]
-                                }
-                                alt='ecommerce'
-                                width={1080}
-                                height={1920}
-                                className={`object-contain object-center w-full h-full ${
-                                  imageLoading ? "hidden" : "block"
-                                }`}
-                                priority={true}
-                                onLoadCapture={() => setLoading(false)}
-                              />
-                              {imageLoading && (
+                            key={index}
+                            className='w-64 h-[360px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded'>
+                            <Link href={`/productDetails/${prod.id}`}>
+                              <div className='block relative h-48 rounded overflow-hidden'>
                                 <Image
-                                  src='/product-loading.gif'
-                                  className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
-                                  width={50}
-                                  height={50}
+                                  src={
+                                    prod.colors[
+                                      getRandomIndex(prod.colors.length)
+                                    ].images[0]
+                                  }
+                                  alt='ecommerce'
+                                  width={1080}
+                                  height={1920}
+                                  className={`object-contain object-center w-full h-full ${
+                                    imageLoading ? "hidden" : "block"
+                                  }`}
+                                  priority={true}
+                                  onLoadCapture={() => setLoading(false)}
                                 />
-                              )}
-                            </div>
-                            <div className='mt-4 flex flex-col'>
-                              <h2 className='text-black title-font text-xs font-black'>
-                                {prod.name}
-                              </h2>
-                              <span className='mt-1 text-black text-xl'>
-                                ₹
-                                {Math.ceil(
-                                  prod.total - prod.total * prod.discount * 0.01
+                                {imageLoading && (
+                                  <Image
+                                    src='/product-loading.gif'
+                                    className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+                                    width={50}
+                                    height={50}
+                                  />
                                 )}
-                              </span>
-                              {prod.discount > 0 && (
-                                <div className='flex items-end justify-between'>
-                                  <span className='mt-1 line-through text-sm text-black'>
-                                    ₹{prod.total}
-                                  </span>
-                                  <span className='title-font font-semibold text-sm text-[#088240]'>
-                                    {prod.discount}% off
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                          </Link>
-                        </div>
+                              </div>
+                              <div className='mt-4 flex flex-col'>
+                                <h2 className='text-black title-font text-xs md:text-base font-black'>
+                                  {prod.name}
+                                </h2>
+                                <span className='mt-1 text-black text-xl'>
+                                  ₹
+                                  {Math.ceil(
+                                    prod.total -
+                                      prod.total * prod.discount * 0.01
+                                  )}
+                                </span>
+                                {prod.discount > 0 && (
+                                  <div className='flex items-end justify-between'>
+                                    <span className='mt-1 line-through text-sm text-black'>
+                                      ₹{prod.total}
+                                    </span>
+                                    <span className='title-font font-semibold text-sm text-[#088240]'>
+                                      {prod.discount}% off
+                                    </span>
+                                  </div>
+                                )}
+                              </div>
+                            </Link>
+                          </div>
                       );
                     }
                   })}
