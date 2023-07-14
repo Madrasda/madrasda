@@ -24,7 +24,9 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-
+:root {
+    --swiper-theme-color: black !important;
+}
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
 }
