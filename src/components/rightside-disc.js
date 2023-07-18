@@ -39,7 +39,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
       {products.length !== 0 && (
         <div
           className='hidden xl:block overflow-hidden pl-2
-                     lg:pl-10 mb-2 h-fit relative'>
+                     lg:pl-10 mb-12 h-fit relative'>
           <span
             className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-full rounded-r-none'>
@@ -84,14 +84,14 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
               {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
               <div
                 className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            xl:flex'>
+                            xl:flex pb-12'>
                 {products &&
                   products.map((prod, index) => {
                     if (index < items) {
                       return (
                         <div
                             key={index}
-                            className='w-64 h-[360px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded'>
+                            className='w-64 h-[360px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded hover:scale-[1.025] transition-transform'>
                             <Link href={`/productDetails/${prod.id}`}>
                               <div className='block relative h-48 rounded overflow-hidden'>
                                 <Image
@@ -243,7 +243,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                             )}
                           </div>
                           <div className='mt-4 flex flex-col'>
-                            <h2 className='text-black title-font text-[15px] md:text-base xl:text-lg font-medium'>
+                            <h2 className='text-black title-font truncate text-[15px] md:text-base xl:text-lg font-medium'>
                               {prod.name}
                             </h2>
                             <span className='mt-1 text-black text-[14px] md:text-xl'>

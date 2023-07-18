@@ -39,7 +39,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
       {products.length !== 0 && (
         <div
           className='hidden xl:block overflow-hidden pr-2
-            mb-2 lg:pr-10 relative'>
+            mb-12 lg:pr-10 relative'>
           <span
             className='bg-secondary bg-opacity-95 flex flex-row justify-center items-center w-full
                         rounded-l-none rounded-r-full'>
@@ -58,7 +58,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
               {/* -------- VISIBLE ONLY ON LARGE SCREENS --------  */}
               <div
                 className='w-full h-full items-center justify-start px-4 py-2 hidden
-                            xl:flex'>
+                            xl:flex pb-12'>
                 <div className='w-full h-full flex items-center justify-end'>
                   {products.length >= 5 && (
                     <div className='z-10'>
@@ -84,7 +84,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                         return (
                           <div
                             key={index}
-                            className='w-64 h-[360px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded'>
+                            className='w-64 h-[360px] font-quest p-4 cursor-pointer border border-gray bg-tertiary m-2 rounded transition-transform hover:scale-[1.025]'>
                             <Link href={`/productDetails/${prod.id}`}>
                               <div className='block relative h-48 rounded overflow-hidden'>
                                 <Image
@@ -112,7 +112,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                                 )}
                               </div>
                               <div className='mt-4 flex flex-col'>
-                                <h2 className='text-black title-font text-xs md:text-base font-black'>
+                                <h2 className='text-black title-font text-xs truncate md:text-base font-black'>
                                   {prod.name}
                                 </h2>
                                 <span className='mt-1 text-black text-xl'>
