@@ -26,7 +26,7 @@ function VendorProductsPage() {
     const vendorName = vendors.find((vendor) => slugify(vendor.companyName) === query.creatorname)
     console.log(vendors, vendorName, router.pathname, query)
     setTitle(
-      vendorName.name
+      vendorName.companyName
     );
     axios
       .get(
