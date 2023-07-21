@@ -330,7 +330,7 @@ export default function NavisCustomer() {
                       className='p-0'
                       onClick={() => handleVendorProductsClick(vendor.id, vendor.companyName)}>
                       <div key={uuidv4()} className={"px-3 py-3"}>
-                        {vendor.name}
+                        {vendor.companyName}
                       </div>
                     </MenuItem>
                   ))}
@@ -479,7 +479,7 @@ export default function NavisCustomer() {
                       <div
                         key={uuidv4()}
                         onClick={() => handleVendorProductsClick(vendor.id, vendor.companyName)}>
-                        {vendor.name}
+                        {vendor.companyName}
                       </div>
                     ))}
                   </AccordionDetails>
