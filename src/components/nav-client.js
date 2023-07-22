@@ -264,6 +264,7 @@ export default function NavisCustomer() {
                         if (item.model === "Kids") {
                           return (
                             <Link
+                            key={uuidv4()}
                               href={{
                                 pathname: "/product-category",
                                 query: {
@@ -287,7 +288,7 @@ export default function NavisCustomer() {
                     </h1>
                     {products &&
                       products.map((item) => (
-                        <Link href={`/productDetails/${item.id}`}>
+                        <Link href={`/productDetails/${item.id}`} key={uuidv4()}>
                           <MenuItem className='px-1 text-sm py-2'>
                             {item.name}
                           </MenuItem>

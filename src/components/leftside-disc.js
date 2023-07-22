@@ -94,8 +94,8 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                                     ].images[0]
                                   }
                                   alt='ecommerce'
-                                  width={1080}
-                                  height={1920}
+                                  width={600}
+                                  height={900}
                                   className={`object-contain object-center w-full h-full ${
                                     imageLoading ? "hidden" : "block"
                                   }`}
@@ -236,8 +236,8 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                                   ].images[0]
                                 }
                                 alt='ecommerce'
-                                width={1080}
-                                height={1920}
+                                width={600}
+                                height={900}
                                 className={`object-contain object-center w-full h-full ${
                                   imageLoading ? "hidden" : "block"
                                 }`}
