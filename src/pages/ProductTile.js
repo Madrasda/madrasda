@@ -18,8 +18,8 @@ const ProductTile = ({ id, name, category, total, discount, imageUrl }) => {
         <Image
           src={imageUrl}
           alt='ecommerce'
-          height={1080}
-          width={1920}
+          height={600}
+          width={900}
           className={`object-contain object-center w-fit h-[200px] md:h-[300px] mx-auto ${
             imageLoading ? "hidden" : "block"
           }`}

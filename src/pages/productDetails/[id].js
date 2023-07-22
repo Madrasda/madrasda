@@ -179,9 +179,9 @@ export default function ProductId() {
           severity={severity}
           message={message}
           setState={setOpen}>
-          <section className='text-black body-font font-quest overflow-hidden'>
+          <section className='text-black body-font font-quest overflow-hidden mx-auto'>
             <div className='px-20 pt-12 mx-auto flex justify-center'>
-              <div className='flex justify-start flex-row flex-wrap md:flex-nowrap'>
+              <div className='flex justify-start flex-row flex-wrap md:flex-nowrap mx-auto'>
                 <div
                   className='flex flex-col items-center justify-center
                           lg:flex-row-reverse w-fit py-11 px-4'>

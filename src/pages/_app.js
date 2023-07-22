@@ -6,11 +6,12 @@ import { useRouter } from "next/router";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "theme";
 import SEO from "next-seo.config";
-import { StyledEngineProvider } from "@mui/material/styles";
+// import { StyledEngineProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import "@/styles/globals.css";
 import { DefaultSeo } from "next-seo";
-import Head from "next/head";
+import Script from 'next/script'
+import * as fbq from "@/utils/fbq";
 
 function Loading() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("token_client") !== null);
   }, []);
+
   useEffect(() => {
     const jwtToken = localStorage.getItem("token_client");
     if (
@@ -35,6 +37,7 @@ export default function App({ Component, pageProps }) {
       getRole(jwtToken) === "ROLE_CUSTOMER"
     ) {
       setToken(jwtToken);
+
       axios
         .get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
           headers: {
@@ -48,6 +51,7 @@ export default function App({ Component, pageProps }) {
           console.log(err);
         });
     }
+    
     axios
       .get(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getAllVendors"
@@ -55,6 +59,20 @@ export default function App({ Component, pageProps }) {
       .then((response) => setVendorList(response.data))
       .catch((err) => console.log(err));
   }, [isLoggedIn]);
+
+  useEffect(() => {
+    // This pageview only triggers the first time (it's important for Pixel to have real information)
+    fbq.pageview()
+
+    const handleRouteChange = () => {
+      fbq.pageview()
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   const decrementQty = (id, qty) => {
     setCart((oldCart) => {
@@ -199,8 +217,9 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-    <Head>
-      <script
+    <Script
+        id="fb-pixel"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
@@ -212,19 +231,9 @@ export default function App({ Component, pageProps }) {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '865965204469945');
-            fbq('track', 'PageView');
-          `
+          `,
         }}
       />
-      <noscript>
-        <img
-          height="1"
-          width="1"
-          style={{ display: 'none' }}
-          src="https://www.facebook.com/tr?id=865965204469945&ev=PageView&noscript=1"
-        />
-      </noscript>
-    </Head>
 
       <ThemeProvider theme={theme}>
         <Loading />
