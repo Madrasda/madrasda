@@ -24,7 +24,7 @@ function VendorProductsPage() {
 
   const setPageData = (vendors) => {
     const vendorName = vendors.find((vendor) => slugify(vendor.companyName) === query.creatorname)
-    console.log(vendors, vendorName, router.pathname, query)
+    // console.log(vendors, vendorName, router.pathname, query)
     setTitle(
       vendorName.companyName
     );
@@ -38,7 +38,7 @@ function VendorProductsPage() {
       )
       .then((response) => {
         setVendorProducts(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => console.log(err));
   };
@@ -54,7 +54,7 @@ function VendorProductsPage() {
           )
           .then((response) => {
             setPageData(response.data);
-            console.log(response.data);
+            // console.log(response.data);
           })
           .catch((err) => console.log(err));
       }
