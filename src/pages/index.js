@@ -76,7 +76,7 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Official merchandise | Indian content creators</title>
-        <script
+        {/* <Script
     dangerouslySetInnerHTML={{
       __html: `
         !function(f,b,e,v,n,t,s)
@@ -91,7 +91,7 @@ export default function Home() {
         fbq('track', 'PageView');
       `
     }}
-  />
+  /> */}
   <noscript>
     <img
       height="1"

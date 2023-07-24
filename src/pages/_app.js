@@ -231,6 +231,7 @@ export default function App({ Component, pageProps }) {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '865965204469945');
+            fbq('track', 'PageView');
           `,
         }}
       />
