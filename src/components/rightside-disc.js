@@ -76,7 +76,7 @@ export default function RightsideDisc({ name, id, imgUrl, products }) {
                 // as={"creators/" + name}
                 // href={`/products/${id}`}
               >
-                <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 right-0'>
+                <h1 className='font-prompt italic font-black uppercase text-2xl tracking-widest text-logo flex justify-end pr-10 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 right-0'>
                   {name}
                 </h1>
               </Link>

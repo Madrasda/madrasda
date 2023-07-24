@@ -51,7 +51,7 @@ export default function LeftsideDisc({ name, id, imgUrl, products }) {
                 }}
                 // href={`/creators/${name}`}
               >
-                <h1 className='font-prompt italic font-black text-2xl tracking-widest text-logo flex justify-start pl-4 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
+                <h1 className='font-prompt uppercase italic font-black text-2xl tracking-widest text-logo flex justify-start pl-4 text-center my-3 hover:my-2 hover:text-4xl transition-all ease-in-out duration-500 top-0 left-0'>
                   {name}
                 </h1>
               </Link>
