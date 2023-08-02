@@ -21,7 +21,7 @@ export default function Payments() {
       pageSize: 10,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?pageNo=0&pageSize=50",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?pageSIze=50&pageNo=0",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
