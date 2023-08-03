@@ -21,7 +21,8 @@ export default function Payments() {
       pageSize: 10,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?pageSIze=50&pageNo=0",
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
+        params,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
@@ -29,17 +30,45 @@ export default function Payments() {
       }
     );
     setOrders(response.data.content.reverse());
+    setPageTotal(response.data.totalPages);
+  };
+
+  const handlePageDecrease = () => {
+    if (pageNo == 0) return;
+    setPageNo(pageNo - 1);
+  };
+
+  const handlePageIncrease = () => {
+    console.log(pageNo);
+    if (pageNo + 1 == pageTotal) return;
+    setPageNo(pageNo + 1);
   };
 
   useEffect(() => {
     manageOrders();
-  }, []);
+  }, [pageNo]);
 
   return (
     <>
       <div className='flex flex-col '>
         <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
+            <div className='flex space-x-32 mx-auto left-0 right-0 w-1/2 absolute top-10'>
+              {pageNo !== 0 && (
+                <button
+                  className='bg-gradient-to-r from-primary to-logo text-white px-3 py-1 rounded-md hover:bg-gradient-to-tr transition-all ease-in-out duration-300'
+                  onClick={handlePageDecrease}>
+                  Previous
+                </button>
+              )}
+              {pageNo !== pageTotal - 1 && (
+                <button
+                  className='bg-gradient-to-r from-primary to-logo text-white px-3 py-1 rounded-md hover:bg-gradient-to-tr transition-all ease-in-out duration-300'
+                  onClick={handlePageIncrease}>
+                  Next
+                </button>
+              )}
+            </div>
             <div className='overflow-hidden'>
               <table
                 className='min-w-full text-center text-sm font-medium bg-bg bg-opacity-10 rounded-xl'
@@ -51,6 +80,9 @@ export default function Payments() {
                     </th>
                     <th scope='col' className=' px-6 pl-0'>
                       Order Id
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Order Date
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Customer Name
@@ -66,15 +98,12 @@ export default function Payments() {
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Customer Email
-                    </th> 
+                    </th>
                     <th scope='col' className=' px-6 py-4'>
                       Quantity
                     </th>
                     <th scope='col' className=' px-6 pl-2'>
                       Payment Id
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Order Date
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Order Status
@@ -110,12 +139,24 @@ export default function Payments() {
                     orders.map((order, index) => {
                       const orderDate = new Date(order.orderDate);
                       return order.orderItems.map((item) => (
-                        <tr key={uuidv4()} className='border-b border-shadowGrey'>
+                        <tr
+                          key={uuidv4()}
+                          className='border-b border-shadowGrey'>
                           <td className='whitespace-nowrap px-6 py-6 font-medium'>
                             {index + 1}
                           </td>
                           <td className='whitespace-nowrap px-6 pl-0 font-medium'>
                             {order.orderId}
+                          </td>
+                          <td className='whitespace-nowrap px-6 py-6'>
+                            {`${orderDate
+                              .getUTCDate()
+                              .toString()
+                              .padStart(2, "0")}-${(orderDate.getUTCMonth() + 1)
+                              .toString()
+                              .padStart(2, "0")}-${orderDate
+                              .getUTCFullYear()
+                              .toString()}`}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {order.shippingAddress.name}
@@ -137,16 +178,6 @@ export default function Payments() {
                           </td>
                           <td className='whitespace-nowrap px-6 pl-2'>
                             {order.paymentId}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {`${orderDate
-                              .getUTCDate()
-                              .toString()
-                              .padStart(2, "0")}-${(orderDate.getUTCMonth() + 1)
-                              .toString()
-                              .padStart(2, "0")}-${orderDate
-                              .getUTCFullYear()
-                              .toString()}`}
                           </td>
                           <td className='whitespace-nowrap px-6 py-6'>
                             {order.status === null

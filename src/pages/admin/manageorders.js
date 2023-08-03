@@ -32,38 +32,44 @@ export default function CustomerDetails() {
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta
+          name='description'
+          content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Recent Orders</title>
       </Head>
-      {isAdmin && <AdminLayout>
-        <main className='body-font md:ml-32 overflow-hidden font-quest'>
-          <div className='px-5 my-10 mx-auto'>
-            <h1 className='text-3xl text-primary pt-7 md:pt-0 md:ml-20 md:mt-10'>
-              Recent Orders
-            </h1>
-            <div className='hidden justify-end mr-10 md:flex'>
-            <Button
-              css={{ fontFamily: "$algeria" }}
-              style={{
-                background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-              }}
-              variant={'contained'}
-              onClick={() => {
-                const table = document.getElementById("download");
-                const wb = XLSX.utils.table_to_book(table);
-                XLSX.writeFile(wb, "RecentOrders.xlsx");
-              }}>
-              <b>Export as Excel</b>
-            </Button>
-          </div>
-            <div className='mt-4 md:ml-20'>
-              <Payments />
+      {isAdmin && (
+        <AdminLayout>
+          <main className='body-font md:ml-32 overflow-hidden font-quest'>
+            <div className='px-5 my-10 mx-auto relative'>
+              <h1 className='text-3xl text-primary pt-7 md:pt-0 md:ml-20 md:mt-10'>
+                Recent Orders
+              </h1>
+              <div className='hidden justify-end mr-10 md:flex'>
+                <Button
+                  css={{ fontFamily: "$algeria" }}
+                  style={{
+                    background:
+                      "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                  }}
+                  variant={"contained"}
+                  onClick={() => {
+                    const table = document.getElementById("download");
+                    const wb = XLSX.utils.table_to_book(table);
+                    XLSX.writeFile(wb, "RecentOrders.xlsx");
+                  }}>
+                  <b>Export as Excel</b>
+                </Button>
+              </div>
+              <div className='mt-4 md:ml-20'>
+                <Payments />
+              </div>
             </div>
-          </div>
-        </main>
-      </AdminLayout>}
+          </main>
+        </AdminLayout>
+      )}
     </>
   );
 }
