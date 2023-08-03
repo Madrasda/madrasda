@@ -123,30 +123,6 @@ export default function LoginForm() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Login</title>
-        <script
-    dangerouslySetInnerHTML={{
-      __html: `
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '865965204469945');
-        fbq('track', 'PageView');
-      `
-    }}
-  />
-  <noscript>
-    <img
-      height="1"
-      width="1"
-      style={{ display: 'none' }}
-      src="https://www.facebook.com/tr?id=865965204469945&ev=PageView&noscript=1"
-    />
-  </noscript>
       </Head>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -163,7 +139,7 @@ export default function LoginForm() {
           {message}
         </Alert>
       </Snackbar>
-      <div className='bg-center bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/929970884549173278/1112753200085356614/socialmedia.jpg)] w-screen h-screen'>
+      <div className='bg-center bg-no-repeat bg-cover flex bg-[url(/socialmedia.webp)] w-screen h-screen'>
         <div className='w-full bg-cover bg-center flex-center flex-row bg-transparent m-auto backdrop-blur-md max-w-md bg-black/90 rounded-3xl drop-shadow-2xl py-8 px-4 md:px-16'>
           <div className='flex flex-wrap justify-center'>
             <div className='w-24'>
