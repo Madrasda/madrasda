@@ -182,7 +182,7 @@ export default function Vendorlogin() {
           {message}
         </Alert>
       </Snackbar>
-      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(https://cdn.discordapp.com/attachments/929970884549173278/1112753200085356614/socialmedia.jpg)] min-w-screen min-h-screen w-full h-full font-quest'>
+      <div className='bg-center bg-fixed bg-no-repeat bg-cover flex bg-[url(/socialmedia.webp)] min-w-screen min-h-screen w-full h-full font-quest'>
         <div className='w-full h-fit bg-cover bg-center flex justify-center bg-transparent max-w-md mx-auto mt-10 backdrop-blur-md bg-black/90 rounded-3xl drop-shadow-2xl py-8 m-10'>
           <div className='flex flex-col w-2/3'>
             <div className='flex w-full transition-all ease-in-out duration-300'>
