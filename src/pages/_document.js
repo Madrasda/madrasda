@@ -96,7 +96,7 @@ export default function Document() {
             height="1"
             width="1"
             style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=865965204469945&ev=PageView&noscript=1`}
+            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
       </Head>

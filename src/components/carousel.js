@@ -2,10 +2,12 @@
 import Image from "next/image";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectFade } from 'swiper/modules';
 
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/autoplay"
+import "swiper/css/autoplay";
+import 'swiper/css/effect-fade';
 
 export default function CarouselComponent() {
   const desktopSlides = [
@@ -41,11 +43,12 @@ export default function CarouselComponent() {
         ))}
       </Carousel> */}
         <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
+          modules={[Navigation, Pagination, Autoplay, EffectFade]}
           spaceBetween={30}
           slidesPerView="auto"
           loop={true}
-          navigation={true}
+          effect="fade"
+          navigation
           pagination={{ clickable: true }}
           autoplay={{
             delay: 2000,
@@ -74,11 +77,12 @@ export default function CarouselComponent() {
 
       <div className='h-full w-full lg:hidden'>
       <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
+          modules={[Navigation, Pagination, Autoplay, EffectFade]}
           spaceBetween={30}
           slidesPerView="auto"
           loop={true}
-          navigation={true}
+          effect="fade"
+          navigation
           pagination={{ clickable: true }}
           autoplay={{
             delay: 2000,

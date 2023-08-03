@@ -83,7 +83,7 @@ export default function VendorList(props) {
   const deleteVendor = async (vendorId) => {
     const response = await axios.delete(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendor/" +
-        vendorId,
+      vendorId,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
@@ -105,7 +105,7 @@ export default function VendorList(props) {
   return (
     <>
       <Head>
-      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/logo.png" />
         <title>Madrasda | Creator List</title>
@@ -123,10 +123,7 @@ export default function VendorList(props) {
       </Snackbar>
       {tokenExists && (
         <AdminLayout>
-          <section
-            className="body-font overflow-hidden font-quest
-                        md:ml-32"
-          >
+          <section className="body-font overflow-hidden font-quest md:ml-32">
             <div className="mt-20 px-5 md:my-10 mx-auto">
               <h1
                 className="text-3xl text-primary
@@ -135,7 +132,7 @@ export default function VendorList(props) {
                 Manage Creators
               </h1>
               <div className="flex flex-wrap justify-items-start space-x-12 md:ml-20">
-                <div className="lg:w-1/6 md:w-3/4 p-4 w-full lg:h-80 md:h-96 h-80 flex items-center justify-center m-5 rounded duration-200 ease-in-out">
+                <div className="lg:w-1/5 md:w-3/4 p-4 w-full lg:h-80 md:h-96 h-80 flex items-center justify-center m-6 rounded duration-200 ease-in-out">
                   <Link href="#">
                     <div className="flex flex-col items-center justify-center cursor-pointer">
                       <AddVendorModal getFormData={handleSubmit} />
