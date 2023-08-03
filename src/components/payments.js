@@ -136,9 +136,9 @@ export default function Payments() {
                 </thead>
                 <tbody>
                   {orders &&
-                    orders.map((order) => {
+                    orders.map((order, index) => {
                       const orderDate = new Date(order.orderDate);
-                      return order.orderItems.map((item, index) => (
+                      return order.orderItems.map((item) => (
                         <tr
                           key={uuidv4()}
                           className='border-b border-shadowGrey'>
