@@ -159,7 +159,7 @@ export default function NavisCustomer() {
               aria-owns={anchorEl ? "simple-menu" : undefined}
               aria-haspopup="true"
               onClick={handleClick}
-              onMouseOver={handleClick}
+              // onMouseOver={handleClick}
               className='text-[1.2rem] cursor-pointer'>
               Shop
               <IconButton>
@@ -306,7 +306,7 @@ export default function NavisCustomer() {
               aria-owns={anchorEl ? "simple-menu" : undefined}
               aria-haspopup="true"
               onClick={handleClick1}
-              onMouseOver={handleClick1}
+              // onMouseOver={handleClick1}
               className='text-[1.2rem] cursor-pointer'>
               Creators
               <IconButton>
@@ -339,7 +339,7 @@ export default function NavisCustomer() {
               </div>
             </Menu>
 
-            <Link href='/#hotsellers' scroll={true}>
+            <Link href='#hotsellers' scroll={true}>
               <button className='text-white font-bold text-[1.2rem] cursor-pointer bg-bg'>
                 Hotsellers
               </button>
