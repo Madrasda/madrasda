@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../../context/context";
 import Script from "next/script";
+import { NEXT_PUBLIC_CLARITY_ID, NEXT_PUBLIC_PIXEL_ID } from "@/firebaseConfig";
+
 
 function VendorProductsPage() {
   const router = useRouter();
@@ -71,7 +73,7 @@ function VendorProductsPage() {
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");`
+        })(window, document, "clarity", "script", "${NEXT_PUBLIC_CLARITY_ID}");`
       }} />
       <ProductList
         productsPage={vendorProducts}

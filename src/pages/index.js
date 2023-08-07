@@ -12,6 +12,7 @@ import { uuidv4 } from "@firebase/util";
 import HotSellers from "@/components/hotsellers-client";
 import Footer from "@/components/footer";
 import axios from "axios";
+import { NEXT_PUBLIC_CLARITY_ID, NEXT_PUBLIC_PIXEL_ID } from "@/firebaseConfig";
 
 export default function Home() {
   const router = useRouter();
@@ -81,7 +82,7 @@ export default function Home() {
             height="1"
             width="1"
             style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
+            src={`https://www.facebook.com/tr?id=${NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
       </Head>
@@ -105,7 +106,7 @@ export default function Home() {
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");`
+        })(window, document, "clarity", "script", "${NEXT_PUBLIC_CLARITY_ID}");`
         }} />
 
       <ClientLayout>
