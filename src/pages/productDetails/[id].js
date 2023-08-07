@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Script from "next/script";
 import ClientLayout from "@/components/layout-client";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -148,6 +149,15 @@ export default function ProductId() {
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | View Product</title>
       </Head>
+      <Script id="ms_clarity" strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");`
+        }} />
 
       {isReady && (
         <ClientLayout

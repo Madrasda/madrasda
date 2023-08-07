@@ -39,7 +39,7 @@ export default function Home() {
           });
           const response = await axios.get(
             `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/${vendor.id}?` +
-              params
+            params
           );
           return {
             ...vendor,
@@ -76,28 +76,37 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Official merchandise | Indian content creators</title>
-  <noscript>
-    <img
-      height="1"
-      width="1"
-      style={{ display: 'none' }}
-      src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
-    />
-  </noscript>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
+          />
+        </noscript>
       </Head>
       <Script
         src='https://www.googletagmanager.com/gtag/js?id=G-P9LL7RBT1S'
         strategy='afterInteractive'
       />
-      <Script id='google-analytics' strategy='afterInteractive'>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){window.dataLayer.push(arguments);}
-          gtag('js', new Date());
+      <Script id='google-analytics' strategy='afterInteractive' dangerouslySetInnerHTML={{
+        __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-          gtag('config', 'G-P9LL7RBT1S');
-        `}
-      </Script>
+        gtag('config', 'G-P9LL7RBT1S');
+      `
+      }} />
+      <Script id="ms_clarity" strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");`
+        }} />
 
       <ClientLayout>
         <CarouselComponent />

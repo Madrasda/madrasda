@@ -3,6 +3,7 @@ import ProductList from "@/pages/productlist";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../../context/context";
+import Script from "next/script";
 
 function VendorProductsPage() {
   const router = useRouter();
@@ -62,12 +63,23 @@ function VendorProductsPage() {
   }, [id, query, pageNo]);
 
   return (
-    <ProductList
-      productsPage={vendorProducts}
-      setPageNo={setPageNo}
-      pageNo={pageNo}
-      title={title}
-    />
+    <>
+    <Script id="ms_clarity" strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");`
+      }} />
+      <ProductList
+        productsPage={vendorProducts}
+        setPageNo={setPageNo}
+        pageNo={pageNo}
+        title={title}
+      />
+    </>
   );
 }
 
