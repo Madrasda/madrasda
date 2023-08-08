@@ -99,6 +99,20 @@ export default function Home() {
         gtag('config', 'G-P9LL7RBT1S');
       `
       }} />
+      <Script
+        src='https://www.googletagmanager.com/gtag/js?id=G-X2S6C04TDD'
+        strategy='afterInteractive'
+      />
+      <Script id='google-analytics-2' strategy='afterInteractive' dangerouslySetInnerHTML={{
+        __html: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-X2S6C04TDD');
+      `
+      }} />
+
       <Script id="ms_clarity" strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `

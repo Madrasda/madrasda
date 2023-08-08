@@ -52,7 +52,7 @@ export default function App({ Component, pageProps }) {
           console.log(err);
         });
     }
-    
+
     axios
       .get(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getAllVendors"
@@ -90,9 +90,9 @@ export default function App({ Component, pageProps }) {
     axios
       .put(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
-          id +
-          "&&" +
-          qty,
+        id +
+        "&&" +
+        qty,
         null,
         {
           headers: {
@@ -118,9 +118,9 @@ export default function App({ Component, pageProps }) {
     axios
       .put(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
-          id +
-          "&&" +
-          qty,
+        id +
+        "&&" +
+        qty,
         null,
         {
           headers: {
@@ -144,9 +144,9 @@ export default function App({ Component, pageProps }) {
     axios
       .put(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
-          id +
-          "&&" +
-          qty,
+        id +
+        "&&" +
+        qty,
         {},
         {
           headers: {
@@ -166,8 +166,8 @@ export default function App({ Component, pageProps }) {
     axios
       .put(
         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
-          id +
-          "&&0",
+        id +
+        "&&0",
         {},
         {
           headers: {
@@ -218,7 +218,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-    <Script
+      <Script
         id="fb-pixel"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
