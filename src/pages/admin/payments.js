@@ -1,232 +1,126 @@
-import AdminLayout from '@/components/layout-admin'
-import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import AdminLayout from "@/components/layout-admin";
 import axios from "axios";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { isTokenValid, getRole } from "@/utils/JWTVerifier";
+import PayoutConfirm from "@/components/payout-confirm";
 import {uuidv4} from "@firebase/util";
-import OrderDetailsModal from "@/components/orderdetails-modal";
-// import { set_cptable } from "xlsx";
-// import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
-// set_cptable(cptable);
-// import XLSX from "xlsx";
-// import { JsonToExcel } from "react-json-to-excel";
+import { Grow, Paper } from "@mui/material";
 
-export default function Payments() {
-  const [orders, setOrders] = useState(0);
-  const [pageNo, setPageNo] = useState(0);
-  const [pageTotal, setPageTotal] = useState(0);
+export default function CustomerDetails() {
+  const router = useRouter();
+  const [tokenExists, setTokenExists] = useState(false);
+  const [payouts, setPayouts] = useState([]);
+  let isReady = router.isReady;
 
-  const manageOrders = async () => {
-    const params = new URLSearchParams({
-      pageNo: pageNo,
-      pageSize: 100,
-    });
+  const getAllPayoutRequest = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
-        params,
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getPayoutRequestedVendors",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
         },
       }
     );
-    console.log(response.data);
-    const ordersData = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate));
-    setOrders(ordersData.reverse());
-    setPageTotal(response.data.totalPages);
+    setPayouts(response.data);
   };
 
-  const handlePageDecrease = () => {
-    if (pageNo == 0) return;
-    setPageNo(pageNo - 1);
-  };
-
-  const handlePageIncrease = () => {
-    console.log(pageNo);
-    if (pageNo + 1 == pageTotal) return;
-    setPageNo(pageNo + 1);
+  const completePayout = async (id) => {
+    const response = await axios.post(
+      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/completePayout/" +
+        id
+    );
+    getAllPayoutRequest();
   };
 
   useEffect(() => {
-    manageOrders();
-  }, [pageNo]);
+    const jwtToken = localStorage.getItem("token_admin");
+    if (
+      jwtToken === undefined ||
+      !isTokenValid(jwtToken) ||
+      getRole(jwtToken) !== "ROLE_ADMIN"
+    )
+      router.push("/admin");
+    else setTokenExists(true);
+    getAllPayoutRequest();
+  }, []);
 
   return (
     <>
-      <div className='flex flex-col '>
-        <div className='overflow-x-scroll sm:-mx-6 lg:-mx-8'>
-          <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
-            <div className='flex space-x-32 mx-auto left-0 right-0 w-1/2 absolute top-10'>
-              {pageNo !== 0 && (
-                <button
-                  className='bg-gradient-to-r from-primary to-logo text-white px-3 py-1 rounded-md hover:bg-gradient-to-tr transition-all ease-in-out duration-300'
-                  onClick={handlePageDecrease}>
-                  Previous
-                </button>
+      <Head>
+      <meta name="description" content="Madrasda is India's first content creators marketplace, providing a one-stop destination for official merchandise of your favorite content creators. Discover a diverse range of products from top Indian creators Shop now and get exclusive merchandise at Madrasda."/>
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
+        <link rel='icon' href='/logo.png' />
+        <title>Madrasda | Payments</title>
+      </Head>
+
+      {tokenExists && (
+        <AdminLayout>
+          <main
+            className='body-font overflow-hidden font-quest
+                                md:ml-32'>
+            <div className='px-5 py-10 md:py-0 mx-auto'>
+              <h1
+                className='text-3xl text-primary 
+                               md:ml-20 mt-10'>
+                PAYMENT REQUESTS
+              </h1>
+              {payouts.length === 0 && (
+                <h1 className='text-xl md:ml-20 md:mt-10'>No payouts </h1>
               )}
-              {pageNo !== pageTotal - 1 && (
-                <button
-                  className='bg-gradient-to-r from-primary to-logo text-white px-3 py-1 rounded-md hover:bg-gradient-to-tr transition-all ease-in-out duration-300'
-                  onClick={handlePageIncrease}>
-                  Next
-                </button>
-              )}
-            </div>
-            <div className='overflow-hidden'>
-              <table
-                className='min-w-full text-center text-sm font-medium bg-bg bg-opacity-10 rounded-xl'
-                id='download'>
-                <thead className='border-b border-shadowGrey text-m font-bold '>
-                  <tr>
-                    <th scope='col' className=' px-6 py-4 '>
-                      S.No
-                    </th>
-                    <th scope='col' className=' px-6 pl-0'>
-                      Order Id
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Order Date
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Customer Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Product Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Vendor ID
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      SKU
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Customer Email
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Quantity
-                    </th>
-                    <th scope='col' className=' px-6 pl-2'>
-                      Payment Id
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Order Status
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Color
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Size
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Mockup Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Mockup Model
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Product Type
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Product Design URL
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Design URL
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Design Info
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders &&
-                    orders.map((order, index) => {
-                      const orderDate = new Date(order.orderDate);
-                      return order.orderItems.map((item) => (
-                        <tr
+              {payouts &&
+                payouts.map((vendor, index) => {
+                const delay = index * 80 + "ms";
+                  return (
+                     <Grow
+                        key={uuidv4()}
+                        in
+                        timeout={600}
+                     style={{transitionDelay:delay}}>
+                       <Paper
                           key={uuidv4()}
-                          className='border-b border-shadowGrey'>
-                          <td className='whitespace-nowrap px-6 py-6 font-medium'>
-                            {index + 1}
-                          </td>
-                          <td className='whitespace-nowrap px-6 pl-0 font-medium'>
-                            {order.orderId}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {`${orderDate
-                              .getUTCDate()
-                              .toString()
-                              .padStart(2, "0")}-${(orderDate.getUTCMonth() + 1)
-                              .toString()
-                              .padStart(2, "0")}-${orderDate
-                              .getUTCFullYear()
-                              .toString()}`}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {order.shippingAddress.name}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.name}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.vendorId}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.sku}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {order.shippingAddress.email}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.quantity}
-                          </td>
-                          <td className='whitespace-nowrap px-6 pl-2'>
-                            {order.paymentId}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {order.status === null
-                              ? "Order Placed"
-                              : "Placed Order"}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.colors[0].color}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.colors[0].sizes[0].size}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.productMockup.name}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.productMockup.model}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.productMockup.productType}
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            <a
-                              href={item.product.frontDesignUrl}
-                              target='_blank'>
-                              View Product Design
-                            </a>
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            <a
-                              href={item.product.backDesignUrl}
-                              target='_blank'>
-                              View Design
-                            </a>
-                          </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
-                            {item.product.frontDesignPlacement}
-                          </td>
-                        </tr>
-                      ));
-                    })}
-                </tbody>
-              </table>
+                          className='flex mt-4 md:ml-20 lg:mr-20 bg-gray'>
+                         <div className=' ml-8 mb-2 mr-20 mt-4 w-full'>
+                           <div className='w-[150px] h-[150px] overflow-hidden rounded-full'>
+                             <Image
+                                src={vendor.imgUrl}
+                                width={70}
+                                height={70}
+                                className='object-cover object-center w-full h-full'
+                             />
+                           </div>
+                           <h1 className='text-2xl text-primary font-raj mb-6 pt-2'>
+                             {vendor.name}
+                           </h1>
+                           <div className='flex flex-col md:flex-row justify-between w-full mb-2'>
+                             <div>
+                               <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                                 Payout Requested
+                               </h2>
+                               <h2 className='mb-2 w-2/6 md:w-96 text-lg font-medium text-black flex items-center'>
+                                 ₹
+                                 {Number(vendor.payoutAmount).toLocaleString(
+                                    "en-IN"
+                                 )}
+                               </h2>
+                             </div>
+                             <PayoutConfirm
+                                payout={(e) => {
+                                  if (e) completePayout(vendor.payoutId);
+                                }}
+                             />
+                           </div>
+                         </div>
+                       </Paper>
+                     </Grow>
+                  );
+                })}
             </div>
-          </div>
-        </div>
-      </div>
+          </main>
+        </AdminLayout>
+      )}
     </>
   );
 }
