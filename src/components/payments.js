@@ -18,7 +18,7 @@ export default function Payments() {
   const manageOrders = async () => {
     const params = new URLSearchParams({
       pageNo: pageNo,
-      pageSize: 10,
+      pageSize: 100,
     });
     const response = await axios.get(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
@@ -29,7 +29,9 @@ export default function Payments() {
         },
       }
     );
-    setOrders(response.data.content.reverse());
+    // console.log(response.data);
+    const ordersData = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate));
+    setOrders(ordersData);
     setPageTotal(response.data.totalPages);
   };
 
@@ -51,7 +53,7 @@ export default function Payments() {
   return (
     <>
       <div className='flex flex-col '>
-        <div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
+        <div className='overflow-x-scroll sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
             <div className='flex space-x-32 mx-auto left-0 right-0 w-1/2 absolute top-10'>
               {pageNo !== 0 && (
