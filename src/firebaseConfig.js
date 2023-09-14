@@ -15,5 +15,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 
-export const NEXT_PUBLIC_PIXEL_ID = 865965204469945;
+export const NEXT_PUBLIC_PIXEL_ID = 268252072740926;
 export const NEXT_PUBLIC_CLARITY_ID = 'i4q56u2czv';
