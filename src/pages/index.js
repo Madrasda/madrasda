@@ -77,14 +77,6 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
         <title>Madrasda | Official merchandise | Indian content creators</title>
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=${NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
-          />
-        </noscript>
       </Head>
       <Script
         src='https://www.googletagmanager.com/gtag/js?id=G-P9LL7RBT1S'

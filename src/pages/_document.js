@@ -1,4 +1,5 @@
-import { Head, Html, Main, NextScript } from 'next/document'
+import { Head, Html, Main, NextScript } from 'next/document';
+import { NEXT_PUBLIC_PIXEL_ID } from "@/firebaseConfig";
 
 export default function Document() {
 
@@ -96,7 +97,7 @@ export default function Document() {
             height="1"
             width="1"
             style={{ display: 'none' }}
-            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
+            src={`https://www.facebook.com/tr?id=${NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
       </Head>
