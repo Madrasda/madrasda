@@ -12,8 +12,9 @@ import { Button, Paper, Snackbar } from "@mui/material";
 import { InsertEmoticon } from "@mui/icons-material";
 import CancelOrderModal from "@/components/cancel-order";
 import MuiAlert from "@mui/material/Alert";
+import ProfileModal from "@/components/profile-modal";
 const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
 export default function ClientProfile() {
   const router = useRouter();
@@ -38,6 +39,13 @@ export default function ClientProfile() {
       router.push("/login");
     }
   }, []);
+
+  const handleMessageAlert = (type, message) => {
+    setMessage(message);
+    setSeverity(type);
+    setState(true);
+  };
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -59,12 +67,12 @@ export default function ClientProfile() {
   };
   if (loading && isReady)
     return (
-      <div className="z-50 h-screen w-screen overflow-hidden">
+      <div className='z-50 h-screen w-screen overflow-hidden'>
         <Image
-          src="/loader.gif"
+          src='/loader.gif'
           width={1920}
           height={1080}
-          className="object-cover object-center w-full h-full"
+          className='object-cover object-center w-full h-full'
         />
       </div>
     );
@@ -88,19 +96,8 @@ export default function ClientProfile() {
         </Snackbar>
         <section className='body-font font-quest bg-off-white'>
           <div className='px-5 py-24 mx-auto'>
-            <h1 className='text-2xl font-bold text-primary md:ml-16 md:text-3xl md:mt-4'>
-              My Profile
-            </h1>
             <div className='flex flex-col md:flex-row md:space-x-5 mt-4 md:ml-16'>
-              <h2 className='md:ml-2 title-font font-medium text-lg md:text-xl'>
-                Phone Number
-              </h2>
-              <input
-                type='text'
-                className='bg-tertiary text-black text-lg md:text-xl outline-none focus:ring-primary cursor-default'
-                placeholder={phone}
-                readOnly
-              />
+              <ProfileModal onMessage={handleMessageAlert} />
             </div>
 
             {details && (
