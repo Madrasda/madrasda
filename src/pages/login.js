@@ -145,7 +145,9 @@ export default function LoginForm() {
             </Link>
             <p>
               ⓘ We have removed login through OTP, now customers will have to
-              enter their password.
+              enter their password. Already registered customers can login with
+              the default password as
+              <span className='italic bold text-sm'>"password"</span>
             </p>
           </div>
         </div>

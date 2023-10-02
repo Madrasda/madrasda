@@ -58,6 +58,7 @@ export default function RegisterForm() {
         setMessage("Succesfully Registered");
         setSeverity("success");
         setOpen(true);
+        setName("");
       })
       .catch((err) => {
         setMessage("Account already exists");
@@ -129,6 +130,7 @@ export default function RegisterForm() {
             <input
               className='px-4 py-2 rounded-md border border-primary focus:outline-none'
               type='text'
+              value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder='Name'
             />
