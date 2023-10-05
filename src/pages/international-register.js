@@ -1,30 +1,28 @@
 import Head from "next/head";
 import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { getRole, isTokenValid } from "@/utils/JWTVerifier";
 import Image from "next/image";
-import Otp from "@/components/Otp";
-import Login from "@/components/Login";
 import { useRouter } from "next/router";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { UserContext } from "../../context/context";
+import { Button } from "@nextui-org/react";
+import { isTokenValid } from "@/utils/JWTVerifier";
+import Link from "next/link";
 
 const Alert = forwardRef(function Alert(props, ref) {
   //snackbar alert
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
-export default function LoginForm() {
+export default function RegisterForm() {
   const router = useRouter();
   let isReady = router.isReady;
-  const [details, setDetails] = useState(null);
-  const [designs, setDesigns] = useState(null);
+  const [name, setName] = useState(null);
+  const [userName, setUserName] = useState(null);
+  const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
   const [spinner, setSpinnerState] = useState(false); //spinner
-  const phoneRef = useRef();
   const ctx = useContext(UserContext);
-  const [showOtp, setShowOtp] = useState(false);
-  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
   const [open, setOpen] = useState(false);
@@ -36,67 +34,41 @@ export default function LoginForm() {
 
     setOpen(false);
   };
-  const submitPhoneHandler = () => {
-    const phone = phoneRef.current.value;
-    if (/^[0-9]{10}$/.test(phone)) {
-      axios
-        .post(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" +
-            phone
-        )
-        .then((response) => {
-          setShowOtp(true);
-          setPhone(phone);
-        })
-        .then(() => setSpinnerState(false))
-        .catch((err) => {
-          setOpen(true); //snackbar
-          setMessage(err.data); //snackbar
-          setSeverity("error"); //snackbar
-          console.log(err);
-        });
 
-      setSpinnerState(true);
-    } else {
+  const registerCustomer = (e) => {
+    e.preventDefault();
+    if (!userName || !password || !name) {
+      setMessage("Please fill all the details");
+      setSeverity("warning");
       setOpen(true);
-      setMessage("Invalid Phone Number");
-      setSeverity("error");
+      return;
     }
+    axios
+      .post(
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/registerClient",
+        {
+          name: name,
+          email: userName,
+          password: password,
+        }
+      )
+      .then(() => {
+        setMessage("Succesfully Registered");
+        setSeverity("success");
+        setOpen(true);
+        setName("");
+      })
+      .catch((err) => {
+        setMessage("Account already exists");
+        setSeverity("error");
+        setOpen(true);
+        console.log(err);
+      });
   };
-  const onSubmitOtpHandler = (event) => {
-    const otp = event;
-    if (otp.length === 6) {
-      setSpinnerState(true);
-      axios
-        .post(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
-            "phone=" +
-            phone +
-            "&otp=" +
-            otp
-        )
-        .then((response) => {
-          if (response.status === 200) {
-            localStorage.setItem("token_client", response.data.token);
-            ctx.setIsLoggedIn(false);
-          }
-        })
-        .then(() => {
-          router.back();
-        })
-        .catch((err) => {
-          setOpen(true);
-          setMessage("Invalid OTP");
-          setSeverity("error");
-          setSpinnerState(false);
-        });
-    } else {
-      setOpen(true);
-      setMessage("Invalid OTP");
-      setSeverity("error");
-    }
-  };
+
   useEffect(() => {
+    const token = localStorage.getItem("token_client");
+    if (token && isTokenValid(token)) router.back();
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -125,7 +97,7 @@ export default function LoginForm() {
         />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
-        <title>Madrasda | Login</title>
+        <title>Madrasda | Register</title>
       </Head>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -149,15 +121,45 @@ export default function LoginForm() {
               <Image src='/logo.png' alt='LOGO' width={300} height={300} />
             </div>
           </div>
-
-          {showOtp && <Otp onSubmitOtpHandler={onSubmitOtpHandler} />}
-          {!showOtp && (
-            <Login
-              phoneRef={phoneRef}
-              submitPhoneHandler={submitPhoneHandler}
+          <h1 className='text-white text-center font-quest text-2xl my-4'>
+            Create an account
+          </h1>
+          <form onSubmit={registerCustomer} className='flex flex-col gap-4'>
+            <input
+              className='px-4 py-2 rounded-md border border-primary focus:outline-none'
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder='Name'
             />
-          )}
+            <input
+              className='px-4 py-2 rounded-md border border-primary focus:outline-none'
+              type='email'
+              onChange={(e) => setUserName(e.target.value)}
+              placeholder='Email'
+            />
+
+            <input
+              className='px-3 py-2 rounded-md border border-primary focus:outline-none'
+              type='password'
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='Password'
+            />
+            <Button
+              type='submit'
+              variant='contained'
+              style={{ backgroundColor: "#FFA000", borderRadius: "0.375rem" }}>
+              Login
+            </Button>
+          </form>
           <br />
+          <div className='text-gray text-xs flex flex-col space-y-6'>
+            <Link
+              className='font-quest text-gray hover:text-shadowGrey text-xs text-right w-full'
+              href='/login'>
+              Already have account? Login here
+            </Link>
+          </div>
         </div>
       </div>
     </>

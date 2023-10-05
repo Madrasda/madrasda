@@ -14,12 +14,10 @@ const Alert = forwardRef(function Alert(props, ref) {
   //snackbar alert
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
-export default function RegisterForm() {
+export default function LoginForm() {
   const router = useRouter();
   let isReady = router.isReady;
-  const [name, setName] = useState(null);
   const [userName, setUserName] = useState(null);
-  const [phone, setPhone] = useState(null);
   const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
   const [spinner, setSpinnerState] = useState(false); //spinner
@@ -36,35 +34,25 @@ export default function RegisterForm() {
     setOpen(false);
   };
 
-  const registerCustomer = (e) => {
+  const loginCustomer = (e) => {
     e.preventDefault();
-    if (!userName || !password || !phone || !name) {
-      setMessage("Please fill all the details");
-      setSeverity("warning");
-      setOpen(true);
-      return;
-    }
+    if (!userName || !password) return;
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/registerClient",
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/authenticateClient",
         {
-          name: name,
-          phone: phone,
           email: userName,
           password: password,
         }
       )
-      .then(() => {
-        setMessage("Succesfully Registered");
-        setSeverity("success");
-        setOpen(true);
-        setName("");
+      .then((res) => {
+        localStorage.setItem("token_client", res.data.token);
+        router.back();
       })
       .catch((err) => {
-        setMessage("Account already exists");
+        setMessage(err.response.data.message);
         setSeverity("error");
         setOpen(true);
-        console.log(err);
       });
   };
 
@@ -99,7 +87,7 @@ export default function RegisterForm() {
         />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/logo.png' />
-        <title>Madrasda | Register</title>
+        <title>Madrasda | Login</title>
       </Head>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -124,31 +112,20 @@ export default function RegisterForm() {
             </div>
           </div>
           <h1 className='text-white text-center font-quest text-2xl my-4'>
-            Create an account
+            Login to your account
           </h1>
-          <form onSubmit={registerCustomer} className='flex flex-col gap-4'>
+          <form onSubmit={loginCustomer} className='flex flex-col gap-4'>
             <input
               className='px-4 py-2 rounded-md border border-primary focus:outline-none'
               type='text'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder='Name'
-            />
-            <input
-              className='px-4 py-2 rounded-md border border-primary focus:outline-none'
-              type='email'
+              required
               onChange={(e) => setUserName(e.target.value)}
-              placeholder='Email'
-            />
-            <input
-              className='px-4 py-2 rounded-md border border-primary focus:outline-none'
-              type='text'
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder='Phone'
+              placeholder='Phone or Email'
             />
             <input
               className='px-3 py-2 rounded-md border border-primary focus:outline-none'
               type='password'
+              required
               onChange={(e) => setPassword(e.target.value)}
               placeholder='Password'
             />
@@ -161,11 +138,24 @@ export default function RegisterForm() {
           </form>
           <br />
           <div className='text-gray text-xs flex flex-col space-y-6'>
-            <Link
-              className='font-quest text-gray hover:text-shadowGrey text-xs text-right w-full'
-              href='/login'>
-              Already have account? Login here
-            </Link>
+            <div className='flex flex-col'>
+              <Link
+                className='font-quest text-gray hover:text-shadowGrey text-xs text-right w-full'
+                href='/international-register'>
+                New here? Register here
+              </Link>
+              <Link
+                className='font-quest text-gray hover:text-shadowGrey text-xs text-right w-full '
+                href='/login'>
+                Are you a local Customer , Login Here
+              </Link>
+            </div>
+            <p>
+              ⓘ We have removed login through OTP, now customers will have to
+              enter their password. Already registered customers can login with
+              the default password as
+              <span className='italic bold text-sm'>"password"</span>
+            </p>
           </div>
         </div>
       </div>
