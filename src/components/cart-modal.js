@@ -91,7 +91,7 @@ export default function CartModal() {
               <div className='flex flex-col space-y-3'>
                 <AddShoppingCart className='text-8xl text-primary mx-auto' />
                 <Link
-                  href='/#merchandise'
+                  href='/'
                   className='font-quest text-lg'
                   onClick={closeHandler}>
                   Shop For More Products

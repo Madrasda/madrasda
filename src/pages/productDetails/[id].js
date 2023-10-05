@@ -138,6 +138,7 @@ export default function ProductId() {
     setCurrentColor(color);
     setCurrentSize(color.sizes[0]);
     setActiveImage(color.images[0]);
+    setImageLoaded(true);
   };
   return (
     <>
@@ -241,6 +242,7 @@ export default function ProductId() {
                         onClick={() => {
                           setImageLoaded(false);
                           setActiveImage(image);
+                          setImageLoaded(true);
                         }}
                       />
                     ))}
@@ -265,9 +267,9 @@ export default function ProductId() {
                   <div className='flex flex-row items-baseline'>
                     <span className='title-font font-medium text-2xl text-gray-900 mr-2 flex justify-center'>
                       ₹
-                      {Math.round(
+                      {Math.ceil(
                         (product.total * (100 - product.discount)) / 100
-                      )}
+                      ) /* math round to math ceil*/ }
                     </span>
                     {product && product.discount > 0 && (
                       <>

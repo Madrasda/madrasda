@@ -9,11 +9,11 @@ const CartItem = ({ id, product, qty, callback }) => {
 
   const decrementHandler = () => {
     ctx.decrementQty(id, qty - 1);
-    callback();
+    // callback();
   };
   const incrementHandler = () => {
     ctx.incrementQty(id);
-    callback();
+    // callback();
   };
   const onChangeHandler = (event) => (event) =>
     ctx.customQuantity(id, event.target.value);
@@ -56,7 +56,7 @@ const CartItem = ({ id, product, qty, callback }) => {
       </div>
       <div className='text-sm md:text-right md:text-base w-full'>
         <span className='font-medium text-black text-xl'>
-          ₹{Math.ceil((Math.ceil(100 - product.discount) / 100) * product.total) * qty}
+          ₹{Math.ceil(((100 - product.discount) / 100) * product.total) * qty}
         </span>
         <div className='flex items-center space-x-4'>
           <h1>Quantity</h1>

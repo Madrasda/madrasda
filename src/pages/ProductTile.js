@@ -45,7 +45,7 @@ const ProductTile = ({ id, name, category, total, discount, imageUrl }) => {
         </div>
         <h2 className='title-font text-lg md:text-xl font-medium'>{name}</h2>
         <span className='mt-1 text-black pr-1'>
-          ₹{Math.round((total * (100 - discount)) / 100)}
+          ₹{Math.ceil((total * (100 - discount)) / 100)} {/* math.round to math.ceil */}
         </span>
         <span className='mt-1 line-through text-shadowGrey pr-1'>
           ₹{Math.round(total)}

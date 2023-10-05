@@ -29,6 +29,7 @@ export default function Home() {
     }
   }, [ctx.vendorList]);
   const [vendorData, setVendorData] = useState([]);
+  console.log(vendorData);
 
   useEffect(() => {
     const fetchData = async () => {
