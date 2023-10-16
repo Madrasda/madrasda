@@ -291,8 +291,8 @@ export default function EditMockup() {
           getAvailableSizeNames(skuMapping)
         )),
       ];
+      uploadMockup(mockup); // this should come in only if images have been uploaded and URL set
     }
-    uploadMockup(mockup);
   };
 
   const getColorCode = (colorName) => {
@@ -488,6 +488,7 @@ export default function EditMockup() {
                     className='text-lg rounded-lg block w-full p-2.5'
                     placeholder='Enter the title of your product'
                     value={canvasHeight}
+                    required={true}
                     onChange={(e) => setCanvasHeight(e.target.value)}
                   />
                 </div>
@@ -502,6 +503,7 @@ export default function EditMockup() {
                     className='text-lg rounded-lg block w-full p-2.5'
                     placeholder='Enter the title of your product'
                     value={canvasWidth}
+                    required={true}
                     onChange={(e) => setCanvasWidth(e.target.value)}
                   />
                 </div>
@@ -511,9 +513,9 @@ export default function EditMockup() {
                 <div className='mb-2 ml-2 '>
                   <Input
                     type='text'
-                    required
                     className='w-full p-2.5'
                     placeholder='eg : PWRN'
+                    required={true}
                     onChange={(e) => setSkuName(e.target.value)}
                   />
                 </div>
@@ -523,9 +525,9 @@ export default function EditMockup() {
                 <div className='mb-2 ml-2 '>
                   <Input
                     type='text'
-                    required
                     className='w-full p-2.5'
                     placeholder='eg : MOVERSIZE, W, M'
+                    required={true}
                     onChange={(e) => setSkuModel(e.target.value)}
                   />
                 </div>
@@ -627,6 +629,7 @@ export default function EditMockup() {
                           type='file'
                           accept='image/jpeg/png'
                           className='hidden'
+                          required
                           onChange={(e) => {
                             if (
                               e.target.files[0] !== null &&
@@ -674,6 +677,7 @@ export default function EditMockup() {
                         type='text'
                         placeholder={details.name}
                         value={name}
+                        required={true}
                         onChange={(e) => setName(e.target.value)}
                       />
                     </div>
@@ -683,6 +687,7 @@ export default function EditMockup() {
                         type='text'
                         placeholder={details.productType}
                         value={productType}
+                        required={true}
                         className='p-3 m-3'
                         onChange={(e) => setProdType(e.target.value)}
                       />
@@ -692,6 +697,7 @@ export default function EditMockup() {
                       <Select
                         value={model}
                         placeholder={model}
+                        required={true}
                         id='category-dropdown'
                         className='w-4/5 md:w-1/3'
                         onChange={(e) => setModel(e.target.value)}>
@@ -709,6 +715,7 @@ export default function EditMockup() {
                       </h1>
                       <textarea
                         type='text'
+                        required={true}
                         value={info}
                         placeholder={details.additionalInformation}
                         className='p-3 m-3 w-full border border-border resize-none'
@@ -719,6 +726,7 @@ export default function EditMockup() {
                       <h1 className='font-semibold text-lg'>Height</h1>
                       <Input
                         type='number'
+                        required={true}
                         value={height}
                         placeholder={details.height}
                         className='p-3 m-3'
@@ -730,6 +738,7 @@ export default function EditMockup() {
                       <Input
                         type='number'
                         value={breadth}
+                        required={true}
                         placeholder={details.breadth}
                         className='p-3 m-3'
                         onChange={(e) => setBreadth(e.target.value)}
@@ -739,6 +748,7 @@ export default function EditMockup() {
                       <h1 className='font-semibold text-lg'>Length</h1>
                       <Input
                         type='number'
+                        required={true}
                         value={length}
                         placeholder={details.length}
                         className='p-3 m-3'
@@ -749,6 +759,7 @@ export default function EditMockup() {
                       <h1 className='font-semibold text-lg'>Weight</h1>
                       <Input
                         type='number'
+                        required={true}
                         value={weight}
                         placeholder={details.weight}
                         className='p-3 m-3'
@@ -779,6 +790,7 @@ export default function EditMockup() {
                       <h1 className='font-semibold text-lg'>Base Price</h1>
                       <Input
                         type='number'
+                        required={true}
                         value={base}
                         placeholder={details.basePrice}
                         className='p-3 m-3'

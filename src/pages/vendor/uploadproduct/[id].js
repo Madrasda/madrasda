@@ -314,6 +314,7 @@ export default function ViewProd() {
                             lg:mr-96'>
                   <input
                     type='text'
+                    required
                     className='bg-white border border-[#D9D9D9] text-sm rounded-lg focus:ring-primary focus:border-[#D9D9D9] block w-full p-2.5'
                     placeholder='Enter the title of your product'
                     onChange={(e) => setName(e.target.value)}
@@ -326,6 +327,7 @@ export default function ViewProd() {
                 </InputLabel>
                 <Select
                   value={audience}
+                  required={true}
                   id='category-dropdown'
                   className='mb-3 ml-2 w-1/2 text-black'
                   onChange={(e) => setAudience(e.target.value)}>
@@ -488,6 +490,7 @@ export default function ViewProd() {
                           type='file'
                           accept='image/jpeg, image/jpg, image/png'
                           className='hidden'
+                          required
                           onChange={(e) => {
                             const file = e.target.files[0];
                             if (file) {
@@ -567,7 +570,7 @@ export default function ViewProd() {
                       className={"text-2xl w-72"}
                       label={"Maximum retail Price (₹)"}
                       placeholder='₹'
-                      required
+                      required={true}
                       onChange={(e) => setTotal(e.target.value)}
                     />
                   </div>
