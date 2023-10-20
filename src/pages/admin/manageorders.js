@@ -1,19 +1,14 @@
 import Head from "next/head";
-import SearchVendor from "@/components/search-vendor";
 import Payments from "@/components/payments";
 import AdminLayout from "@/components/layout-admin";
-import axios from "axios";
 import {useEffect, useState} from "react";
 import { useRouter } from "next/router";
 import { isTokenValid, getRole } from "@/utils/JWTVerifier";
-import {Button} from "@mui/material";
-import {uuidv4} from "@firebase/util";
-import OrderDetailsModal from "@/components/orderdetails-modal";
+
 import { set_cptable } from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
 import XLSX from "xlsx";
-import { JsonToExcel } from "react-json-to-excel";
 
 export default function CustomerDetails() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -43,27 +38,9 @@ export default function CustomerDetails() {
       {isAdmin && (
         <AdminLayout>
           <main className='body-font md:ml-32 overflow-hidden font-quest'>
-            <div className='px-5 my-10 mx-auto relative'>
-              <h1 className='text-3xl text-primary pt-7 md:pt-0 md:ml-20 md:mt-10'>
-                Recent Orders
-              </h1>
-              <div className='hidden justify-end mr-10 md:flex'>
-                <Button
-                  css={{ fontFamily: "$algeria" }}
-                  style={{
-                    background:
-                      "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-                  }}
-                  variant={"contained"}
-                  onClick={() => {
-                    const table = document.getElementById("download");
-                    const wb = XLSX.utils.table_to_book(table);
-                    XLSX.writeFile(wb, "RecentOrders.xlsx");
-                  }}>
-                  <b>Export as Excel</b>
-                </Button>
-              </div>
-              <div className='mt-4 md:ml-20'>
+            <div className='pl-24 my-10 mx-auto relative'>
+              
+              <div className='mt-4 flex flex-col gap-8'>
                 <Payments />
               </div>
             </div>

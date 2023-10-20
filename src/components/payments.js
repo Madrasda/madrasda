@@ -1,24 +1,17 @@
-import AdminLayout from '@/components/layout-admin'
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
 import axios from "axios";
-import {uuidv4} from "@firebase/util";
-import OrderDetailsModal from "@/components/orderdetails-modal";
-// import { set_cptable } from "xlsx";
-// import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
-// set_cptable(cptable);
-// import XLSX from "xlsx";
-// import { JsonToExcel } from "react-json-to-excel";
+import { Button } from "@mui/material";
 
 export default function Payments() {
-  const [orders, setOrders] = useState(0);
+  // const [ordersData, setOrdersData] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [pageNo, setPageNo] = useState(0);
   const [pageTotal, setPageTotal] = useState(0);
 
   const manageOrders = async () => {
     const params = new URLSearchParams({
       pageNo: pageNo,
-      pageSize: 100,
+      pageSize: 200,
     });
     const response = await axios.get(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
@@ -29,8 +22,10 @@ export default function Payments() {
         },
       }
     );
-    // console.log(response.data);
-    const ordersData = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate));
+    console.log(response.data);
+    // let dataToSet = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate))
+    // setOrdersData(dataToSet);
+    const ordersData = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate))
     setOrders(ordersData);
     setPageTotal(response.data.totalPages);
   };
@@ -39,6 +34,12 @@ export default function Payments() {
     if (pageNo == 0) return;
     setPageNo(pageNo - 1);
   };
+
+  // const searchOrders = (searchKey) => {
+  //   console.log(searchKey)
+  //   if (!searchKey || searchKey == '') return setOrders(ordersData)
+  //   setOrders(ordersData.filter(order => order.orderId.includes(searchKey.toLowerCase().trim())))
+  // }
 
   const handlePageIncrease = () => {
     console.log(pageNo);
@@ -52,9 +53,29 @@ export default function Payments() {
 
   return (
     <>
-      <div className='flex flex-col '>
-        <div className='overflow-x-scroll sm:-mx-6 lg:-mx-8'>
-          <div className='inline-block min-w-full py-2 sm:px-6 lg:px-8'>
+      <div className='hidden justify-between mr-10 md:flex'>
+        <h1 className='text-3xl text-primary pt-7 md:pt-0'>
+          Recent Orders
+        </h1>
+        {/* <input type='search' onInput={(e) => searchOrders(e.target.value)} placeholder="Search for Order No." className="border-2 rounded-md border-primary bg-white focus:outline-none text-base px-2 py-1" /> */}
+        <Button
+          css={{ fontFamily: "$algeria" }}
+          style={{
+            background:
+              "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+          }}
+          variant={"contained"}
+          onClick={() => {
+            const table = document.getElementById("download");
+            const wb = XLSX.utils.table_to_book(table);
+            XLSX.writeFile(wb, "RecentOrders.xlsx");
+          }}>
+          <b>Export as Excel</b>
+        </Button>
+      </div>
+      <div className='flex flex-col'>
+        {/* <div className=''> */}
+          <div className='overflow-x-scroll sm:-mx-6 inline-block min-w-full py-2 sm:px-6 '>
             <div className='flex space-x-32 mx-auto left-0 right-0 w-1/2 absolute top-10'>
               {pageNo !== 0 && (
                 <button
@@ -71,7 +92,7 @@ export default function Payments() {
                 </button>
               )}
             </div>
-            <div className='overflow-hidden'>
+            <div className='order-table overflow-x-scroll'>
               <table
                 className='min-w-full text-center text-sm font-medium bg-bg bg-opacity-10 rounded-xl'
                 id='download'>
@@ -80,7 +101,7 @@ export default function Payments() {
                     <th scope='col' className=' px-6 py-4 '>
                       S.No
                     </th>
-                    <th scope='col' className=' px-6 pl-0'>
+                    <th scope='col' className='sticky top-0 left-0 px-6 pl-0'>
                       Order Id
                     </th>
                     <th scope='col' className=' px-6 py-4'>
@@ -132,6 +153,9 @@ export default function Payments() {
                       Design URL
                     </th>
                     <th scope='col' className=' px-6 py-4'>
+                      Shiprocket URL
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
                       Design Info
                     </th>
                   </tr>
@@ -140,17 +164,17 @@ export default function Payments() {
                   {orders &&
                     orders.map((order, index) => {
                       const orderDate = new Date(order.orderDate);
-                      return order.orderItems.map((item) => (
+                      return order.orderItems.map((item, i) => (
                         <tr
-                          key={uuidv4()}
+                          key={i}
                           className='border-b border-shadowGrey'>
-                          <td className='whitespace-nowrap px-6 py-6 font-medium'>
+                          <td className='whitespace-nowrap px-2 py-4 font-medium'>
                             {index + 1}
                           </td>
-                          <td className='whitespace-nowrap px-6 pl-0 font-medium'>
+                          <td className='whitespace-nowrap sticky top-0 left-0 z-10 px-6 pl-0 font-medium'>
                             {order.orderId}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {`${orderDate
                               .getUTCDate()
                               .toString()
@@ -160,62 +184,69 @@ export default function Payments() {
                               .getUTCFullYear()
                               .toString()}`}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {order.shippingAddress.name}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.name}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.vendorId}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.sku}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {order.shippingAddress.email}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.quantity}
                           </td>
                           <td className='whitespace-nowrap px-6 pl-2'>
                             {order.paymentId}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {order.status === null
                               ? "Order Placed"
                               : "Placed Order"}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.colors[0].color}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.colors[0].sizes[0].size}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.productMockup.name}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.productMockup.model}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.productMockup.productType}
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={item.product.frontDesignUrl}
-                              target='_blank'>
+                              target='_blank' style={{textDecoration: 'underline'}}>
                               View Product Design
                             </a>
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={item.product.backDesignUrl}
-                              target='_blank'>
+                              target='_blank' style={{textDecoration: 'underline'}}>
                               View Design
                             </a>
                           </td>
-                          <td className='whitespace-nowrap px-6 py-6'>
+                          <td className='whitespace-nowrap px-2 py-4'>
+                            <a
+                              href={'https://app.shiprocket.in/seller/orders/details/' + order.orderId}
+                              target='_blank' style={{textDecoration: 'underline'}}>
+                              View Details
+                            </a>
+                          </td>
+                          <td className='whitespace-nowrap px-2 py-4'>
                             {item.product.frontDesignPlacement}
                           </td>
                         </tr>
@@ -225,7 +256,7 @@ export default function Payments() {
               </table>
             </div>
           </div>
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

@@ -16,7 +16,7 @@
     }
   }
 }
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   display: none;
 }
 * {
@@ -24,6 +24,29 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+.order-table::-webkit-scrollbar {
+  display: unset !important;
+}
+.order-table {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+} */
+.order-table thead tr {
+  background-color: #ebebeb;
+}
+
+.order-table thead tr th {
+  background-color: #ebebeb;
+}
+
+.order-table tbody tr:nth-child(odd) {
+  background-color: #E0E0E0;
+}
+
+.order-table tbody tr td {
+  background-color: inherit;
+}
+
 :root {
     --swiper-theme-color: black !important;
 }
