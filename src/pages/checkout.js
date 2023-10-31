@@ -110,6 +110,7 @@ export default function Checkout() {
           setShippingCharges(-100);
         }
         setValidPincode(false);
+        setSpinner(false);
         if (err.response.status === 409) {
           setVisible(true);
         }
@@ -118,9 +119,10 @@ export default function Checkout() {
 
   const handleChange = (event) => {
     const text = event.target.value;
+    const pincodeRegex = /^[1-9][0-9]{5}$/;
     setPincode((oldText) => {
       setTimeout(() => {
-        if (text.length === 6) {
+        if (pincodeRegex.test(text.trim())) {
           getShippingCharges(text);
         } else {
           setError(true);
@@ -202,7 +204,8 @@ export default function Checkout() {
   }, []);
 
   useEffect(() => {
-    if (pincode.length === 6) {
+    const pincodeRegex = /^[1-9][0-9]{5}$/;
+    if (pincodeRegex.test(pincode)) {
       axios
         .get(
           `https://api.opencagedata.com/geocode/v1/json?key=518b0ac375bb4bb8bb17019ae3e63818&q=${pincode}`
