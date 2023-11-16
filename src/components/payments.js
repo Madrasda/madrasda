@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
 
+const records = 20;
+
 export default function Payments() {
   // const [ordersData, setOrdersData] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [displayOrders, setDisplayOrders] = useState([])
   const [pageNo, setPageNo] = useState(0);
   const [pageTotal, setPageTotal] = useState(0);
 
@@ -27,29 +30,35 @@ export default function Payments() {
     // setOrdersData(dataToSet);
     const ordersData = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate))
     setOrders(ordersData);
-    setPageTotal(response.data.totalPages);
+    setDisplayOrders(ordersData.slice(pageNo * records, (pageNo+1) * records))
+    setPageNo((prev) => prev + 1)
+    setPageTotal(Math.floor(response.data.totalElements/records));
+    console.log(pageTotal)
   };
 
   const handlePageDecrease = () => {
-    if (pageNo == 0) return;
+    // if (pageNo == 0) return;
+    console.log(displayOrders, pageNo, records, pageTotal)
+    setDisplayOrders(orders.slice((pageNo-2) * records, (pageNo-1) * records))
     setPageNo(pageNo - 1);
   };
-
+  
   // const searchOrders = (searchKey) => {
-  //   console.log(searchKey)
-  //   if (!searchKey || searchKey == '') return setOrders(ordersData)
-  //   setOrders(ordersData.filter(order => order.orderId.includes(searchKey.toLowerCase().trim())))
-  // }
-
+    //   console.log(searchKey)
+    //   if (!searchKey || searchKey == '') return setOrders(ordersData)
+    //   setOrders(ordersData.filter(order => order.orderId.includes(searchKey.toLowerCase().trim())))
+    // }
+    
   const handlePageIncrease = () => {
-    console.log(pageNo);
     if (pageNo + 1 == pageTotal) return;
-    setPageNo(pageNo + 1);
+    console.log(displayOrders, pageNo, records)
+    setDisplayOrders(orders.slice(pageNo * records, (pageNo + 1) * records))
+    setPageNo(prev => prev + 1);
   };
 
   useEffect(() => {
     manageOrders();
-  }, [pageNo]);
+  }, []);
 
   return (
     <>
@@ -75,23 +84,23 @@ export default function Payments() {
       </div>
       <div className='flex flex-col'>
         {/* <div className=''> */}
-          <div className='overflow-x-scroll sm:-mx-6 inline-block min-w-full py-2 sm:px-6 '>
-            <div className='flex space-x-32 mx-auto left-0 right-0 w-1/2 absolute top-10'>
-              {pageNo !== 0 && (
-                <button
-                  className='bg-gradient-to-r from-primary to-logo text-white px-3 py-1 rounded-md hover:bg-gradient-to-tr transition-all ease-in-out duration-300'
-                  onClick={handlePageDecrease}>
-                  Previous
-                </button>
-              )}
-              {pageNo !== pageTotal - 1 && (
-                <button
-                  className='bg-gradient-to-r from-primary to-logo text-white px-3 py-1 rounded-md hover:bg-gradient-to-tr transition-all ease-in-out duration-300'
-                  onClick={handlePageIncrease}>
-                  Next
-                </button>
-              )}
-            </div>
+        <div className='flex justify-end gap-4 px-4 py-4 w-full'>
+          {(pageNo > 1) && (pageNo < pageTotal) ? (
+            <button
+              className=' text-shadowGrey px-3 py-1 rounded-md outline-shadowGrey outline-1 outline'
+              onClick={handlePageDecrease}>
+              &lt; Previous
+            </button>
+          ) : ''}
+          {pageNo !== pageTotal - 1 && (
+            <button
+              className=' text-shadowGrey px-3 py-1 rounded-md outline-shadowGrey outline-1 outline'
+              onClick={handlePageIncrease}>
+              Next &gt;
+            </button>
+          )}
+        </div>
+          <div className='sm:-mx-6 inline-block min-w-full py-2 sm:px-6 '>
             <div className='order-table overflow-x-scroll'>
               <table
                 className='min-w-full text-center text-sm font-medium bg-bg bg-opacity-10 rounded-xl'
@@ -161,8 +170,8 @@ export default function Payments() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders &&
-                    orders.map((order, index) => {
+                  {displayOrders &&
+                    displayOrders.map((order, index) => {
                       const orderDate = new Date(order.orderDate);
                       return order.orderItems.map((item, i) => (
                         <tr
@@ -228,21 +237,21 @@ export default function Payments() {
                           <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={item.product.frontDesignUrl}
-                              target='_blank' style={{textDecoration: 'underline'}}>
+                              target='_blank' rel="noreferrer" style={{textDecoration: 'underline'}}>
                               View Product Design
                             </a>
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={item.product.backDesignUrl}
-                              target='_blank' style={{textDecoration: 'underline'}}>
+                              target='_blank' rel="noreferrer" style={{textDecoration: 'underline'}}>
                               View Design
                             </a>
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={'https://app.shiprocket.in/seller/orders/details/' + order.orderId}
-                              target='_blank' style={{textDecoration: 'underline'}}>
+                              target='_blank' rel="noreferrer" style={{textDecoration: 'underline'}}>
                               View Details
                             </a>
                           </td>
@@ -255,6 +264,22 @@ export default function Payments() {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className='flex justify-end gap-4 px-4 py-4 w-full'>
+            {(pageNo > 1) && (pageNo < pageTotal)? (
+              <button
+                className=' text-shadowGrey px-3 py-1 rounded-md outline-shadowGrey outline-1 outline'
+                onClick={handlePageDecrease}>
+                &lt; Previous
+              </button>
+            ): ''}
+            {pageNo !== pageTotal - 1 && (
+              <button
+                className=' text-shadowGrey px-3 py-1 rounded-md outline-shadowGrey outline-1 outline'
+                onClick={handlePageIncrease}>
+                Next &gt;
+              </button>
+            )}
           </div>
         {/* </div> */}
       </div>

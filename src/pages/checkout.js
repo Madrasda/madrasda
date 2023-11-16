@@ -149,6 +149,8 @@ export default function Checkout() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (!validPhone || !validPincode) return;
+
     const transaction = {
       billingIsShipping: true,
       shippingAddress: {
@@ -205,7 +207,7 @@ export default function Checkout() {
 
   useEffect(() => {
     const pincodeRegex = /^[1-9][0-9]{5}$/;
-    if (pincodeRegex.test(pincode)) {
+    if (pincodeRegex.test(pincode.trim())) {
       axios
         .get(
           `https://api.opencagedata.com/geocode/v1/json?key=518b0ac375bb4bb8bb17019ae3e63818&q=${pincode}`
@@ -464,20 +466,27 @@ export default function Checkout() {
                         </div>
                       </div>
                       <div className='flex justify-end'>
-                        <Button /*{className='bg-primary text-white mx-auto w-full ' type='submit'}*/
-                          css={{ fontFamily: "$algeria" }}
-                          style={{
-                            cursor: "pointer",
-                            background:
-                              "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
-                            color: "white",
-                          }}
-                          variant={"contained"}
-                          disabled={!validPhone || !validPincode}
-                          type={"submit"}
-                          className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
+                          {/* <Button 
+                            css={{ fontFamily: "$algeria" }}
+                            style={{
+                              cursor: "pointer",
+                              background:
+                                "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)",
+                              color: "white",
+                            }}
+                            variant={"contained"}
+                            disabled={!validPhone || !validPincode}
+                            type={"submit"}
+                            className={`font-bold text-white py-2 px-4 mr-2 mb-2`}>
+                            Proceed to Payment
+                          </Button> */}
+                        <a /*{className='bg-primary text-white mx-auto w-full ' type='submit'}*/
+                          href="#"
+                          style={{ background: "linear-gradient(45deg, #ffa000 30%, #ffc107 90%)"}}
+                          onClick={handleSubmit}
+                          className={`font-semibold rounded-[5px] text-white py-2 px-4 mr-2 mb-2 cursor-pointer font-algeria uppercase`}>
                           Proceed to Payment
-                        </Button>
+                        </a>
                       </div>
                     </form>
                   </div>
