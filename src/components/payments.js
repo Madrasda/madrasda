@@ -43,11 +43,12 @@ export default function Payments() {
     setPageNo(pageNo - 1);
   };
   
-  // const searchOrders = (searchKey) => {
-    //   console.log(searchKey)
-    //   if (!searchKey || searchKey == '') return setOrders(ordersData)
-    //   setOrders(ordersData.filter(order => order.orderId.includes(searchKey.toLowerCase().trim())))
-    // }
+  const searchOrders = (searchKey) => {
+      console.log(searchKey)
+      setPageNo(0)
+      if (!searchKey || searchKey == '') return setDisplayOrders(orders)
+      setDisplayOrders(orders.filter(order => order.orderId.includes(searchKey.toLowerCase().trim())).slice(pageNo * records, (pageNo + 1) * records))
+  }
     
   const handlePageIncrease = () => {
     if (pageNo + 1 == pageTotal) return;
@@ -63,10 +64,10 @@ export default function Payments() {
   return (
     <>
       <div className='hidden justify-between mr-10 md:flex'>
-        <h1 className='text-3xl text-primary pt-7 md:pt-0'>
+        <h1 className='text-3xl text-primary pt-7 md:pt-0 md:ml-5'>
           Recent Orders
         </h1>
-        {/* <input type='search' onInput={(e) => searchOrders(e.target.value)} placeholder="Search for Order No." className="border-2 rounded-md border-primary bg-white focus:outline-none text-base px-2 py-1" /> */}
+        <input type='search' onInput={(e) => searchOrders(e.target.value)} placeholder="Search for Order No." className="border-2 rounded-md border-primary bg-white focus:outline-none text-base px-2 py-1" />
         <Button
           css={{ fontFamily: "$algeria" }}
           style={{
@@ -265,17 +266,17 @@ export default function Payments() {
               </table>
             </div>
           </div>
-          <div className='flex justify-end gap-4 px-4 py-4 w-full'>
+          <div className='flex justify-center gap-4 px-4 py-4 w-full'>
             {(pageNo > 1) && (pageNo < pageTotal)? (
               <button
-                className=' text-shadowGrey px-3 py-1 rounded-md outline-shadowGrey outline-1 outline'
+                className=' text-shadowGrey px-2 py-1 rounded-md outline-shadowGrey outline-1 outline'
                 onClick={handlePageDecrease}>
                 &lt; Previous
               </button>
             ): ''}
             {pageNo !== pageTotal - 1 && (
               <button
-                className=' text-shadowGrey px-3 py-1 rounded-md outline-shadowGrey outline-1 outline'
+                className=' text-shadowGrey px-2 py-1 rounded-md outline-shadowGrey outline-1 outline'
                 onClick={handlePageIncrease}>
                 Next &gt;
               </button>
