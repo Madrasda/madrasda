@@ -8,7 +8,7 @@ import { Button, Grow, Paper, Snackbar } from "@mui/material";
 import { uuidv4 } from "@firebase/util";
 import MuiAlert from "@mui/material/Alert";
 const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
 
 export default function AdminCancelOrdersPage() {
@@ -30,12 +30,13 @@ export default function AdminCancelOrdersPage() {
   };
   useEffect(() => {
     const params = new URLSearchParams({
-      pageNo : pageNo,
-      pageSize : 10
-    })
+      pageNo: pageNo,
+      pageSize: 10,
+    });
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllCancelRequests?" + params,
+        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllCancelRequests?" +
+          params,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token_admin"),
@@ -45,6 +46,7 @@ export default function AdminCancelOrdersPage() {
 
       .then((response) => response.data)
       .then((data) => {
+        console.log(data);
         setPageSize(data.totalPages);
         setCancelOrders(data.content);
       });
@@ -119,14 +121,16 @@ export default function AdminCancelOrdersPage() {
               </h1>
             </div>
             <div className='flex flex-col justify-center mb-5 w-full px-4 md:ml-28'>
-              {cancelOrders.length !== 0 &&
+              {cancelOrders &&
+                cancelOrders.length !== 0 &&
                 cancelOrders.map((request, index) => {
                   const delay = index * 80 + "ms";
-                  if (
-                    (new Date().getTime() -
-                      new Date(request.transaction.orderDate).getTime() <=
-                    900000)
-                  ) {
+                  const now = new Date().getTime();
+                  const requestDate = new Date(
+                    request.transaction.orderDate
+                  ).getTime();
+                  const tenDays = 8.64 * Math.pow(10, 8);
+                  if (now - requestDate <= tenDays) {
                     return (
                       <Grow
                         key={uuidv4()}
@@ -140,13 +144,6 @@ export default function AdminCancelOrdersPage() {
                             <h1 className='text-2xl text-primary mb-6 pt-2'>
                               Customer Number:{" "}
                               {request.transaction.shippingAddress.phone}
-                              {/* {new Date().getTime() -
-                                new Date(
-                                  request.transaction.orderDate
-                                ).getTime() <=
-                              900000
-                                ? "true"
-                                : "false"} */}
                             </h1>
                             <div className='flex w-full justify-between mb-2'>
                               <h2 className='mb-2 text-lg font-medium text-black flex items-center'>
@@ -188,23 +185,24 @@ export default function AdminCancelOrdersPage() {
             </div>
             {
               // queries && queries.length !== 0 &&
-              pageSize>10 &&
-              <div className='flex justify-center mt-32 mb-8'>
-                <button
-                  className='bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6'
-                  onClick={() => {
-                    setPage(pageNo === 0 ? 0 : pageNo - 1);
-                  }}>
-                  Prev
-                </button>
-                <button
-                  className='bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-6'
-                  onClick={() => {
-                    setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1);
-                  }}>
-                  Next
-                </button>
-              </div>
+              pageSize > 10 && (
+                <div className='flex justify-center mt-32 mb-8'>
+                  <button
+                    className='bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded mr-6'
+                    onClick={() => {
+                      setPage(pageNo === 0 ? 0 : pageNo - 1);
+                    }}>
+                    Prev
+                  </button>
+                  <button
+                    className='bg-[#fab337] hover:bg-[#ffa200] text-white font-small py-2 px-5 rounded ml-6'
+                    onClick={() => {
+                      setPage(pageNo === pageSize - 1 ? pageNo : pageNo + 1);
+                    }}>
+                    Next
+                  </button>
+                </div>
+              )
             }
           </main>
         </AdminLayout>
