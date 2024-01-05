@@ -14,7 +14,7 @@ export default function Payments() {
   const manageOrders = async () => {
     const params = new URLSearchParams({
       pageNo: pageNo,
-      pageSize: 200,
+      pageSize: 250,
     });
     const response = await axios.get(
       "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +

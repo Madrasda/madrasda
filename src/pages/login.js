@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { forwardRef, useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { getRole, isTokenValid } from "@/utils/JWTVerifier";
 import Image from "next/image";
 import Otp from "@/components/Otp";
 import Login from "@/components/Login";
@@ -17,8 +16,6 @@ const Alert = forwardRef(function Alert(props, ref) {
 export default function LoginForm() {
   const router = useRouter();
   let isReady = router.isReady;
-  const [details, setDetails] = useState(null);
-  const [designs, setDesigns] = useState(null);
   const [loading, setLoading] = useState(false);
   const [spinner, setSpinnerState] = useState(false); //spinner
   const phoneRef = useRef();

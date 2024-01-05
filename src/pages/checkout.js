@@ -19,6 +19,9 @@ import {
 } from "@mui/material";
 import CartItem from "@/components/CartItem";
 
+const ENV = "prod";
+const API_URL = ENV == "prod"? "https://spring-madrasda-2f6mra4vwa-em.a.run.app": "https://16gf53qw-8080.inc1.devtunnels.ms"
+
 export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);
   const [shippingCharges, setShippingCharges] = useState(-1);
@@ -91,7 +94,7 @@ export default function Checkout() {
     axios
       .get(
         // spring-madrasda-2f6mra4vwa-em.a.run.app
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/getShippingCharges/" +
+          API_URL + "/api/payment/getShippingCharges/" +
           text,
         {
           headers: {
@@ -116,7 +119,7 @@ export default function Checkout() {
         }
       });
   };
-
+// https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/webhook/updateShipmentStatus
   const handleChange = (event) => {
     const text = event.target.value;
     const pincodeRegex = /^[1-9][0-9]{5}$/;
@@ -179,7 +182,7 @@ export default function Checkout() {
       .post(
         //https://spring-madrasda-2f6mra4vwa-em.a.run.app
           //http://localhost:8080
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/payment/createOrder",
+        API_URL + "/api/payment/createOrder",
         transaction,
         {
           headers: {
