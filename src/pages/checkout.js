@@ -44,6 +44,8 @@ export default function Checkout() {
   const phoneRef = useRef();
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
+  const [isNotRedirected, setIsNotRedirected] = useState(false);
+  const [paymentLink, setPaymentLink] = useState("");
   const router = useRouter();
   const ctx = useContext(UserContext);
   const closeModal = () => {
@@ -190,7 +192,14 @@ export default function Checkout() {
           },
         }
       )
-      .then((response) => (window.location.href = response.data))
+      .then((response) => {
+        console.log(response);
+        setPaymentLink(response.data);
+        setTimeout(() => {
+          setIsNotRedirected(true);
+        }, 2000);
+        router.replace(response.data);
+      })
       .catch((err) => {
         console.log(err);
         if (err.response.status === 400) {
@@ -490,6 +499,9 @@ export default function Checkout() {
                           className={`font-semibold rounded-[5px] text-white py-2 px-4 mr-2 mb-2 cursor-pointer font-algeria uppercase`}>
                           Proceed to Payment
                         </a>
+                        {
+                          isNotRedirected && <a href={paymentLink}>Click here if you are not redirected to payment page</a>
+                        }
                       </div>
                     </form>
                   </div>
