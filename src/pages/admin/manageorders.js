@@ -9,6 +9,7 @@ import { set_cptable } from "xlsx";
 import * as cptable from 'xlsx/dist/cpexcel.full.mjs';
 set_cptable(cptable);
 import XLSX from "xlsx";
+import ManageOrderTable from "@/components/manageordertable";
 
 export default function CustomerDetails() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -42,6 +43,7 @@ export default function CustomerDetails() {
               
               <div className='mt-4 flex flex-col gap-8'>
                 <Payments />
+                {/* <ManageOrderTable /> */}
               </div>
             </div>
           </main>
