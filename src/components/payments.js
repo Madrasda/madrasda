@@ -11,31 +11,6 @@ export default function Payments() {
   const [pageNo, setPageNo] = useState(0);
   const [pageTotal, setPageTotal] = useState(0);
 
-  const manageOrders = async () => {
-    const params = new URLSearchParams({
-      pageNo: pageNo,
-      pageSize: 250,
-    });
-    const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
-        params,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token_admin"),
-        },
-      }
-    );
-    console.log(response.data);
-    // let dataToSet = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate))
-    // setOrdersData(dataToSet);
-    const ordersData = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate))
-    setOrders(ordersData);
-    setDisplayOrders(ordersData.slice(pageNo * records, (pageNo+1) * records))
-    setPageNo((prev) => prev + 1)
-    setPageTotal(Math.floor(response.data.totalElements/records));
-    console.log(pageTotal)
-  };
-
   const handlePageDecrease = () => {
     // if (pageNo == 0) return;
     console.log(displayOrders, pageNo, records, pageTotal)
@@ -58,6 +33,37 @@ export default function Payments() {
   };
 
   useEffect(() => {
+     const manageOrders = async () => {
+       const params = new URLSearchParams({
+         pageNo: pageNo,
+         pageSize: 250,
+       });
+       const response = await axios.get(
+         // "http://localhost:8080/api/transaction/manageOrders" +
+         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
+           params,
+         {
+           headers: {
+             Authorization: "Bearer " + localStorage.getItem("token_admin"),
+           },
+         }
+       );
+
+       console.log(response.data);
+       // let dataToSet = response.data.content.sort((a, b) => b.orderDate.localeCompare(a.orderDate))
+       // setOrdersData(dataToSet);
+       const ordersData = response.data.content.sort((a, b) =>
+         b.orderDate.localeCompare(a.orderDate)
+       );
+       setOrders(ordersData);
+       setDisplayOrders(
+         ordersData.slice(pageNo * records, (pageNo + 1) * records)
+       );
+       setPageNo((prev) => prev + 1);
+       setPageTotal(Math.floor(response.data.totalElements / records));
+       console.log(pageTotal);
+     };
+
     manageOrders();
   }, []);
 
@@ -118,22 +124,19 @@ export default function Payments() {
                       Order Date
                     </th>
                     <th scope='col' className=' px-6 py-4'>
-                      Customer Name
+                      Customer Details
                     </th>
                     <th scope='col' className=' px-6 py-4'>
-                      Product Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Vendor ID
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      SKU
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Customer Email
+                      Product Details
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Quantity
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Order Total
+                    </th>
+                    <th scope='col' className=' px-6 py-4'>
+                      Vendor ID
                     </th>
                     <th scope='col' className=' px-6 pl-2'>
                       Payment Id
@@ -149,12 +152,6 @@ export default function Payments() {
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Mockup Name
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Mockup Model
-                    </th>
-                    <th scope='col' className=' px-6 py-4'>
-                      Product Type
                     </th>
                     <th scope='col' className=' px-6 py-4'>
                       Product Design URL
@@ -173,11 +170,11 @@ export default function Payments() {
                 <tbody>
                   {displayOrders &&
                     displayOrders.map((order, index) => {
-                      const orderDate = new Date(order.orderDate);
+                      const unformattedDate = new Date(order.orderDate);
+                      unformattedDate.setMinutes((unformattedDate.getMinutes() + (60 * 0.5)))
+                      const properDate = unformattedDate.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }).split(', ');
                       return order.orderItems.map((item, i) => (
-                        <tr
-                          key={i}
-                          className='border-b border-shadowGrey'>
+                        <tr key={i} className='border-b border-shadowGrey'>
                           <td className='whitespace-nowrap px-2 py-4 font-medium'>
                             {index + 1}
                           </td>
@@ -185,32 +182,31 @@ export default function Payments() {
                             {order.orderId}
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
-                            {`${orderDate
-                              .getUTCDate()
-                              .toString()
-                              .padStart(2, "0")}-${(orderDate.getUTCMonth() + 1)
-                              .toString()
-                              .padStart(2, "0")}-${orderDate
-                              .getUTCFullYear()
-                              .toString()}`}
+                            {properDate[0]}
+                            <br />
+                            {properDate[1]}
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
-                            {order.shippingAddress.name}
+                            {order.shippingAddress.name} <br />
+                            {order.shippingAddress.email} <br />
+                            {order.shippingAddress.phone}
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
-                            {item.product.name}
-                          </td>
-                          <td className='whitespace-nowrap px-2 py-4'>
-                            {item.product.vendorId}
-                          </td>
-                          <td className='whitespace-nowrap px-2 py-4'>
+                            {item.product.name} <br />
                             {item.sku}
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
-                            {order.shippingAddress.email}
+                            {item.quantity}
+                          </td>
+                          <td className='whitespace-nowrap px-6 min-w-10 pl-2'>
+                            ₹ {order.orderTotal} <br />+ ₹{" "}
+                            {order.deliveryCharges} <br />={" "}
+                            <strong>
+                              ₹ {order.orderTotal + order.deliveryCharges}
+                            </strong>
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
-                            {item.quantity}
+                            {item.product.vendorId}
                           </td>
                           <td className='whitespace-nowrap px-6 pl-2'>
                             {order.paymentId}
@@ -230,29 +226,35 @@ export default function Payments() {
                             {item.product.productMockup.name}
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
-                            {item.product.productMockup.model}
-                          </td>
-                          <td className='whitespace-nowrap px-2 py-4'>
-                            {item.product.productMockup.productType}
-                          </td>
-                          <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={item.product.frontDesignUrl}
-                              target='_blank' rel="noreferrer" style={{textDecoration: 'underline'}}>
+                              target='_blank'
+                              rel='noreferrer'
+                              style={{ textDecoration: "underline" }}
+                            >
                               View Product Design
                             </a>
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
                             <a
                               href={item.product.backDesignUrl}
-                              target='_blank' rel="noreferrer" style={{textDecoration: 'underline'}}>
+                              target='_blank'
+                              rel='noreferrer'
+                              style={{ textDecoration: "underline" }}
+                            >
                               View Design
                             </a>
                           </td>
                           <td className='whitespace-nowrap px-2 py-4'>
                             <a
-                              href={'https://app.shiprocket.in/seller/orders/details/' + order.orderId}
-                              target='_blank' rel="noreferrer" style={{textDecoration: 'underline'}}>
+                              href={
+                                "https://app.shiprocket.in/seller/orders/details/" +
+                                order.orderId
+                              }
+                              target='_blank'
+                              rel='noreferrer'
+                              style={{ textDecoration: "underline" }}
+                            >
                               View Details
                             </a>
                           </td>
