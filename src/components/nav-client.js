@@ -33,6 +33,7 @@ import {
   // UsbRounded,
   // VerifiedUserOutlined,
 } from "@mui/icons-material";
+import { API_URL } from "@/utils/constants";
 
 export default function NavisCustomer() {
   const router = useRouter();
@@ -66,14 +67,14 @@ export default function NavisCustomer() {
 
   const getBestSellers = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers"
+      API_URL + "/api/product/hotsellers"
     );
     setProducts(response.data);
   };
   const getAllMockups = async () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups"
+        API_URL + "/api/mockup/getAllMockups"
       )
       .then((res) => {
         setMockups(res.data.content);
@@ -138,7 +139,7 @@ export default function NavisCustomer() {
     getAllMockups();
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getAllVendors"
+        API_URL + "/api/client/getAllVendors"
       )
       .then((response) => setVendorList(response.data))
       .catch((err) => console.log(err));

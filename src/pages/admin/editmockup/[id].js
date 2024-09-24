@@ -19,9 +19,7 @@ import { Check, Edit, Upload } from "@mui/icons-material";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebaseConfig";
 import { TextField } from "@mui/material";
-
-const ENV = "prod"
-const API_URL = ENV == "dev" ? "http://localhost:8080/api/admin/updateMockup" : "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/updateMockup"
+import { API_URL } from "@/utils/constants";
 
 export default function EditMockup() {
   const router = useRouter();
@@ -98,7 +96,7 @@ export default function EditMockup() {
   };
   const getMockupDetails = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" +
+      API_URL + "/api/mockup/getMockup/" +
       id
     );
     setDetails(response.data);
@@ -128,7 +126,7 @@ export default function EditMockup() {
   const getAllColorsAndSizes = async () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/colorsAndSizes/getColorsAndSizes"
+        API_URL + "/api/colorsAndSizes/getColorsAndSizes"
       )
       .then((response) => {
         setColors(response.data.colors);

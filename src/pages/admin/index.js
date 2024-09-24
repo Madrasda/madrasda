@@ -5,6 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { UserContext } from "../../../context/context";
 import { Alert, Button, Snackbar } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 export default function Adminlogin() {
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function Adminlogin() {
     e.preventDefault();
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginAdmin",
+        API_URL + "/api/auth/loginAdmin",
         {
           email: mail,
           password: password,

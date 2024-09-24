@@ -2,13 +2,14 @@ import NavAdmin from "./nav-admin"
 import Footer from "./footer"
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { API_URL } from "@/utils/constants";
 
 export default function AdminLayout({ children }) {
     const [vendorPayoutCount, setVendorPayoutCount] = useState(0);
     const [signupRequestCount, setSignupRequestCount] = useState(0);
     useEffect(() => {
         axios.get(
-            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getPayoutRequestedVendors",
+            API_URL + "/api/admin/getPayoutRequestedVendors",
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token_admin"),
@@ -18,7 +19,7 @@ export default function AdminLayout({ children }) {
             setVendorPayoutCount(response.data.length);
         });
         axios.get(
-            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getAllSignups",
+            API_URL + "/api/admin/getAllSignups",
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token_admin"),

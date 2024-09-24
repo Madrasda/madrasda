@@ -13,6 +13,7 @@ import { async } from "@firebase/util";
 import { Check, CheckBox, Download, SelectAll } from "@mui/icons-material";
 import { saveAs } from "file-saver";
 import Backdrop, { Button, CircularProgress } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 export default function CreateTemplate(props) {
   const [spinner, setSpinnerState] = useState(false);
@@ -192,7 +193,7 @@ export default function CreateTemplate(props) {
 
   const getMockupDetails = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" +
+      API_URL + "/api/mockup/getMockup/" +
         id
     );
     setDetails(response.data);
@@ -271,7 +272,7 @@ export default function CreateTemplate(props) {
     data.backDesignPlacement = design.imgUrl;
     const response = axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/saveTemplate",
+        API_URL + "/api/templates/saveTemplate",
         data,
         {
           headers: {

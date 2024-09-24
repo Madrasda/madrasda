@@ -1,6 +1,7 @@
 import { Button, Modal } from "@nextui-org/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "@/utils/constants";
 
 export default function ProfileModal({ onMessage }) {
   const [visible, setVisible] = useState(false);
@@ -18,7 +19,7 @@ export default function ProfileModal({ onMessage }) {
   const getProfileDetails = () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/myProfile",
+        API_URL + "/api/client/myProfile",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token_client")}`,
@@ -42,7 +43,7 @@ export default function ProfileModal({ onMessage }) {
     }
     axios
       .put(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/updatePassword",
+        API_URL + "/api/client/updatePassword",
         {
           password: password.password,
         },

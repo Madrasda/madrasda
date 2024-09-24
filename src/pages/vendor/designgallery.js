@@ -8,6 +8,7 @@ import UploadModal from "@/components/upload-modal";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import MuiAlert from "@mui/material/Alert";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -32,7 +33,7 @@ export default function DesignGallery() {
     setSpinner(true);
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs",
+        API_URL + "/api/vendor/designs",
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token_vendor"),

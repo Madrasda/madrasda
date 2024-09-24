@@ -13,6 +13,7 @@ import HotSellers from "@/components/hotsellers-client";
 import { Button } from "@mui/material";
 import SizeChartModal from "@/components/sizechart-modal";
 import { NEXT_PUBLIC_CLARITY_ID } from "@/firebaseConfig";
+import { API_URL } from "@/utils/constants";
 
 export default function ProductId() {
   const router = useRouter();
@@ -99,7 +100,7 @@ export default function ProductId() {
       const { id } = router.query;
       axios
         .get(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductDetails/" +
+          API_URL + "/api/product/getProductDetails/" +
             id
         )
         .then((response) => {

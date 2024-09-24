@@ -13,6 +13,7 @@ import { DefaultSeo } from "next-seo";
 import Script from 'next/script'
 import * as fbq from "@/utils/fbq";
 import { NEXT_PUBLIC_CLARITY_ID, NEXT_PUBLIC_PIXEL_ID } from "@/firebaseConfig";
+import { API_URL } from "@/utils/constants";
 
 function Loading() {
   const router = useRouter();
@@ -40,7 +41,7 @@ export default function App({ Component, pageProps }) {
       setToken(jwtToken);
 
       axios
-        .get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/", {
+        .get(API_URL + "/api/cart/", {
           headers: {
             Authorization: "Bearer " + jwtToken,
           },
@@ -55,7 +56,7 @@ export default function App({ Component, pageProps }) {
 
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getAllVendors"
+        API_URL + "/api/client/getAllVendors"
       )
       .then((response) => setVendorList(response.data))
       .catch((err) => console.log(err));
@@ -89,7 +90,7 @@ export default function App({ Component, pageProps }) {
 
     axios
       .put(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
+        API_URL + "/api/cart/changeQuantity/" +
         id +
         "&&" +
         qty,
@@ -117,7 +118,7 @@ export default function App({ Component, pageProps }) {
     });
     axios
       .put(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
+        API_URL + "/api/cart/changeQuantity/" +
         id +
         "&&" +
         qty,
@@ -143,7 +144,7 @@ export default function App({ Component, pageProps }) {
     });
     axios
       .put(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
+        API_URL + "/api/cart/changeQuantity/" +
         id +
         "&&" +
         qty,
@@ -165,7 +166,7 @@ export default function App({ Component, pageProps }) {
     });
     axios
       .put(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/changeQuantity/" +
+        API_URL + "/api/cart/changeQuantity/" +
         id +
         "&&0",
         {},
@@ -186,7 +187,7 @@ export default function App({ Component, pageProps }) {
       };
       return await axios
         .post(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/addToCart",
+          API_URL + "/api/cart/addToCart",
           cartItem,
           {
             headers: {
@@ -196,7 +197,7 @@ export default function App({ Component, pageProps }) {
         )
         .then((response) => {
           return axios.get(
-            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/cart/",
+            API_URL + "/api/cart/",
             {
               headers: {
                 Authorization: "Bearer " + token,

@@ -22,6 +22,7 @@ import {
 import { Check } from "@mui/icons-material";
 import MuiAlert from "@mui/material/Alert";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import { API_URL } from "@/utils/constants";
 
 const Alert = forwardRef(function Alert(props, ref) {
   //snackbar alert
@@ -99,7 +100,7 @@ export default function ViewProd() {
     
     if (data.productImages[0].imageUrl !== null) {
       const response = await axios.put(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/updateProduct",
+        API_URL + "/api/product/updateProduct",
         data,
         {
           headers: {
@@ -206,7 +207,7 @@ export default function ViewProd() {
       skuMapping: templateData.skuMapping,
     });
     const mockupResponse = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getMockup/" +
+      API_URL + "/api/mockup/getMockup/" +
         templateData.mockupId
     );
     setSizes(getAvailableSizes(mockupResponse.data.skuMapping));

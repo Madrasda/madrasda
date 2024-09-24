@@ -5,6 +5,7 @@ import axios from "axios";
 import { UserContext } from "../../../context/context";
 import Script from "next/script";
 import { NEXT_PUBLIC_CLARITY_ID, NEXT_PUBLIC_PIXEL_ID } from "@/firebaseConfig";
+import { API_URL } from "@/utils/constants";
 
 
 function VendorProductsPage() {
@@ -33,7 +34,7 @@ function VendorProductsPage() {
     );
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductsByVendor/" +
+        API_URL + "/api/product/getProductsByVendor/" +
           vendorName.id +
           "?pageNo=" +
           pageNo +
@@ -53,7 +54,7 @@ function VendorProductsPage() {
       } else {
         axios
           .get(
-            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
+            API_URL + "/api/admin/getVendors"
           )
           .then((response) => {
             setPageData(response.data);

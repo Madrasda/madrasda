@@ -8,6 +8,7 @@ import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import PayoutConfirm from "@/components/payout-confirm";
 import {uuidv4} from "@firebase/util";
 import { Grow, Paper } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 export default function CustomerDetails() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function CustomerDetails() {
 
   const getAllPayoutRequest = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getPayoutRequestedVendors",
+      API_URL + "/api/admin/getPayoutRequestedVendors",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),
@@ -29,7 +30,7 @@ export default function CustomerDetails() {
 
   const completePayout = async (id) => {
     const response = await axios.post(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/completePayout/" +
+      API_URL + "/api/admin/completePayout/" +
         id
     );
     getAllPayoutRequest();

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import ProductList from "@/pages/productlist";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { API_URL } from '@/utils/constants';
 
 function CategoryProductsPage() {
   const [products, setProducts] = useState([]);
@@ -13,7 +14,7 @@ function CategoryProductsPage() {
     if (router.isReady) {
       axios
         .get(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getByMockupId/" +
+          API_URL + "/api/product/getByMockupId/" +
             id
         )
         .then((res) => {

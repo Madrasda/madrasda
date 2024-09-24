@@ -6,6 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getRole, isTokenValid } from "@/utils/JWTVerifier";
+import { API_URL } from "@/utils/constants";
 
 export default function ProductList() {
   const [tokenExists, setTokenExists] = useState(false);
@@ -24,7 +25,7 @@ export default function ProductList() {
   const getProductDetails = async () => {
     if (router.isReady) {
       const prod = await axios.get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/getProductsByVendor/" + id );
+        API_URL + "/api/vendor/getProductsByVendor/" + id );
       setProducts(prod.data.content);
       console.log(prod.data.content);
     }

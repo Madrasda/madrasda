@@ -12,6 +12,7 @@ import { getRole, isTokenValid } from "@/utils/JWTVerifier";
 import MockupModel from "@/components/mockupmodel";
 import CloseConfirm from "@/components/close-confirm-modal";
 import { uuidv4 } from "@firebase/util";
+import { API_URL } from "@/utils/constants";
 
 export default function TemplateList() {
   const [products, setProducts] = useState(null);
@@ -57,7 +58,7 @@ export default function TemplateList() {
       pageSize: 5,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplates?" +
+      API_URL + "/api/templates/getTemplates?" +
         url,
       {
         headers: {
@@ -74,7 +75,7 @@ export default function TemplateList() {
       pageSize: 10000,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/getAllMockups?" +
+      API_URL + "/api/mockup/getAllMockups?" +
         params,
       {
         headers: {
@@ -105,7 +106,7 @@ export default function TemplateList() {
 
   const deleteTemplate = async (tempId) => {
     const response = await axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/" +
+      API_URL + "/api/templates/deleteTemplate/" +
         tempId,
       {
         headers: {

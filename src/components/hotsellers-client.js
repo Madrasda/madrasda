@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { uuidv4 } from "@firebase/util";
+import { API_URL } from "@/utils/constants";
 
 export default function HotSellers() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ export default function HotSellers() {
       pageSize: 8,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers?" +
+      API_URL + "/api/product/hotsellers?" +
         param
     );
     setProducts(response.data);

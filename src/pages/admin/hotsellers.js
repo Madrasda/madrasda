@@ -8,6 +8,7 @@ import { isTokenValid, getRole } from "@/utils/JWTVerifier";
 import SearchVendor from "@/components/search-vendor";
 import AdminLayout from "@/components/layout-admin";
 import { uuidv4 } from "@firebase/util";
+import { API_URL } from "@/utils/constants";
 
 export default function Hotsellers() {
   const [tokenExists, setTokenExists] = useState(false);
@@ -19,7 +20,7 @@ export default function Hotsellers() {
 
   const getAllProducts = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/hotsellers",
+      API_URL + "/api/product/hotsellers",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_admin"),

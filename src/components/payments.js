@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 const records = 20;
 
@@ -40,7 +41,7 @@ export default function Payments() {
        });
        const response = await axios.get(
          // "http://localhost:8080/api/transaction/manageOrders" +
-         "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/manageOrders?" +
+         API_URL + "/api/transaction/manageOrders?" +
            params,
          {
            headers: {

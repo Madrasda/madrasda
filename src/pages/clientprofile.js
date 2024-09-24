@@ -13,6 +13,7 @@ import { InsertEmoticon } from "@mui/icons-material";
 import CancelOrderModal from "@/components/cancel-order";
 import MuiAlert from "@mui/material/Alert";
 import ProfileModal from "@/components/profile-modal";
+import { API_URL } from "@/utils/constants";
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
@@ -56,7 +57,7 @@ export default function ClientProfile() {
   const getOrderHistory = async () => {
     const response = await axios.get(
       //   https://spring-madrasda-2f6mra4vwa-em.a.run.app
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllOrdersById/",
+      API_URL + "/api/transaction/getAllOrdersById/",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_client"),

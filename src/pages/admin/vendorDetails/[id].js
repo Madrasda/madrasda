@@ -8,6 +8,7 @@ import {useEffect, useState} from "react";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import axios from "axios";
 import {Button} from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 export default function VendorDetails() {
 	const [tokenExists, setTokenExists] = useState(false);
@@ -25,7 +26,7 @@ export default function VendorDetails() {
 
 	const getVendorDetails = async () => {
 		axios
-			.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/vendorDetails/" + id)
+			.get(API_URL + "/api/vendor/vendorDetails/" + id)
 			.then((response) => {
 				setDetails(response.data);
 			})
@@ -73,7 +74,7 @@ export default function VendorDetails() {
 						<div className={'flex flex-wrap flex-col space-y-4'}>
 							<Button   variant={'contained'} color={details.vendor.status ? 'error' : 'success'} className={'bg-error'}
 							          onClick={() => {
-								          axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleVendor/" + id, {}, {
+								          axios.put(API_URL + "/api/admin/toggleVendor/" + id, {}, {
 									          headers: {Authorization: localStorage.getItem("token_admin")}
 								          }).then((response) => {
 									          setDetails(old => {
@@ -83,7 +84,7 @@ export default function VendorDetails() {
 							          }}>{(details.vendor.status ? 'Disable' : 'Enable')} Account</Button>
 							<Button variant={'contained'} color={'error'} disabled={!details.vendor.imgUrl}
 							        onClick={() => {
-								        axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendorPicture/" + id, {}, {
+								        axios.put(API_URL + "/api/admin/deleteVendorPicture/" + id, {}, {
 									        headers: {Authorization: localStorage.getItem("token_admin")}
 								        }).then((response) => {
 									        setDetails(old => {

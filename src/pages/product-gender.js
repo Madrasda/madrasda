@@ -3,6 +3,7 @@ import ProductList from "@/pages/productlist";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import { isTokenValid, getRole } from '@/utils/JWTVerifier';
+import { API_URL } from '@/utils/constants';
 
 function PersonBasedProductsPage() {
     const router = useRouter();
@@ -17,7 +18,7 @@ function PersonBasedProductsPage() {
             setTitle(gender + "'s Products");
             axios
               .get(
-                "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/products/" +
+                API_URL + "/api/client/products/" +
                   gender +
                   "?pageNo=" +
                   pageNo +

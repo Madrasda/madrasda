@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 import { UserContext } from "../../context/context";
+import { API_URL } from "@/utils/constants";
 
 const Alert = forwardRef(function Alert(props, ref) {
   //snackbar alert
@@ -38,7 +39,7 @@ export default function LoginForm() {
     if (/^[0-9]{10}$/.test(phone)) {
       axios
         .post(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginClient?phone=" +
+          API_URL + "/api/auth/loginClient?phone=" +
             phone
         )
         .then((response) => {
@@ -66,7 +67,7 @@ export default function LoginForm() {
       setSpinnerState(true);
       axios
         .post(
-          "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/verifyOtp?" +
+          API_URL + "/api/auth/verifyOtp?" +
             "phone=" +
             phone +
             "&otp=" +

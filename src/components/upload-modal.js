@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { uuidv4 } from "@firebase/util";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 export default function UploadModal({
   chooseDesign,
@@ -42,7 +43,7 @@ export default function UploadModal({
   const getDesigns = () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs",
+        API_URL + "/api/vendor/designs",
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token_vendor"),
@@ -56,7 +57,7 @@ export default function UploadModal({
     setSpinner(true);
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/addDesign",
+        API_URL + "/api/vendor/addDesign",
         {
           imgUrl: file,
           designType: designType,

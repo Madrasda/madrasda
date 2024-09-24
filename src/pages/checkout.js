@@ -18,9 +18,7 @@ import {
   TextField,
 } from "@mui/material";
 import CartItem from "@/components/CartItem";
-
-const ENV = "prod";
-const API_URL = ENV == "prod"? "https://spring-madrasda-2f6mra4vwa-em.a.run.app": "https://16gf53qw-8080.inc1.devtunnels.ms"
+import { API_URL } from "@/utils/constants";
 
 export default function Checkout() {
   const [subTotal, setSubtotal] = React.useState(0);

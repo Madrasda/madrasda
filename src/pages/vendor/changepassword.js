@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier"
 import { Password } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
+import { API_URL } from '@/utils/constants';
 
 
 export default function VendorProfile() {
@@ -20,7 +21,7 @@ export default function VendorProfile() {
 	const confirmPasswordRef = useRef();
 	const changePassword = (e) => {
 		if (newPasswordRef.current.value === confirmPasswordRef.current.value) {
-			axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/updatePassword?" + confirmPasswordRef.current.value , {}, {
+			axios.put(API_URL + "/api/vendor/updatePassword?" + confirmPasswordRef.current.value , {}, {
 				headers: {
 					"Authorization": "Bearer " + localStorage.getItem("token_vendor")
 				},

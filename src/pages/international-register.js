@@ -9,6 +9,7 @@ import { UserContext } from "../../context/context";
 import { Button } from "@nextui-org/react";
 import { isTokenValid } from "@/utils/JWTVerifier";
 import Link from "next/link";
+import { API_URL } from "@/utils/constants";
 
 const Alert = forwardRef(function Alert(props, ref) {
   //snackbar alert
@@ -45,7 +46,7 @@ export default function RegisterForm() {
     }
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/registerClient",
+        API_URL + "/api/auth/registerClient",
         {
           name: name,
           email: userName,

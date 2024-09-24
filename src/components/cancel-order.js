@@ -2,6 +2,7 @@ import {Button, TextField} from "@mui/material";
 import {Modal} from "@nextui-org/react";
 import {useRef, useState} from "react";
 import axios from "axios";
+import { API_URL } from "@/utils/constants";
 
 export default function CancelOrderModal({
 	                                         transactionId,
@@ -29,7 +30,7 @@ export default function CancelOrderModal({
 	*/
 
 	const requestCancelOrder = () => {
-		axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/cancelOrder", {
+		axios.put(API_URL + "/api/transaction/cancelOrder", {
 			"transaction": {
 				"id": transactionId
 			}, "reason": reasonRef.current.value

@@ -12,6 +12,7 @@ import CloseConfirm from "@/components/close-confirm-modal";
 import { uuidv4 } from "@firebase/util";
 import { Grow } from "@mui/material";
 import Link from "next/link";
+import { API_URL } from "@/utils/constants";
 
 export default function MyProducts() {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function MyProducts() {
       pageSize: 10,
     });
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getAllMockups?" +
+      API_URL + "/api/admin/getAllMockups?" +
         url,
       {
         headers: {
@@ -55,7 +56,7 @@ export default function MyProducts() {
 
   const deleteMockup = async (mockupId) => {
     const response = axios.put(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleMockup/" +
+      API_URL + "/api/admin/toggleMockup/" +
         mockupId,
       {
         headers: {
@@ -68,7 +69,7 @@ export default function MyProducts() {
   const getAllColorsAndSizes = async () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/colorsAndSizes/getColorsAndSizes"
+        API_URL + "/api/colorsAndSizes/getColorsAndSizes"
       )
       .then((response) => {
         setColors(response.data.colors);
@@ -129,7 +130,7 @@ export default function MyProducts() {
     mockup.images = uploadedImages;
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/addMockup",
+        API_URL + "/api/mockup/addMockup",
         mockup
       )
       .then((response) => {

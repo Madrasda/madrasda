@@ -2,6 +2,7 @@ import {Button, TextField} from "@mui/material";
 import {Modal} from "@nextui-org/react";
 import {useRef, useState} from "react";
 import axios from "axios";
+import { API_URL } from "@/utils/constants";
 
 const ChangePasswordModal = () => {
 	const [visible, setVisible] = useState(false);
@@ -13,7 +14,7 @@ const ChangePasswordModal = () => {
 	const confirmPasswordRef = useRef();
 	const changePassword = () => {
 		if (newPasswordRef.current.value !== confirmPasswordRef.current.value) {
-			axios.put("https://spring-madrasda-2f6mra4vwa-em.a.run.app/?newPassword=" + confirmPasswordRef.current.value , {}, {
+			axios.put(API_URL + "/?newPassword=" + confirmPasswordRef.current.value , {}, {
 				headers: {
 					"Authorization": "Bearer " + localStorage.getItem("token_vendor")
 				}

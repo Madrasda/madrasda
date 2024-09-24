@@ -19,6 +19,7 @@ import { UserContext } from "../../../context/context";
 import ReturnRefundModal from "@/components/return&refund-modal";
 import TermsConditionsModal from "@/components/terms&conditions-modal";
 import PaymentStructureModal from "@/components/paymentstructure-modal";
+import { API_URL } from "@/utils/constants";
 
 export default function Vendorlogin() {
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function Vendorlogin() {
     e.preventDefault();
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/signupVendor",
+        API_URL + "/api/auth/signupVendor",
         {
           name: name,
           email: email,
@@ -91,7 +92,7 @@ export default function Vendorlogin() {
     e.preventDefault();
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/auth/loginVendor",
+        API_URL + "/api/auth/loginVendor",
         {
           email: mail,
           password: password,

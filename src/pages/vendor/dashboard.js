@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { async } from "@firebase/util";
+import { API_URL } from "@/utils/constants";
 
 export default function Dashboard(props) {
   const [tokenExists, setTokenExists] = useState(false);
@@ -24,7 +25,7 @@ export default function Dashboard(props) {
     }, 1500);
   }, []);
   const getVendorDetails = async () => {
-    const response = await axios.get("https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/", {
+    const response = await axios.get(API_URL + "/api/vendor/", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token_vendor"),
       },
@@ -38,7 +39,7 @@ export default function Dashboard(props) {
 
   const getDesigns = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/designs",
+      API_URL + "/api/vendor/designs",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_vendor"),
@@ -50,7 +51,7 @@ export default function Dashboard(props) {
 
   const requestPayout = async () => {
     const response = await axios.post(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/requestPayout",
+      API_URL + "/api/vendor/requestPayout",
       {},
       {
         headers: {

@@ -11,6 +11,7 @@ import SignupModal from "@/components/signup-request";
 import { uuidv4 } from "@firebase/util";
 import { Backdrop, CircularProgress, Snackbar } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
+import { API_URL } from "@/utils/constants";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -21,7 +22,7 @@ export default function Requests() {
   const getRequests = async () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getAllSignups",
+        API_URL + "/api/admin/getAllSignups",
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token_admin"),
@@ -34,7 +35,7 @@ export default function Requests() {
   const createVendor = async (id) => {
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/approveSignup/" +
+        API_URL + "/api/admin/approveSignup/" +
           id,
         {
           password: "password",
@@ -60,7 +61,7 @@ export default function Requests() {
 
   const deleteRequest = async (id) => {
     const response = await axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/removeSignUp/" +
+      API_URL + "/api/admin/removeSignUp/" +
         id,
       {
         headers: {

@@ -12,6 +12,7 @@ import { v4 } from "uuid";
 import { getRole } from "@/utils/JWTVerifier";
 import { uuidv4 } from "@firebase/util";
 import { Alert, Grow, Snackbar } from "@mui/material";
+import { API_URL } from "@/utils/constants";
 
 export default function VendorList(props) {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function VendorList(props) {
   const getVendors = async () => {
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
+        API_URL + "/api/admin/getVendors"
       )
       .then((response) => {
         setVendors(response.data);
@@ -66,7 +67,7 @@ export default function VendorList(props) {
     const url = await uploadImageOnline(data.imgUrl);
     axios
       .post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/addVendor",
+        API_URL + "/api/admin/addVendor",
         {
           ...data,
           imgUrl: url,
@@ -82,7 +83,7 @@ export default function VendorList(props) {
 
   const deleteVendor = async (vendorId) => {
     const response = await axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/deleteVendor/" +
+      API_URL + "/api/admin/deleteVendor/" +
       vendorId,
       {
         headers: {

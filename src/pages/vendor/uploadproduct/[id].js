@@ -134,7 +134,7 @@ export default function ViewProd() {
 
     if (data.productImages[0].imgUrl !== null) {
       const response = await axios.post(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/createProduct",
+        API_URL + "/api/product/createProduct",
         data,
         {
           headers: {
@@ -144,7 +144,7 @@ export default function ViewProd() {
       );
     }
     const tempResponse = await axios.delete(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/deleteTemplate/" +
+      API_URL + "/api/templates/deleteTemplate/" +
         id,
       {
         headers: {

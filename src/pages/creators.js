@@ -3,6 +3,7 @@ import ProductList from "@/pages/productlist";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/context";
+import { API_URL } from "@/utils/constants";
 
 function VendorProductsPage() {
   const router = useRouter();
@@ -21,7 +22,7 @@ function VendorProductsPage() {
     );
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductsByVendor/" +
+        API_URL + "/api/product/getProductsByVendor/" +
           id +
           "?pageNo=" +
           pageNo +
@@ -41,7 +42,7 @@ function VendorProductsPage() {
       } else {
         axios
           .get(
-            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/getVendors"
+            API_URL + "/api/admin/getVendors"
           )
           .then((response) => {
             setPageData(response.data);

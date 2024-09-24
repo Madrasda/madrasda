@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier";
 import VendorQuery from '@/components/vendor-query';
+import { API_URL } from '@/utils/constants';
 
 export default function Queries() {
     const router = useRouter();
@@ -24,7 +25,7 @@ export default function Queries() {
             pageSize: 4
         })
         axios.get(
-            "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/feedback/getAllQueries?" + url
+            API_URL + "/api/feedback/getAllQueries?" + url
         ).then((response) => {
             setQueries(response.data.unresolvedQueries.content);
             setPageSize(response.data.unresolvedQueries.totalPages);

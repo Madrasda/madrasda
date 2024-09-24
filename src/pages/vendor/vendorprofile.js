@@ -18,6 +18,7 @@ import MuiAlert from "@mui/material/Alert";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "@/firebaseConfig";
 import { v4 } from "uuid";
+import { API_URL } from "@/utils/constants";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -68,7 +69,7 @@ export default function VendorProfile(props) {
 
   const getVendorDetails = async () => {
     const response = await axios.get(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/",
+      API_URL + "/api/vendor/",
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_vendor"),
@@ -99,7 +100,7 @@ export default function VendorProfile(props) {
   async function submitHandler(e) {
     e.preventDefault();
     const response = await axios.put(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/updateVendorDetails",
+      API_URL + "/api/vendor/updateVendorDetails",
       details.vendor,
       {
         headers: {

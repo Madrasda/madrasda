@@ -8,6 +8,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import {getRole, isTokenValid} from "@/utils/JWTVerifier"
+import { API_URL } from '@/utils/constants'
 
 export default function Analytics () {
   const [tokenExists, setTokenExists] = useState(false);
@@ -53,7 +54,7 @@ export default function Analytics () {
 
   const getVendorDetails = async () => {
       const response = await axios.get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/vendor/" , {
+        API_URL + "/api/vendor/" , {
           headers : {
             Authorization : "Bearer " + localStorage.getItem('token_vendor')
           }

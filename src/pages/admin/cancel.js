@@ -7,6 +7,7 @@ import { getRole, isTokenValid } from "@/utils/JWTVerifier";
 import { Button, Grow, Paper, Snackbar } from "@mui/material";
 import { uuidv4 } from "@firebase/util";
 import MuiAlert from "@mui/material/Alert";
+import { API_URL } from "@/utils/constants";
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
 });
@@ -35,7 +36,7 @@ export default function AdminCancelOrdersPage() {
     });
     axios
       .get(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/transaction/getAllCancelRequests?" +
+        API_URL + "/api/transaction/getAllCancelRequests?" +
           params,
         {
           headers: {
@@ -64,7 +65,7 @@ export default function AdminCancelOrdersPage() {
   function processCancelRequest(id) {
     axios
       .delete(
-        "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/cancelOrder/" +
+        API_URL + "/api/admin/cancelOrder/" +
           id,
         {
           headers: {

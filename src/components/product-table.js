@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { JsonToExcel } from "react-json-to-excel";
 import { Edit } from "@mui/icons-material";
+import { API_URL } from "@/utils/constants";
 
 set_cptable(cptable);
 
@@ -53,7 +54,7 @@ export default function ProductTable({ products, setProducts, path }) {
   const togglePublishStatus = async (id, inSale) => {
     setSpinner(true);
     const response = await fetch(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/togglePublishState/" +
+      API_URL + "/api/product/togglePublishState/" +
         id,
       {
         method: "PUT",
@@ -87,7 +88,7 @@ export default function ProductTable({ products, setProducts, path }) {
   const banProduct = async (id, ban) => {
     setSpinner(true);
     const response = await fetch(
-      "https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/admin/toggleProductState/" +
+      API_URL + "/api/admin/toggleProductState/" +
         id,
       {
         method: "PUT",
