@@ -85,14 +85,14 @@ export default function OrderDetailsModal({ order }) {
                   #{order.orderId}
                 </h1>
                 <span className='md:text-lg w-fit'>
-                  ₹{Number(order.orderTotal).toLocaleString("en-IN")}
+                  ₹{Math.ceil(order.orderTotal + order.deliveryCharges)}
                 </span>
               </div>
               <div className='p-2 md:p-4'>
                 <div className='flex justify-between items-center mb-4'>
                   <h1>Shipping Charges</h1>
                   <h1 className='text-sm text-black'>
-                    ₹{Math.round((order.orderTotal - prodTotal) * 100) / 100}
+                    ₹{order.deliveryCharges}
                   </h1>
                 </div>
                 {order.orderItems.map((item) => (
@@ -107,11 +107,11 @@ export default function OrderDetailsModal({ order }) {
                     </span>
                     <span className='text-black'>
                       ₹
-                      {Number(
+                      {Math.ceil(Number(
                         ((item.product.total * (100 - item.product.discount)) /
                           100) *
                           item.quantity
-                      ).toLocaleString("en-IN")}
+                      ))}
                     </span>
                   </div>
                 ))}
