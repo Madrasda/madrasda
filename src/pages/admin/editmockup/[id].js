@@ -82,7 +82,7 @@ export default function EditMockup() {
   const toggleAvailability = (colorId) => {
     axios
       .put(
-        `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/mockup/toggleColorSku/${colorId}&${id}`
+        `${API_URL}/api/mockup/toggleColorSku/${colorId}&${id}`
       )
       .then((response) =>
         setAvailableColors((old) =>

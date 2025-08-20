@@ -179,7 +179,7 @@ export default function ViewProd() {
 
   const getTemplateDetails = async () => {
     const response = await axios.get(
-      `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/product/getProductTemplate/${id}`,
+      `${API_URL}/api/product/getProductTemplate/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_vendor"),

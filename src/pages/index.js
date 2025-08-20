@@ -13,6 +13,7 @@ import HotSellers from "@/components/hotsellers-client";
 import Footer from "@/components/footer";
 import axios from "axios";
 import { NEXT_PUBLIC_CLARITY_ID, NEXT_PUBLIC_PIXEL_ID } from "@/firebaseConfig";
+import { API_URL } from "@/utils/constants";
 
 export default function Home() {
   const router = useRouter();
@@ -34,13 +35,13 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const vendorData = await Promise.all(
-        ctx.vendorList.map(async (vendor) => {
+        ctx?.vendorList?.map(async (vendor) => {
           const params = new URLSearchParams({
             pageNo: 0,
             pageSize: 10,
           });
           const response = await axios.get(
-            `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/client/getProductsByVendor/${vendor.id}?` +
+            `${API_URL}/api/client/getProductsByVendor/${vendor.id}?` +
             params
           );
           return {

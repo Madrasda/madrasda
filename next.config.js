@@ -23,9 +23,14 @@ const nextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'pixabay.com',
+        port: '',
+      },
     ],
 
-  },
+  },reactStrictMode: false,
   eslint: {
     ignoreDuringBuilds: true,
   },

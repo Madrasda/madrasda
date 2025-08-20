@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Button, CircularProgress, Grow, Paper } from "@mui/material";
 import { useState } from "react";
+import { API_URL } from "@/utils/constants";
 
 export default function VendorQuery(props) {
   const router = useRouter();
@@ -11,7 +12,7 @@ export default function VendorQuery(props) {
     setSpinner(true);
     axios
       .put(
-        `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/feedback/toggleFeedbackResolution/${props.queryId}`
+        `${API_URL}/api/feedback/toggleFeedbackResolution/${props.queryId}`
       )
       .then((response) => {
         setSpinner(false);

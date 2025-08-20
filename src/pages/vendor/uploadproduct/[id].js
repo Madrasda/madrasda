@@ -22,6 +22,7 @@ import {
 import { Check } from "@mui/icons-material";
 import InfoIcon from "@mui/icons-material/Info";
 import MuiAlert from "@mui/material/Alert";
+import { API_URL } from "@/utils/constants";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -201,7 +202,7 @@ export default function ViewProd() {
 
   const getTemplateDetails = async () => {
     const response = await axios.get(
-      `https://spring-madrasda-2f6mra4vwa-em.a.run.app/api/templates/getTemplate/${id}`,
+      `${API_URL}/api/templates/getTemplate/${id}`,
       {
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token_vendor"),

@@ -49,7 +49,7 @@ export default function HotSellers() {
                         duration-200 ease-in-out'>
                         <div className='block relative h-[fit] rounded overflow-hidden'>
                           <Image
-                            src={product.colors[0].images[0]}
+                            src={product.imageUrl}
                             alt='ecommerce'
                             width={1080}
                             height={1920}
